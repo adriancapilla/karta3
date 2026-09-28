@@ -60,7 +60,7 @@ Para cerrar el bloque se ejecutan pruebas de aplicación y servidor para E1–E7
 
 **Entorno:** Windows NT 10.0.26200, Node.js 24.13.0, npm 11.6.2, Chrome 153.0.8010.54 sin interfaz gráfica, servidor Express local en `127.0.0.1:3000`. El navegador se probó a 390 × 844 y 1280 × 800 píxeles. Repositorio Git local, rama `main`, sin remoto ni despliegue.
 
-**Cambio revisado:** `server/roomStore.ts`, `server/app.ts`, `server/main.ts`, `src/`, pruebas, configuración de construcción y `README.md`. La referencia del primer commit se añade tras registrarlo. `npm run check` terminó correctamente: tipos, análisis estático, 9 pruebas de estado/API y compilación. `npm run test:browser` terminó correctamente: 6 pruebas de Chrome. Se inspeccionaron visualmente las capturas de ambas anchuras; no se observó desbordamiento y se distinguían código, edición y cierre.
+**Cambio revisado:** commit local `e71de9e` (`server/roomStore.ts`, `server/app.ts`, `server/main.ts`, `src/`, pruebas, configuración de construcción y `README.md`). `npm run check` terminó correctamente: tipos, análisis estático, 9 pruebas de estado/API y compilación. `npm run test:browser` terminó correctamente: 6 pruebas de Chrome. Se inspeccionaron visualmente las capturas de ambas anchuras; no se observó desbordamiento y se distinguían código, edición y cierre.
 
 | Caso | Comprobación realmente ejecutada | Resultado |
 |---|---|---|

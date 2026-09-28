@@ -1,6 +1,6 @@
 # SDD ligero para KARTA3
 
-**Estado:** organización acordada el 27/09/2026; primer incremento digital elegido el 28/09/2026; aplicación práctica pendiente de comprobar.  
+**Estado:** organización acordada el 27/09/2026; primer incremento digital elegido y verificado localmente el 28/09/2026.  
 **Ámbito:** desarrollo nuevo de KARTA3. Este documento describe el trabajo por bloques; no sustituye las reglas del juego ni acredita código o pruebas.
 
 ## Fuentes y responsabilidades
