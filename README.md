@@ -7,9 +7,10 @@ Primera implementación local de KARTA3. Permite crear una sala de espera propia
 - Node.js 24 LTS y npm.
 - Chrome instalado para las pruebas de navegador.
 
-Desde esta carpeta:
+En PowerShell, entra primero en la carpeta que contiene `package.json` y `package-lock.json`:
 
 ```powershell
+Set-Location -LiteralPath 'E:\KARTA3\KARTA3_IA\APP\karta3'
 npm ci
 npm run dev
 ```
@@ -29,9 +30,10 @@ npm run build
 npm run start
 ```
 
-En otra terminal ejecuta:
+En otra terminal, entra también en esa carpeta y ejecuta:
 
 ```powershell
+Set-Location -LiteralPath 'E:\KARTA3\KARTA3_IA\APP\karta3'
 npm run test:browser
 ```
 
