@@ -140,7 +140,7 @@ Se consulta al autor o al hilo de arquitectura solo si aparece una contradicció
 
 **Punto de partida:** `main` en `8721ae2`, con cambios locales previos en `README.md`, `PLANTILLA_BLOQUE.md`, `PROCESO_SDD.md` y archivos nuevos `AGENTS.md`, guía de arquitectura y T01. Se conservaron y se actualizaron solo las partes necesarias para describir la organización entregada. Antes de refactorizar, `npm run check` pasó con 9 pruebas de servidor y compilación; `npm run test:browser` pasó con 6 pruebas sobre la versión compilada anterior.
 
-**Entorno y versión final comprobada:** Windows NT 10.0.26200, Node.js 24.13.0, npm 11.6.2, Chrome 153.0.8010.54 sin interfaz gráfica, servidor Express compilado en `127.0.0.1:3000`. La referencia del commit de implementación se añadirá al registrarlo.
+**Entorno y versión final comprobada:** Windows NT 10.0.26200, Node.js 24.13.0, npm 11.6.2, Chrome 153.0.8010.54 sin interfaz gráfica, servidor Express compilado en `127.0.0.1:3000`. Implementación revisada: commit local `bd96263`; este registro de evidencia se añade después sin cambiar el código comprobado.
 
 | Comprobación ejecutada | Resultado |
 |---|---|
