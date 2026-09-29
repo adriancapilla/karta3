@@ -1,10 +1,10 @@
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import express from 'express';
-import { createApp } from './app.js';
+import { createApp } from './composition/createApp.js';
 
 const app = createApp();
-const dist = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../dist');
+const dist = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../dist');
 app.use(express.static(dist));
 app.get('/{*path}', (_req, res) => res.sendFile(path.join(dist, 'index.html')));
 

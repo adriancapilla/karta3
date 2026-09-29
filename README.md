@@ -2,6 +2,8 @@
 
 Primera implementación local de KARTA3. Permite crear una sala de espera propia, recuperar la misma sala al recargar, copiar su código de seis cifras, cambiar el nombre del anfitrión y cerrar la sala con confirmación. Aún no permite entrar en salas ajenas ni iniciar una partida.
 
+Las reglas para desarrollar los siguientes bloques están en [`AGENTS.md`](AGENTS.md). La [organización y dependencias](docs/arquitectura/ORGANIZACION_Y_DEPENDENCIAS.md) explica cómo separar dominio, aplicación, infraestructura e interfaz a partir de este primer bloque.
+
 ## Requisitos e instalación
 
 - Node.js 24 LTS y npm.
@@ -23,7 +25,7 @@ Abrir `http://127.0.0.1:5173`. Vite sirve la interfaz y envía `/api` al servido
 npm run check
 ```
 
-Comprueba tipos, análisis estático, pruebas de estado y API, y compilación. Para las pruebas de navegador, en una terminal arranca la versión compilada:
+Comprueba tipos, análisis estático, pruebas de modelo, casos de uso, adaptadores y API, dependencias entre capas y compilación. El control `npm run check:architecture` también puede ejecutarse por separado; sus casos negativos forman parte de `npm test`. Para las pruebas de navegador, en una terminal arranca la versión compilada actual:
 
 ```powershell
 npm run build
@@ -37,13 +39,16 @@ Set-Location -LiteralPath 'E:\KARTA3\KARTA3_IA\APP\karta3'
 npm run test:browser
 ```
 
-Estas pruebas usan Chrome y el servidor local en `127.0.0.1:3000`. El resultado y los límites de E1–E7 constan en [`docs/sdd/BLOQUE_01_CREACION_SALA.md`](docs/sdd/BLOQUE_01_CREACION_SALA.md).
+Estas pruebas usan Chrome y el servidor local en `127.0.0.1:3000`. La evidencia histórica de E1–E7 está en [`docs/sdd/BLOQUE_01_CREACION_SALA.md`](docs/sdd/BLOQUE_01_CREACION_SALA.md); la verificación tras la separación de capas se registra en [`docs/sdd/BLOQUE_T01_REFACTOR_CREACION_SALA.md`](docs/sdd/BLOQUE_T01_REFACTOR_CREACION_SALA.md).
 
 ## Estructura y decisiones
 
-- `src/`: interfaz React y Vite. El cliente presenta vistas y envía intenciones; no decide permisos.
-- `server/roomStore.ts`: estado de sala, valores iniciales, unicidad del código, validación de nombres y permisos. Los cambios de una sala son síncronos dentro de un único proceso Node.
-- `server/app.ts`: API Express y sesiones anónimas. La credencial opaca se envía en una cookie `HttpOnly`, limitada al host y `SameSite=Strict`; usa `Secure` cuando `NODE_ENV=production`. Solo el servidor asocia la sesión al anfitrión.
+- `server/application/`: modelo de sala y nombre, casos de uso, permisos, puertos y vista pública. La creación y el guardado son síncronos dentro de un único proceso Node.
+- `server/infrastructure/`: repositorio en memoria, sesiones, generación con `node:crypto` y adaptador HTTP Express. La credencial opaca se envía en una cookie `HttpOnly`, limitada al host y `SameSite=Strict`; usa `Secure` cuando `NODE_ENV=production`.
+- `server/composition/` y `server/main.ts`: eligen adaptadores, los conectan, sirven `dist` e inician el proceso.
+- `shared/contracts/`: formato público completo de la sala y respuestas, compartido con HTTP y el cliente.
+- `src/`: React/Vite; `api.ts` transporta peticiones, `useRoomFlow.ts` coordina la pantalla y `screens.tsx` presenta sin decidir permisos.
+- `tools/check-architecture.mjs`: comprueba imports, reexportaciones, aliases y ciclos del código de producción.
 - `tests/browser/`: recorrido en Chrome a 390 y 1280 píxeles.
 - `docs/sdd/`: especificación y evidencia del bloque.
 

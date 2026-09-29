@@ -7,5 +7,5 @@ export default tseslint.config(
   js.configs.recommended,
   ...tseslint.configs.recommended,
   reactHooks.configs.flat.recommended,
-  { files: ['**/*.{ts,tsx}'], languageOptions: { globals: { process: 'readonly', window: 'readonly', document: 'readonly', navigator: 'readonly', console: 'readonly' } } }
+  { files: ['**/*.{ts,tsx,mjs}'], languageOptions: { globals: { process: 'readonly', window: 'readonly', document: 'readonly', navigator: 'readonly', console: 'readonly' } } }
 );

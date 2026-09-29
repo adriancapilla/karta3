@@ -1,9 +1,4 @@
-export type RoomView = {
-  id: string;
-  code: string;
-  status: 'WAITING';
-  participant: { id: string; name: string; role: 'HOST'; isPlayer: true };
-};
+import type { CurrentRoomResponse, RenameRoomRequest, RoomResponse } from '../shared/contracts/room';
 
 export class ApiError extends Error {
   constructor(public readonly code: string, message: string) { super(message); }
@@ -29,8 +24,8 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
 }
 
 export const api = {
-  current: () => request<{ room: RoomView | null }>('/rooms/current'),
-  create: () => request<{ room: RoomView }>('/rooms', { method: 'POST', body: '{}' }),
-  rename: (id: string, name: string) => request<{ room: RoomView }>(`/rooms/${encodeURIComponent(id)}/name`, { method: 'PATCH', body: JSON.stringify({ name }) }),
+  current: () => request<CurrentRoomResponse>('/rooms/current'),
+  create: () => request<RoomResponse>('/rooms', { method: 'POST', body: '{}' }),
+  rename: (id: string, name: string) => request<RoomResponse>(`/rooms/${encodeURIComponent(id)}/name`, { method: 'PATCH', body: JSON.stringify({ name } satisfies RenameRoomRequest) }),
   close: (id: string) => request<void>(`/rooms/${encodeURIComponent(id)}`, { method: 'DELETE' })
 };
