@@ -159,3 +159,11 @@ Se consulta al autor o al hilo de arquitectura solo si aparece una contradicció
 **Límites:** el control automático verifica dependencias sintácticas y ciclos, pero sigue siendo necesaria la revisión de responsabilidades. No se probaron HTTPS/Caddy, VPS, múltiples procesos ni comprensión con una persona ajena al desarrollo. Siguen fuera de T01 invitados, configuración editable, bots, partida, Socket.IO y plazos de espera. La evidencia del bloque 01 permanece histórica y separada de esta comprobación.
 
 La devolución a coordinación incluirá el cambio revisado, mapa final de responsabilidades, E1–E7 y T1–T6 con resultados reales, comprobación de dependencias, decisiones locales y límites. Este bloque técnico no modifica las reglas digitales ni autoriza el siguiente incremento funcional.
+
+### Corrección de revisión — 30/09/2026
+
+Se detectó que `MemoryRoomRepository.save` permitía sustituir una sala por otra con el mismo ID y distinto propietario o código. El mapa principal pasaba a contener la nueva sala, pero los índices anteriores seguían ocupados incluso después de eliminarla. Se optó por **rechazar el cambio de identidad antes de modificar los mapas**: `Room` declara esos campos como de solo lectura y los casos de uso únicamente vuelven a guardar la misma identidad al renombrar. Se conserva el contrato del repositorio, el mensaje de incompatibilidad ya existente y el comportamiento HTTP.
+
+La regresión prueba por separado el cambio de propietario y el de código. En ambos casos verifica que el rechazo deja accesible la sala original, que no crea asociaciones nuevas, que `remove` libera todos los índices y que estos pueden reutilizarse.
+
+**Ejecución real:** 30/09/2026, Windows NT 10.0.26200, Node.js 24.13.0, npm 11.6.2. `npm run check` superado: tipos, lint, 22/22 pruebas Vitest en 5 archivos, control arquitectónico de 17 módulos sin infracciones ni ciclos y compilación. Se arrancó `npm run start` sobre esa compilación en `127.0.0.1:3000` y `npm run test:browser` volvió a compilar y superó 6/6 pruebas de Chrome, incluidas las anchuras de 390 y 1280 píxeles. No se modificó la presentación; las simulaciones de cero inicial y pérdida de estado siguen teniendo el alcance documentado arriba.

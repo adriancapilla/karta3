@@ -32,4 +32,32 @@ describe('repositorio de salas en memoria', () => {
     expect(repository.findById('room-b')).toBeUndefined();
     expect(repository.findById('room-c')).toBeUndefined();
   });
+
+  it.each([
+    ['propietario', 'owner-b', '000042'],
+    ['código', 'owner-a', '000043']
+  ])('rechaza cambiar el %s de una sala existente y libera sus índices al borrar', (_field, owner, code) => {
+    const repository = new MemoryRoomRepository();
+    const original = room('room-a', 'owner-a', '000042');
+    repository.save(original);
+
+    expect(() => repository.save(room('room-a', owner, code))).toThrow('Índices de sala incompatibles.');
+    expect(repository.findById('room-a')).toBe(original);
+    expect(repository.findActiveByOwner('owner-a')).toBe(original);
+    expect(repository.findActiveByOwner('owner-b')).toBeUndefined();
+    expect(repository.isCodeActive('000042')).toBe(true);
+    expect(repository.isCodeActive('000043')).toBe(false);
+
+    repository.remove('room-a');
+    expect(repository.findById('room-a')).toBeUndefined();
+    expect(repository.findActiveByOwner('owner-a')).toBeUndefined();
+    expect(repository.findActiveByOwner('owner-b')).toBeUndefined();
+    expect(repository.isCodeActive('000042')).toBe(false);
+    expect(repository.isCodeActive('000043')).toBe(false);
+
+    repository.save(room('room-b', 'owner-a', '000042'));
+    repository.save(room('room-c', 'owner-b', '000043'));
+    expect(repository.findActiveByOwner('owner-a')?.id).toBe('room-b');
+    expect(repository.findActiveByOwner('owner-b')?.id).toBe('room-c');
+  });
 });

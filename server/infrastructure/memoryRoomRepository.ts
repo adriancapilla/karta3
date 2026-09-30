@@ -16,9 +16,13 @@ export class MemoryRoomRepository implements RoomRepository {
   isCodeActive(code: string): boolean { return this.activeCodes.has(code); }
 
   save(room: Room): void {
+    const stored = this.rooms.get(room.id);
     const ownerId = this.ownRoom.get(room.hostSessionId);
     const codeId = this.activeCodes.get(room.code);
-    if (room.status !== 'WAITING' || (ownerId && ownerId !== room.id) || (codeId && codeId !== room.id)) {
+    if (room.status !== 'WAITING'
+      || (stored && (stored.hostSessionId !== room.hostSessionId || stored.code !== room.code))
+      || (ownerId && ownerId !== room.id)
+      || (codeId && codeId !== room.id)) {
       throw new Error('Índices de sala incompatibles.');
     }
     this.rooms.set(room.id, room);
