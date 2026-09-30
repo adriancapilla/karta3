@@ -1,6 +1,6 @@
 # Bloque 03 — Ciclo de vida de la espera
 
-**Estado:** acordado con el autor el 30/09/2026; especificación preparada para implementación. Código y verificación pendientes.
+**Estado:** verificado localmente el 30/09/2026 para B03-01–16 y las regresiones previas. Las clases de evidencia temporal y los límites constan en §10.
 
 **Punto de partida:** `main`, commit `17a5efc`, árbol de trabajo limpio al preparar este bloque. Bloques 01, T01 y 02 entregados y comprobados localmente. La evidencia del bloque 02 —38 pruebas Vitest y 12 de navegador— es histórica; no acredita este incremento.
 
@@ -123,7 +123,7 @@ El implementador decide nombres y agrupación de módulos, funciones o clases, d
 
 ## 6. Ejemplos y criterios de aceptación
 
-Todos pendientes de comprobar. A y B son sesiones independientes; B1 y B2 son pestañas de una misma sesión B. Los tiempos se miden desde hechos registrados por el servidor.
+A y B son sesiones independientes; B1 y B2 son pestañas de una misma sesión B. Los tiempos se miden desde hechos registrados por el servidor. Resultados ejecutados en §10.
 
 | Criterio | Situación / acción | Resultado exigido |
 |---|---|---|
@@ -172,7 +172,7 @@ Puertas finales: **`npm run check`** y **`npm run test:browser`** contra la vers
 
 No quedan decisiones funcionales abiertas necesarias para implementar este alcance. Si aparece una contradicción nueva con las fuentes, citarla y consultar antes de cambiar las reglas.
 
-**Cambio de código:** pendiente. **Pruebas del bloque 03:** pendientes. **Comprobaciones arquitectónicas de su implementación:** pendientes. **Fecha de verificación:** pendiente.
+**Cambio de código revisado:** `76e9ecc`. **Pruebas del bloque 03:** ejecutadas, §10. **Comprobaciones arquitectónicas:** superadas, §10. **Fecha de verificación:** 30/09/2026.
 
 Preparación documental realizada el 30/09/2026: lectura de fuentes, código y evidencia previa; sin implementación ni ejecución de pruebas del producto en este hilo. Para cerrar, registrar B03-01–16, regresiones previas, commit revisado, comandos y las cuatro clases de evidencia anteriores. El resumen para coordinación incluirá acuerdos, archivo, responsabilidades finales, resultados reales y pendientes de configuración, expulsión, bots, inicio, partida y despliegue.
 
@@ -184,3 +184,72 @@ Versión `17a5efc`, rama `main`; únicos cambios locales iniciales: esta especif
 - `npm run start` con esa compilación y `npm run test:browser`: superado, 12/12 pruebas (33,1 s), incluidos E1–E7 y los recorridos del bloque 02.
 
 Esta ejecución acredita la base anterior. No verifica todavía los plazos ni la presencia del bloque 03. No se detectó contradicción funcional entre el alcance acordado y las fuentes consultadas.
+
+## 10. Implementación y evidencia final — 30/09/2026
+
+**Versiones:** `11b0d06` conserva por separado la especificación inicial, los cambios locales del proceso SDD y la ejecución de la base; `76e9ecc` contiene código, pruebas, README y mapa de responsabilidades. Este registro y el estado final del proceso se guardan en un commit documental posterior. Las puertas finales se ejecutaron sobre el contenido de código de `76e9ecc` antes de registrarlo; no se cambió código después.
+
+**Entorno comprobado:** Windows NT 10.0.26300.0, Node.js 24.13.0, npm 11.6.2, Chrome 154.0.8037.92 sin interfaz gráfica, Socket.IO/cliente 4.8.4. Ejecuciones finales entre las 23:54 y 23:57 CEST. Instancia compilada en `127.0.0.1:3000`, reiniciada tras construir el código actual con `npm run start`. Los montajes adicionales usan puertos locales efímeros y esa misma salida `dist-server`/`dist`. No se añadieron dependencias.
+
+### Comandos ejecutados y puertas finales
+
+| Comprobación | Resultado real |
+|---|---|
+| `npm run check` | Superado: tipos, lint, **65/65 pruebas Vitest en 10 archivos**, control de **25 módulos** sin imports prohibidos ni ciclos, compilación TypeScript/Vite. Última ejecución Vitest: 23:54:32, 11,22 s. |
+| `npm run start` después de esa compilación; `npm run test:browser` | Superado: **18/18 pruebas Chrome**, 57,7 s. Los 12 recorridos previos siguen presentes; se añaden seis del bloque 03. Los montajes de ciclo de vida importan la versión compilada, no módulos TypeScript de producción. |
+| `npx playwright test tests/browser/lifecycle.spec.ts --grep 'margen reales'` | Superado: 1/1 recorrido de reserva real durante el ajuste de la prueba de pestañas, 43,7 s. Se repitió dentro de la puerta completa final. |
+| `npx vitest run server/lifecycleSocket.test.ts -t 'heartbeat real' --reporter=verbose --disableConsoleIntercept` | Superado: 1/1 prueba seleccionada; las otras cinco quedaron omitidas únicamente en esta selección. Permitió registrar la medida de detección real por heartbeat. Las seis se ejecutaron en la puerta `check`. |
+| `git diff --check`; revisión semántica de capas; capturas a 390×844 y 1280×800 | Sin errores de espacios ni dependencias invertidas. Franja, marcas, código, borrador, controles y motivos legibles, sin desbordamiento horizontal. Capturas regenerables `test-results/B03-*-warning.png`, `B03-*-reconnecting.png`, excluidas de Git. |
+
+No se modificó la configuración del proxy de Vite. Las comprobaciones de este bloque usaron la compilación; la ejecución del proxy de §10 del bloque 02 permanece como evidencia histórica, no como una nueva ejecución de desarrollo en este bloque.
+
+### Qué tiempo se comprobó
+
+| Clase | Evidencia y alcance |
+|---|---|
+| Tiempo controlado | `waitingLifecycle.test.ts`, modelo y estado del cliente: 29.999/30.000 ms; minutos 29/30; renovaciones, capacidad, solicitudes antiguas, coincidencias, callbacks retrasados/desordenados y código reutilizado. `ControlledTime` mantiene los plazos originales del producto, adelanta el tiempo o retiene callbacks. No acredita 30 minutos reales. |
+| Conexiones reales con tiempo controlado | `lifecycleSocket.test.ts`: HTTP/Socket.IO, cookies independientes, varias conexiones de la misma sesión, vistas por destinatario, retirada y recuperación de motivos. Solo reloj/planificación de aplicación sustituidos. El transporte, autenticación, detección y envío usan conexiones reales. |
+| Detección heartbeat real con reserva posterior controlada | WebSocket real abierto; el montaje descarta paquetes salientes del cliente, incluidos `pong`. El servidor detectó `ping timeout` a los **10.015,1 ms** desde empezar el descarte. Después se avanzaron 29.999 + 1 ms controlados para comprobar la reserva. Es una pérdida silenciosa de paquetes inducida, no una avería física de la red ni una reserva de 30 s reales. |
+| Conexiones y reserva reales | Último recorrido de `lifecycle.spec.ts`, sin reloj sustituido: segunda pestaña con WebSocket confirmado; cerrar una no cambia presencia. Corte local con `BrowserContext.setOffline(true)`, recuperación antes de vencer sin F5 y segundo corte hasta retirada. Detección de recuperación: **7,24 ms**; detección del segundo corte: **9,41 ms**; retirada **30.002,50 ms** después de la detección y **30.011,92 ms** desde iniciar el corte. Razón del cierre de pestaña y de ambos cortes: `transport close`. Medidas del proceso real mediante reloj monotónico/deadline y observación del repositorio al guardar la retirada; comprobación de convergencia del receptor en ≤2 s desde el efecto. |
+| Interfaz con caducidad controlada | Servidor compilado real y dos contextos Chrome con cookies independientes; minuto 29, renovación y minuto 30 mediante sustitutos internos. Cambio de hora del navegador a 2040 no altera la decisión del servidor. Un contador adelantado a cero con el invitado sin conexión conserva lista/aviso hasta confirmación. Ambos tamaños y papeles, borrador, foco y teclado. |
+
+**Detección configurada:** `pingInterval=5000`, `pingTimeout=5000` ms, `maxHttpBufferSize=4096`; confirmación del cliente 5000 ms, conservada del bloque 02. Una pérdida silenciosa puede tardar aproximadamente un intervalo más el timeout en detectarse; no se promete un límite universal para otras redes o procesos bloqueados. La reserva funcional es siempre **30.000 ms desde la detección aceptada**, no desde el gesto de desconexión. En la prueba del navegador la red se interrumpió en el contexto local de Chrome; no se desactivó una interfaz física ni se reprodujo una red WAN.
+
+### B03-01–16 ejecutados
+
+| Criterio | Resultado y evidencia |
+|---|---|
+| B03-01 | Superado: casos de uso y sockets reales a tiempo controlado 29.999 ms preservan ID/nombre/papel/posición y vencimiento general; recuperación única con sufijo. Chrome recupera sin F5 y conserva borrador/foco; el recorrido de margen real lo repite antes de vencer. |
+| B03-02 | Superado: 30.000 ms produce una retirada, índices libres, aviso y motivo propio; conectar en el borde no recupera. Integración comprueba que no recibe vistas posteriores. Chrome espera además los 30 segundos reales hasta liberar la plaza. |
+| B03-03 | Superado: nueva incorporación C antes de reentrar B, otra identidad para B, última posición de invitado, solicitud antigua rechazada y callback viejo sin efecto. Casos de uso y recorrido Chrome con tiempo controlado. |
+| B03-04 | Superado: nombre/entrada de terceros durante ausencia del anfitrión no prolongan su reserva; cierre único `HOST_DISCONNECTED`, sin transferencia ni acciones posteriores. Sockets y Chrome presentan el motivo a quienes permanecen y a quien vuelve. |
+| B03-05 | Superado: dos conexiones de una sesión; perder una no revisa presencia ni ocupación; última pérdida inicia una reserva y otra conexión recupera. Integración controlada y pestañas reales con reloj real. La prueba espera que ambos WebSockets estén establecidos. |
+| B03-06 | Superado: salida y cierre inmediatos en todas las pestañas, cancelación de tareas e índices; desconexiones y callbacks posteriores no recrean reservas. Integración y regresión de salida/cierre del bloque 02. |
+| B03-07 | Superado: creación HTTP sin socket obtiene reserva inicial; conexión a 29.999 conserva sala sin anuncio de recuperación; sin conexión cierra a 30.000. Socket previo crea `CONNECTED`. Casos de uso y HTTP/Socket.IO reales con tiempo controlado. |
+| B03-08 | Superado con tiempo controlado: sockets abiertos, aviso único al minuto 29 y cierre al 30, en ambas sesiones; motivos y limpieza. Chrome muestra franja y retorna directamente a portada. No se esperó media hora real. |
+| B03-09 | Superado: incorporación, salida voluntaria y nombre distinto renuevan coherentemente, quitan aviso y descartan callbacks anteriores. Las tres acciones en casos de uso; renovación HTTP difundida en integración; edición con teclado en ambos tamaños Chrome. |
+| B03-10 | Superado: lecturas, crear/entrar existentes, repeticiones de entrada/salida, nombre normalizado igual, rechazos, mensajes vacíos sin confirmación, conexión y retirada automática no renuevan. Recuperación/recarga no duplica; aviso no aumenta revisión al releer. |
+| B03-11 | Superado: cinco miembros contando la reserva, sexta entrada rechazada antes de retirada y permitida después con nueva solicitud; orden conservado. Se mantienen las carreras de última plaza del bloque 02. |
+| B03-12 | Superado: vencimiento general mientras quedan 10 s de reserva, nombre en el borde y coincidencia exacta con anfitrión producen un cierre por inactividad; callbacks retrasados se procesan cronológicamente y conservan la causa propia del invitado retirado antes. |
+| B03-13 | Superado: ausencias nuevas tienen generación propia, nombre ajeno no invalida la reserva; callbacks cancelados/desordenados no retiran la nueva participación ni advierten/cierran otra sala con código reutilizado. |
+| B03-14 | Superado: otra cookie no recupera vista/motivo ni declara presencia ajena. Campos extra en resume se rechazan; mensajes públicos de presencia/vencimiento no existen; ID visible no permite renombrar/salir por otro. Regresiones de origen, cookie y permisos conservadas. |
+| B03-15 | Superado: recuperar tras perder el evento devuelve únicamente motivo propio y `room:null`; crear/entrar limpia ese motivo. Eliminar sesión borra la referencia; runtime nuevo no conoce causas ni sala. Chrome reinicia realmente el runtime local en el mismo puerto y recupera el aviso genérico, sesión nueva y presencia utilizable sin F5 del anfitrión. No se mató un proceso del sistema operativo. |
+| B03-16 | Superado: hora del navegador distinta, marcas/franja/recuperación, teclado, foco y borradores en 390×844 y 1280×800. Cero visual no decide cierre. E1–E7, T01, índices y recorridos pertinentes de B02 pasan; B02-14 queda como evidencia histórica de la limitación ya sustituida. |
+
+### Responsabilidades, archivos y decisiones internas
+
+| Responsabilidad | Archivos principales |
+|---|---|
+| Estado puro, actividad, generaciones y prioridades | `server/application/room.ts`, `waitingTime.ts`; parámetros explícitos, sin reloj real ni sockets. |
+| Autorizar/deduplicar y coordinar vencimientos antes de acciones/vistas | `roomUseCases.ts`, `waitingLifecycle.ts`, `ports.ts`, `roomView.ts`. Cronología por sala; tareas identifican sala/generación/participación y revalidan. |
+| Tiempo y presencia reales | `server/infrastructure/time.ts`, `socketRooms.ts`. Reloj monotónico con anclaje Unix al arrancar; temporizador cancelable redondeado hacia arriba; conjuntos de sockets autenticados por sesión. |
+| Estado/índices y último fin mínimo | `memoryRoomRepository.ts`, `memorySessions.ts`. Sin lista ni historial en `ended`; resultados de deduplicación conservados. |
+| Borde HTTP y composición | `http/expressApp.ts`, `server/composition/createApp.ts`. Misma identidad y colaboradores; `dispose()` detiene hechos nuevos y cancela tareas antes de cerrar conexiones de pruebas. |
+| Contratos y cliente | `shared/contracts/room.ts`; `src/useRoomFlow.ts`, `roomState.ts`, `ExpiryWarning.tsx`, `screens.tsx`, `App.tsx`, `style.css`. Navegación por causa, revisiones e identidades terminadas; contador con `performance.now`, anuncio inicial y `aria-live="off"` para los segundos. |
+| Pruebas y documentación | Pruebas anteriores adaptadas en modelo/casos de uso/repositorio/HTTP/sockets/estado y `join.spec.ts`; nuevas `waitingLifecycle.test.ts`, `memorySessions.test.ts`, `lifecycleSocket.test.ts`, `tests/support/controlledTime.ts`, `tests/browser/lifecycle.spec.ts`; README, guía de organización y especificación/proceso SDD. |
+
+Revisión semántica: infraestructura valida transporte y cuenta conexiones, pero no decide los 30 s/30 min ni retira por su cuenta. Aplicación usa solo sus puertos/modelo y contratos; no importa Node, Express, Socket.IO o React. El navegador no recibe sesiones/sockets/reloj monotónico interno, no calcula el vencimiento oficial y no ejecuta limpieza. No se añadieron módulos vacíos de dominio, control público de tiempos ni excepciones de dependencias.
+
+**Incidencias corregidas durante la ejecución:** la regresión de reconexión necesitó una revisión adicional por el cambio efectivo de presencia; dos pruebas de sockets esperaban el primer mensaje en vez de la transición buscada y recibieron una vista previa en tránsito, por lo que ahora esperan el evento correspondiente. Una aserción de tarea antigua necesitaba consultar el modelo almacenado, no el DTO inicial. La primera prueba de pestañas cerraba antes de establecer su segundo socket y no acreditaba su premisa; ahora espera dos WebSockets reales. La revisión del reinicio descubrió que, tras establecer una sesión nueva sin sala, faltaba volver a conectar el canal; se corrigió y añadió el recorrido de reinicio real del runtime. Se repitieron las puertas completas después de estas correcciones.
+
+**Límites y coordinación:** comprobación local de un único proceso y Chrome con contextos aislados, no dispositivos físicos ni prueba de comprensión con una persona externa. Caducidad de 30 minutos acreditada con tiempo controlado; reserva de 30 segundos acreditada también con tiempo real. Sin HTTPS/Caddy/VPS ni persistencia; se conservan las regresiones de atributos de cookie de producción, sin afirmar despliegue. No se implementa una política general nueva de eliminación de sesiones: al eliminar explícitamente una sesión en el adaptador se elimina también su motivo mínimo. Configuración, expulsión, bots, inicio y partida siguen fuera; sus futuras acciones válidas deberán integrarse en la política de actividad. Coordinación debe trasladar las concreciones de presentación, presencia entre pestañas, primera conexión, actividad efectiva y prioridad del vencimiento a aplicación §5.4 e infraestructura §§6.1–8. No se detectó contradicción funcional que exigiera cambiar una regla acordada.
