@@ -1,6 +1,6 @@
 # Bloque 02 — Entrada a una sala y espera sincronizada
 
-**Estado:** recorrido y alcance acordados con el autor el 30/09/2026; especificación preparada para implementación. Implementación y verificación pendientes.
+**Estado:** recorrido y alcance acordados con el autor el 30/09/2026; implementación verificada localmente el 30/09/2026 para el alcance de este bloque. Los plazos automáticos siguen pendientes de otro bloque.
 
 **Tipo y punto de partida:** incremento funcional sobre `main`, commit `24227ed`, con árbol de trabajo limpio al iniciar esta preparación. T01 está entregado, incluida la corrección de índices del 30/09/2026. Su evidencia de 22 pruebas de Vitest y 6 de navegador es histórica; no acredita este bloque.
 
@@ -192,6 +192,44 @@ No quedan preguntas funcionales que bloqueen este recorrido. La distribución de
 | 30/09/2026 | Extender recuperación y una sala activa por sesión a invitados; admitir lectura y cambio de nombre propio tras entrar; ampliar vista con lista/revisión y papel invitado. | E3/E5 del bloque 01 conservan su garantía de identidad; se amplían los miembros autorizados. T01 §3 describe el contrato previo y su evidencia permanece histórica. |
 | 30/09/2026 | Aprobar presentación, nombres repetidos y salida; posponer expulsión y ciclo de vida. | B02-01–16. Aplicación §§5 y 18 debe recibir los acuerdos de presentación y sesión mediante coordinación; sus reglas de expulsión y plazos permanecen vigentes para el MVP. |
 
-**Cambio de código:** pendiente. **Pruebas del bloque 02:** pendientes. **Comprobaciones arquitectónicas de su implementación:** pendientes. **Fecha de verificación:** pendiente.
+**Cambio de código revisado:** `8f347ac` (implementación y pruebas); `9508039` conserva por separado la especificación acordada y la modificación previa del proceso SDD. La evidencia y actualización de README/proceso se registran en un commit documental posterior, sin cambiar el código comprobado.
 
-La preparación ha leído fuentes, código y pruebas; no ha implementado funciones ni ejecutado pruebas de la aplicación. Para cerrar, registrar resultados de B02-01–16, regresiones E1–E7/T01, commit revisado, comandos, evidencia de dos sesiones y límites. El resumen a coordinación debe incluir este archivo, acuerdos de interfaz/sesión, extensión de permisos/contrato, dependencias y los bloques pendientes; coordinación mantiene el documento general.
+## 10. Evidencia de implementación — 30/09/2026
+
+**Entorno:** Windows NT 10.0.26200.0, Node.js 24.13.0, npm 11.6.2 y Chrome 154.0.8037.92 sin interfaz gráfica. Socket.IO y su cliente quedaron fijados en 4.8.4. Servidor HTTP y Socket.IO en un proceso local `127.0.0.1:3000`; para la prueba del código `000042` se levantó además una instancia efímera de la misma compilación con generador sustituido. No hubo despliegue, HTTPS real ni persistencia.
+
+**Punto de partida:** `main` en `24227ed` con los dos documentos de preparación aún locales. Se registraron primero en `9508039`. Antes de modificar código, `npm run check` pasó con 22/22 pruebas Vitest, control de arquitectura y compilación. No se ejecutó una nueva prueba de navegador de la base antes del cambio; las 6/6 de T01 siguen siendo evidencia histórica, y las regresiones se ejecutaron al final.
+
+| Comprobación ejecutada | Resultado real |
+|---|---|
+| `npm run check` sobre `8f347ac` | Superado: tipos, lint, 38/38 pruebas Vitest en 7 archivos, control arquitectónico de 21 módulos sin importaciones prohibidas ni ciclos, compilación TypeScript/Vite. |
+| `npm run start` después de compilar; `npm run test:browser` | Superado: 12/12 pruebas de Chrome. Se usó una instancia recién compilada para el recorrido principal y una instancia efímera del servidor compilado para el código real `000042`. |
+| Proxy de desarrollo: `npm run dev:client` con servidor compilado y prueba de dos navegadores usando `KARTA3_BASE_URL=http://127.0.0.1:5173` | Superado: 1/1 recorrido completo; `/api` y `/socket.io` funcionaron a través de Vite. |
+| Inspección de capturas de Playwright a 390×844 y 1280×800, con ambos papeles | Sin desbordamiento ni controles ocultos; lista, marcas, código, edición y salida/cierre legibles. Las capturas están en `test-results/`, excluido de Git. |
+
+| Criterio | Resultado y evidencia |
+|---|---|
+| B02-01 | Superado: dos contextos de navegador con cookies independientes reciben 2/5, invitada primero, anfitrión al final y marcas propias sin F5; convergencia observada con espera máxima de 2 s. |
+| B02-02 | Superado: instancia compilada con generador de prueba `000042`; el segundo navegador escribe, envía, ve y copia las seis cifras. El navegador rechaza cinco cifras y letras sin corregirlas automáticamente. |
+| B02-03 | Superado: nombres repetidos reciben `(1)` y `(2)` en el mismo orden en ambos navegadores; «Ana» y «ana» no se agrupan. Modelo y navegador comprueban identidad, posición y nombre de edición sin sufijo. |
+| B02-04 | Superado: recarga, retorno a `/` y segunda pestaña de la misma sesión recuperan una sola participación; el servidor rechaza crear o entrar en otra sala mientras esta siga activa. |
+| B02-05 | Superado: HTTP del invitado rechaza nombre vacío y 17 grafemas sin mutación y acepta 16; el navegador comprueba que una actualización ajena conserva el borrador del anfitrión. |
+| B02-06 | Superado: cancelar no modifica la lista; confirmar retira al invitado, devuelve sus pestañas a portada y muestra una sola salida al anfitrión durante cinco segundos. La integración verifica que el invitado retirado no recibe la vista de una modificación posterior. |
+| B02-07 | Superado: tras salir y recargar no se reincorpora; al entrar de nuevo después de C recibe otro ID y la última posición de invitado. La repetición de la salida antigua no retira la participación nueva. |
+| B02-08 | Superado: el navegador llega a 5/5 y rechaza al sexto; dos solicitudes Socket.IO para la última plaza aceptan una sola; la liberación permite una entrada nueva en casos de uso. |
+| B02-09 | Superado: código inexistente o cerrado produce error junto al formulario, conserva código y nombre y permite corregir; se comprobó en navegador. |
+| B02-10 | Superado: se descartan intencionadamente confirmaciones de entrada y salida y se repite el mismo `requestId`; la revisión y los avisos no se duplican. Solicitudes antiguas, incluso tras cerrar y reutilizar código, no reincorporan ni eliminan a otra persona. |
+| B02-11 | Superado: invitado sin permiso para cerrar, sesión ajena sin lectura/suscripción, suplantación con ID público rechazada por Socket.IO; HTTP permite leer y renombrar solo al miembro reconocido. Origen o cookie inválidos se rechazan; también se probó origen HTTPS exigido en configuración de producción. |
+| B02-12 | Superado: cierre cancelado conserva al invitado; cierre confirmado devuelve las pestañas a portada. Una entrada concurrente con cierre termina rechazada o seguida del cierre; ninguna sesión conserva sala activa. |
+| B02-13 | Superado en local: interrupción de red del contexto invitado, cambio remoto y recuperación sin recarga ni pérdida de plaza; otra integración reconecta con la misma cookie y obtiene revisión actual. Una prueba pura descarta vistas retrasadas y de identidades terminadas. |
+| B02-14 | Limitación del bloque constatada: al cerrar la pestaña sin salir, la inscripción siguió ocupando plaza y el código no programa presencia ni caducidad. No se esperaron 30 minutos ni se verificó un vencimiento automático: los plazos de 30 segundos y 30 minutos siguen pendientes. |
+| B02-15 | Superado mediante simulación controlada: un runtime nuevo no reconoce cookies ni salas antiguas; ambos navegadores reciben `room: null` y vuelven a portada con aviso, sin reabrir lista vieja. No se provocó un fallo real del proceso del sistema operativo. |
+| B02-16 | Superado para el recorrido local: móvil y escritorio con papeles invertidos, envío con `Enter`, copia, diálogos, avisos y fallo de canal sin éxito falso. Las 6 pruebas de navegador de E1–E7 y las regresiones de T01 permanecen en la ejecución final. |
+
+**Responsabilidades comprobadas:** `Room` aplica capacidad, orden, nombres, salida y revisión; los casos de uso deciden recuperación, permisos, deduplicación y proyección por sesión. El repositorio conserva índices de todas las sesiones y la regresión de identidad de T01. HTTP y Socket.IO validan transporte y usan las mismas sesiones y casos de uso; composición conecta ambos al mismo servidor. El cliente compara sala, participación y revisión antes de aplicar una vista y conserva los borradores. No se añadieron reglas de juego ni un dominio vacío.
+
+**Decisión técnica:** el plazo de confirmación Socket.IO es de 5 segundos. Su vencimiento solo presenta incertidumbre; el cliente mantiene el `requestId` para reintentar. Un rechazo confirmado permite una solicitud nueva. Los resultados mínimos de las solicitudes quedan en memoria de un proceso por sesión; un reinicio los pierde junto con las salas.
+
+**Fallos durante la verificación:** una expectativa inicial de navegador omitía los sufijos que sí correspondían al volver a coincidir dos «Ana»; se corrigió la prueba. La primera simulación de fallo de canal bloqueaba peticiones después de establecer el WebSocket y no causaba el fallo buscado; se movió el bloqueo antes de abrir la pestaña. Una prueba del proxy encontró dos avisos simultáneos tras intentar entrar en un código cerrado; el aviso anterior se limpia al iniciar una nueva entrada. Otra prueba esperó la vista del anfitrión dos segundos después del clic de reintento, aunque la nueva conexión aún no había confirmado la entrada; se ajustó para esperar primero la aceptación visible del invitado y después la convergencia del anfitrión dentro de dos segundos. Esos fallos se repitieron tras la corrección y las puertas finales pasaron.
+
+**Límites y coordinación:** no hay presencia ni caducidad automática, expulsión, configuración, bots, inicio, juego ni despliegue. La experiencia de pérdida de memoria y de confirmación se comprobó con simulaciones identificadas; la latencia de dos segundos es una aceptación local, no una garantía para otras redes. Los acuerdos de sufijos, sesión única y presentación deben trasladarse a `CAPA_APLICACION_KARTA3.md` por coordinación; las reglas vigentes de presencia y caducidad del MVP siguen sin modificarse.
