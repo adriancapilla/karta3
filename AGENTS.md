@@ -41,9 +41,9 @@ Evitar dependencias circulares. No crear una clase, paquete o interfaz por cada 
 
 ## Cómo añadir código
 
-Ubicar una regla donde nace: dominio si decide el juego; aplicación si coordina una petición o construye una vista; infraestructura si trata HTTP, sockets, archivos, sesiones, reloj o despliegue. Usar `server/main.ts` o composición para conectar todo. Si el bloque actual requiere tocar código anterior que mezcla responsabilidades, refactorizar solo lo necesario junto con una prueba de comportamiento; no añadir más reglas generales a ese archivo por comodidad.
+Ubicar una regla donde nace: dominio si decide el juego; aplicación si coordina una petición o construye una vista; infraestructura si trata HTTP, sockets, archivos, sesiones, reloj o despliegue. Conectar los adaptadores en `server/composition/`; `server/main.ts` arranca el proceso. Si un bloque requiere separar otra responsabilidad, mover solo lo necesario y comprobar que el comportamiento existente se conserva.
 
-El bloque 01 ya implementado utiliza `server/roomStore.ts` para estado y reglas de la sala y `server/app.ts` para rutas y sesión. Son el punto de partida, no un ejemplo de separación completa. **No se exige reescribirlos sin una tarea que los afecte.** Los incrementos nuevos deben avanzar hacia los límites descritos en el documento de arquitectura, manteniendo las funciones y pruebas existentes.
+Tras T01, `server/application/` contiene el modelo de sala, sus casos de uso, puertos y proyección de vistas; `server/infrastructure/` contiene el repositorio y las sesiones en memoria, los generadores y el adaptador HTTP Express; `server/composition/createApp.ts` conecta esas piezas. `server/roomStore.ts` y `server/app.ts` fueron sustituidos y ya no son puntos de extensión. Los incrementos nuevos siguen los límites de [organización y dependencias](docs/arquitectura/ORGANIZACION_Y_DEPENDENCIAS.md), sin crear carpetas o puertos vacíos por anticipado.
 
 ## Verificación y cierre
 
