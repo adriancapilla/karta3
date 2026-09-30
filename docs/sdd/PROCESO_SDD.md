@@ -58,6 +58,8 @@ El [bloque técnico T01](BLOQUE_T01_REFACTOR_CREACION_SALA.md) separó las respo
 
 El [bloque 02: entrada y espera sincronizada](BLOQUE_02_ENTRADA_SALA.md) acordó el recorrido el 30/09/2026. Incluye identidad del invitado, lista compartida y salida voluntaria. Su implementación y evidencia constan en esa especificación. Expulsión, configuración, bots, inicio y juego quedan para otros bloques; el ciclo de vida de la espera incorporará los márgenes y la caducidad ya exigidos para el MVP.
 
+El [bloque 03: ciclo de vida de la espera](BLOQUE_03_CICLO_VIDA_ESPERA.md) concreta ese ciclo con reserva de 30 segundos, presencia por sesión con varias pestañas y cierre tras 30 minutos sin actividad válida, avisado un minuto antes. Sus decisiones se acordaron el 30/09/2026; implementación y verificación están pendientes. Diferencia pruebas de tiempo controlado de evidencia con conexiones y margen reales.
+
 La [validación genérica de barajas](PROPUESTA_VALIDACION_BARAJA.md) queda como propuesta técnica para antes de usar contenidos jugables en una partida, no como primer incremento ni como una especificación por temática. Sus reglas deben servir para cualquier baraja, sin condiciones especiales por identificador. Cuando se definan el formato de `baraja.json` y `cartas.json` y la preparación de recursos, un bloque posterior conectará esa validación con archivos, imágenes, versiones y catálogo conforme a infraestructura. Cada nueva baraja aprobada seguirá el mismo control y conservará el resultado asociado a la versión de sus datos.
 
 La incorporación de una baraja nueva no autoriza por sí sola a cambiar la mecánica. Una excepción de contenido o una modificación de reglas necesita una decisión explícita y sus comprobaciones.
