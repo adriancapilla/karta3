@@ -6,9 +6,11 @@ import { createRuntime } from './composition/createApp.js';
 
 const clients: Socket[] = [];
 let server: HttpServer | undefined;
+let dispose: (() => void) | undefined;
 
 async function setup(codes: () => number = () => 42, production = false) {
   const runtime = createRuntime({ codes, production });
+  dispose = runtime.dispose;
   server = createServer(runtime.app);
   const socketServer = runtime.attachRealtime(server);
   await new Promise<void>((resolve) => server!.listen(0, '127.0.0.1', resolve));
@@ -37,6 +39,7 @@ function ack<T>(socket: Socket, name: string, payload: object): Promise<T> {
 }
 
 afterEach(async () => {
+  dispose?.();
   for (const client of clients.splice(0)) client.disconnect();
   if (server?.listening) await new Promise<void>((resolve) => server!.close(() => resolve()));
   server = undefined;
@@ -139,7 +142,7 @@ describe('HTTP y Socket.IO comparten sala y sesión', () => {
     const renamed = (await request(base).patch(`/api/rooms/${first.id}/name`).set('Cookie', hostCookie).send({ name: 'Anfitriona' })).body.room;
     const reconnected = await connect(guestCookie);
     const resumed = await ack<{ ok: true; room: { revision: number; participants: { name: string }[] } }>(reconnected, 'room:resume', {});
-    expect(resumed.room.revision).toBe(renamed.revision);
+    expect(resumed.room.revision).toBe(renamed.revision + 1); // La recuperación efectiva revisa la presencia.
     expect(resumed.room.participants.at(-1)?.name).toBe('Anfitriona');
     const leavePayload = { requestId: 'exit-1', roomId: first.id, participantId: joined.room.participant.id };
     const acceptedLeave = event(host, 'room:state');

@@ -107,7 +107,7 @@ describe('HTTP sala propia', () => {
     const a = token((await request(app).get('/api/rooms/current')).headers['set-cookie']);
     const b = token((await request(app).get('/api/rooms/current')).headers['set-cookie']);
     const room = (await request(app).post('/api/rooms').set('Cookie', a).send({})).body.room;
-    expect(Object.keys(room).sort()).toEqual(['code', 'id', 'participant', 'participants', 'revision', 'settings', 'status']);
+    expect(Object.keys(room).sort()).toEqual(['code', 'id', 'lifecycle', 'participant', 'participants', 'revision', 'settings', 'status']);
     expect(JSON.stringify(room)).not.toContain(a.split('=')[1]);
     expect(room.settings).toEqual({ deckId: null, hostPlays: true, turnSeconds: 30, forceTieBreak: false, reviewSeconds: 5 });
     const path = `/api/rooms/${room.id}`;

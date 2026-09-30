@@ -62,7 +62,7 @@ export function createHttpApp(dependencies: { rooms: RoomActions; sessions: Memo
         maxAge: 30 * 24 * 60 * 60 * 1000
       });
     }
-    res.json({ room: rooms.current(id) } satisfies CurrentRoomResponse);
+    res.json(rooms.resume(id) satisfies CurrentRoomResponse);
   });
 
   app.post('/api/rooms', (req, res) => {

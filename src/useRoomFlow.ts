@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import type { CurrentRoomResponse, RoomClosedEvent, RoomLeftEvent, RoomStateEvent, RoomView } from '../shared/contracts/room';
 import { api, ApiError } from './api';
 import { send, socket, type RoomAck } from './socket';
-import { acceptsRoom } from './roomState';
+import { acceptsRoom, automaticEndMessage } from './roomState';
 
 function roomPath(id: string) { return `/sala/${id}`; }
 function isRoomPath() { return window.location.pathname.startsWith('/sala/'); }
@@ -32,6 +32,7 @@ export function useRoomFlow() {
   const [copyMessage, setCopyMessage] = useState('');
   const [confirmClose, setConfirmClose] = useState(false);
   const [confirmLeave, setConfirmLeave] = useState(false);
+  const [connected, setConnected] = useState(false);
 
   const clearRoom = useCallback((noticeText: string) => {
     roomRef.current = null;
@@ -58,8 +59,14 @@ export function useRoomFlow() {
     if (result.room) {
       applyRoom(result.room);
     } else {
-      if (roomRef.current) closed.current.add(roomRef.current.id);
-      clearRoom(isRoomPath() ? 'La sala ya no está disponible. Puedes crear una nueva.' : '');
+      if (result.ended) {
+        if (roomRef.current && (roomRef.current.id !== result.ended.roomId
+          || roomRef.current.participant.id !== result.ended.participantId)) return;
+        ended.current.add(result.ended.participantId);
+        if (result.ended.reason !== 'RECONNECT_TIMEOUT') closed.current.add(result.ended.roomId);
+      } else if (roomRef.current) ended.current.add(roomRef.current.participant.id);
+      clearRoom(result.ended ? automaticEndMessage(result.ended.reason)
+        : isRoomPath() ? 'La sala ya no está disponible. Puedes crear una nueva.' : '');
     }
   }, [applyRoom, clearRoom]);
 
@@ -76,42 +83,46 @@ export function useRoomFlow() {
       const accepted = applyRoom(event.room);
       if (accepted && event.change && !seenChanges.current.has(event.change.id)) {
         seenChanges.current.add(event.change.id);
-        showActivity(`${event.change.name} ha salido de la sala`);
+        showActivity(event.change.kind === 'RECONNECTED' ? `${event.change.name} ha recuperado la conexión`
+          : event.change.kind === 'PRESENCE_EXPIRED' ? `${event.change.name} no recuperó la conexión; su plaza ha quedado libre`
+          : `${event.change.name} ha salido de la sala`);
       }
     };
     const onLeft = (event: RoomLeftEvent) => {
       ended.current.add(event.participantId);
       if (roomRef.current?.id === event.roomId && roomRef.current.participant.id === event.participantId) {
-        clearRoom('Has salido de la sala');
+        clearRoom(event.reason === 'RECONNECT_TIMEOUT' ? automaticEndMessage(event.reason) : 'Has salido de la sala');
       }
     };
     const onClosed = (event: RoomClosedEvent) => {
       closed.current.add(event.roomId);
       if (roomRef.current?.id === event.roomId && event.revision > roomRef.current.revision) {
-        clearRoom(roomRef.current.participant.role === 'HOST'
+        clearRoom(event.reason !== 'HOST_CLOSED' ? automaticEndMessage(event.reason) : roomRef.current.participant.role === 'HOST'
           ? 'Sala cerrada. Puedes crear una nueva.' : 'El anfitrión ha cerrado la sala');
       }
     };
     const onConnect = () => {
-      void send<{ room: RoomView | null }>('room:resume', {}).then((result) => {
+      void send<CurrentRoomResponse>('room:resume', {}).then((result) => {
         if (!active) return;
-        if (result.room) applyRoom(result.room);
-        else if (!result.room && roomRef.current) clearRoom('La sala ya no está disponible. Puedes crear una nueva.');
+        setConnected(true);
+        // Una portada voluntaria conserva su aviso; una participación terminada recibe su motivo.
+        if (result.room || result.ended || roomRef.current) applyCurrent(result);
       }).catch(() => {});
     };
     const onConnectError = () => {
-      if (!roomRef.current) return;
       void api.current().then((result) => {
         if (!active) return;
-        applyCurrent(result);
-        if (result.room) socket.connect();
+        if (result.room || result.ended || roomRef.current) applyCurrent(result);
+        socket.connect();
       }).catch(() => { if (active) setNotice('No se pudo recuperar la conexión. Inténtalo de nuevo.'); });
     };
+    const onDisconnect = () => { if (active) setConnected(false); };
     socket.on('room:state', onState);
     socket.on('room:left', onLeft);
     socket.on('room:closed', onClosed);
     socket.on('connect', onConnect);
     socket.on('connect_error', onConnectError);
+    socket.on('disconnect', onDisconnect);
     void api.current().then((result) => {
       if (!active) return;
       applyCurrent(result);
@@ -126,9 +137,15 @@ export function useRoomFlow() {
       socket.off('room:closed', onClosed);
       socket.off('connect', onConnect);
       socket.off('connect_error', onConnectError);
+      socket.off('disconnect', onDisconnect);
       socket.disconnect();
     };
   }, [applyCurrent, applyRoom, clearRoom, showActivity]);
+
+  const confirmExpiry = useCallback(() => {
+    if (!socket.connected) return;
+    void send<CurrentRoomResponse>('room:resume', {}).then(applyCurrent).catch(() => {});
+  }, [applyCurrent]);
 
   async function refresh() {
     setLoading(true);
@@ -223,7 +240,7 @@ export function useRoomFlow() {
   }
 
   return {
-    room, loading, busy, joining, notice, activity, code, joinName, joinError, name, nameError, copyMessage,
+    room, loading, busy, joining, notice, activity, code, joinName, joinError, name, nameError, copyMessage, connected, confirmExpiry,
     confirmClose, confirmLeave, refresh, createRoom, joinRoom, editName, saveName, copyCode,
     closeRoom, leaveRoom, setConfirmClose, setConfirmLeave,
     setCode: (value: string) => { setCode(value); setJoinError(''); pendingJoin.current = null; },

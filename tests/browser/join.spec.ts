@@ -143,7 +143,7 @@ test('B02 recorrido inverso, errores de código y capacidad con sesiones aislada
   }
 });
 
-test('B02 cerrar la pestaña no libera la inscripción y un fallo de canal no anuncia entrada', async ({ browser }) => {
+test('B02/B03 cerrar la pestaña conserva inicialmente la reserva y un fallo de canal no anuncia entrada', async ({ browser }) => {
   const hostContext = await browser.newContext({ viewport: { width: 1280, height: 800 } });
   const guestContext = await browser.newContext({ viewport: { width: 390, height: 844 } });
   try {
@@ -218,6 +218,7 @@ test('B02 código real 000042 generado por el servidor compilado conserva el cer
     await guest.getByRole('button', { name: 'Copiar código' }).click();
     expect(await guest.evaluate(() => navigator.clipboard.readText())).toBe('000042');
   } finally {
+    runtime.dispose();
     await Promise.all([hostContext.close(), guestContext.close()]);
     await new Promise<void>((resolve) => io.close(() => resolve()));
     if (server.listening) await new Promise<void>((resolve) => server.close(() => resolve()));

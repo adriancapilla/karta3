@@ -1,7 +1,7 @@
 # Organización del código y dependencias de KARTA3
 
-**Estado:** reglas para los próximos incrementos; T01 aplica la separación al recorrido de creación de sala, sin implementar aún el dominio de la partida.
-**Fecha:** 29/09/2026.
+**Estado:** reglas para los próximos incrementos; T01 separó la creación y los bloques 02/03 amplían la espera sincronizada y su ciclo de vida. El dominio de la partida sigue pendiente.
+**Fecha:** 30/09/2026.
 **Ámbito:** repositorio digital `APP/karta3`. La evolución de estas reglas se decide en la conversación de arquitectura; cada conversación de implementación trabaja con una especificación SDD concreta.
 
 ## 1. Qué resuelve este documento
@@ -20,6 +20,12 @@ Las fuentes funcionales vigentes están en `../../../../TFM/Planificación/` des
 `docs/sdd/PROCESO_SDD.md` y la especificación del bloque fijan el trabajo **de ese incremento**. Cuando un bloque completa o modifica una decisión general, se actualiza su fuente responsable; el texto de un bloque no anula silenciosamente otra regla.
 
 Estas rutas sirven en el espacio de trabajo actual. Antes de publicar un repositorio autónomo se facilitarán al revisor enlaces o una exportación controlada de la documentación TFM. Esa distribución editorial no debe crear dos versiones normativas divergentes.
+
+### Incremento de ciclo de vida — bloque 03
+
+`Room` mantiene el estado temporal con tiempos explícitos, sin consultar un reloj real. `WaitingLifecycle`, en aplicación, coordina vencimientos y hechos de presencia mediante los puertos `Clock`, `Scheduler`, `SessionPresence` y `ParticipationEnds`. Los casos de uso aplican vencimientos antes de devolver vistas o aceptar acciones. Las generaciones de inactividad y de cada ausencia son independientes.
+
+`infrastructure/time.ts` implementa medición monotónica y tareas cancelables; `socketRooms.ts` cuenta sockets autenticados por sesión y comunica sus cambios a aplicación. `MemorySessions` conserva únicamente el último motivo automático de cada sesión y lo elimina al retirar esa sesión; el repositorio libera asociaciones y códigos. Composición comparte estas piezas entre HTTP y Socket.IO y expone desmontaje del runtime para pruebas. El cliente recibe presencia/referencia pública, estima el contador y espera una decisión autorizada de cierre. Los sustitutos temporales y controles de avance viven en el montaje de pruebas, sin endpoints públicos.
 
 ## 2. Responsabilidades y dependencias
 

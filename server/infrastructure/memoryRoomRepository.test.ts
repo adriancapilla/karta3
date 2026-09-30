@@ -1,9 +1,10 @@
 import { describe, expect, it } from 'vitest';
 import { Room } from '../application/room.js';
 import { MemoryRoomRepository } from './memoryRoomRepository.js';
+const now = { monotonic: 0, unix: 0 };
 
 function room(id: string, owner: string, code: string) {
-  return new Room({ id, hostSessionId: owner, code, participantId: `${id}-participant` });
+  return new Room({ id, hostSessionId: owner, code, participantId: `${id}-participant`, now, connected: true });
 }
 
 describe('repositorio de salas en memoria', () => {
@@ -65,12 +66,12 @@ describe('repositorio de salas en memoria', () => {
     const repository = new MemoryRoomRepository();
     const value = room('room-a', 'owner-a', '000042');
     repository.save(value);
-    value.join('guest-a', 'participant-a', 'Ana');
-    value.join('guest-b', 'participant-b', 'Berta');
+    value.join('guest-a', 'participant-a', 'Ana', now, true);
+    value.join('guest-b', 'participant-b', 'Berta', now, true);
     repository.save(value);
     expect(repository.findActiveBySession('guest-a')).toBe(value);
     expect(repository.findActiveByCode('000042')).toBe(value);
-    value.leave('guest-a', 'participant-a');
+    value.leave('guest-a', 'participant-a', now);
     repository.save(value);
     expect(repository.findActiveBySession('guest-a')).toBeUndefined();
     expect(repository.findActiveBySession('guest-b')).toBe(value);

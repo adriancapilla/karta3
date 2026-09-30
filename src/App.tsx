@@ -13,6 +13,8 @@ export default function App() {
 
   return <WaitingScreen
     room={flow.room}
+    connected={flow.connected}
+    onConfirmExpiry={flow.confirmExpiry}
     busy={flow.busy}
     notice={flow.notice}
     activity={flow.activity}

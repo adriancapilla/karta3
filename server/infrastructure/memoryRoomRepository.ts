@@ -7,6 +7,8 @@ export class MemoryRoomRepository implements RoomRepository {
   private readonly ownRoom = new Map<string, string>();
   private readonly membersByRoom = new Map<string, Set<string>>();
 
+  allActive(): Room[] { return [...this.rooms.values()]; }
+
   findById(id: string): Room | undefined { return this.rooms.get(id); }
 
   findActiveByOwner(sessionId: string): Room | undefined {

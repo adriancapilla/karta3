@@ -1,11 +1,14 @@
-import type { RoomChange, RoomView } from '../../shared/contracts/room.js';
-import type { CodeCandidateSource, IdentifierGenerator, RoomChanges, RoomRepository, RoomRequests } from './ports.js';
+import type { CurrentRoomResponse, RoomView } from '../../shared/contracts/room.js';
+import type { CodeCandidateSource, IdentifierGenerator, RoomRepository, RoomRequests } from './ports.js';
 import { Room, normalizeName } from './room.js';
 import { RoomError } from './roomError.js';
-import { displayName, toRoomView } from './roomView.js';
+import { displayName } from './roomView.js';
+import type { WaitingLifecycle } from './waitingLifecycle.js';
 
 export interface RoomActions {
   current(sessionId: string): RoomView | null;
+  resume(sessionId: string): CurrentRoomResponse;
+  presenceChanged(sessionId: string): void;
   createOrGet(sessionId: string): RoomView;
   getOwn(sessionId: string, roomId: string): RoomView;
   rename(sessionId: string, roomId: string, value: unknown): RoomView;
@@ -23,19 +26,29 @@ export class RoomUseCases implements RoomActions {
     private readonly createId: IdentifierGenerator,
     private readonly drawCodeCandidate: CodeCandidateSource,
     private readonly requests: RoomRequests,
-    private readonly changes: RoomChanges
+    private readonly lifecycle: WaitingLifecycle
   ) {}
 
   current(sessionId: string): RoomView | null {
+    this.lifecycle.prepare();
     const room = this.repository.findActiveBySession(sessionId);
-    return room ? toRoomView(room, sessionId) : null;
+    return room ? this.lifecycle.view(room, sessionId) : null;
   }
 
+  resume(sessionId: string): CurrentRoomResponse {
+    const room = this.current(sessionId);
+    const ended = room ? undefined : this.lifecycle.ends.getEnd(sessionId);
+    return { room, ...(ended ? { ended } : {}) };
+  }
+
+  presenceChanged(sessionId: string): void { this.lifecycle.presenceChanged(sessionId); }
+
   createOrGet(sessionId: string): RoomView {
+    this.lifecycle.prepare();
     const existing = this.repository.findActiveBySession(sessionId);
     if (existing) {
       if (existing.hostSessionId !== sessionId) throw new RoomError('ALREADY_IN_ROOM', ALREADY);
-      return toRoomView(existing, sessionId);
+      return this.lifecycle.view(existing, sessionId);
     }
 
     let code: string | undefined;
@@ -48,35 +61,35 @@ export class RoomUseCases implements RoomActions {
     }
     if (!code) throw new RoomError('CODE_EXHAUSTED', 'Ahora no se puede crear la sala. Inténtalo de nuevo.');
 
-    const room = new Room({ id: this.createId(), code, hostSessionId: sessionId, participantId: this.createId() });
+    const room = new Room({ id: this.createId(), code, hostSessionId: sessionId, participantId: this.createId(),
+      now: this.lifecycle.clock.now(), connected: this.lifecycle.presence.isConnected(sessionId) });
     this.repository.save(room);
-    this.publish(room);
-    return toRoomView(room, sessionId);
+    this.lifecycle.ends.clearEnd(sessionId);
+    this.lifecycle.publish(room);
+    return this.lifecycle.view(room, sessionId);
   }
 
   getOwn(sessionId: string, roomId: string): RoomView {
-    return toRoomView(this.authorize(sessionId, roomId), sessionId);
+    return this.lifecycle.view(this.authorize(sessionId, roomId), sessionId);
   }
 
   rename(sessionId: string, roomId: string, value: unknown): RoomView {
     const room = this.authorize(sessionId, roomId);
-    if (room.renameFor(sessionId, value)) {
+    if (room.renameFor(sessionId, value, this.lifecycle.clock.now())) {
       this.repository.save(room);
-      this.publish(room);
+      this.lifecycle.publish(room);
     }
-    return toRoomView(room, sessionId);
+    return this.lifecycle.view(room, sessionId);
   }
 
   close(sessionId: string, roomId: string): void {
     const room = this.authorize(sessionId, roomId);
     if (room.hostSessionId !== sessionId) throw new RoomError('FORBIDDEN', 'No tienes permiso para esta sala.');
-    const members = room.memberSessions;
-    room.close();
-    this.repository.remove(room.id);
-    this.changes.closed(members, room.id, room.revision);
+    this.lifecycle.close(room, 'HOST_CLOSED');
   }
 
   join(sessionId: string, requestId: string, codeInput: string, nameInput: string): RoomView {
+    this.lifecycle.prepare();
     const signature = JSON.stringify([codeInput, nameInput]);
     const previous = this.requests.get(sessionId, requestId);
     if (previous) {
@@ -84,7 +97,7 @@ export class RoomUseCases implements RoomActions {
       if (previous.error) throw new RoomError(previous.error.code, previous.error.message);
       const active = this.repository.findActiveBySession(sessionId);
       if (active?.id === previous.roomId && active.participantFor(sessionId)?.id === previous.participantId) {
-        return toRoomView(active, sessionId);
+        return this.lifecycle.view(active, sessionId);
       }
       throw new RoomError('PARTICIPATION_ENDED', 'Esa participación ya terminó. Para volver, entra de nuevo.');
     }
@@ -98,17 +111,18 @@ export class RoomUseCases implements RoomActions {
         if (active.code !== code) throw new RoomError('ALREADY_IN_ROOM', ALREADY);
         const participantId = active.participantFor(sessionId)!.id;
         this.requests.save(sessionId, requestId, { kind: 'JOIN', signature, roomId: active.id, participantId });
-        return toRoomView(active, sessionId);
+        return this.lifecycle.view(active, sessionId);
       }
 
       const room = this.repository.findActiveByCode(code);
       if (!room || room.status !== 'WAITING') throw new RoomError('ROOM_NOT_AVAILABLE', UNAVAILABLE);
       const participantId = this.createId();
-      room.join(sessionId, participantId, name);
+      room.join(sessionId, participantId, name, this.lifecycle.clock.now(), this.lifecycle.presence.isConnected(sessionId));
       this.repository.save(room);
       this.requests.save(sessionId, requestId, { kind: 'JOIN', signature, roomId: room.id, participantId });
-      this.publish(room);
-      return toRoomView(room, sessionId);
+      this.lifecycle.ends.clearEnd(sessionId);
+      this.lifecycle.publish(room);
+      return this.lifecycle.view(room, sessionId);
     } catch (error) {
       if (error instanceof RoomError) this.requests.save(sessionId, requestId, {
         kind: 'JOIN', signature, roomId: '', participantId: '', error: { code: error.code, message: error.message }
@@ -118,6 +132,7 @@ export class RoomUseCases implements RoomActions {
   }
 
   leave(sessionId: string, requestId: string, roomId: string, participantId: string): void {
+    this.lifecycle.prepare();
     const signature = JSON.stringify([roomId, participantId]);
     const previous = this.requests.get(sessionId, requestId);
     if (previous) {
@@ -132,11 +147,11 @@ export class RoomUseCases implements RoomActions {
         throw new RoomError('FORBIDDEN', 'No tienes permiso para esta sala.');
       }
       const name = displayName(room, participantId);
-      room.leave(sessionId, participantId);
+      room.leave(sessionId, participantId, this.lifecycle.clock.now());
       this.repository.save(room);
       this.requests.save(sessionId, requestId, { kind: 'LEAVE', signature, roomId, participantId });
-      this.changes.left(sessionId, roomId, participantId);
-      this.publish(room, { id: `${roomId}:${room.revision}`, kind: 'LEFT', participantId, name });
+      this.lifecycle.left(sessionId, roomId, participantId);
+      this.lifecycle.publish(room, { id: `${roomId}:${room.revision}`, kind: 'LEFT', participantId, name });
     } catch (error) {
       if (error instanceof RoomError) this.requests.save(sessionId, requestId, {
         kind: 'LEAVE', signature, roomId, participantId, error: { code: error.code, message: error.message }
@@ -146,6 +161,7 @@ export class RoomUseCases implements RoomActions {
   }
 
   private authorize(sessionId: string, roomId: string): Room {
+    this.lifecycle.prepare();
     const room = this.repository.findById(roomId);
     if (!room || room.status !== 'WAITING') throw new RoomError('ROOM_NOT_AVAILABLE', 'La sala ya no está disponible.');
     if (!room.participantFor(sessionId)) throw new RoomError('FORBIDDEN', 'No tienes permiso para esta sala.');
@@ -158,7 +174,4 @@ export class RoomUseCases implements RoomActions {
     }
   }
 
-  private publish(room: Room, change?: RoomChange): void {
-    this.changes.updated(room.memberSessions.map((sessionId) => ({ sessionId, room: toRoomView(room, sessionId) })), change);
-  }
 }

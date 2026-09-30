@@ -2,10 +2,13 @@ import { describe, expect, it, vi } from 'vitest';
 import type { RequestRecord, RoomChanges, RoomRepository, RoomRequests } from './ports.js';
 import type { Room } from './room.js';
 import { RoomUseCases } from './roomUseCases.js';
+import { WaitingLifecycle } from './waitingLifecycle.js';
+import { ControlledTime } from '../../tests/support/controlledTime.js';
 
 class FakeRooms implements RoomRepository {
   readonly rooms = new Map<string, Room>();
   saves = 0;
+  allActive() { return [...this.rooms.values()]; }
   findById(id: string) { return this.rooms.get(id); }
   findActiveByOwner(sessionId: string) { return [...this.rooms.values()].find((room) => room.hostSessionId === sessionId); }
   findActiveBySession(sessionId: string) { return [...this.rooms.values()].find((room) => room.participantFor(sessionId)); }
@@ -22,13 +25,18 @@ class FakeRequests implements RoomRequests {
 }
 
 const changes: RoomChanges = { updated() {}, left() {}, closed() {} };
+function lifecycle(repository: RoomRepository, events: RoomChanges) {
+  const time = new ControlledTime();
+  return new WaitingLifecycle(repository, time, time, { isConnected: () => true },
+    { getEnd: () => undefined, saveEnd() {}, clearEnd() {} }, events);
+}
 
 function setup(candidates: number[] = [42]) {
   const repository = new FakeRooms();
   const requests = new FakeRequests();
   const events = { updated: vi.fn(), left: vi.fn(), closed: vi.fn() };
   let id = 0;
-  const useCases = new RoomUseCases(repository, () => `id-${++id}`, () => candidates.shift() ?? 42, requests, events);
+  const useCases = new RoomUseCases(repository, () => `id-${++id}`, () => candidates.shift() ?? 42, requests, lifecycle(repository, events));
   return { repository, requests, events, useCases };
 }
 
@@ -39,8 +47,9 @@ describe('casos de uso con puertos sustitutos', () => {
     expect(view).toEqual({
       id: 'id-1', code: '000042', status: 'WAITING',
       revision: 1,
-      participant: { id: 'id-2', name: 'Jugador 1', role: 'HOST', isPlayer: true },
-      participants: [{ id: 'id-2', name: 'Jugador 1', role: 'HOST', isPlayer: true }],
+      participant: { id: 'id-2', name: 'Jugador 1', role: 'HOST', isPlayer: true, presence: 'CONNECTED' },
+      participants: [{ id: 'id-2', name: 'Jugador 1', role: 'HOST', isPlayer: true, presence: 'CONNECTED' }],
+      lifecycle: { serverNow: 1_800_000_000_000, expiresAt: 1_800_001_800_000, warning: false },
       settings: { deckId: null, hostPlays: true, turnSeconds: 30, forceTieBreak: false, reviewSeconds: 5 }
     });
     expect(JSON.stringify(view)).not.toContain('session-a');
@@ -90,7 +99,7 @@ describe('casos de uso con puertos sustitutos', () => {
     const repository = new FakeRooms();
     let id = 0;
     let attempts = 0;
-    const useCases = new RoomUseCases(repository, () => `id-${++id}`, () => { attempts += 1; return 42; }, new FakeRequests(), changes);
+    const useCases = new RoomUseCases(repository, () => `id-${++id}`, () => { attempts += 1; return 42; }, new FakeRequests(), lifecycle(repository, changes));
     useCases.createOrGet('a');
     attempts = 0;
     expect(() => useCases.createOrGet('b')).toThrowError('Ahora no se puede crear');

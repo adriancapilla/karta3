@@ -1,5 +1,6 @@
 import { useRef, type FormEvent } from 'react';
 import type { RoomView } from '../shared/contracts/room';
+import { ExpiryWarning } from './ExpiryWarning';
 
 export function HomeScreen(props: {
   busy: boolean; joining: boolean; notice: string; code: string; joinName: string; joinError: string;
@@ -53,6 +54,7 @@ function suffixes(room: RoomView): Map<string, number> {
 export function WaitingScreen(props: {
   room: RoomView; busy: boolean; notice: string; activity: string; name: string; nameError: string;
   copyMessage: string; confirmClose: boolean; confirmLeave: boolean;
+  connected: boolean; onConfirmExpiry: () => void;
   onNameChange: (value: string) => void; onSaveName: () => void; onCopyCode: () => void;
   onAskClose: () => void; onCancelClose: () => void; onClose: () => void;
   onAskLeave: () => void; onCancelLeave: () => void; onLeave: () => void;
@@ -79,12 +81,15 @@ export function WaitingScreen(props: {
       </div>
       <h2>Participantes</h2>
       <p className="occupancy">{props.room.participants.length} de 5 participantes</p>
+      {!props.connected && <p className="connection-notice" role="status">Conexión interrumpida. Intentando recuperarla…</p>}
+      {props.room.lifecycle.warning && <ExpiryWarning lifecycle={props.room.lifecycle} onZero={props.onConfirmExpiry} />}
       <ol className="participant-list">
         {props.room.participants.map((person) => <li className="participant" key={person.id}>
           <strong>{person.name}{displayed.has(person.id) && <span className="name-suffix"> ({displayed.get(person.id)})</span>}</strong>
           <span className="participant-badges">
             {person.id === props.room.participant.id && <span className="badge">Tú</span>}
             {person.role === 'HOST' && <span className="badge">Anfitrión</span>}
+            {person.presence === 'RECONNECTING' && <span className="badge reconnecting">Reconectando</span>}
           </span>
         </li>)}
       </ol>

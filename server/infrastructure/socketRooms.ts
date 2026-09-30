@@ -1,8 +1,8 @@
 import type { Server as HttpServer } from 'node:http';
 import { parseCookie } from 'cookie';
 import { Server } from 'socket.io';
-import type { RoomChange, RoomClosedEvent, RoomLeftEvent, RoomStateEvent, RoomView, SocketAck } from '../../shared/contracts/room.js';
-import type { RoomChanges } from '../application/ports.js';
+import type { CurrentRoomResponse, RoomChange, RoomClosedEvent, RoomLeftEvent, RoomStateEvent, RoomView, SocketAck } from '../../shared/contracts/room.js';
+import type { RoomChanges, SessionPresence } from '../application/ports.js';
 import type { RoomActions } from '../application/roomUseCases.js';
 import { RoomError } from '../application/roomError.js';
 import type { MemorySessions } from './memorySessions.js';
@@ -25,11 +25,23 @@ function ackError(error: unknown): SocketAck<never> {
   return { ok: false, error: { code: 'INTERNAL_ERROR', message: 'Ha ocurrido un error. Inténtalo de nuevo.' } };
 }
 
-export class SocketRoomChanges implements RoomChanges {
+function respond<T>(ack: unknown, result: SocketAck<T>): void {
+  if (typeof ack === 'function') ack(result);
+}
+
+export const SOCKET_DETECTION = { pingInterval: 5000, pingTimeout: 5000 } as const;
+
+export class SocketRoomChanges implements RoomChanges, SessionPresence {
   private io?: Server;
+  private readonly connections = new Map<string, Set<string>>();
+  private stopped = false;
+
+  isConnected(sessionId: string): boolean { return (this.connections.get(sessionId)?.size ?? 0) > 0; }
+
+  dispose(): void { this.stopped = true; this.connections.clear(); }
 
   attach(server: HttpServer, rooms: RoomActions, sessions: MemorySessions, production: boolean): Server {
-    const io = new Server(server, { maxHttpBufferSize: 4096, serveClient: false });
+    const io = new Server(server, { ...SOCKET_DETECTION, maxHttpBufferSize: 4096, serveClient: false });
     this.io = io;
     io.use((socket, next) => {
       const host = socket.handshake.headers.host;
@@ -48,27 +60,37 @@ export class SocketRoomChanges implements RoomChanges {
 
     io.on('connection', (socket) => {
       const sessionId = socket.data.sessionId as string;
-      socket.on('room:resume', (payload: unknown, ack: (result: SocketAck<{ room: RoomView | null }>) => void) => {
+      if (this.stopped) { socket.disconnect(true); return; }
+      const connections = this.connections.get(sessionId) ?? new Set<string>();
+      this.connections.set(sessionId, connections);
+      connections.add(socket.id);
+      rooms.presenceChanged(sessionId);
+      socket.on('disconnect', () => {
+        if (this.stopped || !connections.delete(socket.id)) return;
+        if (!connections.size) this.connections.delete(sessionId);
+        rooms.presenceChanged(sessionId);
+      });
+      socket.on('room:resume', (payload: unknown, ack: (result: SocketAck<CurrentRoomResponse>) => void) => {
         try {
           if (!object(payload, [])) throw invalid();
-          ack({ ok: true, room: rooms.current(sessionId) });
-        } catch (error) { ack(ackError(error)); }
+          respond(ack, { ok: true, ...rooms.resume(sessionId) });
+        } catch (error) { respond(ack, ackError(error)); }
       });
       socket.on('room:join', (payload: unknown, ack: (result: SocketAck<{ room: RoomView }>) => void) => {
         try {
           if (!object(payload, ['requestId', 'code', 'name']) || !field(payload.requestId, 100)
             || typeof payload.code !== 'string' || payload.code.length > 64
             || typeof payload.name !== 'string' || payload.name.length > 128) throw invalid();
-          ack({ ok: true, room: rooms.join(sessionId, payload.requestId, payload.code, payload.name) });
-        } catch (error) { ack(ackError(error)); }
+          respond(ack, { ok: true, room: rooms.join(sessionId, payload.requestId, payload.code, payload.name) });
+        } catch (error) { respond(ack, ackError(error)); }
       });
       socket.on('room:leave', (payload: unknown, ack: (result: SocketAck<{ roomId: string; participantId: string }>) => void) => {
         try {
           if (!object(payload, ['requestId', 'roomId', 'participantId']) || !field(payload.requestId, 100)
             || !field(payload.roomId, 100) || !field(payload.participantId, 100)) throw invalid();
           rooms.leave(sessionId, payload.requestId, payload.roomId, payload.participantId);
-          ack({ ok: true, roomId: payload.roomId, participantId: payload.participantId });
-        } catch (error) { ack(ackError(error)); }
+          respond(ack, { ok: true, roomId: payload.roomId, participantId: payload.participantId });
+        } catch (error) { respond(ack, ackError(error)); }
       });
     });
     return io;
@@ -80,13 +102,13 @@ export class SocketRoomChanges implements RoomChanges {
     }
   }
 
-  left(sessionId: string, roomId: string, participantId: string): void {
-    this.io?.to(sessionRoom(sessionId)).emit('room:left', { roomId, participantId } satisfies RoomLeftEvent);
+  left(sessionId: string, roomId: string, participantId: string, reason: RoomLeftEvent['reason'] = 'VOLUNTARY'): void {
+    this.io?.to(sessionRoom(sessionId)).emit('room:left', { roomId, participantId, reason } satisfies RoomLeftEvent);
   }
 
-  closed(sessionIds: string[], roomId: string, revision: number): void {
+  closed(sessionIds: string[], roomId: string, revision: number, reason: RoomClosedEvent['reason'] = 'HOST_CLOSED'): void {
     for (const sessionId of sessionIds) {
-      this.io?.to(sessionRoom(sessionId)).emit('room:closed', { roomId, revision, reason: 'HOST_CLOSED' } satisfies RoomClosedEvent);
+      this.io?.to(sessionRoom(sessionId)).emit('room:closed', { roomId, revision, reason } satisfies RoomClosedEvent);
     }
   }
 }
