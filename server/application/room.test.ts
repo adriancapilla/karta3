@@ -34,4 +34,34 @@ describe('modelo de sala', () => {
     expect(() => value.rename('Otro')).toThrow();
     expect(() => value.close()).toThrow();
   });
+
+  it('B02 ordena invitados antes del anfitrión, conserva identidad y revisa solo cambios efectivos', () => {
+    const value = room();
+    expect(value.revision).toBe(1);
+    value.join('guest-a', 'player-a', 'Ana');
+    value.join('guest-b', 'player-b', 'Ana');
+    expect(value.participants.map((person) => person.id)).toEqual(['player-a', 'player-b', 'player-1']);
+    expect(value.revision).toBe(3);
+    expect(value.renameFor('guest-a', 'Ana')).toBe(false);
+    expect(value.revision).toBe(3);
+    expect(() => value.renameFor('guest-b', '')).toThrow();
+    expect(value.renameFor('guest-b', 'Berta')).toBe(true);
+    expect(value.participantFor('guest-b')).toMatchObject({ id: 'player-b', name: 'Berta' });
+    expect(value.revision).toBe(4);
+    expect(() => value.leave('guest-a', 'player-b')).toThrow();
+    expect(value.leave('guest-a', 'player-a')).toEqual({ id: 'player-a', name: 'Ana' });
+    expect(value.participants.map((person) => person.id)).toEqual(['player-b', 'player-1']);
+    expect(value.revision).toBe(5);
+  });
+
+  it('B02 limita la sala a cinco y no cambia revisión ante un sexto o entrada inválida', () => {
+    const value = room();
+    for (let i = 0; i < 4; i += 1) value.join(`guest-${i}`, `player-${i}`, `Invitado ${i}`);
+    expect(value.participants).toHaveLength(5);
+    expect(value.revision).toBe(5);
+    expect(() => value.join('guest-5', 'player-5', 'Otro')).toThrowError('La sala está llena');
+    expect(() => value.join('guest-5', 'player-5', '')).toThrow();
+    expect(value.participants).toHaveLength(5);
+    expect(value.revision).toBe(5);
+  });
 });

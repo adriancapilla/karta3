@@ -15,7 +15,11 @@ const roomErrorStatus: Record<RoomErrorCode, number> = {
   INVALID_INPUT: 400,
   ROOM_NOT_AVAILABLE: 404,
   FORBIDDEN: 403,
-  CODE_EXHAUSTED: 503
+  CODE_EXHAUSTED: 503,
+  ALREADY_IN_ROOM: 409,
+  ROOM_FULL: 409,
+  REQUEST_CONFLICT: 409,
+  PARTICIPATION_ENDED: 409
 };
 
 export function createHttpApp(dependencies: { rooms: RoomActions; sessions: MemorySessions; production: boolean }) {

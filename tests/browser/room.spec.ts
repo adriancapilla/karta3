@@ -93,6 +93,7 @@ test('E7 al perderse el estado vuelve a portada con aviso', async ({ page }) => 
   await expect(page.getByText('Esperando participantes')).toBeVisible();
   await expect(page).toHaveURL(/\/sala\//);
   await page.route('**/api/rooms/current', (route) => route.fulfill({ status: 200, contentType: 'application/json', body: '{"room":null}' }));
+  await page.route('**/socket.io/**', (route) => route.abort());
   await page.reload();
   await expect(page.getByRole('alert')).toContainText('ya no está disponible');
   await expect(page.getByRole('button', { name: 'Crear sala' })).toBeVisible();

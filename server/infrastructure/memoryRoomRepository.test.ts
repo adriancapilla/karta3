@@ -60,4 +60,25 @@ describe('repositorio de salas en memoria', () => {
     expect(repository.findActiveByOwner('owner-a')?.id).toBe('room-b');
     expect(repository.findActiveByOwner('owner-b')?.id).toBe('room-c');
   });
+
+  it('indexa invitados, libera una salida y limpia todas las asociaciones al cerrar', () => {
+    const repository = new MemoryRoomRepository();
+    const value = room('room-a', 'owner-a', '000042');
+    repository.save(value);
+    value.join('guest-a', 'participant-a', 'Ana');
+    value.join('guest-b', 'participant-b', 'Berta');
+    repository.save(value);
+    expect(repository.findActiveBySession('guest-a')).toBe(value);
+    expect(repository.findActiveByCode('000042')).toBe(value);
+    value.leave('guest-a', 'participant-a');
+    repository.save(value);
+    expect(repository.findActiveBySession('guest-a')).toBeUndefined();
+    expect(repository.findActiveBySession('guest-b')).toBe(value);
+    repository.remove(value.id);
+    expect(repository.findActiveBySession('owner-a')).toBeUndefined();
+    expect(repository.findActiveBySession('guest-b')).toBeUndefined();
+    expect(repository.findActiveByCode('000042')).toBeUndefined();
+    repository.save(room('room-b', 'guest-b', '000042'));
+    expect(repository.findActiveBySession('guest-b')?.id).toBe('room-b');
+  });
 });

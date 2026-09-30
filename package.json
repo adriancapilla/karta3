@@ -23,7 +23,9 @@
     "cookie": "2.0.1",
     "express": "5.2.1",
     "react": "19.3.0",
-    "react-dom": "19.3.0"
+    "react-dom": "19.3.0",
+    "socket.io": "4.8.4",
+    "socket.io-client": "4.8.4"
   },
   "devDependencies": {
     "@eslint/js": "10.0.1",

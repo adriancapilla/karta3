@@ -20,7 +20,9 @@ export class Room {
   readonly hostSessionId: string;
   readonly participantId: string;
   private participantName = 'Jugador 1';
+  private readonly guests: { id: string; sessionId: string; name: string }[] = [];
   private state: 'WAITING' | 'CLOSED' = 'WAITING';
+  private roomRevision = 1;
   private readonly roomSettings = {
     deckId: null,
     hostPlays: true,
@@ -39,16 +41,54 @@ export class Room {
 
   get status(): 'WAITING' | 'CLOSED' { return this.state; }
   get name(): string { return this.participantName; }
+  get revision(): number { return this.roomRevision; }
+  get memberSessions(): string[] { return [...this.guests.map((guest) => guest.sessionId), this.hostSessionId]; }
+  get participants(): { id: string; sessionId: string; name: string; role: 'HOST' | 'GUEST' }[] {
+    return [...this.guests.map((guest) => ({ ...guest, role: 'GUEST' as const })),
+      { id: this.participantId, sessionId: this.hostSessionId, name: this.participantName, role: 'HOST' }];
+  }
   get settings() { return { ...this.roomSettings }; }
 
-  rename(value: unknown): void {
+  participantFor(sessionId: string) { return this.participants.find((person) => person.sessionId === sessionId); }
+
+  join(sessionId: string, id: string, value: unknown): void {
     this.ensureWaiting();
-    this.participantName = normalizeName(value);
+    const name = normalizeName(value);
+    if (this.participantFor(sessionId)) throw new Error('La sesión ya pertenece a la sala.');
+    if (this.participants.length >= 5) throw new RoomError('ROOM_FULL', 'La sala está llena. Puedes volver a intentarlo cuando quede una plaza.');
+    this.guests.push({ id, sessionId, name });
+    this.roomRevision += 1;
+  }
+
+  rename(value: unknown): void {
+    this.renameFor(this.hostSessionId, value);
+  }
+
+  renameFor(sessionId: string, value: unknown): boolean {
+    this.ensureWaiting();
+    const person = this.participantFor(sessionId);
+    if (!person) throw new RoomError('FORBIDDEN', 'No tienes permiso para esta sala.');
+    const name = normalizeName(value);
+    if (person.name === name) return false;
+    if (sessionId === this.hostSessionId) this.participantName = name;
+    else this.guests.find((guest) => guest.sessionId === sessionId)!.name = name;
+    this.roomRevision += 1;
+    return true;
+  }
+
+  leave(sessionId: string, participantId: string): { id: string; name: string } {
+    this.ensureWaiting();
+    const index = this.guests.findIndex((guest) => guest.sessionId === sessionId && guest.id === participantId);
+    if (index < 0) throw new RoomError('FORBIDDEN', 'No tienes permiso para esta sala.');
+    const [guest] = this.guests.splice(index, 1);
+    this.roomRevision += 1;
+    return { id: guest.id, name: guest.name };
   }
 
   close(): void {
     this.ensureWaiting();
     this.state = 'CLOSED';
+    this.roomRevision += 1;
   }
 
   private ensureWaiting(): void {
