@@ -30,7 +30,7 @@ Abrir `http://127.0.0.1:5173`. Vite sirve la interfaz y envía `/api` y `/socket
 
 ## Comprobaciones
 
-El [flujo de GitHub y recuperación](docs/operacion/GITHUB_Y_RECUPERACION.md) describe la automatización preparada, su estado de verificación y las copias pendientes fuera de Git.
+El [flujo de GitHub y recuperación](docs/operacion/GITHUB_Y_RECUPERACION.md) describe la automatización, las ejecuciones verificadas y las copias pendientes fuera de Git.
 
 ```powershell
 npm run check
@@ -74,7 +74,7 @@ La creación, lectura, edición del nombre y cierre conservan HTTP. La entrada, 
 
 Socket.IO usa `pingInterval=5000` y `pingTimeout=5000` ms. La reserva empieza cuando el servidor detecta la última pérdida; una red que deja de entregar paquetes puede añadir retraso de detección. El contador de caducidad usa referencia del servidor y tiempo monotónico transcurrido en el navegador: llegar a cero solo solicita confirmación. No hay controles públicos para acelerar estos plazos.
 
-`NODE_ENV=production` exige HTTPS delante del servidor para que el navegador acepte la cookie `Secure`. El servidor escucha en `127.0.0.1` y está preparado para quedar detrás del proxy del despliegue futuro. Docker Compose, Caddy y el VPS pertenecen a hitos posteriores; este bloque no los despliega ni los acredita. GitHub Actions tiene configuración preparada; su ejecución remota sigue pendiente de verificación.
+`NODE_ENV=production` exige HTTPS delante del servidor para que el navegador acepte la cookie `Secure`. El servidor escucha en `127.0.0.1` y está preparado para quedar detrás del proxy del despliegue futuro. Docker Compose, Caddy y el VPS pertenecen a hitos posteriores; este bloque no los despliega ni los acredita. GitHub Actions ha ejecutado las comprobaciones generales y los 18 recorridos Chrome; las referencias de ejecución constan en el documento operativo.
 
 ## Contrato HTTP actual
 
