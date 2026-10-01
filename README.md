@@ -1,6 +1,14 @@
-# KARTA3 — bloques 01, 02 y 03
+# KARTA3
 
-Implementación local de creación, entrada y ciclo de vida de una sala de espera. Dos navegadores con sesiones independientes comparten código y lista, cambian su propio nombre y salen o cierran con confirmación. La presencia se comparte entre pestañas, con reserva de 30 segundos al perder la última conexión y cierre tras 30 minutos sin actividad válida. Aún no se inicia una partida.
+KARTA3 es un proyecto de adaptación de un juego de cartas a una aplicación web multijugador, desarrollado como Trabajo Fin de Máster.
+
+La aplicación se construye de forma incremental, con especificaciones, pruebas y documentación de cada entrega. Utiliza TypeScript, React y un servidor Node.js con Express y Socket.IO.
+
+## Estado actual
+
+Actualmente permite crear una sala de espera, compartir su código e incorporar participantes desde navegadores independientes. La lista se actualiza en tiempo real y cada participante puede cambiar su nombre o salir. También gestiona la reconexión temporal y el cierre de salas por inactividad.
+
+La configuración y el desarrollo de la partida todavía están pendientes. El estado de las salas se mantiene en memoria y se pierde al reiniciar el servidor.
 
 Las reglas para desarrollar los siguientes bloques están en [`AGENTS.md`](AGENTS.md). La [organización y dependencias](docs/arquitectura/ORGANIZACION_Y_DEPENDENCIAS.md) explica cómo separar dominio, aplicación, infraestructura e interfaz a partir de este primer bloque.
 
@@ -20,6 +28,8 @@ npm run dev
 Abrir `http://127.0.0.1:5173`. Vite sirve la interfaz y envía `/api` y `/socket.io` al servidor en `127.0.0.1:3000`. Para probar la entrada, usa otro navegador o perfil con cookies independientes; una segunda pestaña del mismo perfil representa a la misma persona. El estado reside en la memoria del servidor; reiniciarlo elimina las salas. No hacen falta cuentas ni variables de entorno para desarrollo local.
 
 ## Comprobaciones
+
+El [flujo de GitHub y recuperación](docs/operacion/GITHUB_Y_RECUPERACION.md) describe la automatización preparada, su estado de verificación y las copias pendientes fuera de Git.
 
 ```powershell
 npm run check
@@ -63,7 +73,7 @@ La creación, lectura, edición del nombre y cierre conservan HTTP. La entrada, 
 
 Socket.IO usa `pingInterval=5000` y `pingTimeout=5000` ms. La reserva empieza cuando el servidor detecta la última pérdida; una red que deja de entregar paquetes puede añadir retraso de detección. El contador de caducidad usa referencia del servidor y tiempo monotónico transcurrido en el navegador: llegar a cero solo solicita confirmación. No hay controles públicos para acelerar estos plazos.
 
-`NODE_ENV=production` exige HTTPS delante del servidor para que el navegador acepte la cookie `Secure`. El servidor escucha en `127.0.0.1` y está preparado para quedar detrás del proxy del despliegue futuro. Docker Compose, Caddy, GitHub Actions y el VPS pertenecen a hitos posteriores; este bloque no los despliega ni los acredita.
+`NODE_ENV=production` exige HTTPS delante del servidor para que el navegador acepte la cookie `Secure`. El servidor escucha en `127.0.0.1` y está preparado para quedar detrás del proxy del despliegue futuro. Docker Compose, Caddy y el VPS pertenecen a hitos posteriores; este bloque no los despliega ni los acredita. GitHub Actions tiene configuración preparada; su ejecución remota sigue pendiente de verificación.
 
 ## Contrato HTTP actual
 
