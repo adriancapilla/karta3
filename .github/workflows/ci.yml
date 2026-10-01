@@ -32,6 +32,24 @@ jobs:
       - name: Instalar Chrome y dependencias de navegador
         run: npx playwright install --with-deps chrome
       - name: Recorridos de Chrome
-        run: npx playwright test
+        timeout-minutes: 5
+        shell: bash
+        run: |
+          node dist-server/server/main.js > "$RUNNER_TEMP/karta3-server.log" 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+          ready=false
+          for attempt in {1..40}; do
+            if curl --fail --silent http://127.0.0.1:3000/ > /dev/null; then
+              ready=true
+              break
+            fi
+            sleep 0.25
+          done
+          if [ "$ready" != true ]; then
+            cat "$RUNNER_TEMP/karta3-server.log"
+            exit 1
+          fi
+          npx playwright test
         env:
           CI: 'true'

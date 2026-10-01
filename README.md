@@ -17,10 +17,11 @@ Las reglas para desarrollar los siguientes bloques están en [`AGENTS.md`](AGENT
 - Node.js 24 LTS y npm.
 - Chrome instalado para las pruebas de navegador.
 
-En PowerShell, entra primero en la carpeta que contiene `package.json` y `package-lock.json`:
+Clona el repositorio con una cuenta autorizada mientras sea privado. En PowerShell:
 
 ```powershell
-Set-Location -LiteralPath 'E:\KARTA3\KARTA3_IA\APP\karta3'
+git clone https://github.com/adriancapilla/karta3.git
+Set-Location -LiteralPath 'karta3'
 npm ci
 npm run dev
 ```
@@ -45,7 +46,7 @@ npm run start
 En otra terminal, entra también en esa carpeta y ejecuta:
 
 ```powershell
-Set-Location -LiteralPath 'E:\KARTA3\KARTA3_IA\APP\karta3'
+# Desde la carpeta del repositorio, que contiene package.json:
 npm run test:browser
 ```
 
