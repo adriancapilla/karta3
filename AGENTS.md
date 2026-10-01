@@ -47,6 +47,8 @@ Tras T01, `server/application/` contiene el modelo de sala, sus casos de uso, pu
 
 ## Verificación y cierre
 
+El mantenimiento y la publicación del repositorio en GitHub se coordinan desde el hilo específico de GitHub, automatización y recuperación, por encargo del autor, siguiendo de forma proporcionada la metodología del máster: ramas de trabajo, pull requests, comprobaciones y revisión antes de integrar en `main`.
+
 - Añadir o ajustar pruebas proporcionales al cambio: reglas puras en dominio; casos de uso con puertos sustitutos; adaptadores con pruebas de integración; recorridos de navegador cuando cambie el comportamiento visible. Probar especialmente los casos límite que la especificación del bloque señale.
 - Ejecutar `npm run check` y las pruebas de navegador pertinentes al bloque. Registrar qué se ejecutó realmente; una lista de criterios en Markdown no cuenta como prueba pasada.
 - Mantener documentación del bloque, README y ejemplos de configuración alineados con lo entregado. Las decisiones de arquitectura transversales se registran en `docs/arquitectura/ORGANIZACION_Y_DEPENDENCIAS.md` o se comunican a este hilo si alteran sus premisas. Las reglas generales del juego y la aplicación se corrigen en su documento responsable de TFM.
