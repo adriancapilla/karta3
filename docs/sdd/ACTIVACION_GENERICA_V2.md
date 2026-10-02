@@ -1,8 +1,8 @@
 # Activación de la genérica — contenido 2
 
-**Estado:** cambio técnico autorizado por el autor el 02/10/2026; preparado para implementación. Incorporación y verificación por la aplicación pendientes. No abre otro bloque funcional.
+**Estado:** incorporado y verificado localmente el 02/10/2026 en el alcance AGV2-01–10; evidencia nueva en §8. Prueba manual con dos perfiles humanos pendiente. No abre otro bloque funcional.
 
-**Punto de partida observado:** rama `feat/b04-carga-barajas`, HEAD `b4c3f3a22a5ecc90de7a74d881c5f6405b8e9232`, paquete KARTA3 0.1.0 y árbol limpio antes de esta preparación. B04 y B05 están implementados y verificados localmente. ASSETS ya contiene la entrega activada; APP conserva todavía contenido 1/no disponible.
+**Punto de partida observado antes de incorporar:** rama `feat/b04-carga-barajas`, HEAD `b4c3f3a22a5ecc90de7a74d881c5f6405b8e9232`, paquete KARTA3 0.1.0 y árbol limpio antes de esta preparación. B04 y B05 estaban implementados y verificados localmente. ASSETS ya contenía la entrega activada; APP conservaba contenido 1/no disponible.
 
 ## 1. Objetivo y referencias
 
@@ -87,7 +87,7 @@ Las fixtures no se publican en `barajas/` de la instalación normal. Una disponi
 
 ## 6. Ejemplos y aceptación
 
-Todas estas comprobaciones de producto están pendientes al preparar la especificación.
+Estas comprobaciones de producto estaban pendientes al preparar la especificación. Sus resultados realmente ejecutados constan en §8.4.
 
 | Criterio | Acción / resultado esperado |
 |---|---|
@@ -130,9 +130,84 @@ Conservar especificaciones y resultados originales de B04/B05, incluidas huellas
 
 **Preparación realizada por SDD, 02/10/2026:** leídas fuentes y entrega del Gestor; huellas ASSETS coinciden con §2. Comparación semántica contra la copia APP confirma exclusivamente las tres modificaciones de §2. Se observan 58 cartas y referencias gráficas nulas. Es lectura/comparación documental, no ejecución del validador de aplicación ni nueva evidencia C01–C10 de producto.
 
-**Incorporación APP:** pendiente. **Validación/preparación/arranque/pruebas del cambio:** pendientes; no ejecutados en esta preparación. **README actualizado por implementación:** pendiente. **Commit(s) local(es) y versión revisada:** pendientes. **Verificación local/manual:** pendientes según evidencias que se ejecuten.
+**Estado al terminar la preparación SDD:** incorporación, validación/preparación/arranque/pruebas, README, commits y verificación pendientes; no ejecutados en esa preparación. Se conserva esta nota histórica. La ejecución posterior se registra a continuación.
 
-Para cerrar, añadir resultados AGV2-01–10, huellas origen/destino, versión de código y catálogo servido, comandos/entorno/fecha, tiempos reales o controlados si procede y límites. Conservar los recuentos reales nuevos sin copiar 172/22 o 197/31. Marcar verificado solo cuando las comprobaciones requeridas se satisfagan.
+### 8.1 Base, versión y entorno de implementación
+
+Antes de editar se comprobaron rama/HEAD: `feat/b04-carga-barajas`, `b4c3f3a22a5ecc90de7a74d881c5f6405b8e9232`. Los únicos cambios locales eran proceso modificado y especificación/prompt de esta incorporación sin registrar. Se conservaron íntegros en el commit documental `870f09f`; no se restauró ni cambió de rama. No se detectaron contradicciones funcionales: §2 autoriza explícitamente la evolución de la condición inicial histórica B04/B05.
+
+Commits locales trazables:
+
+- `870f09f`: preparación documental existente (proceso, especificación y prompt).
+- `e403837`: únicamente los dos JSON aprobados de contenido 2, copiados sin reserializar.
+- **`4115ad8a0d444e7d713a1ee88c2f61f2c8360c10` (`4115ad8`): versión revisada y comprobada**, expectativas, recorridos normales/instalaciones aisladas y README. El cierre documental se registra después de esta versión.
+
+Fecha de ejecución: **02/10/2026**, Europe/Madrid, UTC+02:00. Windows NT 10.0.26300.0, PowerShell, Node 24.13.0, npm 11.6.2, paquete KARTA3 0.1.0, TypeScript 6.0.3, Vitest 5.0.2, Playwright 1.63.0, Chrome **154.0.8037.93**. Loopback, un proceso por instancia; contextos Chrome con cookies independientes. Anfitrión móvil 390×844/invitado escritorio 1280×800 y recorrido inverso. Las regresiones B05 conservan dos pestañas del anfitrión.
+
+### 8.2 Copia y catálogo reproducibles
+
+Las huellas ASSETS se comprobaron contra §2 **antes de copiar ambos archivos**. Comparación semántica en memoria contra la copia APP anterior: exactamente las tres modificaciones autorizadas; el resto coincide, incluidas las 58 cartas y semilla `generica-v1`. La copia se realizó con `Copy-Item`, sin parsear/escribir los JSON. Se recalcularon origen/destino después de copiar y tras las puertas finales:
+
+| Archivo | SHA-256 origen ASSETS = destino APP = aprobado §2 | Bytes |
+|---|---|---|
+| `baraja.json` | `991406d04f60bfe884166a69fcc43954cfc751f0e058093ae2542f32c989e8ed` | 4723 |
+| `cartas.json` | `868988a43fe6c6be1a73be14013c543dc2fc83970341a4243be868af75b4c35c` | 34030 |
+
+Lista final: solo esos dos JSON. Formato 1/contenido 2 en ambos; disponible true; portada y 58 imágenes de cartas null/alt vacío, sin carpeta de recursos. Las huellas aprobadas fijas en `packages.test.ts` verifican todos los bytes; no se calculan expectativas desde el mismo archivo. También se extrajeron los dos blobs registrados mediante `git cat-file`: sus SHA-256 coinciden con §2. No se editó ASSETS ni se regeneraron permutaciones. `.gitattributes` conserva `barajas/** -text` para impedir conversión de bytes al clonar.
+
+Catálogo generado mediante las herramientas B04, nunca editado: un resumen `generica`, ocho campos exactamente iguales al esperado independiente en `tests/support/approvedGeneric.ts`, formato 1/contenido 2/portada nula. SHA-256 de `barajas/catalogo.json`: `5fa8a932c00315f975573750fb8d46ad5754df16838730ab43071244b172a85f`, idéntico antes y después de la regeneración de browser. Catálogo, dist, dist-server, capturas/resultados y logs permanecen ignorados; ninguna fixture entra en la instalación normal.
+
+### 8.3 Comandos y proceso realmente servido
+
+| Comando/comprobación ejecutados | Resultado nuevo observado |
+|---|---|
+| `npm run decks:validate -- --package barajas/generica` | Salida **0**, válida, disponibilidad true. |
+| `npm run decks:prepare` | Salida **0**, genérica válida/true, **1 baraja disponible**. |
+| `npm run check` | Salida **0**. Primera ejecución de adaptación: 197/197, 12,07 s. Ejecución final sobre `4115ad8`, alrededor de 19:46: **197/197 en 21 archivos**, Vitest **21,13 s**; tipos y lint correctos. Se conserva el número de pruebas, actualizando las ligadas al contenido real. |
+| `check:architecture`, dentro de check | **41 módulos**, sin imports prohibidos ni ciclos; los cuatro casos negativos pasan en Vitest. Revisión semántica en §8.5. |
+| Build, dentro de check y browser | Preparación correcta de genérica 2, TypeScript y Vite: **54 módulos**; `index-D13z2AtQ.js`/`index-DyT1_Y8O.css`. Código cliente de producto idéntico al anterior; el paquete se carga en servidor. |
+| `npm run start` | Arranque nuevo de `node dist-server/server/main.js`, diagnóstico genérica válida/true antes de escuchar. Instancia final **PID 14648**, iniciada a **19:47:18**, escucha `127.0.0.1:3000`; correlación por salida de start, netstat y hora del proceso. |
+| HTTP normal antes de browser | `http://127.0.0.1:3000/api/decks`: **200**, `Cache-Control: no-store`, sin `Set-Cookie`; un resumen exacto de genérica **2**. Se comprobó el proceso servido, además del archivo generado. |
+| `npm run test:browser`, final sobre esa instancia | Salida **0**, **35/35**, Chrome, tres workers, **1,1 min**, alrededor de 19:47–19:49. Incluye los 31 recorridos anteriores adaptados y cuatro nuevos: dos normales AGV2 y dos instalaciones vacías. `.last-run.json`: passed, sin fallos. |
+| Inspección visual final | Realizada sobre las cuatro capturas `test-results/AGV2-{390,1280}-{host,guest}.png` a 19:49: ficha/versionado/icono neutro, controles solo host, orden móvil/columnas escritorio; sin solapamientos ni desbordamiento observado. Las aserciones de ancho pasan. |
+| Revisión de diff/archivos | `git diff --check` sin errores; B04/B05 históricos sin cambios. Sin nuevas dependencias, cambios de producto, contrato ni recursos editoriales. |
+
+**Incidencia de ejecución, sin cambio de producto:** una primera ejecución browser perdió su sesión de herramientas durante una interrupción; sus casos parciales no se usaron para acreditar la puerta completa. Se repitieron check, arranque y browser, con los resultados finales anteriores. Los cmdlets de inventario `Get-NetTCPConnection`/CIM dieron acceso denegado; se correlacionó la nueva instancia mediante `netstat`, `Get-Process`, salida de start y HTTP real, sin terminar procesos ajenos. El arranque nuevo pudo ocupar el puerto y no se reutilizó un servidor antiguo. Los logs locales `agv2-{check,start,browser}.log` y capturas son auxiliares ignorados; las pruebas versionadas regeneran la evidencia.
+
+**Independencia de ASSETS comprobada de nuevo:** `startup.test.ts` copia solo fuentes, dependencias y genérica APP a una instalación temporal, construye y arranca con un guard real que bloquea accesos a ASSETS. El guard se prueba primero con una lectura deliberada, que falla; construcción/arranque/consultas no dejan accesos registrados y ofrecen genérica 2. Tras modificar cartas y añadir un paquete **solo en esa instalación temporal**, las consultas conservan el resumen inicial: la instantánea no recarga archivos. Los casos de catálogo ausente/corrupto/desactualizado, disponible inválida e incierto salen con fallo antes de escuchar. No se retiró ni renombró el maestro real para simular independencia.
+
+### 8.4 Resultado por criterio
+
+| Criterio | Resultado y evidencia nueva ejecutada |
+|---|---|
+| AGV2-01 | **Superado.** Comparación anterior/posterior, copia y tabla §8.2; caso real de `packages.test.ts`: hashes aprobados constantes, 58 cartas, formato/contenido/true, semilla, null y ausencia de recursos. Maestro intacto. |
+| AGV2-02 | **Superado.** Comandos individuales salida 0; catálogo determinista de un resumen exacto; construcción/arranque aislados con guard ASSETS y copia real (`startup.test.ts`). |
+| AGV2-03 | **Superado.** Instancia compilada final de §8.3 y HTTP normal v2 antes de browser; `decks.spec.ts` prueba normal y fallos reales de arranque conservados. Salas nuevas después de iniciar, sin persistencia añadida. |
+| AGV2-04 | **Superado.** `activation.spec.ts`, ambos tamaños: dos cookies independientes, creación/entrada/lista/código, una opción sin selección inicial, selección explícita v2 y ficha en host/invitado sin recargar, icono decorativo y ningún img nulo. Conexiones y respuestas reales, sin fixtures ni interceptación en este recorrido. |
+| AGV2-05 | **Superado.** Recarga simultánea de ambos navegadores: id/rol/orden/settings/ficha exactos, dos participantes y expiración conservada. Observación de frames/POST Socket.IO enviados: un configure por el gesto y ningún nuevo configure durante recarga. Autoridad visible host y consulta guest conservadas. |
+| AGV2-06 | **Superado.** Contra la instancia normal, invitado configura con su cookie: FORBIDDEN; host solicita genérica 1: DECK_VERSION_MISMATCH. Settings/revisión/expiración intactos. Desconocida y borrador false en puertos/paquetes separados B05, sin usar genérica real como no disponible. |
+| AGV2-07 | **Superado.** Retirada por UI sincroniza, limpia id/versión/ficha; igualdad v2/null y repetición no cambian revisión ni expiración. Repetición de id de selección antiguo tras quitar devuelve el presente sin restaurar v2. Suites B05 conservan controles inmediatos, concurrencia, pendientes, capacidad, reconexión y prioridades B03. |
+| AGV2-08 | **Superado.** GET real anónimo 200/no-store/sin cookie; resumen exacto de ocho campos, vistas sin cartas/playValue/datos internos. `decks.spec.ts` mantiene 404 sin HTML para JSON/catalogo/API y medios desconocidos v1/v2; null no crea recurso. Se conservan pruebas de medios registrados y privacidad del bundle/transportes. |
+| AGV2-09 | **Superado.** Dos nuevas instalaciones temporales vacías a 390/1280: main compilado devuelve [] y UI presenta vacío, conserva sin selección y permite otros controles. Fixture borrador false propia, paquetes inválidos y recursos reales PNG/JPEG/WebP conservados; ninguno sustituye/desactiva la genérica normal. |
+| AGV2-10 | **Superado localmente.** Check 197/197, browser 35/35, arquitectura 41, revisión semántica/visual, README actual y commits trazables. B01/T01/B02/B03/B04/B05 se vuelven a ejecutar; sus documentos históricos no se reescriben. Instrucciones manuales en README; recorrido manual humano pendiente. |
+
+### 8.5 Responsabilidades, tiempos y límites
+
+No se necesitó modificar código de producto: datos en `barajas/generica`; expectativas/fixture independiente en pruebas; descripción actual en README; evidencia en este documento/proceso. Revisión del diff y piezas reutilizadas: dominio mantiene el único validador puro; infraestructura conserva lectura estricta/recursos/catálogo; `tools/decks.ts` delega a composición; `main` valida/carga antes de escuchar; aplicación `ListDecks`/`PublishedDeckVersions`/`RoomUseCases.configure` conserva autorización/deduplicación/vencimientos; cliente recibe exclusivamente DTO seguros. Ningún nuevo puerto, IO en dominio/aplicación, import de paquetes en cliente, regla por tema ni excepción por id. No hay desviación arquitectónica.
+
+Los nuevos recorridos normales AGV2 usan conexiones y reloj reales durante segundos; no simulan respuestas ni prueban media hora real. Las regresiones B03/B05 con `ControlledTime` verifican límites exactos de ausencia/caducidad y prioridad con conexiones reales o casos puros según su montaje. Reserva B03 con margen real repetida: detección de recuperación **6,6642 ms**, detección del corte **3,4949 ms**, retirada **30.005,2616 ms desde detección**, total **30.008,7565 ms desde corte local**, motivos `transport close`. `pingInterval=5.000 ms`, `pingTimeout=5.000 ms` y margen de aplicación detección+30.000 ms conservados. Corte local Chrome, no pérdida física/WAN; aviso minuto 29/caducidad minuto 30 se acreditan con tiempo controlado.
+
+**Manual pendiente:** no se declara realizado el recorrido de §6 por dos perfiles humanos. Sí se realizó inspección visual de capturas de los recorridos automatizados reales; no equivale a estudio de comprensión. README contiene todos los pasos manuales, reinicio previo y diferencia entre pestaña y sesión independiente. Sin ensayo en móvil físico, lector de pantalla, WAN, HTTPS desplegado ni VPS.
+
+Estado solo en memoria: reiniciar pierde salas/configuración; recargar navegador conserva identidad y espera de ese proceso. Catálogo fijo: otra entrega requiere preparar/reiniciar. Una sola baraja disponible no la selecciona automáticamente. No se ha comprobado equilibrio ni se ha añadido ninguna función del siguiente bloque.
+
+### 8.6 Archivos y resumen para coordinación
+
+Archivos del cambio: `barajas/generica/{baraja,cartas}.json`; `server/infrastructure/decks/{packages,startup}.test.ts`; `server/application/configuration.test.ts`; `server/configurationSocket.test.ts`; `tests/browser/{decks,activation}.spec.ts`; `tests/support/{configurationBrowserServer,approvedGeneric}.ts`; `README.md`; `docs/sdd/{ACTIVACION_GENERICA_V2,PROMPT_IMPLEMENTACION_ACTIVACION_GENERICA_V2,PROCESO_SDD}.md` (los dos últimos documentos iniciales conservados antes de implementar; el proceso recibe también el estado final).
+
+Para coordinación: maestro activado por el Gestor, copia APP incorporada byte a byte y uso normal verificado son tres hechos separados, ahora acreditados para contenido 2. Trasladar a fuentes generales el nuevo estado actual del catálogo y la disponibilidad, manteniendo referencias históricas de contenido 1. Sala inicialmente sin selección; no nuevo acuerdo funcional/arquitectónico. **C09 parcial:** carga/catálogo/selección autorizada exacta/recuperación normal de genérica 2 acreditados; validación al iniciar y uso en partida pendientes. **C10 parcial:** ficha/icono/privacidad del paquete real acreditados; cartas/manos/mesa/resultados y comprensión con usuarios pendientes. No se modifica el documento vivo de coordinación desde este hilo.
+
+**Fecha y estado final:** 02/10/2026, **verificado localmente para AGV2-01–10**, con los límites descritos y manual adicional pendiente. Cierre documental posterior al código revisado `4115ad8`; commits solo locales. GitHub/publicación/recuperación y despliegue continúan en sus conversaciones responsables.
 
 Los commits de esta incorporación serán locales. No hacer push, PR ni despliegue; la publicación posterior corresponde al hilo de GitHub y recuperación. Excluir catálogo/compilaciones generados según las reglas existentes. Entregar a coordinación archivos, acuerdos, nueva evidencia y pendientes, sin abrir el siguiente incremento funcional.
 
