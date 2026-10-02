@@ -66,4 +66,6 @@ El [bloque 04: carga, validación y catálogo](BLOQUE_04_CARGA_BARAJAS.md), espe
 
 Cada nueva baraja aprobada seguirá el mismo control y conservará el resultado asociado a su versión. La incorporación no necesita un validador por temática. El contrato por sí solo no acredita ejecución: la implementación y los resultados reales de validador/catálogo constan en B04; el selector sigue pendiente.
 
+El [bloque 05: selección y configuración de sala](BLOQUE_05_CONFIGURACION_SALA.md), preparado el 02/10/2026 sobre B04 verificado, acuerda cambios inmediatos por control, último cambio válido procesado, selección/quitar selección autorizadas, participación/observación del anfitrión y consulta sincronizada. El autor eligió línea separada para observador y retorno al valor aceptado ante fallo. La genérica sigue versión 1/no disponible; usar fixtures para comprobar selección e icono. La especificación amplía vista y acciones conservando B01–B04 y los plazos B03. Código y pruebas B05 pendientes; no reutilizar evidencia histórica como ejecución nueva ni completar C09–C10 antes de sus partes posteriores.
+
 La incorporación de una baraja nueva no autoriza por sí sola a cambiar la mecánica. Una excepción de contenido o una modificación de reglas necesita una decisión explícita y sus comprobaciones.
