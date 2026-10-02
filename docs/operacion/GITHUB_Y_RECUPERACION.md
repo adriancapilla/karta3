@@ -18,11 +18,15 @@ Huellas SHA-256 aprobadas que deben conservarse en Git y en el clon limpio:
 | `barajas/generica/baraja.json` | `991406d04f60bfe884166a69fcc43954cfc751f0e058093ae2542f32c989e8ed` |
 | `barajas/generica/cartas.json` | `868988a43fe6c6be1a73be14013c543dc2fc83970341a4243be868af75b4c35c` |
 
-La referencia local recibida es 197 pruebas, 35 recorridos Chrome y 41 módulos. Los resultados remotos y del clon de esta publicación se registrarán separadamente; no se deducen de los documentos históricos B04/B05/AGV2.
+La referencia local recibida es 197 pruebas, 35 recorridos Chrome y 41 módulos. La PR de esta publicación es [#2](https://github.com/adriancapilla/karta3/pull/2); las evidencias nuevas siguientes se distinguen de los documentos históricos B04/B05/AGV2.
 
 Primera ejecución remota [37057998515](https://github.com/adriancapilla/karta3/actions/runs/37057998515), `406f5cc`: instalación/tipos/lint correctos, fallo de las pruebas de arranque por ausencia de `dist` en un checkout limpio. La comprobación local con compilaciones previas sí pasó (197/197, 41 módulos), pero no demostraba reproducción limpia. Se corrigió el orden de `check`: tipos → lint → preparación/compilación → pruebas → arquitectura. No se cambió comportamiento de producto ni una regla funcional. Para ejecutar `npm test` por separado, construir primero con `npm run build`.
 
 Segunda ejecución [37058274060](https://github.com/adriancapilla/karta3/actions/runs/37058274060), `bc9369f`: 196/197 pruebas; la construcción aislada falló en Linux porque el guard de pruebas sustituía `fs.realpathSync` y perdía su método `native`, utilizado por Vite. Se conserva y protege también `native`, añadiendo una comprobación de que rechaza ASSETS. El guard sigue siendo real; no se elimina para hacer pasar la prueba. Corrección limitada al montaje de pruebas, sin cambio funcional.
+
+Ejecución remota [37058554535](https://github.com/adriancapilla/karta3/actions/runs/37058554535), `cfb3d1a`: instalación reproducible, tipos, lint, preparación/compilación, 197/197 pruebas, 41 módulos sin infracciones y 35/35 recorridos Chrome (2,6 minutos), todo correcto en Ubuntu 24.04. El commit posterior solo registra esta evidencia; su CI y la posterior a integrar deben confirmarse y quedar enlazadas en la PR.
+
+Clon limpio desde GitHub en `E:\KARTA3\KARTA3_IA\APP\karta3-verificacion-b04-b05-20261002`, sin ASSETS, Node 24.13.0/npm 11.6.2: `npm ci` correcto; `npm run check` correcto, 197/197 pruebas y 41 módulos. Los 35/35 recorridos Chrome terminaron con código 0 (2,1 minutos) sobre `bc9369f`; después se incorporó `cfb3d1a` y se repitió `check` correctamente, incluida la comprobación adicional del guard. Arranque con `npm run start`: página y `/api/decks` responden 200; catálogo con genérica contenido 2 disponible, sin cookie y con `no-store`; los dos JSON no se sirven por HTTP (404). Ambas huellas SHA-256 coinciden con las aprobadas. Servidor de prueba detenido al acabar. Tras integrar se sincronizará este clon con `main` y se comprobarán instalación, comprobaciones y arranque del commit integrado.
 
 ## Evidencia histórica de la primera conexión — 01/10/2026
 
@@ -41,7 +45,7 @@ Segunda ejecución [37058274060](https://github.com/adriancapilla/karta3/actions
 
 Ejecuta `npm run check`: tipos, análisis estático, pruebas existentes de modelo/aplicación/adaptadores/API, control de capas y compilación. Después instala Chrome con Playwright y ejecuta todos los recorridos existentes. En CI el paso de navegador arranca el servidor compilado, espera su disponibilidad y lo detiene al salir; Playwright usa un solo trabajador sin reintentos que oculten fallos. Ese paso tiene un límite de cinco minutos. No usa secretos ni despliega.
 
-La validación/preparación de barajas existe desde B04: `npm run decks:validate -- --package barajas/generica` valida individualmente y `npm run decks:prepare` genera el catálogo. La preparación también forma parte de `build`, incluido en `check`; las pruebas cubren JSON/formato/dominio/recursos, disponibilidad, privacidad, vigencia del catálogo y arranque. `sharp` y sus paquetes nativos se instalan desde el lockfile en el entorno de CI; su ejecución Linux debe comprobarse, no inferirse de Windows.
+La validación/preparación de barajas existe desde B04: `npm run decks:validate -- --package barajas/generica` valida individualmente y `npm run decks:prepare` genera el catálogo. La preparación también forma parte de `build`, incluido en `check`; las pruebas cubren JSON/formato/dominio/recursos, disponibilidad, privacidad, vigencia del catálogo y arranque. `sharp` y sus paquetes nativos se instalan desde el lockfile; su ejecución y los recursos reales se han comprobado también en la CI Linux enlazada arriba.
 
 Se mantienen locales la revisión humana de interfaz, pruebas con personas y averías físicas de red; HTTPS real y despliegue requieren sus encargos posteriores. Los límites temporales y simulaciones siguen descritos en B03/B05/AGV2. El catálogo es una instantánea por proceso: nueva copia requiere preparar y reiniciar; las salas/configuración en memoria se pierden al reiniciar.
 
