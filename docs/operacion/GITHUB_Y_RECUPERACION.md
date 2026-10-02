@@ -20,6 +20,8 @@ Huellas SHA-256 aprobadas que deben conservarse en Git y en el clon limpio:
 
 La referencia local recibida es 197 pruebas, 35 recorridos Chrome y 41 módulos. Los resultados remotos y del clon de esta publicación se registrarán separadamente; no se deducen de los documentos históricos B04/B05/AGV2.
 
+Primera ejecución remota [37057998515](https://github.com/adriancapilla/karta3/actions/runs/37057998515), `406f5cc`: instalación/tipos/lint correctos, fallo de las pruebas de arranque por ausencia de `dist` en un checkout limpio. La comprobación local con compilaciones previas sí pasó (197/197, 41 módulos), pero no demostraba reproducción limpia. Se corrigió el orden de `check`: tipos → lint → preparación/compilación → pruebas → arquitectura. No se cambió comportamiento de producto ni una regla funcional. Para ejecutar `npm test` por separado, construir primero con `npm run build`.
+
 ## Evidencia histórica de la primera conexión — 01/10/2026
 
 - Base limpia, 13 commits conservados y publicados en `main` hasta `bbd575f`.
