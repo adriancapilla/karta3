@@ -155,6 +155,9 @@ test('B03 tiempo controlado: cero visual sin confirmación no cierra; volver tra
 });
 
 test('B03-15 reiniciar el runtime pierde el motivo privado y permite crear otra sala con sesión y presencia nuevas', async ({ browser }) => {
+  // Detección (12 s), recuperación y reinicio (10 s cada uno) más cierre:
+  // el presupuesto global de 30 s era menor que las esperas individuales.
+  test.setTimeout(60_000);
   const s = await boot(); const p = await pair(browser, s.base);
   let fresh: Awaited<ReturnType<typeof boot>> | undefined;
   try {
@@ -174,7 +177,11 @@ test('B03-15 reiniciar el runtime pierde el motivo privado y permite crear otra 
     await p.guest.goto(`${fresh.base}/sala/${original.id}`);
     await expect(p.guest.getByRole('alert')).toContainText('La sala ya no está disponible');
     expect(await p.guest.evaluate(async () => (await (await fetch('/api/rooms/current')).json()).ended)).toBeUndefined();
-  } finally { await (fresh ?? s).stop(); await p.hostContext.close(); await p.guestContext.close(); }
+  } finally {
+    // Cerrar clientes antes del servidor evita reconexiones durante la limpieza.
+    try { await Promise.all([p.hostContext.close(), p.guestContext.close()]); }
+    finally { await (fresh ?? s).stop(); }
+  }
 });
 
 test('B03 conexiones y margen reales: última pestaña, recuperación sin F5 y retirada 30 segundos después de detectar red perdida', async ({ browser }) => {
