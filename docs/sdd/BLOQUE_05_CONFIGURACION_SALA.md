@@ -1,6 +1,6 @@
 # Bloque 05 — Selección de baraja y configuración de la sala
 
-**Estado:** alcance y decisiones funcionales acordados con el autor el 02/10/2026; especificación preparada para implementación. No implementado ni verificado.
+**Estado:** acordado, implementado y verificado localmente el 02/10/2026 para B05-01–16. Evidencia nueva, revisión y límites en §12; sin inicio, partida ni despliegue.
 
 **Tipo y punto de partida:** incremento funcional sobre B01–B04. Rama observada `feat/b04-carga-barajas`, HEAD `7d2536f9c5ad1956fc218146e90c1fd6937a5a71`, paquete 0.1.0; árbol limpio al comenzar esta preparación. No se cambia de rama ni se descarta trabajo. B04 registra código revisado `e5416f8` y cierre en `7d2536f`: 172 pruebas/22 recorridos Chrome y comprobación de 37 módulos. Son resultados históricos de B04, no pruebas ejecutadas ni resultados de B05.
 
@@ -219,7 +219,7 @@ No quedan preguntas funcionales bloqueantes. Layout detallado, módulos, organiz
 
 **Alineación:** las opciones/defaults, orden, capacidad y autoridad ya coinciden con aplicación §§4–7. Este bloque concreta las elecciones de interfaz y simultaneidad que allí no se fijaban; trasladarlas a la conversación responsable para mantener las fuentes generales. Infraestructura §9 y contrato siguen gobernando carga/publicación; B05 consume la instantánea B04, sin crear otro formato ni flujo editorial. No modificar silenciosamente el documento vivo de coordinación.
 
-**Cambio de código B05:** pendiente. **Pruebas de producto durante esta preparación:** ninguna, por indicación del autor. **Comprobaciones de implementación/arquitectura:** pendientes. **Fecha de verificación:** pendiente.
+**Durante la preparación documental:** no se ejecutaron pruebas de producto, por indicación del autor. La implementación posterior, su versión revisada, pruebas y fecha de verificación se registran en §12; se conserva esta separación respecto a la evidencia histórica de B04.
 
 **Revisión documental, 02/10/2026:** referencias locales existentes, ejemplo JSON analizable y 16 criterios distintos. Las huellas de los dos archivos de la genérica coinciden entre ASSETS y APP y con las registradas en B04; formato/contenido 1 y disponibilidad false conservados. Esta lectura y comparación no son una nueva validación del paquete por la aplicación ni una prueba de B05.
 
@@ -232,3 +232,107 @@ Encargo listo para copiar: [prompt de implementación B05](PROMPT_IMPLEMENTACION
 Rama `feat/b04-carga-barajas`, HEAD `7d2536f9c5ad1956fc218146e90c1fd6937a5a71`. Se conservan los cambios locales de proceso y los dos documentos de B05. No se detectaron contradicciones funcionales en las fuentes consultadas.
 
 `npm run check` ejecutado sobre esa base: salida 0, tipos y lint correctos, 172/172 pruebas Vitest en 17 archivos, control de 37 módulos sin infracciones/ciclos y compilación completa. La preparación conserva la genérica válida/no disponible y el catálogo vacío. Entorno: Windows, Node 24.13.0, npm 11.6.2. Esta ejecución acredita la base B04; no acredita B05 ni sustituye las pruebas finales de navegador.
+
+## 12. Implementación, revisión y evidencia final — 02/10/2026
+
+### 12.1 Versión y entorno
+
+Código revisado: `73091f6905d0476bed5a31fd588a562bc9356525` (`73091f6`), en la rama existente `feat/b04-carga-barajas`. El commit documental anterior `ac8672b` conserva los cambios locales de proceso, especificación y prompt, y registra la base ejecutada. No se cambió de rama ni se publicó en GitHub.
+
+Windows NT 10.0.26300.0, PowerShell, Node 24.13.0, npm 11.6.2, TypeScript 6.0.3, Vitest 5.0.2, Playwright 1.63.0 y Chrome 154.0.8037.93. Ejecución local por loopback, un proceso por instancia. Fecha local 02/10/2026, Europe/Madrid (UTC+02:00). Navegadores con contextos/cookies independientes y dos pestañas del anfitrión; vistas 390×844 y 1280×800.
+
+### 12.2 Puertas realmente ejecutadas
+
+| Comprobación final | Resultado observado |
+|---|---|
+| `npm run check` | Salida 0; tipos/lint correctos; **197/197 pruebas en 21 archivos**, 11,53 s de Vitest. Incluye las 172 regresiones existentes y 25 pruebas nuevas de casos/configuración, sockets, pendientes y transporte. |
+| `npm run check:architecture`, dentro de check | **41 módulos**, sin importaciones prohibidas ni ciclos. Los cuatro casos negativos del escáner pasan en la suite. |
+| Preparación/compilación, dentro de check y browser | Genérica válida/no disponible; catálogo normal vacío. Vite compila 54 módulos. Artefactos finales `index-D13z2AtQ.js` y `index-DyT1_Y8O.css`. |
+| `npm run start` | Proceso de `dist-server/server/main.js` iniciado con esa compilación antes de la ejecución final; escucha `http://127.0.0.1:3000`. Carga/valida APP antes de escuchar. |
+| `npm run test:browser` | Salida 0; **31/31 recorridos Chrome**, 1,0 min, tres workers: los 22 anteriores y 9 de B05. El comando recompila el mismo código actual; se reinició el servidor tras la última corrección de UI. |
+| Revisión visual | Inspeccionadas las cuatro capturas finales `test-results/B05-{390,1280}-{host,guest}.png`: orden móvil, columnas escritorio, numeración/observador, ficha/icono, foco visible y nombre provisional. Sin solapamientos ni desbordamiento observado; las aserciones de ancho también pasan. |
+| Contenido y diff | Lista de genérica: los mismos dos JSON, huellas iguales APP/ASSETS y a B04; formato/contenido 1 y false. `git diff --check` sin errores de espacios. Sin nueva dependencia ni modificación del contrato de archivos. |
+
+Las capturas y adjuntos de Playwright son artefactos locales ignorados; los recorridos y aserciones están versionados y permiten regenerarlos. No se han usado resultados históricos como sustituto de estas ejecuciones.
+
+**Incidencias resueltas durante las ejecuciones:** la fixture de portada declaró inicialmente una ruta fuera de `imagenes/`; la carga estricta la rechazó y se corrigió la fixture, conservando validador/contrato. La primera ejecución de check exigió actualizar la aserción de claves HTTP para incluir `selectedDeck`. La prueba de caducidad cambió `check()` por `click()` porque el cierre retiraba el checkbox antes de la comprobación posterior de Playwright; conserva las aserciones de cierre y de ack antiguo inofensivo. Los selectores de B01 se acotaron al badge exacto y al estado del panel de copia porque los nuevos textos/avisos los hacían ambiguos; ninguna garantía anterior se eliminó. La revisión detectó que retirar el botón de reintento podía perder el foco: después de un error se conserva ese nodo, como «Actualizar catálogo» al recuperarse; la comprobación de foco añadida pasa. Tras esa corrección se repitieron check y navegador completos, con los resultados de la tabla.
+
+### 12.3 Clases de evidencia temporal y de conexión
+
+- **Tiempo controlado sin red:** `server/application/configuration.test.ts` usa puertos sustitutos y `ControlledTime`. Comprueba renovación/sin efecto, aviso al minuto 29, caducidad exacta al 30, reservas 29.999/30.000 ms, generaciones y callbacks atrasados; ambas prioridades de la carrera por plaza se ejecutan determinísticamente.
+- **Conexiones reales con tiempo controlado:** `server/configurationSocket.test.ts` y `tests/browser/configuration.spec.ts` usan HTTP/Socket.IO por loopback. La primera usa código fuente; navegador importa los módulos de servidor compilados y sirve `dist`, con paquetes temporales preparados y cargados por B04. Sesiones independientes, dos sockets/pestañas del host, carrera casi simultánea con `Promise.all`, sincronización, reconexión y estados son reales. El avance de reservas/caducidad es controlado, no tiempo transcurrido real. Los interceptores de acks y las respuestas HTTP fallidas existen solo en pruebas; el timeout de confirmación de 5.000 ms sí se espera en el navegador.
+- **Conexiones y margen reales, regresión B03 repetida:** `lifecycle.spec.ts` conserva reloj/planificador reales en su caso de reserva. En la última ejecución: detección de recuperación **2,7802 ms**, detección del segundo corte **7,3283 ms**, retirada a **30.004,0393 ms desde detección**, total **30.011,3676 ms desde corte local**, motivos `transport close`. Es un corte local de Chrome, no una avería física/WAN.
+
+Detección Socket.IO conservada: `pingInterval=5.000 ms`, `pingTimeout=5.000 ms`; el margen de aplicación es detección+30.000 ms (también para anfitrión observador). No se promete retirada a los 30 segundos desde una pérdida física no detectada. La media hora, su aviso y las coincidencias de vencimiento se acreditan mediante tiempo controlado, no una espera real de 30 minutos.
+
+### 12.4 Resultados por criterio
+
+| Criterio | Resultado y evidencia ejecutada |
+|---|---|
+| B05-01 | **Superado.** Defaults/sin selección en casos y ejecución normal vacía a ambas anchuras (`decks.spec.ts`); nombres, copia, entradas y cierre en las regresiones. Ningún inicio ni selección automática. |
+| B05-02 | **Superado.** Navegador retrasa GET, devuelve 500 y reintenta con una única fixture. Otros controles operan; borrador/foco se conservan durante el fallo y foco del botón tras recuperación. Lecturas no cambian revisión/expiración ni seleccionan. |
+| B05-03 | **Superado.** Socket.IO y Chrome con host/invitado y dos pestañas: paquete disponible validado/versionado, ficha sincronizada en menos de 2 s desde aceptación; solo ocho campos públicos, sin cartas ni datos internos. También selección en el proceso real de `main` con fixture disponible (`decks.spec.ts`). |
+| B05-04 | **Superado.** Seleccionar ninguna limpia id/versión/ficha y comunica. Los casos comparan revisión, emisiones y expiración: un efecto y repetición nula sin efecto. |
+| B05-05 | **Superado.** Casos/adaptador/sockets: desconocida, genérica false, resumen sin definición o definición de otra versión y versión publicada distinta. Sin modificación/renovación. Navegador con versión no publicada vuelve al aceptado, explica error y conserva ficha/foco. |
+| B05-06 | **Superado.** Casos con invitado y anfitrión de otra sala; integración real con invitado/ajeno: cinco controles denegados. Entrada durante configuración recibe settings aceptados. Credenciales de sesión, nunca nombre/código/payload de rol. |
+| B05-07 | **Superado.** Matriz de todos los valores permitidos y aserciones de otros settings intactos; sockets rechazan coerciones, números ajenos, ids/versiones inválidos, claves extra y controles desconocidos. Revisión 0 y desempate true/false comprobados; un único selector de desempate. |
+| B05-08 | **Superado.** Reducer/transporte y Chrome: acks retenidos/invertidos, error con otro campo pendiente y nombre provisional, error vinculado por aria y foco conservado. Timeout real de 5 s muestra incertidumbre; gesto offline no se emite ni espera conexión. |
+| B05-09 | **Superado.** Casos prueban id/autoridad/nombre/presencia/ausencia conservados, ninguna salida, configuración/renombre/cierre como observador. Chrome prueba línea separada, contador, permisos visibles, renombre y retorno desde portada con misma participación. |
+| B05-10 | **Superado.** Casos prueban ambos órdenes de la última plaza; integración compite por sockets reales casi simultáneos y admite exactamente uno. Chrome muestra cinco invitados, rechazo del host y reservas; retirada debida con callback atrasado precede vuelta al final de jugadores. |
+| B05-11 | **Superado.** Dos pestañas reales: último nuevo válido por control; cambios distintos permanecen. Acks invertidos no retroceden vista ni borran otro pendiente; entrada/presencia no generan conflictos de revisión. |
+| B05-12 | **Superado.** Casos/sockets: replay antes/después de cambios devuelve presente sin restaurar antiguo, igualdad nueva/no selección nula sin efecto, id con otros datos/tipo en espacio join/leave/configure da conflicto, rechazo repetido sigue siendo rechazo. Revisión, expiración y emisiones comparadas. |
+| B05-13 | **Superado.** Chrome: recarga sin nuevas emisiones y reconexión real sin F5; conserva id/rol/selección/versión/valores. Otra pestaña mantiene presencia. Observador sin todas sus conexiones cierra por ausencia con reloj controlado; reglas y motivo B03 conservados. |
+| B05-14 | **Superado.** Casos/sockets/Chrome: efectivo retira aviso/renueva, sin modificar ausencias. Lecturas, igualdad, rechazos, repetidos y recuperación no renuevan. Caducidad exacta, callbacks atrasados y empate con ausencia host cierran por inactividad una vez. Ack exitoso anterior no reabre UI. |
+| B05-15 | **Superado para interfaz local.** Paquete con PNG real y otro null, alt, icono aria-hidden, ningún img nulo; fallo de descarga explica sin cambiar referencia aceptada. 390/1280, teclado nativo, labels/errores, foco y borradores: aserciones y cuatro capturas inspeccionadas. No es estudio de comprensión con usuarios ni prueba física móvil/lector de pantalla. |
+| B05-16 | **Superado.** Check, 31 recorridos, escáner/casos negativos y revisión semántica de §12.5. B01/T01/B02/B03/B04 se vuelven a ejecutar. Sin cambios en dominio/validador/herramienta B04 ni en bytes de contenido aprobado. |
+
+### 12.5 Mapa de responsabilidades y revisión
+
+| Pieza revisada/modificada | Responsabilidad y límite observado |
+|---|---|
+| `application/room.ts` | Settings/selección juntos, booleano de participación, plazas/orden, revisión/renovación con tiempo explícito. No IO. Presencia/ausencias B03 permanecen independientes. |
+| `application/roomUseCases.ts`, `ports.ts`, `roomError.ts` | `configure` cumple `ConfigureWaitingRoom`: vencimientos, autorización host, firmas canónicas por control, deduplicación/contexto, selección por puerto y publicación solo con efecto. Sección de decisión/escritura síncrona; sin espera entre admisión y cambio. |
+| `application/deckCatalog.ts`, `roomView.ts` | Puerto `PublishedDeckVersions` y proyección de ocho campos reutilizada con ListDecks; vistas por destinatario, sin cartas ni credenciales. |
+| `infrastructure/decks/catalog.ts` | Instantánea B04 conserva versión junto a definición validada; resolución exige resumen/definición correspondientes, no abre archivos al seleccionar. No decide permisos/plazas. |
+| `infrastructure/configurationInput.ts`, `socketRooms.ts`, `http/expressApp.ts` | Forma/tipos/ids exactos, evento y traducción de errores. La sesión/origen/límites siguen vigentes; el transporte aplica preparación temporal antes de decodificar la nueva acción. No nueva mutación HTTP. |
+| `composition/createApp.ts`, `main.ts` | Conexión explícita de puertos de resúmenes y versiones a la misma carga B04 antes de escuchar. Puertos separados permiten sustituir capacidades en pruebas sin importar concretos en aplicación. |
+| `shared/contracts/room.ts` | DTO/change ampliados: settings, versión, ficha y isPlayer booleano; sin objetos de dominio. |
+| `src/RoomConfiguration.tsx`, `useRoomConfiguration.ts`, `configurationState.ts`, `socket.ts` | Catálogo/ficha/controles y estado por intento/campo; vigente vs provisional; transporte volátil/no cola. No decide plazas/permisos oficiales ni plazos. |
+| `src/screens.tsx`, `App.tsx`, `useRoomFlow.ts`, `style.css` | Lista numerada de isPlayer y observador aparte, ancho/orden/foco, aceptación de revisiones y borrador propio B02/B03. |
+| Pruebas nuevas y adaptadas | Casos puros con sustitutos, sockets reales, reducer/transporte, navegador compilado con fixtures; aserciones anteriores solo amplían DTO y concretan textos/locators según B05. |
+| README y organización | Arranque, recorrido, paquete vacío y prueba disponible aislada documentados. No nuevos paquetes npm ni cambios en comandos/root tools, dominio o contenido. |
+
+Se revisaron los diffs y los consumidores de identidad/presencia/índices: `memberSessions` sigue incluyendo al observador; el repositorio conserva sus asociaciones y no usa número de jugadores como membresía. No hay dependencia circular por la ficha: el modelo usa proyección pura de aplicación/contratos y el catálogo concreto conoce el puerto. No se detectaron desviaciones de §7 ni contradicciones funcionales con las fuentes. Los controles nativos solo producen un change; el servidor mantiene la autorización aunque un navegador altere su payload.
+
+### 12.6 Contenido e independencia
+
+Huellas SHA-256 recalculadas, idénticas en ASSETS y APP y a B04:
+
+| Archivo | SHA-256 |
+|---|---|
+| `generica/baraja.json` | `A86A5FE34573226694016F3DC49FD45CD966C4C1AFA677D8A0BB28C54FB05A06` |
+| `generica/cartas.json` | `D3B22180D7ECFD991EEACA57AB664CACB566C198E20558104113D1A5DE60461C` |
+
+El build normal sigue dando `{ "decks": [] }`. Las fixtures disponibles (`portada`, `sin-imagen`, `publicada`, `prueba`) y no disponibles viven solo en instalaciones temporales de pruebas; recursos reales decodificados y versión 7 coherente. No se activó ni editó genérica ni se publicó contenido sintético en APP/ASSETS. Las pruebas B04 de instalación independiente/guard de ASSETS y privacidad se repitieron en las puertas finales; el proceso compilado conserva catálogo, medios y selección aun si cambian sus archivos tras arrancar. B05 no añade lecturas/editoriales al consultar o configurar.
+
+### 12.7 Límites y pendientes
+
+Verificación local de B05-01–16, con los límites de entorno/tiempo de §12.3. Persistencia solo en memoria de un proceso: reiniciar pierde sala y configuración. Catálogo fijo durante ese proceso; cambios editoriales requieren nueva preparación/carga. No se ensayó WAN, HTTPS desplegado, dispositivo móvil físico, lector de pantalla ni comprensión con usuarios. Las garantías de cookie/origen de producción pasan sus regresiones, pero eso no acredita despliegue.
+
+C09 se amplía únicamente con selección/quitar selección autorizadas, disponibilidad/definición/versión comprobadas y recuperación en espera; **validación al iniciar y uso en partida pendientes**. C10 acredita selector/ficha/icono, resumen autorizado y privacidad de B04; **cartas/manos/mesa/resultados y comprensión con usuarios pendientes**. No se marcan completos los criterios amplios.
+
+Bots/dificultades, expulsión, inicio, Game/motor, reparto/turnos, puntuación, ejecución del desempate, equilibrio, CSV, edición/publicación editorial, GitHub y despliegue permanecen fuera. Al implementar inicio se deberá consumir la referencia exacta conservada, sin sustituir versión ni inferir una baraja predeterminada.
+
+### 12.8 Entrega a coordinación
+
+Código `73091f6`; documentos iniciales conservados en `ac8672b`; 197/197 pruebas, 31/31 recorridos, 41 módulos, genérica intacta/no disponible. No cambios funcionales adicionales a los acuerdos del autor. Resumen y mapa de esta sección disponibles para la conversación responsable; no se ha modificado silenciosamente su documento vivo.
+
+| Fuente general responsable | Concreción que debe trasladarse |
+|---|---|
+| Aplicación §4 y casos de preparación | Cambios inmediatos por control; permitir quitar selección; ningún guardado global; error devuelve último aceptado y resultado desconocido se explica como tal. |
+| Aplicación §§5–7 | Observador fuera de numeración/contador de jugadores, identidad/autoridad/presencia conservadas; capacidad incluye reservas, cinco invitados más observador; host vuelve al final si hay plaza. |
+| Aplicación §4 e infraestructura §§5–7 | Último nuevo válido procesado por control; id deduplicado devuelve vigente, no antiguo; controles distintos no se sobrescriben y no se usa revisión esperada. |
+| Infraestructura §§7–8 | Configuración efectiva aceptada se suma a actividad B03; igualdad/rechazo/replay/lectura/reconexión no renuevan; vencer precede configurar. Envío de configuración sin cola de reconexión. |
+| Coordinación y seguimiento C09–C10 | Selección/configuración/ficha verificadas localmente con contenido de prueba; genérica sigue false, inicio/juego/presentación de cartas y despliegue pendientes. |
+
+**Fecha de verificación local:** 02/10/2026. **Estado de cierre:** B05 verificado en el alcance acordado y entorno descrito; pendientes amplios y evidencia temporal delimitados arriba.
