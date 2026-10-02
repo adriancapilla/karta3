@@ -8,6 +8,8 @@ La aplicación se construye de forma incremental, con especificaciones, pruebas 
 
 Actualmente permite crear una sala de espera, compartir su código e incorporar participantes desde navegadores independientes. La lista se actualiza en tiempo real y cada participante puede cambiar su nombre o salir. También gestiona la reconexión temporal y el cierre de salas por inactividad.
 
+El bloque 04 añade validación común de barajas, preparación del catálogo y consulta pública de resúmenes. La copia aprobada de la genérica conserva formato/contenido 1 y `available: false`: la respuesta normal es `{ "decks": [] }`. Todavía no existe selector.
+
 La configuración y el desarrollo de la partida todavía están pendientes. El estado de las salas se mantiene en memoria y se pierde al reiniciar el servidor.
 
 Las reglas para desarrollar los siguientes bloques están en [`AGENTS.md`](AGENTS.md). La [organización y dependencias](docs/arquitectura/ORGANIZACION_Y_DEPENDENCIAS.md) explica cómo separar dominio, aplicación, infraestructura e interfaz a partir de este primer bloque.
@@ -26,7 +28,7 @@ npm ci
 npm run dev
 ```
 
-Abrir `http://127.0.0.1:5173`. Vite sirve la interfaz y envía `/api` y `/socket.io` al servidor en `127.0.0.1:3000`. Para probar la entrada, usa otro navegador o perfil con cookies independientes; una segunda pestaña del mismo perfil representa a la misma persona. El estado reside en la memoria del servidor; reiniciarlo elimina las salas. No hacen falta cuentas ni variables de entorno para desarrollo local.
+Abrir `http://127.0.0.1:5173`. El paso `predev` prepara las barajas antes de arrancar. Vite envía `/api`, `/media`, `/barajas` y `/socket.io` al servidor en `127.0.0.1:3000` y bloquea el acceso directo a datos internos. Para probar la entrada, usa otro navegador o perfil con cookies independientes; una segunda pestaña del mismo perfil representa a la misma persona. El estado reside en la memoria del servidor; reiniciarlo elimina las salas. No hacen falta cuentas ni variables de entorno para desarrollo local.
 
 ## Comprobaciones
 
@@ -54,18 +56,38 @@ Estas pruebas usan Chrome y el servidor local en `127.0.0.1:3000`; incluyen cont
 
 ## Estructura y decisiones
 
-- `server/application/`: `Room` conserva presencia, generaciones y plazos con tiempos explícitos; `RoomUseCases` autoriza acciones y deduplica; `WaitingLifecycle` procesa vencimientos, recuperaciones, avisos y limpieza mediante puertos. Las decisiones y escrituras son síncronas dentro de un único proceso Node.
+- `server/domain/deck.ts`: tipos de baraja y validador puro reutilizable, sin formato, archivos ni publicación.
+- `server/application/`: `Room` conserva presencia, generaciones y plazos con tiempos explícitos; `RoomUseCases` autoriza acciones y deduplica; `WaitingLifecycle` procesa vencimientos mediante puertos. `DeckCatalog` ofrece resúmenes y `ListDecks` proyecta únicamente el contrato seguro.
 - `server/infrastructure/`: repositorio y solicitudes deduplicadas en memoria, sesiones y último fin automático propio, generación, reloj monotónico, planificador cancelable, HTTP Express y Socket.IO. El transporte cuenta conexiones autenticadas; la aplicación decide sus consecuencias. La cookie es `HttpOnly`, limitada al host y `SameSite=Strict`; usa `Secure` cuando `NODE_ENV=production`.
 - `server/composition/` y `server/main.ts`: eligen adaptadores, los conectan, sirven `dist` e inician el proceso.
 - `shared/contracts/`: formato público de la sala, respuestas y mensajes de tiempo real, compartido con el cliente.
 - `src/`: React/Vite; `api.ts` y `socket.ts` transportan, `useRoomFlow.ts` coordina revisiones/motivos y `screens.tsx`/`ExpiryWarning.tsx` presentan sin decidir permisos ni cierres.
-- `tools/check-architecture.mjs`: comprueba imports, reexportaciones, aliases y ciclos del código de producción.
+- `server/infrastructure/decks/`: parser JSON estricto, esquema/coherencia, recursos decodificados y catálogo en memoria. `sharp` 0.35.5 es dependencia del servidor para PNG/JPEG/WebP; no va al cliente.
+- `tools/decks.ts`: analiza argumentos y delega a composición las operaciones comunes de validación/preparación.
+- `tools/check-architecture.mjs`: comprueba imports, reexportaciones, aliases y ciclos del código de producción, incluidos comandos en la raíz de `tools/`.
 - `tests/browser/`: recorridos en Chrome a 390 y 1280 píxeles, con sesiones independientes.
 - `docs/sdd/`: especificación y evidencia del bloque.
 
 La creación, lectura, edición del nombre y cierre conservan HTTP. La entrada, salida y sincronización usan Socket.IO con la misma sesión; una respuesta incierta puede reintentarse con el mismo `requestId`. El estado en memoria permite una sola instancia del servidor; no hay persistencia ni sincronización entre procesos. El código visible localiza una sala, pero nunca autoriza a modificarla.
 
-## Probar el ciclo de vida
+## Preparar y probar barajas
+
+Desde `E:\KARTA3\KARTA3_IA\APP\karta3`:
+
+```powershell
+npm run decks:validate -- --package barajas/generica
+npm run decks:prepare
+npm run build
+npm run start
+```
+
+Consultar `http://127.0.0.1:3000/api/decks`: inicialmente devuelve una lista vacía. `build` siempre prepara `barajas/catalogo.json`; `start` vuelve a validar los paquetes y exige ese catálogo vigente antes de escuchar. El artefacto está ignorado en Git y se genera con orden estable, UTF-8, dos espacios y LF. Solo se leen copias de APP; no hace falta ASSETS ni TFM para construir/ejecutar. Una edición exige preparación y reinicio; las consultas usan la instantánea interna.
+
+Validar un paquete devuelve salida 0 si es válido, aunque no esté disponible, y 1 si es inválido. Preparar o arrancar informa/excluye borradores inválidos cuyo `false` sea fiable; una disponible inválida o disponibilidad indeterminable bloquea. La aplicación no repara datos ni activa contenido. Incorporar/activar una nueva copia exige revisión y versiones conforme al [contrato](docs/contratos/CONTRATO_BARAJAS_V1.md).
+
+Los JSON internos no son descargables. Las referencias públicas admitidas usan `/media/decks/<id>/v<contenido>/<referencia>` y solo sirven bytes validados de copias disponibles. No hay selector, selección autorizada ni presentación de cartas/iconos. Las fixtures de pruebas son temporales y nunca activan la genérica. [Evidencia B04](docs/sdd/BLOQUE_04_CARGA_BARAJAS.md).
+
+## Probar el ciclo de vida de la espera
 
 1. Crea una sala y entra con otro perfil. Abre una segunda pestaña del invitado: cerrar una conserva presencia mientras la otra esté conectada.
 2. Interrumpe la conexión del invitado. La otra sesión ve «Reconectando». Si vuelve antes de 30 segundos desde la detección, conserva identidad/plaza/orden; después su plaza se libera y deberá entrar de nuevo.
@@ -80,6 +102,7 @@ Socket.IO usa `pingInterval=5000` y `pingTimeout=5000` ms. La reserva empieza cu
 
 | Método y ruta | Uso |
 |---|---|
+| `GET /api/decks` | Resúmenes de barajas disponibles; no crea sesión ni renueva salas; `Cache-Control: no-store`. |
 | `GET /api/rooms/current` | Establece sesión si falta y devuelve su espera o `null`; incluye `ended` si consta un último fin automático propio. |
 | `POST /api/rooms` con `{}` | Crea o recupera una sola espera por sesión. |
 | `GET /api/rooms/:id` | Devuelve la sala a un participante reconocido. |

@@ -4,6 +4,7 @@ import type { CurrentRoomResponse, ErrorResponse, PublicErrorCode, RoomResponse 
 import type { RoomActions } from '../../application/roomUseCases.js';
 import { RoomError, type RoomErrorCode } from '../../application/roomError.js';
 import type { MemorySessions } from '../memorySessions.js';
+import type { ListDecks } from '../../application/deckCatalog.js';
 
 const COOKIE_NAME = 'karta3_session';
 
@@ -22,11 +23,15 @@ const roomErrorStatus: Record<RoomErrorCode, number> = {
   PARTICIPATION_ENDED: 409
 };
 
-export function createHttpApp(dependencies: { rooms: RoomActions; sessions: MemorySessions; production: boolean }) {
-  const { rooms, sessions, production } = dependencies;
+export function createHttpApp(dependencies: { rooms: RoomActions; sessions: MemorySessions; production: boolean; decks: ListDecks }) {
+  const { rooms, sessions, production, decks } = dependencies;
   const app = express();
   app.disable('x-powered-by');
   app.use(express.json({ limit: '4kb' }));
+
+  app.get('/api/decks', (_req, res) => {
+    res.set('Cache-Control', 'no-store').json(decks.execute());
+  });
 
   function session(req: Request): string {
     const token = parseCookie(req.headers.cookie ?? '')[COOKIE_NAME];

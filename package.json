@@ -7,10 +7,13 @@
     "node": ">=24 <25"
   },
   "scripts": {
+    "predev": "npm run decks:prepare",
     "dev": "concurrently -k \"npm:dev:server\" \"npm:dev:client\"",
     "dev:server": "tsx watch server/main.ts",
     "dev:client": "vite --host 127.0.0.1",
-    "build": "tsc -b && vite build",
+    "build": "npm run decks:prepare && tsc -b && vite build",
+    "decks:validate": "tsx tools/decks.ts validate",
+    "decks:prepare": "tsx tools/decks.ts prepare",
     "start": "node dist-server/server/main.js",
     "typecheck": "tsc -b --pretty false",
     "test": "vitest run",
@@ -24,6 +27,7 @@
     "express": "5.2.1",
     "react": "19.3.0",
     "react-dom": "19.3.0",
+    "sharp": "0.35.5",
     "socket.io": "4.8.4",
     "socket.io-client": "4.8.4"
   },

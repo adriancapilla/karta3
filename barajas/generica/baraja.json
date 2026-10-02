@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "contentVersion": 1,
+  "id": "generica",
+  "name": "KARTA3 — Baraja genérica",
+  "subtitle": "",
+  "description": "Baraja abstracta de 58 cartas para aprender a jugar a KARTA3 y apoyar el desarrollo inicial. Cada carta tiene tres atributos, Círculo, Triángulo y Cuadrado, con valores jugables únicos del 1 al 58 por atributo y un indicador del atributo activo cuando aparece como carta central.",
+  "notes": "Prototipo editorial autorizado por el autor el 01/10/2026 en el hilo Gestor de Barajas. La documentación genérica de 58 cartas define las escalas y los nombres de los atributos, pero no una tabla completa de valores e indicadores por carta. Con autorización expresa se crean tres permutaciones reproducibles separadas y un ciclo de indicadores Círculo, Triángulo, Cuadrado (20, 19 y 19 cartas). Este reparto es una decisión de este prototipo y no una obligación del contrato. No se declara probado su equilibrio. No se incorporan reglas de los antecedentes de cuatro atributos ni del borrador histórico de 50 cartas. Procedimiento reproducible: para cada atributo y cada id de carta, calcular SHA-256 de la cadena UTF-8 generica-v1:<id-atributo>:<id-carta>, ordenar por el hexadecimal ascendente (desempate por id de carta) y asignar las posiciones 1 a 58. Por ejemplo, generica-v1:atributo1:carta-001. Asignar el indicador recorriendo las cartas de carta-001 a carta-058 en el ciclo atributo1, atributo2, atributo3. El orden del archivo no determina el reparto ni el robo.",
+  "instructions": "Los tres atributos son abstractos y no tienen unidades. El número mostrado coincide intencionadamente con el valor jugable de este prototipo: playValue es un entero y displayValue es su representación textual. Cuando una carta se usa como indicadora, se consulta su atributo principal; al jugarla desde la mano, se compara únicamente el valor del atributo activo. Círculo, Triángulo y Cuadrado mantienen la convención visual de referencia rojo, amarillo y azul, respectivamente. El formato 1 registra los nombres y los datos; los símbolos, colores y el icono común para la ausencia de imagen pertenecen a la presentación de la aplicación.",
+  "attributes": [
+    {
+      "id": "atributo1",
+      "name": "Círculo",
+      "unit": ""
+    },
+    {
+      "id": "atributo2",
+      "name": "Triángulo",
+      "unit": ""
+    },
+    {
+      "id": "atributo3",
+      "name": "Cuadrado",
+      "unit": ""
+    }
+  ],
+  "imageRef": null,
+  "imageAlt": "",
+  "publication": {
+    "available": false,
+    "order": 0
+  },
+  "credits": [],
+  "sources": [
+    {
+      "title": "Reglamento base Karta3 v1.0 — baraja básica de 58 cartas, §§2 y 13",
+      "url": "",
+      "note": "E:/KARTA3/KARTA3_IA/MASTER/reglamento-base-v1.0.md; SHA-256: 530db09f7e0a75c326163737593fbddcd23f0589aec3fff0000d853e838b9d57. Fuente de la estructura de 58 cartas, valores 1–58 y nombres Círculo, Triángulo y Cuadrado; no aporta la asignación completa por carta. Las reglas digitales vigentes se toman del dominio, sin trasladar discrepancias históricas de puntuación."
+    },
+    {
+      "title": "Dominio digital de KARTA3 — Deck, Card y validación",
+      "url": "",
+      "note": "E:/KARTA3/KARTA3_IA/TFM/Planificación/DOMINIO_KARTA3.md; SHA-256: a08bafcd14672abb25866bee41cef83279c9963671c070b9715ec8afc002784e. Referencia vigente de las reglas comunes; esta baraja no introduce variantes de mecánica."
+    },
+    {
+      "title": "Contrato común de barajas — formato 1",
+      "url": "",
+      "note": "E:/KARTA3/KARTA3_IA/APP/karta3/docs/contratos/CONTRATO_BARAJAS_V1.md; SHA-256: 42e224e4773e5402a8776bd0edb861f7b0a8c50bbdaa037707a92d0e11c72d02. Propiedades, tipos, ids fijos, versiones y ausencia de imagen. Se usan las plantillas baraja.plantilla.json y cartas.plantilla.json de docs/contratos/barajas-v1."
+    },
+    {
+      "title": "Encargo actualizado para el Gestor — primera entrega genérica",
+      "url": "",
+      "note": "E:/KARTA3/KARTA3_IA/APP/karta3/docs/contratos/ENCARGO_GESTOR_BARAJAS.md; SHA-256: 21119a27e7f8e9aa864a6bc0d489bae643ff3b6d2f9d96c2d3fe0f10fc3ea461. Prioridad de una baraja genérica de 58 cartas en ASSETS; Sistema Solar conservado para revisión posterior."
+    },
+    {
+      "title": "Autorización editorial del autor en el hilo Gestor de Barajas — 01/10/2026",
+      "url": "",
+      "note": "El autor respondió «Sí, prepara ese prototipo genérico» a la propuesta de cartas Carta 01 a Carta 58, tres permutaciones reproducibles separadas de 1–58, los mismos números como texto mostrado y ciclo de indicadores Círculo, Triángulo y Cuadrado (20/19/19)."
+    }
+  ]
+}

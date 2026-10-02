@@ -21,6 +21,7 @@ function layer(file, root) {
   const parts = path.relative(root, file).split(path.sep);
   if (parts[0] === 'src') return 'client';
   if (parts[0] === 'shared') return 'contracts';
+  if (parts[0] === 'tools') return 'tool';
   if (parts[0] === 'server') {
     if (parts[1] === 'main.ts' || parts[1] === 'composition') return 'composition';
     if (parts[1] === 'application') return 'application';
@@ -36,7 +37,8 @@ const allowed = {
   infrastructure: new Set(['infrastructure', 'application', 'domain', 'contracts']),
   composition: new Set(['composition', 'infrastructure', 'application', 'domain', 'contracts']),
   client: new Set(['client', 'contracts']),
-  contracts: new Set(['contracts'])
+  contracts: new Set(['contracts']),
+  tool: new Set(['composition'])
 };
 
 function compilerOptions(root, file) {
@@ -70,7 +72,11 @@ function moduleSpecifiers(source) {
 
 export function scanProject(root) {
   const absoluteRoot = path.resolve(root);
-  const files = productionRoots.flatMap((name) => sourceFiles(path.join(absoluteRoot, name))).map((file) => path.resolve(file));
+  const toolsRoot = path.join(absoluteRoot, 'tools');
+  const commands = fs.existsSync(toolsRoot) ? fs.readdirSync(toolsRoot, { withFileTypes: true })
+    .filter((entry) => entry.isFile() && sourceExtension.test(entry.name) && !testFile.test(entry.name))
+    .map((entry) => path.join(toolsRoot, entry.name)) : [];
+  const files = [...productionRoots.flatMap((name) => sourceFiles(path.join(absoluteRoot, name))), ...commands].map((file) => path.resolve(file));
   const fileSet = new Set(files);
   const edges = new Map(files.map((file) => [file, []]));
   const violations = [];
@@ -93,7 +99,7 @@ export function scanProject(root) {
         });
         if ((specifier.startsWith('.') || alias) && !assetExtension.test(specifier)) {
           violations.push(`${path.relative(absoluteRoot, file)}: importación sin resolver ${specifier}`);
-        } else if (!specifier.startsWith('.') && from !== 'client' && from !== 'infrastructure' && from !== 'composition') {
+        } else if (!specifier.startsWith('.') && !['client', 'infrastructure', 'composition', 'tool'].includes(from)) {
           violations.push(`${path.relative(absoluteRoot, file)}: dependencia externa prohibida ${specifier}`);
         }
         continue;
