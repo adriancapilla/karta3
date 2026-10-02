@@ -123,7 +123,7 @@ Registrar fecha, versión servida, navegadores/perfiles, acciones, resultados y 
 
 Socket.IO usa `pingInterval=5000` y `pingTimeout=5000` ms. La reserva empieza cuando el servidor detecta la última pérdida; una red que deja de entregar paquetes puede añadir retraso de detección. El contador de caducidad usa referencia del servidor y tiempo monotónico transcurrido en el navegador: llegar a cero solo solicita confirmación. No hay controles públicos para acelerar estos plazos.
 
-`NODE_ENV=production` exige HTTPS delante del servidor para que el navegador acepte la cookie `Secure`. El servidor escucha en `127.0.0.1` y está preparado para quedar detrás del proxy del despliegue futuro. Docker Compose, Caddy y el VPS pertenecen a hitos posteriores; este bloque no los despliega ni los acredita. GitHub Actions ha ejecutado las comprobaciones generales y los 18 recorridos Chrome; las referencias de ejecución constan en el documento operativo.
+`NODE_ENV=production` exige HTTPS delante del servidor para que el navegador acepte la cookie `Secure`. El servidor escucha en `127.0.0.1` y está preparado para quedar detrás del proxy del despliegue futuro. Docker Compose, Caddy y el VPS pertenecen a hitos posteriores; este bloque no los despliega ni los acredita. GitHub Actions ejecuta las comprobaciones generales, incluida la preparación de barajas, y los recorridos Chrome existentes; las referencias y resultados reales de cada publicación constan en el documento operativo.
 
 ## Contrato HTTP actual
 

@@ -1,6 +1,6 @@
 # Propuesta posterior — Validación reutilizable de una baraja jugable
 
-**Estado:** antecedente conservado; validación pura implementada y verificada como parte de B04 el 02/10/2026. La prioridad posterior al primer incremento se acordó el 28/09/2026.  
+**Estado:** antecedente conservado; validación pura implementada y verificada como parte de B04 el 02/10/2026. La prioridad posterior al primer incremento se acordó el 28/09/2026.\
 **Referencias:** `TFM/Planificación/DOMINIO_KARTA3.md`, secciones 4, 5 y 25, invariantes D-INV-01 a D-INV-03 y D-INV-19; `TFM/Planificación/INFRAESTRUCTURA_KARTA3.md`, sección 9.3. La puntuación y el desempate confirmados no intervienen en este bloque.
 
 **Concreción del 01/10/2026:** el [contrato común de formato 1](../contratos/CONTRATO_BARAJAS_V1.md) fija los dos JSON, ids `atributo1`–`atributo3`, nombres y valores mostrados no vacíos e imágenes opcionales como `null`, conservando todos los campos. Son condiciones del paquete que complementan las invariantes puras. CSV queda aplazado; la fuente maestra son JSON directos en ASSETS. Se acordó reutilizar estos casos y añadir los del contrato en la carga común, sin un validador por temática. Estado en aquella fecha: pendiente; completado en B04 el 02/10/2026.
@@ -69,7 +69,7 @@ No requiere una baraja editorial definitiva ni servidor, interfaz, acceso a arch
 
 ## Comprobación y cierre
 
-**Cambio de código:** `e5416f8`, `server/domain/deck.ts`, reutilizado por la carga común de B04.  
-**Pruebas ejecutadas:** 16/16 casos de `server/domain/deck.test.ts`, incluidos E1–E7 y dos definiciones distintas; además, check completo 172/172 y navegador 22/22. Criterios puros anteriores comprobados; formato/recursos/catálogo se registran separadamente en B04.  
-**Límites y continuación:** selección autorizada, presentación y partida pendientes; C09–C10 solo en las partes expresas del bloque.  
+**Cambio de código:** `e5416f8`, `server/domain/deck.ts`, reutilizado por la carga común de B04.\
+**Pruebas ejecutadas:** 16/16 casos de `server/domain/deck.test.ts`, incluidos E1–E7 y dos definiciones distintas; además, check completo 172/172 y navegador 22/22. Criterios puros anteriores comprobados; formato/recursos/catálogo se registran separadamente en B04.\
+**Límites y continuación:** selección autorizada, presentación y partida pendientes; C09–C10 solo en las partes expresas del bloque.\
 **Fecha de verificación:** 02/10/2026, entorno y resultados completos en B04.
