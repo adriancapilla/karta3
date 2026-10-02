@@ -3,6 +3,10 @@
 **Estado:** necesidad confirmada; prioridad posterior al primer incremento digital por acuerdo del 28/09/2026. El detalle sigue propuesto. No implementado ni verificado.  
 **Referencias:** `TFM/Planificación/DOMINIO_KARTA3.md`, secciones 4, 5 y 25, invariantes D-INV-01 a D-INV-03 y D-INV-19; `TFM/Planificación/INFRAESTRUCTURA_KARTA3.md`, sección 9.3. La puntuación y el desempate confirmados no intervienen en este bloque.
 
+**Concreción del 01/10/2026:** el [contrato común de formato 1](../contratos/CONTRATO_BARAJAS_V1.md) fija los dos JSON, ids `atributo1`–`atributo3`, nombres y valores mostrados no vacíos e imágenes opcionales como `null`, conservando todos los campos. Son condiciones del paquete que complementan las invariantes puras. CSV queda aplazado; la fuente maestra son JSON directos en ASSETS. El bloque futuro de carga/validación y catálogo debe reutilizar estos casos y añadir las comprobaciones del contrato, sin un validador por temática. Esta propuesta sigue sin implementar ni verificar.
+
+**Integración en B04:** el [bloque 04](BLOQUE_04_CARGA_BARAJAS.md) concreta ahora su implementación junto a lectura, recursos y catálogo. E1–E7 se conservan como casos de validación pura; no son otro incremento a implementar ni otro validador. B04 fija el resultado `{ valid, errors }`, la localización y las responsabilidades. Esta propuesta se conserva como antecedente; estado de código/evidencia en B04, todavía pendientes.
+
 ## Objetivo
 
 Disponer de una validación determinista y reutilizable que impida usar en una partida una baraja cuyos datos jugables sean incorrectos. La misma validación debe aceptar o rechazar cualquier baraja con las reglas comunes, sin conocer su tema ni su nombre.
@@ -45,14 +49,14 @@ Las reglas concretas están en las referencias: exactamente 58 cartas y tres atr
 
 ## Dependencias
 
-No requiere una baraja editorial definitiva ni servidor, interfaz, archivos JSON o imágenes. Antes de implementar se concretará la representación en memoria de `Deck`, `Card` y los valores, manteniendo las reglas existentes. El formato exacto de los archivos preparados y su esquema pertenecen al bloque posterior de preparación de contenidos.
+No requiere una baraja editorial definitiva ni servidor, interfaz, acceso a archivos JSON o imágenes. El contrato de archivos ya está definido; la representación interna de `Deck`, `Card` y los valores puede adaptarse a él, manteniendo las reglas existentes y las dependencias de dominio puro. El bloque posterior de carga/validación y catálogo concretará la lectura y validación del paquete, con su evidencia.
 
 ## Dudas
 
 | Duda | Bloquea este bloque | Tratamiento |
 |---|---|---|
-| ¿Qué forma tendrá el resultado de validación y cómo identificará los errores? | Sí, para implementarlo | Elegir una forma simple que permita éxito o lista de errores localizables; documentarla antes de codificar. |
-| ¿Cómo se representarán exactamente los tres atributos en memoria? | Sí, para implementarlo | Fijar un contrato pequeño coherente con dominio; no decidir aún el esquema de JSON. |
+| ¿Qué forma tendrá el resultado de validación y cómo identificará los errores? | Resuelto en B04 §5 | `{ valid, errors }`, errores puros localizables y contexto de archivo añadido por infraestructura. |
+| ¿Cómo se representarán exactamente los tres atributos en memoria? | Elección autónoma del implementador | Representación pequeña compatible con B04 y las invariantes; no reabrir ids del formato, nombres ni reglas. |
 | ¿Cómo se ofrecerán los documentos fuente al revisor del repositorio público? | No | Resolver antes de publicar la documentación técnica. |
 
 ## Cambios de alcance o reglas
@@ -60,6 +64,8 @@ No requiere una baraja editorial definitiva ni servidor, interfaz, archivos JSON
 | Fecha | Motivo y decisión | Criterios y fuentes afectados |
 |---|---|---|
 | 28/09/2026 | Se prioriza la creación de sala como primer incremento digital. Esta validación se conserva para la etapa de contenidos, sin cambiar sus reglas. | Título, prioridad y secuencia del proceso SDD; criterios de validación sin cambios. |
+| 01/10/2026 | Se define el contrato común y la entrada directa JSON, con imágenes opcionales, nombres/valores mostrados rellenados e ids fijos. | Referencias y dependencias; E1–E7 se conservan. El bloque de carga deberá añadir C01–C10 del contrato según su alcance. |
+| 01/10/2026 | B04 integra la validación pura y concreta retorno/localización junto a la carga y el catálogo. | E1–E7 pasan a B04-02; C09–C10 tienen cobertura parcial explícita. Sin implementación ni verificación todavía. |
 
 ## Comprobación y cierre
 

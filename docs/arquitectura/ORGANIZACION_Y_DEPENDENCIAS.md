@@ -2,6 +2,7 @@
 
 **Estado:** reglas para los próximos incrementos; T01 separó la creación y los bloques 02/03 amplían la espera sincronizada y su ciclo de vida. El dominio de la partida sigue pendiente.
 **Fecha:** 30/09/2026.
+**Alineación documental:** 01/10/2026 — flujo de barajas conforme a infraestructura §9 y contrato formato 1; las dependencias de capas no cambian.
 **Ámbito:** repositorio digital `APP/karta3`. La evolución de estas reglas se decide en la conversación de arquitectura; cada conversación de implementación trabaja con una especificación SDD concreta.
 
 ## 1. Qué resuelve este documento
@@ -63,7 +64,7 @@ karta3/
 └── tools/                  control de dependencias y sus casos negativos
 ```
 
-El directorio `server/domain/` aparecerá al implementar reglas de `Game`; no se creó vacío para T01. La herramienta de barajas también queda para su bloque. Una prueba cercana al módulo que comprueba es válida. Se mantiene un solo repositorio y los comandos actuales.
+El directorio `server/domain/` aparecerá con la validación pura de `Deck` del bloque 04; no se creó vacío para T01. `Game` sigue pendiente para sus bloques. La herramienta de barajas también se implementará en B04. Una prueba cercana al módulo que comprueba es válida. Se mantiene un solo repositorio.
 
 ### Estado del primer bloque tras T01
 
@@ -82,7 +83,7 @@ Las carpetas nuevas se crean al implementar funciones nuevas o al extraer una re
 | Recibir una jugada o dirección parcial y relacionarla con identidad/turno | Aplicación | Verifica fase y delega el movimiento completo a `Game`. |
 | Programar el vencimiento real de un turno o revisión | Infraestructura | Entrega el aviso al caso de uso; no elige la carta por timeout. |
 | Persistir el estado vivo del MVP | Adaptador en memoria | Un proceso por entorno; la aplicación expresa el puerto. |
-| Cargar barajas, convertir CSV y comprobar imágenes | Herramienta y adaptador de infraestructura | El dominio valida 58 cartas y tres permutaciones 1–58. |
+| Cargar paquetes JSON y comprobar formato, versiones e imágenes | Herramienta y adaptador de infraestructura | Reutilizan validación pura de 58 cartas y tres permutaciones 1–58. CSV y herramienta editorial aplazados. |
 | Construir una vista para jugador/observador | Aplicación | No envía manos ajenas; la interfaz no recibe datos para ocultarlos localmente. |
 | Mostrar la mesa, temporizador estimado y botón de feedback | Interfaz | El servidor decide la hora límite y la aceptación. |
 
@@ -100,7 +101,7 @@ La interfaz no importa tipos internos solo porque estén escritos en TypeScript.
 
 ## 6. Barajas y evolución
 
-Los originales editables viven en `ASSETS`; una copia aprobada y reproducible de cada versión forma parte de `APP`. La herramienta interna produce `baraja.json`, `cartas.json`, imágenes referenciadas y catálogo de barajas disponibles. Son recursos preparados de infraestructura, no una dependencia del dominio respecto al sistema de archivos. El navegador ve el catálogo, portada y cartas que puede conocer; el servidor conserva la definición completa para barajar y validar.
+Los originales editables viven en `ASSETS/Barajas/<id>/`: en esta etapa el Gestor prepara directamente `baraja.json`, `cartas.json` y los recursos referenciados, según el [contrato formato 1](../contratos/CONTRATO_BARAJAS_V1.md). Una copia aprobada y reproducible forma parte de `APP/karta3/barajas/`; aprobarla no activa por sí solo su disponibilidad. La herramienta de la aplicación valida esos paquetes y genera el catálogo de las copias disponibles; construcción y ejecución no dependen de ASSETS. No se exige convertir CSV y no se mantienen fuentes editoriales divergentes. Son recursos preparados de infraestructura, no una dependencia del dominio respecto al sistema de archivos. El navegador recibe resúmenes y recursos autorizados; los dos JSON completos permanecen internos del servidor. La carga común se concreta en el [bloque 04](../sdd/BLOQUE_04_CARGA_BARAJAS.md), todavía sin implementación/evidencia.
 
 Nuevas funciones, como cuentas, historial, importación pública de barajas o más procesos de servidor, exigirán revisar puertos y despliegue. No se introducen en el MVP solo para anticipar una evolución posible.
 

@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "deckId": "ejemplo-contrato",
+  "contentVersion": 1,
+  "cards": [
+    {
+      "id": "carta-001",
+      "name": "Carta de ejemplo 001",
+      "characteristic": "",
+      "imageRef": null,
+      "imageAlt": "",
+      "values": {
+        "atributo1": { "playValue": 1, "displayValue": "524", "unit": "" },
+        "atributo2": { "playValue": 58, "displayValue": "Ejemplo de dato textual", "unit": "" },
+        "atributo3": { "playValue": 17, "displayValue": "0,25", "unit": "" }
+      },
+      "roundAttribute": "atributo1",
+      "note": "Ejemplo técnico: el dato mostrado no determina el valor jugable."
+    },
+    {
+      "id": "carta-002",
+      "name": "Carta de ejemplo 002",
+      "characteristic": "",
+      "imageRef": null,
+      "imageAlt": "",
+      "values": {
+        "atributo1": { "playValue": 58, "displayValue": "Otro dato mostrado", "unit": "" },
+        "atributo2": { "playValue": 1, "displayValue": "7", "unit": "" },
+        "atributo3": { "playValue": 42, "displayValue": "12,5", "unit": "" }
+      },
+      "roundAttribute": "atributo3",
+      "note": ""
+    }
+  ]
+}

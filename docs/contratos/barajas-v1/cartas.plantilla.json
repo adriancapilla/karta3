@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "deckId": "",
+  "contentVersion": 1,
+  "cards": [
+    {
+      "id": "",
+      "name": "",
+      "characteristic": "",
+      "imageRef": null,
+      "imageAlt": "",
+      "values": {
+        "atributo1": { "playValue": 1, "displayValue": "", "unit": "" },
+        "atributo2": { "playValue": 1, "displayValue": "", "unit": "" },
+        "atributo3": { "playValue": 1, "displayValue": "", "unit": "" }
+      },
+      "roundAttribute": "atributo1",
+      "note": ""
+    }
+  ]
+}
