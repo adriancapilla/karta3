@@ -16,6 +16,7 @@ afterEach(async () => { await stop?.(); stop = undefined; await removeTestInstal
 
 it('AGV2-02/03 y B04-01/08 construcción real con genérica 2 aislada de ASSETS; consulta conserva instantánea', async () => {
   await expect(promisify(execFile)(process.execPath, ['--import', './guard.mjs', '--input-type=module', '-e', 'import fs from "node:fs/promises"; await fs.readFile("ASSETS/probe.json");'], { cwd: root, windowsHide: true })).rejects.toMatchObject({ stderr: expect.stringContaining('ASSETS no permitido') });
+  await expect(promisify(execFile)(process.execPath, ['--import', './guard.mjs', '--input-type=module', '-e', 'import fs from "node:fs"; fs.realpathSync.native("ASSETS/probe.json");'], { cwd: root, windowsHide: true })).rejects.toMatchObject({ stderr: expect.stringContaining('ASSETS no permitido') });
   expect(await fs.readFile(path.join(root, 'asset-access.txt'), 'utf8')).toContain('ASSETS/probe.json');
   await fs.unlink(path.join(root, 'asset-access.txt'));
   for (const name of ['server', 'src', 'shared', 'tools']) await fs.cp(path.resolve(name), path.join(root, name), { recursive: true });

@@ -31,7 +31,12 @@ function guarded(original) {
     return original.call(this, target, ...args);
   };
 }
-for (const name of ['readFileSync','readdirSync','realpathSync','openSync']) fs[name] = guarded(fs[name]);
+for (const name of ['readFileSync','readdirSync','realpathSync','openSync']) {
+  const original = fs[name];
+  const wrapped = guarded(original);
+  if (name === 'realpathSync') wrapped.native = guarded(original.native);
+  fs[name] = wrapped;
+}
 for (const name of ['readFile','readdir','realpath','open']) fs.promises[name] = guarded(fs.promises[name]);
 syncBuiltinESMExports();
 `);

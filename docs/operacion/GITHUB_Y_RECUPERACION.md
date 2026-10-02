@@ -22,6 +22,8 @@ La referencia local recibida es 197 pruebas, 35 recorridos Chrome y 41 módulos.
 
 Primera ejecución remota [37057998515](https://github.com/adriancapilla/karta3/actions/runs/37057998515), `406f5cc`: instalación/tipos/lint correctos, fallo de las pruebas de arranque por ausencia de `dist` en un checkout limpio. La comprobación local con compilaciones previas sí pasó (197/197, 41 módulos), pero no demostraba reproducción limpia. Se corrigió el orden de `check`: tipos → lint → preparación/compilación → pruebas → arquitectura. No se cambió comportamiento de producto ni una regla funcional. Para ejecutar `npm test` por separado, construir primero con `npm run build`.
 
+Segunda ejecución [37058274060](https://github.com/adriancapilla/karta3/actions/runs/37058274060), `bc9369f`: 196/197 pruebas; la construcción aislada falló en Linux porque el guard de pruebas sustituía `fs.realpathSync` y perdía su método `native`, utilizado por Vite. Se conserva y protege también `native`, añadiendo una comprobación de que rechaza ASSETS. El guard sigue siendo real; no se elimina para hacer pasar la prueba. Corrección limitada al montaje de pruebas, sin cambio funcional.
+
 ## Evidencia histórica de la primera conexión — 01/10/2026
 
 - Base limpia, 13 commits conservados y publicados en `main` hasta `bbd575f`.
