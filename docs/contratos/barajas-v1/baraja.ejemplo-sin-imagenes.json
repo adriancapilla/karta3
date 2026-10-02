@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "contentVersion": 1,
+  "id": "ejemplo-contrato",
+  "name": "Ejemplo técnico del contrato",
+  "subtitle": "",
+  "description": "Metadatos ilustrativos del formato; las cartas adjuntas son un fragmento de dos cartas, no una baraja completa.",
+  "notes": "",
+  "instructions": "",
+  "attributes": [
+    { "id": "atributo1", "name": "Atributo A", "unit": "" },
+    { "id": "atributo2", "name": "Atributo B", "unit": "" },
+    { "id": "atributo3", "name": "Atributo C", "unit": "" }
+  ],
+  "imageRef": null,
+  "imageAlt": "",
+  "publication": { "available": false, "order": 0 },
+  "credits": [],
+  "sources": []
+}

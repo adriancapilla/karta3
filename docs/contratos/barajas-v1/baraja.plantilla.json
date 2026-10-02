@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "contentVersion": 1,
+  "id": "",
+  "name": "",
+  "subtitle": "",
+  "description": "",
+  "notes": "",
+  "instructions": "",
+  "attributes": [
+    { "id": "atributo1", "name": "", "unit": "" },
+    { "id": "atributo2", "name": "", "unit": "" },
+    { "id": "atributo3", "name": "", "unit": "" }
+  ],
+  "imageRef": null,
+  "imageAlt": "",
+  "publication": { "available": false, "order": 0 },
+  "credits": [],
+  "sources": []
+}

@@ -1,16 +1,25 @@
-import path from 'node:path';
 import { createServer } from 'node:http';
-import { fileURLToPath } from 'node:url';
-import express from 'express';
+import path from 'node:path';
 import { createRuntime } from './composition/createApp.js';
+import { DeckLoadError, installationRoot, loadInstallationDecks, reportDeckDiagnostics } from './composition/decks.js';
+import { attachPublicFiles } from './infrastructure/http/publicFiles.js';
 
-const runtime = createRuntime();
-const app = runtime.app;
-const dist = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../dist');
-app.use(express.static(dist));
-app.get('/{*path}', (_req, res) => res.sendFile(path.join(dist, 'index.html')));
-
-const port = Number(process.env.PORT ?? 3000);
-const server = createServer(app);
-runtime.attachRealtime(server);
-server.listen(port, '127.0.0.1', () => console.log(`KARTA3: http://127.0.0.1:${port}`));
+try {
+  const loaded = await loadInstallationDecks();
+  reportDeckDiagnostics(loaded.diagnostics);
+  const runtime = createRuntime({ decks: loaded.catalog, deckVersions: loaded.catalog });
+  attachPublicFiles(runtime.app, path.join(installationRoot, 'dist'), loaded.catalog);
+  const port = Number(process.env.PORT ?? 3000);
+  const server = createServer(runtime.app);
+  runtime.attachRealtime(server);
+  server.listen(port, '127.0.0.1', () => {
+    const address = server.address();
+    console.log(`KARTA3: http://127.0.0.1:${address && typeof address === 'object' ? address.port : port}`);
+  });
+} catch (error) {
+  if (error instanceof DeckLoadError) {
+    reportDeckDiagnostics(error.diagnostics);
+    for (const issue of error.errors) console.error(`[${issue.code}] ${issue.file} ${issue.path}: ${issue.message}`);
+  } else console.error('No se pudo iniciar KARTA3.');
+  process.exitCode = 1;
+}

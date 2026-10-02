@@ -1,0 +1,1515 @@
+{
+  "schemaVersion": 1,
+  "deckId": "generica",
+  "contentVersion": 2,
+  "cards": [
+    {
+      "id": "carta-001",
+      "name": "Carta 01",
+      "characteristic": "",
+      "imageRef": null,
+      "imageAlt": "",
+      "values": {
+        "atributo1": {
+          "playValue": 25,
+          "displayValue": "25",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 51,
+          "displayValue": "51",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 11,
+          "displayValue": "11",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo1",
+      "note": ""
+    },
+    {
+      "id": "carta-002",
+      "name": "Carta 02",
+      "characteristic": "",
+      "imageRef": null,
+      "imageAlt": "",
+      "values": {
+        "atributo1": {
+          "playValue": 37,
+          "displayValue": "37",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 4,
+          "displayValue": "4",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 31,
+          "displayValue": "31",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo2",
+      "note": ""
+    },
+    {
+      "id": "carta-003",
+      "name": "Carta 03",
+      "characteristic": "",
+      "imageRef": null,
+      "imageAlt": "",
+      "values": {
+        "atributo1": {
+          "playValue": 43,
+          "displayValue": "43",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 46,
+          "displayValue": "46",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 16,
+          "displayValue": "16",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo3",
+      "note": ""
+    },
+    {
+      "id": "carta-004",
+      "name": "Carta 04",
+      "characteristic": "",
+      "imageRef": null,
+      "imageAlt": "",
+      "values": {
+        "atributo1": {
+          "playValue": 26,
+          "displayValue": "26",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 36,
+          "displayValue": "36",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 27,
+          "displayValue": "27",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo1",
+      "note": ""
+    },
+    {
+      "id": "carta-005",
+      "name": "Carta 05",
+      "characteristic": "",
+      "imageRef": null,
+      "imageAlt": "",
+      "values": {
+        "atributo1": {
+          "playValue": 28,
+          "displayValue": "28",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 49,
+          "displayValue": "49",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 29,
+          "displayValue": "29",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo2",
+      "note": ""
+    },
+    {
+      "id": "carta-006",
+      "name": "Carta 06",
+      "characteristic": "",
+      "imageRef": null,
+      "imageAlt": "",
+      "values": {
+        "atributo1": {
+          "playValue": 13,
+          "displayValue": "13",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 20,
+          "displayValue": "20",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 8,
+          "displayValue": "8",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo3",
+      "note": ""
+    },
+    {
+      "id": "carta-007",
+      "name": "Carta 07",
+      "characteristic": "",
+      "imageRef": null,
+      "imageAlt": "",
+      "values": {
+        "atributo1": {
+          "playValue": 53,
+          "displayValue": "53",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 9,
+          "displayValue": "9",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 53,
+          "displayValue": "53",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo1",
+      "note": ""
+    },
+    {
+      "id": "carta-008",
+      "name": "Carta 08",
+      "characteristic": "",
+      "imageRef": null,
+      "imageAlt": "",
+      "values": {
+        "atributo1": {
+          "playValue": 45,
+          "displayValue": "45",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 40,
+          "displayValue": "40",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 10,
+          "displayValue": "10",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo2",
+      "note": ""
+    },
+    {
+      "id": "carta-009",
+      "name": "Carta 09",
+      "characteristic": "",
+      "imageRef": null,
+      "imageAlt": "",
+      "values": {
+        "atributo1": {
+          "playValue": 24,
+          "displayValue": "24",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 52,
+          "displayValue": "52",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 28,
+          "displayValue": "28",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo3",
+      "note": ""
+    },
+    {
+      "id": "carta-010",
+      "name": "Carta 10",
+      "characteristic": "",
+      "imageRef": null,
+      "imageAlt": "",
+      "values": {
+        "atributo1": {
+          "playValue": 40,
+          "displayValue": "40",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 1,
+          "displayValue": "1",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 12,
+          "displayValue": "12",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo1",
+      "note": ""
+    },
+    {
+      "id": "carta-011",
+      "name": "Carta 11",
+      "characteristic": "",
+      "imageRef": null,
+      "imageAlt": "",
+      "values": {
+        "atributo1": {
+          "playValue": 16,
+          "displayValue": "16",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 33,
+          "displayValue": "33",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 52,
+          "displayValue": "52",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo2",
+      "note": ""
+    },
+    {
+      "id": "carta-012",
+      "name": "Carta 12",
+      "characteristic": "",
+      "imageRef": null,
+      "imageAlt": "",
+      "values": {
+        "atributo1": {
+          "playValue": 29,
+          "displayValue": "29",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 21,
+          "displayValue": "21",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 5,
+          "displayValue": "5",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo3",
+      "note": ""
+    },
+    {
+      "id": "carta-013",
+      "name": "Carta 13",
+      "characteristic": "",
+      "imageRef": null,
+      "imageAlt": "",
+      "values": {
+        "atributo1": {
+          "playValue": 32,
+          "displayValue": "32",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 23,
+          "displayValue": "23",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 32,
+          "displayValue": "32",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo1",
+      "note": ""
+    },
+    {
+      "id": "carta-014",
+      "name": "Carta 14",
+      "characteristic": "",
+      "imageRef": null,
+      "imageAlt": "",
+      "values": {
+        "atributo1": {
+          "playValue": 1,
+          "displayValue": "1",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 15,
+          "displayValue": "15",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 23,
+          "displayValue": "23",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo2",
+      "note": ""
+    },
+    {
+      "id": "carta-015",
+      "name": "Carta 15",
+      "characteristic": "",
+      "imageRef": null,
+      "imageAlt": "",
+      "values": {
+        "atributo1": {
+          "playValue": 11,
+          "displayValue": "11",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 12,
+          "displayValue": "12",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 36,
+          "displayValue": "36",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo3",
+      "note": ""
+    },
+    {
+      "id": "carta-016",
+      "name": "Carta 16",
+      "characteristic": "",
+      "imageRef": null,
+      "imageAlt": "",
+      "values": {
+        "atributo1": {
+          "playValue": 30,
+          "displayValue": "30",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 37,
+          "displayValue": "37",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 43,
+          "displayValue": "43",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo1",
+      "note": ""
+    },
+    {
+      "id": "carta-017",
+      "name": "Carta 17",
+      "characteristic": "",
+      "imageRef": null,
+      "imageAlt": "",
+      "values": {
+        "atributo1": {
+          "playValue": 54,
+          "displayValue": "54",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 45,
+          "displayValue": "45",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 37,
+          "displayValue": "37",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo2",
+      "note": ""
+    },
+    {
+      "id": "carta-018",
+      "name": "Carta 18",
+      "characteristic": "",
+      "imageRef": null,
+      "imageAlt": "",
+      "values": {
+        "atributo1": {
+          "playValue": 56,
+          "displayValue": "56",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 13,
+          "displayValue": "13",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 15,
+          "displayValue": "15",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo3",
+      "note": ""
+    },
+    {
+      "id": "carta-019",
+      "name": "Carta 19",
+      "characteristic": "",
+      "imageRef": null,
+      "imageAlt": "",
+      "values": {
+        "atributo1": {
+          "playValue": 47,
+          "displayValue": "47",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 29,
+          "displayValue": "29",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 57,
+          "displayValue": "57",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo1",
+      "note": ""
+    },
+    {
+      "id": "carta-020",
+      "name": "Carta 20",
+      "characteristic": "",
+      "imageRef": null,
+      "imageAlt": "",
+      "values": {
+        "atributo1": {
+          "playValue": 31,
+          "displayValue": "31",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 35,
+          "displayValue": "35",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 47,
+          "displayValue": "47",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo2",
+      "note": ""
+    },
+    {
+      "id": "carta-021",
+      "name": "Carta 21",
+      "characteristic": "",
+      "imageRef": null,
+      "imageAlt": "",
+      "values": {
+        "atributo1": {
+          "playValue": 15,
+          "displayValue": "15",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 43,
+          "displayValue": "43",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 6,
+          "displayValue": "6",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo3",
+      "note": ""
+    },
+    {
+      "id": "carta-022",
+      "name": "Carta 22",
+      "characteristic": "",
+      "imageRef": null,
+      "imageAlt": "",
+      "values": {
+        "atributo1": {
+          "playValue": 7,
+          "displayValue": "7",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 16,
+          "displayValue": "16",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 20,
+          "displayValue": "20",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo1",
+      "note": ""
+    },
+    {
+      "id": "carta-023",
+      "name": "Carta 23",
+      "characteristic": "",
+      "imageRef": null,
+      "imageAlt": "",
+      "values": {
+        "atributo1": {
+          "playValue": 58,
+          "displayValue": "58",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 28,
+          "displayValue": "28",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 25,
+          "displayValue": "25",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo2",
+      "note": ""
+    },
+    {
+      "id": "carta-024",
+      "name": "Carta 24",
+      "characteristic": "",
+      "imageRef": null,
+      "imageAlt": "",
+      "values": {
+        "atributo1": {
+          "playValue": 4,
+          "displayValue": "4",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 58,
+          "displayValue": "58",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 44,
+          "displayValue": "44",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo3",
+      "note": ""
+    },
+    {
+      "id": "carta-025",
+      "name": "Carta 25",
+      "characteristic": "",
+      "imageRef": null,
+      "imageAlt": "",
+      "values": {
+        "atributo1": {
+          "playValue": 52,
+          "displayValue": "52",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 2,
+          "displayValue": "2",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 24,
+          "displayValue": "24",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo1",
+      "note": ""
+    },
+    {
+      "id": "carta-026",
+      "name": "Carta 26",
+      "characteristic": "",
+      "imageRef": null,
+      "imageAlt": "",
+      "values": {
+        "atributo1": {
+          "playValue": 19,
+          "displayValue": "19",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 30,
+          "displayValue": "30",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 34,
+          "displayValue": "34",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo2",
+      "note": ""
+    },
+    {
+      "id": "carta-027",
+      "name": "Carta 27",
+      "characteristic": "",
+      "imageRef": null,
+      "imageAlt": "",
+      "values": {
+        "atributo1": {
+          "playValue": 6,
+          "displayValue": "6",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 14,
+          "displayValue": "14",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 21,
+          "displayValue": "21",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo3",
+      "note": ""
+    },
+    {
+      "id": "carta-028",
+      "name": "Carta 28",
+      "characteristic": "",
+      "imageRef": null,
+      "imageAlt": "",
+      "values": {
+        "atributo1": {
+          "playValue": 23,
+          "displayValue": "23",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 26,
+          "displayValue": "26",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 45,
+          "displayValue": "45",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo1",
+      "note": ""
+    },
+    {
+      "id": "carta-029",
+      "name": "Carta 29",
+      "characteristic": "",
+      "imageRef": null,
+      "imageAlt": "",
+      "values": {
+        "atributo1": {
+          "playValue": 12,
+          "displayValue": "12",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 19,
+          "displayValue": "19",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 14,
+          "displayValue": "14",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo2",
+      "note": ""
+    },
+    {
+      "id": "carta-030",
+      "name": "Carta 30",
+      "characteristic": "",
+      "imageRef": null,
+      "imageAlt": "",
+      "values": {
+        "atributo1": {
+          "playValue": 3,
+          "displayValue": "3",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 44,
+          "displayValue": "44",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 55,
+          "displayValue": "55",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo3",
+      "note": ""
+    },
+    {
+      "id": "carta-031",
+      "name": "Carta 31",
+      "characteristic": "",
+      "imageRef": null,
+      "imageAlt": "",
+      "values": {
+        "atributo1": {
+          "playValue": 35,
+          "displayValue": "35",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 25,
+          "displayValue": "25",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 30,
+          "displayValue": "30",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo1",
+      "note": ""
+    },
+    {
+      "id": "carta-032",
+      "name": "Carta 32",
+      "characteristic": "",
+      "imageRef": null,
+      "imageAlt": "",
+      "values": {
+        "atributo1": {
+          "playValue": 18,
+          "displayValue": "18",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 8,
+          "displayValue": "8",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 33,
+          "displayValue": "33",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo2",
+      "note": ""
+    },
+    {
+      "id": "carta-033",
+      "name": "Carta 33",
+      "characteristic": "",
+      "imageRef": null,
+      "imageAlt": "",
+      "values": {
+        "atributo1": {
+          "playValue": 50,
+          "displayValue": "50",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 56,
+          "displayValue": "56",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 2,
+          "displayValue": "2",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo3",
+      "note": ""
+    },
+    {
+      "id": "carta-034",
+      "name": "Carta 34",
+      "characteristic": "",
+      "imageRef": null,
+      "imageAlt": "",
+      "values": {
+        "atributo1": {
+          "playValue": 21,
+          "displayValue": "21",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 3,
+          "displayValue": "3",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 26,
+          "displayValue": "26",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo1",
+      "note": ""
+    },
+    {
+      "id": "carta-035",
+      "name": "Carta 35",
+      "characteristic": "",
+      "imageRef": null,
+      "imageAlt": "",
+      "values": {
+        "atributo1": {
+          "playValue": 55,
+          "displayValue": "55",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 50,
+          "displayValue": "50",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 49,
+          "displayValue": "49",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo2",
+      "note": ""
+    },
+    {
+      "id": "carta-036",
+      "name": "Carta 36",
+      "characteristic": "",
+      "imageRef": null,
+      "imageAlt": "",
+      "values": {
+        "atributo1": {
+          "playValue": 33,
+          "displayValue": "33",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 55,
+          "displayValue": "55",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 7,
+          "displayValue": "7",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo3",
+      "note": ""
+    },
+    {
+      "id": "carta-037",
+      "name": "Carta 37",
+      "characteristic": "",
+      "imageRef": null,
+      "imageAlt": "",
+      "values": {
+        "atributo1": {
+          "playValue": 8,
+          "displayValue": "8",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 6,
+          "displayValue": "6",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 40,
+          "displayValue": "40",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo1",
+      "note": ""
+    },
+    {
+      "id": "carta-038",
+      "name": "Carta 38",
+      "characteristic": "",
+      "imageRef": null,
+      "imageAlt": "",
+      "values": {
+        "atributo1": {
+          "playValue": 49,
+          "displayValue": "49",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 22,
+          "displayValue": "22",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 9,
+          "displayValue": "9",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo2",
+      "note": ""
+    },
+    {
+      "id": "carta-039",
+      "name": "Carta 39",
+      "characteristic": "",
+      "imageRef": null,
+      "imageAlt": "",
+      "values": {
+        "atributo1": {
+          "playValue": 44,
+          "displayValue": "44",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 42,
+          "displayValue": "42",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 56,
+          "displayValue": "56",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo3",
+      "note": ""
+    },
+    {
+      "id": "carta-040",
+      "name": "Carta 40",
+      "characteristic": "",
+      "imageRef": null,
+      "imageAlt": "",
+      "values": {
+        "atributo1": {
+          "playValue": 51,
+          "displayValue": "51",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 38,
+          "displayValue": "38",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 22,
+          "displayValue": "22",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo1",
+      "note": ""
+    },
+    {
+      "id": "carta-041",
+      "name": "Carta 41",
+      "characteristic": "",
+      "imageRef": null,
+      "imageAlt": "",
+      "values": {
+        "atributo1": {
+          "playValue": 57,
+          "displayValue": "57",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 57,
+          "displayValue": "57",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 19,
+          "displayValue": "19",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo2",
+      "note": ""
+    },
+    {
+      "id": "carta-042",
+      "name": "Carta 42",
+      "characteristic": "",
+      "imageRef": null,
+      "imageAlt": "",
+      "values": {
+        "atributo1": {
+          "playValue": 39,
+          "displayValue": "39",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 17,
+          "displayValue": "17",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 58,
+          "displayValue": "58",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo3",
+      "note": ""
+    },
+    {
+      "id": "carta-043",
+      "name": "Carta 43",
+      "characteristic": "",
+      "imageRef": null,
+      "imageAlt": "",
+      "values": {
+        "atributo1": {
+          "playValue": 2,
+          "displayValue": "2",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 48,
+          "displayValue": "48",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 54,
+          "displayValue": "54",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo1",
+      "note": ""
+    },
+    {
+      "id": "carta-044",
+      "name": "Carta 44",
+      "characteristic": "",
+      "imageRef": null,
+      "imageAlt": "",
+      "values": {
+        "atributo1": {
+          "playValue": 14,
+          "displayValue": "14",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 31,
+          "displayValue": "31",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 51,
+          "displayValue": "51",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo2",
+      "note": ""
+    },
+    {
+      "id": "carta-045",
+      "name": "Carta 45",
+      "characteristic": "",
+      "imageRef": null,
+      "imageAlt": "",
+      "values": {
+        "atributo1": {
+          "playValue": 17,
+          "displayValue": "17",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 41,
+          "displayValue": "41",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 41,
+          "displayValue": "41",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo3",
+      "note": ""
+    },
+    {
+      "id": "carta-046",
+      "name": "Carta 46",
+      "characteristic": "",
+      "imageRef": null,
+      "imageAlt": "",
+      "values": {
+        "atributo1": {
+          "playValue": 42,
+          "displayValue": "42",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 7,
+          "displayValue": "7",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 48,
+          "displayValue": "48",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo1",
+      "note": ""
+    },
+    {
+      "id": "carta-047",
+      "name": "Carta 47",
+      "characteristic": "",
+      "imageRef": null,
+      "imageAlt": "",
+      "values": {
+        "atributo1": {
+          "playValue": 20,
+          "displayValue": "20",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 10,
+          "displayValue": "10",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 3,
+          "displayValue": "3",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo2",
+      "note": ""
+    },
+    {
+      "id": "carta-048",
+      "name": "Carta 48",
+      "characteristic": "",
+      "imageRef": null,
+      "imageAlt": "",
+      "values": {
+        "atributo1": {
+          "playValue": 48,
+          "displayValue": "48",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 18,
+          "displayValue": "18",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 18,
+          "displayValue": "18",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo3",
+      "note": ""
+    },
+    {
+      "id": "carta-049",
+      "name": "Carta 49",
+      "characteristic": "",
+      "imageRef": null,
+      "imageAlt": "",
+      "values": {
+        "atributo1": {
+          "playValue": 46,
+          "displayValue": "46",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 34,
+          "displayValue": "34",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 50,
+          "displayValue": "50",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo1",
+      "note": ""
+    },
+    {
+      "id": "carta-050",
+      "name": "Carta 50",
+      "characteristic": "",
+      "imageRef": null,
+      "imageAlt": "",
+      "values": {
+        "atributo1": {
+          "playValue": 34,
+          "displayValue": "34",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 54,
+          "displayValue": "54",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 4,
+          "displayValue": "4",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo2",
+      "note": ""
+    },
+    {
+      "id": "carta-051",
+      "name": "Carta 51",
+      "characteristic": "",
+      "imageRef": null,
+      "imageAlt": "",
+      "values": {
+        "atributo1": {
+          "playValue": 38,
+          "displayValue": "38",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 5,
+          "displayValue": "5",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 35,
+          "displayValue": "35",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo3",
+      "note": ""
+    },
+    {
+      "id": "carta-052",
+      "name": "Carta 52",
+      "characteristic": "",
+      "imageRef": null,
+      "imageAlt": "",
+      "values": {
+        "atributo1": {
+          "playValue": 5,
+          "displayValue": "5",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 27,
+          "displayValue": "27",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 1,
+          "displayValue": "1",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo1",
+      "note": ""
+    },
+    {
+      "id": "carta-053",
+      "name": "Carta 53",
+      "characteristic": "",
+      "imageRef": null,
+      "imageAlt": "",
+      "values": {
+        "atributo1": {
+          "playValue": 27,
+          "displayValue": "27",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 11,
+          "displayValue": "11",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 39,
+          "displayValue": "39",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo2",
+      "note": ""
+    },
+    {
+      "id": "carta-054",
+      "name": "Carta 54",
+      "characteristic": "",
+      "imageRef": null,
+      "imageAlt": "",
+      "values": {
+        "atributo1": {
+          "playValue": 10,
+          "displayValue": "10",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 24,
+          "displayValue": "24",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 38,
+          "displayValue": "38",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo3",
+      "note": ""
+    },
+    {
+      "id": "carta-055",
+      "name": "Carta 55",
+      "characteristic": "",
+      "imageRef": null,
+      "imageAlt": "",
+      "values": {
+        "atributo1": {
+          "playValue": 36,
+          "displayValue": "36",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 53,
+          "displayValue": "53",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 46,
+          "displayValue": "46",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo1",
+      "note": ""
+    },
+    {
+      "id": "carta-056",
+      "name": "Carta 56",
+      "characteristic": "",
+      "imageRef": null,
+      "imageAlt": "",
+      "values": {
+        "atributo1": {
+          "playValue": 41,
+          "displayValue": "41",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 47,
+          "displayValue": "47",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 42,
+          "displayValue": "42",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo2",
+      "note": ""
+    },
+    {
+      "id": "carta-057",
+      "name": "Carta 57",
+      "characteristic": "",
+      "imageRef": null,
+      "imageAlt": "",
+      "values": {
+        "atributo1": {
+          "playValue": 22,
+          "displayValue": "22",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 32,
+          "displayValue": "32",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 13,
+          "displayValue": "13",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo3",
+      "note": ""
+    },
+    {
+      "id": "carta-058",
+      "name": "Carta 58",
+      "characteristic": "",
+      "imageRef": null,
+      "imageAlt": "",
+      "values": {
+        "atributo1": {
+          "playValue": 9,
+          "displayValue": "9",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 39,
+          "displayValue": "39",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 17,
+          "displayValue": "17",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo1",
+      "note": ""
+    }
+  ]
+}

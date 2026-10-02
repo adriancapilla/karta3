@@ -1,4 +1,20 @@
-export type ParticipantView = { id: string; name: string; role: 'HOST' | 'GUEST'; isPlayer: true; presence: 'CONNECTED' | 'RECONNECTING' };
+import type { DeckSummary } from './deck.js';
+
+export type ParticipantView = { id: string; name: string; role: 'HOST' | 'GUEST'; isPlayer: boolean; presence: 'CONNECTED' | 'RECONNECTING' };
+export type RoomSettings = {
+  deckId: string | null;
+  deckContentVersion: number | null;
+  hostPlays: boolean;
+  turnSeconds: 15 | 30 | 60;
+  forceTieBreak: boolean;
+  reviewSeconds: 0 | 2 | 5 | 10 | 15 | 30;
+};
+export type ConfigurationChange =
+  | { field: 'deck'; value: { id: string; contentVersion: number } | null }
+  | { field: 'hostPlays' | 'forceTieBreak'; value: boolean }
+  | { field: 'turnSeconds'; value: RoomSettings['turnSeconds'] }
+  | { field: 'reviewSeconds'; value: RoomSettings['reviewSeconds'] };
+export type ConfigureRoomRequest = { requestId: string; roomId: string; change: ConfigurationChange };
 
 export type RoomView = {
   id: string;
@@ -8,13 +24,8 @@ export type RoomView = {
   participant: ParticipantView;
   participants: ParticipantView[];
   lifecycle: { serverNow: number; expiresAt: number; warning: boolean };
-  settings: {
-    deckId: null;
-    hostPlays: true;
-    turnSeconds: 30;
-    forceTieBreak: false;
-    reviewSeconds: 5;
-  };
+  settings: RoomSettings;
+  selectedDeck: DeckSummary | null;
 };
 
 export type AutomaticEndReason = 'RECONNECT_TIMEOUT' | 'HOST_DISCONNECTED' | 'INACTIVITY';
@@ -33,6 +44,8 @@ export type PublicErrorCode =
   | 'ROOM_FULL'
   | 'REQUEST_CONFLICT'
   | 'PARTICIPATION_ENDED'
+  | 'DECK_NOT_AVAILABLE'
+  | 'DECK_VERSION_MISMATCH'
   | 'INTERNAL_ERROR';
 
 export type ErrorResponse = { error: { code: PublicErrorCode; message: string } };

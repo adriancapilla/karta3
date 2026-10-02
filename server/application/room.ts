@@ -1,5 +1,8 @@
 import { RoomError } from './roomError.js';
 import type { TimePoint } from './waitingTime.js';
+import type { ConfigurationChange, RoomSettings } from '../../shared/contracts/room.js';
+import type { DeckSummary } from '../../shared/contracts/deck.js';
+import { publicDeckSummary } from './deckCatalog.js';
 
 export const PRESENCE_GRACE_MS = 30_000;
 export const WAITING_EXPIRY_MS = 30 * 60_000;
@@ -32,13 +35,15 @@ export class Room {
   private roomRevision = 1;
   private readonly presence = new Map<string, Presence>();
   private expiry: { at: number; unix: number; generation: number; warning: boolean };
-  private readonly roomSettings = {
+  private deck: DeckSummary | null = null;
+  private readonly roomSettings: RoomSettings = {
     deckId: null,
+    deckContentVersion: null,
     hostPlays: true,
     turnSeconds: 30,
     forceTieBreak: false,
     reviewSeconds: 5
-  } as const;
+  };
 
   constructor(input: { id: string; code: string; hostSessionId: string; participantId: string; now: TimePoint; connected: boolean }) {
     if (!/^\d{6}$/.test(input.code)) throw new Error('Código interno de sala inválido.');
@@ -56,11 +61,13 @@ export class Room {
   get revision(): number { return this.roomRevision; }
   get memberSessions(): string[] { return [...this.guests.map((guest) => guest.sessionId), this.hostSessionId]; }
   get participants() {
-    return [...this.guests.map((guest) => ({ ...guest, role: 'GUEST' as const })),
-      { id: this.participantId, sessionId: this.hostSessionId, name: this.participantName, role: 'HOST' as const }]
+    return [...this.guests.map((guest) => ({ ...guest, role: 'GUEST' as const, isPlayer: true })),
+      { id: this.participantId, sessionId: this.hostSessionId, name: this.participantName, role: 'HOST' as const, isPlayer: this.roomSettings.hostPlays }]
       .map((person) => ({ ...person, presence: this.presence.get(person.id)!.connected ? 'CONNECTED' as const : 'RECONNECTING' as const }));
   }
   get settings() { return { ...this.roomSettings }; }
+  get selectedDeck() { return this.deck ? publicDeckSummary(this.deck) : null; }
+  get playerCount() { return this.guests.length + Number(this.roomSettings.hostPlays); }
 
   participantFor(sessionId: string) { return this.participants.find((person) => person.sessionId === sessionId); }
 
@@ -68,7 +75,7 @@ export class Room {
     this.ensureWaiting();
     const name = normalizeName(value);
     if (this.participantFor(sessionId)) throw new Error('La sesión ya pertenece a la sala.');
-    if (this.participants.length >= 5) throw new RoomError('ROOM_FULL', 'La sala está llena. Puedes volver a intentarlo cuando quede una plaza.');
+    if (this.playerCount >= 5) throw new RoomError('ROOM_FULL', 'La sala está llena. Puedes volver a intentarlo cuando quede una plaza.');
     this.guests.push({ id, sessionId, name });
     this.addPresence(id, connected, now);
     this.renew(now);
@@ -77,6 +84,46 @@ export class Room {
 
   rename(value: unknown, now: TimePoint): void {
     this.renameFor(this.hostSessionId, value, now);
+  }
+
+  configure(change: ConfigurationChange, selected: DeckSummary | null, now: TimePoint): boolean {
+    this.ensureWaiting();
+    if (change.field === 'deck') {
+      if (change.value !== null && (typeof change.value !== 'object' || typeof change.value.id !== 'string'
+        || !Number.isInteger(change.value.contentVersion) || change.value.contentVersion <= 0)) {
+        throw new RoomError('INVALID_INPUT', 'La referencia de baraja no es válida.');
+      }
+      if (change.value && (!selected || selected.id !== change.value.id || selected.contentVersion !== change.value.contentVersion)) {
+        throw new RoomError('DECK_NOT_AVAILABLE', 'La baraja no está disponible. Vuelve a consultar el catálogo.');
+      }
+      if (this.roomSettings.deckId === (change.value?.id ?? null)
+        && this.roomSettings.deckContentVersion === (change.value?.contentVersion ?? null)) return false;
+      this.deck = change.value ? publicDeckSummary(selected!) : null;
+      this.roomSettings.deckId = this.deck?.id ?? null;
+      this.roomSettings.deckContentVersion = this.deck?.contentVersion ?? null;
+    } else {
+      const { field, value } = change;
+      if ((field === 'turnSeconds' && ![15, 30, 60].includes(value))
+        || (field === 'reviewSeconds' && ![0, 2, 5, 10, 15, 30].includes(value))
+        || ((field === 'hostPlays' || field === 'forceTieBreak') && typeof value !== 'boolean')) {
+        throw new RoomError('INVALID_INPUT', 'El valor de configuración no es válido.');
+      }
+      if (this.roomSettings[field] === value) return false;
+      if (field === 'hostPlays' && value && this.playerCount >= 5) {
+        throw new RoomError('ROOM_FULL', 'Necesitas una plaza libre para volver a jugar.');
+      }
+      // Asignaciones discriminadas: nunca sustituir la configuración completa.
+      switch (field) {
+        case 'hostPlays': this.roomSettings.hostPlays = value; break;
+        case 'forceTieBreak': this.roomSettings.forceTieBreak = value; break;
+        case 'turnSeconds': this.roomSettings.turnSeconds = value; break;
+        case 'reviewSeconds': this.roomSettings.reviewSeconds = value; break;
+        default: throw new RoomError('INVALID_INPUT', 'El control de configuración no es válido.');
+      }
+    }
+    this.renew(now);
+    this.roomRevision += 1;
+    return true;
   }
 
   renameFor(sessionId: string, value: unknown, now: TimePoint): boolean {

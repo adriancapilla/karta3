@@ -1,1 +1,3 @@
 * text=auto eol=lf
+# Copias aprobadas: conservar todos los bytes, también al clonar en Windows.
+barajas/** -text whitespace=cr-at-eol

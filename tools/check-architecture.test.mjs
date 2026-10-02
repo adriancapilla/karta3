@@ -12,6 +12,11 @@ function runFixture(name) {
 }
 
 describe('control de arquitectura', () => {
+  it('B04-11 herramienta debe delegar a composición, sin invocar directamente reglas', () => {
+    const result = scanProject(path.join(fixtures, 'forbidden-tool'));
+    expect(result.violations.join('\n')).toMatch(/tool no puede importar domain/);
+    expect(runFixture('forbidden-tool').status).toBe(1);
+  });
   it('rechaza una importación de tipo desde cliente hacia servidor', () => {
     const result = scanProject(path.join(fixtures, 'forbidden-type'));
     expect(result.violations.join('\n')).toMatch(/client no puede importar application/);

@@ -16,7 +16,7 @@ export interface RoomRepository {
 }
 
 export type RequestRecord = {
-  kind: 'JOIN' | 'LEAVE';
+  kind: 'JOIN' | 'LEAVE' | 'CONFIGURE';
   signature: string;
   roomId: string;
   participantId: string;

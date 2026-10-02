@@ -2,6 +2,9 @@
 
 **Estado:** reglas para los próximos incrementos; T01 separó la creación y los bloques 02/03 amplían la espera sincronizada y su ciclo de vida. El dominio de la partida sigue pendiente.
 **Fecha:** 30/09/2026.
+**Alineación documental:** 01/10/2026 — flujo de barajas conforme a infraestructura §9 y contrato formato 1; las dependencias de capas no cambian.
+**Implementación B04:** 02/10/2026 — validación pura, paquetes, catálogo y medios. No se modifica la dirección de dependencias ni se implementa `Game`.
+**Implementación B05:** 02/10/2026 — configuración por control y selección de versión mediante puerto; participación/observación en el modelo de sala. Mismas dependencias y dominio de partida pendiente.
 **Ámbito:** repositorio digital `APP/karta3`. La evolución de estas reglas se decide en la conversación de arquitectura; cada conversación de implementación trabaja con una especificación SDD concreta.
 
 ## 1. Qué resuelve este documento
@@ -52,7 +55,9 @@ karta3/
 ├── docs/
 │   ├── arquitectura/
 │   └── sdd/
+├── barajas/                copias aprobadas internas; catálogo generado
 ├── server/
+│   ├── domain/             Deck/Card y validación pura común
 │   ├── application/        modelo Room, casos de uso, puertos y vista propia
 │   ├── infrastructure/     HTTP, repositorio en memoria, sesión y generación
 │   ├── composition/        conexión de adaptadores y casos de uso
@@ -63,7 +68,7 @@ karta3/
 └── tools/                  control de dependencias y sus casos negativos
 ```
 
-El directorio `server/domain/` aparecerá al implementar reglas de `Game`; no se creó vacío para T01. La herramienta de barajas también queda para su bloque. Una prueba cercana al módulo que comprueba es válida. Se mantiene un solo repositorio y los comandos actuales.
+El directorio `server/domain/` contiene la validación pura de `Deck` implementada en B04; no se creó vacío para T01. `Game` sigue pendiente. `tools/decks.ts` delega a composición, que selecciona las mismas operaciones de infraestructura para comando, construcción y arranque. Una prueba cercana al módulo que comprueba es válida. Se mantiene un solo repositorio.
 
 ### Estado del primer bloque tras T01
 
@@ -82,7 +87,7 @@ Las carpetas nuevas se crean al implementar funciones nuevas o al extraer una re
 | Recibir una jugada o dirección parcial y relacionarla con identidad/turno | Aplicación | Verifica fase y delega el movimiento completo a `Game`. |
 | Programar el vencimiento real de un turno o revisión | Infraestructura | Entrega el aviso al caso de uso; no elige la carta por timeout. |
 | Persistir el estado vivo del MVP | Adaptador en memoria | Un proceso por entorno; la aplicación expresa el puerto. |
-| Cargar barajas, convertir CSV y comprobar imágenes | Herramienta y adaptador de infraestructura | El dominio valida 58 cartas y tres permutaciones 1–58. |
+| Cargar paquetes JSON y comprobar formato, versiones e imágenes | Herramienta y adaptador de infraestructura | Reutilizan validación pura de 58 cartas y tres permutaciones 1–58. CSV y herramienta editorial aplazados. |
 | Construir una vista para jugador/observador | Aplicación | No envía manos ajenas; la interfaz no recibe datos para ocultarlos localmente. |
 | Mostrar la mesa, temporizador estimado y botón de feedback | Interfaz | El servidor decide la hora límite y la aceptación. |
 
@@ -100,9 +105,27 @@ La interfaz no importa tipos internos solo porque estén escritos en TypeScript.
 
 ## 6. Barajas y evolución
 
-Los originales editables viven en `ASSETS`; una copia aprobada y reproducible de cada versión forma parte de `APP`. La herramienta interna produce `baraja.json`, `cartas.json`, imágenes referenciadas y catálogo de barajas disponibles. Son recursos preparados de infraestructura, no una dependencia del dominio respecto al sistema de archivos. El navegador ve el catálogo, portada y cartas que puede conocer; el servidor conserva la definición completa para barajar y validar.
+Los originales editables viven en `ASSETS/Barajas/<id>/`: el Gestor prepara directamente los JSON y recursos según el [contrato formato 1](../contratos/CONTRATO_BARAJAS_V1.md). Una copia aprobada y reproducible forma parte de `APP/karta3/barajas/`; aprobarla no activa su disponibilidad. B04 implementa la validación común, preparación y carga desde APP. No se exige CSV ni se mantienen fuentes editoriales divergentes. Los dos JSON completos permanecen internos. Resultados y límites en [B04](../sdd/BLOQUE_04_CARGA_BARAJAS.md).
+
+| Responsabilidad B04 | Módulo y límite |
+|---|---|
+| Invariantes de Deck/Card | `domain/deck.ts`: definición en memoria, tres atributos declarados, 58 cartas y permutaciones. Sin ids específicos de formato ni IO. |
+| Caso de uso y proyección | `application/deckCatalog.ts`: puerto de resúmenes y `ListDecks`, sin lector ni cartas públicas. |
+| JSON y esquema | `infrastructure/decks/strictJson.ts`, `packageFormat.ts`, `readPackage.ts`: UTF-8/duplicados, propiedades, ids/orden fijos y versiones; delega las invariantes al único validador puro. |
+| Recursos | `resources.ts`: escritura exacta, realpath contenido, extensión y decodificación completa con sharp. |
+| Preparación e instantánea | `catalog.ts`: publicación, orden, escritura completa por renombrado, catálogo vigente; copia/freeze de definiciones y copias privadas de bytes de medios. No se recarga en consultas. |
+| Transporte y composición | `http/expressApp.ts` consulta el caso de uso; `publicFiles.ts` sirve únicamente URLs registradas y bloquea rutas privadas; `composition/decks.ts` resuelve instalación/adaptadores y `main.ts` carga antes de escuchar. |
+| Comando y cliente | `tools/decks.ts` solo argumentos/diagnóstico/salida; `src/api.ts` usa el contrato seguro. B05 añade el selector descrito debajo. |
+
+Decodificación y formatos pertenecen a infraestructura; la publicación del conjunto se comprueba al preparar/cargar, sin introducir permisos de selección anticipados. La disponibilidad indeterminable bloquea; un borrador inválido con `false` fiable informa y se excluye. La genérica no tiene ninguna excepción de código.
 
 Nuevas funciones, como cuentas, historial, importación pública de barajas o más procesos de servidor, exigirán revisar puertos y despliegue. No se introducen en el MVP solo para anticipar una evolución posible.
+
+### Incremento B05
+
+`Room` aplica un solo cambio, conserva id/versión/ficha juntos y decide plazas/orden. `RoomUseCases.configure` aplica vencimientos, autoriza, deduplica y consulta el puerto `PublishedDeckVersions`. No compara una revisión del navegador ni importa el catálogo concreto. `LoadedDeckCatalog` implementa ese puerto con resumen y definición validada de la misma versión, conservando la instantánea B04. Composición conecta explícitamente ambos puertos del mismo catálogo; `main` usa esa conexión tras cargar antes de escuchar.
+
+`configurationInput.ts` decodifica tipos/forma/ids externos; `socketRooms.ts` invoca el caso de uso y publica mediante las piezas B03. Ni transporte ni catálogo deciden participación/capacidad. Las nuevas propiedades de `shared/contracts` son públicas, sin definiciones/cartas. `RoomConfiguration`, su hook y reducer mantienen presentación/peticiones por control; `socket.ts` usa envío volátil sin cola ni espera de reconexión. El cliente no decide una plaza ni un cierre. Las fixtures, interceptores de ack y avances de reloj viven únicamente en pruebas. No se cambia el validador de dominio ni la herramienta B04.
 
 ## 7. Comprobaciones y cambio arquitectónico
 
@@ -114,4 +137,4 @@ Para cada bloque acordado:
 4. Ejecutar `npm run check` y las comprobaciones adicionales del bloque; registrar resultados reales.
 5. Documentar cualquier desviación arquitectónica deliberada: motivo, alcance, alternativa y tarea de corrección si es temporal. No declarar que la arquitectura está completa por haber creado carpetas.
 
-`npm run check:architecture`, integrado en `npm run check`, revisa imports de valor y tipo, reexportaciones, aliases configurados y ciclos entre los módulos de producción. Sus casos negativos se ejecutan con `npm test`. Este control sintáctico se complementa con revisión de responsabilidades: no demostraría por sí solo que un adaptador haya dejado de decidir permisos o nombres. La ampliación técnica de esta guía se decide en el hilo de arquitectura.
+`npm run check:architecture`, integrado en `npm run check`, revisa imports de valor y tipo, reexportaciones, aliases y ciclos entre módulos de producción y comandos de la raíz de `tools/`. Estos comandos solo importan módulos locales de composición; las fixtures anidadas se revisan como proyectos de prueba. Sus cuatro casos negativos se ejecutan con `npm test`. El control sintáctico se complementa con revisión de responsabilidades: no demostraría por sí solo que un adaptador haya dejado de decidir permisos o nombres. B04 conserva las reglas de capas y amplía su control a la herramienta.

@@ -1,4 +1,5 @@
-import type { CurrentRoomResponse, RoomView } from '../../shared/contracts/room.js';
+import type { ConfigurationChange, CurrentRoomResponse, RoomView } from '../../shared/contracts/room.js';
+import type { PublishedDeckVersions } from './deckCatalog.js';
 import type { CodeCandidateSource, IdentifierGenerator, RoomRepository, RoomRequests } from './ports.js';
 import { Room, normalizeName } from './room.js';
 import { RoomError } from './roomError.js';
@@ -15,6 +16,7 @@ export interface RoomActions {
   close(sessionId: string, roomId: string): void;
   join(sessionId: string, requestId: string, code: string, name: string): RoomView;
   leave(sessionId: string, requestId: string, roomId: string, participantId: string): void;
+  configure(sessionId: string, requestId: string, roomId: string, change: ConfigurationChange): RoomView;
 }
 
 const ALREADY = 'Ya estás en una sala. Sal de ella antes de crear otra o entrar en una distinta.';
@@ -26,7 +28,8 @@ export class RoomUseCases implements RoomActions {
     private readonly createId: IdentifierGenerator,
     private readonly drawCodeCandidate: CodeCandidateSource,
     private readonly requests: RoomRequests,
-    private readonly lifecycle: WaitingLifecycle
+    private readonly lifecycle: WaitingLifecycle,
+    private readonly decks: PublishedDeckVersions = { resolveVersion: () => ({ ok: false, reason: 'DECK_NOT_AVAILABLE' }) }
   ) {}
 
   current(sessionId: string): RoomView | null {
@@ -155,6 +158,43 @@ export class RoomUseCases implements RoomActions {
     } catch (error) {
       if (error instanceof RoomError) this.requests.save(sessionId, requestId, {
         kind: 'LEAVE', signature, roomId, participantId, error: { code: error.code, message: error.message }
+      });
+      throw error;
+    }
+  }
+
+  configure(sessionId: string, requestId: string, roomId: string, change: ConfigurationChange): RoomView {
+    const room = this.authorize(sessionId, roomId);
+    if (room.hostSessionId !== sessionId) throw new RoomError('FORBIDDEN', 'Solo el anfitrión puede configurar la sala.');
+    const signature = JSON.stringify([roomId, change.field, change.field === 'deck'
+      ? change.value === null ? null : [change.value.id, change.value.contentVersion] : change.value]);
+    const previous = this.requests.get(sessionId, requestId);
+    if (previous) {
+      this.checkReplay(previous.kind, previous.signature, 'CONFIGURE', signature);
+      if (previous.roomId !== room.id || previous.participantId !== room.participantId) {
+        throw new RoomError('PARTICIPATION_ENDED', 'Esa participación ya terminó.');
+      }
+      if (previous.error) throw new RoomError(previous.error.code, previous.error.message);
+      return this.lifecycle.view(room, sessionId);
+    }
+    try {
+      let selected = null;
+      if (change.field === 'deck' && change.value !== null) {
+        const result = this.decks.resolveVersion(change.value.id, change.value.contentVersion);
+        if (!result.ok) throw new RoomError(result.reason, result.reason === 'DECK_VERSION_MISMATCH'
+          ? 'La versión solicitada no está disponible. Vuelve a consultar el catálogo.'
+          : 'La baraja no está disponible. Vuelve a consultar el catálogo.');
+        selected = result.summary;
+      }
+      if (room.configure(change, selected, this.lifecycle.clock.now())) {
+        this.repository.save(room);
+        this.lifecycle.publish(room);
+      }
+      this.requests.save(sessionId, requestId, { kind: 'CONFIGURE', signature, roomId, participantId: room.participantId });
+      return this.lifecycle.view(room, sessionId);
+    } catch (error) {
+      if (error instanceof RoomError) this.requests.save(sessionId, requestId, {
+        kind: 'CONFIGURE', signature, roomId, participantId: room.participantId, error: { code: error.code, message: error.message }
       });
       throw error;
     }

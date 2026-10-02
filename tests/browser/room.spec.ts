@@ -11,7 +11,7 @@ for (const viewport of [{ width: 390, height: 844 }, { width: 1280, height: 800 
       await page.keyboard.press('Enter');
       await expect(page.getByText('Esperando participantes')).toBeVisible();
       await expect(page.getByText('Jugador 1')).toBeVisible();
-      await expect(page.getByText('Anfitrión')).toBeVisible();
+      await expect(page.getByText('Anfitrión', { exact: true })).toBeVisible();
       await page.screenshot({ path: `test-results/${viewport.width}-room.png`, fullPage: true });
       const code = await page.locator('.code').textContent();
       expect(code).toMatch(/^\d{6}$/);
@@ -55,13 +55,13 @@ for (const viewport of [{ width: 390, height: 844 }, { width: 1280, height: 800 
       await page.getByRole('button', { name: 'Crear sala' }).click();
       const code = await page.locator('.code').textContent();
       await page.getByRole('button', { name: 'Copiar código' }).click();
-      await expect(page.getByRole('status')).toContainText('Código copiado');
+      await expect(page.locator('.code-panel').getByRole('status')).toContainText('Código copiado');
       expect(await page.evaluate(() => navigator.clipboard.readText())).toBe(code);
       await page.evaluate(() => {
         Object.defineProperty(navigator.clipboard, 'writeText', { configurable: true, value: () => Promise.reject(new Error('denied')) });
       });
       await page.getByRole('button', { name: 'Copiar código' }).click();
-      await expect(page.getByRole('status')).toContainText('cópialo manualmente');
+      await expect(page.locator('.code-panel').getByRole('status')).toContainText('cópialo manualmente');
       await page.route('**/api/rooms/*/name', (route) => route.fulfill({ status: 503, contentType: 'application/json', body: JSON.stringify({ error: { code: 'UNAVAILABLE', message: 'Inténtalo de nuevo.' } }) }));
       await page.getByLabel('Editar mi nombre').fill('Otro');
       await page.getByRole('button', { name: 'Guardar' }).click();

@@ -45,8 +45,8 @@ async function pair(browser: Browser, base: string, hostWidth = 1280) {
   await Promise.all([host.goto(base), guest.goto(base)]);
   await host.getByRole('button', { name: 'Crear sala' }).click();
   await enter(guest);
-  await expect(host.getByText('2 de 5 participantes')).toBeVisible({ timeout: 2000 });
-  await expect(guest.getByText('2 de 5 participantes')).toBeVisible();
+  await expect(host.getByText('2 de 5 jugadores')).toBeVisible({ timeout: 2000 });
+  await expect(guest.getByText('2 de 5 jugadores')).toBeVisible();
   return { host, guest, hostContext, guestContext };
 }
 async function enter(page: Page) {
@@ -138,15 +138,15 @@ test('B03 tiempo controlado: cero visual sin confirmación no cierra; volver tra
     // Adelanta únicamente el contador del navegador desconectado; el servidor controlado no avanza.
     await p.guest.clock.fastForward(61_000);
     await expect(p.guest.getByRole('timer')).toHaveText('en 00:00');
-    await expect(p.guest.getByText('2 de 5 participantes')).toBeVisible();
+    await expect(p.guest.getByText('2 de 5 jugadores')).toBeVisible();
     await expect(p.guest.getByText('Conexión interrumpida. Intentando recuperarla…')).toBeVisible();
     s.time.advance(30_000);
     await expect(p.host.getByText('Ana no recuperó la conexión; su plaza ha quedado libre')).toBeVisible({ timeout: 2000 });
     thirdContext = await browser.newContext(); const third = await thirdContext.newPage(); await third.goto(s.base); await enter(third);
-    await expect(third.getByText('2 de 5 participantes')).toBeVisible();
+    await expect(third.getByText('2 de 5 jugadores')).toBeVisible();
     await p.guestContext.setOffline(false); await p.guest.clock.resume();
     await expect(p.guest.getByRole('alert')).toContainText('Tu plaza se liberó', { timeout: 10_000 });
-    await enter(p.guest); await expect(p.host.getByText('3 de 5 participantes')).toBeVisible({ timeout: 2000 });
+    await enter(p.guest); await expect(p.host.getByText('3 de 5 jugadores')).toBeVisible({ timeout: 2000 });
     const rejoined = await current(p.guest);
     expect(rejoined.participant.id).not.toBe(original.participant.id);
     expect(rejoined.participants.at(-2).id).toBe(rejoined.participant.id);
@@ -155,6 +155,9 @@ test('B03 tiempo controlado: cero visual sin confirmación no cierra; volver tra
 });
 
 test('B03-15 reiniciar el runtime pierde el motivo privado y permite crear otra sala con sesión y presencia nuevas', async ({ browser }) => {
+  // Detección (12 s), recuperación y reinicio (10 s cada uno) más cierre:
+  // el presupuesto global de 30 s era menor que las esperas individuales.
+  test.setTimeout(60_000);
   const s = await boot(); const p = await pair(browser, s.base);
   let fresh: Awaited<ReturnType<typeof boot>> | undefined;
   try {
@@ -167,14 +170,18 @@ test('B03-15 reiniciar el runtime pierde el motivo privado y permite crear otra 
     await expect(p.host.getByRole('alert')).toContainText('La sala ya no está disponible', { timeout: 10_000 });
     await expect(p.host.getByRole('button', { name: 'Crear sala' })).toBeVisible();
     await p.host.getByRole('button', { name: 'Crear sala' }).click();
-    await expect(p.host.getByText('1 de 5 participantes')).toBeVisible();
+    await expect(p.host.getByText('1 de 5 jugadores')).toBeVisible();
     const hostSession = await sessionId(p.hostContext, fresh.sessions);
     await expect.poll(() => fresh!.repository.findActiveBySession(hostSession)?.participantFor(hostSession)?.presence).toBe('CONNECTED');
     // Tras reinicio no consta un motivo para la ruta de la sala anterior.
     await p.guest.goto(`${fresh.base}/sala/${original.id}`);
     await expect(p.guest.getByRole('alert')).toContainText('La sala ya no está disponible');
     expect(await p.guest.evaluate(async () => (await (await fetch('/api/rooms/current')).json()).ended)).toBeUndefined();
-  } finally { await (fresh ?? s).stop(); await p.hostContext.close(); await p.guestContext.close(); }
+  } finally {
+    // Cerrar clientes antes del servidor evita reconexiones durante la limpieza.
+    try { await Promise.all([p.hostContext.close(), p.guestContext.close()]); }
+    finally { await (fresh ?? s).stop(); }
+  }
 });
 
 test('B03 conexiones y margen reales: última pestaña, recuperación sin F5 y retirada 30 segundos después de detectar red perdida', async ({ browser }) => {
@@ -183,7 +190,7 @@ test('B03 conexiones y margen reales: última pestaña, recuperación sin F5 y r
   try {
     const b = await sessionId(p.guestContext, s.sessions); const original = await current(p.guest);
     const tab = await p.guestContext.newPage(); await tab.goto(s.base);
-    await expect(tab.getByText('2 de 5 participantes')).toBeVisible();
+    await expect(tab.getByText('2 de 5 jugadores')).toBeVisible();
     await expect.poll(() => s.websocketCount(b)).toBe(2);
     await tab.close();
     await expect.poll(() => s.disconnections.filter((entry) => entry.sessionId === b).length).toBe(1);
@@ -202,12 +209,12 @@ test('B03 conexiones y margen reales: última pestaña, recuperación sin F5 y r
     await expect.poll(() => s.repository.findActiveBySession(b)?.participantFor(b)?.presence, { timeout: 12_000 }).toBe('RECONNECTING');
     const deadline = s.repository.findActiveBySession(b)!.deadlines().find((d) => d.participantId === original.participant.id)!;
     const detected = deadline.at - 30_000;
-    await expect(p.host.getByText('2 de 5 participantes')).toBeVisible();
+    await expect(p.host.getByText('2 de 5 jugadores')).toBeVisible();
     await expect.poll(() => s.removedAt.get(original.participant.id), { timeout: 33_000, intervals: [100, 250, 500] }).toBeDefined();
     const removed = s.removedAt.get(original.participant.id)!;
     expect(removed - detected).toBeGreaterThanOrEqual(30_000);
     expect(removed - detected).toBeLessThan(32_000);
-    await expect(p.host.getByText('1 de 5 participantes')).toBeVisible({ timeout: 2000 });
+    await expect(p.host.getByText('1 de 5 jugadores')).toBeVisible({ timeout: 2000 });
     await expect(p.host.getByText('Ana no recuperó la conexión; su plaza ha quedado libre')).toBeVisible();
     await p.guestContext.setOffline(false);
     await expect(p.guest.getByRole('alert')).toContainText('Tu plaza se liberó', { timeout: 10_000 });
