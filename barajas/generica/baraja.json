@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "contentVersion": 1,
+  "contentVersion": 2,
   "id": "generica",
   "name": "KARTA3 — Baraja genérica",
   "subtitle": "",
@@ -27,7 +27,7 @@
   "imageRef": null,
   "imageAlt": "",
   "publication": {
-    "available": false,
+    "available": true,
     "order": 0
   },
   "credits": [],
