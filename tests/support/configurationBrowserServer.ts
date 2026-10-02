@@ -18,7 +18,7 @@ export async function configurationBrowserServer(single = false) {
   const image = deckFixture('portada'); image.metadata.imageRef = 'imagenes/portada.png'; image.metadata.imageAlt = 'Portada sintética azul';
   const dir = await writeFixture(root, image); await fs.mkdir(path.join(dir, 'imagenes')); await fs.writeFile(path.join(dir, image.metadata.imageRef), await realImage('png'));
   if (!single) await writeFixture(root, deckFixture('sin-imagen', true, 1));
-  await writeFixture(root, deckFixture('generica', false, 2));
+  await writeFixture(root, deckFixture('borrador', false, 2));
   const loaded = await prepareDecks(root).then(() => loadPreparedDecks(root)).catch(async (error: unknown) => { await removeTestInstallation(root); throw error; });
   const time = new ControlledTime(); const repository = new MemoryRoomRepository(); const sessions = new MemorySessions();
   const runtime = createRuntime({ repository, sessions, decks: loaded.catalog, deckVersions: loaded.catalog,

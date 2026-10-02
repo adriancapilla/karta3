@@ -7,13 +7,14 @@ import { pathToFileURL } from 'node:url';
 import { deckFixture, writeFixture } from '../../../tests/support/deckFixtures.js';
 import { prepareDecks } from './catalog.js';
 import { compiledInstallation, removeTestInstallation, startCompiledDeckServer } from '../../../tests/support/compiledDeckServer.js';
+import { approvedGeneric } from '../../../tests/support/approvedGeneric.js';
 
 let root: string;
 let stop: (() => Promise<void>) | undefined;
 beforeEach(async () => { root = await compiledInstallation(); });
 afterEach(async () => { await stop?.(); stop = undefined; await removeTestInstallation(root); });
 
-it('B04-01/08 construcción real aislada y arranque sin ASSETS; consulta no adopta cambios', async () => {
+it('AGV2-02/03 y B04-01/08 construcción real con genérica 2 aislada de ASSETS; consulta conserva instantánea', async () => {
   await expect(promisify(execFile)(process.execPath, ['--import', './guard.mjs', '--input-type=module', '-e', 'import fs from "node:fs/promises"; await fs.readFile("ASSETS/probe.json");'], { cwd: root, windowsHide: true })).rejects.toMatchObject({ stderr: expect.stringContaining('ASSETS no permitido') });
   expect(await fs.readFile(path.join(root, 'asset-access.txt'), 'utf8')).toContain('ASSETS/probe.json');
   await fs.unlink(path.join(root, 'asset-access.txt'));
@@ -25,12 +26,12 @@ it('B04-01/08 construcción real aislada y arranque sin ASSETS; consulta no adop
     cwd: root, env: { ...process.env, NODE_OPTIONS: `--import=${pathToFileURL(path.join(root, 'guard.mjs')).href}` }, windowsHide: true,
     timeout: 60_000
   });
-  expect(stdout).toContain('Catálogo preparado: 0 barajas disponibles.');
+  expect(stdout).toContain('Catálogo preparado: 1 barajas disponibles.');
   const server = await startCompiledDeckServer(root); stop = server.stop;
-  expect(await (await fetch(`${server.base}/api/decks`)).json()).toEqual({ decks: [] });
+  expect(await (await fetch(`${server.base}/api/decks`)).json()).toEqual({ decks: [approvedGeneric] });
   const cards = path.join(root, 'barajas/generica/cartas.json'); await fs.writeFile(cards, '{');
   await writeFixture(path.join(root, 'barajas'), deckFixture('anadida-despues', true));
-  for (let index = 0; index < 3; index++) expect(await (await fetch(`${server.base}/api/decks`)).json()).toEqual({ decks: [] });
+  for (let index = 0; index < 3; index++) expect(await (await fetch(`${server.base}/api/decks`)).json()).toEqual({ decks: [approvedGeneric] });
   expect(await fs.readdir(root)).not.toContain('asset-access.txt');
   const bundle = (await fs.readdir(path.join(root, 'dist/assets'))).filter((name) => name.endsWith('.js'));
   for (const file of bundle) {

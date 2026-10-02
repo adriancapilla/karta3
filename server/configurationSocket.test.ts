@@ -16,7 +16,7 @@ const clients: Socket[] = []; let stop: (() => Promise<void>) | undefined;
 afterEach(async () => { for (const socket of clients.splice(0)) socket.disconnect(); await stop?.(); stop = undefined; });
 async function boot() {
   const root = await fs.mkdtemp(path.join(os.tmpdir(), 'karta3-b04-b05-'));
-  await writeFixture(root); await writeFixture(root, deckFixture('generica', false));
+  await writeFixture(root); await writeFixture(root, deckFixture('borrador', false));
   const loaded = await prepareDecks(root); const time = new ControlledTime();
   const runtime = createRuntime({ decks: loaded.catalog, deckVersions: loaded.catalog, clock: time, scheduler: time, codes: () => 42 });
   const server = createServer(runtime.app); const sockets = runtime.attachRealtime(server);
@@ -84,7 +84,7 @@ it('B05-05/07 payloads estrictos y errores de versión no alteran la configuraci
   for (const input of [{ ...valid, role: 'HOST' }, { ...valid, revision: 1 }, { ...valid, requestId: '' }, { ...valid, requestId: 'x'.repeat(101) }, { ...valid, roomId: 'x'.repeat(101) }]) {
     expect(await ack(s.host.socket, 'room:configure', input)).toMatchObject({ ok: false, error: { code: 'INVALID_INPUT' } });
   }
-  for (const [id, version, code] of [['missing', 7, 'DECK_NOT_AVAILABLE'], ['generica', 1, 'DECK_NOT_AVAILABLE'], ['prueba', 8, 'DECK_VERSION_MISMATCH']] as const) {
+  for (const [id, version, code] of [['missing', 7, 'DECK_NOT_AVAILABLE'], ['borrador', 7, 'DECK_NOT_AVAILABLE'], ['prueba', 8, 'DECK_VERSION_MISMATCH']] as const) {
     expect(await ack(s.host.socket, 'room:configure', configured(s.room, { field: 'deck', value: { id, contentVersion: version } })))
       .toMatchObject({ ok: false, error: { code } });
   }
@@ -120,5 +120,5 @@ it('B05-05 el adaptador requiere resumen y definición de la misma versión; un 
   expect(wrong.resolveVersion('prueba', 7)).toEqual({ ok: false, reason: 'DECK_NOT_AVAILABLE' });
   expect(s.loaded.catalog.resolveVersion('prueba', 6)).toEqual({ ok: false, reason: 'DECK_VERSION_MISMATCH' });
   expect(s.loaded.catalog.resolveVersion('prueba', 7)).toEqual({ ok: true, summary });
-  expect(s.loaded.catalog.resolveVersion('generica', 1)).toEqual({ ok: false, reason: 'DECK_NOT_AVAILABLE' });
+  expect(s.loaded.catalog.resolveVersion('borrador', 7)).toEqual({ ok: false, reason: 'DECK_NOT_AVAILABLE' });
 });

@@ -57,7 +57,7 @@ describe('B05 preparación con puertos sustitutos y tiempo controlado', () => {
     expect(same.revision).toBe(expires.revision); expect(same.lifecycle.expiresAt).toBe(expires.lifecycle.expiresAt);
     expect(s.events.updated).toHaveBeenCalledTimes(count);
   });
-  it.each([['desconocida', 7, 'DECK_NOT_AVAILABLE'], ['generica', 1, 'DECK_NOT_AVAILABLE'], ['prueba', 6, 'DECK_VERSION_MISMATCH']] as const)(
+  it.each([['desconocida', 7, 'DECK_NOT_AVAILABLE'], ['borrador', 7, 'DECK_NOT_AVAILABLE'], ['prueba', 6, 'DECK_VERSION_MISMATCH']] as const)(
     'B05-05 rechaza %s v%i sin alterar selección ni actividad', (id, contentVersion, code) => {
       const s = setup(); const before = s.configure({ field: 'deck', value: { id: 'prueba', contentVersion: 7 } });
       s.time.elapse(1000);
@@ -151,7 +151,7 @@ describe('B05 preparación con puertos sustitutos y tiempo controlado', () => {
     s.connected.delete('g0'); s.rooms.presenceChanged('g0');
     const absence = s.room.deadlines().find((deadline) => deadline.participantId === s.room.participantFor('g0')!.id);
     s.configure({ field: 'turnSeconds', value: 15 }, 'old'); s.configure({ field: 'deck', value: null });
-    expect(() => s.configure({ field: 'deck', value: { id: 'generica', contentVersion: 1 } })).toThrow();
+    expect(() => s.configure({ field: 'deck', value: { id: 'borrador', contentVersion: 7 } })).toThrow();
     s.connected.delete('host'); s.rooms.presenceChanged('host'); s.connected.add('host'); s.rooms.presenceChanged('host');
     expect(s.rooms.resume('host').room!.lifecycle.expiresAt).toBe(before.lifecycle.expiresAt);
     const effective = s.configure({ field: 'reviewSeconds', value: 0 });

@@ -8,7 +8,7 @@ La aplicación se construye de forma incremental, con especificaciones, pruebas 
 
 Actualmente permite crear una sala de espera, compartir su código e incorporar participantes desde navegadores independientes. La lista se actualiza en tiempo real y cada participante puede cambiar su nombre o salir. También gestiona la reconexión temporal y el cierre de salas por inactividad.
 
-El bloque 04 añade validación común de barajas, preparación del catálogo y consulta pública de resúmenes. La copia aprobada de la genérica conserva formato/contenido 1 y `available: false`: la respuesta normal es `{ "decks": [] }`.
+El bloque 04 añade validación común de barajas, preparación del catálogo y consulta pública de resúmenes. La [incorporación de genérica 2](docs/sdd/ACTIVACION_GENERICA_V2.md) conserva formato 1, incorpora contenido 2 aprobado y `available: true`: el catálogo normal ofrece únicamente su resumen seguro, con portada nula. B04/B05 conservan sus evidencias históricas de contenido 1/no disponible.
 
 El bloque 05 permite seleccionar/quitar una versión disponible de baraja, participar u observar como anfitrión, configurar tiempo de turno, desempate y revisión. Cada control se confirma de forma independiente y los invitados consultan los valores aceptados. La partida sigue pendiente. El estado de las salas se mantiene en memoria y se pierde al reiniciar el servidor.
 
@@ -56,7 +56,7 @@ Estas pruebas usan Chrome y el servidor local en `127.0.0.1:3000`; incluyen cont
 
 ### Probar configuración
 
-Desde la sala, modificar un control como anfitrión y observar su confirmación. Abrir otro perfil/navegador, entrar por código y comprobar el resumen recibido. Una segunda pestaña del anfitrión comparte identidad: los cambios de controles distintos se conservan y el último nuevo válido del mismo control prevalece. Desmarcar «El anfitrión juega» muestra al observador fuera de la lista; volver a jugar exige plaza libre. Recargar recupera los valores aceptados. Con el contenido actual no hay barajas seleccionables; esto permite comprobar el resto de controles y el catálogo vacío.
+Desde la sala, modificar un control como anfitrión y observar su confirmación. Abrir otro perfil/navegador, entrar por código y comprobar el resumen recibido. Una segunda pestaña del anfitrión comparte identidad: los cambios de controles distintos se conservan y el último nuevo válido del mismo control prevalece. Desmarcar «El anfitrión juega» muestra al observador fuera de la lista; volver a jugar exige plaza libre. Recargar recupera los valores aceptados. La genérica 2 está disponible, pero cada sala empieza sin baraja seleccionada y permite quitar la selección.
 
 Para probar selección, portada, icono neutro, errores y carreras con paquetes disponibles sin cambiar las copias reales:
 
@@ -95,11 +95,24 @@ npm run build
 npm run start
 ```
 
-Consultar `http://127.0.0.1:3000/api/decks`: inicialmente devuelve una lista vacía. `build` siempre prepara `barajas/catalogo.json`; `start` vuelve a validar los paquetes y exige ese catálogo vigente antes de escuchar. El artefacto está ignorado en Git y se genera con orden estable, UTF-8, dos espacios y LF. Solo se leen copias de APP; no hace falta ASSETS ni TFM para construir/ejecutar. Una edición exige preparación y reinicio; las consultas usan la instantánea interna.
+Consultar `http://127.0.0.1:3000/api/decks`: devuelve `decks` con un resumen `generica`, `schemaVersion: 1`, `contentVersion: 2`, nombre/subtítulo/descripción aprobados, `imageUrl: null` e `imageAlt: ""`. Solo contiene esos ocho campos. `build` siempre prepara `barajas/catalogo.json`; `start` vuelve a validar los paquetes y exige ese catálogo vigente antes de escuchar. El artefacto está ignorado en Git y se genera con orden estable, UTF-8, dos espacios y LF. Solo se leen copias de APP; no hace falta ASSETS ni TFM para construir/ejecutar. Detener la instancia anterior con Ctrl+C antes de `npm run start`: copiar o compilar no actualiza su instantánea. El reinicio pierde las salas; crear esperas nuevas para comprobar la incorporación.
 
 Validar un paquete devuelve salida 0 si es válido, aunque no esté disponible, y 1 si es inválido. Preparar o arrancar informa/excluye borradores inválidos cuyo `false` sea fiable; una disponible inválida o disponibilidad indeterminable bloquea. La aplicación no repara datos ni activa contenido. Incorporar/activar una nueva copia exige revisión y versiones conforme al [contrato](docs/contratos/CONTRATO_BARAJAS_V1.md).
 
-Los JSON internos no son descargables. Las referencias públicas admitidas usan `/media/decks/<id>/v<contenido>/<referencia>` y solo sirven bytes validados de copias disponibles. No hay selector, selección autorizada ni presentación de cartas/iconos. Las fixtures de pruebas son temporales y nunca activan la genérica. [Evidencia B04](docs/sdd/BLOQUE_04_CARGA_BARAJAS.md).
+Los JSON internos no son descargables. Las referencias públicas admitidas usan `/media/decks/<id>/v<contenido>/<referencia>` y solo sirven bytes validados de copias disponibles. B05 ofrece selector, selección autorizada y ficha/icono neutro para la ausencia de portada; cartas/manos/mesa siguen pendientes. Las fixtures de pruebas son temporales y no sustituyen la genérica normal: permiten probar catálogo vacío, borradores, inválidos y recursos reales. [Evidencia B04](docs/sdd/BLOQUE_04_CARGA_BARAJAS.md), [B05](docs/sdd/BLOQUE_05_CONFIGURACION_SALA.md) y [genérica 2](docs/sdd/ACTIVACION_GENERICA_V2.md).
+
+### Prueba manual de genérica 2 con dos sesiones
+
+En PowerShell, desde `E:\KARTA3\KARTA3_IA\APP\karta3`, ejecutar `npm ci` si faltan las dependencias y `npm run check`. Detener el servidor anterior y ejecutar `npm run start`. Mantenerlo abierto; en otra terminal del mismo directorio ejecutar `npm run test:browser` para la comprobación automática sobre la compilación actual.
+
+1. Abrir `http://127.0.0.1:3000/api/decks`: debe ofrecer `generica`, contenido 2 y portada nula. Volver a `http://127.0.0.1:3000`.
+2. En sesión A crear sala. Verificar las seis cifras y «Sin baraja seleccionada», aunque exista una única opción. Predeterminados: anfitrión juega, turno 30 s, desempate desactivado y revisión 5 s.
+3. En otro navegador/perfil con cookies independientes, sesión B entrar con código y nombre. Una segunda pestaña del mismo perfil comparte identidad y no representa a otro participante.
+4. A selecciona «KARTA3 — Baraja genérica · v2». Tras aceptación, A y B ven nombre, descripción e icono neutro sin recargar. B consulta la configuración y no dispone de controles para editarla.
+5. Recargar A y B, sin reiniciar el servidor: conservan identidad, autoridad, orden y selección exacta sin duplicaciones. Reiniciar el servidor pierde la espera y no es una prueba de recuperación mediante recarga.
+6. A elige «Sin baraja seleccionada»: B ve el cambio sin recargar. B prueba salida voluntaria y A cierre con confirmación. Repetir en móvil (390 px) y escritorio (1280 px).
+
+Registrar fecha, versión servida, navegadores/perfiles, acciones, resultados y límites en el cierre de la incorporación. Las instrucciones no acreditan ejecución manual; el cierre distingue los recorridos automáticos y la revisión manual realizada o pendiente. C09 sigue pendiente de inicio/uso en partida; C10 de cartas/manos/mesa y comprensión con usuarios.
 
 ## Probar el ciclo de vida de la espera
 

@@ -94,14 +94,19 @@ describe('B04-03/04 formato y coherencia', () => {
 });
 
 describe('B04-05 recursos reales', () => {
-  it('acepta null sin directorio; la copia real sigue no disponible y formato/contenido 1', async () => {
+  it('AGV2-01 copia real aprobada: formato 1/contenido 2 disponible, 58 cartas y null sin directorio', async () => {
     const result = await validatePackage(path.resolve('barajas/generica'));
-    expect(result).toMatchObject({ valid: true, available: false, errors: [], data: { metadata: { schemaVersion: 1, contentVersion: 1 } } });
+    expect(result).toMatchObject({ valid: true, available: true, errors: [], data: { metadata: { schemaVersion: 1, contentVersion: 2, imageRef: null, imageAlt: '' } } });
+    const collection = JSON.parse(await fs.readFile(path.resolve('barajas/generica/cartas.json'), 'utf8'));
+    expect(collection).toMatchObject({ schemaVersion: 1, contentVersion: 2, deckId: 'generica' });
+    expect(collection.cards).toHaveLength(58);
+    for (const card of collection.cards) expect(card).toMatchObject({ imageRef: null, imageAlt: '' });
+    expect(result.data!.metadata.notes).toContain('generica-v1');
     expect(result.images.size).toBe(0);
     expect(await fs.readdir(path.resolve('barajas/generica'))).toEqual(['baraja.json', 'cartas.json']);
     for (const [file, expected] of [
-      ['baraja.json', 'a86a5fe34573226694016f3dc49fd45cd966c4c1afa677d8a0bb28c54fb05a06'],
-      ['cartas.json', 'd3b22180d7ecfd991eeaca57ab664cacb566c198e20558104113d1a5de60461c']
+      ['baraja.json', '991406d04f60bfe884166a69fcc43954cfc751f0e058093ae2542f32c989e8ed'],
+      ['cartas.json', '868988a43fe6c6be1a73be14013c543dc2fc83970341a4243be868af75b4c35c']
     ]) expect(createHash('sha256').update(await fs.readFile(path.resolve('barajas/generica', file))).digest('hex')).toBe(expected);
   });
   it.each(['png', 'jpeg', 'webp'] as const)('decodifica portada y carta %s; repetición de recurso permitida', async (format) => {
