@@ -14,6 +14,7 @@ export default function App() {
   return <WaitingScreen
     room={flow.room}
     connected={flow.connected}
+    onRoom={flow.applyRoom}
     onConfirmExpiry={flow.confirmExpiry}
     busy={flow.busy}
     notice={flow.notice}

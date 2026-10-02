@@ -12,7 +12,13 @@ for (const width of [390, 1280]) {
       expect(response?.status()).toBe(200); expect(response?.headers()['cache-control']).toBe('no-store');
       expect(await response?.json()).toEqual({ decks: [] }); expect(await context.cookies()).toEqual([]);
       await page.goto('/'); await page.getByRole('button', { name: 'Crear sala' }).click();
-      await expect(page.getByText('1 de 5 participantes')).toBeVisible();
+      await expect(page.getByText('1 de 5 jugadores')).toBeVisible();
+      await expect(page.getByText('No hay barajas disponibles. Puedes configurar las demás opciones.')).toBeVisible();
+      await expect(page.getByLabel('Baraja', { exact: true })).toHaveValue('');
+      await expect(page.getByLabel('El anfitrión juega')).toBeChecked();
+      await expect(page.getByLabel('Tiempo por turno')).toHaveValue('30');
+      await expect(page.getByLabel('Forzar desempate')).not.toBeChecked();
+      await expect(page.getByLabel('Revisión de ronda')).toHaveValue('5');
       const responseAgain = await page.evaluate(async () => (await (await fetch('/api/decks')).json()));
       expect(responseAgain).toEqual({ decks: [] });
       expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
@@ -43,6 +49,14 @@ for (const width of [390, 1280]) {
         }
         await fs.writeFile(path.join(directory, 'cartas.json'), '{'); await fs.writeFile(path.join(directory, fixture.metadata.imageRef), 'recurso roto después del arranque');
         const cached = await page.evaluate(async () => (await (await fetch('/api/decks')).json())); expect(cached).toEqual(payload);
+        // B05 consume en main la misma instantánea validada, incluso si después cambian los archivos.
+        await page.goto(server.base); await page.getByRole('button', { name: 'Crear sala' }).click();
+        await expect(page.getByLabel('Baraja', { exact: true })).toHaveValue('');
+        await page.getByLabel('Baraja', { exact: true }).selectOption(JSON.stringify({ id: 'publicada', contentVersion: 7 }));
+        await expect(page.getByRole('heading', { name: 'Fixture publicada · v7' })).toBeVisible();
+        const selected = await page.evaluate(async () => (await (await fetch('/api/rooms/current')).json()).room);
+        expect(selected.selectedDeck).toEqual(payload.decks[0]);
+        expect(selected.settings).toMatchObject({ deckId: 'publicada', deckContentVersion: 7 });
         expect(await fs.readdir(root)).not.toContain('asset-access.txt');
       } finally { await stop?.(); await removeTestInstallation(root); }
     });

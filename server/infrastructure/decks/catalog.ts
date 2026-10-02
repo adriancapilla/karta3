@@ -1,7 +1,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { randomUUID } from 'node:crypto';
-import type { DeckCatalog } from '../../application/deckCatalog.js';
+import type { DeckCatalog, PublishedDeckVersions, DeckVersionResult } from '../../application/deckCatalog.js';
 import type { Deck } from '../../domain/deck.js';
 import type { DecksResponse, DeckSummary } from '../../../shared/contracts/deck.js';
 import { validatePackage } from './readPackage.js';
@@ -25,18 +25,28 @@ function freeze<T>(value: T): T {
 }
 
 /** Instantánea interna: las peticiones no abren archivos ni adoptan cambios editoriales. */
-export class LoadedDeckCatalog implements DeckCatalog {
+type PublishedDefinition = { contentVersion: number; definition: Deck };
+export class LoadedDeckCatalog implements DeckCatalog, PublishedDeckVersions {
   private readonly summariesList: readonly DeckSummary[];
-  private readonly definitions: ReadonlyMap<string, Deck>;
+  private readonly definitions: ReadonlyMap<string, PublishedDefinition>;
   private readonly resources: ReadonlyMap<string, ValidatedImage>;
-  constructor(summaries: readonly DeckSummary[], definitions: ReadonlyMap<string, Deck>, resources: ReadonlyMap<string, ValidatedImage>) {
+  constructor(summaries: readonly DeckSummary[], definitions: ReadonlyMap<string, PublishedDefinition>, resources: ReadonlyMap<string, ValidatedImage>) {
     this.summariesList = freeze(structuredClone(summaries));
     this.definitions = new Map([...definitions].map(([id, definition]) => [id, freeze(structuredClone(definition))]));
     this.resources = new Map([...resources].map(([url, image]) => [url, { mime: image.mime, bytes: Buffer.from(image.bytes) }]));
   }
   summaries(): readonly DeckSummary[] { return this.summariesList; }
-  // Acceso interno para comprobación; el puerto público no ofrece cartas ni selección.
-  definition(id: string): Deck | undefined { return this.definitions.get(id); }
+  resolveVersion(id: string, contentVersion: number): DeckVersionResult {
+    const summary = this.summariesList.find((deck) => deck.id === id);
+    const published = this.definitions.get(id);
+    if (!summary || !published || published.definition.id !== id || published.contentVersion !== summary.contentVersion) {
+      return { ok: false, reason: 'DECK_NOT_AVAILABLE' };
+    }
+    if (summary.contentVersion !== contentVersion) return { ok: false, reason: 'DECK_VERSION_MISMATCH' };
+    return { ok: true, summary };
+  }
+  // Acceso interno para comprobación; ningún transporte expone la definición.
+  definition(id: string): Deck | undefined { return this.definitions.get(id)?.definition; }
   image(url: string): ValidatedImage | undefined {
     const image = this.resources.get(url);
     return image ? { mime: image.mime, bytes: Buffer.from(image.bytes) } : undefined;
@@ -45,7 +55,7 @@ export class LoadedDeckCatalog implements DeckCatalog {
 
 export async function loadPackages(root: string) {
   const diagnostics: PackageDiagnostic[] = [];
-  const definitions = new Map<string, Deck>();
+  const definitions = new Map<string, PublishedDefinition>();
   const resources = new Map<string, ValidatedImage>();
   const published: { order: number; summary: DeckSummary }[] = [];
   let directories: string[];
@@ -68,7 +78,7 @@ export async function loadPackages(root: string) {
     diagnostics.push({ package: directory, valid: result.valid, available: result.available, errors: result.errors });
     if (!result.valid || !result.available) continue;
     const { metadata, definition } = result.data!;
-    definitions.set(metadata.id, definition);
+    definitions.set(metadata.id, { contentVersion: metadata.contentVersion, definition });
     const prefix = `/media/decks/${metadata.id}/v${metadata.contentVersion}/`;
     for (const [ref, image] of result.images) resources.set(`${prefix}${ref}`, image);
     published.push({ order: metadata.publication.order, summary: {

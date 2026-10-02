@@ -26,8 +26,8 @@ test('B02 dos navegadores independientes sincronizan entrada, nombres, salida, r
     const code = (await host.locator('.code').textContent())!;
     const roomUrl = host.url();
     await enter(guest, code, 'Ana');
-    await expect(guest.getByText('2 de 5 participantes')).toBeVisible({ timeout: 2000 });
-    await expect(host.getByText('2 de 5 participantes')).toBeVisible({ timeout: 2000 });
+    await expect(guest.getByText('2 de 5 jugadores')).toBeVisible({ timeout: 2000 });
+    await expect(host.getByText('2 de 5 jugadores')).toBeVisible({ timeout: 2000 });
     await expect(host.locator('.participant-list li strong')).toHaveText(['Ana', 'Jugador 1']);
     await expect(guest.locator('.participant-list li strong')).toHaveText(['Ana', 'Jugador 1']);
     await guest.getByRole('button', { name: 'Copiar código' }).click();
@@ -39,12 +39,12 @@ test('B02 dos navegadores independientes sincronizan entrada, nombres, salida, r
     const firstId = await guest.evaluate(async () => (await (await fetch('/api/rooms/current')).json()).room.participant.id);
 
     await guest.reload();
-    await expect(guest.getByText('2 de 5 participantes')).toBeVisible();
+    await expect(guest.getByText('2 de 5 jugadores')).toBeVisible();
     expect(await guest.evaluate(async () => (await (await fetch('/api/rooms/current')).json()).room.participant.id)).toBe(firstId);
     const guestTab = await guestContext.newPage();
     await guestTab.goto('/');
     await expect(guestTab).toHaveURL(roomUrl);
-    await expect(host.getByText('2 de 5 participantes')).toBeVisible();
+    await expect(host.getByText('2 de 5 jugadores')).toBeVisible();
 
     await host.getByLabel('Editar mi nombre').fill('Ana');
     await host.getByRole('button', { name: 'Guardar' }).click();
@@ -62,13 +62,13 @@ test('B02 dos navegadores independientes sincronizan entrada, nombres, salida, r
 
     await guest.getByRole('button', { name: 'Salir de la sala' }).click();
     await guest.getByRole('button', { name: 'Cancelar' }).click();
-    await expect(host.getByText('2 de 5 participantes')).toBeVisible();
+    await expect(host.getByText('2 de 5 jugadores')).toBeVisible();
     await guest.getByRole('button', { name: 'Salir de la sala' }).click();
     await guest.getByRole('button', { name: 'Sí, salir' }).click();
     await expect(guest.getByRole('button', { name: 'Crear sala' })).toBeVisible();
     await expect(guestTab.getByRole('button', { name: 'Crear sala' })).toBeVisible({ timeout: 2000 });
     await expect(guest.getByRole('alert')).toContainText('Has salido');
-    await expect(host.getByText('1 de 5 participantes')).toBeVisible({ timeout: 2000 });
+    await expect(host.getByText('1 de 5 jugadores')).toBeVisible({ timeout: 2000 });
     await expect(host.getByText('Berta ha salido de la sala')).toBeVisible();
     await expect(host.getByText('Berta ha salido de la sala')).toBeHidden({ timeout: 6500 });
     await guest.reload();
@@ -90,7 +90,7 @@ test('B02 dos navegadores independientes sincronizan entrada, nombres, salida, r
     await expect(host.getByRole('button', { name: 'Cancelar' })).toBeFocused();
     await host.keyboard.press('Enter');
     await expect(closeButton).toBeFocused();
-    await expect(guest.getByText('3 de 5 participantes')).toBeVisible();
+    await expect(guest.getByText('3 de 5 jugadores')).toBeVisible();
     await host.getByRole('button', { name: 'Cerrar sala' }).click();
     await host.getByRole('button', { name: 'Sí, cerrar sala' }).click();
     await expect(guest.getByRole('alert')).toContainText('El anfitrión ha cerrado la sala');
@@ -119,7 +119,7 @@ test('B02 recorrido inverso, errores de código y capacidad con sesiones aislada
     await guest.getByLabel('Código de sala').fill(code);
     await guest.getByLabel('Tu nombre').fill('Ana');
     await guest.getByLabel('Tu nombre').press('Enter');
-    await expect(host.getByText('2 de 5 participantes')).toBeVisible({ timeout: 2000 });
+    await expect(host.getByText('2 de 5 jugadores')).toBeVisible({ timeout: 2000 });
     await host.screenshot({ path: 'test-results/390-host-joined.png', fullPage: true });
     await guest.screenshot({ path: 'test-results/1280-guest-joined.png', fullPage: true });
     for (let i = 0; i < 3; i += 1) {
@@ -127,7 +127,7 @@ test('B02 recorrido inverso, errores de código y capacidad con sesiones aislada
       const page = await context.newPage();
       await page.goto('/');
       await enter(page, code, `Guest ${i}`);
-      await expect(page.getByText(`${i + 3} de 5 participantes`)).toBeVisible();
+      await expect(page.getByText(`${i + 3} de 5 jugadores`)).toBeVisible();
     }
     const fullContext = await browser.newContext(); extraContexts.push(fullContext);
     const full = await fullContext.newPage();
@@ -156,13 +156,13 @@ test('B02/B03 cerrar la pestaña conserva inicialmente la reserva y un fallo de 
     await enter(guest, code, 'Ana');
     await expect(guest.getByRole('alert')).toContainText('No se pudo');
     await expect(guest.getByLabel('Código de sala')).toHaveValue(code);
-    await expect(host.getByText('1 de 5 participantes')).toBeVisible();
+    await expect(host.getByText('1 de 5 jugadores')).toBeVisible();
     await guestContext.unrouteAll();
     await guest.getByRole('button', { name: 'Entrar', exact: true }).click();
-    await expect(guest.getByText('2 de 5 participantes')).toBeVisible({ timeout: 10000 });
-    await expect(host.getByText('2 de 5 participantes')).toBeVisible({ timeout: 2000 });
+    await expect(guest.getByText('2 de 5 jugadores')).toBeVisible({ timeout: 10000 });
+    await expect(host.getByText('2 de 5 jugadores')).toBeVisible({ timeout: 2000 });
     await guestContext.close();
-    await expect(host.getByText('2 de 5 participantes')).toBeVisible();
+    await expect(host.getByText('2 de 5 jugadores')).toBeVisible();
     const current = await host.evaluate(async () => (await (await fetch('/api/rooms/current')).json()).room);
     expect(current.participants).toHaveLength(2);
   } finally { await hostContext.close(); await guestContext.close(); }
@@ -174,7 +174,7 @@ test('B02 pérdida de memoria simulada devuelve a ambas sesiones a portada sin r
     await host.getByRole('button', { name: 'Crear sala' }).click();
     const code = (await host.locator('.code').textContent())!;
     await enter(guest, code, 'Ana');
-    await expect(host.getByText('2 de 5 participantes')).toBeVisible({ timeout: 2000 });
+    await expect(host.getByText('2 de 5 jugadores')).toBeVisible({ timeout: 2000 });
     for (const page of [host, guest]) {
       await page.route('**/api/rooms/current', (route) => route.fulfill({ status: 200, contentType: 'application/json', body: '{"room":null}' }));
       await page.route('**/socket.io/**', (route) => route.abort());
@@ -214,7 +214,7 @@ test('B02 código real 000042 generado por el servidor compilado conserva el cer
     await guest.getByLabel('Tu nombre').fill('Ana');
     await guest.getByRole('button', { name: 'Entrar', exact: true }).click();
     await expect(guest.locator('.code')).toHaveText('000042');
-    await expect(host.getByText('2 de 5 participantes')).toBeVisible({ timeout: 2000 });
+    await expect(host.getByText('2 de 5 jugadores')).toBeVisible({ timeout: 2000 });
     await guest.getByRole('button', { name: 'Copiar código' }).click();
     expect(await guest.evaluate(() => navigator.clipboard.readText())).toBe('000042');
   } finally {
@@ -231,7 +231,7 @@ test('B02 una interrupción breve del canal recupera la vista actual sin recarga
     await host.getByRole('button', { name: 'Crear sala' }).click();
     const code = (await host.locator('.code').textContent())!;
     await enter(guest, code, 'Ana');
-    await expect(guest.getByText('2 de 5 participantes')).toBeVisible();
+    await expect(guest.getByText('2 de 5 jugadores')).toBeVisible();
     const participantId = await guest.evaluate(async () => (await (await fetch('/api/rooms/current')).json()).room.participant.id);
     await guestContext.setOffline(true);
     await expect.poll(() => guest.evaluate(() => navigator.onLine)).toBe(false);
@@ -241,6 +241,6 @@ test('B02 una interrupción breve del canal recupera la vista actual sin recarga
     await guestContext.setOffline(false);
     await expect(guest.locator('.participant-list li strong').last()).toHaveText('Nuevo nombre', { timeout: 10000 });
     expect(await guest.evaluate(async () => (await (await fetch('/api/rooms/current')).json()).room.participant.id)).toBe(participantId);
-    await expect(guest.getByText('2 de 5 participantes')).toBeVisible();
+    await expect(guest.getByText('2 de 5 jugadores')).toBeVisible();
   } finally { await hostContext.close(); await guestContext.close(); }
 });

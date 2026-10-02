@@ -18,9 +18,10 @@ export function toRoomView(room: Room, sessionId: string = room.hostSessionId, s
     code: room.code,
     status: 'WAITING',
     revision: room.revision,
-    participant: { id: participant.id, name: participant.name, role: participant.role, isPlayer: true, presence: participant.presence },
-    participants: room.participants.map((person) => ({ id: person.id, name: person.name, role: person.role, isPlayer: true, presence: person.presence })),
+    participant: { id: participant.id, name: participant.name, role: participant.role, isPlayer: participant.isPlayer, presence: participant.presence },
+    participants: room.participants.map((person) => ({ id: person.id, name: person.name, role: person.role, isPlayer: person.isPlayer, presence: person.presence })),
     lifecycle: room.lifecycle(serverNow),
-    settings: room.settings
+    settings: room.settings,
+    selectedDeck: room.selectedDeck
   };
 }

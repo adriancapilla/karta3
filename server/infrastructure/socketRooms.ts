@@ -6,6 +6,7 @@ import type { RoomChanges, SessionPresence } from '../application/ports.js';
 import type { RoomActions } from '../application/roomUseCases.js';
 import { RoomError } from '../application/roomError.js';
 import type { MemorySessions } from './memorySessions.js';
+import { configurationInput, exactObject } from './configurationInput.js';
 
 const sessionRoom = (sessionId: string) => `session:${sessionId}`;
 const invalid = () => new RoomError('INVALID_INPUT', 'Los datos enviados no son válidos.');
@@ -90,6 +91,15 @@ export class SocketRoomChanges implements RoomChanges, SessionPresence {
             || !field(payload.roomId, 100) || !field(payload.participantId, 100)) throw invalid();
           rooms.leave(sessionId, payload.requestId, payload.roomId, payload.participantId);
           respond(ack, { ok: true, roomId: payload.roomId, participantId: payload.participantId });
+        } catch (error) { respond(ack, ackError(error)); }
+      });
+      socket.on('room:configure', (payload: unknown, ack: (result: SocketAck<{ room: RoomView }>) => void) => {
+        try {
+          // También las entradas mal formadas observan primero los vencimientos debidos.
+          rooms.current(sessionId);
+          if (!exactObject(payload, ['requestId', 'roomId', 'change']) || !field(payload.requestId, 100)
+            || !field(payload.roomId, 100)) throw invalid();
+          respond(ack, { ok: true, room: rooms.configure(sessionId, payload.requestId, payload.roomId, configurationInput(payload.change)) });
         } catch (error) { respond(ack, ackError(error)); }
       });
     });

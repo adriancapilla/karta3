@@ -50,7 +50,7 @@ describe('casos de uso con puertos sustitutos', () => {
       participant: { id: 'id-2', name: 'Jugador 1', role: 'HOST', isPlayer: true, presence: 'CONNECTED' },
       participants: [{ id: 'id-2', name: 'Jugador 1', role: 'HOST', isPlayer: true, presence: 'CONNECTED' }],
       lifecycle: { serverNow: 1_800_000_000_000, expiresAt: 1_800_001_800_000, warning: false },
-      settings: { deckId: null, hostPlays: true, turnSeconds: 30, forceTieBreak: false, reviewSeconds: 5 }
+      selectedDeck: null, settings: { deckId: null, deckContentVersion: null, hostPlays: true, turnSeconds: 30, forceTieBreak: false, reviewSeconds: 5 }
     });
     expect(JSON.stringify(view)).not.toContain('session-a');
     view.participant.name = 'Manipulado';

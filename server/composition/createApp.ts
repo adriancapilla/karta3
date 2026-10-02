@@ -9,7 +9,7 @@ import { MemoryRoomRequests } from '../infrastructure/memoryRoomRequests.js';
 import { SocketRoomChanges } from '../infrastructure/socketRooms.js';
 import { WaitingLifecycle } from '../application/waitingLifecycle.js';
 import { SystemClock, TimerScheduler } from '../infrastructure/time.js';
-import { ListDecks, type DeckCatalog } from '../application/deckCatalog.js';
+import { ListDecks, type DeckCatalog, type PublishedDeckVersions } from '../application/deckCatalog.js';
 import { LoadedDeckCatalog } from '../infrastructure/decks/catalog.js';
 
 type Options = {
@@ -21,6 +21,7 @@ type Options = {
   clock?: Clock;
   scheduler?: Scheduler;
   decks?: DeckCatalog;
+  deckVersions?: PublishedDeckVersions;
 };
 
 export function createRuntime(options: Options = {}) {
@@ -28,10 +29,12 @@ export function createRuntime(options: Options = {}) {
   const sessions = options.sessions ?? new MemorySessions();
   const changes = new SocketRoomChanges();
   const lifecycle = new WaitingLifecycle(repository, options.clock ?? new SystemClock(), options.scheduler ?? new TimerScheduler(), changes, sessions, changes);
-  const rooms = new RoomUseCases(repository, options.identifiers ?? createId, options.codes ?? drawCodeCandidate, new MemoryRoomRequests(), lifecycle);
+  const emptyCatalog = new LoadedDeckCatalog([], new Map(), new Map());
+  const rooms = new RoomUseCases(repository, options.identifiers ?? createId, options.codes ?? drawCodeCandidate, new MemoryRoomRequests(), lifecycle,
+    options.deckVersions ?? emptyCatalog);
   const production = options.production ?? process.env.NODE_ENV === 'production';
   return {
-    app: createHttpApp({ rooms, sessions, production, decks: new ListDecks(options.decks ?? new LoadedDeckCatalog([], new Map(), new Map())) }),
+    app: createHttpApp({ rooms, sessions, production, decks: new ListDecks(options.decks ?? emptyCatalog) }),
     attachRealtime: (server: HttpServer) => changes.attach(server, rooms, sessions, production),
     dispose: () => { changes.dispose(); lifecycle.dispose(); }
   };

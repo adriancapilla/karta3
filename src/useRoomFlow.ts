@@ -240,7 +240,7 @@ export function useRoomFlow() {
   }
 
   return {
-    room, loading, busy, joining, notice, activity, code, joinName, joinError, name, nameError, copyMessage, connected, confirmExpiry,
+    room, loading, busy, joining, notice, activity, code, joinName, joinError, name, nameError, copyMessage, connected, confirmExpiry, applyRoom,
     confirmClose, confirmLeave, refresh, createRoom, joinRoom, editName, saveName, copyCode,
     closeRoom, leaveRoom, setConfirmClose, setConfirmLeave,
     setCode: (value: string) => { setCode(value); setJoinError(''); pendingJoin.current = null; },

@@ -8,9 +8,9 @@ La aplicación se construye de forma incremental, con especificaciones, pruebas 
 
 Actualmente permite crear una sala de espera, compartir su código e incorporar participantes desde navegadores independientes. La lista se actualiza en tiempo real y cada participante puede cambiar su nombre o salir. También gestiona la reconexión temporal y el cierre de salas por inactividad.
 
-El bloque 04 añade validación común de barajas, preparación del catálogo y consulta pública de resúmenes. La copia aprobada de la genérica conserva formato/contenido 1 y `available: false`: la respuesta normal es `{ "decks": [] }`. Todavía no existe selector.
+El bloque 04 añade validación común de barajas, preparación del catálogo y consulta pública de resúmenes. La copia aprobada de la genérica conserva formato/contenido 1 y `available: false`: la respuesta normal es `{ "decks": [] }`.
 
-La configuración y el desarrollo de la partida todavía están pendientes. El estado de las salas se mantiene en memoria y se pierde al reiniciar el servidor.
+El bloque 05 permite seleccionar/quitar una versión disponible de baraja, participar u observar como anfitrión, configurar tiempo de turno, desempate y revisión. Cada control se confirma de forma independiente y los invitados consultan los valores aceptados. La partida sigue pendiente. El estado de las salas se mantiene en memoria y se pierde al reiniciar el servidor.
 
 Las reglas para desarrollar los siguientes bloques están en [`AGENTS.md`](AGENTS.md). La [organización y dependencias](docs/arquitectura/ORGANIZACION_Y_DEPENDENCIAS.md) explica cómo separar dominio, aplicación, infraestructura e interfaz a partir de este primer bloque.
 
@@ -52,23 +52,37 @@ En otra terminal, entra también en esa carpeta y ejecuta:
 npm run test:browser
 ```
 
-Estas pruebas usan Chrome y el servidor local en `127.0.0.1:3000`; incluyen contextos aislados que se comunican mediante Socket.IO. Reinicia `npm run start` después de cambiar y compilar código del servidor. Los recorridos de caducidad levantan además instancias de esa misma compilación con reloj/planificador sustituidos, sin controles de prueba públicos. El recorrido de reserva real espera los 30 segundos originales y puede tardar cerca de un minuto. La evidencia actual está en [`docs/sdd/BLOQUE_03_CICLO_VIDA_ESPERA.md`](docs/sdd/BLOQUE_03_CICLO_VIDA_ESPERA.md); los bloques anteriores conservan sus registros históricos.
+Estas pruebas usan Chrome y el servidor local en `127.0.0.1:3000`; incluyen contextos aislados que se comunican mediante Socket.IO. Reinicia `npm run start` después de cambiar y compilar código del servidor. Los recorridos de caducidad levantan además instancias de esa misma compilación con reloj/planificador sustituidos, sin controles de prueba públicos. El recorrido de reserva real espera los 30 segundos originales y puede tardar cerca de un minuto. La evidencia de configuración está en [B05](docs/sdd/BLOQUE_05_CONFIGURACION_SALA.md); los bloques anteriores conservan sus registros históricos.
+
+### Probar configuración
+
+Desde la sala, modificar un control como anfitrión y observar su confirmación. Abrir otro perfil/navegador, entrar por código y comprobar el resumen recibido. Una segunda pestaña del anfitrión comparte identidad: los cambios de controles distintos se conservan y el último nuevo válido del mismo control prevalece. Desmarcar «El anfitrión juega» muestra al observador fuera de la lista; volver a jugar exige plaza libre. Recargar recupera los valores aceptados. Con el contenido actual no hay barajas seleccionables; esto permite comprobar el resto de controles y el catálogo vacío.
+
+Para probar selección, portada, icono neutro, errores y carreras con paquetes disponibles sin cambiar las copias reales:
+
+```powershell
+Set-Location -LiteralPath 'E:\KARTA3\KARTA3_IA\APP\karta3'
+npm run build
+npx playwright test tests/browser/configuration.spec.ts
+```
+
+Este recorrido crea servidores de la compilación actual con paquetes sintéticos validados en carpetas temporales, dos sesiones y dos pestañas del anfitrión. Usa conexiones reales y tiempo controlado para vencimientos; no publica fixtures en `barajas/`.
 
 ## Estructura y decisiones
 
 - `server/domain/deck.ts`: tipos de baraja y validador puro reutilizable, sin formato, archivos ni publicación.
-- `server/application/`: `Room` conserva presencia, generaciones y plazos con tiempos explícitos; `RoomUseCases` autoriza acciones y deduplica; `WaitingLifecycle` procesa vencimientos mediante puertos. `DeckCatalog` ofrece resúmenes y `ListDecks` proyecta únicamente el contrato seguro.
+- `server/application/`: `Room` conserva configuración, plazas, presencia y plazos con tiempos explícitos; `RoomUseCases.configure` autoriza, consulta `PublishedDeckVersions` y deduplica; `WaitingLifecycle` procesa vencimientos. `DeckCatalog`/`ListDecks` ofrecen resúmenes seguros.
 - `server/infrastructure/`: repositorio y solicitudes deduplicadas en memoria, sesiones y último fin automático propio, generación, reloj monotónico, planificador cancelable, HTTP Express y Socket.IO. El transporte cuenta conexiones autenticadas; la aplicación decide sus consecuencias. La cookie es `HttpOnly`, limitada al host y `SameSite=Strict`; usa `Secure` cuando `NODE_ENV=production`.
 - `server/composition/` y `server/main.ts`: eligen adaptadores, los conectan, sirven `dist` e inician el proceso.
 - `shared/contracts/`: formato público de la sala, respuestas y mensajes de tiempo real, compartido con el cliente.
-- `src/`: React/Vite; `api.ts` y `socket.ts` transportan, `useRoomFlow.ts` coordina revisiones/motivos y `screens.tsx`/`ExpiryWarning.tsx` presentan sin decidir permisos ni cierres.
+- `src/`: React/Vite; `api.ts` y `socket.ts` transportan, `useRoomFlow.ts` coordina revisiones/motivos. `RoomConfiguration.tsx` muestra catálogo/ficha/controles; `useRoomConfiguration.ts` y `configurationState.ts` identifican pendientes por control. `screens.tsx`/`ExpiryWarning.tsx` presentan sin decidir permisos, plazas ni cierres.
 - `server/infrastructure/decks/`: parser JSON estricto, esquema/coherencia, recursos decodificados y catálogo en memoria. `sharp` 0.35.5 es dependencia del servidor para PNG/JPEG/WebP; no va al cliente.
 - `tools/decks.ts`: analiza argumentos y delega a composición las operaciones comunes de validación/preparación.
 - `tools/check-architecture.mjs`: comprueba imports, reexportaciones, aliases y ciclos del código de producción, incluidos comandos en la raíz de `tools/`.
 - `tests/browser/`: recorridos en Chrome a 390 y 1280 píxeles, con sesiones independientes.
 - `docs/sdd/`: especificación y evidencia del bloque.
 
-La creación, lectura, edición del nombre y cierre conservan HTTP. La entrada, salida y sincronización usan Socket.IO con la misma sesión; una respuesta incierta puede reintentarse con el mismo `requestId`. El estado en memoria permite una sola instancia del servidor; no hay persistencia ni sincronización entre procesos. El código visible localiza una sala, pero nunca autoriza a modificarla.
+La creación, lectura, edición del nombre y cierre conservan HTTP. La entrada, salida, configuración y sincronización usan Socket.IO con la misma sesión. La configuración usa un id nuevo por gesto; el transporte volátil no espera ni encola cambios para reconectar. El servidor deduplica repeticiones sin restaurar un resultado antiguo. El estado en memoria permite una sola instancia del servidor; no hay persistencia ni sincronización entre procesos. El código visible localiza una sala, pero nunca autoriza a modificarla.
 
 ## Preparar y probar barajas
 
@@ -111,6 +125,6 @@ Socket.IO usa `pingInterval=5000` y `pingTimeout=5000` ms. La reserva empieza cu
 
 Los fallos devuelven `{ "error": { "code": "…", "message": "…" } }`, con causas estables como `INVALID_INPUT`, `ROOM_NOT_AVAILABLE`, `FORBIDDEN` y `SESSION_REQUIRED`. No se transmiten trazas al navegador.
 
-El canal Socket.IO acepta `room:resume` (`{}`), `room:join` (`{ requestId, code, name }`) y `room:leave` (`{ requestId, roomId, participantId }`), y comunica `room:state`, `room:left` y `room:closed`. Los IDs visibles de sala y participante no sustituyen a la cookie de sesión.
+El canal Socket.IO acepta `room:resume` (`{}`), `room:join` (`{ requestId, code, name }`), `room:leave` (`{ requestId, roomId, participantId }`) y `room:configure` (`{ requestId, roomId, change: { field, value } }`), y comunica `room:state`, `room:left` y `room:closed`. Los IDs visibles de sala y participante no sustituyen a la cookie de sesión. [B05 §5](docs/sdd/BLOQUE_05_CONFIGURACION_SALA.md) fija los cinco cambios y sus tipos exactos.
 
-La vista añade `presence` y `lifecycle: { serverNow, expiresAt, warning }`. Las recuperaciones devuelven solo el último motivo propio cuando terminó automáticamente; este aviso mínimo se pierde al reiniciar y se limpia al crear/entrar de nuevo. Se cancelan tareas y se liberan índices al retirar/cerrar; se conservan resultados mínimos de deduplicación para rechazar solicitudes antiguas. Configuración, expulsión, bots, inicio, partida y despliegue siguen pendientes.
+La vista incluye `presence`, `lifecycle: { serverNow, expiresAt, warning }`, settings aceptados con id/versión de baraja y `selectedDeck` (solo ficha o null). Los miembros incluyen al observador; las plazas se cuentan con `isPlayer`. Solo un cambio efectivo renueva la espera, sin reiniciar ausencias. Las recuperaciones devuelven solo el último motivo propio cuando terminó automáticamente; este aviso mínimo se pierde al reiniciar y se limpia al crear/entrar de nuevo. Se cancelan tareas y se liberan índices al retirar/cerrar; se conservan resultados mínimos de deduplicación para rechazar solicitudes antiguas. Expulsión, bots, inicio, partida y despliegue siguen pendientes.

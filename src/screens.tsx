@@ -1,6 +1,7 @@
 import { useRef, type FormEvent } from 'react';
 import type { RoomView } from '../shared/contracts/room';
 import { ExpiryWarning } from './ExpiryWarning';
+import { RoomConfiguration } from './RoomConfiguration';
 
 export function HomeScreen(props: {
   busy: boolean; joining: boolean; notice: string; code: string; joinName: string; joinError: string;
@@ -55,6 +56,7 @@ export function WaitingScreen(props: {
   room: RoomView; busy: boolean; notice: string; activity: string; name: string; nameError: string;
   copyMessage: string; confirmClose: boolean; confirmLeave: boolean;
   connected: boolean; onConfirmExpiry: () => void;
+  onRoom: (room: RoomView) => boolean;
   onNameChange: (value: string) => void; onSaveName: () => void; onCopyCode: () => void;
   onAskClose: () => void; onCancelClose: () => void; onClose: () => void;
   onAskLeave: () => void; onCancelLeave: () => void; onLeave: () => void;
@@ -63,6 +65,8 @@ export function WaitingScreen(props: {
   const submitName = (event: FormEvent) => { event.preventDefault(); props.onSaveName(); };
   const isHost = props.room.participant.role === 'HOST';
   const displayed = suffixes(props.room);
+  const players = props.room.participants.filter((person) => person.isPlayer);
+  const observer = props.room.participants.find((person) => !person.isPlayer);
   const cancel = () => {
     if (isHost) props.onCancelClose(); else props.onCancelLeave();
     exitButton.current?.focus();
@@ -70,7 +74,7 @@ export function WaitingScreen(props: {
   return <main className="shell">
     <header><span className="brand">KARTA<span>3</span></span><span className="top-label">Sala de espera</span></header>
     <section className="card room">
-      <div className="status"><span className="status-dot" />{isHost ? (props.room.participants.length === 5 ? 'Sala completa' : 'Esperando participantes') : 'Esperando a que el anfitrión inicie la partida'}</div>
+      <div className="status"><span className="status-dot" />{isHost ? (players.length === 5 ? 'Sala completa' : 'Esperando participantes') : 'Esperando a que el anfitrión inicie la partida'}</div>
       <h1>{isHost ? 'Tu sala está lista' : 'Ya estás en la sala'}</h1>
       <p>Comparte este código para invitar a otras personas.</p>
       <div className="code-panel">
@@ -79,12 +83,13 @@ export function WaitingScreen(props: {
         <button className="secondary" onClick={props.onCopyCode}>Copiar código</button>
         <p className="copy-message" role="status">{props.copyMessage}</p>
       </div>
-      <h2>Participantes</h2>
-      <p className="occupancy">{props.room.participants.length} de 5 participantes</p>
       {!props.connected && <p className="connection-notice" role="status">Conexión interrumpida. Intentando recuperarla…</p>}
       {props.room.lifecycle.warning && <ExpiryWarning lifecycle={props.room.lifecycle} onZero={props.onConfirmExpiry} />}
+      <div className="waiting-columns"><section aria-labelledby="players-heading">
+      <h2 id="players-heading">Jugadores</h2>
+      <p className="occupancy">{players.length} de 5 jugadores</p>
       <ol className="participant-list">
-        {props.room.participants.map((person) => <li className="participant" key={person.id}>
+        {players.map((person) => <li className="participant" key={person.id}>
           <strong>{person.name}{displayed.has(person.id) && <span className="name-suffix"> ({displayed.get(person.id)})</span>}</strong>
           <span className="participant-badges">
             {person.id === props.room.participant.id && <span className="badge">Tú</span>}
@@ -93,6 +98,15 @@ export function WaitingScreen(props: {
           </span>
         </li>)}
       </ol>
+      {observer && <div className="observer-line">
+        <strong>{observer.name}{displayed.has(observer.id) && <span className="name-suffix"> ({displayed.get(observer.id)})</span>}</strong>
+        <span>Anfitrión · Observador</span>
+        <span className="participant-badges">
+          {observer.id === props.room.participant.id && <span className="badge">Tú</span>}
+          {observer.presence === 'RECONNECTING' && <span className="badge reconnecting">Reconectando</span>}
+        </span>
+      </div>}
+      </section><RoomConfiguration room={props.room} connected={props.connected} onRoom={props.onRoom} /></div>
       <form onSubmit={submitName}>
         <label htmlFor="player-name">Editar mi nombre</label>
         <div className="name-row">

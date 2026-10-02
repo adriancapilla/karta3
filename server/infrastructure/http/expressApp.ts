@@ -20,7 +20,9 @@ const roomErrorStatus: Record<RoomErrorCode, number> = {
   ALREADY_IN_ROOM: 409,
   ROOM_FULL: 409,
   REQUEST_CONFLICT: 409,
-  PARTICIPATION_ENDED: 409
+  PARTICIPATION_ENDED: 409,
+  DECK_NOT_AVAILABLE: 404,
+  DECK_VERSION_MISMATCH: 409
 };
 
 export function createHttpApp(dependencies: { rooms: RoomActions; sessions: MemorySessions; production: boolean; decks: ListDecks }) {

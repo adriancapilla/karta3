@@ -4,6 +4,7 @@
 **Fecha:** 30/09/2026.
 **Alineación documental:** 01/10/2026 — flujo de barajas conforme a infraestructura §9 y contrato formato 1; las dependencias de capas no cambian.
 **Implementación B04:** 02/10/2026 — validación pura, paquetes, catálogo y medios. No se modifica la dirección de dependencias ni se implementa `Game`.
+**Implementación B05:** 02/10/2026 — configuración por control y selección de versión mediante puerto; participación/observación en el modelo de sala. Mismas dependencias y dominio de partida pendiente.
 **Ámbito:** repositorio digital `APP/karta3`. La evolución de estas reglas se decide en la conversación de arquitectura; cada conversación de implementación trabaja con una especificación SDD concreta.
 
 ## 1. Qué resuelve este documento
@@ -114,11 +115,17 @@ Los originales editables viven en `ASSETS/Barajas/<id>/`: el Gestor prepara dire
 | Recursos | `resources.ts`: escritura exacta, realpath contenido, extensión y decodificación completa con sharp. |
 | Preparación e instantánea | `catalog.ts`: publicación, orden, escritura completa por renombrado, catálogo vigente; copia/freeze de definiciones y copias privadas de bytes de medios. No se recarga en consultas. |
 | Transporte y composición | `http/expressApp.ts` consulta el caso de uso; `publicFiles.ts` sirve únicamente URLs registradas y bloquea rutas privadas; `composition/decks.ts` resuelve instalación/adaptadores y `main.ts` carga antes de escuchar. |
-| Comando y cliente | `tools/decks.ts` solo argumentos/diagnóstico/salida; `src/api.ts` usa el contrato seguro. No hay selector. |
+| Comando y cliente | `tools/decks.ts` solo argumentos/diagnóstico/salida; `src/api.ts` usa el contrato seguro. B05 añade el selector descrito debajo. |
 
 Decodificación y formatos pertenecen a infraestructura; la publicación del conjunto se comprueba al preparar/cargar, sin introducir permisos de selección anticipados. La disponibilidad indeterminable bloquea; un borrador inválido con `false` fiable informa y se excluye. La genérica no tiene ninguna excepción de código.
 
 Nuevas funciones, como cuentas, historial, importación pública de barajas o más procesos de servidor, exigirán revisar puertos y despliegue. No se introducen en el MVP solo para anticipar una evolución posible.
+
+### Incremento B05
+
+`Room` aplica un solo cambio, conserva id/versión/ficha juntos y decide plazas/orden. `RoomUseCases.configure` aplica vencimientos, autoriza, deduplica y consulta el puerto `PublishedDeckVersions`. No compara una revisión del navegador ni importa el catálogo concreto. `LoadedDeckCatalog` implementa ese puerto con resumen y definición validada de la misma versión, conservando la instantánea B04. Composición conecta explícitamente ambos puertos del mismo catálogo; `main` usa esa conexión tras cargar antes de escuchar.
+
+`configurationInput.ts` decodifica tipos/forma/ids externos; `socketRooms.ts` invoca el caso de uso y publica mediante las piezas B03. Ni transporte ni catálogo deciden participación/capacidad. Las nuevas propiedades de `shared/contracts` son públicas, sin definiciones/cartas. `RoomConfiguration`, su hook y reducer mantienen presentación/peticiones por control; `socket.ts` usa envío volátil sin cola ni espera de reconexión. El cliente no decide una plaza ni un cierre. Las fixtures, interceptores de ack y avances de reloj viven únicamente en pruebas. No se cambia el validador de dominio ni la herramienta B04.
 
 ## 7. Comprobaciones y cambio arquitectónico
 

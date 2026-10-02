@@ -5,4 +5,30 @@
 .connection-notice { padding: .7rem 0; color: #765306; }
 .participant-badges { flex-wrap: wrap; }
 .badge.reconnecting { background: #fff4d7; color: #765306; }
+.room { max-width: 940px; }
+.waiting-columns { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: 32px; margin-bottom: 32px; }
+.participant-list { list-style: decimal; padding-left: 26px; }
+.participant-list .participant { display: list-item; }
+.participant-list .participant-badges { justify-content: flex-start; margin-top: 8px; }
+.observer-line { display: flex; flex-direction: column; gap: 8px; padding: 14px; background: #f4f6fa; border-radius: 12px; overflow-wrap: anywhere; }
+.observer-line .participant-badges { justify-content: flex-start; }
+.configuration-hint, .config-control p { color: #5b6578; font-size: 14px; line-height: 1.5; }
+.config-control { margin: 16px 0; }
+.config-control label { display: block; font-weight: 750; margin-bottom: 8px; }
+.config-control select { width: 100%; min-width: 0; min-height: 48px; border: 2px solid #bac4d5; border-radius: 12px; padding: 10px; font: inherit; background: #fff; color: #1c2540; }
+.config-control .check-label { display: flex; align-items: center; gap: 12px; min-height: 44px; }
+.check-label input { width: 22px; height: 22px; flex-shrink: 0; accent-color: #182b58; }
+.config-control .control-state:empty { display: none; }
+.config-control .field-error { color: #8d1e29; }
+.deck-card { display: flex; align-items: flex-start; gap: 16px; background: #f4f6fa; border-radius: 14px; padding: 16px; overflow-wrap: anywhere; }
+.deck-card h3 { margin: 0 0 8px; font-size: 18px; }
+.deck-card p { margin: 8px 0; line-height: 1.5; }
+.deck-card > div { min-width: 0; }
+.deck-cover, .neutral-card { width: 70px; max-height: 110px; object-fit: contain; flex-shrink: 0; }
+.neutral-card { color: #78839a; height: 90px; }
+.configuration-summary { display: grid; grid-template-columns: 1fr auto; gap: 12px; }
+.configuration-summary dt { font-weight: 700; }
+.configuration-summary dd { margin: 0; }
+select:focus-visible { outline: 3px solid #ed914f; outline-offset: 3px; }
+@media(max-width:760px){.waiting-columns{grid-template-columns:1fr;gap:26px}.deck-card{gap:12px}.configuration-summary{grid-template-columns:1fr}.configuration-summary dd{margin-bottom:8px}}
 @media(max-width:520px){.participant-list .participant{flex-wrap:wrap}.participant-badges{flex-shrink:1;max-width:100%;justify-content:flex-start}}
