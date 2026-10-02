@@ -1,6 +1,6 @@
 # Bloque 04 — Carga de barajas, validación reutilizable y catálogo generado
 
-**Estado:** alcance acordado por el autor el 01/10/2026; política de borradores confirmada en este hilo. Especificación técnica preparada para implementación. No implementado ni verificado.
+**Estado:** implementado y verificado localmente el 02/10/2026, B04-01–12. C09–C10 solo en las partes de §9; selección y presentación siguen pendientes. Acuerdo y política de borradores del autor: 01/10/2026.
 
 **Punto de partida:** `main`, `ac144fe`. Bloques 01, T01, 02 y 03 implementados con evidencia local en sus documentos. Hay cambios documentales previos en proceso/propuesta y archivos nuevos en `docs/contratos/`; conservarlos. La genérica existe en ASSETS; no se ha incorporado a APP desde este hilo.
 
@@ -194,8 +194,73 @@ No quedan decisiones funcionales que bloqueen esta especificación. La elección
 
 **Base comprobada el 02/10/2026:** `main`, `ac144fe`, paquete 0.1.0. `npm run check`: salida 0, 65/65 pruebas en 10 archivos, tipos/lint correctos, 25 módulos sin infracciones ni ciclos y build correcto. `npm run test:browser` con `CI=true` contra ese servidor compilado: salida 0, 18/18 recorridos Chrome (1,5 minutos), incluidos móvil/escritorio, sesiones independientes y margen real B03 (30.001,5 ms desde detección; detección de pérdida 2,9 ms). Se conservan las distinciones de tiempo de B03; este ensayo no acredita 30 minutos de espera física. Las ejecuciones se iniciaron sobre la base antes de crear código B04 y terminaron sobre su compilación.
 
-**Cambio de código y verificación B04:** en curso en `feat/b04-carga-barajas`. Las comprobaciones B04 todavía no tienen resultado.
+**Cambio revisado:** `e5416f8`, rama local `feat/b04-carga-barajas`, sobre `ac144fe`. `bd2d6c9` conserva por separado los documentos locales anteriores, incluido el contrato íntegro, y registra la base. El commit de implementación añade la copia y el código/pruebas; este cierre registra los resultados después de ejecutar. Sin contradicciones funcionales ni cambios de contrato, mecánica o disponibilidad.
 
-**Comprobaciones arquitectónicas de código:** pendientes. **Fecha de verificación:** pendiente. **Continuación:** selección/configuración de sala y presentación visual, tras evidencia de este bloque.
+**Comprobaciones arquitectónicas de código:** control automático y revisión de responsabilidades superados, 37 módulos y cuatro casos negativos. **Fecha de trabajo:** 02/10/2026, fecha del cliente, zona Europe/Madrid. **Continuación:** selección/configuración de sala y presentación visual.
 
 El [prompt de implementación](PROMPT_IMPLEMENTACION_BLOQUE_04.md) concreta el encargo. Al entregar código, añadir su referencia y resultados a este cierre y devolver a coordinación archivos, acuerdos, evidencia y pendientes.
+
+## 11. Evidencia ejecutada — entrega B04
+
+### Entorno y comandos
+
+Windows NT 10.0.26300.0, PowerShell, Node 24.13.0, npm 11.6.2, TypeScript 6.0.3, Vitest 5.0.2, Playwright 1.63.0 y Chrome 154.0.8037.93. Decodificación: sharp 0.35.5 / libvips 8.18.7, fijados por dependencia directa y lockfile. Paquete KARTA3 0.1.0; código `e5416f8`. Comandos desde `E:\KARTA3\KARTA3_IA\APP\karta3`.
+
+| Ejecución real | Resultado |
+|---|---|
+| `npm run check` sobre el código entregado | Salida 0: tipos, lint, **172/172 pruebas en 17 archivos** (11,59 s), arquitectura y build. Incluye las 65 pruebas previas, nuevo caso negativo de herramienta y 106 casos B04. |
+| `npm run decks:validate -- --package barajas/generica` | Salida 0, válida y disponibilidad false; sin escribir el paquete. |
+| `npm run decks:prepare` y preparación integrada en builds | Salida 0; catálogo normal `{ "decks": [] }`, bytes reproducibles. |
+| `npm run check:architecture` separado | Salida 0: **37 módulos**, sin imports prohibidos ni ciclos. También incluye los comandos de raíz en tools. |
+| `npm run test:browser`, `CI=true`, servidor compilado reiniciado | Salida 0: **22/22 recorridos** (1,5 minutos), los 18 anteriores y cuatro B04, a 390/1280px. Código compilado actual `e5416f8`. |
+| `git diff --cached --check` del cambio de implementación | Sin errores tras indicar `whitespace=cr-at-eol` para las copias; no se cambió un byte del JSON para satisfacer este control. |
+| HTTP real contra Vite local en 5173, conectado al compilado en 3000 | `/api/decks`: 200/vacío/sin cookie; `/barajas/generica/cartas.json` y medio no disponible: 404; acceso directo Vite `/@fs/.../barajas/generica/cartas.json`: 403 por fs.deny, sin datos de cartas. Ese 403 es la denegación de Vite, no el fallback de la aplicación. |
+
+Las primeras iteraciones detectaron tres expectativas de fixture incorrectas (carpeta creada desde el id modificado, ubicación de la segunda repetición y directorio de catálogo considerado paquete), un `--import` de Windows expresado como ruta en vez de URL, tipado readonly al añadir contexto y un guard de prueba que no interceptaba rutas relativas. Se corrigieron el montaje, el escaneo del catálogo y el contexto. Se añadió una prueba positiva del propio guard antes de usarlo para afirmar independencia. No se registran esas ejecuciones como superadas. La ejecución final general pasó completa.
+
+### Copia verificada
+
+Origen: `E:\KARTA3\KARTA3_IA\ASSETS\Barajas\generica`; destino: `E:\KARTA3\KARTA3_IA\APP\karta3\barajas\generica`. Copia del 02/10/2026 por `Copy-Item`, sin parsear/regenerar, con autorización de §3. Inventarios antes/después: **exactamente baraja.json y cartas.json**; no se añadió imagen ni archivo de sustitución. Formato 1, contenido 1, 58 cartas, referencias null y publicación false. Lectura final del origen confirma que ASSETS conserva lista y huellas.
+
+| Archivo | SHA-256 de origen, copia y blob guardado en Git |
+|---|---|
+| `baraja.json` | `a86a5fe34573226694016f3dc49fd45cd966c4c1afa677d8a0bb28c54fb05a06` |
+| `cartas.json` | `d3b22180d7ecfd991eeaca57ab664cacb566c198e20558104113d1a5de60461c` |
+
+Comprobadas con `Get-FileHash` y con `git show HEAD:barajas/generica/<archivo>` leído como Buffer y SHA-256. `.gitattributes` usa `barajas/** -text whitespace=cr-at-eol`: conserva también los CRLF maestros al guardar/clonar; la política LF del resto del proyecto no convierte esos bytes. Hay una regresión de huellas que solo lee la copia APP. El contrato no se modificó respecto a `bd2d6c9`.
+
+`catalogo.json` normal: UTF-8, dos espacios, LF y salto final; SHA-256 `c1835a70886802fa74ac40167dee8a7eabd409f0982e3d61b2b98f2f3fa566b6`. Es regenerable e ignorado en Git. La vigencia al arrancar exige sus bytes canónicos, no solo un JSON parecido; regenerar resuelve cambios de contenido, orden o formato.
+
+### Resultados por criterio
+
+| Criterio | Evidencia ejecutada y resultado |
+|---|---|
+| B04-01 | Inventarios/huellas y blobs anteriores coinciden. `packages.test.ts` verifica también huellas/estado de la copia. `startup.test.ts` construye realmente otro árbol con código/paquetes APP y enlace a las dependencias ya instaladas, sin ASSETS/TFM; intercepta IO hacia ASSETS en los procesos y valida primero que ese guard falla en un intento explícito. `npm run build`, arranque y consultas posteriores no producen accesos bloqueados. **Superado.** |
+| B04-02 | `domain/deck.test.ts`: 16 casos, E1–E7, dos temas/ids de atributo distintos, vacíos frente a ausencia, 57/59 cartas, ids y valores repetidos, indicadores, enteros/rango; 58 indicadores iguales y display independiente aceptados. Entrada conservada y resultados repetibles. **Superado.** |
+| B04-03 | `strictJson.test.ts` (14 casos) y sección formato de `packages.test.ts`: duplicados reales/escapados/anidados, JSON roto, comentarios/comas finales y UTF-8 inválido; campos/tipos/textos vacíos/adicionales. Paquetes completos con duplicado real y `play\\u0056alue` no producen definición. Errores con archivo, path, posición JSON y contexto identificable, sin reparación. **Superado.** |
+| B04-04 | Sección formato/coherencia de `packages.test.ts`: carpeta/id/deckId, versiones citadas/no positivas/desconocidas/distintas, ids/orden, faltas y valores citados/fraccionarios/repetidos/fuera de rango. No se impone reparto editorial ni igualdad display/play. **Superado.** |
+| B04-05 | 25 casos de recursos en `packages.test.ts`: genérica sin imagen/directorio y fixtures con portada/carta PNG/JPEG/WebP reales; bytes truncados, formato distinto, no imagen, ruta/alt vacíos, rutas prohibidas, ausencia y escritura distinta. Escape ejecutado mediante junction real de Windows a un directorio externo a la baraja, rechazado como IMAGE_OUTSIDE_DECK; no fue mock. Se decodifican píxeles completos, no solo metadata. **Superado.** |
+| B04-06 | Matriz de publicación: válido true/false, inválido true/false fiable, colección ilegible con false fiable, metadata rota/duplicada/ausente, esquema desconocido y booleano ausente/mal tipado. El borrador informa/excluye; su CLI individual sale 1. Los casos fatales fallan preparación/carga y conservan el artefacto anterior sin aceptarlo al arrancar. **Superado.** |
+| B04-07 | Catálogo normal vacío; fixtures alfa/beta/zeta y borrador prueban orden por order/id ASCII, exclusión, contrato exacto, UTF-8/LF y bytes iguales en dos preparaciones. Un catálogo anterior corrupto no dirige la preparación. Raíz vacía válida, raíz ausente/escritura imposible fallan y no queda temporal parcial. **Superado.** |
+| B04-08 | `startup.test.ts`: seis casos con procesos compilados; build/arranque correctos, y catálogos ausente/corrupto/desactualizado, disponible inválida y disponibilidad incierta terminan con código 1 sin anunciar escucha. Tras arranque se rompe cartas y se añade un paquete: tres consultas mantienen la instantánea inicial. `packages.test.ts` conserva definición congelada y bytes de imagen incluso después de borrar la fuente. **Superado.** |
+| B04-09 | `http.test.ts`: GET 200/no-store sin Set-Cookie, catálogo vacío y publicado; no cambia objeto de sala, participante, presencia, revisión ni vencimiento con reloj controlado. `api.test.ts` comprueba api.decks mediante el transporte existente y sus errores. Chrome realiza GET real sin cookie a 390/1280px y usa el catálogo de fixtures en procesos compilados. **Superado.** |
+| B04-10 | `http.test.ts` y Chrome: resúmenes exactos, recursos públicos validados y disponibles con URL/version/MIME/bytes correctos; JSON/catalogo internos, recursos desconocidos/no disponibles/otra versión y recorridos de escape devuelven 404 sin fallback de aplicación. Se comprueban también prefijos escapados. El bundle del build aislado no incluye paquete/cartas/playValue. **Superado.** |
+| B04-11 | `deckCatalog.test.ts` sustituye puerto y filtra propiedades internas. Escáner de 37 módulos y cuatro casos negativos; herramienta solo analiza argumentos/estado de salida y delega en composición. Revisión semántica: un validador jugable, formato/IO/decodificador en infraestructura, publicación/catálogo del paquete sin selección anticipada, proyección en aplicación, cliente solo contrato. **Superado.** |
+| B04-12 | Todas las pruebas previas conservadas; check 172/172, arquitectura y build completos; navegador final 22/22. B03 distingue reloj controlado, conexiones reales con reloj sustituido y reserva/detección real. Medición final: recuperación detectada en 5,4 ms; pérdida por `transport close` en 9,3 ms; reserva 30.005,6 ms; total desde pérdida 30.014,9 ms, con pingInterval/pingTimeout de 5000/5000 ms. No se simula esa reserva ni se acredita media hora física. Capturas de aviso a 390/1280px revisadas visualmente: código, lista, aviso y edición legibles, sin desbordamiento horizontal. **Superado.** |
+
+### Decisiones técnicas y archivos
+
+Mapa de responsabilidades en [organización §6](../arquitectura/ORGANIZACION_Y_DEPENDENCIAS.md). Las operaciones `validatePackage`, `prepareDecks` y `loadPreparedDecks` comparten parser, formato, dominio y recursos. La CLI no reproduce reglas ni elige una temática. Composición resuelve rutas desde su instalación, tanto con tsx como compilada; `predev` prepara y `build` integra preparación. El arranque real siempre carga explícitamente; el catálogo vacío por defecto de createRuntime es un montaje para pruebas, no un rescate ante errores de main.
+
+Cambios de implementación (`e5416f8`, 38 archivos): copias `barajas/generica/*.json`; `.gitattributes`, `.gitignore`, package/lock; `server/domain/deck*`, `application/deckCatalog*`, `composition/decks.ts`/`createApp.ts`, `infrastructure/decks/*`, `http/expressApp.ts`/`publicFiles.ts`, `main.ts`; contrato público `shared/contracts/deck.ts`, `src/api*`; herramienta y control de arquitectura/caso negativo; fixtures/montaje/navegador B04; `vite.config.ts`, README y guía. El comando Git permite obtener los nombres exactos: `git show --stat e5416f8`. El cierre actualiza B04, proceso/propuesta y la aclaración autorizada en TFM infraestructura §9.3; los documentos anteriores y los bloques de salas conservan sus registros históricos.
+
+### Límites y coordinación
+
+- C09 solo copia/validación/filtrado/bloqueo/catálogo. Selección autorizada, versión elegida en sala y uso al iniciar quedan pendientes.
+- C10 solo carga null, resumen, privacidad y servicio limitado de medios. No se presenta ni se prueba icono, selector o cartas; la revisión móvil/escritorio conserva la interfaz de espera.
+- El incremento editorial de versiones y la aprobación son un proceso trazable; se comprueban versiones actuales, no un histórico automático de todas las publicaciones. No se activa la genérica ni se prueba equilibrio, licencias o calidad editorial.
+- Los medios se retienen en memoria y no se recargan: una versión nueva requiere preparar/reiniciar. No se han medido catálogos grandes ni carga sostenida.
+- Plataforma ejecutada: Windows/Chrome. Decodificador nativo instalado para este entorno; Linux/CI, HTTPS/VPS y publicación de esta rama se verifican en sus conversaciones responsables. No hay despliegue ni nueva ejecución remota de CI acreditados aquí.
+- CSV, Sistema Solar, configuración, bots, partida y contenido editorial permanecen fuera. Las simulaciones de 30 minutos de B03 siguen siendo tiempo controlado; solo su reserva de 30 segundos se vuelve a ejecutar físicamente.
+
+La aclaración de borradores quedó trasladada a `TFM/Planificación/INFRAESTRUCTURA_KARTA3.md` §9.3, como cambio local de su fuente responsable; no forma parte del repositorio Git APP. Entrega para coordinación: rama/commits locales, mapa anterior, resultados por criterio y estos límites. Revisión/publicación GitHub según el hilo responsable.

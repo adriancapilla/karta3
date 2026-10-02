@@ -1,11 +1,11 @@
 # Propuesta posterior — Validación reutilizable de una baraja jugable
 
-**Estado:** necesidad confirmada; prioridad posterior al primer incremento digital por acuerdo del 28/09/2026. El detalle sigue propuesto. No implementado ni verificado.  
+**Estado:** antecedente conservado; validación pura implementada y verificada como parte de B04 el 02/10/2026. La prioridad posterior al primer incremento se acordó el 28/09/2026.  
 **Referencias:** `TFM/Planificación/DOMINIO_KARTA3.md`, secciones 4, 5 y 25, invariantes D-INV-01 a D-INV-03 y D-INV-19; `TFM/Planificación/INFRAESTRUCTURA_KARTA3.md`, sección 9.3. La puntuación y el desempate confirmados no intervienen en este bloque.
 
-**Concreción del 01/10/2026:** el [contrato común de formato 1](../contratos/CONTRATO_BARAJAS_V1.md) fija los dos JSON, ids `atributo1`–`atributo3`, nombres y valores mostrados no vacíos e imágenes opcionales como `null`, conservando todos los campos. Son condiciones del paquete que complementan las invariantes puras. CSV queda aplazado; la fuente maestra son JSON directos en ASSETS. El bloque futuro de carga/validación y catálogo debe reutilizar estos casos y añadir las comprobaciones del contrato, sin un validador por temática. Esta propuesta sigue sin implementar ni verificar.
+**Concreción del 01/10/2026:** el [contrato común de formato 1](../contratos/CONTRATO_BARAJAS_V1.md) fija los dos JSON, ids `atributo1`–`atributo3`, nombres y valores mostrados no vacíos e imágenes opcionales como `null`, conservando todos los campos. Son condiciones del paquete que complementan las invariantes puras. CSV queda aplazado; la fuente maestra son JSON directos en ASSETS. Se acordó reutilizar estos casos y añadir los del contrato en la carga común, sin un validador por temática. Estado en aquella fecha: pendiente; completado en B04 el 02/10/2026.
 
-**Integración en B04:** el [bloque 04](BLOQUE_04_CARGA_BARAJAS.md) concreta ahora su implementación junto a lectura, recursos y catálogo. E1–E7 se conservan como casos de validación pura; no son otro incremento a implementar ni otro validador. B04 fija el resultado `{ valid, errors }`, la localización y las responsabilidades. Esta propuesta se conserva como antecedente; estado de código/evidencia en B04, todavía pendientes.
+**Integración en B04:** el [bloque 04](BLOQUE_04_CARGA_BARAJAS.md) implementa lectura, recursos y catálogo junto a esta validación. E1–E7 se conservan como casos puros, sin otro incremento ni validador. B04 fija `{ valid, errors }`, localización y responsabilidades; código/evidencia reales en su cierre.
 
 ## Objetivo
 
@@ -39,13 +39,13 @@ Las reglas concretas están en las referencias: exactamente 58 cartas y tres atr
 
 ## Criterios de aceptación
 
-- [ ] La misma operación valida dos barajas sintéticas diferentes sin reglas, ramas ni identificadores especiales por tema.
-- [ ] Acepta el caso válido y los vacíos permitidos; no altera la entrada.
-- [ ] Rechaza tamaños distintos de 58 cartas o tres atributos, identificadores de carta duplicados y cartas sin alguno de los tres atributos.
-- [ ] Rechaza valores jugables ausentes, repetidos, no enteros o fuera de `1..58` en cualquiera de los tres atributos; acepta valores iguales entre atributos distintos cuando cada serie es válida.
-- [ ] Rechaza indicadores que no referencian un atributo existente y campos definidos ausentes; distingue ausencia de contenido vacío permitido.
-- [ ] Los rechazos indican al menos la propiedad o el atributo afectado y, cuando corresponde, la carta. Ningún error se corrige silenciosamente.
-- [ ] Las comprobaciones automatizadas se ejecutan y sus resultados quedan registrados antes de marcar el bloque como verificado.
+- [x] La misma operación valida dos barajas sintéticas diferentes sin reglas, ramas ni identificadores especiales por tema.
+- [x] Acepta el caso válido y los vacíos permitidos; no altera la entrada.
+- [x] Rechaza tamaños distintos de 58 cartas o tres atributos, identificadores de carta duplicados y cartas sin alguno de los tres atributos.
+- [x] Rechaza valores jugables ausentes, repetidos, no enteros o fuera de `1..58` en cualquiera de los tres atributos; acepta valores iguales entre atributos distintos cuando cada serie es válida.
+- [x] Rechaza indicadores que no referencian un atributo existente y campos definidos ausentes; distingue ausencia de contenido vacío permitido.
+- [x] Los rechazos indican al menos la propiedad o el atributo afectado y, cuando corresponde, la carta. Ningún error se corrige silenciosamente.
+- [x] Las comprobaciones automatizadas se ejecutan y sus resultados quedan registrados antes de marcar el bloque como verificado.
 
 ## Dependencias
 
@@ -69,7 +69,7 @@ No requiere una baraja editorial definitiva ni servidor, interfaz, acceso a arch
 
 ## Comprobación y cierre
 
-**Cambio de código:** pendiente.  
-**Pruebas ejecutadas:** ninguna; los ejemplos y criterios anteriores son verificaciones previstas.  
-**Límites y continuación:** después de validar datos en memoria, especificar la preparación y validación de los archivos de cada baraja con las comprobaciones adicionales de infraestructura.  
-**Fecha de verificación:** pendiente.
+**Cambio de código:** `e5416f8`, `server/domain/deck.ts`, reutilizado por la carga común de B04.  
+**Pruebas ejecutadas:** 16/16 casos de `server/domain/deck.test.ts`, incluidos E1–E7 y dos definiciones distintas; además, check completo 172/172 y navegador 22/22. Criterios puros anteriores comprobados; formato/recursos/catálogo se registran separadamente en B04.  
+**Límites y continuación:** selección autorizada, presentación y partida pendientes; C09–C10 solo en las partes expresas del bloque.  
+**Fecha de verificación:** 02/10/2026, entorno y resultados completos en B04.
