@@ -26,11 +26,10 @@ export class GameCoordinator implements GameActions {
   prepare(): void {
     if (this.stopped) return;
     for (const room of this.repository.allActive()) {
-      try {
-        if (room.status === 'IN_GAME' && room.gameReview && room.gameReview.at <= this.clock.now().monotonic) this.completeReview(room, room.gameReview.id);
-        else if (room.status === 'IN_GAME' && room.gameTurn && room.gameTurn.at <= this.clock.now().monotonic) this.expireTurn(room, room.gameTurn.turnId);
-        else if (room.status === 'RESULTS' && room.retention!.at <= this.clock.now().monotonic) this.expire(room);
-      } catch { this.changes.technicalFailure(); }
+      if (room.status === 'IN_GAME' && room.gameReview && room.gameReview.at <= this.clock.now().monotonic) this.completeReview(room, room.gameReview.id);
+      else if (room.status === 'IN_GAME' && room.gameTurn && room.gameTurn.at <= this.clock.now().monotonic) this.expireTurn(room, room.gameTurn.turnId);
+      else if (room.status === 'IN_GAME' && !room.gameReview && !room.gameTurn && room.game!.turn) this.automaticStep(room, room.game!.turn!.id, room.gameTaskGeneration);
+      else if (room.status === 'RESULTS' && room.retention!.at <= this.clock.now().monotonic) this.expire(room);
     }
   }
   started(room: Room): void { this.activate(room); }
@@ -49,6 +48,20 @@ export class GameCoordinator implements GameActions {
     const deadline = room.gameTurn;
     if (deadline) this.setTask(room, `${deadline.gameId}:${deadline.turnId}:${deadline.generation}`, deadline.at - this.clock.now().monotonic,
       () => this.expireTurn(room, deadline.turnId));
+    else {
+      const turn = room.game!.turn!; const generation = room.gameTaskGeneration;
+      this.setTask(room, `${room.game!.id}:${turn.id}:automatic:${generation}`, 0, () => this.automaticStep(room, turn.id, generation));
+    }
+  }
+  private automaticStep(room: Room, turnId: string, generation: number): void {
+    if (this.stopped || room.status !== 'IN_GAME' || room.gameReview || room.gameTurn || room.gameTaskGeneration !== generation
+      || room.game!.turn?.id !== turnId || room.game!.players.find((person) => person.id === room.game!.turn!.playerId)?.status !== 'AUTOMATIC') return;
+    room.applyGame(room.game!.automaticPlay(room.game!.turn!.playerId));
+    this.afterPlay(room); this.repository.save(room);
+    try {
+      this.publish(room);
+      if (room.gameReview) this.changes.roundResolved(room.memberSessions, { roomId: room.id, gameId: room.game!.id, result: toRoundResult(room) });
+    } finally { this.continueZeroReview(room); }
   }
   private expireTurn(room: Room, turnId: string): void {
     const deadline = room.gameTurn;
@@ -173,6 +186,8 @@ export class GameCoordinator implements GameActions {
     if (!person) throw new RoomError('FORBIDDEN', 'No tienes permiso para esta partida.');
     if (!room.game || room.game.id !== input.gameId) throw new RoomError('STALE_GAME_CONTEXT', 'La partida ha cambiado. Recupera la mesa.');
     const expiredOnEntry = room.gameTurn?.turnId === input.turnId && room.gameTurn.at <= this.clock.now().monotonic;
+    const automaticOnEntry = room.game.turn?.id === input.turnId && room.game.round.number === input.roundNumber
+      && room.game.players.find((player) => player.id === person.id)?.status === 'AUTOMATIC';
     this.prepare();
     const signature = JSON.stringify([input.roomId, input.gameId, input.roundNumber, input.turnId, 'cardId' in input ? input.cardId : null, input.direction]);
     const previous = this.requests.get(sessionId, input.requestId);
@@ -184,6 +199,7 @@ export class GameCoordinator implements GameActions {
     let changed: boolean;
     try {
       if (expiredOnEntry) throw new RoomError('TURN_EXPIRED', 'El tiempo de ese turno terminó. Recupera la mesa.');
+      if (automaticOnEntry) throw new RoomError('PLAYER_AUTOMATIC', 'Has pasado a automático; solo puedes ver la partida');
       if (room.game.phase === 'FINISHED') throw new RoomError('GAME_FINISHED', 'La partida ha terminado.');
       if (room.game.round.state === 'RESOLVED') throw new RoomError('ROUND_IN_REVIEW', 'Espera a que termine la revisión de ronda.');
       if (room.game.round.number !== input.roundNumber || room.game.turn?.id !== input.turnId) throw new RoomError('STALE_GAME_CONTEXT', 'Ese turno ya no está vigente. Recupera la mesa.');

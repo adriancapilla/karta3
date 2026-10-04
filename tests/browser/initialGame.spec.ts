@@ -53,7 +53,8 @@ for (const width of [360, 390, 1280]) test(`B06 E1/01/03/10–12/14–16 genéri
     for (const [page, own, rival, messages] of [[p.host, h, g, frames.host], [p.guest, g, h, frames.guest]] as const) {
       assertGamePrivacy(own, own.game.hand.map((card) => card.id), rival.game.hand.map((card) => card.id), (condition, reason) => expect(condition, reason).toBe(true));
       for (const frame of messages.filter((value) => value.includes('"IN_GAME"'))) for (const card of rival.game.hand) expect(frame).not.toContain(`"${card.id}"`);
-      await expect(page.getByText('En esta versión no hay límite de tiempo por turno. Si alguien deja de jugar, la partida espera a que vuelva.', { exact: true })).toBeVisible();
+      await expect(page.getByText('En esta versión no hay límite de tiempo por turno.', { exact: false })).toHaveCount(0);
+      await expect(page.getByRole('timer')).toHaveText(/00:\d{2}/);
       await expect(page.locator('.game-players li')).toHaveCount(2); await expect(page.locator('.game-score')).toHaveText(['0 puntos', '0 puntos']);
       await expect(page.getByText('Aún no hay cartas jugadas', { exact: true })).toBeVisible();
       await expect(page.getByText('Dirección: Sin elegir', { exact: true })).toBeVisible();
@@ -61,7 +62,7 @@ for (const width of [360, 390, 1280]) test(`B06 E1/01/03/10–12/14–16 genéri
       // B07 sustituye solo ausencia temporal de ejecución: actor puede actuar, los demás no.
       if (own.participant.id === own.game.interaction.turn?.playerId) await expect(page.getByRole('button', { name: 'ALTO', exact: true })).toBeEnabled();
       else for (const button of await page.locator('.game-hand .card-play-button').all()) await expect(button).toBeDisabled();
-      await expect(page.getByRole('timer')).toHaveCount(0); await expect(page.locator('.game-card img')).toHaveCount(0);
+      await expect(page.getByRole('timer')).toHaveCount(1); await expect(page.locator('.game-card img')).toHaveCount(0);
       expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
       await expect(page.getByRole('heading', { level: 1 })).toBeFocused();
     }

@@ -77,7 +77,7 @@ describe('B06 inicio/coordinación con tiempo y puertos controlados', () => {
     const s = ready(); s.events.updated.mockImplementationOnce(() => { throw new Error('datos internos no registrables'); });
     expectCode(s.start, 'INTERNAL_ERROR'); const view = gameView(s.rooms.current('host')!);
     expect(s.start()).toEqual(view); expect(s.start('other')).toEqual(view); expect(s.permutation).toHaveBeenCalledTimes(1);
-    expect(s.time.pending).toBe(0);
+    expect(s.time.pending).toBe(1);
   });
   it.each(['join', 'name', 'configure', 'leave', 'close'])('B06-07/E6 carrera %s antes y después de inicio respeta orden de procesamiento', (action) => {
     const apply = (s: ReturnType<typeof ready>) => {
@@ -109,16 +109,18 @@ describe('B06 inicio/coordinación con tiempo y puertos controlados', () => {
     expectCode(s.start, 'START_NOT_READY'); expect(s.room.participants).toHaveLength(elapsed < 30_000 ? 2 : 1);
     expect(s.permutation).not.toHaveBeenCalled();
   });
-  it('B06-08/13/E4 callbacks cancelados, más de 30 min y todos ausentes no alteran mesa; otra espera caduca', () => {
+  it('B06-08/13/E4 callbacks de espera cancelados y ausencia no alteran mesa antes del plazo B08; otra espera caduca', () => {
     const s = ready(); s.rooms.createOrGet('other'); const oldTasks = [...s.time.tasks];
     s.time.elapse(1_799_999); const view = gameView(s.start());
     for (const session of ['host', 'g0']) { s.connected.delete(session); s.rooms.presenceChanged(session); }
     for (const callback of oldTasks) callback.callback();
-    s.time.advance(1_900_000);
+    s.time.advance(2);
     expect(s.room.status).toBe('IN_GAME'); expect(s.rooms.current('other')).toBeNull();
-    expect(s.time.pending).toBe(0); expect(s.room.deadlines()).toEqual([]);
+    expect(s.time.pending).toBe(1); expect(s.room.deadlines()).toEqual([]);
     for (const session of ['host', 'g0']) { s.connected.add(session); s.rooms.presenceChanged(session); }
-    const recovered = gameView(s.rooms.current('host')!); expect(recovered.game).toEqual(view.game);
+    const recovered = gameView(s.rooms.current('host')!);
+    expect(recovered.game.hand).toEqual(view.game.hand); expect(recovered.game.round).toEqual(view.game.round);
+    expect(recovered.game.interaction.turn!.timing!.endsAt).toBe(view.game.interaction.turn!.timing!.endsAt);
     expect(recovered.participants.every((person) => person.presence === 'CONNECTED')).toBe(true);
     expect(s.permutation).toHaveBeenCalledTimes(1);
   });

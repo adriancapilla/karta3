@@ -115,7 +115,7 @@ describe('B07 M2 revisión y avance controlados', () => {
     const reviewIndex = views.findIndex((view) => view.status === 'IN_GAME' && view.game.interaction.stage === 'ROUND_REVIEW');
     expect(reviewIndex).toBeGreaterThan(0); expect(views[reviewIndex + 1].game.round.number).toBe(2);
     expect(f.events.roundResolved).toHaveBeenCalledTimes(1); expect(f.events.roundResolved.mock.invocationCallOrder[0]).toBeLessThan(f.events.updated.mock.invocationCallOrder.at(-1)!);
-    expect(f.time.pending).toBe(0);
+    expect(f.time.pending).toBe(1); expect(f.room.gameTurn).toBeDefined();
   });
   it('fallo de emisión posterior no repite resolución ni reparto al recuperar/repetir', () => {
     const f = resolved(5); f.events.updated.mockImplementationOnce(() => { throw new Error('fallo'); });
