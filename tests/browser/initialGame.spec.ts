@@ -7,6 +7,14 @@ import type { InitialGameRoomView } from '../../shared/contracts/room.js';
 import { assertGamePrivacy } from '../support/gamePrivacy.js';
 
 const current = (page: Page): Promise<InitialGameRoomView> => page.evaluate(async () => (await (await fetch('/api/rooms/current')).json()).room);
+// B08 actualiza la muestra de hora al leer, sin cambiar Game, inicio ni vencimiento del turno.
+function sameGame(actual: InitialGameRoomView['game'], expected: InitialGameRoomView['game']) {
+  const timing = actual.interaction.turn?.timing; const previous = expected.interaction.turn?.timing;
+  if (timing && previous) {
+    expect(timing.serverNow).toBeGreaterThanOrEqual(previous.serverNow);
+    expect({ ...actual, interaction: { ...actual.interaction, turn: { ...actual.interaction.turn!, timing: { ...timing, serverNow: previous.serverNow } } } }).toEqual(expected);
+  } else expect(actual).toEqual(expected);
+}
 async function enter(page: Page, code: string, name = 'Ana') {
   await page.getByLabel('Código de sala').fill(code); await page.getByLabel('Tu nombre', { exact: true }).fill(name);
   await page.getByRole('button', { name: 'Entrar', exact: true }).click();
@@ -76,10 +84,10 @@ for (const width of [360, 390, 1280]) test(`B06 E1/01/03/10–12/14–16 genéri
     await p.guest.screenshot({ path: `test-results/B06-normal-${width}-guest.png`, fullPage: true });
     await Promise.all([p.host.reload(), p.guest.reload(), tab.goto(baseURL!)]); await Promise.all([table(p.host), table(p.guest), table(tab)]);
     for (const [page, expected] of [[p.host, h], [p.guest, g], [tab, h]] as const) {
-      const recovered = await current(page); expect(recovered.game).toEqual(expected.game); expect(recovered.participant.id).toBe(expected.participant.id);
+      const recovered = await current(page); sameGame(recovered.game, expected.game); expect(recovered.participant.id).toBe(expected.participant.id);
       expect(recovered.settings).toEqual(expected.settings); expect(recovered.participants.map((person) => person.id)).toEqual(expected.participants.map((person) => person.id));
     }
-    await p.host.goto(baseURL!); await table(p.host); expect((await current(p.host)).game).toEqual(h.game); expect(starts).toBe(1);
+    await p.host.goto(baseURL!); await table(p.host); sameGame((await current(p.host)).game, h.game); expect(starts).toBe(1);
   } finally { await p.close(); }
 });
 
@@ -97,7 +105,7 @@ test('B06 E2/02/10–14 anfitrión observador normal y dos invitados en tres ses
     await expect(p.host.getByText('Observando', { exact: true })).toBeVisible(); await expect(p.host.getByRole('heading', { name: 'Tu mano', exact: true })).toHaveCount(0);
     await expect(p.host.locator('.observer-line')).toContainText('Anfitrión · Observador'); await expect(p.host.locator('.game-players strong')).toHaveText(['Ana (1)', 'Ana (2)']);
     await expect(p.guest.locator('.game-initial-state')).toContainText('Abridor: Ana (1) (tú)');
-    for (const [page, expected] of [[p.host, host], [p.guest, first], [guest2, second]] as const) { await page.reload(); await table(page); expect((await current(page)).game).toEqual(expected.game); }
+    for (const [page, expected] of [[p.host, host], [p.guest, first], [guest2, second]] as const) { await page.reload(); await table(page); sameGame((await current(page)).game, expected.game); }
     await p.host.screenshot({ path: 'test-results/B06-observer-390.png', fullPage: true });
   } finally { await p.close(); await third.close(); }
 });
