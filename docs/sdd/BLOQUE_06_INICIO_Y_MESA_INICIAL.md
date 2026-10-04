@@ -1,6 +1,6 @@
 # B06 — Inicio de partida y mesa inicial con humanos
 
-**Estado:** acordado; pendiente de implementación y verificación.  
+**Estado:** acordado, implementado y verificado localmente el 04/10/2026 para B06-01–18; mesa inicial sin ejecución de turnos. Evidencia nueva y límites en §10.
 **Fecha y responsable del acuerdo:** 03/10/2026, Adrian, mediante el diálogo SDD y la adopción de los bocetos.  
 **Tipo:** incremento funcional local; entrega una mesa inicial recuperable, todavía sin ejecución de turnos.
 
@@ -197,24 +197,24 @@ Cambiar reglas, visibilidad, plazos, permisos, número de jugadores, reparto ini
 | E6 | Inicio se procesa antes de entrada nueva, nombre/configuración/salida/cierre tardíos. | Preparación fijada; acciones rechazadas sin alterar participantes o cartas. |
 | E7 | Reiniciar servidor y recuperar las sesiones anteriores. | No se recupera esa mesa; no hay resultado ni motivo inventado; puede crearse nueva sala tras restablecer sesión. |
 
-- [ ] **B06-01 — Autorización:** solo anfitrión miembro inicia; invitado, tercero, sesión ausente/no vigente y suplantación de IDs no obtienen inicio ni información privada. Anfitrión observador también puede iniciar.
-- [ ] **B06-02 — Preparación:** probar 1/2/5 jugadores y más de 5 mediante sustituto; exigir 2–5 humanos y todos los miembros conectados, sin marcas de listo. Observador no cuenta ni obtiene cartas.
-- [ ] **B06-03 — Baraja exacta:** sin selección, ausente/no disponible, contenido antiguo/incorrecto o definición inválida rechazan sin reparto. Genérica normal formato 1/contenido 2 inicia; nunca cambia disponibilidad, contenido ni selección por defecto.
-- [ ] **B06-04 — Dominio:** con permutación conocida, verificar manos de tres, orden de adquisición, abridor primero, indicadora/atributo, ronda/dirección/jugadas iniciales y puntos derivados de pilas ganadas vacías.
-- [ ] **B06-05 — Conservación:** para 2–5 jugadores, las 58 cartas aparecen una vez en ubicaciones lógicas; mazo 51/48/45/42. Permutaciones incompletas, repetidas o ajenas fallan sin estado parcial; catálogo/instantánea no se mutan.
-- [ ] **B06-06 — Repetición/concurrencia:** mismo ID, ID nuevo, dos pestañas y pérdida de ack conservan un Game/reparto; reutilizar ID con otro contenido/tipo/contexto produce conflicto. Rechazos y repeticiones no crean revisiones/eventos artificiales.
-- [ ] **B06-07 — Carreras:** probar ambos órdenes de inicio con entrada, nombre, configuración, salida y cierre; fijar una preparación coherente. Fallo antes de confirmar permite seguir esperando; fallo de publicación posterior permite recuperar la partida aceptada.
-- [ ] **B06-08 — Límite temporal de espera:** antes, en y después de vencimientos debidos; vencer en igualdad gana, no se rescata una espera ya caducada. Un inicio aceptado invalida callbacks/avisos/reservas antiguos; otra sala continúa su B03.
-- [ ] **B06-09 — Bloqueo por fase:** `IN_GAME` rechaza nuevas entradas y cambios de preparación, incluida salida/cierre incluso del anfitrión. Mantiene códigos y asociaciones; la sesión no crea/entra en otra sala.
-- [ ] **B06-10 — Privacidad de transporte:** inspeccionar cuerpos HTTP, ack y eventos reales de dos jugadores y observador; contiene solo indicadora, mano propia o vacía e información pública. Sin manos rivales, datos ocultos de mazo, JSON completo, sesiones/semilla ni campos privados adicionales.
-- [ ] **B06-11 — Sincronización:** dos sesiones independientes y varias pestañas reciben transición y misma parte pública; revisiones/confirmaciones antiguas no vuelven a espera. No depender de recargar para ver el inicio.
-- [ ] **B06-12 — Recuperación:** F5, nueva pestaña y vuelta a portada recuperan mismo Game, manos/orden, indicador, configuración y abridor; cero llamadas adicionales de barajar/repartir/iniciar.
-- [ ] **B06-13 — Presencia de partida:** cerrar una pestaña con otra conectada mantiene presencia; perder todas marca ausencia y recuperar la elimina sin retirar cartas/jugador. Probar anfitrión jugador/observador y superar 30 segundos, 2 minutos y 30 minutos con tiempo controlado sin cierre de B06.
-- [ ] **B06-14 — Mesa:** ver 2/5 jugadores, nombres repetidos, self/abridor/anfitrión, observador separado, cero puntos, ronda, mazo, indicadora, activo y estado vacío. Sin contador público de mano, reloj/acciones de juego ni privilegio de cierre.
-- [ ] **B06-15 — Cartas y recursos:** Jugable/Dato siempre separados, unidad literal, atributo activo correcto aunque no sea `roundAttribute` de la mano; Detalles muestra textos. Genérica nula usa icono; fixture de imágenes reales conserva URL/alt y fallo de carga visible sin cambiar datos.
-- [ ] **B06-16 — Presentación:** 360/390/1280 px, teclado/tacto, filas de mano legibles/desplazables, Detalles/foco y avisos accesibles. Una actualización no pierde foco, desplazamiento ni detalle abierto.
-- [ ] **B06-17 — Limpieza:** reinicio real elimina Game/sala/autorizaciones/índices/tareas; cliente descarta mesa privada al recuperar ausencia/sesión nueva y permite empezar otra sala. No introduce endpoint de reinicio o final ficticio.
-- [ ] **B06-18 — Regresiones y arquitectura:** mantener E1–E7 B01, T01, B02–B05 y activación en espera; catálogo/medios/versiones/privacidad B04. Dependencias y responsabilidades de §6 comprobadas sin ciclos ni imports del servidor desde cliente.
+- [x] **B06-01 — Autorización:** solo anfitrión miembro inicia; invitado, tercero, sesión ausente/no vigente y suplantación de IDs no obtienen inicio ni información privada. Anfitrión observador también puede iniciar.
+- [x] **B06-02 — Preparación:** probar 1/2/5 jugadores y más de 5 mediante sustituto; exigir 2–5 humanos y todos los miembros conectados, sin marcas de listo. Observador no cuenta ni obtiene cartas.
+- [x] **B06-03 — Baraja exacta:** sin selección, ausente/no disponible, contenido antiguo/incorrecto o definición inválida rechazan sin reparto. Genérica normal formato 1/contenido 2 inicia; nunca cambia disponibilidad, contenido ni selección por defecto.
+- [x] **B06-04 — Dominio:** con permutación conocida, verificar manos de tres, orden de adquisición, abridor primero, indicadora/atributo, ronda/dirección/jugadas iniciales y puntos derivados de pilas ganadas vacías.
+- [x] **B06-05 — Conservación:** para 2–5 jugadores, las 58 cartas aparecen una vez en ubicaciones lógicas; mazo 51/48/45/42. Permutaciones incompletas, repetidas o ajenas fallan sin estado parcial; catálogo/instantánea no se mutan.
+- [x] **B06-06 — Repetición/concurrencia:** mismo ID, ID nuevo, dos pestañas y pérdida de ack conservan un Game/reparto; reutilizar ID con otro contenido/tipo/contexto produce conflicto. Rechazos y repeticiones no crean revisiones/eventos artificiales.
+- [x] **B06-07 — Carreras:** probar ambos órdenes de inicio con entrada, nombre, configuración, salida y cierre; fijar una preparación coherente. Fallo antes de confirmar permite seguir esperando; fallo de publicación posterior permite recuperar la partida aceptada.
+- [x] **B06-08 — Límite temporal de espera:** antes, en y después de vencimientos debidos; vencer en igualdad gana, no se rescata una espera ya caducada. Un inicio aceptado invalida callbacks/avisos/reservas antiguos; otra sala continúa su B03.
+- [x] **B06-09 — Bloqueo por fase:** `IN_GAME` rechaza nuevas entradas y cambios de preparación, incluida salida/cierre incluso del anfitrión. Mantiene códigos y asociaciones; la sesión no crea/entra en otra sala.
+- [x] **B06-10 — Privacidad de transporte:** inspeccionar cuerpos HTTP, ack y eventos reales de dos jugadores y observador; contiene solo indicadora, mano propia o vacía e información pública. Sin manos rivales, datos ocultos de mazo, JSON completo, sesiones/semilla ni campos privados adicionales.
+- [x] **B06-11 — Sincronización:** dos sesiones independientes y varias pestañas reciben transición y misma parte pública; revisiones/confirmaciones antiguas no vuelven a espera. No depender de recargar para ver el inicio.
+- [x] **B06-12 — Recuperación:** F5, nueva pestaña y vuelta a portada recuperan mismo Game, manos/orden, indicador, configuración y abridor; cero llamadas adicionales de barajar/repartir/iniciar.
+- [x] **B06-13 — Presencia de partida:** cerrar una pestaña con otra conectada mantiene presencia; perder todas marca ausencia y recuperar la elimina sin retirar cartas/jugador. Probar anfitrión jugador/observador y superar 30 segundos, 2 minutos y 30 minutos con tiempo controlado sin cierre de B06.
+- [x] **B06-14 — Mesa:** ver 2/5 jugadores, nombres repetidos, self/abridor/anfitrión, observador separado, cero puntos, ronda, mazo, indicadora, activo y estado vacío. Sin contador público de mano, reloj/acciones de juego ni privilegio de cierre.
+- [x] **B06-15 — Cartas y recursos:** Jugable/Dato siempre separados, unidad literal, atributo activo correcto aunque no sea `roundAttribute` de la mano; Detalles muestra textos. Genérica nula usa icono; fixture de imágenes reales conserva URL/alt y fallo de carga visible sin cambiar datos.
+- [x] **B06-16 — Presentación:** 360/390/1280 px, teclado/tacto, filas de mano legibles/desplazables, Detalles/foco y avisos accesibles. Una actualización no pierde foco, desplazamiento ni detalle abierto.
+- [x] **B06-17 — Limpieza:** reinicio real elimina Game/sala/autorizaciones/índices/tareas; cliente descarta mesa privada al recuperar ausencia/sesión nueva y permite empezar otra sala. No introduce endpoint de reinicio o final ficticio.
+- [x] **B06-18 — Regresiones y arquitectura:** mantener E1–E7 B01, T01, B02–B05 y activación en espera; catálogo/medios/versiones/privacidad B04. Dependencias y responsabilidades de §6 comprobadas sin ciclos ni imports del servidor desde cliente.
 
 ## 8. Dependencias y plan de comprobación
 
@@ -241,16 +241,94 @@ Recorrido manual previsto con dos navegadores/sesiones: crear, entrar, seleccion
 | 03/10/2026 | Cancelar ensayos reiniciando servidor, sin facultad de cerrar partida para anfitrión. | §4.3, B06-17; explicar pérdida de todo el proceso local. |
 | 03/10/2026 | No añadir contador de cartas por jugador. | Presentación/contrato; se conserva mano propia de tres y contador público de mazo. |
 
-Devolver a coordinación: documento y [prompt de implementación](PROMPT_IMPLEMENTACION_BLOQUE_06.md), referencias visuales, base `main 4dd073d`, inicio/contratos/privacidad, ausencia temporal de ejecución y vigilancia, limpieza por reinicio y partes de C09–C10 pendientes. Actualizar allí el contexto y descripciones de evidencia de las fuentes generales; este hilo no modifica su documento vivo. Los requisitos de tiempos/ausencias del juego se retomarán en su incremento de ejecución, sin abrirlo aquí.
+Devolver a coordinación: documento y [prompt de implementación](PROMPT_IMPLEMENTACION_BLOQUE_06.md), referencias visuales, base `main 4dd073d`, inicio/contratos/privacidad, ausencia temporal de ejecución y vigilancia, limpieza por reinicio y partes de C09–C10 pendientes. El encargo de implementación autoriza expresamente actualizar las descripciones de B06 en contexto/aplicación/infraestructura; actualización local registrada en §10.6, conservando requisitos del MVP e históricos. Los requisitos de tiempos/ausencias del juego se retomarán en su incremento de ejecución, sin abrirlo aquí.
 
 ## 10. Comprobación y cierre
 
 **Base comprobada antes de implementar — 04/10/2026:** `main`, HEAD efectivo `4dd073d58bd9efa6222fc7b90ccb93eadc10fa4c`, aplicación 0.1.0. Únicos cambios locales: proceso y documentos/referencias preparados de B06; conservados. Nueva rama `feat/b06-inicio-mesa-inicial` desde ese main, sin restauraciones. `npm run check`: salida 0; tipos/lint/build correctos, 197/197 pruebas en 21 archivos (27,39 s), 41 módulos sin imports prohibidos ni ciclos. Catálogo normal generado con genérica formato 1/contenido 2 disponible. Esta ejecución acredita la base, no B06; navegador final pendiente. Entorno inicial: Windows, Node 24.13.0, npm 11.6.2.
 
 **Preparación documental:** lecturas de fuentes/código/contratos y estado Git; copias de bocetos comprobadas por igualdad SHA-256; 35 enlaces locales existentes y 18 identificadores de aceptación únicos entre especificación, prompt y proceso. Las huellas de los JSON de genérica en APP siguen coincidiendo con las aprobadas en activación. Contrato, ejemplos y plan son especificación, no resultados del producto.  
-**Cambio de código:** pendiente; implementar en nueva rama desde `main`.  
-**Pruebas de B06 ejecutadas:** ninguna.  
-**Comprobaciones arquitectónicas de implementación:** pendientes.  
-**Fecha de implementación/verificación:** pendiente.
+Estas observaciones de preparación no acreditaban implementación. La evidencia nueva ejecutada se registra a continuación; no sobrescribe cierres B01–B05/T01/activación.
 
-El cierre de implementación añadirá commit, comandos/entorno/resultados por criterio, evidencia manual real y limitaciones, sin sobrescribir los resultados históricos de los bloques anteriores. Publicación/integración en GitHub pertenece a su conversación responsable.
+### 10.1 Versión, entorno y comandos realmente ejecutados
+
+Preparación conservada en `14ff894`; código, pruebas, README y mapa de responsabilidades en **`91238fd1c5a857b8a4d46b36a18499f734937f9d`**. Rama `feat/b06-inicio-mesa-inicial`, desde main efectivo `4dd073d58bd9efa6222fc7b90ccb93eadc10fa4c`, sin restauración ni cambios ajenos descartados. Aplicación 0.1.0. Los commits son locales; no push/PR/integración/despliegue en este encargo.
+
+04/10/2026, Windows NT 10.0.26300.0, PowerShell, Node 24.13.0, npm 11.6.2, TypeScript 6.0.3, Vitest 5.0.2, Playwright 1.63.0, Chrome **154.0.8037.93** sin interfaz gráfica. Comandos desde `E:\KARTA3\KARTA3_IA\APP\karta3`. Viewports 360×844, 390×844 y 1280×844; observador/invitado adicional también 1280×800. Pantallas pequeñas con emulación de tacto de Chrome, sin dispositivos físicos.
+
+| Ejecución nueva | Resultado |
+|---|---|
+| `npm run check` sobre los mismos bytes del commit de código | **Salida 0.** Tipos/lint/build; **249/249 pruebas en 24 archivos**, última ejecución 12:02:58, 11,48 s. Incluye 197 regresiones de la base y 52 comprobaciones nuevas (15 Game, 28 aplicación, 8 integración de inicio, 1 estado cliente). |
+| Control de arquitectura incluido en check | **50 módulos**, sin imports prohibidos ni ciclos; cuatro negativos del control conservados en Vitest. Revisión semántica adicional en §10.4. |
+| Detener instancia anterior y `npm run start` después de compilar | Instancia normal vigente en **127.0.0.1:3000**, genérica válida/disponible y un resumen. Reinicio real: salas/sesiones anteriores descartadas; pruebas con esperas nuevas. |
+| `npm run test:browser -- --workers=2` | **Salida 0, 47/47 recorridos, 1,7 min.** Compila primero; 35 regresiones y 12 recorridos B06. Normal usa main compilado/entropía real; montajes de fixtures importan únicamente módulos compilados actuales. |
+| `npx playwright test tests/browser/initialGame.spec.ts --grep 'reinicio real' --workers=1` | Ensayo seleccionado adicional, **1/1, 7,1 s**, con reinicio en el mismo puerto y páginas abiertas. Se repite en la puerta completa final. |
+| HTTP real posterior y cotejo de compilación servida | `/api/decks`: 200, un resumen de genérica formato 1/contenido 2, null/alt vacío. HTML real referencia `index-CzJAlBL8.js` e `index-BIqHd1Ya.css`, iguales a los generados por la puerta final. Ningún paquete de fixture en ejecución normal. |
+| Limpieza al cerrar ensayos | Instancia normal detenida después de comprobarla; puerto 3000 sin escucha. Su memoria de salas/partidas/sesiones se pierde. El próximo `npm run start` arranca limpio; no queda un servidor antiguo ocupando el puerto. |
+| `git diff --check` / `git diff --cached --check` | Sin errores. Catálogo, dist, dist-server, logs y capturas siguen ignorados. Sin dependencias nuevas ni cambios de JSON/lockfile/contrato V1. |
+
+**Incidencias resueltas:** la primera prueba parametrizada de permutaciones recibía argumentos separados de Vitest; corregido el montaje para ensayar realmente cada array completo. El tipo de la fixture parcial del reducer se ajustó a la unión por fase. Un acceso al mapa de sockets de prueba omitía el nivel Namespace; corregido. La primera puerta de navegador terminó 45/46: el reinicio/limpieza pasaban, pero stderr contenía un aviso Node por FORCE_COLOR/NO_COLOR heredados; el montaje del proceso elimina el flag contradictorio, manteniendo la aserción de stderr vacío. La revisión añadió recuperación ante INTERNAL_ERROR posterior a aceptación, además de ack perdido; prueba pura de emisión fallida y recorrido de navegador cubren ambas posibilidades. Puertas completas finales superadas tras estos ajustes; ninguna ejecución fallida se registra como superada.
+
+### 10.2 Resultados nuevos por criterio y ejemplos
+
+| Criterio | Evidencia ejecutada y resultado local |
+|---|---|
+| B06-01 | `startGame.test.ts` y `startSocket.test.ts`: anfitrión jugador/observador, invitado/tercero, ID inexistente, cookies ausentes/inválidas, origen ajeno y campos de suplantación. Solo anfitrión miembro inicia; no manos ajenas. **Superado.** |
+| B06-02 | 1 rechaza, 2 inicia, 5 inicia con mazo 42, sustituto con 6 rechaza sin entropía; dominio rechaza 0/1/6. Observador necesita dos invitados y su propia conexión. Conexiones reales y navegador de cinco jugadores/observador. **Superado.** |
+| B06-03 | Sin selección, puertos no disponible/versión equivocada, definición inválida y metadatos de versión incoherentes rechazan sin Game. Normal main con genérica 2 seleccionada explícitamente inicia; ninguna autoselección ni cambio de contenido. **Superado.** |
+| B06-04 | `game.test.ts`, permutación conocida: tres vueltas circulares, manos en adquisición, primer jugador abridor, indicadora siguiente, atributo suyo, ronda 1, dirección null, plays vacío, HUMAN/ACTIVE y puntuación derivada cero. **Superado.** |
+| B06-05 | Para 2/3/4/5: 58 ubicaciones únicas, mazos 51/48/45/42, pilas vacías. Permutación vacía/incompleta/repetida/ajena/extra rechaza. Instantánea congelada y aislada de modificaciones externas; catálogo no mutado. Adaptador real comprueba diez permutaciones completas. **Superado.** |
+| B06-06 | Repetición de ID, ID nuevo, rechazo estable, conflicto de tipo/contexto y JOIN/CONFIGURE anteriores devuelven vigente sin revisión/emisión/reparto nuevo. Dos sockets de anfitrión casi simultáneos, pérdida del primer ack, HTTP/repetición recuperan un Game. Chrome retiene ID incierto, bloquea hasta recuperar y no reenvía al recargar. **Superado.** |
+| B06-07 | Casos de uso ensayan ambos órdenes con entrada, nombre, configuración, salida y cierre. Entropía/presentación inválidas dejan espera utilizable. Emisión fallida después de registrar aceptación recupera Game sin segundo reparto. Chrome recupera ante error técnico posterior a aceptación. **Superado.** |
+| B06-08 | Reloj controlado: caducidad −1/0/+1 ms; reserva 29.999/30.000/30.001 ms; vencimiento primero en igualdad. Inicio justo antes de caducar cancela tareas y callbacks cancelados ejecutados manualmente son inocuos; otra espera sigue venciendo. **Superado.** |
+| B06-09 | HTTP y sockets reales: nombre/configuración/salida/cierre/nueva entrada sobre IN_GAME rechazados, HTTP 409 por fase y 403 para tercero. Crear del anfitrión recupera; invitado no crea otra ni cambia sala. Índices de código/propietario/sesiones retenidos. **Superado.** |
+| B06-10 | Inspección automatizada de HTTP current/propio/crear, acks resume/start/replays y eventos reales para dos jugadores y observador. `gamePrivacy.ts` exige claves exactas y excluye IDs de cartas rivales/robo, sesión/credencial/semilla/JSON/ubicaciones internas; imagen URL/alt exactos y medios validados. Registros técnicos usan mensajes fijos, sin serializar errores privados. **Superado.** |
+| B06-11 | Chrome dos contextos independientes y dos pestañas del host ya conectadas pasan a mesa sin F5. Misma partida/parte pública, mano propia; reducer rechaza WAITING tardío incluso con revisión mayor. No se emite inicio artificial por recuperación. **Superado.** |
+| B06-12 | Normal a 360/390/1280: F5 de ambos, nueva pestaña, volver a `/`, mismas identidades/configuración/orden/manos/indicador/Game. Un único frame de inicio; fixtures mantienen un envío/barajado tras presencia/recarga. **Superado.** |
+| B06-13 | Sockets reales, anfitrión jugador/observador: otra pestaña conserva CONNECTED, última pérdida marca DISCONNECTED; lectura HTTP no lo cambia. Avances controlados de >30 s, >2 min y >30 min conservan Game/cartas; reconexión elimina marca sin repartir ni retirar. **Superado.** |
+| B06-14 | Normal dos jugadores, fixture cinco y observador/tres sesiones: orden, nombres repetidos/sufijos, self/abridor/anfitrión, observador fuera, cero puntos, ronda/mazo/activo/dirección y jugadas vacías. Sin contador rival, reloj/acciones de juego ni cierre. Capturas revisadas. **Superado.** |
+| B06-15 | Genérica null sin `<img>`/sustitución. Fixture validada PNG 8×6, URL v7 y alt conservado; ambos valores separados aun iguales, unidad vacía no heredada y literal km, atributo activo distinto del roundAttribute de mano. Detalles conserva característica/nota; abortar imagen muestra icono/mensaje y no cambia DTO. **Superado.** |
+| B06-16 | Chrome 360/390/1280 sin desbordamiento de página; solo fila de mano desplazable. Enter/Escape/cierre devuelven foco; tacto emulado abre Detalles de indicador móvil. Título recibe foco una vez; presencia no cierra diálogo ni pierde foco/desplazamiento. Revisión visual §10.3. **Superado en este entorno.** |
+| B06-17 | Reinicio real de main compilado en instalación temporal normal con copia genérica 2 y guard ASSETS. Mismo puerto, mismas páginas abiertas: cookie antigua rechazada, recuperación HTTP null elimina mesa/mano y establece nueva identidad. Permite otra espera sin selección; sin resultado/cancelación ficticios ni endpoints de control. **Superado.** |
+| B06-18 | Puertas completas 249/249 y 47/47, 50 módulos más revisión semántica; todas las baterías B01/T01/B02–B05/activación conservadas. Herramientas B04 reutilizadas. **Superado localmente.** |
+
+**E1–E7 de este bloque:** E1 normal dos jugadores a tres anchuras; E2 normal observador y dos invitados, recarga de los tres; E3 presencia en espera y bordes exactos con tiempo controlado; E4 mesa iniciada cerca del vencimiento y todos ausentes con tiempo controlado; E5 dos conexiones host, concurrencia y ack perdido; E6 ambos órdenes de carreras; E7 reinicio real con limpieza de páginas ya abiertas. Todos ejecutados en los montajes anteriores. E1–E7 históricos de B01 también se repiten en su batería propia; no se sustituyen por estos ejemplos.
+
+### 10.3 Clases de evidencia y revisión visual
+
+- **Puro/tiempo controlado:** Game, casos de uso y callbacks usan definición/permutación explícitas, puertos y ControlledTime. Conservación, prioridades exactas y >30 minutos acreditados sin esperar media hora real.
+- **Conexiones reales con tiempo controlado:** `startSocket.test.ts` y fixtures de navegador importando compilación actual; HTTP/Socket.IO/cookies/eventos/presencia reales, pero reloj/planificación y orden de cartas sustituidos. Interceptores de ack/evento/errores solo en pruebas, sin endpoints del producto. Espera de ack del cliente 5.000 ms real en los casos inciertos.
+- **Conexiones/entropía reales:** recorridos normales genérica 2 y reinicio ejecutan main compilado con reloj, generadores y entropía reales; sesiones independientes por contextos Chrome. Diez permutaciones reales no acreditan equilibrio estadístico. Recargas/tabs/navegación y cierre del proceso son reales.
+- **Reserva B03 real repetida:** detección de recuperación 6,3925 ms; segundo corte 2,5450 ms; retirada 30.003,8726 ms tras detección y 30.006,4176 ms desde corte local. Razones `transport close`. No prueba una avería física/WAN ni una reserva de juego B06. Detección conservada: pingInterval/pingTimeout 5.000/5.000 ms, maxHttpBufferSize 4.096; margen de espera funcional detección+30.000 ms.
+- **Revisión visual realmente realizada:** inspeccionadas `B06-normal-1280-host.png`, `B06-normal-360-host.png`, `B06-normal-390-guest.png`, `B06-observer-390.png`, `B06-fixture-failure-360.png` y `B06-fixture-failure-1280.png`. Texto/valores, numeración, marcas, indicador compacto/completo, mano contenida, observador y fallo de imagen legibles, sin solapamientos/desbordamiento observado. Capturas regenerables en `test-results`, ignoradas. Tacto emulado y desplazamiento programático no se presentan como ensayo humano en dispositivo físico.
+
+**Manual humano B06 pendiente:** README contiene pasos con dos perfiles independientes y ensayo de observador con tres; reiniciar entre partidas. No se ha realizado estudio de comprensión, lector de pantalla, móvil físico, redes WAN, HTTPS/Caddy o VPS. La confirmación manual anterior de activación pertenece a otra entrega.
+
+### 10.4 Responsabilidades revisadas y decisiones internas
+
+Game puro gobierna cartas y estado inicial; Room solo preparación/asociación/presencia. `RoomUseCases.start` reúne, autoriza, deduplica y fija de forma síncrona; `RoomCoordinator` separa fases y desmontaje, `WaitingLifecycle` permanece exclusivo de espera. `PublishedGameDecks` y `CardPermutation` son capacidades realmente usadas; LoadedDeckCatalog y crypto implementan, composición elige y conecta. Presentación validada mantiene imageAlt fuera de la definición de dominio. Proyección por sesión enumera campos seguros; no serializa Game. Handlers no barajan/reparten ni decide React permisos oficiales. Cliente separa hook/transporte de controles y mesa/cartas/Detalles; no guarda manos en persistencia ni envía inicios por reconexión.
+
+Reparto elegido: una carta por jugador en orden base durante tres vueltas, conservando adquisición; después indicadora, resto en robo. Instantánea profunda congelada, sin nuevo repositorio Game porque la sala ya conserva una única asociación. Diagramas/tabla concretos en la guía de organización; sin abstracciones vacías de turnos/automático/bots y sin desviación de límites de AGENTS. `tools/decks.ts`, preparación/build/arranque, V1 y control arquitectónico existentes se reutilizan. Cualquier política de ejecución futura conserva su ámbito responsable.
+
+### 10.5 Genérica e independencia de ASSETS
+
+Comparación nueva de SHA-256 tras implementar: origen ASSETS, copia APP y huellas aprobadas de activación coinciden. `git diff main -- barajas/generica package.json package-lock.json` vacío: no cambios de bytes ni dependencias. Formato 1, contenido 2, true, 58 cartas, imágenes nulas y semilla original conservados.
+
+| Archivo en ASSETS y APP | SHA-256 |
+|---|---|
+| baraja.json | `991406d04f60bfe884166a69fcc43954cfc751f0e058093ae2542f32c989e8ed` |
+| cartas.json | `868988a43fe6c6be1a73be14013c543dc2fc83970341a4243be868af75b4c35c` |
+
+Regresión `startup.test.ts` ejecuta build y arranque aislados con guard de IO ASSETS, comprobando primero el propio guard. B06 añade main/reinicio/navegador con solo compilación, genérica APP y dependencias, sin acceso ASSETS registrado. Catálogo/definición/presentación cargados antes de escuchar; inicio/recuperación no leen maestro ni archivos. Vacíos/borradores/inválidos/imágenes reales siguen instalaciones/fixtures temporales separadas, nunca publicación normal.
+
+### 10.6 Archivos, fuentes generales y límites para coordinación
+
+Inventario íntegro: `git show --name-only 91238fd`; 42 archivos de implementación, pruebas y README/organización. Piezas principales: `server/domain/game.ts`; `server/application/{room,roomUseCases,roomCoordinator,initialGameView,roomView,deckCatalog,ports}`; catálogo/cripto/memoria/HTTP/sockets/composición; contratos Room/Game; `src/{GameScreen,GameCard,StartRoomControl,useStartRoom,useRoomFlow,socket,roomState}`; nuevas pruebas Game/inicio/transporte/navegador y sus montajes. Preparación/documentos/bocetos en `14ff894`; este cierre y proceso constituyen el cambio documental final. Históricos B04/B05/activación intactos.
+
+Actualizadas **localmente y por autorización expresa del encargo**, sin modificar reglas futuras: `TFM/Planificación/CONTEXTO_DESARROLLO_KARTA3.md` (estado/§9, acuerdo cerrado, rama local y pendientes); `CAPA_APLICACION_KARTA3.md` (inicio/mesa parcial, puertos y §17.2, tiempos/ausencias futuros conservados); `INFRAESTRUCTURA_KARTA3.md` (transporte/entropía/instantánea/coordinación por fase y §16.1, ejecución/operación pendientes). TFM está fuera del repositorio Git APP; esas tres actualizaciones no pertenecen al commit de código y deben conservarse/recogerse en coordinación. No se modifica dominio general ni contenido editorial.
+
+**Límites reales:** mesa no jugable, sin turnos/dirección/jugadas/resolución/reposición/puntuación ejecutada/resultados/desempate/bots/expulsión. B06 conserva Game/participantes/cartas indefinidamente dentro del proceso; vigilancia de dos minutos, timeouts/automático/ausencias y revisión ejecutada pertenecen al incremento futuro de ejecución. No hay privilegio de terminar ni endpoint de ensayo; reinicio elimina toda memoria. Una instancia, sin persistencia/replicación/cuentas. Manual humano, despliegue y CI remota de esta rama pendientes en sus conversaciones responsables.
+
+**C09–C10 permanecen parciales:** validación/versión exacta al iniciar, instantánea y cartas privadas/indicadora con recursos iniciales acreditadas ahora; ejecución completa, cartas jugadas/resultados, equilibrio y comprensión con usuarios pendientes. No se abre otro bloque.
+
+**Fecha de implementación/verificación local:** 04/10/2026. **Cierre:** B06 implementado/verificado en el alcance y entorno indicados, con pendientes expresos. Referencia del commit documental de cierre: el commit que añade §10.1–10.6, local, sin publicación.

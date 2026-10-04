@@ -6,7 +6,7 @@ La aplicación se construye de forma incremental, con especificaciones, pruebas 
 
 ## Estado actual
 
-Actualmente permite crear una sala de espera, compartir su código e incorporar participantes desde navegadores independientes. La lista se actualiza en tiempo real y cada participante puede cambiar su nombre o salir. También gestiona la reconexión temporal y el cierre de salas por inactividad.
+Actualmente permite crear una sala de espera, compartir su código e incorporar participantes desde navegadores independientes. La lista se actualiza en tiempo real y, durante la espera, cada participante puede cambiar su nombre o salir. También gestiona la reconexión temporal y el cierre de esperas por inactividad.
 
 El bloque 04 añade validación común de barajas, preparación del catálogo y consulta pública de resúmenes. La [incorporación de genérica 2](docs/sdd/ACTIVACION_GENERICA_V2.md) conserva formato 1, incorpora contenido 2 aprobado y `available: true`: el catálogo normal ofrece únicamente su resumen seguro, con portada nula. B04/B05 conservan sus evidencias históricas de contenido 1/no disponible.
 
@@ -74,16 +74,16 @@ Este recorrido crea servidores de la compilación actual con paquetes sintético
 
 ## Estructura y decisiones
 
-- `server/domain/deck.ts`: tipos de baraja y validador puro reutilizable, sin formato, archivos ni publicación.
-- `server/application/`: `Room` conserva configuración, plazas, presencia y plazos con tiempos explícitos; `RoomUseCases.configure` autoriza, consulta `PublishedDeckVersions` y deduplica; `WaitingLifecycle` procesa vencimientos. `DeckCatalog`/`ListDecks` ofrecen resúmenes seguros.
+- `server/domain/`: `deck.ts` valida baraja; `game.ts` valida/construye adquisición, indicador y ronda inicial desde permutación explícita, con instantánea inmutable y puntos derivados. Sin IO ni transporte.
+- `server/application/`: Room conserva preparación/asociación; casos de uso autorizan/deduplican; puertos PublishedDeckVersions/PublishedGameDecks y CardPermutation obtienen capacidades externas. RoomCoordinator separa fases; WaitingLifecycle solo espera; initialGameView proyecta mano propia. DeckCatalog/ListDecks ofrecen resúmenes seguros.
 - `server/infrastructure/`: repositorio y solicitudes deduplicadas en memoria, sesiones y último fin automático propio, generación, reloj monotónico, planificador cancelable, HTTP Express y Socket.IO. El transporte cuenta conexiones autenticadas; la aplicación decide sus consecuencias. La cookie es `HttpOnly`, limitada al host y `SameSite=Strict`; usa `Secure` cuando `NODE_ENV=production`.
 - `server/composition/` y `server/main.ts`: eligen adaptadores, los conectan, sirven `dist` e inician el proceso.
 - `shared/contracts/`: formato público de la sala, respuestas y mensajes de tiempo real, compartido con el cliente.
-- `src/`: React/Vite; `api.ts` y `socket.ts` transportan, `useRoomFlow.ts` coordina revisiones/motivos. `RoomConfiguration.tsx` muestra catálogo/ficha/controles; `useRoomConfiguration.ts` y `configurationState.ts` identifican pendientes por control. `screens.tsx`/`ExpiryWarning.tsx` presentan sin decidir permisos, plazas ni cierres.
+- `src/`: transporte API/socket y estado useRoomFlow/useStartRoom; configuración por control y espera; GameScreen/GameCard/CardDetails presentan mesa/valores/dialog sin barajar ni decidir reglas. Inicio incierto se recupera antes de reintentar; no se encola tras reconexión.
 - `server/infrastructure/decks/`: parser JSON estricto, esquema/coherencia, recursos decodificados y catálogo en memoria. `sharp` 0.35.5 es dependencia del servidor para PNG/JPEG/WebP; no va al cliente.
 - `tools/decks.ts`: analiza argumentos y delega a composición las operaciones comunes de validación/preparación.
 - `tools/check-architecture.mjs`: comprueba imports, reexportaciones, aliases y ciclos del código de producción, incluidos comandos en la raíz de `tools/`.
-- `tests/browser/`: recorridos en Chrome a 390 y 1280 píxeles, con sesiones independientes.
+- `tests/browser/`: recorridos en Chrome a 360/390/1280 píxeles, con sesiones independientes y montajes compilados.
 - `docs/sdd/`: especificación y evidencia del bloque.
 
 La creación, lectura, edición del nombre y cierre conservan HTTP. La entrada, salida, configuración y sincronización usan Socket.IO con la misma sesión. La configuración usa un id nuevo por gesto; el transporte volátil no espera ni encola cambios para reconectar. El servidor deduplica repeticiones sin restaurar un resultado antiguo. El estado en memoria permite una sola instancia del servidor; no hay persistencia ni sincronización entre procesos. El código visible localiza una sala, pero nunca autoriza a modificarla.
@@ -143,7 +143,7 @@ Ante pérdida de confirmación del inicio, la interfaz informa de incertidumbre 
 1. Crea una sala y entra con otro perfil. Abre una segunda pestaña del invitado: cerrar una conserva presencia mientras la otra esté conectada.
 2. Interrumpe la conexión del invitado. La otra sesión ve «Reconectando». Si vuelve antes de 30 segundos desde la detección, conserva identidad/plaza/orden; después su plaza se libera y deberá entrar de nuevo.
 3. Si vence la ausencia del anfitrión, todos vuelven a portada con el motivo. No se transfiere el control. Crear por HTTP sin socket del anfitrión concede el mismo margen inicial.
-4. Sin cambios válidos aparece una franja al minuto 29 y la sala cierra al 30. Una nueva incorporación, salida voluntaria o nombre realmente distinto renueva. Leer, copiar, recargar, reconectar o repetir solicitudes no renueva; tampoco una retirada automática.
+4. Sin cambios válidos aparece una franja al minuto 29 y la sala cierra al 30. Una nueva incorporación, salida voluntaria, nombre realmente distinto o cambio efectivo aceptado de configuración renueva. Leer, copiar, recargar, reconectar o repetir solicitudes no renueva; tampoco una retirada automática. Estos plazos solo rigen la espera.
 
 Socket.IO usa `pingInterval=5000` y `pingTimeout=5000` ms. La reserva empieza cuando el servidor detecta la última pérdida; una red que deja de entregar paquetes puede añadir retraso de detección. El contador de caducidad usa referencia del servidor y tiempo monotónico transcurrido en el navegador: llegar a cero solo solicita confirmación. No hay controles públicos para acelerar estos plazos.
 
