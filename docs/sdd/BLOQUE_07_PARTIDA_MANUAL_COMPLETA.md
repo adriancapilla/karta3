@@ -1,7 +1,9 @@
 # B07 — Partida manual completa con humanos
 
-**Estado:** acordado; pendiente de implementación y verificación.  
-**Fecha y responsable del acuerdo:** 04/10/2026, Adrian, mediante el diálogo SDD.  
+**Estado:** implementado y verificado localmente el 04/10/2026; evidencia y límites en §9.1. Revisión manual humana B07 pendiente.
+
+**Fecha y responsable del acuerdo:** 04/10/2026, Adrian, mediante el diálogo SDD.
+
 **Tipo:** incremento funcional; ejecución humana completa sin temporización de turno.
 
 ## 1. Base y referencias
@@ -201,26 +203,26 @@ Autonomía: nombres/estructura interna, transiciones mutables o inmutables de Ga
 
 ## 7. Criterios y plan previstos
 
-- [ ] **B07-01 — Base:** B06 conservado; inicio/autorización/reparto/catálogo exacto y preparación bloqueada. No se modifica genérica ni ASSETS.
-- [ ] **B07-02 — Apertura:** sin valores predeterminados, ambos órdenes, parcial modificable/privada y comunicación; completar envía una vez sin confirmar. Recuperar solo dirección; no jugar al recuperar.
-- [ ] **B07-03 — Turno/mano:** identidad, fase/ronda/turno y carta propia validados; carta ajena/usada/inexistente y dirección ilegítima rechazadas sin efectos. Observador y excluidos de desempate no juegan.
-- [ ] **B07-04 — Orden:** circular desde abridor con orden base estable, anfitrión al final, una jugada por participante; varias pestañas no duplican.
-- [ ] **B07-05 — Ranking/puntos:** HIGH/LOW usan playValue activo, no dato mostrado; primero/segundo distintos, ganador recibe N cartas/puntos, score derivado. No punto por ronda ni por desempate.
-- [ ] **B07-06 — Reposición:** desde segundo circularmente, adquisición conservada, indicador descartado una vez y siguiente indicador correcto. Comprobar en cada transición las 58 ubicaciones únicas.
-- [ ] **B07-07 — Final:** condición exacta antes de abrir, una indicadora final y tres rondas con su atributo; direcciones nuevas, manos 3→2→1→0, sin reposición/indicadoras adicionales.
-- [ ] **B07-08 — Partidas completas:** 2/3/4/5 jugadores, anfitrión jugador/observador; cifras derivadas de §4 y fin normal. Script de acciones manuales válidas, no endpoint para terminar saltando el motor.
-- [ ] **B07-09 — Revisión positiva:** cartas/ranking/puntos visibles antes de nueva etapa; ningún juego siguiente aceptado antes; recargar/reconectar conserva plazo y estado, no lo reinicia.
-- [ ] **B07-10 — Revisión cero:** comunicar resolución antes de siguiente etapa, aviso breve observable sin pausa artificial/resumen persistente; no doble transición ni bucle automático.
-- [ ] **B07-11 — Empate sin ronda:** empate máximo comparte victoria, opción apagada o ganador único no barajan ni ejecutan desempate; clasificación correcta también con empates inferiores.
-- [ ] **B07-12 — Desempate:** opción activa y empate máximo, una ronda solo empatados, indicadoras descartadas/última incluidas, fórmula de reparto 1/2/3 probada, circularidad y ganador único. Puntajes/puestos base inmutables; no reposición/segundo desempate/siguiente abridor.
-- [ ] **B07-13 — Revisión final:** aplicar revisión también a última ronda base y desempate; no resultado final anticipado; conservar cartas/puntos correctamente.
-- [ ] **B07-14 — Repetición/antigüedad:** IDs iguales/distintos, ack perdido, parcial reemplazada, turno/ronda/Game anterior, conflictos y callbacks obsoletos no reaplican ni cambian contexto actual.
-- [ ] **B07-15 — Privacidad:** inspeccionar HTTP/ack/eventos exactos para humanos/observador; parcial solo propia, manos propias en todo ciclo/desempate y resultado sin secretos. Sin orden/IDs ocultos de mazo, paquetes/semillas/credenciales en mensajes o registros.
-- [ ] **B07-16 — Recuperación/presencia:** varias sesiones/pestañas, F5/corte/restauración en apertura, turnos, final, revisión, desempate y resultados. Misma partida sin redistribuir; ninguna ausencia produce automático/retirada o cierre aunque transcurran límites aplazados.
-- [ ] **B07-17 — Resultados/retención:** clasificación/vencedores y observador, plazo desde publicación tras revisión, recuperación antes del límite y rechazo/eliminación en igualdad/después; consultas no renuevan. Presentación ya abierta puede conservar copia sin F5.
-- [ ] **B07-18 — Otra sala:** volver al inicio en todas las pestañas de una sesión, acceder al último resultado y crear/entrar sin reinicio; código/participación nuevos, sin revancha ni afectar a terceros. Consultar/guardar resultado antiguo no recupera la vinculación anterior; expirarlo no borra sala/sesión/índices nuevos.
-- [ ] **B07-19 — Interfaz:** 360/390/1280 px, teclado/tacto, selección/estado pendiente, Detalles separado y foco preservado; mano variable legible sin desbordamiento de página; acciones solo actor y aviso claro sin límite de turno.
-- [ ] **B07-20 — Arquitectura/regresiones:** dependencias sin ciclos/imports server en src; responsabilidad semántica revisada. Garantías de espera B01–B05/activación y B06 conservadas; cambiar solo aserciones que describían ausencia temporal de ejecución, manteniendo su evidencia histórica.
+- [x] **B07-01 — Base:** B06 conservado; inicio/autorización/reparto/catálogo exacto y preparación bloqueada. No se modifica genérica ni ASSETS.
+- [x] **B07-02 — Apertura:** sin valores predeterminados, ambos órdenes, parcial modificable/privada y comunicación; completar envía una vez sin confirmar. Recuperar solo dirección; no jugar al recuperar.
+- [x] **B07-03 — Turno/mano:** identidad, fase/ronda/turno y carta propia validados; carta ajena/usada/inexistente y dirección ilegítima rechazadas sin efectos. Observador y excluidos de desempate no juegan.
+- [x] **B07-04 — Orden:** circular desde abridor con orden base estable, anfitrión al final, una jugada por participante; varias pestañas no duplican.
+- [x] **B07-05 — Ranking/puntos:** HIGH/LOW usan playValue activo, no dato mostrado; primero/segundo distintos, ganador recibe N cartas/puntos, score derivado. No punto por ronda ni por desempate.
+- [x] **B07-06 — Reposición:** desde segundo circularmente, adquisición conservada, indicador descartado una vez y siguiente indicador correcto. Comprobar en cada transición las 58 ubicaciones únicas.
+- [x] **B07-07 — Final:** condición exacta antes de abrir, una indicadora final y tres rondas con su atributo; direcciones nuevas, manos 3→2→1→0, sin reposición/indicadoras adicionales.
+- [x] **B07-08 — Partidas completas:** 2/3/4/5 jugadores, anfitrión jugador/observador; cifras derivadas de §4 y fin normal. Script de acciones manuales válidas, no endpoint para terminar saltando el motor.
+- [x] **B07-09 — Revisión positiva:** cartas/ranking/puntos visibles antes de nueva etapa; ningún juego siguiente aceptado antes; recargar/reconectar conserva plazo y estado, no lo reinicia.
+- [x] **B07-10 — Revisión cero:** comunicar resolución antes de siguiente etapa, aviso breve observable sin pausa artificial/resumen persistente; no doble transición ni bucle automático.
+- [x] **B07-11 — Empate sin ronda:** empate máximo comparte victoria, opción apagada o ganador único no barajan ni ejecutan desempate; clasificación correcta también con empates inferiores.
+- [x] **B07-12 — Desempate:** opción activa y empate máximo, una ronda solo empatados, indicadoras descartadas/última incluidas, fórmula de reparto 1/2/3 probada, circularidad y ganador único. Puntajes/puestos base inmutables; no reposición/segundo desempate/siguiente abridor.
+- [x] **B07-13 — Revisión final:** aplicar revisión también a última ronda base y desempate; no resultado final anticipado; conservar cartas/puntos correctamente.
+- [x] **B07-14 — Repetición/antigüedad:** IDs iguales/distintos, ack perdido, parcial reemplazada, turno/ronda/Game anterior, conflictos y callbacks obsoletos no reaplican ni cambian contexto actual.
+- [x] **B07-15 — Privacidad:** inspeccionar HTTP/ack/eventos exactos para humanos/observador; parcial solo propia, manos propias en todo ciclo/desempate y resultado sin secretos. Sin orden/IDs ocultos de mazo, paquetes/semillas/credenciales en mensajes o registros.
+- [x] **B07-16 — Recuperación/presencia:** varias sesiones/pestañas, F5/corte/restauración en apertura, turnos, final, revisión, desempate y resultados. Misma partida sin redistribuir; ninguna ausencia produce automático/retirada o cierre aunque transcurran límites aplazados.
+- [x] **B07-17 — Resultados/retención:** clasificación/vencedores y observador, plazo desde publicación tras revisión, recuperación antes del límite y rechazo/eliminación en igualdad/después; consultas no renuevan. Presentación ya abierta puede conservar copia sin F5.
+- [x] **B07-18 — Otra sala:** volver al inicio en todas las pestañas de una sesión, acceder al último resultado y crear/entrar sin reinicio; código/participación nuevos, sin revancha ni afectar a terceros. Consultar/guardar resultado antiguo no recupera la vinculación anterior; expirarlo no borra sala/sesión/índices nuevos.
+- [x] **B07-19 — Interfaz:** 360/390/1280 px, teclado/tacto, selección/estado pendiente, Detalles separado y foco preservado; mano variable legible sin desbordamiento de página; acciones solo actor y aviso claro sin límite de turno.
+- [x] **B07-20 — Arquitectura/regresiones:** dependencias sin ciclos/imports server en src; responsabilidad semántica revisada. Garantías de espera B01–B05/activación y B06 conservadas; cambiar solo aserciones que describían ausencia temporal de ejecución, manteniendo su evidencia histórica.
 
 Pruebas futuras por etapas M1–M4: dominio puro con permutaciones explícitas y conservación después de cada paso; casos de uso con puertos/tiempo controlado; HTTP/Socket.IO reales, credenciales, privacidad y confirmaciones; navegador sobre compilación vigente y revisión visual. Usar paquetes validados de prueba separados para resultados/empates/recursos; no alterar fuentes maestras ni paquetes aprobados. Los casos sintéticos se identifican y no se presentan como partidas completas alcanzables.
 
@@ -267,7 +269,7 @@ Instrucciones manuales para implementación y autor:
 
 No quedan preguntas funcionales bloqueantes ni propuestas de interfaz sin resolver. Las elecciones internas compatibles de §6 pertenecen al implementador; no requieren nuevas decisiones del autor.
 
-**Código/pruebas B07:** no implementados ni ejecutados en este hilo. Arquitectura/verificación de implementación pendientes. Se conserva el cierre histórico B06, no se le atribuyen resultados futuros.
+**Preparación original, antes de implementación:** código/pruebas B07 no implementados ni ejecutados en el hilo SDD. Arquitectura/verificación de implementación pendientes en ese momento. Se conserva el cierre histórico B06, no se le atribuyen resultados futuros. El cierre de implementación que sigue registra evidencia nueva.
 
 **Comprobación documental, 04/10/2026:** enlaces locales de especificación/prompt/proceso existentes, 20 criterios únicos y revisión de contratos/decisiones cerradas. Cambios limitados a documentación SDD; huellas de genérica en APP iguales a las aprobadas de activación. No acredita implementación ni pruebas del producto.
 
@@ -275,4 +277,100 @@ No quedan preguntas funcionales bloqueantes ni propuestas de interfaz sin resolv
 
 Implementación puede mantener README, documento/evidencia B07 y descripción del código en APP. **No editar contexto, aplicación o infraestructura de TFM.** Entregar conclusiones a coordinación y Arquitectura, incluido ejemplo inconsistente, acuerdos de interacción y límite manual. No encargar push, PR ni despliegue desde B07.
 
-**Resumen para coordinación/Arquitectura:** base B06 local f3aca75; partida humana manual completa, revisión/retención temporizadas, selección parcial privada y retorno con resultado recuperable; sin tiempos de turno/ausencia/vigilancia ni bots. Fuentes generales conservan requisitos completos del MVP y deben registrar el alcance/evidencia entregados en su ámbito responsable. Corregir el ejemplo aritmético de dominio §24.2 sin modificar reglas. C09–C10 permanecen acotados/parciales y no hay evidencia B07 todavía.
+**Resumen de la preparación para coordinación/Arquitectura:** base B06 local f3aca75; alcance acordado de partida humana manual completa, revisión/retención temporizadas, selección parcial privada y retorno con resultado recuperable; sin tiempos de turno/ausencia/vigilancia ni bots. En la preparación aún no había evidencia B07; los resultados nuevos figuran en §9.1. Fuentes generales conservan requisitos completos del MVP y deben registrar el alcance/evidencia entregados en su ámbito responsable. Corregir el ejemplo aritmético de dominio §24.2 sin modificar reglas. C09–C10 permanecen acotados/parciales.
+
+### 9.1 Cierre de implementación — 04/10/2026
+
+**Cambio revisado:** `32f60e926b34c4afcb01d3147ea6ed1dc7925414` (48 archivos, implementación/pruebas/README/organización), corrección de foco y regresión `bfa5c5fed5179c4423266f0615831ae8c405de34`, y protección frente a confirmaciones antiguas con regresiones `eb73b1176934428adaa5c3cc4469f048bb8ecc2b` (base de todas las puertas finales). Rama `feat/b07-partida-manual-completa`, base efectiva B06 `f3aca75676c4b3590b875d4c49aa48dfd219eb29`; main permanece `4dd073d58bd9efa6222fc7b90ccb93eadc10fa4c`. Preparación ajena conservada en commit separado `2372be35aecc420ab8935252e7f16940fde89280` (especificación/prompt/proceso y registro de base). Sin restauraciones, push, PR ni despliegue. Cierre documental posterior separado del código.
+
+**Estado del cierre:** implementado y verificado localmente. Los 20 criterios y E1–E7 tienen evidencia nueva ejecutada, con check 295/295 y navegador compilado 63/63 sobre `eb73b11`. Incluye revisión semántica y visual asistida; no acredita revisión manual humana, dispositivos físicos ni media hora real de conservación. Esos límites y C09–C10 parciales se mantienen explícitos.
+
+#### Entorno, base y etapas ejecutadas
+
+Windows, PowerShell, Node `24.13.0`, npm `11.6.2`, aplicación `0.1.0`; Chrome `154.0.8037.93`, Playwright `1.63.0`. Fecha 04/10/2026, horas locales Europe/Madrid (UTC+02). Sesiones de navegador aisladas por cookies, pestañas del mismo contexto comparten identidad. Emulación de viewport 360/390/1280 × 844; no dispositivos físicos ni revisión humana de una partida B07.
+
+Antes de editar: `npm run check` pasó 249/249 en 24 archivos (11,70 s), tipos/lint/build y 50 módulos de arquitectura. Primer intento de navegador sin proceso normal arrancado: 28 pasaron/19 fallaron por conexión rechazada; fallo de montaje, no acreditado. Tras `npm run start`, `npx playwright test --workers=2` contra B06 compilado pasó 47/47 (3,0 min). Estas dos comprobaciones solo acreditan la base.
+
+Se comprobó cada etapa **antes de extender la siguiente**, en el mismo bloque:
+
+| Etapa | Comandos/ejecución realizada | Resultado en ese punto |
+|---|---|---|
+| M1 | Vitest sobre Game B06 + pruebas M1 de dominio/aplicación; typecheck/lint; build y Playwright M1 | 20/20 seleccionadas; 2/2 recorridos de apertura/privacidad/Detalles/F5. |
+| M2 | Vitest sobre `manualGame.test.ts` de dominio/aplicación; build y Playwright M1/M2 | 11/11 seleccionadas; 4/4 navegador. Revisión 0/5, ranking/adjudicación/reposición/emisión. Se corrigió impureza de lectura de tiempo en render detectada por lint. |
+| M3 | Mismos archivos Vitest ampliados; build y Playwright M1/M2/M3 | 16/16 seleccionadas; 5/5 navegador. 2–5 completos en dominio y cinco jugadores/observador en conexiones compiladas con tiempo controlado. |
+| M4 | Pruebas de dominio/aplicación/resultados e integración `server/manualSocket.test.ts`; Playwright ampliado | 16 pruebas puras + 9 de coordinación manual + 12 de resultados + 8 de HTTP/sockets en la batería final; 16 recorridos B07 de navegador tras añadir regresiones de foco y respuestas antiguas. Trazas reales del motor para empate/repartos/clasificación, no asignación sintética de puntos. |
+
+Fallos encontrados y corregidos durante M4: comparación de claves sin ordenar en el test de privacidad (no fallo de contrato); recuperación de otra sala que ocultaba ausencia de un resultado leído por URL (corregido en `useRoomFlow`, ahora protege también lectura explícita fallida); dos aserciones de título esperaban el del invitado en una espera del anfitrión (corregidas, la captura mostraba correctamente «Tu sala está lista»). Ejecuciones intermedias con estos fallos no se cuentan como verificadas. El aviso de scroll se recalcula al cambiar el tamaño de mano; una prueba comprueba su retirada en la última ronda final. La revisión detectó además foco sin destino al cerrar Detalles si otra pestaña jugó esa carta: regresión ejecutada falló (destino inactivo), corrección devuelve foco a la región de mano si su botón ya no existe. Cuatro recorridos específicos posteriores pasaron, incluidos toque/teclado/F5 y este caso.
+
+Una batería posterior de 61 casos produjo 60 pasados y un fallo: el gesto de teclado se adelantó a la habilitación tras reconectar; se corrigió la secuencia del test esperando habilitación y comprobando selección local. No se acredita esa ejecución como superada. La regresión de una confirmación real de retorno retenida mostró que borraba la nueva sala creada en otra pestaña. Se corrigió capturando la asociación de origen de lecturas/resume y guardando también el contexto del retorno en `useRoomFlow`/App. La primera prueba de resume retenido agotó 60 s antes de capturar la respuesta (montaje, no evidencia de ese fallo de producto); con espera explícita y timeout de prueba 90 s se ejecutaron ambos casos reales. Seis seleccionados pasaron después de la corrección, incluidos teclado/F5/foco, y los dos casos vuelven a pasar en la puerta global de 63.
+
+#### Puertas y evidencia nueva
+
+| Comando | Resultado real |
+|---|---|
+| `npm run check` (18:24:09, código eb73b11) | Salida 0; **295/295**, 28 archivos, 11,52 s. Tipos/lint/build correctos; preparación normal: una baraja genérica 2 disponible. Arquitectura: **57 módulos**, sin imports prohibidos/ciclos; se conservan sus casos negativos. Esta ejecución incorpora las correcciones de foco y contexto. |
+| `npm run test:browser -- --workers=2` (primera batería completa B07) | Salida 0; **60/60**, 4,1 min, 47 regresiones + 13 B07. Se repite sobre el último ajuste de mano variable. |
+| `npm run test:browser -- --workers=2` (compilación vigente, eb73b11, 04/10/2026) | Salida 0; **63/63**, **5,8 min**, 47 regresiones + 16 B07. Compila de nuevo antes de probar. La batería previa al ajuste de foco también pasó 60/60, 4,0 min; se registra como ejecución anterior. |
+| `npx playwright test tests/browser/manualGame.spec.ts --grep 'B07 M1\|parcial remoto' --workers=1 --output test-results/b07-touch` | Salida 0, **3/3**, 6,9 s; carta/dirección por toque a 390, teclado y F5/privacidad/pestañas. |
+| `npx playwright test tests/browser/manualGame.spec.ts --grep 'Detalles conserva foco\|B07 M1\|parcial remoto' --workers=1 --output test-results/b07-focus-fixed` tras build | Salida 0, **4/4**, 6,7 s; incorpora otra pestaña jugando la carta abierta en Detalles a 360, diálogo estable y regreso de foco a mano. |
+| `npx playwright test tests/browser/manualGame.spec.ts --grep 'respuesta antigua\|Detalles conserva foco\|B07 M1\|parcial remoto' --workers=1 --output test-results/b07-context-fixed` tras build | Salida 0, **6/6**, 2,1 min; conexiones reales y respuestas reales retenidas de retorno/resume no borran la sala nueva. Sin reloj controlado en esas dos carreras de respuesta. |
+| `git diff --check` y revisión semántica | Sin errores de whitespace. Game contiene reglas; aplicación coordina permisos/contexto/dedupe/plazos/vistas; infraestructura autentica/decodifica/almacena/programa/emite; composición conecta; React solo presenta/gestiona gestos y carta local. Mapa concreto en [organización](../arquitectura/ORGANIZACION_Y_DEPENDENCIAS.md). No desviaciones de capas. |
+
+Logs finales locales ignorados: `b07-check-final.log`, `b07-browser-final.log`; seleccionados/correcciones: `b07-touch.log`, `b07-focus-before.log`, `b07-focus-fixed.log`, `b07-old-response-before.log`, `b07-context-fixed.log` (y ejecuciones previas `b07-*.log`). Comandos/tests versionados y este cierre permiten reconstruir las comprobaciones. Playwright sustituye su carpeta de resultados en cada ejecución: no se presenta una salida intermedia borrada como artefacto archivado. Las capturas finales se generan en `test-results`, no se publican como recursos ni se versionan por rutina.
+
+#### Resultados por criterio
+
+Todos los resultados de la tabla proceden de código ejecutado en esta implementación y la puerta compilada final ha pasado. D = `server/domain/manualGame.test.ts`; A = `server/application/manualGame.test.ts`; R = `server/application/results.test.ts`; S = `server/manualSocket.test.ts`; N = `tests/browser/manualGame.spec.ts`.
+
+| Criterio | Evidencia ejecutada y resultado |
+|---|---|
+| B07-01 | Regresiones B06/activación en check y navegador; inicio único/versión exacta/preparación bloqueada. Huellas APP=ASSETS=aprobadas, sin cambios en JSON. Catálogo normal genérica 2 y sala sin selección inicial. |
+| B07-02 | A/S/N M1: HIGH→carta y carta→LOW, parcial privada/modificable/deduplicada, F5 recupera solo dirección; evento de otra pestaña no completa carta local. Un gesto completo juega inmediatamente; Detalles no juega. |
+| B07-03 | D/A/S: sesión/observador/contexto/mano/dirección/forma extra y tipos rechazados sin efectos; carta ajena/usada/inexistente y no empatados no juegan. No HTTP de jugar/avanzar/terminar. |
+| B07-04 | D/S y regresión B06: orden base estable/anfitrión al final, circular desde abridor. Carrera de dos sockets de misma sesión acepta una carta; replay devuelve estado vigente. |
+| B07-05 | D HIGH/LOW con Dato distinto de Jugable; ganador recibe N cartas/puntos, segundo abre. Puntos derivados; empate adicional no suma. N comunica ganador/segundo/puntos. |
+| B07-06 | D comprueba adquisiciones circulares desde segundo al final de mano, nueva indicadora y descarte único. En cada jugada/transición comprueba 58 IDs/ubicaciones únicos, también empate y fin. |
+| B07-07 | D 2–5 y N cinco humanos: tres finales, atributo/indicadora únicos, nuevas direcciones, manos 3→2→1→0; mazo cero, sin reposición; descarte final único y 50 puntos para cinco. |
+| B07-08 | D/R/S completos 2/3/4/5; N dos reales normales y cinco/observador con paquete validado. Totales 40/45/48/50, normales 17/12/9/7 + tres finales, indicadoras 18/13/10/8. Solo acciones legales; nada salta el motor. |
+| B07-09 | A/S/N revisión 5: puntos/ranking ya aplicados, siguientes jugadas bloqueadas, F5 conserva deadline, −1 ms no avanza, igualdad avanza una vez. Reloj controlado y conexiones reales, no cinco segundos de evidencia real. |
+| B07-10 | A/S/N revisión 0: publicación resuelta + evento antes de avance acotado; aviso fresco observable de cinco segundos, sin contador/pausa artificial. No resumen persistente/reanuncio al recargar ni bucle automático. |
+| B07-11 | D/R: empate con opción apagada comparte máximo; único con opción activa no baraja. E6 apagado conserva tres ganadores y puestos 1/1/1/4/5. |
+| B07-12 | D/R/S: k=3 para 2/3 empatados, k=2 para 4, k=1 para cinco a 10. Indicadoras base incluida última, permutación validada, abre primer empatado, una ronda/0 puntos, sin reposición/otro abridor. N móviles prueba k=1/2 con observador. |
+| B07-13 | R/N: revisión última base y empate antes de RESULTS; publicación final/retención aún inexistentes durante revisión. Puntajes/pilas base conservados. |
+| B07-14 | A/R/S/N: replay, conflicto tipo/contenido/contexto, parcial sustituida, ack/evento perdidos, ronda/turno/Game viejo; primera completa gana. Callback antiguo invocado durante otra revisión no cambia Game/revisión. Fallos de emisión final/retorno no repiten efectos; roomState rechaza degradación/sala anterior. Dos respuestas reales retenidas (retorno/resume) no borran ni desplazan la sala nueva creada por otra pestaña; se verifica UI y asociación vigente. |
+| B07-15 | S y helper `gamePrivacy`: claves/contenido exactos de GET/ack/eventos para cada destinatario durante ciclo completo/desempate/results; ningún ID oculto salvo mano propia/públicos. Parcial solo propia, observador/no empatados sin mano, RESULTS sin Game/cartas/presencia. Registros técnicos fijos sin objetos/payloads. |
+| B07-16 | S/N + B06: F5/corte/restauración, turno/revisión/final/empate/results y pestañas. Una pestaña conectada conserva presencia; todas fuera +31 min **controlados** no cambian cartas/turno/participantes ni ejecutan límites aplazados. Entropía inicial/empate no se repite. |
+| B07-17 | R/S/N: resultado/puestos/ganadores/observador; retención desde publicación tras revisión y lecturas no renuevan; −1/igual/+1 eliminan/autorización 404. Copia ya abierta puede quedarse, F5 ya no recupera. Fallo de red no se presenta como caducidad. |
+| B07-18 | R/S/N E7: retorno a todas las pestañas propias, tercero conserva resultado; último resultado autorizado sin re-vincular. Crear otra sala/código sin reinicio; leer/guardar/expirar anterior no borra índices nuevos. Replay de retorno viejo devuelve asociación/último resultado vigentes, incluso tras otra partida completa. Lectura/resume y ack de retorno emitidos antes de la nueva sala tampoco la eliminan al llegar tarde. |
+| B07-19 | N + regresiones B06 a 360/390/1280: mano variable, pendientes/error/recuperación, teclado, toque en carta/dirección/Detalles, Escape/foco, imágenes reales/nulas/fallidas y scroll sin desbordamiento de página. Dialog no pierde foco al recibir jugada de otra pestaña; cerrar vuelve a mano si desapareció el disparador. Inspección visual asistida de capturas de empate 360 y clasificación 390/1280 legibles. Comprobaciones táctiles específicas 3/3 y 4/4 pasadas. |
+| B07-20 | Check + navegador completo conservan B01/T01/B02/B03/B04/B05/activación/B06. Solo se cambian aserciones B06 de ausencia temporal de ejecución, título y mano ahora variable; sus documentos históricos permanecen intactos. Puertas automática y semántica correctas, ninguna nueva dependencia de paquete. |
+
+**Ejemplos E1–E7:** E1/E2 en M1/N/A/S (dos órdenes, dos pestañas, privado/local/F5); E3 A/S/N revisión 5 y callbacks; E4 D/N cinco humanos (7+3, 8 indicadoras, 50 puntos); E5 D/R/S/N cinco máximos a 10 (8 indicadoras, una por empatado + indicador + dos no utilizadas); E6 D/R dos opciones sobre traza 15/15/15/5/0, puestos 1/1/1/4/5; E7 R/S/N retorno/lectura/otra sala/expiración sin borrar contexto. E5/E6 se alcanzan mediante paquetes/permutaciones validados y cartas/direcciones humanas legales, nunca asignando puntos. Constructor independiente de trazas en `tests/support/manualGameTrace.ts`; las aserciones comparan acciones/ranking/puntuación reales del motor.
+
+#### Compilación normal, privacidad e independencia
+
+Se detuvo la instancia B06 anterior y se arrancó B07 con `npm run start`; se reinició de nuevo para la puerta final de esta entrega. Comprobación adicional del proceso normal el 04/10/2026 a las **18:41:19 UTC+02**: `http://127.0.0.1:3000/api/decks` responde HTTP 200, únicamente resumen seguro genérica, formato 1/contenido 2, portada null. Su HTML referencia la compilación final **`index-D7SF9srO.js` / `index-BcLg80en.css`**, iguales a la construcción comprobada. No fixture/interceptor en el proceso normal. N recorre 40 jugadas de dos sesiones con entropía `node:crypto`, F5, resultados y otra sala; otro proceso `main` compilado aislado recorre observador + dos invitados, 40 jugadas, resultado y reinicio con genérica 2 real y guard que bloquea cualquier acceso a ASSETS. No se registró acceso; proceso sin errores. Reutiliza instantánea B06 y medios validados B04, sin reread al jugar.
+
+Huellas conservadas de ambos JSON (origen ASSETS = APP = activación aprobada):
+
+| Archivo | SHA-256 |
+|---|---|
+| `baraja.json` | `991406d04f60bfe884166a69fcc43954cfc751f0e058093ae2542f32c989e8ed` |
+| `cartas.json` | `868988a43fe6c6be1a73be14013c543dc2fc83970341a4243be868af75b4c35c` |
+
+Formato 1/contenido 2/disponible true, 58 cartas, imágenes nulas y semilla editorial sin cambios. Catálogo/artefactos/logs ignorados. No se cambia contrato ni se publica contenido sintético. Las cuatro huellas de TFM se compararon con las leídas al preparar esta tarea y son iguales (contexto `4f5baa77…`, aplicación `180a4e4a…`, dominio `a08bafcd…`, infraestructura `434e96ee…`). No se editó ninguna fuente general ni el ejemplo de dominio.
+
+#### Tiempo y límites de evidencia
+
+- Dominio: permutaciones explícitas, sin tiempo/red. Casos de aplicación: reloj/planificador/entropía sustituibles. HTTP/Socket.IO: conexiones reales con plazos controlados; navegador de fixtures: compilación vigente, conexiones reales, reloj/permutación controlados. No acreditar media hora real con `advance/elapse`.
+- Instalación normal y main aislado: entropía real, genérica aprobada, conexiones y reinicio de proceso reales. Los gestos los automatiza Playwright; no partida humana presencial. Cuenta atrás de revisión controlada; retención antes/en/después controlada. Margen B03 real de la puerta final: pingInterval/pingTimeout 5000/5000 ms, reserva desde detección 30000 ms; recuperación detectada en 5,8081 ms, última pérdida en 6,0950 ms, reserva observada 30007,6883 ms y total desde pérdida de red 30013,7833 ms, razón `transport close` (caso 41,8 s). No representa el máximo de detección por ping en una red silenciosa ni se extrapola a plazos futuros de juego.
+- Capturas inspeccionadas por el agente: resultados normales 1280, empate 360 y observador/clasificación 390; se conservan capturas generadas por el recorrido para los tres anchos. Es revisión visual asistida de navegador emulado, no móvil físico ni comprensión validada con usuarios.
+- [README](../../README.md) contiene instrucciones manuales completas: dos sesiones; observador y dos invitados; parciales/F5/pestañas; revisión/final/resultados y otra sala; fixture de empate separada; limpieza local por reinicio solo si el ensayo queda detenido. Pasos ejercitados por automatización; revisión manual humana B07 pendiente de autor, no acreditada por B06 histórico.
+
+#### Entrega a coordinación y Arquitectura
+
+Implementado Game humano manual completo y coordinación/results; mapa/archivos concretos en organización y commit. Mantener requisitos futuros de fuentes generales: límite/cuenta atrás de turno, timeout, automático, retirada por ausencia y vigilancia de dos minutos **no implementados**. TurnTimeout sigue dato configurado; se muestra el aviso acordado, sin selector permanente manual. No bots, visualización/configuración nueva, rediseño, despliegue ni siguiente bloque. Esperar indefinidamente al jugador no es una política provisional de tiempo: es el límite explícito B07.
+
+Trasladar al responsable de dominio la errata §24.2: cinco jugadores adjudican 50 cartas/puntos en múltiplos de cinco; 12/12/12/12/2 no es una traza de esa partida. La prueba alcanzable de mano reducida es **10/10/10/10/10**, ocho indicadoras y k=1. E6 **15/15/15/5/0** comprueba puestos oficiales sin renumerar tras desempate. No se modifican reglas para reproducir el ejemplo ni se corrige TFM desde este encargo.
+
+Coordinar actualización descriptiva de contexto/aplicación/infraestructura por sus responsables: partida manual completa, parcial privada/local, revisión/retención, resultado autorizado independiente de asociación activa y otra sala sin reinicio. Conservar requisitos MVP futuros. **C09–C10 parciales:** ahora hay uso/jugadas/manos variables/resultados/recursos/privacidad; no comprensión con usuarios, equilibrio, dispositivos físicos, bots o despliegue. Publicación/PR/integración siguen el hilo de GitHub/recuperación, fuera del encargo.
