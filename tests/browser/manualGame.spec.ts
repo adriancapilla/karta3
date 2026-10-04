@@ -43,12 +43,15 @@ test('B07 parcial remoto no completa carta local; teclado y F5 recuperan solo di
   const first = p.pages[1]; const tab = await p.contexts[1].newPage();
   try {
     await tab.goto(server.base); await expect(tab.getByRole('button', { name: 'ALTO', exact: true })).toBeEnabled();
+    await expect(first.locator('.game-hand .card-play-button').first()).toBeEnabled();
     await first.locator('.game-hand .card-play-button').first().press('Enter');
+    await expect(first.locator('.game-hand .card-play-button').first()).toHaveAttribute('aria-pressed', 'true');
     await tab.getByRole('button', { name: 'ALTO', exact: true }).press('Enter');
     await expect(first.getByText('Dirección aceptada (solo tú): ALTO')).toBeVisible();
     expect((await readGame(first)).game.round.plays).toEqual([]);
     await first.reload();
     await expect(first.getByRole('button', { name: /Jugar/ }).first()).toHaveAttribute('aria-pressed', 'false');
+    await expect(first.locator('.game-hand .card-play-button').first()).toBeEnabled();
     await first.locator('.game-hand .card-play-button').first().press('Enter');
     await expect.poll(async () => (await readGame(first)).game.round.plays.length).toBe(1);
     expect((await readGame(first)).game.round.direction).toBe('HIGH');
@@ -70,6 +73,35 @@ test('B07 Detalles conserva foco si otra pestaña juega la carta mostrada', asyn
     await dialog.getByRole('button', { name: 'Cerrar detalles' }).press('Escape');
     await expect(first.getByRole('region', { name: 'Cartas de tu mano' })).toBeFocused();
     expect((await readGame(first)).game.round.plays).toHaveLength(1);
+  } finally { await p.close(); await server.stop(); }
+});
+
+for (const action of ['retorno', 'resume'] as const) test(`B07 respuesta antigua de ${action} no borra sala nueva creada en otra pestaña`, async ({ browser }) => {
+  test.setTimeout(90_000);
+  const server = await configurationBrowserServer(true, true, { count: 2 });
+  const p = await manualTable(browser, server.base, { deckId: 'manual', version: 7, review: 0, width: 390 });
+  const tab = await p.contexts[0].newPage(); let release: (() => void) | undefined;
+  try {
+    while ((await readRoom(p.host)).status === 'IN_GAME') await humanPlay(p);
+    await tab.goto(server.base); await expect(tab.getByRole('heading', { name: 'Partida terminada' })).toBeVisible();
+    if (action === 'retorno') server.interceptHome((_input, ack, response) => { release = () => ack(response); });
+    await p.host.getByRole('button', { name: 'Volver al inicio' }).click();
+    await expect(tab.getByRole('button', { name: 'Crear sala', exact: true })).toBeVisible();
+    if (action === 'resume') {
+      await expect(p.host.getByRole('button', { name: 'Crear sala', exact: true })).toBeEnabled();
+      server.interceptResume((ack, response) => { release = () => ack(response); });
+      const token = (await p.contexts[0].cookies()).find((cookie) => cookie.name === 'karta3_session')!.value;
+      server.dropOneTransport(server.sessions.get(token)!);
+    }
+    await expect.poll(() => !!release).toBe(true);
+    await tab.getByRole('button', { name: 'Crear sala', exact: true }).click();
+    await expect(p.host.getByRole('heading', { name: 'Tu sala está lista' })).toBeVisible();
+    const newer = await readRoom(tab); release!();
+    if (action === 'retorno') await expect(p.host.getByRole('button', { name: 'Guardar', exact: true })).toBeEnabled();
+    else await expect(p.host.getByLabel('Baraja', { exact: true })).toBeEnabled(); // resume ya confirmado
+    await expect(p.host.getByRole('heading', { name: 'Tu sala está lista' })).toBeVisible();
+    expect((await readRoom(p.host)).id).toBe(newer.id);
+    expect((await readRoom(tab)).id).toBe(newer.id);
   } finally { await p.close(); await server.stop(); }
 });
 

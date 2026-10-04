@@ -2,7 +2,7 @@ import { createServer } from 'node:http';
 import fs from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
-import type { ConfigureRoomRequest, StartRoomRequest, RoomView, SocketAck } from '../../shared/contracts/room.js';
+import type { ConfigureRoomRequest, StartRoomRequest, RoomView, SocketAck, CurrentRoomResponse, ReturnHomeRequest } from '../../shared/contracts/room.js';
 import { ControlledTime } from './controlledTime.js';
 import { deckFixture, realImage, writeFixture } from './deckFixtures.js';
 import { removeTestInstallation } from './compiledDeckServer.js';
@@ -51,6 +51,9 @@ export async function configurationBrowserServer(single = false, initialGame = f
   let interceptStart: ((payload: StartRoomRequest, deliver: (result: Ack) => void, result: Ack) => void) | undefined;
   const gameRequests: { event: string; payload: Record<string, unknown> }[] = [];
   let interceptGame: ((event: string, payload: Record<string, unknown>, deliver: (result: Ack) => void, result: Ack) => void) | undefined;
+  type CurrentAck = SocketAck<CurrentRoomResponse>;
+  let interceptHome: ((payload: ReturnHomeRequest, deliver: (result: CurrentAck) => void, result: CurrentAck) => void) | undefined;
+  let interceptResume: ((deliver: (result: CurrentAck) => void, result: CurrentAck) => void) | undefined;
   let suppressStateFor: string | undefined;
   const target = io.to.bind(io);
   io.to = (name: string | string[]) => {
@@ -60,6 +63,14 @@ export async function configurationBrowserServer(single = false, initialGame = f
     return operator;
   };
   io.on('connection', (socket) => {
+    const home = socket.listeners('results:return-home')[0]; socket.removeAllListeners('results:return-home');
+    socket.on('results:return-home', (payload: ReturnHomeRequest, ack: (result: CurrentAck) => void) => {
+      home(payload, (result: CurrentAck) => interceptHome ? interceptHome(payload, ack, result) : ack(result));
+    });
+    const resume = socket.listeners('room:resume')[0]; socket.removeAllListeners('room:resume');
+    socket.on('room:resume', (payload: object, ack: (result: CurrentAck) => void) => {
+      resume(payload, (result: CurrentAck) => interceptResume ? interceptResume(ack, result) : ack(result));
+    });
     const original = socket.listeners('room:configure')[0];
     socket.removeAllListeners('room:configure');
     socket.on('room:configure', (payload: ConfigureRoomRequest, ack: (result: Ack) => void) => {
@@ -83,6 +94,8 @@ export async function configurationBrowserServer(single = false, initialGame = f
     intercept: (handler: typeof intercept) => { intercept = handler; },
     interceptStart: (handler: typeof interceptStart) => { interceptStart = handler; },
     interceptGame: (handler: typeof interceptGame) => { interceptGame = handler; },
+    interceptHome: (handler: typeof interceptHome) => { interceptHome = handler; },
+    interceptResume: (handler: typeof interceptResume) => { interceptResume = handler; },
     suppressGameState: (sessionId?: string) => { suppressStateFor = sessionId; },
     permutation: (handler: typeof permute) => { permute = handler; },
     permutations: () => permutations,

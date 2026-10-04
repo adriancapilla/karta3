@@ -70,11 +70,16 @@ export function useRoomFlow() {
     return true;
   }, []);
 
-  const applyCurrent = useCallback((result: CurrentRoomResponse) => {
+  const applyCurrent = useCallback((result: CurrentRoomResponse, expectedRoomId?: string | null) => {
+    const activeId = activeRoomRef.current?.id ?? null;
+    if (expectedRoomId !== undefined && activeId !== expectedRoomId && (!result.room || result.room.id !== activeId)) return;
+    if (result.room && (releasedRooms.current.has(result.room.id)
+      || activeRoomRef.current?.id === result.room.id && !acceptsRoom(activeRoomRef.current, result.room, ended.current, closed.current))) return;
     activeRoomRef.current = result.room;
     setLastResult(result.lastResult);
     if (explicitResult.current) return;
     if (result.room) {
+      if (roomRef.current && roomRef.current.id !== result.room.id) clearRoom(''); // recuperación autorizada de otra asociación vigente
       applyRoom(result.room);
     } else {
       if (result.ended) {
@@ -118,6 +123,7 @@ export function useRoomFlow() {
     let active = true;
     const onHome = (event: ResultsHomeEvent) => {
       if (!active || seenHomes.current.has(event.id)) return;
+      if (roomRef.current && roomRef.current.id !== event.roomId && !explicitResult.current) return;
       const current = activeRoomRef.current;
       if (current && (current.id !== event.roomId || current.status !== 'RESULTS' || current.result.gameId !== event.gameId)) return;
       if (!current && (roomRef.current?.id !== event.roomId || releasedRooms.current.has(event.roomId))) return;
@@ -164,17 +170,19 @@ export function useRoomFlow() {
       }
     };
     const onConnect = () => {
+      const expectedRoomId = activeRoomRef.current?.id ?? null;
       void send<CurrentRoomResponse>('room:resume', {}).then((result) => {
         if (!active) return;
         setConnected(true);
         // Una portada voluntaria conserva su aviso; una participación terminada recibe su motivo.
-        if (result.room || result.ended || roomRef.current || result.lastResult) applyCurrent(result);
+        if (result.room || result.ended || roomRef.current || result.lastResult) applyCurrent(result, expectedRoomId);
       }).catch(() => {});
     };
     const onConnectError = () => {
+      const expectedRoomId = activeRoomRef.current?.id ?? null;
       void api.current().then((result) => {
         if (!active) return;
-        if (result.room || result.ended || roomRef.current || result.lastResult) applyCurrent(result);
+        if (result.room || result.ended || roomRef.current || result.lastResult) applyCurrent(result, expectedRoomId);
         socket.connect();
       }).catch(() => { if (active) setNotice('No se pudo recuperar la conexión. Inténtalo de nuevo.'); });
     };
@@ -187,9 +195,10 @@ export function useRoomFlow() {
     socket.on('connect', onConnect);
     socket.on('connect_error', onConnectError);
     socket.on('disconnect', onDisconnect);
+    const initialRoomId = activeRoomRef.current?.id ?? null;
     void api.current().then(async (result) => {
       if (!active) return;
-      applyCurrent(result);
+      applyCurrent(result, initialRoomId);
       if (explicitResult.current) await openResult(explicitResult.current);
       if (!active) return;
       socket.connect();
@@ -212,14 +221,16 @@ export function useRoomFlow() {
 
   const confirmExpiry = useCallback(() => {
     if (!socket.connected) return;
-    void send<CurrentRoomResponse>('room:resume', {}).then(applyCurrent).catch(() => {});
+    const expectedRoomId = activeRoomRef.current?.id ?? null;
+    void send<CurrentRoomResponse>('room:resume', {}).then((result) => applyCurrent(result, expectedRoomId)).catch(() => {});
   }, [applyCurrent]);
 
   async function refresh() {
     if (explicitResult.current && !roomRef.current) { await openResult(explicitResult.current); socket.connect(); return; }
     setLoading(true);
     setNotice('');
-    try { applyCurrent(await api.current()); socket.connect(); }
+    const expectedRoomId = activeRoomRef.current?.id ?? null;
+    try { applyCurrent(await api.current(), expectedRoomId); socket.connect(); }
     catch (error) { setNotice(message(error)); }
     finally { setLoading(false); }
   }
@@ -319,15 +330,20 @@ export function useRoomFlow() {
     pendingHome.current = input;
     try {
       const result = await sendGame<CurrentRoomResponse>('results:return-home', input);
+      if (activeRoomRef.current && activeRoomRef.current.id !== current.id || roomRef.current && roomRef.current.id !== current.id) {
+        pendingHome.current = null; return; // una confirmación anterior no limpia la nueva sala
+      }
       explicitResult.current = null; releasedRooms.current.add(current.id); pendingHome.current = null;
-      clearRoom(''); applyCurrent(result);
+      clearRoom(''); applyCurrent(result, current.id);
     } catch (error) {
       setResultError(message(error));
       try {
+        const expectedRoomId = activeRoomRef.current?.id ?? null;
         const result = await api.current();
         if (result.room?.id !== current.id || error instanceof ApiError && error.code === 'RESULT_NOT_AVAILABLE') {
           explicitResult.current = null; releasedRooms.current.add(current.id); pendingHome.current = null;
-          clearRoom(''); applyCurrent(result);
+          if (activeRoomRef.current?.id !== expectedRoomId && result.room?.id !== activeRoomRef.current?.id) return;
+          clearRoom(''); applyCurrent(result, expectedRoomId);
         }
       } catch { setResultError('No se pudo confirmar el retorno. Recupera la conexión antes de reintentar.'); }
     } finally { setBusy(false); }
