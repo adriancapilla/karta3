@@ -33,7 +33,7 @@ export class MemoryRoomRepository implements RoomRepository {
     const ownerId = this.ownRoom.get(room.hostSessionId);
     const codeId = this.activeCodes.get(room.code);
     const members = room.memberSessions;
-    if (room.status !== 'WAITING'
+    if (room.status === 'CLOSED'
       || (stored && (stored.hostSessionId !== room.hostSessionId || stored.code !== room.code))
       || (ownerId && ownerId !== room.id)
       || (codeId && codeId !== room.id)

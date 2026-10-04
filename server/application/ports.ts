@@ -16,7 +16,7 @@ export interface RoomRepository {
 }
 
 export type RequestRecord = {
-  kind: 'JOIN' | 'LEAVE' | 'CONFIGURE';
+  kind: 'JOIN' | 'LEAVE' | 'CONFIGURE' | 'START';
   signature: string;
   roomId: string;
   participantId: string;
@@ -45,3 +45,4 @@ export interface ParticipationEnds {
 
 export type IdentifierGenerator = () => string;
 export type CodeCandidateSource = () => number;
+export type CardPermutation = (ids: readonly string[]) => readonly string[];

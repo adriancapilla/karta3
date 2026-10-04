@@ -1,10 +1,11 @@
 # Organización del código y dependencias de KARTA3
 
-**Estado:** reglas para los próximos incrementos; T01 separó la creación y los bloques 02/03 amplían la espera sincronizada y su ciclo de vida. El dominio de la partida sigue pendiente.
+**Estado:** reglas para los próximos incrementos; T01 separó la creación, B02/B03 la espera y B04/B05 barajas/configuración. B06 incorpora solo dominio y coordinación de mesa inicial, sin ejecución.
 **Fecha:** 30/09/2026.
 **Alineación documental:** 01/10/2026 — flujo de barajas conforme a infraestructura §9 y contrato formato 1; las dependencias de capas no cambian.
 **Implementación B04:** 02/10/2026 — validación pura, paquetes, catálogo y medios. No se modifica la dirección de dependencias ni se implementa `Game`.
 **Implementación B05:** 02/10/2026 — configuración por control y selección de versión mediante puerto; participación/observación en el modelo de sala. Mismas dependencias y dominio de partida pendiente.
+**Implementación B06:** 04/10/2026 — Game inicial puro, puerto de definición/presentación y entropía, coordinación por fase y vistas privadas. Se conservan los límites de capas y los requisitos futuros del MVP.
 **Ámbito:** repositorio digital `APP/karta3`. La evolución de estas reglas se decide en la conversación de arquitectura; cada conversación de implementación trabaja con una especificación SDD concreta.
 
 ## 1. Qué resuelve este documento
@@ -57,7 +58,7 @@ karta3/
 │   └── sdd/
 ├── barajas/                copias aprobadas internas; catálogo generado
 ├── server/
-│   ├── domain/             Deck/Card y validación pura común
+│   ├── domain/             Deck/Card, validación común y Game inicial
 │   ├── application/        modelo Room, casos de uso, puertos y vista propia
 │   ├── infrastructure/     HTTP, repositorio en memoria, sesión y generación
 │   ├── composition/        conexión de adaptadores y casos de uso
@@ -68,7 +69,7 @@ karta3/
 └── tools/                  control de dependencias y sus casos negativos
 ```
 
-El directorio `server/domain/` contiene la validación pura de `Deck` implementada en B04; no se creó vacío para T01. `Game` sigue pendiente. `tools/decks.ts` delega a composición, que selecciona las mismas operaciones de infraestructura para comando, construcción y arranque. Una prueba cercana al módulo que comprueba es válida. Se mantiene un solo repositorio.
+El directorio `server/domain/` contiene la validación pura de `Deck` implementada en B04 y `Game` inicial de B06; no se creó vacío para T01. La ejecución de Game sigue pendiente. `tools/decks.ts` delega a composición, que selecciona las mismas operaciones de infraestructura para comando, construcción y arranque. Una prueba cercana al módulo que comprueba es válida. Se mantiene un solo repositorio.
 
 ### Estado del primer bloque tras T01
 
@@ -126,6 +127,22 @@ Nuevas funciones, como cuentas, historial, importación pública de barajas o m�
 `Room` aplica un solo cambio, conserva id/versión/ficha juntos y decide plazas/orden. `RoomUseCases.configure` aplica vencimientos, autoriza, deduplica y consulta el puerto `PublishedDeckVersions`. No compara una revisión del navegador ni importa el catálogo concreto. `LoadedDeckCatalog` implementa ese puerto con resumen y definición validada de la misma versión, conservando la instantánea B04. Composición conecta explícitamente ambos puertos del mismo catálogo; `main` usa esa conexión tras cargar antes de escuchar.
 
 `configurationInput.ts` decodifica tipos/forma/ids externos; `socketRooms.ts` invoca el caso de uso y publica mediante las piezas B03. Ni transporte ni catálogo deciden participación/capacidad. Las nuevas propiedades de `shared/contracts` son públicas, sin definiciones/cartas. `RoomConfiguration`, su hook y reducer mantienen presentación/peticiones por control; `socket.ts` usa envío volátil sin cola ni espera de reconexión. El cliente no decide una plaza ni un cierre. Las fixtures, interceptores de ack y avances de reloj viven únicamente en pruebas. No se cambia el validador de dominio ni la herramienta B04.
+
+### Incremento de inicio y mesa inicial — B06
+
+| Pieza concreta | Responsabilidad y dependencia |
+|---|---|
+| `server/domain/game.ts` | Valida con `validateDeck`; comprueba jugadores/permutación y construye adquisición, indicador y ronda inicial. Reparto circular: una carta por jugador en tres vueltas de orden base. Instantánea profunda inmutable; puntuación derivada de pilas ganadas vacías. No IO, Node, contratos de red ni futuras acciones vacías. |
+| `Room` y `RoomUseCases.start` | Sala conserva asociación a un Game, preparación y presencia. Caso de uso aplica vencimientos, autoriza cookie ya autenticada, consulta versión exacta, consume entropía, fija estado y registra aceptación antes de publicar. Decisión/escritura síncronas, sin `await`; mismo orden de procesamiento que las demás acciones. |
+| `PublishedGameDecks`, `GameDeckSnapshot` y `CardPermutation` | Puertos de aplicación usados realmente. Definición validada más presentación conserva `imageAlt` separado del Card de dominio; permutación de IDs explícita. No se releen archivos al iniciar. |
+| `LoadedDeckCatalog` y `infrastructure/cardPermutation.ts` | Catálogo implementa también definición/presentación de la misma versión ya cargada. Fisher–Yates con `node:crypto.randomInt` entrega una permutación; el dominio decide reparto. Composición conecta ambos puertos, identidad y coordinación. |
+| `RoomCoordinator` / `WaitingLifecycle` | Coordinación por fase; B03 sigue exclusivo de WAITING. Confirmar cancela tareas/generaciones de espera, conserva índices y publica por sesión. IN_GAME solo cambia presencia primera/última conexión, sin plazos; dispose invalida nuevos hechos y tareas. No contiene reglas de cartas. |
+| `roomView.ts` / `initialGameView.ts` | Unión WAITING/IN_GAME y proyección explícita por destinatario. Solo indicador y mano propia; observador sin mano. Copias seguras, sin serializar Game, mazo ni paquete completo. |
+| Memoria y transportes existentes | Repositorio admite WAITING/IN_GAME con identidad inmutable e índices retenidos. Socket.IO autentica/decodifica `room:start` y entrega ack/eventos seguros; no baraja ni modifica Game. HTTP existente recupera por sesión y bloquea preparación por fase. Fallos técnicos no registran objetos privados. |
+| `useRoomFlow`, `useStartRoom` / `StartRoomControl` | Transporte y estado de presentación; confirmación incierta exige recuperación antes de reintentar con el mismo ID. Envío volátil sin cola/reenvío al reconectar. Descarta espera atrasada y limpia mesa al recuperar ausencia autorizada. |
+| `GameScreen`, `GameCard`, `CardDetails` | Presentación a partir de contratos: jugadores/observador, indicador, mano horizontal, valores/Detalles y estado inicial. Dialog nativo con foco/cierre; actualizaciones de presencia no reconstruyen mano/detalles. No cartas del servidor importadas ni barajado/reglas en React. |
+
+No se añade repositorio separado de Game: una sala necesita una sola asociación viva y el repositorio existente cubre ambas fases. No se introducen planificadores/políticas de turnos, resultados o bots por anticipado. Las opciones fijadas son datos; la mesa INITIAL_TABLE_ONLY no es una fase de dominio ni cambia las reglas futuras. Herramienta de barajas y control arquitectónico se reutilizan; ninguna excepción por tema o id.
 
 ## 7. Comprobaciones y cambio arquitectónico
 

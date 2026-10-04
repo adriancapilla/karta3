@@ -22,7 +22,7 @@ function field(value: unknown, max: number): value is string {
 
 function ackError(error: unknown): SocketAck<never> {
   if (error instanceof RoomError) return { ok: false, error: { code: error.code, message: error.message } };
-  console.error(error);
+  console.error('Fallo interno al procesar una solicitud de sala.');
   return { ok: false, error: { code: 'INTERNAL_ERROR', message: 'Ha ocurrido un error. Inténtalo de nuevo.' } };
 }
 
@@ -100,6 +100,14 @@ export class SocketRoomChanges implements RoomChanges, SessionPresence {
           if (!exactObject(payload, ['requestId', 'roomId', 'change']) || !field(payload.requestId, 100)
             || !field(payload.roomId, 100)) throw invalid();
           respond(ack, { ok: true, room: rooms.configure(sessionId, payload.requestId, payload.roomId, configurationInput(payload.change)) });
+        } catch (error) { respond(ack, ackError(error)); }
+      });
+      socket.on('room:start', (payload: unknown, ack: (result: SocketAck<{ room: RoomView }>) => void) => {
+        try {
+          rooms.current(sessionId);
+          if (!exactObject(payload, ['requestId', 'roomId']) || !field(payload.requestId, 100)
+            || !field(payload.roomId, 100)) throw invalid();
+          respond(ack, { ok: true, room: rooms.start(sessionId, payload.requestId, payload.roomId) });
         } catch (error) { respond(ack, ackError(error)); }
       });
     });

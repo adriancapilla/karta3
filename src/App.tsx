@@ -1,5 +1,6 @@
 import { HomeScreen, WaitingScreen } from './screens';
 import { useRoomFlow } from './useRoomFlow';
+import { GameScreen } from './GameScreen';
 import './style.css';
 
 export default function App() {
@@ -11,10 +12,12 @@ export default function App() {
     onCodeChange={flow.setCode} onJoinNameChange={flow.setJoinName}
   />;
 
+  if (flow.room.status === 'IN_GAME') return <GameScreen room={flow.room} connected={flow.connected} activity={flow.activity} />;
   return <WaitingScreen
     room={flow.room}
     connected={flow.connected}
     onRoom={flow.applyRoom}
+    onCurrent={flow.applyCurrent}
     onConfirmExpiry={flow.confirmExpiry}
     busy={flow.busy}
     notice={flow.notice}

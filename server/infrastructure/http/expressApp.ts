@@ -22,7 +22,11 @@ const roomErrorStatus: Record<RoomErrorCode, number> = {
   REQUEST_CONFLICT: 409,
   PARTICIPATION_ENDED: 409,
   DECK_NOT_AVAILABLE: 404,
-  DECK_VERSION_MISMATCH: 409
+  DECK_VERSION_MISMATCH: 409,
+  GAME_ALREADY_STARTED: 409,
+  START_NOT_READY: 409,
+  INVALID_DECK: 409,
+  INTERNAL_ERROR: 500
 };
 
 export function createHttpApp(dependencies: { rooms: RoomActions; sessions: MemorySessions; production: boolean; decks: ListDecks }) {
@@ -103,7 +107,7 @@ export function createHttpApp(dependencies: { rooms: RoomActions; sessions: Memo
     if (error instanceof SyntaxError && 'body' in error) {
       return res.status(400).json({ error: { code: 'INVALID_INPUT', message: 'Los datos enviados no son válidos.' } } satisfies ErrorResponse);
     }
-    console.error(error);
+    console.error('Fallo interno al procesar una solicitud HTTP.');
     return res.status(500).json({ error: { code: 'INTERNAL_ERROR', message: 'Ha ocurrido un error. Inténtalo de nuevo.' } } satisfies ErrorResponse);
   });
   return app;

@@ -1,5 +1,5 @@
 import { io, type Socket } from 'socket.io-client';
-import type { ConfigureRoomRequest, RoomView, SocketAck } from '../shared/contracts/room';
+import type { ConfigureRoomRequest, StartRoomRequest, RoomView, SocketAck } from '../shared/contracts/room';
 import { ApiError } from './api';
 
 export const socket: Socket = io({ autoConnect: false, withCredentials: true });
@@ -35,6 +35,18 @@ export async function sendConfiguration(payload: ConfigureRoomRequest): Promise<
     socket.volatile.timeout(ACK_TIMEOUT_MS).emit('room:configure', payload, (error: Error | null, response: SocketAck<RoomAck>) => {
       if (error) return reject(new ApiError('NETWORK_ERROR', 'No se pudo confirmar el cambio; se muestra la última configuración recibida'));
       if (!response?.ok) return reject(new ApiError(response?.error.code ?? 'UNKNOWN_ERROR', response?.error.message ?? 'La operación no se pudo completar.'));
+      resolve(response);
+    });
+  });
+}
+
+/** Solo un gesto conectado puede enviar el inicio; no se almacena para reconectar. */
+export async function sendStart(payload: StartRoomRequest): Promise<RoomAck> {
+  if (!socket.connected) throw new ApiError('NOT_CONNECTED', 'Sin conexión: no se envió el inicio.');
+  return new Promise((resolve, reject) => {
+    socket.volatile.timeout(ACK_TIMEOUT_MS).emit('room:start', payload, (error: Error | null, response: SocketAck<RoomAck>) => {
+      if (error) return reject(new ApiError('NETWORK_ERROR', 'No se pudo confirmar el inicio. Recupera el estado antes de reintentarlo.'));
+      if (!response?.ok) return reject(new ApiError(response?.error.code ?? 'UNKNOWN_ERROR', response?.error.message ?? 'No se pudo iniciar.'));
       resolve(response);
     });
   });

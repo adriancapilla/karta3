@@ -2,8 +2,8 @@ import { describe, expect, it } from 'vitest';
 import type { RoomView } from '../shared/contracts/room';
 import { acceptsRoom, countdownSeconds, automaticEndMessage } from './roomState';
 
-const view = (revision: number, id = 'room-a', participantId = 'guest-a') => ({
-  id, revision, participant: { id: participantId }
+const view = (revision: number, id = 'room-a', participantId = 'guest-a', status: 'WAITING' | 'IN_GAME' = 'WAITING') => ({
+  id, revision, status, participant: { id: participantId }
 }) as RoomView;
 
 describe('aplicación de vistas recibidas fuera de orden', () => {
@@ -27,5 +27,10 @@ describe('aplicación de vistas recibidas fuera de orden', () => {
   it('no reabre una participación terminada ni una sala cerrada con un mensaje tardío', () => {
     expect(acceptsRoom(null, view(4), new Set(['guest-a']), new Set())).toBe(false);
     expect(acceptsRoom(null, view(4), new Set(), new Set(['room-a']))).toBe(false);
+  });
+  it('B06 no degrada mesa a espera ni con confirmación tardía de revisión mayor', () => {
+    const playing = view(5, 'room-a', 'guest-a', 'IN_GAME');
+    for (const revision of [4, 5, 6]) expect(acceptsRoom(playing, view(revision), new Set(), new Set())).toBe(false);
+    expect(acceptsRoom(playing, view(6, 'room-a', 'guest-a', 'IN_GAME'), new Set(), new Set())).toBe(true);
   });
 });

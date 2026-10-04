@@ -34,7 +34,7 @@ export class WaitingLifecycle {
     if (this.stopped) return;
     this.prepare();
     const room = this.repository.findActiveBySession(sessionId);
-    if (!room) return;
+    if (!room || room.status !== 'WAITING') return;
     const result = room.changePresence(sessionId, this.presence.isConnected(sessionId), this.clock.now());
     if (!result.changed) return;
     this.repository.save(room);
@@ -107,7 +107,7 @@ export class WaitingLifecycle {
     }
   }
 
-  private cancelRoom(roomId: string): void {
+  cancelRoom(roomId: string): void {
     for (const task of this.tasks.get(roomId)?.values() ?? []) task.cancel();
     this.tasks.delete(roomId);
   }

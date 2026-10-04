@@ -89,12 +89,14 @@ export function useRoomFlow() {
       }
     };
     const onLeft = (event: RoomLeftEvent) => {
+      if (roomRef.current?.status === 'IN_GAME' && roomRef.current.id === event.roomId) return;
       ended.current.add(event.participantId);
       if (roomRef.current?.id === event.roomId && roomRef.current.participant.id === event.participantId) {
         clearRoom(event.reason === 'RECONNECT_TIMEOUT' ? automaticEndMessage(event.reason) : 'Has salido de la sala');
       }
     };
     const onClosed = (event: RoomClosedEvent) => {
+      if (roomRef.current?.status === 'IN_GAME' && roomRef.current.id === event.roomId) return;
       closed.current.add(event.roomId);
       if (roomRef.current?.id === event.roomId && event.revision > roomRef.current.revision) {
         clearRoom(event.reason !== 'HOST_CLOSED' ? automaticEndMessage(event.reason) : roomRef.current.participant.role === 'HOST'
@@ -240,7 +242,7 @@ export function useRoomFlow() {
   }
 
   return {
-    room, loading, busy, joining, notice, activity, code, joinName, joinError, name, nameError, copyMessage, connected, confirmExpiry, applyRoom,
+    room, loading, busy, joining, notice, activity, code, joinName, joinError, name, nameError, copyMessage, connected, confirmExpiry, applyRoom, applyCurrent,
     confirmClose, confirmLeave, refresh, createRoom, joinRoom, editName, saveName, copyCode,
     closeRoom, leaveRoom, setConfirmClose, setConfirmLeave,
     setCode: (value: string) => { setCode(value); setJoinError(''); pendingJoin.current = null; },

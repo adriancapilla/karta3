@@ -1,7 +1,8 @@
-import { useRef, type FormEvent } from 'react';
-import type { RoomView } from '../shared/contracts/room';
+import { useRef, useState, type FormEvent } from 'react';
+import type { CurrentRoomResponse, RoomView, WaitingRoomView } from '../shared/contracts/room';
 import { ExpiryWarning } from './ExpiryWarning';
 import { RoomConfiguration } from './RoomConfiguration';
+import { StartRoomControl } from './StartRoomControl';
 
 export function HomeScreen(props: {
   busy: boolean; joining: boolean; notice: string; code: string; joinName: string; joinError: string;
@@ -39,7 +40,7 @@ export function HomeScreen(props: {
   </main>;
 }
 
-function suffixes(room: RoomView): Map<string, number> {
+export function suffixes(room: RoomView): Map<string, number> {
   const counts = new Map<string, number>();
   for (const person of room.participants) counts.set(person.name, (counts.get(person.name) ?? 0) + 1);
   const positions = new Map<string, number>();
@@ -53,15 +54,17 @@ function suffixes(room: RoomView): Map<string, number> {
 }
 
 export function WaitingScreen(props: {
-  room: RoomView; busy: boolean; notice: string; activity: string; name: string; nameError: string;
+  room: WaitingRoomView; busy: boolean; notice: string; activity: string; name: string; nameError: string;
   copyMessage: string; confirmClose: boolean; confirmLeave: boolean;
   connected: boolean; onConfirmExpiry: () => void;
   onRoom: (room: RoomView) => boolean;
+  onCurrent: (result: CurrentRoomResponse) => void;
   onNameChange: (value: string) => void; onSaveName: () => void; onCopyCode: () => void;
   onAskClose: () => void; onCancelClose: () => void; onClose: () => void;
   onAskLeave: () => void; onCancelLeave: () => void; onLeave: () => void;
 }) {
   const exitButton = useRef<HTMLButtonElement>(null);
+  const [pendingConfiguration, setPendingConfiguration] = useState(false);
   const submitName = (event: FormEvent) => { event.preventDefault(); props.onSaveName(); };
   const isHost = props.room.participant.role === 'HOST';
   const displayed = suffixes(props.room);
@@ -106,7 +109,8 @@ export function WaitingScreen(props: {
           {observer.presence === 'RECONNECTING' && <span className="badge reconnecting">Reconectando</span>}
         </span>
       </div>}
-      </section><RoomConfiguration room={props.room} connected={props.connected} onRoom={props.onRoom} /></div>
+      </section><RoomConfiguration room={props.room} connected={props.connected} onRoom={props.onRoom} onPendingChange={setPendingConfiguration} /></div>
+      {isHost && <StartRoomControl room={props.room} connected={props.connected} pending={pendingConfiguration} onCurrent={props.onCurrent} />}
       <form onSubmit={submitName}>
         <label htmlFor="player-name">Editar mi nombre</label>
         <div className="name-row">

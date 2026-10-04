@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import type { RoomView } from '../shared/contracts/room';
+import type { WaitingRoomView } from '../shared/contracts/room';
 import { countdownSeconds } from './roomState';
 
-export function ExpiryWarning({ lifecycle, onZero }: { lifecycle: RoomView['lifecycle']; onZero: () => void }) {
+export function ExpiryWarning({ lifecycle, onZero }: { lifecycle: WaitingRoomView['lifecycle']; onZero: () => void }) {
   const { expiresAt, serverNow } = lifecycle;
   const [seconds, setSeconds] = useState(() => countdownSeconds(expiresAt, serverNow, 0));
   useEffect(() => {

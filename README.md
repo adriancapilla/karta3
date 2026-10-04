@@ -10,7 +10,11 @@ Actualmente permite crear una sala de espera, compartir su código e incorporar 
 
 El bloque 04 añade validación común de barajas, preparación del catálogo y consulta pública de resúmenes. La [incorporación de genérica 2](docs/sdd/ACTIVACION_GENERICA_V2.md) conserva formato 1, incorpora contenido 2 aprobado y `available: true`: el catálogo normal ofrece únicamente su resumen seguro, con portada nula. B04/B05 conservan sus evidencias históricas de contenido 1/no disponible.
 
-El bloque 05 permite seleccionar/quitar una versión disponible de baraja, participar u observar como anfitrión, configurar tiempo de turno, desempate y revisión. Cada control se confirma de forma independiente y los invitados consultan los valores aceptados. La partida sigue pendiente. El estado de las salas se mantiene en memoria y se pierde al reiniciar el servidor.
+El bloque 05 permite seleccionar/quitar una versión disponible de baraja, participar u observar como anfitrión, configurar tiempo de turno, desempate y revisión. Cada control se confirma de forma independiente y los invitados consultan los valores aceptados.
+
+El [bloque 06](docs/sdd/BLOQUE_06_INICIO_Y_MESA_INICIAL.md) añade inicio por el anfitrión con 2–5 humanos jugadores, todos los miembros conectados y una versión disponible seleccionada. Prepara una única mesa inicial: tres cartas privadas por jugador, indicadora, abridor, atributo, ronda 1 y puntuaciones cero. Recargar recupera el mismo reparto; el anfitrión observador recibe solo información pública. **Todavía no se pueden ejecutar turnos ni jugar cartas.** Los tiempos y el desempate configurados se conservan como datos.
+
+Todo el estado se mantiene en memoria de un proceso. **Reiniciar el servidor elimina salas, partidas y sesiones.** La mesa B06 no tiene salida/cierre/cancelación: para probar otra partida hay que reiniciar el servidor. Desconectar conserva participantes y cartas, sin reserva, caducidad ni automático de juego; esos requisitos del MVP siguen pendientes de ejecución.
 
 Las reglas para desarrollar los siguientes bloques están en [`AGENTS.md`](AGENTS.md). La [organización y dependencias](docs/arquitectura/ORGANIZACION_Y_DEPENDENCIAS.md) explica cómo separar dominio, aplicación, infraestructura e interfaz a partir de este primer bloque.
 
@@ -99,7 +103,7 @@ Consultar `http://127.0.0.1:3000/api/decks`: devuelve `decks` con un resumen `ge
 
 Validar un paquete devuelve salida 0 si es válido, aunque no esté disponible, y 1 si es inválido. Preparar o arrancar informa/excluye borradores inválidos cuyo `false` sea fiable; una disponible inválida o disponibilidad indeterminable bloquea. La aplicación no repara datos ni activa contenido. Incorporar/activar una nueva copia exige revisión y versiones conforme al [contrato](docs/contratos/CONTRATO_BARAJAS_V1.md).
 
-Los JSON internos no son descargables. Las referencias públicas admitidas usan `/media/decks/<id>/v<contenido>/<referencia>` y solo sirven bytes validados de copias disponibles. B05 ofrece selector, selección autorizada y ficha/icono neutro para la ausencia de portada; cartas/manos/mesa siguen pendientes. Las fixtures de pruebas son temporales y no sustituyen la genérica normal: permiten probar catálogo vacío, borradores, inválidos y recursos reales. [Evidencia B04](docs/sdd/BLOQUE_04_CARGA_BARAJAS.md), [B05](docs/sdd/BLOQUE_05_CONFIGURACION_SALA.md) y [genérica 2](docs/sdd/ACTIVACION_GENERICA_V2.md).
+Los JSON internos no son descargables. Las referencias públicas admitidas usan `/media/decks/<id>/v<contenido>/<referencia>` y solo sirven bytes validados de copias disponibles. B05 ofrece selector, selección autorizada y ficha/icono neutro para la ausencia de portada; B06 entrega indicadora y mano propia, con iconos ante imágenes nulas y Detalles accesible. Las fixtures de pruebas son temporales y no sustituyen la genérica normal: permiten probar catálogo vacío, borradores, inválidos y recursos reales. [Evidencia B04](docs/sdd/BLOQUE_04_CARGA_BARAJAS.md), [B05](docs/sdd/BLOQUE_05_CONFIGURACION_SALA.md), [genérica 2](docs/sdd/ACTIVACION_GENERICA_V2.md) y [B06](docs/sdd/BLOQUE_06_INICIO_Y_MESA_INICIAL.md).
 
 ### Prueba manual de genérica 2 con dos sesiones
 
@@ -112,7 +116,27 @@ En PowerShell, desde `E:\KARTA3\KARTA3_IA\APP\karta3`, ejecutar `npm ci` si falt
 5. Recargar A y B, sin reiniciar el servidor: conservan identidad, autoridad, orden y selección exacta sin duplicaciones. Reiniciar el servidor pierde la espera y no es una prueba de recuperación mediante recarga.
 6. A elige «Sin baraja seleccionada»: B ve el cambio sin recargar. B prueba salida voluntaria y A cierre con confirmación. Repetir en móvil (390 px) y escritorio (1280 px).
 
-Registrar fecha, versión servida, navegadores/perfiles, acciones, resultados y límites en el cierre de la incorporación. Las instrucciones no acreditan ejecución manual; el cierre distingue los recorridos automáticos y la revisión manual realizada o pendiente. C09 sigue pendiente de inicio/uso en partida; C10 de cartas/manos/mesa y comprensión con usuarios.
+Registrar fecha, versión servida, navegadores/perfiles, acciones, resultados y límites. Estas instrucciones no acreditan ejecución manual. C09–C10 siguen parciales: B06 comprueba validación/uso inicial, indicadora y manos privadas; ejecución completa, cartas jugadas/resultados y comprensión con usuarios siguen pendientes.
+
+### Prueba manual B06: dos jugadores y observador
+
+```powershell
+Set-Location -LiteralPath 'E:\KARTA3\KARTA3_IA\APP\karta3'
+npm ci
+npm run check
+# Detener con Ctrl+C la instancia anterior antes de arrancar la compilación actual:
+npm run start
+```
+
+1. Abrir `http://127.0.0.1:3000` en dos navegadores o perfiles con cookies independientes. A crea y B entra con el código y nombre «Ana». Una segunda pestaña de A comparte su identidad.
+2. Sin selección, «Iniciar partida» está deshabilitado para A; B no tiene ese botón. A selecciona explícitamente «KARTA3 — Baraja genérica · v2» y espera confirmación. No es necesario llenar cinco plazas ni marcar listo.
+3. A inicia una vez. A, su segunda pestaña y B deben recibir la mesa sin F5: B abre, tres cartas propias en cada sesión, una indicadora común, ronda 1, dirección «Sin elegir», mazo 51, cero puntos y jugadas vacías. No hay reloj ni controles para jugar, salir o cerrar.
+4. Abrir Detalles de indicadora/mano con teclado y cierre/Escape; comprobar característica/nota si existen y tres filas con Jugable y Dato separados. A 360/390 px la indicadora es compacta y la mano se desplaza dentro de su fila; a 1280 px se muestra completa. La genérica usa icono decorativo, sin imagen de sustitución.
+5. Recargar ambos, abrir otra pestaña o volver a `/`: mismo Game, identidad, orden, configuración y cartas en adquisición. Cerrar una pestaña con otra conectada conserva presencia. Perder todas muestra «Sin conexión» a los demás; recuperar conserva el reparto. En B06 esa ausencia no libera plazas ni ejecuta automático.
+6. **Reiniciar entre ensayos:** Ctrl+C en la terminal del servidor y `npm run start`. A y B recuperan ausencia/sesión nueva, eliminan la mesa privada y vuelven a portada, sin ganador ni causa inventada. Se pierden también las otras esperas del proceso.
+7. Ensayo de observador: crear nueva sala en A y desmarcar «El anfitrión juega». Entrar B y C en otras dos sesiones independientes, seleccionar genérica 2 e iniciar desde A. B abre, B/C reciben sus manos, mazo 51. A aparece aparte como «Anfitrión · Observador», con «Observando», sin mano ni puntuación de jugador. Recargar las tres sesiones y comprobar recuperación. Reiniciar al terminar.
+
+Ante pérdida de confirmación del inicio, la interfaz informa de incertidumbre y recupera el estado antes de habilitar un reintento del mismo envío. Recargar/reconectar nunca envía un inicio automáticamente. Registrar manualmente fecha, versión, perfiles, dispositivos, resultados y límites: los recorridos automatizados no acreditan revisión humana ni móvil físico.
 
 ## Probar el ciclo de vida de la espera
 
@@ -130,14 +154,14 @@ Socket.IO usa `pingInterval=5000` y `pingTimeout=5000` ms. La reserva empieza cu
 | Método y ruta | Uso |
 |---|---|
 | `GET /api/decks` | Resúmenes de barajas disponibles; no crea sesión ni renueva salas; `Cache-Control: no-store`. |
-| `GET /api/rooms/current` | Establece sesión si falta y devuelve su espera o `null`; incluye `ended` si consta un último fin automático propio. |
-| `POST /api/rooms` con `{}` | Crea o recupera una sola espera por sesión. |
+| `GET /api/rooms/current` | Establece sesión si falta y devuelve su espera/mesa propia o `null`; incluye `ended` si consta un último fin automático propio de espera. |
+| `POST /api/rooms` con `{}` | Crea una espera o recupera la sala/mesa ya vinculada al anfitrión. |
 | `GET /api/rooms/:id` | Devuelve la sala a un participante reconocido. |
 | `PATCH /api/rooms/:id/name` con `{ "name": "…" }` | Valida y cambia el nombre del solicitante reconocido. |
 | `DELETE /api/rooms/:id` | Cierra la espera propia. |
 
 Los fallos devuelven `{ "error": { "code": "…", "message": "…" } }`, con causas estables como `INVALID_INPUT`, `ROOM_NOT_AVAILABLE`, `FORBIDDEN` y `SESSION_REQUIRED`. No se transmiten trazas al navegador.
 
-El canal Socket.IO acepta `room:resume` (`{}`), `room:join` (`{ requestId, code, name }`), `room:leave` (`{ requestId, roomId, participantId }`) y `room:configure` (`{ requestId, roomId, change: { field, value } }`), y comunica `room:state`, `room:left` y `room:closed`. Los IDs visibles de sala y participante no sustituyen a la cookie de sesión. [B05 §5](docs/sdd/BLOQUE_05_CONFIGURACION_SALA.md) fija los cinco cambios y sus tipos exactos.
+El canal Socket.IO acepta `room:resume` (`{}`), `room:join` (`{ requestId, code, name }`), `room:leave` (`{ requestId, roomId, participantId }`), `room:configure` (`{ requestId, roomId, change: { field, value } }`) y **`room:start` (`{ requestId, roomId }`)**, y comunica `room:state`, `room:left` y `room:closed`. No existe ruta HTTP de inicio. Los IDs visibles de sala y participante no sustituyen a la cookie de sesión. [B05 §5](docs/sdd/BLOQUE_05_CONFIGURACION_SALA.md) fija los cinco cambios y sus tipos exactos; [B06 §5](docs/sdd/BLOQUE_06_INICIO_Y_MESA_INICIAL.md) fija inicio y vistas por fase.
 
-La vista incluye `presence`, `lifecycle: { serverNow, expiresAt, warning }`, settings aceptados con id/versión de baraja y `selectedDeck` (solo ficha o null). Los miembros incluyen al observador; las plazas se cuentan con `isPlayer`. Solo un cambio efectivo renueva la espera, sin reiniciar ausencias. Las recuperaciones devuelven solo el último motivo propio cuando terminó automáticamente; este aviso mínimo se pierde al reiniciar y se limpia al crear/entrar de nuevo. Se cancelan tareas y se liberan índices al retirar/cerrar; se conservan resultados mínimos de deduplicación para rechazar solicitudes antiguas. Expulsión, bots, inicio, partida y despliegue siguen pendientes.
+`WAITING` conserva `presence`, `lifecycle: { serverNow, expiresAt, warning }`, settings aceptados con id/versión de baraja y `selectedDeck` (ficha o null). Solo un cambio efectivo renueva la espera. `IN_GAME` elimina lifecycle de espera, fija preparación y conserva índices de código/sesión: entrega parte pública y únicamente la mano propia, o `[]` al observador. Nuevas entradas, nombre/configuración/salida/cierre se rechazan por fase; conocer el código nunca permite iniciar ni recuperar mano ajena. Los callbacks antiguos de espera no afectan a la mesa. Expulsión, bots, turnos, resultados y despliegue siguen pendientes.

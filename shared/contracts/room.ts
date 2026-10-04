@@ -1,4 +1,5 @@
 import type { DeckSummary } from './deck.js';
+import type { InitialGameView } from './game.js';
 
 export type ParticipantView = { id: string; name: string; role: 'HOST' | 'GUEST'; isPlayer: boolean; presence: 'CONNECTED' | 'RECONNECTING' };
 export type RoomSettings = {
@@ -15,8 +16,9 @@ export type ConfigurationChange =
   | { field: 'turnSeconds'; value: RoomSettings['turnSeconds'] }
   | { field: 'reviewSeconds'; value: RoomSettings['reviewSeconds'] };
 export type ConfigureRoomRequest = { requestId: string; roomId: string; change: ConfigurationChange };
+export type StartRoomRequest = { requestId: string; roomId: string };
 
-export type RoomView = {
+export type WaitingRoomView = {
   id: string;
   code: string;
   status: 'WAITING';
@@ -27,6 +29,14 @@ export type RoomView = {
   settings: RoomSettings;
   selectedDeck: DeckSummary | null;
 };
+
+export type GameParticipantView = Omit<ParticipantView, 'presence'> & { presence: 'CONNECTED' | 'DISCONNECTED'; score: number | null };
+export type InitialGameRoomView = {
+  id: string; code: string; status: 'IN_GAME'; revision: number;
+  participant: GameParticipantView; participants: GameParticipantView[];
+  settings: RoomSettings; selectedDeck: DeckSummary; game: InitialGameView;
+};
+export type RoomView = WaitingRoomView | InitialGameRoomView;
 
 export type AutomaticEndReason = 'RECONNECT_TIMEOUT' | 'HOST_DISCONNECTED' | 'INACTIVITY';
 export type ParticipationEnd = { roomId: string; participantId: string; reason: AutomaticEndReason };
@@ -46,6 +56,9 @@ export type PublicErrorCode =
   | 'PARTICIPATION_ENDED'
   | 'DECK_NOT_AVAILABLE'
   | 'DECK_VERSION_MISMATCH'
+  | 'START_NOT_READY'
+  | 'INVALID_DECK'
+  | 'GAME_ALREADY_STARTED'
   | 'INTERNAL_ERROR';
 
 export type ErrorResponse = { error: { code: PublicErrorCode; message: string } };
