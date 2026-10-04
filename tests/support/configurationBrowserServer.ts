@@ -7,6 +7,7 @@ import { ControlledTime } from './controlledTime.js';
 import { deckFixture, realImage, writeFixture } from './deckFixtures.js';
 import { removeTestInstallation } from './compiledDeckServer.js';
 import { manualTrace } from './manualGameTrace.js';
+import type { TurnExpiredEvent } from '../../shared/contracts/game.js';
 
 /** Conexiones y paquetes reales, compilación actual; solamente el reloj es sustituido. */
 export async function configurationBrowserServer(single = false, initialGame = false, manual?: { count: number; winners?: readonly number[] }) {
@@ -101,5 +102,8 @@ export async function configurationBrowserServer(single = false, initialGame = f
     permutations: () => permutations,
     disconnect: (sessionId: string) => { io.in(`session:${sessionId}`).disconnectSockets(true); },
     dropOneTransport: (sessionId: string) => { [...io.sockets.sockets.values()].find((socket) => socket.data.sessionId === sessionId)?.conn.close(); },
+    repeatTurnExpired: (event: TurnExpiredEvent) => {
+      for (const sessionId of repository.findById(event.roomId)!.memberSessions) io.to(`session:${sessionId}`).emit('game:turn-expired', event);
+    },
     stop: async () => { runtime.dispose(); await new Promise<void>((resolve) => io.close(() => resolve())); await removeTestInstallation(root); } };
 }

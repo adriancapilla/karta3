@@ -70,6 +70,24 @@ test('B08 confirmación parcial antigua después del timeout no restaura direcci
   } finally { await p.close(); await f.stop(); }
 });
 
+test('B08 aviso cinco segundos, nombres repetidos y evento duplicado no reanima aviso en la misma ronda', async ({ browser }) => {
+  const f = await configurationBrowserServer(true, true);
+  const p = await manualTable(browser, f.base, { observer: true, width: 390, deckId: 'portada', version: 7,
+    turn: 15, names: ['Ana', 'Ana'] });
+  try {
+    const before = await readGame(p.pages[1]);
+    f.time.advance(15000);
+    await expect(p.host.locator('.activity')).toHaveText('Ana (1) agotó el tiempo; se jugó su carta más antigua');
+    expect((await readGame(p.host)).game.ownConsecutiveTimeouts).toBeNull();
+    await expect(p.host.locator('.activity')).toHaveCount(0, { timeout: 7000 });
+    f.repeatTurnExpired({ id: `${before.game.id}:${before.game.interaction.turn!.id}:expired`, roomId: before.id, gameId: before.game.id,
+      roundNumber: 1, turnId: before.game.interaction.turn!.id, playerId: before.participant.id, automatic: false });
+    await readGame(p.host); // vuelta HTTP real deja tiempo para procesar el frame repetido
+    await expect(p.host.locator('.activity')).toHaveCount(0);
+    await expect(p.pages[1].getByText('No completaste tu último turno a tiempo.', { exact: false })).toBeVisible();
+  } finally { await p.close(); await f.stop(); }
+});
+
 for (const width of [360, 390, 1280]) test(`B08 T2 ${width}: reset, dos fallos, automático sin control, revisión y resultado`, async ({ browser }, testInfo) => {
   const f = await configurationBrowserServer(true, true);
   const review = width === 390 ? 5 : 0;

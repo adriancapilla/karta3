@@ -41,6 +41,8 @@ it('B08 T1 vistas privadas/evento exactos: dos pestañas, parcial y único venci
   expect(after.game.round.direction).toBe('LOW');
   for (const person of f.people) {
     const view = await f.own(person) as InitialGameRoomView;
+    expect(view.game.interaction.turn!.timing!.startedAt).toBe(before.game.interaction.turn!.timing!.endsAt);
+    expect(view.game.interaction.turn!.timing!.endsAt).toBe(before.game.interaction.turn!.timing!.endsAt + 15000);
     const publicIds = new Set([view.game.round.indicator.id, ...view.game.hand.map((card) => card.id), ...view.game.round.plays.map((play) => play.card.id)]);
     assertGamePrivacy(view, view.game.hand.map((card) => card.id), f.prepared.fixture.collection.cards.map((card) => card.id).filter((id) => !publicIds.has(id)),
       (condition, reason) => expect(condition, reason).toBe(true));
