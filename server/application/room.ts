@@ -3,12 +3,15 @@ import type { TimePoint } from './waitingTime.js';
 import type { ConfigurationChange, RoomSettings } from '../../shared/contracts/room.js';
 import type { DeckSummary } from '../../shared/contracts/deck.js';
 import { publicDeckSummary } from './deckCatalog.js';
+import type { CardPresentation, GameDeckSnapshot } from './deckCatalog.js';
+import type { Game } from '../domain/game.js';
 
 export const PRESENCE_GRACE_MS = 30_000;
 export const WAITING_EXPIRY_MS = 30 * 60_000;
 export const WARNING_BEFORE_MS = 60_000;
 export type WaitingDeadline = { kind: 'WARNING' | 'INACTIVITY' | 'ABSENCE'; at: number; generation: number; participantId?: string };
 type Presence = { connected: boolean; generation: number; absence?: { at: number; initial: boolean } };
+export type GameReview = Readonly<{ id: string; gameId: string; roundNumber: number; at: number; unix: number }>;
 
 const segmenter = new Intl.Segmenter('es', { granularity: 'grapheme' });
 
@@ -31,7 +34,13 @@ export class Room {
   readonly participantId: string;
   private participantName = 'Jugador 1';
   private readonly guests: { id: string; sessionId: string; name: string }[] = [];
-  private state: 'WAITING' | 'CLOSED' = 'WAITING';
+  private state: 'WAITING' | 'IN_GAME' | 'RESULTS' | 'CLOSED' = 'WAITING';
+  private initialGame?: Game;
+  private partialDirection: 'HIGH' | 'LOW' | null = null;
+  private review?: GameReview;
+  private retained?: Readonly<{ at: number; presentedAt: number; expiresAt: number }>;
+  private readonly released = new Set<string>();
+  private graphics: readonly CardPresentation[] = [];
   private roomRevision = 1;
   private readonly presence = new Map<string, Presence>();
   private expiry: { at: number; unix: number; generation: number; warning: boolean };
@@ -56,20 +65,104 @@ export class Room {
     this.addPresence(input.participantId, input.connected, now);
   }
 
-  get status(): 'WAITING' | 'CLOSED' { return this.state; }
+  get status(): 'WAITING' | 'IN_GAME' | 'RESULTS' | 'CLOSED' { return this.state; }
+  get retention() { return this.retained; }
+  get activeSessions() { return this.memberSessions.filter((sessionId) => !this.released.has(sessionId)); }
+  presentResult(now: TimePoint): void {
+    if (this.state !== 'IN_GAME' || this.initialGame?.phase !== 'FINISHED' || !this.initialGame.result) throw new Error('Resultado interno incompatible.');
+    this.state = 'RESULTS';
+    this.retained = Object.freeze({ at: now.monotonic + 30 * 60_000, presentedAt: now.unix, expiresAt: now.unix + 30 * 60_000 });
+    this.roomRevision++;
+  }
+  releaseResultSession(sessionId: string): boolean {
+    if (this.state !== 'RESULTS' || !this.participantFor(sessionId)) throw new Error('Retorno interno incompatible.');
+    if (this.released.has(sessionId)) return false;
+    this.released.add(sessionId);
+    return true;
+  }
+  get game(): Game | undefined { return this.initialGame; }
+  get openingDirection() { return this.partialDirection; }
+  get gameReview() { return this.review; }
+  beginReview(now: TimePoint): void {
+    const game = this.initialGame!;
+    if (!game.resolution || this.review) throw new Error('Revisión interna incompatible.');
+    this.review = Object.freeze({ id: game.resolution.id, gameId: game.id, roundNumber: game.round.number,
+      at: now.monotonic + this.roomSettings.reviewSeconds * 1000, unix: now.unix + this.roomSettings.reviewSeconds * 1000 });
+  }
+  selectDirection(direction: 'HIGH' | 'LOW'): boolean {
+    if (this.partialDirection === direction) return false;
+    this.partialDirection = direction;
+    this.roomRevision++;
+    return true;
+  }
+  applyGame(game: Game): void {
+    if (this.state !== 'IN_GAME' || game.id !== this.initialGame?.id) throw new Error('Contexto interno de partida incompatible.');
+    this.initialGame = game;
+    this.partialDirection = null;
+    this.review = undefined;
+    this.roomRevision++;
+  }
+  cardPresentation(id: string): CardPresentation {
+    const presentation = this.graphics.find((card) => card.id === id);
+    if (!presentation) throw new Error('Presentación de carta ausente.');
+    return presentation;
+  }
   get name(): string { return this.participantName; }
   get revision(): number { return this.roomRevision; }
   get memberSessions(): string[] { return [...this.guests.map((guest) => guest.sessionId), this.hostSessionId]; }
   get participants() {
     return [...this.guests.map((guest) => ({ ...guest, role: 'GUEST' as const, isPlayer: true })),
       { id: this.participantId, sessionId: this.hostSessionId, name: this.participantName, role: 'HOST' as const, isPlayer: this.roomSettings.hostPlays }]
-      .map((person) => ({ ...person, presence: this.presence.get(person.id)!.connected ? 'CONNECTED' as const : 'RECONNECTING' as const }));
+      .map((person) => ({ ...person, presence: this.presence.get(person.id)!.connected ? 'CONNECTED' as const
+        : this.state === 'IN_GAME' ? 'DISCONNECTED' as const : 'RECONNECTING' as const }));
   }
   get settings() { return { ...this.roomSettings }; }
   get selectedDeck() { return this.deck ? publicDeckSummary(this.deck) : null; }
   get playerCount() { return this.guests.length + Number(this.roomSettings.hostPlays); }
 
   participantFor(sessionId: string) { return this.participants.find((person) => person.sessionId === sessionId); }
+
+  startPlayers() {
+    this.ensureWaiting();
+    if (!this.deck) throw new RoomError('START_NOT_READY', 'Selecciona una baraja antes de iniciar.');
+    if (this.playerCount < 2 || this.playerCount > 5) throw new RoomError('START_NOT_READY', 'Se necesitan entre dos y cinco jugadores humanos.');
+    if (this.participants.some((person) => person.presence !== 'CONNECTED')) {
+      throw new RoomError('START_NOT_READY', 'Todos los participantes deben estar conectados, también el anfitrión observador.');
+    }
+    return this.participants.filter((person) => person.isPlayer).map((person) => ({ id: person.id, name: person.name }));
+  }
+
+  beginGame(game: Game, snapshot: GameDeckSnapshot): void {
+    const players = this.startPlayers();
+    if (game.id === this.id || game.definition.id !== this.roomSettings.deckId
+      || snapshot.summary.id !== this.roomSettings.deckId || snapshot.summary.contentVersion !== this.roomSettings.deckContentVersion
+      || game.settings.turnTimeout !== this.roomSettings.turnSeconds || game.settings.forceTieBreak !== this.roomSettings.forceTieBreak
+      || players.some((person, index) => game.players[index]?.id !== person.id || game.players[index]?.displayName !== person.name) || game.players.length !== players.length
+      || snapshot.presentation.length !== 58 || new Set(snapshot.presentation.map((card) => card.id)).size !== 58
+      || game.definition.cards.some((card) => !snapshot.presentation.some((image) => image.id === card.id))) {
+      throw new RoomError('INTERNAL_ERROR', 'No se pudo preparar la partida. Inténtalo de nuevo.');
+    }
+    const graphics = Object.freeze(snapshot.presentation.map((card) => Object.freeze({ id: card.id, imageUrl: card.imageUrl, imageAlt: card.imageAlt })));
+    const summary = publicDeckSummary(snapshot.summary);
+    // Todo se ha construido/validado antes de fijar la preparación; no hay IO ni espera entre escrituras.
+    this.initialGame = game;
+    this.graphics = graphics;
+    this.deck = summary;
+    this.state = 'IN_GAME';
+    for (const state of this.presence.values()) { state.absence = undefined; state.generation++; }
+    this.roomRevision++;
+  }
+
+  changeGamePresence(sessionId: string, connected: boolean): { changed: boolean; recovered: boolean } {
+    if (this.state !== 'IN_GAME') throw new Error('La sala no tiene partida.');
+    const person = this.participantFor(sessionId);
+    if (!person) return { changed: false, recovered: false };
+    const state = this.presence.get(person.id)!;
+    if (state.connected === connected) return { changed: false, recovered: false };
+    state.connected = connected;
+    this.roomRevision++;
+    return { changed: true, recovered: connected };
+  }
 
   join(sessionId: string, id: string, value: unknown, now: TimePoint, connected: boolean): void {
     this.ensureWaiting();
@@ -220,6 +313,8 @@ export class Room {
   }
 
   private ensureWaiting(): void {
+    if (this.state === 'RESULTS') throw new RoomError('GAME_FINISHED', 'La partida ha terminado. Vuelve al inicio para crear otra sala.');
+    if (this.state === 'IN_GAME') throw new RoomError('GAME_ALREADY_STARTED', 'La partida ya ha empezado. La preparación está fijada.');
     if (this.state !== 'WAITING') throw new RoomError('ROOM_NOT_AVAILABLE', 'La sala ya no está disponible.');
   }
 }

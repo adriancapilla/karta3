@@ -10,4 +10,7 @@ export class MemoryRoomRequests implements RoomRequests {
   save(sessionId: string, requestId: string, record: RequestRecord): void {
     this.records.set(`${sessionId}:${requestId}`, record);
   }
+  removeRoom(roomId: string): void {
+    for (const [key, record] of this.records) if (record.roomId === roomId) this.records.delete(key);
+  }
 }

@@ -1,9 +1,27 @@
 # GitHub, comprobaciones y recuperación
 
-Actualizado: 02/10/2026. Repositorio existente: `E:\KARTA3\KARTA3_IA\APP\karta3`.
+Actualizado: 04/10/2026. Repositorio existente: `E:\KARTA3\KARTA3_IA\APP\karta3`.
 Versión de paquete: 0.1.0. Remoto privado: `https://github.com/adriancapilla/karta3.git`.
 
-## Publicación B04, B05 y genérica contenido 2 — 02/10/2026
+## Publicación B06 y B07 — 04/10/2026
+
+Base remota verificada: `main` en `4dd073d`; entrega `feat/b07-partida-manual-completa`, HEAD original `043813e424b28f64733687b95c0c279189622f91`, árbol limpio y ocho commits posteriores conservados. Repositorio privado, sin PR abierta al comenzar. Encargo autorizado: revisión completa B06/B07, publicación por PR y squash tras comprobaciones, sincronización y reproducción desde GitHub. Conservar rama y commits; sin despliegue ni siguiente bloque.
+
+El hito incorpora inicio/reparto/mesa privada y partida humana manual completa: dirección parcial privada, turnos circulares, puntuación por cartas, reposición, tres rondas finales, desempate opcional único, revisión y resultados recuperables durante 30 minutos desde publicación final. Volver al inicio libera solo la sesión solicitante y permite otra sala sin reiniciar. La aplicación mantiene todo en memoria de un proceso; reiniciarlo pierde resultados/salas/sesiones. TurnTimeout sigue configurado pero no se ejecuta: temporización de turnos, automático, bots, ausencias de juego/vigilancia y mejoras generales de distribución quedan pendientes.
+
+Evidencia histórica de implementación B06: 249 pruebas, 47 recorridos y 50 módulos. B07 §9.1: 295 pruebas, 63 recorridos y 57 módulos; navegador local con dos trabajadores tardó 5,8 minutos. El autor confirma en este encargo una partida humana completa, recuperación del resultado y creación de otra sala. Esa confirmación nueva no sustituye ni reescribe la evidencia automatizada/histórica.
+
+Presupuesto CI ajustado antes de publicar: Chrome pasa de 5 a **20 minutos**, trabajo completo de 15 a **30 minutos**. La referencia de dos trabajadores sugiere reservar hasta 11,6 minutos seriales, más margen por variación de runner/red; no es una predicción de duración. Los otros 10 minutos permiten instalación, herramientas/compilación y limpieza. Se conserva un trabajador, batería íntegra, aserciones/plazos individuales y cero reintentos. Registrar duración y resultados remotos reales de PR/main, sin deducirlos de la referencia local.
+
+Revisión del cambio completo respecto a main: capas, autoridad/privacidad por destinatario, reparto, transiciones, deduplicación, recuperación y separación de resultado/asociación activa. Búsqueda acotada en los ocho commits de patrones de tokens, claves privadas y credenciales en URL: cero archivos coincidentes. No equivale a auditoría general. Versionados solo APP y los tres bocetos aprobados de B06 como referencias documentales; no ASSETS/TFM/MASTER, secretos, logs, capturas, catálogo ni compilaciones. `.env.example` contiene valores de ejemplo. Dos saltos Markdown con espacios finales de B06 se expresan con barra inversa, conservando contenido y presentación.
+
+Genérica formato 1/contenido 2 disponible conserva las dos huellas aprobadas de la tabla histórica siguiente; no cambia JSON, contrato V1, dependencias ni lockfile. Fuentes generales de TFM y errata de dominio §24.2 corresponden a sus responsables; no se alteran reglas para reproducir ese ejemplo.
+
+**Comprobación nueva de esta publicación:** clon limpio real desde GitHub en `E:\KARTA3\KARTA3_IA\APP\karta3-verificacion-b06-b07-20261004`, commit `0e29420`, Windows/Node 24.13.0/npm 11.6.2, sin ASSETS/TFM/MASTER. `npm ci`: salida 0, 328 paquetes. `npm run check`: salida 0, tipos/lint/preparación/build, **295/295 pruebas en 28 archivos**, **57 módulos** sin imports prohibidos/ciclos. Arranque `PORT=3001 npm run start` correcto; `/` y `/api/decks` responden 200, genérica formato 1/contenido 2 disponible, catálogo `no-store` y sin cookie. Ambos JSON privados responden 404 por HTTP y ambas huellas SHA-256 coinciden exactamente con las aprobadas. Servidor de ensayo detenido. No se repite aquí la batería de navegador local: se ejecutará completa en CI sobre el commit final y después sobre main, con un trabajador y el margen ampliado. Esta entrada posterior solo registra evidencia, sin modificar código/dependencias/pruebas.
+
+Publicación mediante [PR #3](https://github.com/adriancapilla/karta3/pull/3), adjunta a la conversación de GitHub. Su descripción conserva el cierre remoto: enlaces de CI del HEAD final y de main, duraciones/recuentos reales, SHA del squash y estado local/remoto/clon. Se actualiza ese registro de ejecución al completar cada puerta, sin crear un nuevo commit de código solo para anotar el SHA que acaba de integrarse. Procedimiento: revisión y CI del HEAD final antes de integrar; CI de main, igualdad local/remota y arranque del clon sincronizado después. El registro histórico de B06/B07 permanece separado de esos resultados remotos nuevos.
+
+## Evidencia histórica B04, B05 y genérica contenido 2 — 02/10/2026
 
 Base remota comprobada: `main` en `ac144fe`, PR #1 ya integrada. Entrega local: `feat/b04-carga-barajas`, `eafe9e8`, árbol limpio y diez commits posteriores conservados. El encargo del autor autoriza publicar, revisar e integrar mediante squash tras comprobar CI, y reproducir desde GitHub sin ASSETS. Mantener el remoto privado.
 
@@ -28,6 +46,8 @@ Ejecución remota [37058554535](https://github.com/adriancapilla/karta3/actions/
 
 Clon limpio desde GitHub en `E:\KARTA3\KARTA3_IA\APP\karta3-verificacion-b04-b05-20261002`, sin ASSETS, Node 24.13.0/npm 11.6.2: `npm ci` correcto; `npm run check` correcto, 197/197 pruebas y 41 módulos. Los 35/35 recorridos Chrome terminaron con código 0 (2,1 minutos) sobre `bc9369f`; después se incorporó `cfb3d1a` y se repitió `check` correctamente, incluida la comprobación adicional del guard. Arranque con `npm run start`: página y `/api/decks` responden 200; catálogo con genérica contenido 2 disponible, sin cookie y con `no-store`; los dos JSON no se sirven por HTTP (404). Ambas huellas SHA-256 coinciden con las aprobadas. Servidor de prueba detenido al acabar. Tras integrar se sincronizará este clon con `main` y se comprobarán instalación, comprobaciones y arranque del commit integrado.
 
+La publicación anterior quedó cerrada: PR [#2](https://github.com/adriancapilla/karta3/pull/2) integrada por squash en `4dd073d58bd9efa6222fc7b90ccb93eadc10fa4c`; [CI final de PR](https://github.com/adriancapilla/karta3/actions/runs/37060016784) y [CI de main](https://github.com/adriancapilla/karta3/actions/runs/37060642030) correctas, 197/197 pruebas, 35/35 Chrome y 41 módulos. Main y clon sincronizados y limpios; instalación/check/arranque del integrado y huellas verificados. Estos resultados resuelven las comprobaciones pendientes descritas en el registro previo, conservado como evidencia del proceso; no son pruebas de B06/B07.
+
 ## Evidencia histórica de la primera conexión — 01/10/2026
 
 - Base limpia, 13 commits conservados y publicados en `main` hasta `bbd575f`.
@@ -43,11 +63,11 @@ Clon limpio desde GitHub en `E:\KARTA3\KARTA3_IA\APP\karta3-verificacion-b04-b05
 
 `.github/workflows/ci.yml` se ejecuta en cambios de `main`, pull requests hacia `main` y petición manual. Usa Ubuntu 24.04, Node 24.13.0 y `npm ci` desde el lockfile. Las acciones oficiales se fijan por commit, con permiso de lectura y sin conservar credenciales en el checkout.
 
-Ejecuta `npm run check`: tipos, análisis estático, pruebas existentes de modelo/aplicación/adaptadores/API, control de capas y compilación. Después instala Chrome con Playwright y ejecuta todos los recorridos existentes. En CI el paso de navegador arranca el servidor compilado, espera su disponibilidad y lo detiene al salir; Playwright usa un solo trabajador sin reintentos que oculten fallos. Ese paso tiene un límite de cinco minutos. No usa secretos ni despliega.
+Ejecuta `npm run check` en orden: tipos, análisis estático, preparación/compilación, pruebas de dominio/aplicación/adaptadores/API y control de capas. Después instala Chrome con Playwright y ejecuta todos los recorridos existentes. En CI el paso de navegador arranca el servidor compilado, espera su disponibilidad y lo detiene al salir; Playwright usa un solo trabajador sin reintentos. Ese paso tiene un límite de 20 minutos y el trabajo completo 30, justificados arriba para B07. No usa secretos ni despliega.
 
 La validación/preparación de barajas existe desde B04: `npm run decks:validate -- --package barajas/generica` valida individualmente y `npm run decks:prepare` genera el catálogo. La preparación también forma parte de `build`, incluido en `check`; las pruebas cubren JSON/formato/dominio/recursos, disponibilidad, privacidad, vigencia del catálogo y arranque. `sharp` y sus paquetes nativos se instalan desde el lockfile; su ejecución y los recursos reales se han comprobado también en la CI Linux enlazada arriba.
 
-Se mantienen locales la revisión humana de interfaz, pruebas con personas y averías físicas de red; HTTPS real y despliegue requieren sus encargos posteriores. Los límites temporales y simulaciones siguen descritos en B03/B05/AGV2. El catálogo es una instantánea por proceso: nueva copia requiere preparar y reiniciar; las salas/configuración en memoria se pierden al reiniciar.
+Se mantienen locales la revisión humana de interfaz, pruebas con personas y averías físicas de red; HTTPS real y despliegue requieren sus encargos posteriores. Los límites temporales y simulaciones se describen en cada bloque; revisión y retención B07 están temporizadas, el turno todavía no. El catálogo es una instantánea por proceso: nueva copia requiere preparar y reiniciar; salas/partidas/resultados/sesiones en memoria se pierden al reiniciar. El resultado retenido se consulta por cookie de su roster original aunque se haya liberado la asociación para otra sala; no hay historial permanente.
 
 Referencias: [GitHub Actions para Node](https://docs.github.com/en/actions/tutorials/build-and-test-code/nodejs), [CI de Playwright](https://playwright.dev/docs/ci).
 

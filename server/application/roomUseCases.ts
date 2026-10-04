@@ -1,12 +1,16 @@
-import type { ConfigurationChange, CurrentRoomResponse, RoomView } from '../../shared/contracts/room.js';
-import type { PublishedDeckVersions } from './deckCatalog.js';
-import type { CodeCandidateSource, IdentifierGenerator, RoomRepository, RoomRequests } from './ports.js';
+import type { ConfigurationChange, CurrentRoomResponse, LastResult, ResultsRoomView, ReturnHomeRequest, RoomView } from '../../shared/contracts/room.js';
+import type { PublishedDeckVersions, PublishedGameDecks } from './deckCatalog.js';
+import type { CardPermutation, CodeCandidateSource, IdentifierGenerator, RoomRepository, RoomRequests } from './ports.js';
+import { Game, GameInitializationError } from '../domain/game.js';
+import { validateDeck } from '../domain/deck.js';
 import { Room, normalizeName } from './room.js';
 import { RoomError } from './roomError.js';
 import { displayName } from './roomView.js';
 import type { WaitingLifecycle } from './waitingLifecycle.js';
+import type { GameActions } from './gameCoordinator.js';
+import type { OpeningDirectionRequest, PlayCardRequest } from '../../shared/contracts/game.js';
 
-export interface RoomActions {
+export interface RoomActions extends GameActions {
   current(sessionId: string): RoomView | null;
   resume(sessionId: string): CurrentRoomResponse;
   presenceChanged(sessionId: string): void;
@@ -17,6 +21,7 @@ export interface RoomActions {
   join(sessionId: string, requestId: string, code: string, name: string): RoomView;
   leave(sessionId: string, requestId: string, roomId: string, participantId: string): void;
   configure(sessionId: string, requestId: string, roomId: string, change: ConfigurationChange): RoomView;
+  start(sessionId: string, requestId: string, roomId: string): RoomView;
 }
 
 const ALREADY = 'Ya estás en una sala. Sal de ella antes de crear otra o entrar en una distinta.';
@@ -28,8 +33,11 @@ export class RoomUseCases implements RoomActions {
     private readonly createId: IdentifierGenerator,
     private readonly drawCodeCandidate: CodeCandidateSource,
     private readonly requests: RoomRequests,
-    private readonly lifecycle: WaitingLifecycle,
-    private readonly decks: PublishedDeckVersions = { resolveVersion: () => ({ ok: false, reason: 'DECK_NOT_AVAILABLE' }) }
+    private readonly lifecycle: Pick<WaitingLifecycle, 'prepare' | 'clock' | 'presence' | 'ends' | 'view' | 'publish' | 'presenceChanged' | 'close' | 'left'>,
+    private readonly decks: PublishedDeckVersions = { resolveVersion: () => ({ ok: false, reason: 'DECK_NOT_AVAILABLE' }) },
+    private readonly gameDecks: PublishedGameDecks = { gameDeck: () => ({ ok: false, reason: 'DECK_NOT_AVAILABLE' }) },
+    private readonly permute: CardPermutation = () => { throw new Error('Entropía no conectada'); },
+    private readonly games?: GameActions
   ) {}
 
   current(sessionId: string): RoomView | null {
@@ -41,10 +49,32 @@ export class RoomUseCases implements RoomActions {
   resume(sessionId: string): CurrentRoomResponse {
     const room = this.current(sessionId);
     const ended = room ? undefined : this.lifecycle.ends.getEnd(sessionId);
-    return { room, ...(ended ? { ended } : {}) };
+    const lastResult = this.lastResult(sessionId);
+    return { room, ...(ended ? { ended } : {}), ...(lastResult ? { lastResult } : {}) };
   }
 
   presenceChanged(sessionId: string): void { this.lifecycle.presenceChanged(sessionId); }
+  openingDirection(sessionId: string, input: OpeningDirectionRequest): RoomView {
+    this.lifecycle.prepare();
+    if (!this.games) throw new RoomError('INTERNAL_ERROR', 'Coordinación de juego no conectada.');
+    return this.games.openingDirection(sessionId, input);
+  }
+  playCard(sessionId: string, input: PlayCardRequest): RoomView {
+    this.lifecycle.prepare();
+    if (!this.games) throw new RoomError('INTERNAL_ERROR', 'Coordinación de juego no conectada.');
+    return this.games.playCard(sessionId, input);
+  }
+  getResult(sessionId: string, gameId: string): ResultsRoomView {
+    this.lifecycle.prepare();
+    if (!this.games) throw new RoomError('RESULT_NOT_AVAILABLE', 'El resultado ya no está disponible.');
+    return this.games.getResult(sessionId, gameId);
+  }
+  lastResult(sessionId: string): LastResult | undefined { return this.games?.lastResult(sessionId); }
+  returnHome(sessionId: string, input: ReturnHomeRequest): CurrentRoomResponse {
+    this.lifecycle.prepare();
+    if (!this.games) throw new RoomError('RESULT_NOT_AVAILABLE', 'El resultado ya no está disponible.');
+    return this.games.returnHome(sessionId, input);
+  }
 
   createOrGet(sessionId: string): RoomView {
     this.lifecycle.prepare();
@@ -88,6 +118,7 @@ export class RoomUseCases implements RoomActions {
   close(sessionId: string, roomId: string): void {
     const room = this.authorize(sessionId, roomId);
     if (room.hostSessionId !== sessionId) throw new RoomError('FORBIDDEN', 'No tienes permiso para esta sala.');
+    this.requireWaiting(room);
     this.lifecycle.close(room, 'HOST_CLOSED');
   }
 
@@ -112,13 +143,15 @@ export class RoomUseCases implements RoomActions {
       const active = this.repository.findActiveBySession(sessionId);
       if (active) {
         if (active.code !== code) throw new RoomError('ALREADY_IN_ROOM', ALREADY);
+        if (active.status === 'RESULTS') this.requireWaiting(active);
         const participantId = active.participantFor(sessionId)!.id;
         this.requests.save(sessionId, requestId, { kind: 'JOIN', signature, roomId: active.id, participantId });
         return this.lifecycle.view(active, sessionId);
       }
 
       const room = this.repository.findActiveByCode(code);
-      if (!room || room.status !== 'WAITING') throw new RoomError('ROOM_NOT_AVAILABLE', UNAVAILABLE);
+      if (!room) throw new RoomError('ROOM_NOT_AVAILABLE', UNAVAILABLE);
+      this.requireWaiting(room);
       const participantId = this.createId();
       room.join(sessionId, participantId, name, this.lifecycle.clock.now(), this.lifecycle.presence.isConnected(sessionId));
       this.repository.save(room);
@@ -145,10 +178,11 @@ export class RoomUseCases implements RoomActions {
     }
     try {
       const room = this.repository.findById(roomId);
-      if (!room || room.status !== 'WAITING') throw new RoomError('ROOM_NOT_AVAILABLE', 'La sala ya no está disponible.');
+      if (!room || room.status === 'CLOSED') throw new RoomError('ROOM_NOT_AVAILABLE', 'La sala ya no está disponible.');
       if (room.hostSessionId === sessionId || room.participantFor(sessionId)?.id !== participantId) {
         throw new RoomError('FORBIDDEN', 'No tienes permiso para esta sala.');
       }
+      this.requireWaiting(room);
       const name = displayName(room, participantId);
       room.leave(sessionId, participantId, this.lifecycle.clock.now());
       this.repository.save(room);
@@ -178,6 +212,7 @@ export class RoomUseCases implements RoomActions {
       return this.lifecycle.view(room, sessionId);
     }
     try {
+      this.requireWaiting(room);
       let selected = null;
       if (change.field === 'deck' && change.value !== null) {
         const result = this.decks.resolveVersion(change.value.id, change.value.contentVersion);
@@ -186,24 +221,74 @@ export class RoomUseCases implements RoomActions {
           : 'La baraja no está disponible. Vuelve a consultar el catálogo.');
         selected = result.summary;
       }
-      if (room.configure(change, selected, this.lifecycle.clock.now())) {
-        this.repository.save(room);
-        this.lifecycle.publish(room);
-      }
+      const changed = room.configure(change, selected, this.lifecycle.clock.now());
+      if (changed) this.repository.save(room);
       this.requests.save(sessionId, requestId, { kind: 'CONFIGURE', signature, roomId, participantId: room.participantId });
+      if (changed) this.lifecycle.publish(room);
       return this.lifecycle.view(room, sessionId);
     } catch (error) {
-      if (error instanceof RoomError) this.requests.save(sessionId, requestId, {
+      if (error instanceof RoomError && !this.requests.get(sessionId, requestId)) this.requests.save(sessionId, requestId, {
         kind: 'CONFIGURE', signature, roomId, participantId: room.participantId, error: { code: error.code, message: error.message }
       });
       throw error;
     }
   }
 
+  start(sessionId: string, requestId: string, roomId: string): RoomView {
+    const room = this.authorize(sessionId, roomId);
+    if (room.hostSessionId !== sessionId) throw new RoomError('FORBIDDEN', 'Solo el anfitrión puede iniciar la partida.');
+    const signature = JSON.stringify([roomId]);
+    const previous = this.requests.get(sessionId, requestId);
+    if (previous) {
+      this.checkReplay(previous.kind, previous.signature, 'START', signature);
+      if (previous.roomId !== room.id || previous.participantId !== room.participantId) {
+        throw new RoomError('PARTICIPATION_ENDED', 'Esa participación ya terminó.');
+      }
+      if (previous.error) throw new RoomError(previous.error.code, previous.error.message);
+      return this.lifecycle.view(room, sessionId);
+    }
+    try {
+      if (room.status === 'RESULTS') this.requireWaiting(room);
+      if (room.status === 'WAITING') {
+        const players = room.startPlayers();
+        const selection = room.selectedDeck!;
+        const result = this.gameDecks.gameDeck(selection.id, selection.contentVersion);
+        if (!result.ok) throw new RoomError(result.reason, 'La baraja o su versión seleccionada ya no está disponible.');
+        const snapshot = result.snapshot;
+        if (snapshot.summary.id !== selection.id || snapshot.summary.contentVersion !== selection.contentVersion
+          || snapshot.definition.id !== selection.id) throw new RoomError('INVALID_DECK', 'La definición de la baraja no es válida.');
+        if (!validateDeck(snapshot.definition).valid) throw new RoomError('INVALID_DECK', 'La definición de la baraja no es válida.');
+        const game = new Game({ id: this.createId(), deck: snapshot.definition, players,
+          settings: { turnTimeout: room.settings.turnSeconds, forceTieBreak: room.settings.forceTieBreak },
+          permutation: this.permute(snapshot.definition.cards.map((card) => card.id)) });
+        room.beginGame(game, snapshot);
+        this.repository.save(room);
+        // Registrar aceptación antes de emitir: perder el ack no permite repetir el reparto.
+        this.requests.save(sessionId, requestId, { kind: 'START', signature, roomId, participantId: room.participantId });
+        this.lifecycle.publish(room);
+      } else {
+        this.requests.save(sessionId, requestId, { kind: 'START', signature, roomId, participantId: room.participantId });
+      }
+      return this.lifecycle.view(room, sessionId);
+    } catch (cause) {
+      const error = cause instanceof RoomError ? cause : cause instanceof GameInitializationError && cause.code === 'INVALID_DECK'
+        ? new RoomError('INVALID_DECK', 'La definición de la baraja no es válida.')
+        : new RoomError('INTERNAL_ERROR', 'No se pudo confirmar el inicio. Recupera el estado de la sala.');
+      if (room.status === 'WAITING') this.requests.save(sessionId, requestId, { kind: 'START', signature, roomId,
+        participantId: room.participantId, error: { code: error.code, message: error.message } });
+      throw error;
+    }
+  }
+
+  private requireWaiting(room: Room): void {
+    if (room.status === 'RESULTS') throw new RoomError('GAME_FINISHED', 'La partida ha terminado. Vuelve al inicio para crear otra sala.');
+    if (room.status === 'IN_GAME') throw new RoomError('GAME_ALREADY_STARTED', 'La partida ya ha comenzado. No se puede cambiar la preparación.');
+  }
+
   private authorize(sessionId: string, roomId: string): Room {
     this.lifecycle.prepare();
     const room = this.repository.findById(roomId);
-    if (!room || room.status !== 'WAITING') throw new RoomError('ROOM_NOT_AVAILABLE', 'La sala ya no está disponible.');
+    if (!room || room.status === 'CLOSED') throw new RoomError('ROOM_NOT_AVAILABLE', 'La sala ya no está disponible.');
     if (!room.participantFor(sessionId)) throw new RoomError('FORBIDDEN', 'No tienes permiso para esta sala.');
     return room;
   }

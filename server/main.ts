@@ -7,7 +7,7 @@ import { attachPublicFiles } from './infrastructure/http/publicFiles.js';
 try {
   const loaded = await loadInstallationDecks();
   reportDeckDiagnostics(loaded.diagnostics);
-  const runtime = createRuntime({ decks: loaded.catalog, deckVersions: loaded.catalog });
+  const runtime = createRuntime({ decks: loaded.catalog, deckVersions: loaded.catalog, gameDecks: loaded.catalog });
   attachPublicFiles(runtime.app, path.join(installationRoot, 'dist'), loaded.catalog);
   const port = Number(process.env.PORT ?? 3000);
   const server = createServer(runtime.app);

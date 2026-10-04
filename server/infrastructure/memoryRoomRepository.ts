@@ -30,19 +30,17 @@ export class MemoryRoomRepository implements RoomRepository {
 
   save(room: Room): void {
     const stored = this.rooms.get(room.id);
-    const ownerId = this.ownRoom.get(room.hostSessionId);
     const codeId = this.activeCodes.get(room.code);
-    const members = room.memberSessions;
-    if (room.status !== 'WAITING'
+    const members = room.activeSessions;
+    if (room.status === 'CLOSED'
       || (stored && (stored.hostSessionId !== room.hostSessionId || stored.code !== room.code))
-      || (ownerId && ownerId !== room.id)
       || (codeId && codeId !== room.id)
       || members.some((sessionId) => { const id = this.ownRoom.get(sessionId); return id && id !== room.id; })) {
       throw new Error('Índices de sala incompatibles.');
     }
     const previousMembers = this.membersByRoom.get(room.id) ?? new Set<string>();
     for (const sessionId of previousMembers) {
-      if (!members.includes(sessionId)) this.ownRoom.delete(sessionId);
+      if (!members.includes(sessionId) && this.ownRoom.get(sessionId) === room.id) this.ownRoom.delete(sessionId);
     }
     this.rooms.set(room.id, room);
     this.activeCodes.set(room.code, room.id);
@@ -54,8 +52,8 @@ export class MemoryRoomRepository implements RoomRepository {
     const room = this.rooms.get(id);
     if (!room) return;
     this.rooms.delete(id);
-    this.activeCodes.delete(room.code);
-    for (const sessionId of this.membersByRoom.get(id) ?? []) this.ownRoom.delete(sessionId);
+    if (this.activeCodes.get(room.code) === id) this.activeCodes.delete(room.code);
+    for (const sessionId of this.membersByRoom.get(id) ?? []) if (this.ownRoom.get(sessionId) === id) this.ownRoom.delete(sessionId);
     this.membersByRoom.delete(id);
   }
 }

@@ -22,7 +22,12 @@ const roomErrorStatus: Record<RoomErrorCode, number> = {
   REQUEST_CONFLICT: 409,
   PARTICIPATION_ENDED: 409,
   DECK_NOT_AVAILABLE: 404,
-  DECK_VERSION_MISMATCH: 409
+  DECK_VERSION_MISMATCH: 409,
+  GAME_ALREADY_STARTED: 409,
+  START_NOT_READY: 409,
+  INVALID_DECK: 409,
+  STALE_GAME_CONTEXT: 409, NOT_YOUR_TURN: 409, CARD_NOT_IN_HAND: 409, ROUND_IN_REVIEW: 409, GAME_FINISHED: 409, RESULT_NOT_AVAILABLE: 404,
+  INTERNAL_ERROR: 500
 };
 
 export function createHttpApp(dependencies: { rooms: RoomActions; sessions: MemorySessions; production: boolean; decks: ListDecks }) {
@@ -57,6 +62,7 @@ export function createHttpApp(dependencies: { rooms: RoomActions; sessions: Memo
   });
 
   app.get('/api/rooms/current', (req, res) => {
+    res.set('Cache-Control', 'no-store');
     let id = sessions.get(parseCookie(req.headers.cookie ?? '')[COOKIE_NAME]);
     if (!id) {
       const fresh = sessions.establish();
@@ -80,7 +86,11 @@ export function createHttpApp(dependencies: { rooms: RoomActions; sessions: Memo
   });
 
   app.get('/api/rooms/:id', (req, res) => {
+    res.set('Cache-Control', 'no-store');
     res.json({ room: rooms.getOwn(session(req), String(req.params.id)) } satisfies RoomResponse);
+  });
+  app.get('/api/results/:gameId', (req, res) => {
+    res.set('Cache-Control', 'no-store').json({ room: rooms.getResult(session(req), String(req.params.gameId)) });
   });
 
   app.patch('/api/rooms/:id/name', (req, res) => {
@@ -103,7 +113,7 @@ export function createHttpApp(dependencies: { rooms: RoomActions; sessions: Memo
     if (error instanceof SyntaxError && 'body' in error) {
       return res.status(400).json({ error: { code: 'INVALID_INPUT', message: 'Los datos enviados no son válidos.' } } satisfies ErrorResponse);
     }
-    console.error(error);
+    console.error('Fallo interno al procesar una solicitud HTTP.');
     return res.status(500).json({ error: { code: 'INTERNAL_ERROR', message: 'Ha ocurrido un error. Inténtalo de nuevo.' } } satisfies ErrorResponse);
   });
   return app;

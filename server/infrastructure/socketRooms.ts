@@ -1,12 +1,14 @@
 import type { Server as HttpServer } from 'node:http';
 import { parseCookie } from 'cookie';
 import { Server } from 'socket.io';
-import type { CurrentRoomResponse, RoomChange, RoomClosedEvent, RoomLeftEvent, RoomStateEvent, RoomView, SocketAck } from '../../shared/contracts/room.js';
-import type { RoomChanges, SessionPresence } from '../application/ports.js';
+import type { CurrentRoomResponse, ResultsHomeEvent, RoomChange, RoomClosedEvent, RoomLeftEvent, RoomStateEvent, RoomView, SocketAck } from '../../shared/contracts/room.js';
+import type { GameChanges, SessionPresence } from '../application/ports.js';
+import type { RoundResolvedEvent } from '../../shared/contracts/game.js';
 import type { RoomActions } from '../application/roomUseCases.js';
 import { RoomError } from '../application/roomError.js';
 import type { MemorySessions } from './memorySessions.js';
 import { configurationInput, exactObject } from './configurationInput.js';
+import { gameInput } from './gameInput.js';
 
 const sessionRoom = (sessionId: string) => `session:${sessionId}`;
 const invalid = () => new RoomError('INVALID_INPUT', 'Los datos enviados no son válidos.');
@@ -22,7 +24,7 @@ function field(value: unknown, max: number): value is string {
 
 function ackError(error: unknown): SocketAck<never> {
   if (error instanceof RoomError) return { ok: false, error: { code: error.code, message: error.message } };
-  console.error(error);
+  console.error('Fallo interno al procesar una solicitud de sala.');
   return { ok: false, error: { code: 'INTERNAL_ERROR', message: 'Ha ocurrido un error. Inténtalo de nuevo.' } };
 }
 
@@ -32,7 +34,7 @@ function respond<T>(ack: unknown, result: SocketAck<T>): void {
 
 export const SOCKET_DETECTION = { pingInterval: 5000, pingTimeout: 5000 } as const;
 
-export class SocketRoomChanges implements RoomChanges, SessionPresence {
+export class SocketRoomChanges implements GameChanges, SessionPresence {
   private io?: Server;
   private readonly connections = new Map<string, Set<string>>();
   private stopped = false;
@@ -102,6 +104,29 @@ export class SocketRoomChanges implements RoomChanges, SessionPresence {
           respond(ack, { ok: true, room: rooms.configure(sessionId, payload.requestId, payload.roomId, configurationInput(payload.change)) });
         } catch (error) { respond(ack, ackError(error)); }
       });
+      socket.on('room:start', (payload: unknown, ack: (result: SocketAck<{ room: RoomView }>) => void) => {
+        try {
+          rooms.current(sessionId);
+          if (!exactObject(payload, ['requestId', 'roomId']) || !field(payload.requestId, 100)
+            || !field(payload.roomId, 100)) throw invalid();
+          respond(ack, { ok: true, room: rooms.start(sessionId, payload.requestId, payload.roomId) });
+        } catch (error) { respond(ack, ackError(error)); }
+      });
+      socket.on('game:opening-direction', (payload: unknown, ack: unknown) => {
+        try { rooms.current(sessionId); respond(ack, { ok: true, room: rooms.openingDirection(sessionId, gameInput(payload, false)) }); }
+        catch (error) { respond(ack, ackError(error)); }
+      });
+      socket.on('game:play', (payload: unknown, ack: unknown) => {
+        try { rooms.current(sessionId); respond(ack, { ok: true, room: rooms.playCard(sessionId, gameInput(payload, true)) }); }
+        catch (error) { respond(ack, ackError(error)); }
+      });
+      socket.on('results:return-home', (payload: unknown, ack: unknown) => {
+        try {
+          rooms.current(sessionId);
+          if (!exactObject(payload, ['requestId', 'roomId', 'gameId']) || !field(payload.requestId, 100) || !field(payload.roomId, 100) || !field(payload.gameId, 100)) throw invalid();
+          respond(ack, { ok: true, ...rooms.returnHome(sessionId, { requestId: payload.requestId, roomId: payload.roomId, gameId: payload.gameId }) });
+        } catch (error) { respond(ack, ackError(error)); }
+      });
     });
     return io;
   }
@@ -111,6 +136,11 @@ export class SocketRoomChanges implements RoomChanges, SessionPresence {
       this.io?.to(sessionRoom(view.sessionId)).emit('room:state', { room: view.room, ...(change ? { change } : {}) } satisfies RoomStateEvent);
     }
   }
+  roundResolved(sessionIds: string[], event: RoundResolvedEvent): void {
+    for (const id of sessionIds) this.io?.to(sessionRoom(id)).emit('game:round-resolved', event);
+  }
+  resultsHome(sessionId: string, event: ResultsHomeEvent): void { this.io?.to(sessionRoom(sessionId)).emit('results:home', event); }
+  technicalFailure(): void { console.error('Fallo técnico al publicar o avanzar una revisión de partida. Recuperación disponible.'); }
 
   left(sessionId: string, roomId: string, participantId: string, reason: RoomLeftEvent['reason'] = 'VOLUNTARY'): void {
     this.io?.to(sessionRoom(sessionId)).emit('room:left', { roomId, participantId, reason } satisfies RoomLeftEvent);

@@ -1,4 +1,4 @@
-import type { CurrentRoomResponse, RenameRoomRequest, RoomResponse } from '../shared/contracts/room';
+import type { CurrentRoomResponse, RenameRoomRequest, ResultsRoomView, RoomResponse } from '../shared/contracts/room';
 import type { DecksResponse } from '../shared/contracts/deck';
 
 export class ApiError extends Error {
@@ -27,6 +27,7 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
 export const api = {
   decks: () => request<DecksResponse>('/decks'),
   current: () => request<CurrentRoomResponse>('/rooms/current'),
+  result: (gameId: string) => request<{ room: ResultsRoomView }>(`/results/${encodeURIComponent(gameId)}`),
   create: () => request<RoomResponse>('/rooms', { method: 'POST', body: '{}' }),
   rename: (id: string, name: string) => request<RoomResponse>(`/rooms/${encodeURIComponent(id)}/name`, { method: 'PATCH', body: JSON.stringify({ name } satisfies RenameRoomRequest) }),
   close: (id: string) => request<void>(`/rooms/${encodeURIComponent(id)}`, { method: 'DELETE' })

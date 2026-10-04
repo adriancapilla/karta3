@@ -1,4 +1,5 @@
 import type { DeckSummary } from './deck.js';
+import type { InitialGameView } from './game.js';
 
 export type ParticipantView = { id: string; name: string; role: 'HOST' | 'GUEST'; isPlayer: boolean; presence: 'CONNECTED' | 'RECONNECTING' };
 export type RoomSettings = {
@@ -15,8 +16,9 @@ export type ConfigurationChange =
   | { field: 'turnSeconds'; value: RoomSettings['turnSeconds'] }
   | { field: 'reviewSeconds'; value: RoomSettings['reviewSeconds'] };
 export type ConfigureRoomRequest = { requestId: string; roomId: string; change: ConfigurationChange };
+export type StartRoomRequest = { requestId: string; roomId: string };
 
-export type RoomView = {
+export type WaitingRoomView = {
   id: string;
   code: string;
   status: 'WAITING';
@@ -28,9 +30,28 @@ export type RoomView = {
   selectedDeck: DeckSummary | null;
 };
 
+export type GameParticipantView = Omit<ParticipantView, 'presence'> & { presence: 'CONNECTED' | 'DISCONNECTED'; score: number | null };
+export type InitialGameRoomView = {
+  id: string; code: string; status: 'IN_GAME'; revision: number;
+  participant: GameParticipantView; participants: GameParticipantView[];
+  settings: RoomSettings; selectedDeck: DeckSummary; game: InitialGameView;
+};
+export type ResultParticipantView = Omit<GameParticipantView, 'presence'>;
+export type LastResult = { roomId: string; gameId: string; expiresAt: number };
+export type ResultsRoomView = {
+  id: string; code: string; status: 'RESULTS'; revision: number;
+  participant: ResultParticipantView; participants: ResultParticipantView[]; settings: RoomSettings; selectedDeck: DeckSummary;
+  result: { gameId: string; endReason: 'DECK_COMPLETED'; completedNormally: true;
+    standings: { playerId: string; score: number; position: number }[]; winnerIds: string[]; tieBreakWinnerId: string | null;
+    retention: { presentedAt: number; serverNow: number; expiresAt: number } };
+};
+export type ReturnHomeRequest = { requestId: string; roomId: string; gameId: string };
+export type ResultsHomeEvent = { id: string; roomId: string; gameId: string; lastResult: LastResult | null };
+export type RoomView = WaitingRoomView | InitialGameRoomView | ResultsRoomView;
+
 export type AutomaticEndReason = 'RECONNECT_TIMEOUT' | 'HOST_DISCONNECTED' | 'INACTIVITY';
 export type ParticipationEnd = { roomId: string; participantId: string; reason: AutomaticEndReason };
-export type CurrentRoomResponse = { room: RoomView | null; ended?: ParticipationEnd };
+export type CurrentRoomResponse = { room: RoomView | null; ended?: ParticipationEnd; lastResult?: LastResult };
 export type RoomResponse = { room: RoomView };
 export type RenameRoomRequest = { name: string };
 
@@ -46,6 +67,10 @@ export type PublicErrorCode =
   | 'PARTICIPATION_ENDED'
   | 'DECK_NOT_AVAILABLE'
   | 'DECK_VERSION_MISMATCH'
+  | 'START_NOT_READY'
+  | 'INVALID_DECK'
+  | 'GAME_ALREADY_STARTED'
+  | 'STALE_GAME_CONTEXT' | 'NOT_YOUR_TURN' | 'CARD_NOT_IN_HAND' | 'ROUND_IN_REVIEW' | 'GAME_FINISHED' | 'RESULT_NOT_AVAILABLE'
   | 'INTERNAL_ERROR';
 
 export type ErrorResponse = { error: { code: PublicErrorCode; message: string } };

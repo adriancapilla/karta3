@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import type { ConfigurationChange, RoomView } from '../shared/contracts/room';
+import type { ConfigurationChange, RoomView, WaitingRoomView } from '../shared/contracts/room';
 import type { DeckSummary } from '../shared/contracts/deck';
 import { api } from './api';
 import { useRoomConfiguration } from './useRoomConfiguration';
@@ -33,10 +33,12 @@ function DeckCard({ deck }: { deck: DeckSummary }) {
 }
 const deckValue = (value: { id: string; contentVersion: number } | null) => value ? JSON.stringify({ id: value.id, contentVersion: value.contentVersion }) : '';
 
-export function RoomConfiguration({ room, connected, onRoom }: { room: RoomView; connected: boolean; onRoom: (room: RoomView) => boolean }) {
+export function RoomConfiguration({ room, connected, onRoom, onPendingChange }: { room: WaitingRoomView; connected: boolean; onRoom: (room: RoomView) => boolean; onPendingChange: (pending: boolean) => void }) {
   const host = room.participant.role === 'HOST';
   const { catalog, retry } = useDeckCatalog(host);
   const { attempts, change } = useRoomConfiguration(room, onRoom);
+  const pending = Object.values(attempts).some((attempt) => attempt?.status === 'PENDING');
+  useEffect(() => { onPendingChange(pending); }, [pending, onPendingChange]);
   const acceptedDeck = room.selectedDeck;
   const pendingDeck = attempts.deck?.status === 'PENDING' && attempts.deck.change.field === 'deck' ? attempts.deck.change.value : undefined;
   const options = [...catalog.decks];

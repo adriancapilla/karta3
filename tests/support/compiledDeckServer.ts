@@ -43,8 +43,11 @@ syncBuiltinESMExports();
   return root;
 }
 
-export async function startCompiledDeckServer(root: string) {
-  const child = spawn(process.execPath, ['--import', './guard.mjs', 'dist-server/server/main.js'], { cwd: root, env: { ...process.env, PORT: '0', NODE_ENV: 'test' }, windowsHide: true, stdio: ['ignore', 'pipe', 'pipe'] });
+export async function startCompiledDeckServer(root: string, port = 0) {
+  const environment: NodeJS.ProcessEnv = { ...process.env, PORT: String(port), NODE_ENV: 'test' };
+  // Playwright fija FORCE_COLOR y hereda NO_COLOR: evitar el aviso de flags contradictorios en el hijo.
+  delete environment.FORCE_COLOR;
+  const child = spawn(process.execPath, ['--import', './guard.mjs', 'dist-server/server/main.js'], { cwd: root, env: environment, windowsHide: true, stdio: ['ignore', 'pipe', 'pipe'] });
   let output = ''; let errors = '';
   child.stderr.on('data', (data: Buffer) => { errors += data.toString(); });
   const exited = new Promise<number | null>((resolve) => child.once('exit', resolve));

@@ -12,6 +12,8 @@ export function countdownSeconds(expiresAt: number, serverNow: number, elapsed: 
 
 export function acceptsRoom(current: RoomView | null, incoming: RoomView, ended: ReadonlySet<string>, closed: ReadonlySet<string>): boolean {
   if (ended.has(incoming.participant.id) || closed.has(incoming.id)) return false;
+  const phase = { WAITING: 0, IN_GAME: 1, RESULTS: 2 };
+  if (current && phase[incoming.status] < phase[current.status]) return false;
   return !current || (current.id === incoming.id
     && current.participant.id === incoming.participant.id
     && current.revision <= incoming.revision);

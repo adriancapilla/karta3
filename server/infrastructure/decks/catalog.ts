@@ -1,7 +1,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { randomUUID } from 'node:crypto';
-import type { DeckCatalog, PublishedDeckVersions, DeckVersionResult } from '../../application/deckCatalog.js';
+import type { CardPresentation, DeckCatalog, PublishedDeckVersions, PublishedGameDecks, GameDeckResult, DeckVersionResult } from '../../application/deckCatalog.js';
 import type { Deck } from '../../domain/deck.js';
 import type { DecksResponse, DeckSummary } from '../../../shared/contracts/deck.js';
 import { validatePackage } from './readPackage.js';
@@ -25,8 +25,8 @@ function freeze<T>(value: T): T {
 }
 
 /** Instantánea interna: las peticiones no abren archivos ni adoptan cambios editoriales. */
-type PublishedDefinition = { contentVersion: number; definition: Deck };
-export class LoadedDeckCatalog implements DeckCatalog, PublishedDeckVersions {
+type PublishedDefinition = { contentVersion: number; definition: Deck; presentation?: readonly CardPresentation[] };
+export class LoadedDeckCatalog implements DeckCatalog, PublishedDeckVersions, PublishedGameDecks {
   private readonly summariesList: readonly DeckSummary[];
   private readonly definitions: ReadonlyMap<string, PublishedDefinition>;
   private readonly resources: ReadonlyMap<string, ValidatedImage>;
@@ -47,6 +47,13 @@ export class LoadedDeckCatalog implements DeckCatalog, PublishedDeckVersions {
   }
   // Acceso interno para comprobación; ningún transporte expone la definición.
   definition(id: string): Deck | undefined { return this.definitions.get(id)?.definition; }
+  gameDeck(id: string, contentVersion: number): GameDeckResult {
+    const version = this.resolveVersion(id, contentVersion);
+    if (!version.ok) return version;
+    const published = this.definitions.get(id)!;
+    if (!published.presentation) return { ok: false, reason: 'DECK_NOT_AVAILABLE' };
+    return { ok: true, snapshot: { summary: version.summary, definition: published.definition, presentation: published.presentation } };
+  }
   image(url: string): ValidatedImage | undefined {
     const image = this.resources.get(url);
     return image ? { mime: image.mime, bytes: Buffer.from(image.bytes) } : undefined;
@@ -77,9 +84,10 @@ export async function loadPackages(root: string) {
     const result = await validatePackage(target);
     diagnostics.push({ package: directory, valid: result.valid, available: result.available, errors: result.errors });
     if (!result.valid || !result.available) continue;
-    const { metadata, definition } = result.data!;
-    definitions.set(metadata.id, { contentVersion: metadata.contentVersion, definition });
+    const { metadata, collection, definition } = result.data!;
     const prefix = `/media/decks/${metadata.id}/v${metadata.contentVersion}/`;
+    definitions.set(metadata.id, { contentVersion: metadata.contentVersion, definition,
+      presentation: collection.cards.map((card) => ({ id: card.id, imageUrl: card.imageRef === null ? null : `${prefix}${card.imageRef}`, imageAlt: card.imageAlt })) });
     for (const [ref, image] of result.images) resources.set(`${prefix}${ref}`, image);
     published.push({ order: metadata.publication.order, summary: {
       id: metadata.id, schemaVersion: metadata.schemaVersion, contentVersion: metadata.contentVersion,
