@@ -1,4 +1,5 @@
 import { validateDeck, type Card, type Deck } from './deck.js';
+import { autoPlayPolicy } from './autoPlay.js';
 
 export class GameInitializationError extends Error {
   constructor(readonly code: 'INVALID_DECK' | 'INVALID_PLAYERS' | 'INVALID_PERMUTATION') { super(code); }
@@ -6,11 +7,11 @@ export class GameInitializationError extends Error {
 export type GameSettings = Readonly<{ turnTimeout: 15 | 30 | 60; forceTieBreak: boolean }>;
 export type InitialPlayer = Readonly<{
   id: string; displayName: string; kind: 'HUMAN'; order: number;
-  hand: readonly Card[]; wonCards: readonly Card[]; status: 'ACTIVE'; consecutiveTimeouts: 0;
+  hand: readonly Card[]; wonCards: readonly Card[]; status: 'ACTIVE' | 'AUTOMATIC'; consecutiveTimeouts: 0 | 1 | 2;
 }>;
 export type Direction = 'HIGH' | 'LOW';
 export type GamePhase = 'PLAYING' | 'FINAL_PHASE' | 'TIE_BREAK' | 'FINISHED';
-export type Play = Readonly<{ playerId: string; card: Card; order: number; mode: 'MANUAL' }>;
+export type Play = Readonly<{ playerId: string; card: Card; order: number; mode: 'MANUAL' | 'TIMEOUT' | 'AUTOMATIC' }>;
 export type Round = Readonly<{
   number: number; kind: 'BASE' | 'TIE_BREAK'; finalRoundIndex: number | null; playerIds: readonly string[];
   state: 'WAITING_FOR_DIRECTION' | 'WAITING_FOR_PLAYS' | 'RESOLVED'; openerPlayerId: string;
@@ -23,12 +24,12 @@ export type RoundResolution = Readonly<{
   nextStage: 'ROUND' | 'TIE_BREAK' | 'RESULTS';
 }>;
 export type GameResult = Readonly<{
-  endReason: 'DECK_COMPLETED'; completedNormally: true;
+  endReason: 'DECK_COMPLETED' | 'NO_ACTIVE_HUMAN_PLAYERS'; completedNormally: boolean;
   standings: readonly Readonly<{ playerId: string; score: number; position: number }>[];
   winnerIds: readonly string[]; tieBreakWinnerId: string | null;
 }>;
 export class GameRuleError extends Error {
-  constructor(readonly code: 'NOT_YOUR_TURN' | 'CARD_NOT_IN_HAND' | 'INVALID_INPUT' | 'ROUND_IN_REVIEW' | 'GAME_FINISHED') { super(code); }
+  constructor(readonly code: 'NOT_YOUR_TURN' | 'CARD_NOT_IN_HAND' | 'INVALID_INPUT' | 'ROUND_IN_REVIEW' | 'GAME_FINISHED' | 'PLAYER_AUTOMATIC') { super(code); }
 }
 
 function freeze<T>(value: T): T {
@@ -99,14 +100,43 @@ export class Game {
   }
 
   play(playerId: string, cardId: string, direction: Direction | null): Game {
+    this.assertManualActor(playerId);
+    return this.applyPlay(playerId, cardId, direction, 'MANUAL');
+  }
+
+  assertManualActor(playerId: string): void {
+    if (this.players.find((person) => person.id === playerId)?.status === 'AUTOMATIC') throw new GameRuleError('PLAYER_AUTOMATIC');
+    this.assertActor(playerId);
+  }
+
+  timeout(playerId: string, acceptedDirection: Direction | null): Game {
+    this.assertActor(playerId);
+    const person = this.players.find((player) => player.id === playerId)!;
+    if (person.status !== 'ACTIVE') throw new GameRuleError('PLAYER_AUTOMATIC');
+    const decision = autoPlayPolicy(person.hand, this.round.activeAttributeId, this.round.plays.length === 0, acceptedDirection);
+    return this.applyPlay(playerId, decision.cardId, decision.direction, 'TIMEOUT');
+  }
+
+  automaticPlay(playerId: string): Game {
+    this.assertActor(playerId);
+    const person = this.players.find((player) => player.id === playerId)!;
+    if (person.status !== 'AUTOMATIC') throw new GameRuleError('INVALID_INPUT');
+    const decision = autoPlayPolicy(person.hand, this.round.activeAttributeId, this.round.plays.length === 0);
+    return this.applyPlay(playerId, decision.cardId, decision.direction, 'AUTOMATIC');
+  }
+
+  private applyPlay(playerId: string, cardId: string, direction: Direction | null, mode: Play['mode']): Game {
     this.assertActor(playerId);
     const opening = this.round.plays.length === 0;
     if (opening ? direction !== 'HIGH' && direction !== 'LOW' : direction !== null) throw new GameRuleError('INVALID_INPUT');
     const player = this.players.find((person) => person.id === playerId)!;
     const card = player.hand.find((item) => item.id === cardId);
     if (!card) throw new GameRuleError('CARD_NOT_IN_HAND');
-    const plays = [...this.round.plays, { playerId, card, order: this.round.plays.length + 1, mode: 'MANUAL' as const }];
-    const next = this.evolve({ players: this.players.map((person) => person.id === playerId ? { ...person, hand: person.hand.filter((item) => item.id !== cardId) } : person),
+    const count = mode === 'MANUAL' ? 0 : mode === 'TIMEOUT' ? Math.min(2, player.consecutiveTimeouts + 1) as 1 | 2 : 2;
+    const plays = [...this.round.plays, { playerId, card, order: this.round.plays.length + 1, mode }];
+    const next = this.evolve({ players: this.players.map((person) => person.id === playerId ? { ...person,
+      hand: person.hand.filter((item) => item.id !== cardId), consecutiveTimeouts: count,
+      status: count === 2 ? 'AUTOMATIC' as const : 'ACTIVE' as const } : person),
       round: { ...this.round, direction: opening ? direction : this.round.direction,
         state: plays.length === this.round.playerIds.length ? 'RESOLVED' : 'WAITING_FOR_PLAYS', plays } });
     return next.round.state === 'RESOLVED' ? next.resolve() : next;
@@ -120,13 +150,14 @@ export class Game {
     const last = this.phase === 'FINAL_PHASE' && this.players.every((person) => person.hand.length === 0);
     const tie = this.round.kind === 'TIE_BREAK';
     const players = this.players.map((person) => !tie && person.id === winnerPlayerId ? { ...person, wonCards: [...person.wonCards, ...this.round.plays.map((play) => play.card)] } : person);
-    const result = last || tie ? this.resultFor(players, tie ? winnerPlayerId : null) : this.result;
-    const nextStage = tie ? 'RESULTS' : last ? this.settings.forceTieBreak && result!.winnerIds.length > 1 ? 'TIE_BREAK' : 'RESULTS' : 'ROUND';
+    const inactive = players.every((person) => person.status === 'AUTOMATIC');
+    const result = last || tie || inactive ? this.resultFor(players, tie ? winnerPlayerId : null, inactive) : this.result;
+    const nextStage = tie || inactive ? 'RESULTS' : last ? this.settings.forceTieBreak && result!.winnerIds.length > 1 ? 'TIE_BREAK' : 'RESULTS' : 'ROUND';
     return this.evolve({ players, result,
-      attributeDiscard: this.phase === 'PLAYING' || last ? [...this.attributeDiscard, this.round.indicator] : this.attributeDiscard,
+      attributeDiscard: this.phase === 'PLAYING' || last || inactive && !tie ? [...this.attributeDiscard, this.round.indicator] : this.attributeDiscard,
       tieBreakPlayed: tie ? this.round.plays.map((play) => play.card) : this.tieBreakPlayed,
       resolution: { id: `${this.id}:r${this.round.number}:resolved`, roundNumber: this.round.number, kind: this.round.kind,
-        ranking, winnerPlayerId, nextOpenerPlayerId: last || tie ? null : ranking[1].playerId, awardedCardCount: tie ? 0 : this.round.plays.length, nextStage } });
+        ranking, winnerPlayerId, nextOpenerPlayerId: last || tie || inactive ? null : ranking[1].playerId, awardedCardCount: tie ? 0 : this.round.plays.length, nextStage } });
   }
 
   /** Aplicación llama una vez tras revisión. El dominio decide adquisición y siguiente abridor. */
@@ -163,12 +194,12 @@ export class Game {
 
   get tieBreakCardIds(): readonly string[] { return this.resolution?.nextStage === 'TIE_BREAK' ? this.attributeDiscard.map((card) => card.id) : []; }
 
-  private resultFor(players: readonly InitialPlayer[], tieBreakWinnerId: string | null): GameResult {
+  private resultFor(players: readonly InitialPlayer[], tieBreakWinnerId: string | null, inactive = false): GameResult {
     const maximum = Math.max(...players.map((person) => person.wonCards.length));
     const leaders = players.filter((person) => person.wonCards.length === maximum).map((person) => person.id);
     const order = [...players].sort((a, b) => b.wonCards.length - a.wonCards.length
       || (a.id === tieBreakWinnerId ? -1 : b.id === tieBreakWinnerId ? 1 : a.order - b.order));
-    return { endReason: 'DECK_COMPLETED', completedNormally: true, tieBreakWinnerId, winnerIds: tieBreakWinnerId ? [tieBreakWinnerId] : leaders,
+    return { endReason: inactive ? 'NO_ACTIVE_HUMAN_PLAYERS' : 'DECK_COMPLETED', completedNormally: !inactive, tieBreakWinnerId, winnerIds: tieBreakWinnerId ? [tieBreakWinnerId] : leaders,
       standings: order.map((person) => ({ playerId: person.id, score: person.wonCards.length, position: 1 + players.filter((other) => other.wonCards.length > person.wonCards.length).length })) };
   }
 

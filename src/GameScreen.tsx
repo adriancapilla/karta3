@@ -6,9 +6,18 @@ import { CardDetails, GameCard } from './GameCard';
 import { useGameActions } from './useGameActions';
 import type { CurrentRoomResponse, RoomView } from '../shared/contracts/room';
 import { RoundReview } from './RoundReview';
+import { useServerCountdown } from './useServerCountdown';
 
 export function GameScreen({ room, connected, activity, onRoom, onCurrent }: { room: InitialGameRoomView; connected: boolean; activity: string; onRoom: (room: RoomView) => boolean; onCurrent: (result: CurrentRoomResponse) => void }) {
-  const actions = useGameActions(room, connected, onRoom, onCurrent);
+  const remaining = useServerCountdown(room.game.interaction.turn?.timing ?? null);
+  const actions = useGameActions(room, connected, onRoom, onCurrent, remaining === 0);
+  const resyncedTurn = useRef<string | undefined>(undefined);
+  const turnId = room.game.interaction.turn?.id;
+  useEffect(() => {
+    if (remaining !== 0 || !connected || actions.busy || !turnId || resyncedTurn.current === turnId) return;
+    resyncedTurn.current = turnId;
+    void actions.recover(); // Solo lectura; el cero local nunca envía una jugada ni un timeout.
+  }, [remaining, connected, actions, turnId]);
   const title = useRef<HTMLHeadingElement>(null);
   const focusedGame = useRef<string | null>(null);
   const hand = useRef<HTMLDivElement>(null);
@@ -40,9 +49,10 @@ export function GameScreen({ room, connected, activity, onRoom, onCurrent }: { r
     setDetails(null);
   };
   return <main className="shell game-shell">
-    <header><span className="brand">KARTA<span>3</span></span><span className="top-label">Partida manual</span></header>
+    <header><span className="brand">KARTA<span>3</span></span><span className="top-label">Partida</span></header>
     <h1 ref={title} tabIndex={-1}>Partida · {room.selectedDeck.name} · v{room.selectedDeck.contentVersion}</h1>
-    <p className="initial-table-notice">En esta versión no hay límite de tiempo por turno. Si alguien deja de jugar, la partida espera a que vuelva.</p>
+    {room.participant.playStatus === 'ACTIVE' && room.game.ownConsecutiveTimeouts === 1 && <p className="initial-table-notice" role="status">No completaste tu último turno a tiempo. Si vuelve a ocurrir sin una jugada manual entre medias, pasarás a automático</p>}
+    {room.participant.playStatus === 'AUTOMATIC' && <p className="initial-table-notice" role="status">Has pasado a automático. Puedes seguir viendo la partida, pero ya no jugar manualmente</p>}
     <p className="game-summary">Ronda {round.number} · Mazo de robo: {room.game.drawPileCount}</p>
     {room.game.phase === 'FINAL_PHASE' && <p role="status">Fase final · ronda {round.finalRoundIndex} de 3 · sin reposición</p>}
     {room.game.phase === 'TIE_BREAK' && <p role="status">Desempate · una única ronda sin puntos nuevos</p>}
@@ -58,6 +68,7 @@ export function GameScreen({ room, connected, activity, onRoom, onCurrent }: { r
             {person.id === round.openerPlayerId && <span className="badge">Abridor</span>}
             {person.id === room.game.interaction.turn?.playerId && <span className="badge">Juega</span>}
             {person.presence === 'DISCONNECTED' && <span className="badge reconnecting">Sin conexión</span>}
+            {person.playStatus === 'AUTOMATIC' && <span className="badge">Automático</span>}
           </span>
         </li>)}</ol>
         {observer && <div className="observer-line"><strong>{label(observer.id)}</strong><span>Anfitrión · Observador</span>
@@ -84,6 +95,8 @@ export function GameScreen({ room, connected, activity, onRoom, onCurrent }: { r
       </section>}
       <section className="game-panel game-initial-state" aria-labelledby="game-state-title"><h2 id="game-state-title">Estado de la partida</h2>
         {room.game.interaction.turn && <p role="status">Juega {label(room.game.interaction.turn.playerId)}</p>}
+        {remaining !== null && <p>Tiempo de turno · <span role="timer" aria-live="off">{String(Math.floor(remaining / 60)).padStart(2, '0')}:{String(remaining % 60).padStart(2, '0')}</span></p>}
+        {remaining === 0 && <p role="status">Esperando actualización del servidor…</p>}
         <p>Abridor: {label(round.openerPlayerId)}</p><p>Atributo activo: <strong>{active.name}</strong></p><p>Dirección: {round.direction === null ? 'Sin elegir' : round.direction === 'HIGH' ? 'ALTO' : 'BAJO'}</p>
         {room.game.interaction.review && <RoundReview room={room} label={label} />}
         {actions.opening && <fieldset disabled={!actions.enabled}><legend>Elige dirección</legend>
@@ -93,7 +106,7 @@ export function GameScreen({ room, connected, activity, onRoom, onCurrent }: { r
         </fieldset>}
         {actions.busy && <p role="status">Enviando…</p>}
         {actions.error && <p className="field-error" role="alert">{actions.error}</p>}
-        {actions.pending && <button disabled={actions.busy || !connected} onClick={() => actions.pending!.recovered ? actions.retry() : void actions.recover()}>{actions.pending.recovered ? 'Reintentar confirmación' : 'Recuperar mesa'}</button>}
+        {actions.pending && <button disabled={actions.busy || !connected || remaining === 0} onClick={() => actions.pending!.recovered ? actions.retry() : void actions.recover()}>{actions.pending.recovered ? 'Reintentar confirmación' : 'Recuperar mesa'}</button>}
       </section>
     </div>
     {details && <CardDetails card={details.card} attributes={attributes} activeAttributeId={round.activeAttributeId} onClose={closeDetails} />}

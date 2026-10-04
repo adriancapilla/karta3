@@ -249,3 +249,15 @@ Implementación puede actualizar README vigente, este bloque/cierre, prompt si p
 **Comprobación documental 04/10/2026:** enlaces locales de bloque/prompt/proceso existentes; 20 criterios únicos pendientes y siete ejemplos; `git diff --check` sin incidencias. Cambios limitados a esos tres documentos SDD. SHA-256 de contexto, dominio, aplicación e infraestructura idénticos a los leídos al comenzar la preparación. Sin cambios de rama, código, baraja ni fuentes generales.
 
 Al cerrar, implementación añadirá base/commit, etapas T1/T2, criterios y pruebas efectivas, comandos/entorno, fallos y reparación, conexiones/reloj/entropía usados, vencimiento real desconectado, revisión de dependencias/privacidad y límites. No cambiar resultados históricos B04–B07. Mantener separados los requisitos no entregados y cualquier recorrido manual aún pendiente.
+
+### 11.1 Evidencia de etapa T1 — 04/10/2026
+
+Base integrada comprobada de nuevo antes de estas pruebas: `npx playwright test --workers=2`, **63/63**, 6,2 min, compilación B07/instancia normal; no acredita B08. Preparación conservada en `281feb6`.
+
+T1 incorpora registro único Room con contexto/generación, inicio/límite monotónicos y referencias Unix; Game recibe el hecho de timeout y decide más antigua/dirección; GameCoordinator activa antes de publicar, revalida al leer/actuar y programa con Clock/Scheduler existentes. Se preparan tipos y reglas de contador/control compatibles con T2; la continuación automática se completa en esa segunda etapa. No se entrega un modo que la suprima.
+
+- `npx vitest run server/domain/timedGame.test.ts server/application/timedGame.test.ts server/timedSocket.test.ts`: **24/24**, tres archivos, 1,20 s, inicio 22:15:12 Europe/Madrid. Política/extremos, 15/30/60, parciales, antes/en/después sin ejecutar callback, temprano/retrasado/duplicado/cancelado, revisión 0/5, fallo de emisión/ack y privacidad. Dominio puro; aplicación/reloj controlados; integración HTTP/Socket.IO/cookies/pestañas reales con reloj sustituido.
+- `npm run typecheck`, `npm run lint`, `npm run build`: ejecutados, correctos. Compilación de esta etapa `index-CY90mB0b.js`; genérica 2 normal preparada sin cambios.
+- `npx playwright test tests/browser/timedGame.spec.ts --workers=2`: dos pruebas iniciales fallaron por aserción que prohibía todo aviso tras F5, incluido el legítimo RECONNECTED B03/B06. Se corrigió para comprobar específicamente ausencia de repetición del aviso de timeout, conservando el de conexión. Nueva ejecución: **2/2**, 4,5 s, un trabajador efectivo (un archivo), móvil emulado 390 y escritorio 1280. Deadline estable, carta parcial local ignorada, timeout por lectura sin callback, aviso/contador propio persistente tras F5, privacidad y foco/scroll sin rediseño.
+
+Logs locales ignorados `b08-base-check.log`, `b08-base-browser.log`, `b08-t1-all.log`, `b08-t1-browser.log` (fallo de aserción), `b08-t1-browser-fixed.log`. No vencimiento real de 15 s en T1: se ejecutará con T2 y la compilación final. **B08 completo/verificado todavía pendiente**, sin atribuir cobertura global a esta etapa.

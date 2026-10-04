@@ -2,7 +2,7 @@ import type { Room } from './room.js';
 import type { RoomErrorCode } from './roomError.js';
 import type { ParticipationEnd, RoomChange, RoomClosedEvent, RoomLeftEvent, RoomView } from '../../shared/contracts/room.js';
 import type { TimePoint } from './waitingTime.js';
-import type { RoundResolvedEvent } from '../../shared/contracts/game.js';
+import type { RoundResolvedEvent, TurnExpiredEvent } from '../../shared/contracts/game.js';
 import type { ResultsHomeEvent } from '../../shared/contracts/room.js';
 export type { TimePoint } from './waitingTime.js';
 
@@ -38,6 +38,7 @@ export interface RoomChanges {
 }
 export interface GameChanges extends RoomChanges {
   roundResolved(sessionIds: string[], event: RoundResolvedEvent): void;
+  turnExpired(sessionIds: string[], event: TurnExpiredEvent): void;
   resultsHome(sessionId: string, event: ResultsHomeEvent): void;
   technicalFailure(): void;
 }

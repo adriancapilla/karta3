@@ -30,18 +30,18 @@ export type WaitingRoomView = {
   selectedDeck: DeckSummary | null;
 };
 
-export type GameParticipantView = Omit<ParticipantView, 'presence'> & { presence: 'CONNECTED' | 'DISCONNECTED'; score: number | null };
+export type GameParticipantView = Omit<ParticipantView, 'presence'> & { presence: 'CONNECTED' | 'DISCONNECTED'; score: number | null; playStatus: 'ACTIVE' | 'AUTOMATIC' | null };
 export type InitialGameRoomView = {
   id: string; code: string; status: 'IN_GAME'; revision: number;
   participant: GameParticipantView; participants: GameParticipantView[];
   settings: RoomSettings; selectedDeck: DeckSummary; game: InitialGameView;
 };
-export type ResultParticipantView = Omit<GameParticipantView, 'presence'>;
+export type ResultParticipantView = Omit<GameParticipantView, 'presence' | 'playStatus'>;
 export type LastResult = { roomId: string; gameId: string; expiresAt: number };
 export type ResultsRoomView = {
   id: string; code: string; status: 'RESULTS'; revision: number;
   participant: ResultParticipantView; participants: ResultParticipantView[]; settings: RoomSettings; selectedDeck: DeckSummary;
-  result: { gameId: string; endReason: 'DECK_COMPLETED'; completedNormally: true;
+  result: { gameId: string; endReason: 'DECK_COMPLETED' | 'NO_ACTIVE_HUMAN_PLAYERS'; completedNormally: boolean;
     standings: { playerId: string; score: number; position: number }[]; winnerIds: string[]; tieBreakWinnerId: string | null;
     retention: { presentedAt: number; serverNow: number; expiresAt: number } };
 };
@@ -71,6 +71,7 @@ export type PublicErrorCode =
   | 'INVALID_DECK'
   | 'GAME_ALREADY_STARTED'
   | 'STALE_GAME_CONTEXT' | 'NOT_YOUR_TURN' | 'CARD_NOT_IN_HAND' | 'ROUND_IN_REVIEW' | 'GAME_FINISHED' | 'RESULT_NOT_AVAILABLE'
+  | 'PLAYER_AUTOMATIC' | 'TURN_EXPIRED'
   | 'INTERNAL_ERROR';
 
 export type ErrorResponse = { error: { code: PublicErrorCode; message: string } };

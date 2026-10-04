@@ -12,6 +12,8 @@ export const WARNING_BEFORE_MS = 60_000;
 export type WaitingDeadline = { kind: 'WARNING' | 'INACTIVITY' | 'ABSENCE'; at: number; generation: number; participantId?: string };
 type Presence = { connected: boolean; generation: number; absence?: { at: number; initial: boolean } };
 export type GameReview = Readonly<{ id: string; gameId: string; roundNumber: number; at: number; unix: number }>;
+export type GameTurnDeadline = Readonly<{ gameId: string; roundNumber: number; turnId: string; playerId: string;
+  generation: number; started: number; at: number; startedAt: number; endsAt: number }>;
 
 const segmenter = new Intl.Segmenter('es', { granularity: 'grapheme' });
 
@@ -38,6 +40,8 @@ export class Room {
   private initialGame?: Game;
   private partialDirection: 'HIGH' | 'LOW' | null = null;
   private review?: GameReview;
+  private turnDeadline?: GameTurnDeadline;
+  private gameGeneration = 0;
   private retained?: Readonly<{ at: number; presentedAt: number; expiresAt: number }>;
   private readonly released = new Set<string>();
   private graphics: readonly CardPresentation[] = [];
@@ -83,6 +87,16 @@ export class Room {
   get game(): Game | undefined { return this.initialGame; }
   get openingDirection() { return this.partialDirection; }
   get gameReview() { return this.review; }
+  get gameTurn() { return this.turnDeadline; }
+  get gameTaskGeneration() { return this.gameGeneration; }
+  activateTurn(now: TimePoint): void {
+    const game = this.initialGame!; const turn = game.turn;
+    if (this.state !== 'IN_GAME' || !turn || this.review || game.players.find((person) => person.id === turn.playerId)!.status !== 'ACTIVE') return;
+    if (this.turnDeadline?.turnId === turn.id) return;
+    this.turnDeadline = Object.freeze({ gameId: game.id, roundNumber: game.round.number, turnId: turn.id,
+      playerId: turn.playerId, generation: this.gameGeneration, started: now.monotonic,
+      at: now.monotonic + game.settings.turnTimeout * 1000, startedAt: now.unix, endsAt: now.unix + game.settings.turnTimeout * 1000 });
+  }
   beginReview(now: TimePoint): void {
     const game = this.initialGame!;
     if (!game.resolution || this.review) throw new Error('Revisión interna incompatible.');
@@ -100,6 +114,8 @@ export class Room {
     this.initialGame = game;
     this.partialDirection = null;
     this.review = undefined;
+    this.turnDeadline = undefined;
+    this.gameGeneration++;
     this.roomRevision++;
   }
   cardPresentation(id: string): CardPresentation {
@@ -149,6 +165,7 @@ export class Room {
     this.graphics = graphics;
     this.deck = summary;
     this.state = 'IN_GAME';
+    this.gameGeneration++;
     for (const state of this.presence.values()) { state.absence = undefined; state.generation++; }
     this.roomRevision++;
   }

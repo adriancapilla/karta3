@@ -17,6 +17,7 @@ export function ResultsScreen({ room, activity, error, busy, onHome }: {
     <header><span className="brand">KARTA<span>3</span></span><span className="top-label">Resultados</span></header>
     <h1 ref={title} tabIndex={-1}>Partida terminada</h1>
     <p>{room.selectedDeck.name} · v{room.selectedDeck.contentVersion}</p>
+    {room.result.endReason === 'NO_ACTIVE_HUMAN_PLAYERS' && <p role="status">La partida terminó porque todos los jugadores humanos pasaron a automático</p>}
     <p className="victory" role="status">{room.result.winnerIds.length > 1 ? 'Victoria compartida' : 'Ganador'}: {room.result.winnerIds.map(name).join(', ')}{room.result.tieBreakWinnerId && ' · Desempate'}</p>
     {activity && <p className="activity" role="status">{activity}</p>}
     <section className="game-panel"><h2>Clasificación</h2><table className="standings"><thead><tr><th scope="col">Puesto</th><th scope="col">Jugador</th><th scope="col">Puntos</th></tr></thead>
