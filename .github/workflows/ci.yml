@@ -18,7 +18,9 @@ jobs:
   checks:
     name: Tipos, análisis, pruebas, arquitectura y compilación
     runs-on: ubuntu-24.04
-    timeout-minutes: 15
+    # B07: 63 recorridos, 5,8 min locales con dos trabajadores.
+    # CI conserva uno: reservar margen para ejecución serial e instalación.
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
         with:
@@ -32,7 +34,7 @@ jobs:
       - name: Instalar Chrome y dependencias de navegador
         run: npx playwright install --with-deps chrome
       - name: Recorridos de Chrome
-        timeout-minutes: 5
+        timeout-minutes: 20
         shell: bash
         run: |
           node dist-server/server/main.js > "$RUNNER_TEMP/karta3-server.log" 2>&1 &

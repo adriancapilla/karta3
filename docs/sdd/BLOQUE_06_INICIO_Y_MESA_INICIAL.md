@@ -1,7 +1,7 @@
 # B06 — Inicio de partida y mesa inicial con humanos
 
 **Estado:** acordado, implementado y verificado localmente el 04/10/2026 para B06-01–18; mesa inicial sin ejecución de turnos. Evidencia nueva y límites en §10.
-**Fecha y responsable del acuerdo:** 03/10/2026, Adrian, mediante el diálogo SDD y la adopción de los bocetos.  
+**Fecha y responsable del acuerdo:** 03/10/2026, Adrian, mediante el diálogo SDD y la adopción de los bocetos.\
 **Tipo:** incremento funcional local; entrega una mesa inicial recuperable, todavía sin ejecución de turnos.
 
 ## 1. Punto de partida y referencias
@@ -247,7 +247,7 @@ Devolver a coordinación: documento y [prompt de implementación](PROMPT_IMPLEME
 
 **Base comprobada antes de implementar — 04/10/2026:** `main`, HEAD efectivo `4dd073d58bd9efa6222fc7b90ccb93eadc10fa4c`, aplicación 0.1.0. Únicos cambios locales: proceso y documentos/referencias preparados de B06; conservados. Nueva rama `feat/b06-inicio-mesa-inicial` desde ese main, sin restauraciones. `npm run check`: salida 0; tipos/lint/build correctos, 197/197 pruebas en 21 archivos (27,39 s), 41 módulos sin imports prohibidos ni ciclos. Catálogo normal generado con genérica formato 1/contenido 2 disponible. Esta ejecución acredita la base, no B06; navegador final pendiente. Entorno inicial: Windows, Node 24.13.0, npm 11.6.2.
 
-**Preparación documental:** lecturas de fuentes/código/contratos y estado Git; copias de bocetos comprobadas por igualdad SHA-256; 35 enlaces locales existentes y 18 identificadores de aceptación únicos entre especificación, prompt y proceso. Las huellas de los JSON de genérica en APP siguen coincidiendo con las aprobadas en activación. Contrato, ejemplos y plan son especificación, no resultados del producto.  
+**Preparación documental:** lecturas de fuentes/código/contratos y estado Git; copias de bocetos comprobadas por igualdad SHA-256; 35 enlaces locales existentes y 18 identificadores de aceptación únicos entre especificación, prompt y proceso. Las huellas de los JSON de genérica en APP siguen coincidiendo con las aprobadas en activación. Contrato, ejemplos y plan son especificación, no resultados del producto.\
 Estas observaciones de preparación no acreditaban implementación. La evidencia nueva ejecutada se registra a continuación; no sobrescribe cierres B01–B05/T01/activación.
 
 ### 10.1 Versión, entorno y comandos realmente ejecutados
