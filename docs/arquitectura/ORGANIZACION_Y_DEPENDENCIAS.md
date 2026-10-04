@@ -1,12 +1,13 @@
 # Organización del código y dependencias de KARTA3
 
-**Estado:** T01 separó creación, B02/B03 espera, B04/B05 barajas/configuración y B06 inicio/mesa inicial. B07 ejecuta la partida humana manual completa, revisión y resultados; no plazos de turno, automático, bots ni vigilancia.
+**Estado:** T01 separó creación, B02/B03 espera, B04/B05 barajas/configuración y B06 inicio/mesa inicial. B07 ejecuta partida, revisión/resultados; B08 añade plazos humanos y automático irreversible/final por inactividad. Bots y vigilancia siguen pendientes.
 **Fecha:** 30/09/2026.
 **Alineación documental:** 01/10/2026 — flujo de barajas conforme a infraestructura §9 y contrato formato 1; las dependencias de capas no cambian.
 **Implementación B04:** 02/10/2026 — validación pura, paquetes, catálogo y medios. No se modifica la dirección de dependencias ni se implementa `Game`.
 **Implementación B05:** 02/10/2026 — configuración por control y selección de versión mediante puerto; participación/observación en el modelo de sala. Mismas dependencias y dominio de partida pendiente.
 **Implementación B06:** 04/10/2026 — Game inicial puro, puerto de definición/presentación y entropía, coordinación por fase y vistas privadas. Se conservan los límites de capas y los requisitos futuros del MVP.
 **Implementación B07:** 04/10/2026 — sucesores inmutables de Game, coordinación de jugadas/contexto/revisión/resultados, asociación activa separada del roster y proyecciones seguras. Se reutilizan entropía, reloj/planificador y catálogo existentes, sin cambiar dependencias ni reglas generales.
+**Implementación B08:** 04/10/2026 — política/contador/control en dominio; plazo y continuaciones acotadas en la coordinación existente, contrato seguro y presentación temporal. Sin cambiar límites de capas o fuentes TFM.
 **Ámbito:** repositorio digital `APP/karta3`. La evolución de estas reglas se decide en la conversación de arquitectura; cada conversación de implementación trabaja con una especificación SDD concreta.
 
 ## 1. Qué resuelve este documento
@@ -162,6 +163,26 @@ Decisiones de la entrega B06: no repositorio separado de Game, una asociación p
 | `GameScreen`, `GameCard`, `CardDetails`, `RoundReview`, `ResultsScreen`, `LastResultLink` | Presentación segura, elección/pending, jugadas/mano variable, revisión y clasificación. Solo revisión tiene cuenta atrás estimada; React no decide un vencimiento ni resultado. Detalles/foco/scroll y recursos B06 se reutilizan. El enlace público propio se oculta al vencer sin renovar. |
 
 Las pruebas deterministas generan paquetes/permutaciones completos validados y secuencias legales de jugadas, sin asignar puntos ni saltar el motor. Reloj, interceptores y control de entropía viven en `tests/support`, sin endpoints del producto. Los límites temporales de turno/ausencia/vigilancia siguen pendientes. TFM y el ejemplo erróneo §24.2 no se editan aquí; se entregan conclusiones a sus responsables. C09–C10 siguen parciales.
+
+### Incremento de temporización y automático — B08
+
+B08 sustituye el alcance temporal B07 `MANUAL_WITHOUT_TURN_TIMEOUT` por `TIMED_TURNS`. Las descripciones B06/B07 anteriores registran sus entregas; actualmente se aplica la coordinación siguiente. No cambia WAITING, barajas, configuración, identidad, orden, revisión ni retención; no implementa bots o vigilancia de dos minutos.
+
+| Pieza concreta | Responsabilidad y dependencia |
+|---|---|
+| `domain/autoPlay.ts` / `domain/game.ts` | Política pura sobre mano en adquisición y atributo activo: más antigua/dirección desfavorable, o parcial aceptada al vencer. Game valida y produce sucesores inmutables, decide modo/contador/control irreversible y motivo del resultado. Manual completa válida resetea; TIMEOUT 2 convierte; AUTOMATIC conserva 2. La condición de inactividad usa roster base, no solo empatados. Termina ronda/puntos sin reposición; desempate ya iniciado termina sin puntos adicionales. Sin reloj/IO/contratos de red. |
+| `application/Room` | Un registro de plazo vigente (contexto, generación, inicio/límite monotónicos y Unix públicos), junto a los registros existentes de revisión/retención. Conserva el mismo registro mientras no avance efectivamente el turno; aplicar Game invalida parcial/plazo/generación. No mide tiempo real ni elige cartas. |
+| `application/GameCoordinator` | Único mapa de tareas cancelables reutilizado para turno/automático/revisión/resultado. Activa antes de publicar/confirmar inicio o jugada; compara monotónico antes de acciones/lecturas/replays y revalida callback/contexto/generación/objeto de tarea. Callback temprano reprograma; retrasado vence solo el turno pendiente y activa duración completa desde ahora. Automático ejecuta un movimiento por continuación programada, cede con Scheduler y para en humano/revisión/resultado; cada preparación ejecuta a lo sumo un paso por sala. Revisión cero publica estado/resultado de ronda/eventos antes de avanzar. Estado/tareas/dedupe se registran antes de emisión; fallos no repiten operaciones. |
+| `RoomUseCases` / `RoomCoordinator` | Inicio conecta `GameActions.started` internamente; no se expone como acción de transporte. GameCoordinator procesa las acciones de juego sin una lectura previa que perdiese el contexto de vencimiento. B03 permanece exclusivo de WAITING. Presencia de IN_GAME solo cambia primera/última conexión, sin reservar/cerrar/retirar. |
+| Proyecciones y `shared/contracts` | Campos explícitos seguros: Unix público, estado de control público, contador solo propio, modos de cartas ya públicas, motivo de resultado. Parcial solo del abridor ACTIVE. Evento de vencimiento contiene contexto público y flag de conversión, sin mano, carta oculta o contador privado. RESULTS mantiene su forma B07, extendiendo solo motivo/flag. |
+| `ports`, tiempo y transportes | Se reutilizan Clock/Scheduler, memoria y GameChanges; este último añade emisión de vencimiento. SystemClock/TimerScheduler existentes siguen implementando medición monotónica/cancelación. Socket.IO autentica/decodifica contratos exactos B07, invoca y emite por destinatario; HTTP conserva no-store. No hay endpoint/flag de timeout/automático/reloj ni reglas de cartas en infraestructura. |
+| Composición | Un GameCoordinator, reloj/planificador y conexión de entropía existentes; `dispose` invalida todas las tareas. No sistema temporal paralelo, nuevos adaptadores vacíos ni dependencia de ASSETS. |
+| `useServerCountdown`, `GameScreen`, `useGameActions` | Estimación con `performance.now()` y referencia pública, mm:ss sin anunciar ticks. Cero bloquea gestos y recupera mediante lectura, nunca produce jugada. Selección/pending se contextualizan también por control; automático conserva mano/Detalles sin acciones. Ticks no desplazan foco/scroll. |
+| `useRoomFlow` / `ResultsScreen` | Aviso de timeout deduplicado durante cinco segundos con sufijos; timer separado del aviso de ganador para conservar ambos. Advertencia propia recuperable y marca pública automática distinta de presencia. Resultado por inactividad inequívoco, manteniendo clasificación/retorno. Filtros de sala/fase/revisión impiden reinstalar confirmaciones antiguas. |
+
+Comprobación por reglas puras, aplicación con tiempo controlado sin ejecutar callbacks, conexiones HTTP/Socket.IO reales y navegador compilado; ensayo aparte con SystemClock/TimerScheduler/entropía normales y transporte activo cerrado durante 15 s. Fixtures completas y trazas legales 2–5 conservan 58 ubicaciones; desempate incluye manos 1/2/3 y ACTIVE fuera del roster reducido. Las sustituciones e interceptores siguen exclusivamente en pruebas. Control de imports/ciclos complementado con revisión semántica de políticas, registro antes de emisión, pasos acotados, privacidad y continuidad entre salas; evidencia en [B08 §11](../sdd/BLOQUE_08_TEMPORIZACION_Y_AUTOMATICO.md).
+
+La descripción general TFM y la errata §24.2 corresponden a sus responsables; no se editan desde esta entrega. C09–C10 continúan parciales: no acreditan comprensión con usuarios, equilibrio o dispositivos físicos.
 
 ## 7. Comprobaciones y cambio arquitectónico
 
