@@ -27,11 +27,15 @@ export function CardInformation({ card, attributes, activeAttributeId, details =
   </>;
 }
 
-export function GameCard({ card, attributes, activeAttributeId, onDetails }: {
+export function GameCard({ card, attributes, activeAttributeId, onDetails, onChoose, selected = false, disabled = false }: {
   card: CardView; attributes: InitialGameView['attributes']; activeAttributeId: string; onDetails: (card: CardView, button: HTMLButtonElement) => void;
+  onChoose?: (id: string) => void; selected?: boolean; disabled?: boolean;
 }) {
-  return <article className="game-card" data-card-id={card.id}>
-    <CardInformation card={card} attributes={attributes} activeAttributeId={activeAttributeId} />
+  return <article className={`game-card${selected ? ' selected-card' : ''}`} data-card-id={card.id}>
+    <div className={onChoose ? 'card-play-surface' : undefined}>
+      <CardInformation card={card} attributes={attributes} activeAttributeId={activeAttributeId} />
+      {onChoose && <button className="primary card-play-button" aria-label={`Jugar ${card.name}`} aria-pressed={selected} disabled={disabled} onClick={() => onChoose(card.id)}><span>{selected ? 'Carta seleccionada' : 'Jugar carta'}</span></button>}
+    </div>
     <button className="secondary card-details-button" aria-label={`Detalles de ${card.name}`} onClick={(event) => onDetails(card, event.currentTarget)}>Detalles</button>
   </article>;
 }

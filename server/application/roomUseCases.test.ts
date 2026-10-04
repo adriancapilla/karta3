@@ -22,6 +22,7 @@ class FakeRequests implements RoomRequests {
   readonly data = new Map<string, RequestRecord>();
   get(sessionId: string, requestId: string) { return this.data.get(`${sessionId}:${requestId}`); }
   save(sessionId: string, requestId: string, record: RequestRecord) { this.data.set(`${sessionId}:${requestId}`, record); }
+  removeRoom(roomId: string) { for (const [key, record] of this.data) if (record.roomId === roomId) this.data.delete(key); }
 }
 
 const changes: RoomChanges = { updated() {}, left() {}, closed() {} };

@@ -6,17 +6,19 @@ import type { ConfigureRoomRequest, StartRoomRequest, RoomView, SocketAck } from
 import { ControlledTime } from './controlledTime.js';
 import { deckFixture, realImage, writeFixture } from './deckFixtures.js';
 import { removeTestInstallation } from './compiledDeckServer.js';
+import { manualTrace } from './manualGameTrace.js';
 
 /** Conexiones y paquetes reales, compilación actual; solamente el reloj es sustituido. */
-export async function configurationBrowserServer(single = false, initialGame = false) {
+export async function configurationBrowserServer(single = false, initialGame = false, manual?: { count: number; winners?: readonly number[] }) {
   const { createRuntime } = await import('../../dist-server/server/composition/createApp.js');
   const { prepareDecks, loadPreparedDecks } = await import('../../dist-server/server/infrastructure/decks/catalog.js');
   const { attachPublicFiles } = await import('../../dist-server/server/infrastructure/http/publicFiles.js');
   const { MemoryRoomRepository } = await import('../../dist-server/server/infrastructure/memoryRoomRepository.js');
   const { MemorySessions } = await import('../../dist-server/server/infrastructure/memorySessions.js');
   const root = await fs.mkdtemp(path.join(os.tmpdir(), 'karta3-b04-b05-browser-'));
-  const image = deckFixture('portada'); image.metadata.imageRef = 'imagenes/portada.png'; image.metadata.imageAlt = 'Portada sintética azul';
-  if (initialGame) {
+  const prepared = manual ? manualTrace(manual.count, manual.winners) : undefined;
+  const image = prepared?.fixture ?? deckFixture('portada'); image.metadata.imageRef = 'imagenes/portada.png'; image.metadata.imageAlt = 'Portada sintética azul';
+  if (initialGame && !manual) {
     image.metadata.attributes[0].unit = 'NO HEREDAR';
     image.collection.cards.forEach((card, index) => {
       card.name = `Carta de prueba ${index + 1}`;
@@ -28,6 +30,7 @@ export async function configurationBrowserServer(single = false, initialGame = f
       if (index % 2 === 0) { card.imageRef = 'imagenes/portada.png'; card.imageAlt = `Imagen validada de carta ${index + 1}`; }
     });
   }
+  if (manual) { image.collection.cards[0].imageRef = 'imagenes/portada.png'; image.collection.cards[0].imageAlt = 'Imagen validada de traza manual'; }
   const dir = await writeFixture(root, image); await fs.mkdir(path.join(dir, 'imagenes')); await fs.writeFile(path.join(dir, image.metadata.imageRef), await realImage('png'));
   if (!single) await writeFixture(root, deckFixture('sin-imagen', true, 1));
   await writeFixture(root, deckFixture('borrador', false, 2));
@@ -35,9 +38,10 @@ export async function configurationBrowserServer(single = false, initialGame = f
   const time = new ControlledTime(); const repository = new MemoryRoomRepository(); const sessions = new MemorySessions();
   let permute: (ids: readonly string[]) => readonly string[] = (ids) => [...ids];
   let permutations = 0;
+  let code = 42;
   const runtime = createRuntime({ repository, sessions, decks: loaded.catalog, deckVersions: loaded.catalog, gameDecks: loaded.catalog,
     ...(initialGame ? { permutation: (ids: readonly string[]) => { permutations++; return permute(ids); } } : {}),
-    clock: time, scheduler: time, codes: () => 42 });
+    clock: time, scheduler: time, codes: () => code++ });
   attachPublicFiles(runtime.app, path.resolve('dist'), loaded.catalog);
   const server = createServer(runtime.app); const io = runtime.attachRealtime(server);
   const requests: ConfigureRoomRequest[] = [];
@@ -45,6 +49,8 @@ export async function configurationBrowserServer(single = false, initialGame = f
   let intercept: ((payload: ConfigureRoomRequest, deliver: (result: Ack) => void, result: Ack) => void) | undefined;
   const starts: StartRoomRequest[] = [];
   let interceptStart: ((payload: StartRoomRequest, deliver: (result: Ack) => void, result: Ack) => void) | undefined;
+  const gameRequests: { event: string; payload: Record<string, unknown> }[] = [];
+  let interceptGame: ((event: string, payload: Record<string, unknown>, deliver: (result: Ack) => void, result: Ack) => void) | undefined;
   let suppressStateFor: string | undefined;
   const target = io.to.bind(io);
   io.to = (name: string | string[]) => {
@@ -64,12 +70,19 @@ export async function configurationBrowserServer(single = false, initialGame = f
     socket.on('room:start', (payload: StartRoomRequest, ack: (result: Ack) => void) => {
       starts.push(payload); start(payload, (result: Ack) => interceptStart ? interceptStart(payload, ack, result) : ack(result));
     });
+    for (const event of ['game:opening-direction', 'game:play']) {
+      const original = socket.listeners(event)[0]; socket.removeAllListeners(event);
+      socket.on(event, (payload: Record<string, unknown>, ack: (result: Ack) => void) => {
+        gameRequests.push({ event, payload }); original(payload, (result: Ack) => interceptGame ? interceptGame(event, payload, ack, result) : ack(result));
+      });
+    }
   });
   await new Promise<void>((resolve) => server.listen(0, '127.0.0.1', resolve));
   const address = server.address(); if (!address || typeof address === 'string') throw new Error('Puerto ausente');
-  return { base: `http://127.0.0.1:${address.port}`, time, repository, sessions, requests, loaded, starts,
+  return { base: `http://127.0.0.1:${address.port}`, time, repository, sessions, requests, loaded, starts, prepared, gameRequests,
     intercept: (handler: typeof intercept) => { intercept = handler; },
     interceptStart: (handler: typeof interceptStart) => { interceptStart = handler; },
+    interceptGame: (handler: typeof interceptGame) => { interceptGame = handler; },
     suppressGameState: (sessionId?: string) => { suppressStateFor = sessionId; },
     permutation: (handler: typeof permute) => { permute = handler; },
     permutations: () => permutations,

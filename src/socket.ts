@@ -28,6 +28,18 @@ export async function send<T>(event: string, payload: object): Promise<T> {
 
 export type RoomAck = { room: RoomView };
 
+/** Acciones humanas volátiles: no cola, reconexión ni recuperación disparan una jugada. */
+export async function sendGame<T>(event: string, payload: object): Promise<T> {
+  if (!socket.connected) throw new ApiError('NOT_CONNECTED', 'Sin conexión: no se envió la acción.');
+  return new Promise((resolve, reject) => {
+    socket.volatile.timeout(ACK_TIMEOUT_MS).emit(event, payload, (error: Error | null, response: SocketAck<T>) => {
+      if (error) return reject(new ApiError('NETWORK_ERROR', 'No se pudo confirmar la acción. Recupera la mesa antes de reintentar.'));
+      if (!response?.ok) return reject(new ApiError(response?.error.code ?? 'UNKNOWN_ERROR', response?.error.message ?? 'No se pudo completar la acción.'));
+      resolve(response);
+    });
+  });
+}
+
 /** Un gesto de configuración nunca espera una reconexión ni entra en sendBuffer. */
 export async function sendConfiguration(payload: ConfigureRoomRequest): Promise<RoomAck> {
   if (!socket.connected) throw new ApiError('NOT_CONNECTED', 'Sin conexión: no se envió el cambio. Se muestra la última configuración recibida.');

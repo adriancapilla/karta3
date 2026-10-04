@@ -1,6 +1,7 @@
 import { HomeScreen, WaitingScreen } from './screens';
 import { useRoomFlow } from './useRoomFlow';
 import { GameScreen } from './GameScreen';
+import { ResultsScreen } from './ResultsScreen';
 import './style.css';
 
 export default function App() {
@@ -10,9 +11,11 @@ export default function App() {
     busy={flow.busy} joining={flow.joining} notice={flow.notice} code={flow.code} joinName={flow.joinName} joinError={flow.joinError}
     onCreate={() => void flow.createRoom()} onRefresh={() => void flow.refresh()} onJoin={() => void flow.joinRoom()}
     onCodeChange={flow.setCode} onJoinNameChange={flow.setJoinName}
+    lastResult={flow.lastResult} onViewResult={(gameId) => void flow.openResult(gameId)}
   />;
 
-  if (flow.room.status === 'IN_GAME') return <GameScreen room={flow.room} connected={flow.connected} activity={flow.activity} />;
+  if (flow.room.status === 'IN_GAME') return <GameScreen room={flow.room} connected={flow.connected} activity={flow.activity} onRoom={flow.applyRoom} onCurrent={flow.applyCurrent} />;
+  if (flow.room.status === 'RESULTS') return <ResultsScreen room={flow.room} activity={flow.activity} error={flow.resultError} busy={flow.busy} onHome={() => void flow.returnHome()} />;
   return <WaitingScreen
     room={flow.room}
     connected={flow.connected}

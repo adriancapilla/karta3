@@ -3,22 +3,23 @@ import type { RoomChanges, RoomRepository } from './ports.js';
 import type { Room } from './room.js';
 import { displayName, toRoomView } from './roomView.js';
 import type { WaitingLifecycle } from './waitingLifecycle.js';
+import type { GameCoordinator } from './gameCoordinator.js';
 
 /** Coordinación por fase: el ciclo de espera no gobierna presencia ni plazos de Game. */
 export class RoomCoordinator {
   private stopped = false;
-  constructor(private readonly repository: RoomRepository, private readonly waiting: WaitingLifecycle, private readonly changes: RoomChanges) {}
+  constructor(private readonly repository: RoomRepository, private readonly waiting: WaitingLifecycle, private readonly changes: RoomChanges, private readonly games?: GameCoordinator) {}
   get clock() { return this.waiting.clock; }
   get presence() { return this.waiting.presence; }
   get ends() { return this.waiting.ends; }
-  prepare() { this.waiting.prepare(); }
+  prepare() { this.waiting.prepare(); this.games?.prepare(); }
   view(room: Room, sessionId: string): RoomView { return toRoomView(room, sessionId, this.clock.now().unix); }
   publish(room: Room, change?: RoomChange) {
     if (this.stopped) return;
     if (room.status === 'WAITING') this.waiting.publish(room, change);
     else {
       this.waiting.cancelRoom(room.id);
-      this.changes.updated(room.memberSessions.map((sessionId) => ({ sessionId, room: this.view(room, sessionId) })), change);
+      this.changes.updated(room.activeSessions.map((sessionId) => ({ sessionId, room: this.view(room, sessionId) })), change);
     }
   }
   presenceChanged(sessionId: string) {
@@ -34,5 +35,5 @@ export class RoomCoordinator {
   }
   left(sessionId: string, roomId: string, participantId: string) { this.waiting.left(sessionId, roomId, participantId); }
   close(room: Room, reason: RoomClosedEvent['reason']) { this.waiting.close(room, reason); }
-  dispose() { this.stopped = true; this.waiting.dispose(); }
+  dispose() { this.stopped = true; this.waiting.dispose(); this.games?.dispose(); }
 }

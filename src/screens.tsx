@@ -1,13 +1,15 @@
 import { useRef, useState, type FormEvent } from 'react';
-import type { CurrentRoomResponse, RoomView, WaitingRoomView } from '../shared/contracts/room';
+import type { CurrentRoomResponse, LastResult, RoomView, WaitingRoomView } from '../shared/contracts/room';
 import { ExpiryWarning } from './ExpiryWarning';
 import { RoomConfiguration } from './RoomConfiguration';
 import { StartRoomControl } from './StartRoomControl';
+import { LastResultLink } from './LastResultLink';
 
 export function HomeScreen(props: {
   busy: boolean; joining: boolean; notice: string; code: string; joinName: string; joinError: string;
   onCreate: () => void; onRefresh: () => void; onJoin: () => void;
   onCodeChange: (value: string) => void; onJoinNameChange: (value: string) => void;
+  lastResult?: LastResult; onViewResult?: (gameId: string) => void;
 }) {
   const submit = (event: FormEvent) => { event.preventDefault(); props.onJoin(); };
   return <main className="shell">
@@ -18,6 +20,7 @@ export function HomeScreen(props: {
         <h1>Crea una sala</h1>
         <p>Prepara el espacio para compartir una partida de KARTA3.</p>
         {props.notice && <p className="alert" role="alert">{props.notice}</p>}
+        {props.lastResult && props.onViewResult && <LastResultLink result={props.lastResult} onView={props.onViewResult} />}
         <button className="primary" disabled={props.busy} onClick={props.onCreate}>{props.busy && !props.joining ? 'Creando sala…' : 'Crear sala'}</button>
         {props.notice && <button className="text-button" onClick={props.onRefresh}>Reintentar conexión</button>}
       </section>

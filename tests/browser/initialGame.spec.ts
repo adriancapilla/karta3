@@ -24,7 +24,7 @@ async function pair(browser: Browser, base: string, width = 1280) {
 }
 const choose = (page: Page, id = 'portada', contentVersion = 7) => page.getByLabel('Baraja', { exact: true }).selectOption(JSON.stringify({ id, contentVersion }));
 const ready = async (host: Page) => expect(host.getByRole('button', { name: 'Iniciar partida', exact: true })).toBeEnabled();
-const table = async (page: Page) => expect(page.getByRole('heading', { level: 1 })).toContainText('Mesa inicial ·');
+const table = async (page: Page) => expect(page.getByRole('heading', { level: 1 })).toContainText('Partida ·');
 const sessionId = async (context: BrowserContext, s: Awaited<ReturnType<typeof configurationBrowserServer>>) => s.sessions.get((await context.cookies()).find((c) => c.name === 'karta3_session')!.value)!;
 
 for (const width of [360, 390, 1280]) test(`B06 E1/01/03/10–12/14–16 genérica 2 normal, dos sesiones, reparto privado y recuperación ${width}px`, async ({ browser, baseURL }) => {
@@ -53,11 +53,14 @@ for (const width of [360, 390, 1280]) test(`B06 E1/01/03/10–12/14–16 genéri
     for (const [page, own, rival, messages] of [[p.host, h, g, frames.host], [p.guest, g, h, frames.guest]] as const) {
       assertGamePrivacy(own, own.game.hand.map((card) => card.id), rival.game.hand.map((card) => card.id), (condition, reason) => expect(condition, reason).toBe(true));
       for (const frame of messages.filter((value) => value.includes('"IN_GAME"'))) for (const card of rival.game.hand) expect(frame).not.toContain(`"${card.id}"`);
-      await expect(page.getByText('Mesa inicial preparada. La ejecución de turnos todavía no está disponible.', { exact: true })).toBeVisible();
+      await expect(page.getByText('En esta versión no hay límite de tiempo por turno. Si alguien deja de jugar, la partida espera a que vuelva.', { exact: true })).toBeVisible();
       await expect(page.locator('.game-players li')).toHaveCount(2); await expect(page.locator('.game-score')).toHaveText(['0 puntos', '0 puntos']);
       await expect(page.getByText('Aún no hay cartas jugadas', { exact: true })).toBeVisible();
       await expect(page.getByText('Dirección: Sin elegir', { exact: true })).toBeVisible();
-      await expect(page.getByRole('button', { name: /Cerrar sala|Salir de la sala|Iniciar partida|ALTO|BAJO|Jugar/ })).toHaveCount(0);
+      await expect(page.getByRole('button', { name: /Cerrar sala|Salir de la sala|Iniciar partida/ })).toHaveCount(0);
+      // B07 sustituye solo ausencia temporal de ejecución: actor puede actuar, los demás no.
+      if (own.participant.id === own.game.interaction.turn?.playerId) await expect(page.getByRole('button', { name: 'ALTO', exact: true })).toBeEnabled();
+      else for (const button of await page.locator('.game-hand .card-play-button').all()) await expect(button).toBeDisabled();
       await expect(page.getByRole('timer')).toHaveCount(0); await expect(page.locator('.game-card img')).toHaveCount(0);
       expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
       await expect(page.getByRole('heading', { level: 1 })).toBeFocused();
@@ -67,7 +70,7 @@ for (const width of [360, 390, 1280]) test(`B06 E1/01/03/10–12/14–16 genéri
     const details = p.guest.locator('.game-hand .card-details-button').first(); await details.focus(); await details.press('Enter');
     await expect(p.guest.getByRole('dialog')).toBeVisible(); await p.guest.getByRole('button', { name: 'Cerrar detalles' }).press('Escape');
     await expect(p.guest.getByRole('dialog')).toHaveCount(0); await expect(details).toBeFocused();
-    if (width < 760) { await expect(p.guest.getByText('Desliza para ver las tres cartas')).toBeVisible(); await expect(p.guest.locator('.indicator-compact')).toBeVisible(); }
+    if (width < 760) { await expect(p.guest.getByText('Desliza para ver tus cartas')).toBeVisible(); await expect(p.guest.locator('.indicator-compact')).toBeVisible(); }
     await p.host.screenshot({ path: `test-results/B06-normal-${width}-host.png`, fullPage: true });
     await p.guest.screenshot({ path: `test-results/B06-normal-${width}-guest.png`, fullPage: true });
     await Promise.all([p.host.reload(), p.guest.reload(), tab.goto(baseURL!)]); await Promise.all([table(p.host), table(p.guest), table(tab)]);
@@ -209,7 +212,7 @@ test('B06-17/E7 reinicio real de main compilado sin ASSETS elimina mesa/identida
     // Mismas páginas abiertas: el canal rechaza la cookie anterior y HTTP recupera null.
     // Así se comprueba retirar una mano ya visible, sin una navegación que remonte React.
     for (const page of [p.host, p.guest]) {
-      await expect(page.getByRole('button', { name: 'Crear sala', exact: true })).toBeVisible({ timeout: 10_000 }); await expect(page.getByRole('heading', { name: /Mesa inicial/ })).toHaveCount(0);
+      await expect(page.getByRole('button', { name: 'Crear sala', exact: true })).toBeVisible({ timeout: 10_000 }); await expect(page.getByRole('heading', { name: /Partida ·/ })).toHaveCount(0);
       await expect(page.locator('.game-hand')).toHaveCount(0); await expect(page.getByRole('alert')).toHaveText('La sala ya no está disponible. Puedes crear una nueva.');
     }
     expect((await p.hc.cookies()).find((c) => c.name === 'karta3_session')!.value).not.toBe(oldCookie);

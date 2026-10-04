@@ -1,4 +1,4 @@
-import type { ConfigurationChange, CurrentRoomResponse, RoomView } from '../../shared/contracts/room.js';
+import type { ConfigurationChange, CurrentRoomResponse, LastResult, ResultsRoomView, ReturnHomeRequest, RoomView } from '../../shared/contracts/room.js';
 import type { PublishedDeckVersions, PublishedGameDecks } from './deckCatalog.js';
 import type { CardPermutation, CodeCandidateSource, IdentifierGenerator, RoomRepository, RoomRequests } from './ports.js';
 import { Game, GameInitializationError } from '../domain/game.js';
@@ -7,8 +7,10 @@ import { Room, normalizeName } from './room.js';
 import { RoomError } from './roomError.js';
 import { displayName } from './roomView.js';
 import type { WaitingLifecycle } from './waitingLifecycle.js';
+import type { GameActions } from './gameCoordinator.js';
+import type { OpeningDirectionRequest, PlayCardRequest } from '../../shared/contracts/game.js';
 
-export interface RoomActions {
+export interface RoomActions extends GameActions {
   current(sessionId: string): RoomView | null;
   resume(sessionId: string): CurrentRoomResponse;
   presenceChanged(sessionId: string): void;
@@ -34,7 +36,8 @@ export class RoomUseCases implements RoomActions {
     private readonly lifecycle: Pick<WaitingLifecycle, 'prepare' | 'clock' | 'presence' | 'ends' | 'view' | 'publish' | 'presenceChanged' | 'close' | 'left'>,
     private readonly decks: PublishedDeckVersions = { resolveVersion: () => ({ ok: false, reason: 'DECK_NOT_AVAILABLE' }) },
     private readonly gameDecks: PublishedGameDecks = { gameDeck: () => ({ ok: false, reason: 'DECK_NOT_AVAILABLE' }) },
-    private readonly permute: CardPermutation = () => { throw new Error('Entropía no conectada'); }
+    private readonly permute: CardPermutation = () => { throw new Error('Entropía no conectada'); },
+    private readonly games?: GameActions
   ) {}
 
   current(sessionId: string): RoomView | null {
@@ -46,10 +49,32 @@ export class RoomUseCases implements RoomActions {
   resume(sessionId: string): CurrentRoomResponse {
     const room = this.current(sessionId);
     const ended = room ? undefined : this.lifecycle.ends.getEnd(sessionId);
-    return { room, ...(ended ? { ended } : {}) };
+    const lastResult = this.lastResult(sessionId);
+    return { room, ...(ended ? { ended } : {}), ...(lastResult ? { lastResult } : {}) };
   }
 
   presenceChanged(sessionId: string): void { this.lifecycle.presenceChanged(sessionId); }
+  openingDirection(sessionId: string, input: OpeningDirectionRequest): RoomView {
+    this.lifecycle.prepare();
+    if (!this.games) throw new RoomError('INTERNAL_ERROR', 'Coordinación de juego no conectada.');
+    return this.games.openingDirection(sessionId, input);
+  }
+  playCard(sessionId: string, input: PlayCardRequest): RoomView {
+    this.lifecycle.prepare();
+    if (!this.games) throw new RoomError('INTERNAL_ERROR', 'Coordinación de juego no conectada.');
+    return this.games.playCard(sessionId, input);
+  }
+  getResult(sessionId: string, gameId: string): ResultsRoomView {
+    this.lifecycle.prepare();
+    if (!this.games) throw new RoomError('RESULT_NOT_AVAILABLE', 'El resultado ya no está disponible.');
+    return this.games.getResult(sessionId, gameId);
+  }
+  lastResult(sessionId: string): LastResult | undefined { return this.games?.lastResult(sessionId); }
+  returnHome(sessionId: string, input: ReturnHomeRequest): CurrentRoomResponse {
+    this.lifecycle.prepare();
+    if (!this.games) throw new RoomError('RESULT_NOT_AVAILABLE', 'El resultado ya no está disponible.');
+    return this.games.returnHome(sessionId, input);
+  }
 
   createOrGet(sessionId: string): RoomView {
     this.lifecycle.prepare();
@@ -118,6 +143,7 @@ export class RoomUseCases implements RoomActions {
       const active = this.repository.findActiveBySession(sessionId);
       if (active) {
         if (active.code !== code) throw new RoomError('ALREADY_IN_ROOM', ALREADY);
+        if (active.status === 'RESULTS') this.requireWaiting(active);
         const participantId = active.participantFor(sessionId)!.id;
         this.requests.save(sessionId, requestId, { kind: 'JOIN', signature, roomId: active.id, participantId });
         return this.lifecycle.view(active, sessionId);
@@ -195,14 +221,13 @@ export class RoomUseCases implements RoomActions {
           : 'La baraja no está disponible. Vuelve a consultar el catálogo.');
         selected = result.summary;
       }
-      if (room.configure(change, selected, this.lifecycle.clock.now())) {
-        this.repository.save(room);
-        this.lifecycle.publish(room);
-      }
+      const changed = room.configure(change, selected, this.lifecycle.clock.now());
+      if (changed) this.repository.save(room);
       this.requests.save(sessionId, requestId, { kind: 'CONFIGURE', signature, roomId, participantId: room.participantId });
+      if (changed) this.lifecycle.publish(room);
       return this.lifecycle.view(room, sessionId);
     } catch (error) {
-      if (error instanceof RoomError) this.requests.save(sessionId, requestId, {
+      if (error instanceof RoomError && !this.requests.get(sessionId, requestId)) this.requests.save(sessionId, requestId, {
         kind: 'CONFIGURE', signature, roomId, participantId: room.participantId, error: { code: error.code, message: error.message }
       });
       throw error;
@@ -223,6 +248,7 @@ export class RoomUseCases implements RoomActions {
       return this.lifecycle.view(room, sessionId);
     }
     try {
+      if (room.status === 'RESULTS') this.requireWaiting(room);
       if (room.status === 'WAITING') {
         const players = room.startPlayers();
         const selection = room.selectedDeck!;
@@ -255,6 +281,7 @@ export class RoomUseCases implements RoomActions {
   }
 
   private requireWaiting(room: Room): void {
+    if (room.status === 'RESULTS') throw new RoomError('GAME_FINISHED', 'La partida ha terminado. Vuelve al inicio para crear otra sala.');
     if (room.status === 'IN_GAME') throw new RoomError('GAME_ALREADY_STARTED', 'La partida ya ha comenzado. No se puede cambiar la preparación.');
   }
 

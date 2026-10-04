@@ -8,6 +8,28 @@ export type InitialPlayer = Readonly<{
   id: string; displayName: string; kind: 'HUMAN'; order: number;
   hand: readonly Card[]; wonCards: readonly Card[]; status: 'ACTIVE'; consecutiveTimeouts: 0;
 }>;
+export type Direction = 'HIGH' | 'LOW';
+export type GamePhase = 'PLAYING' | 'FINAL_PHASE' | 'TIE_BREAK' | 'FINISHED';
+export type Play = Readonly<{ playerId: string; card: Card; order: number; mode: 'MANUAL' }>;
+export type Round = Readonly<{
+  number: number; kind: 'BASE' | 'TIE_BREAK'; finalRoundIndex: number | null; playerIds: readonly string[];
+  state: 'WAITING_FOR_DIRECTION' | 'WAITING_FOR_PLAYS' | 'RESOLVED'; openerPlayerId: string;
+  indicator: Card; activeAttributeId: string; direction: Direction | null; plays: readonly Play[];
+}>;
+export type RoundResolution = Readonly<{
+  id: string; roundNumber: number; kind: 'BASE' | 'TIE_BREAK';
+  ranking: readonly Readonly<{ playerId: string; card: Card; playValue: number; position: number }>[];
+  winnerPlayerId: string; nextOpenerPlayerId: string | null; awardedCardCount: number;
+  nextStage: 'ROUND' | 'TIE_BREAK' | 'RESULTS';
+}>;
+export type GameResult = Readonly<{
+  endReason: 'DECK_COMPLETED'; completedNormally: true;
+  standings: readonly Readonly<{ playerId: string; score: number; position: number }>[];
+  winnerIds: readonly string[]; tieBreakWinnerId: string | null;
+}>;
+export class GameRuleError extends Error {
+  constructor(readonly code: 'NOT_YOUR_TURN' | 'CARD_NOT_IN_HAND' | 'INVALID_INPUT' | 'ROUND_IN_REVIEW' | 'GAME_FINISHED') { super(code); }
+}
 
 function freeze<T>(value: T): T {
   if (value && typeof value === 'object') {
@@ -17,18 +39,20 @@ function freeze<T>(value: T): T {
   return value;
 }
 
-/** Estado inicial puro. Reparto circular: una carta por jugador, tres vueltas en orden base. */
+/** Agregado puro e inmutable: cada jugada devuelve un sucesor, conservando la instantánea. */
 export class Game {
-  readonly phase = 'PLAYING' as const;
+  readonly phase: GamePhase = 'PLAYING';
   readonly id: string;
   readonly definition: Deck;
   readonly settings: GameSettings;
   readonly players: readonly InitialPlayer[];
   readonly drawPile: readonly Card[];
-  readonly round: Readonly<{
-    number: 1; state: 'WAITING_FOR_DIRECTION'; openerPlayerId: string; indicator: Card;
-    activeAttributeId: string; direction: null; plays: readonly never[];
-  }>;
+  readonly round: Round;
+  readonly attributeDiscard: readonly Card[] = [];
+  readonly resolution: RoundResolution | null = null;
+  readonly result: GameResult | null = null;
+  readonly tieBreakUnused: readonly Card[] = [];
+  readonly tieBreakPlayed: readonly Card[] = [];
 
   constructor(input: { id: string; deck: Deck; players: readonly { id: string; name: string }[]; settings: GameSettings; permutation: readonly string[] }) {
     if (!validateDeck(input.deck).valid) throw new GameInitializationError('INVALID_DECK');
@@ -53,10 +77,122 @@ export class Game {
       kind: 'HUMAN' as const, order, hand: hands[order], wonCards: [], status: 'ACTIVE' as const, consecutiveTimeouts: 0 as const })));
     const indicator = pile[acquired++];
     this.drawPile = freeze(pile.slice(acquired));
-    this.round = freeze({ number: 1, state: 'WAITING_FOR_DIRECTION', openerPlayerId: this.players[0].id,
+    this.round = freeze({ number: 1, kind: 'BASE', finalRoundIndex: null, playerIds: this.players.map((player) => player.id), state: 'WAITING_FOR_DIRECTION', openerPlayerId: this.players[0].id,
       indicator, activeAttributeId: indicator.roundAttribute, direction: null, plays: [] });
+    freeze(this.attributeDiscard);
+    freeze(this.tieBreakUnused); freeze(this.tieBreakPlayed);
     Object.freeze(this);
   }
 
   score(playerId: string): number { return this.players.find((player) => player.id === playerId)?.wonCards.length ?? 0; }
+
+  get turn(): { id: string; playerId: string } | null {
+    if (this.phase === 'FINISHED' || this.round.state === 'RESOLVED') return null;
+    const order = this.circular(this.round.openerPlayerId, this.round.playerIds);
+    return { id: `${this.id}:r${this.round.number}:p${this.round.plays.length + 1}`, playerId: order[this.round.plays.length] };
+  }
+
+  assertActor(playerId: string): void {
+    if (this.phase === 'FINISHED') throw new GameRuleError('GAME_FINISHED');
+    if (this.round.state === 'RESOLVED') throw new GameRuleError('ROUND_IN_REVIEW');
+    if (this.turn?.playerId !== playerId) throw new GameRuleError('NOT_YOUR_TURN');
+  }
+
+  play(playerId: string, cardId: string, direction: Direction | null): Game {
+    this.assertActor(playerId);
+    const opening = this.round.plays.length === 0;
+    if (opening ? direction !== 'HIGH' && direction !== 'LOW' : direction !== null) throw new GameRuleError('INVALID_INPUT');
+    const player = this.players.find((person) => person.id === playerId)!;
+    const card = player.hand.find((item) => item.id === cardId);
+    if (!card) throw new GameRuleError('CARD_NOT_IN_HAND');
+    const plays = [...this.round.plays, { playerId, card, order: this.round.plays.length + 1, mode: 'MANUAL' as const }];
+    const next = this.evolve({ players: this.players.map((person) => person.id === playerId ? { ...person, hand: person.hand.filter((item) => item.id !== cardId) } : person),
+      round: { ...this.round, direction: opening ? direction : this.round.direction,
+        state: plays.length === this.round.playerIds.length ? 'RESOLVED' : 'WAITING_FOR_PLAYS', plays } });
+    return next.round.state === 'RESOLVED' ? next.resolve() : next;
+  }
+
+  private resolve(): Game {
+    const attribute = this.round.activeAttributeId;
+    const ranked = [...this.round.plays].sort((a, b) => (a.card.values[attribute].playValue - b.card.values[attribute].playValue) * (this.round.direction === 'HIGH' ? -1 : 1));
+    const ranking = ranked.map((play, index) => ({ playerId: play.playerId, card: play.card, playValue: play.card.values[attribute].playValue, position: index + 1 }));
+    const winnerPlayerId = ranking[0].playerId;
+    const last = this.phase === 'FINAL_PHASE' && this.players.every((person) => person.hand.length === 0);
+    const tie = this.round.kind === 'TIE_BREAK';
+    const players = this.players.map((person) => !tie && person.id === winnerPlayerId ? { ...person, wonCards: [...person.wonCards, ...this.round.plays.map((play) => play.card)] } : person);
+    const result = last || tie ? this.resultFor(players, tie ? winnerPlayerId : null) : this.result;
+    const nextStage = tie ? 'RESULTS' : last ? this.settings.forceTieBreak && result!.winnerIds.length > 1 ? 'TIE_BREAK' : 'RESULTS' : 'ROUND';
+    return this.evolve({ players, result,
+      attributeDiscard: this.phase === 'PLAYING' || last ? [...this.attributeDiscard, this.round.indicator] : this.attributeDiscard,
+      tieBreakPlayed: tie ? this.round.plays.map((play) => play.card) : this.tieBreakPlayed,
+      resolution: { id: `${this.id}:r${this.round.number}:resolved`, roundNumber: this.round.number, kind: this.round.kind,
+        ranking, winnerPlayerId, nextOpenerPlayerId: last || tie ? null : ranking[1].playerId, awardedCardCount: tie ? 0 : this.round.plays.length, nextStage } });
+  }
+
+  /** Aplicación llama una vez tras revisión. El dominio decide adquisición y siguiente abridor. */
+  advance(permutation?: readonly string[]): Game {
+    if (this.phase === 'FINISHED') throw new GameRuleError('GAME_FINISHED');
+    if (!this.resolution || this.round.state !== 'RESOLVED') throw new GameRuleError('INVALID_INPUT');
+    if (this.resolution.nextStage === 'RESULTS') return this.evolve({ phase: 'FINISHED',
+      ...(this.phase === 'TIE_BREAK' ? { tieBreakUnused: [...this.tieBreakUnused, ...this.players.flatMap((person) => person.hand)],
+        players: this.players.map((person) => ({ ...person, hand: [] })) } : {}) });
+    if (this.resolution.nextStage === 'TIE_BREAK') return this.prepareTieBreak(permutation);
+    const opener = this.resolution.nextOpenerPlayerId!;
+    if (this.phase === 'FINAL_PHASE') {
+      return this.evolve({ resolution: null, round: { ...this.round, number: this.round.number + 1, finalRoundIndex: this.round.finalRoundIndex! + 1,
+        state: 'WAITING_FOR_DIRECTION', openerPlayerId: opener, direction: null, plays: [] } });
+    }
+    const order = this.circular(opener, this.round.playerIds);
+    const pile = [...this.drawPile];
+    if (pile.length < order.length + 1) throw new GameRuleError('INVALID_INPUT');
+    const acquisitions = new Map(order.map((id) => [id, pile.shift()!]));
+    const players = this.players.map((person) => ({ ...person, hand: [...person.hand, acquisitions.get(person.id)!] }));
+    const final = pile.length === 1 && players.every((person) => person.hand.length === 3);
+    const indicator = pile.shift()!;
+    return this.evolve({ phase: final ? 'FINAL_PHASE' : 'PLAYING', players, drawPile: pile, resolution: null,
+      round: { number: this.round.number + 1, kind: 'BASE', finalRoundIndex: final ? 1 : null, playerIds: this.round.playerIds,
+        state: 'WAITING_FOR_DIRECTION', openerPlayerId: opener, indicator, activeAttributeId: indicator.roundAttribute, direction: null, plays: [] } });
+  }
+
+  /** Diagnóstico puro de propiedad; las cartas públicas resueltas son referencias, no otra ubicación. */
+  locations(): readonly Card[] {
+    const discarded = this.attributeDiscard.some((card) => card.id === this.round.indicator.id);
+    return [...this.drawPile, ...this.players.flatMap((person) => [...person.hand, ...person.wonCards]), ...this.attributeDiscard, ...this.tieBreakUnused, ...this.tieBreakPlayed,
+      ...(discarded ? [] : [this.round.indicator]), ...(this.round.state === 'RESOLVED' ? [] : this.round.plays.map((play) => play.card))];
+  }
+
+  get tieBreakCardIds(): readonly string[] { return this.resolution?.nextStage === 'TIE_BREAK' ? this.attributeDiscard.map((card) => card.id) : []; }
+
+  private resultFor(players: readonly InitialPlayer[], tieBreakWinnerId: string | null): GameResult {
+    const maximum = Math.max(...players.map((person) => person.wonCards.length));
+    const leaders = players.filter((person) => person.wonCards.length === maximum).map((person) => person.id);
+    const order = [...players].sort((a, b) => b.wonCards.length - a.wonCards.length
+      || (a.id === tieBreakWinnerId ? -1 : b.id === tieBreakWinnerId ? 1 : a.order - b.order));
+    return { endReason: 'DECK_COMPLETED', completedNormally: true, tieBreakWinnerId, winnerIds: tieBreakWinnerId ? [tieBreakWinnerId] : leaders,
+      standings: order.map((person) => ({ playerId: person.id, score: person.wonCards.length, position: 1 + players.filter((other) => other.wonCards.length > person.wonCards.length).length })) };
+  }
+
+  private prepareTieBreak(permutation?: readonly string[]): Game {
+    const ids = this.tieBreakCardIds;
+    if (!permutation || permutation.length !== ids.length || new Set(permutation).size !== ids.length || permutation.some((id) => !ids.includes(id))) throw new GameInitializationError('INVALID_PERMUTATION');
+    const leaders = this.players.filter((person) => this.result!.winnerIds.includes(person.id));
+    const size = Math.min(3, Math.floor((ids.length - 1) / leaders.length));
+    const cards = new Map(this.attributeDiscard.map((card) => [card.id, card]));
+    const pile = permutation.map((id) => cards.get(id)!); const hands = new Map(leaders.map((person) => [person.id, [] as Card[]]));
+    for (let pass = 0; pass < size; pass++) for (const person of leaders) hands.get(person.id)!.push(pile.shift()!);
+    const indicator = pile.shift()!;
+    return this.evolve({ phase: 'TIE_BREAK', attributeDiscard: [], tieBreakUnused: pile, resolution: null,
+      players: this.players.map((person) => ({ ...person, hand: hands.get(person.id) ?? [] })),
+      round: { number: this.round.number + 1, kind: 'TIE_BREAK', finalRoundIndex: null, playerIds: leaders.map((person) => person.id),
+        state: 'WAITING_FOR_DIRECTION', openerPlayerId: leaders[0].id, indicator, activeAttributeId: indicator.roundAttribute, direction: null, plays: [] } });
+  }
+
+  private circular(opener: string, ids: readonly string[]): string[] {
+    const index = ids.indexOf(opener);
+    return [...ids.slice(index), ...ids.slice(0, index)];
+  }
+
+  private evolve(change: Partial<Game>): Game {
+    return freeze(Object.assign(Object.create(Game.prototype) as Game, this, change));
+  }
 }

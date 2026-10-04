@@ -11,6 +11,7 @@ export const WAITING_EXPIRY_MS = 30 * 60_000;
 export const WARNING_BEFORE_MS = 60_000;
 export type WaitingDeadline = { kind: 'WARNING' | 'INACTIVITY' | 'ABSENCE'; at: number; generation: number; participantId?: string };
 type Presence = { connected: boolean; generation: number; absence?: { at: number; initial: boolean } };
+export type GameReview = Readonly<{ id: string; gameId: string; roundNumber: number; at: number; unix: number }>;
 
 const segmenter = new Intl.Segmenter('es', { granularity: 'grapheme' });
 
@@ -33,8 +34,12 @@ export class Room {
   readonly participantId: string;
   private participantName = 'Jugador 1';
   private readonly guests: { id: string; sessionId: string; name: string }[] = [];
-  private state: 'WAITING' | 'IN_GAME' | 'CLOSED' = 'WAITING';
+  private state: 'WAITING' | 'IN_GAME' | 'RESULTS' | 'CLOSED' = 'WAITING';
   private initialGame?: Game;
+  private partialDirection: 'HIGH' | 'LOW' | null = null;
+  private review?: GameReview;
+  private retained?: Readonly<{ at: number; presentedAt: number; expiresAt: number }>;
+  private readonly released = new Set<string>();
   private graphics: readonly CardPresentation[] = [];
   private roomRevision = 1;
   private readonly presence = new Map<string, Presence>();
@@ -60,8 +65,43 @@ export class Room {
     this.addPresence(input.participantId, input.connected, now);
   }
 
-  get status(): 'WAITING' | 'IN_GAME' | 'CLOSED' { return this.state; }
+  get status(): 'WAITING' | 'IN_GAME' | 'RESULTS' | 'CLOSED' { return this.state; }
+  get retention() { return this.retained; }
+  get activeSessions() { return this.memberSessions.filter((sessionId) => !this.released.has(sessionId)); }
+  presentResult(now: TimePoint): void {
+    if (this.state !== 'IN_GAME' || this.initialGame?.phase !== 'FINISHED' || !this.initialGame.result) throw new Error('Resultado interno incompatible.');
+    this.state = 'RESULTS';
+    this.retained = Object.freeze({ at: now.monotonic + 30 * 60_000, presentedAt: now.unix, expiresAt: now.unix + 30 * 60_000 });
+    this.roomRevision++;
+  }
+  releaseResultSession(sessionId: string): boolean {
+    if (this.state !== 'RESULTS' || !this.participantFor(sessionId)) throw new Error('Retorno interno incompatible.');
+    if (this.released.has(sessionId)) return false;
+    this.released.add(sessionId);
+    return true;
+  }
   get game(): Game | undefined { return this.initialGame; }
+  get openingDirection() { return this.partialDirection; }
+  get gameReview() { return this.review; }
+  beginReview(now: TimePoint): void {
+    const game = this.initialGame!;
+    if (!game.resolution || this.review) throw new Error('Revisión interna incompatible.');
+    this.review = Object.freeze({ id: game.resolution.id, gameId: game.id, roundNumber: game.round.number,
+      at: now.monotonic + this.roomSettings.reviewSeconds * 1000, unix: now.unix + this.roomSettings.reviewSeconds * 1000 });
+  }
+  selectDirection(direction: 'HIGH' | 'LOW'): boolean {
+    if (this.partialDirection === direction) return false;
+    this.partialDirection = direction;
+    this.roomRevision++;
+    return true;
+  }
+  applyGame(game: Game): void {
+    if (this.state !== 'IN_GAME' || game.id !== this.initialGame?.id) throw new Error('Contexto interno de partida incompatible.');
+    this.initialGame = game;
+    this.partialDirection = null;
+    this.review = undefined;
+    this.roomRevision++;
+  }
   cardPresentation(id: string): CardPresentation {
     const presentation = this.graphics.find((card) => card.id === id);
     if (!presentation) throw new Error('Presentación de carta ausente.');
@@ -273,6 +313,7 @@ export class Room {
   }
 
   private ensureWaiting(): void {
+    if (this.state === 'RESULTS') throw new RoomError('GAME_FINISHED', 'La partida ha terminado. Vuelve al inicio para crear otra sala.');
     if (this.state === 'IN_GAME') throw new RoomError('GAME_ALREADY_STARTED', 'La partida ya ha empezado. La preparación está fijada.');
     if (this.state !== 'WAITING') throw new RoomError('ROOM_NOT_AVAILABLE', 'La sala ya no está disponible.');
   }

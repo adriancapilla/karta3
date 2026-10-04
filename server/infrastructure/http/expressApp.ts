@@ -26,6 +26,7 @@ const roomErrorStatus: Record<RoomErrorCode, number> = {
   GAME_ALREADY_STARTED: 409,
   START_NOT_READY: 409,
   INVALID_DECK: 409,
+  STALE_GAME_CONTEXT: 409, NOT_YOUR_TURN: 409, CARD_NOT_IN_HAND: 409, ROUND_IN_REVIEW: 409, GAME_FINISHED: 409, RESULT_NOT_AVAILABLE: 404,
   INTERNAL_ERROR: 500
 };
 
@@ -61,6 +62,7 @@ export function createHttpApp(dependencies: { rooms: RoomActions; sessions: Memo
   });
 
   app.get('/api/rooms/current', (req, res) => {
+    res.set('Cache-Control', 'no-store');
     let id = sessions.get(parseCookie(req.headers.cookie ?? '')[COOKIE_NAME]);
     if (!id) {
       const fresh = sessions.establish();
@@ -84,7 +86,11 @@ export function createHttpApp(dependencies: { rooms: RoomActions; sessions: Memo
   });
 
   app.get('/api/rooms/:id', (req, res) => {
+    res.set('Cache-Control', 'no-store');
     res.json({ room: rooms.getOwn(session(req), String(req.params.id)) } satisfies RoomResponse);
+  });
+  app.get('/api/results/:gameId', (req, res) => {
+    res.set('Cache-Control', 'no-store').json({ room: rooms.getResult(session(req), String(req.params.gameId)) });
   });
 
   app.patch('/api/rooms/:id/name', (req, res) => {
