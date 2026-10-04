@@ -55,6 +55,24 @@ test('B07 parcial remoto no completa carta local; teclado y F5 recuperan solo di
   } finally { await p.close(); await server.stop(); }
 });
 
+test('B07 Detalles conserva foco si otra pestaña juega la carta mostrada', async ({ browser }) => {
+  const server = await configurationBrowserServer(true, true);
+  const p = await manualTable(browser, server.base, { deckId: 'portada', version: 7, width: 360 });
+  const first = p.pages[1]; const tab = await p.contexts[1].newPage();
+  try {
+    await tab.goto(server.base); await expect(tab.getByRole('button', { name: 'ALTO', exact: true })).toBeEnabled();
+    await first.locator('.game-hand .card-details-button').first().tap();
+    const dialog = first.getByRole('dialog'); await expect(dialog).toBeVisible();
+    await tab.getByRole('button', { name: 'ALTO', exact: true }).tap();
+    await tab.locator('.game-hand .card-play-button').first().tap();
+    await expect(first.locator('.game-hand .game-card')).toHaveCount(2);
+    await expect(dialog).toBeVisible(); await expect(dialog.getByRole('button', { name: 'Cerrar detalles' })).toBeFocused();
+    await dialog.getByRole('button', { name: 'Cerrar detalles' }).press('Escape');
+    await expect(first.getByRole('region', { name: 'Cartas de tu mano' })).toBeFocused();
+    expect((await readGame(first)).game.round.plays).toHaveLength(1);
+  } finally { await p.close(); await server.stop(); }
+});
+
 test('B07 M4 normal genérica 2: partida completa real, resultados, dos pestañas, F5 y otra sala sin reinicio', async ({ browser, baseURL }) => {
   test.setTimeout(90_000);
   const p = await manualTable(browser, baseURL!, { width: 1280, review: 0 }); const tab = await p.contexts[0].newPage();

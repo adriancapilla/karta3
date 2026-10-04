@@ -34,7 +34,11 @@ export function GameScreen({ room, connected, activity, onRoom, onCurrent }: { r
   const { round, attributes } = room.game;
   const active = attributes.find((attribute) => attribute.id === round.activeAttributeId)!;
   const showDetails = (card: CardView, trigger: HTMLButtonElement) => setDetails({ card, trigger });
-  const closeDetails = () => { details?.trigger.focus(); setDetails(null); };
+  const closeDetails = () => {
+    if (details?.trigger.isConnected) details.trigger.focus();
+    else (hand.current ?? title.current)?.focus();
+    setDetails(null);
+  };
   return <main className="shell game-shell">
     <header><span className="brand">KARTA<span>3</span></span><span className="top-label">Partida manual</span></header>
     <h1 ref={title} tabIndex={-1}>Partida · {room.selectedDeck.name} · v{room.selectedDeck.contentVersion}</h1>
