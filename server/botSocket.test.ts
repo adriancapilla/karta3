@@ -60,6 +60,13 @@ it('B09 canales reales: host dos pestañas, huésped/tercero/sesión ausente; en
   const replay = await socketAck<BotResponse>(tab, 'room:bot-add', { requestId: 'bot-1', roomId: s.room.id });
   expect(replay.ok).toBe(true); if (replay.ok) expect(replay.room.participant.id).toBe(s.start.participant.id);
   expect(s.repository.findById(s.room.id)!.playerCount).toBe(2);
+  const human = s.people[1]; const own = await s.own(human) as InitialGameRoomView;
+  const hidden = s.repository.findById(s.room.id)!.game!.players.find((p) => p.kind === 'BOT')!.hand[0].id;
+  const attack = { requestId: 'bot-card', roomId: s.room.id, gameId: own.game.id, roundNumber: own.game.round.number, turnId: own.game.interaction.turn!.id, cardId: hidden, direction: null };
+  expect(await socketAck(human.socket, 'game:play', attack)).toMatchObject({ ok: false, error: { code: 'CARD_NOT_IN_HAND' } });
+  expect(await socketAck(tab, 'game:play', { ...attack, requestId: 'observer-card' })).toMatchObject({ ok: false, error: { code: 'NOT_YOUR_TURN' } });
+  expect(await socketAck(human.socket, 'game:play', { ...attack, requestId: 'spoof', playerId: bot.id })).toMatchObject({ ok: false, error: { code: 'INVALID_INPUT' } });
+  expect(s.repository.findById(s.room.id)!.game!.players.find((p) => p.kind === 'BOT')!.hand.some((card) => card.id === hidden)).toBe(true);
 });
 it('B09 E4 espera real: ack omitido de add/rename, retirada desde otra pestaña, mismo payload confirma sin reinsertar ni emitir salida humana', async () => {
   const s = await boot(); const host = await s.session(); const tab = await s.tab(host.cookie);
