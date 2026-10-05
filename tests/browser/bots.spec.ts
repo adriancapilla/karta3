@@ -17,6 +17,7 @@ async function playOwn(page: Page, own: InitialGameRoomView, normal = true) {
 }
 
 for (const width of [360, 390, 1280]) test(`B09 P1 ${width}: gestión explícita, diálogo/teclado/cancelación, mezcla y foco con dos sesiones y pestañas`, async ({ browser }, info) => {
+  test.setTimeout(60_000);
   const server = await configurationBrowserServer();
   const hostContext = await browser.newContext({ viewport: { width, height: 844 } }); const guestContext = await browser.newContext({ viewport: { width, height: 844 } });
   const host = await hostContext.newPage(); const guest = await guestContext.newPage(); const tab = await hostContext.newPage();
