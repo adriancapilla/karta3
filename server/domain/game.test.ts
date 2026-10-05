@@ -7,7 +7,7 @@ import { permuteCards } from '../infrastructure/cardPermutation.js';
 const fixture = deckFixture();
 const deck = validatePackageFormat(fixture.metadata, fixture.collection, 'prueba').data!.definition;
 const ids = deck.cards.map((card) => card.id);
-const input = (count: number) => ({ id: 'game', deck, players: Array.from({ length: count }, (_, n) => ({ id: `p${n}`, name: `Jugador ${n}` })),
+const input = (count: number) => ({ id: 'game', deck, players: Array.from({ length: count }, (_, n) => ({ kind: 'HUMAN' as const, id: `p${n}`, name: `Jugador ${n}` })),
   settings: { turnTimeout: 30 as const, forceTieBreak: true }, permutation: ids });
 
 describe('B06 Game puro con permutación explícita', () => {
@@ -36,7 +36,7 @@ describe('B06 Game puro con permutación explícita', () => {
   });
   it.each([0, 1, 6])('rechaza %i jugadores', (count) => expect(() => new Game(input(count))).toThrow('INVALID_PLAYERS'));
   it('rechaza IDs repetidos y definición inválida sin reparar datos', () => {
-    expect(() => new Game({ ...input(2), players: [{ id: 'p', name: 'A' }, { id: 'p', name: 'B' }] })).toThrow('INVALID_PLAYERS');
+    expect(() => new Game({ ...input(2), players: [{ kind: 'HUMAN', id: 'p', name: 'A' }, { kind: 'HUMAN', id: 'p', name: 'B' }] })).toThrow('INVALID_PLAYERS');
     expect(() => new Game({ ...input(2), deck: { ...deck, cards: deck.cards.slice(1) } })).toThrow('INVALID_DECK');
   });
   it('adaptador de entropía real devuelve una permutación completa sin mutar la entrada', () => {

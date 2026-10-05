@@ -48,8 +48,8 @@ describe('casos de uso con puertos sustitutos', () => {
     expect(view).toEqual({
       id: 'id-1', code: '000042', status: 'WAITING',
       revision: 1,
-      participant: { id: 'id-2', name: 'Jugador 1', role: 'HOST', isPlayer: true, presence: 'CONNECTED' },
-      participants: [{ id: 'id-2', name: 'Jugador 1', role: 'HOST', isPlayer: true, presence: 'CONNECTED' }],
+      participant: { id: 'id-2', name: 'Jugador 1', kind: 'HUMAN', botDifficulty: null, role: 'HOST', isPlayer: true, presence: 'CONNECTED' },
+      participants: [{ id: 'id-2', name: 'Jugador 1', kind: 'HUMAN', botDifficulty: null, role: 'HOST', isPlayer: true, presence: 'CONNECTED' }],
       lifecycle: { serverNow: 1_800_000_000_000, expiresAt: 1_800_001_800_000, warning: false },
       selectedDeck: null, settings: { deckId: null, deckContentVersion: null, hostPlays: true, turnSeconds: 30, forceTieBreak: false, reviewSeconds: 5 }
     });

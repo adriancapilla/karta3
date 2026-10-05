@@ -5,9 +5,10 @@ export function StartRoomControl({ room, connected, pending, onCurrent }: {
   room: WaitingRoomView; connected: boolean; pending: boolean; onCurrent: (result: CurrentRoomResponse) => void;
 }) {
   const action = useStartRoom(room, onCurrent);
-  const reason = !connected ? 'Recupera la conexión para iniciar.' : pending ? 'Espera la confirmación de tus cambios de configuración.'
+  const reason = !connected ? 'Recupera la conexión para iniciar.' : pending ? 'Espera la confirmación de tus cambios de preparación.'
     : !room.selectedDeck ? 'Selecciona una baraja para iniciar.' : room.participants.filter((person) => person.isPlayer).length < 2
-      ? 'Se necesitan al menos dos jugadores humanos.' : room.participants.some((person) => person.presence !== 'CONNECTED')
+      ? 'Se necesitan al menos dos jugadores.' : !room.participants.some((person) => person.kind === 'HUMAN' && person.isPlayer)
+        ? 'Debe jugar al menos una persona humana. El observador no cuenta.' : room.participants.some((person) => person.kind === 'HUMAN' && person.presence !== 'CONNECTED')
         ? 'Todos los participantes deben estar conectados, también el anfitrión observador.' : '';
   return <section className="start-room" aria-label="Inicio de partida">
     <button className="primary" disabled={Boolean(reason) || action.busy || action.needsRecovery}

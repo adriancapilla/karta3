@@ -20,7 +20,7 @@ export type InitialGameView = {
   attributes: { id: string; name: string; unit: string }[];
   round: { number: number; kind: 'BASE' | 'TIE_BREAK'; finalRoundIndex: number | null; playerIds: string[];
     state: 'WAITING_FOR_DIRECTION' | 'WAITING_FOR_PLAYS' | 'RESOLVED'; openerPlayerId: string; indicator: CardView;
-    activeAttributeId: string; direction: Direction | null; plays: { playerId: string; card: CardView; order: number; mode: 'MANUAL' | 'TIMEOUT' | 'AUTOMATIC' }[] };
+    activeAttributeId: string; direction: Direction | null; plays: { playerId: string; card: CardView; order: number; mode: 'MANUAL' | 'TIMEOUT' | 'AUTOMATIC' | 'BOT' }[] };
   drawPileCount: number; hand: CardView[]; ownConsecutiveTimeouts: 0 | 1 | 2 | null;
   interaction: { stage: 'AWAITING_PLAY' | 'ROUND_REVIEW'; turn: { id: string; playerId: string; timing: TurnTiming | null } | null;
     openingSelection: { direction: Direction | null } | null;

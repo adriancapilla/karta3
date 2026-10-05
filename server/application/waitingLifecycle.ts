@@ -48,7 +48,7 @@ export class WaitingLifecycle {
   }
 
   close(room: Room, reason: RoomClosedEvent['reason']): void {
-    const people = room.participants;
+    const people = room.participants.filter((person) => person.kind === 'HUMAN');
     room.close();
     if (reason !== 'HOST_CLOSED') {
       for (const person of people) this.ends.saveEnd(person.sessionId, { roomId: room.id, participantId: person.id, reason });
@@ -75,6 +75,7 @@ export class WaitingLifecycle {
       } else if (deadline.participantId === room.participantId) this.close(room, 'HOST_DISCONNECTED');
       else {
         const person = room.participants.find((item) => item.id === deadline.participantId)!;
+        if (person.kind !== 'HUMAN') throw new Error('Reserva interna de un bot inválida.');
         const name = displayName(room, person.id);
         room.expirePresence(deadline, this.clock.now().monotonic);
         this.repository.save(room);

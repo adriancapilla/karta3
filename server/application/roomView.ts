@@ -1,4 +1,4 @@
-import type { RoomView } from '../../shared/contracts/room.js';
+import type { ParticipantView, RoomView } from '../../shared/contracts/room.js';
 import type { Room } from './room.js';
 import { toInitialGameRoomView } from './initialGameView.js';
 import { toResultsRoomView } from './resultsView.js';
@@ -22,8 +22,10 @@ export function toRoomView(room: Room, sessionId: string = room.hostSessionId, s
     code: room.code,
     status: 'WAITING',
     revision: room.revision,
-    participant: { id: participant.id, name: participant.name, role: participant.role, isPlayer: participant.isPlayer, presence: participant.presence === 'CONNECTED' ? 'CONNECTED' : 'RECONNECTING' },
-    participants: room.participants.map((person) => ({ id: person.id, name: person.name, role: person.role, isPlayer: person.isPlayer, presence: person.presence === 'CONNECTED' ? 'CONNECTED' : 'RECONNECTING' })),
+    participant: { id: participant.id, name: participant.name, kind: 'HUMAN', botDifficulty: null, role: participant.role, isPlayer: participant.isPlayer, presence: participant.presence === 'CONNECTED' ? 'CONNECTED' : 'RECONNECTING' },
+    participants: room.participants.map((person): ParticipantView => person.kind === 'BOT'
+      ? { id: person.id, name: person.name, kind: 'BOT', botDifficulty: person.botDifficulty, role: null, isPlayer: true, presence: null }
+      : { id: person.id, name: person.name, kind: 'HUMAN', botDifficulty: null, role: person.role, isPlayer: person.isPlayer, presence: person.presence === 'CONNECTED' ? 'CONNECTED' : 'RECONNECTING' }),
     lifecycle: room.lifecycle(serverNow),
     settings: room.settings,
     selectedDeck: room.selectedDeck

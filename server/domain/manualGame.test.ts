@@ -7,7 +7,7 @@ import { manualTrace } from '../../tests/support/manualGameTrace.js';
 const fixture = deckFixture();
 const deck = validatePackageFormat(fixture.metadata, fixture.collection, 'prueba').data!.definition;
 export const initial = (count = 2, forceTieBreak = false) => new Game({ id: 'game', deck,
-  players: Array.from({ length: count }, (_, index) => ({ id: `p${index}`, name: `P${index}` })),
+  players: Array.from({ length: count }, (_, index) => ({ kind: 'HUMAN' as const, id: `p${index}`, name: `P${index}` })),
   settings: { turnTimeout: 30, forceTieBreak }, permutation: deck.cards.map((card) => card.id) });
 
 describe('B07 M1 apertura y turnos puros', () => {
@@ -40,7 +40,7 @@ describe('B07 M4 empates alcanzables, clasificación y una ronda adicional', () 
   function base(count: number, force = true, winners?: readonly number[]) {
     const prepared = manualTrace(count, winners);
     const definition = validatePackageFormat(prepared.fixture.metadata, prepared.fixture.collection, 'manual').data!.definition;
-    let game = new Game({ id: 'tie', deck: definition, players: Array.from({ length: count }, (_, n) => ({ id: `p${n}`, name: `P${n}` })),
+    let game = new Game({ id: 'tie', deck: definition, players: Array.from({ length: count }, (_, n) => ({ kind: 'HUMAN' as const, id: `p${n}`, name: `P${n}` })),
       settings: { turnTimeout: 15, forceTieBreak: force }, permutation: definition.cards.map((card) => card.id) });
     for (const expected of prepared.trace) {
       expect(game.round.openerPlayerId).toBe(`p${expected.opener}`);

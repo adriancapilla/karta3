@@ -20,10 +20,12 @@ export function toRoundResult(room: Room): RoundResultView {
 export function toInitialGameRoomView(room: Room, sessionId: string, serverNow = 0): InitialGameRoomView {
   const game = room.game!;
   const cardView = (card: Card) => toCardView(room, card);
-  const participants: GameParticipantView[] = room.participants.map((person) => ({ id: person.id, name: person.name,
-    role: person.role, isPlayer: person.isPlayer, presence: person.presence === 'CONNECTED' ? 'CONNECTED' : 'DISCONNECTED',
-    score: person.isPlayer ? game.score(person.id) : null, playStatus: game.players.find((player) => player.id === person.id)?.status ?? null }));
-  const participant = participants.find((person) => person.id === room.participantFor(sessionId)!.id)!;
+  const participants: GameParticipantView[] = room.participants.map((person): GameParticipantView => person.kind === 'BOT'
+    ? { id: person.id, name: person.name, kind: 'BOT', botDifficulty: person.botDifficulty, role: null, isPlayer: true, presence: null, score: game.score(person.id), playStatus: null }
+    : { id: person.id, name: person.name, kind: 'HUMAN', botDifficulty: null,
+      role: person.role, isPlayer: person.isPlayer, presence: person.presence === 'CONNECTED' ? 'CONNECTED' : 'DISCONNECTED',
+      score: person.isPlayer ? game.score(person.id) : null, playStatus: game.players.find((player) => player.id === person.id)?.status ?? null });
+  const participant = participants.find((person): person is Extract<GameParticipantView, { kind: 'HUMAN' }> => person.kind === 'HUMAN' && person.id === room.participantFor(sessionId)!.id)!;
   return { id: room.id, code: room.code, status: 'IN_GAME', revision: room.revision, participant, participants,
     settings: room.settings, selectedDeck: room.selectedDeck!, game: {
       id: game.id, phase: game.phase, execution: 'TIMED_TURNS', attributes: game.definition.attributes.map((attribute) => ({ ...attribute })),

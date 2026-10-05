@@ -16,7 +16,7 @@ function privacy(view: RoomView, ids: string[]) {
     expect(Object.keys(view).sort()).toEqual(['id', 'code', 'status', 'revision', 'participant', 'participants', 'settings', 'selectedDeck', 'result'].sort());
     expect(Object.keys(view.result).sort()).toEqual(['gameId', 'endReason', 'completedNormally', 'standings', 'winnerIds', 'tieBreakWinnerId', 'retention'].sort());
     expect(Object.keys(view.result.retention).sort()).toEqual(['presentedAt', 'serverNow', 'expiresAt'].sort());
-    for (const person of [view.participant, ...view.participants]) expect(Object.keys(person).sort()).toEqual(['id', 'name', 'role', 'isPlayer', 'score'].sort());
+    for (const person of [view.participant, ...view.participants]) expect(Object.keys(person).sort()).toEqual(['id', 'name', 'kind', 'botDifficulty', 'role', 'isPlayer', 'score'].sort());
     for (const entry of view.result.standings) expect(Object.keys(entry).sort()).toEqual(['playerId', 'score', 'position'].sort());
     for (const id of ids) expect(JSON.stringify(view)).not.toContain(`"${id}"`);
   }

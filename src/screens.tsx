@@ -4,6 +4,7 @@ import { ExpiryWarning } from './ExpiryWarning';
 import { RoomConfiguration } from './RoomConfiguration';
 import { StartRoomControl } from './StartRoomControl';
 import { LastResultLink } from './LastResultLink';
+import { WaitingPlayers } from './WaitingPlayers';
 
 export function HomeScreen(props: {
   busy: boolean; joining: boolean; notice: string; code: string; joinName: string; joinError: string;
@@ -43,19 +44,6 @@ export function HomeScreen(props: {
   </main>;
 }
 
-export function suffixes(room: RoomView): Map<string, number> {
-  const counts = new Map<string, number>();
-  for (const person of room.participants) counts.set(person.name, (counts.get(person.name) ?? 0) + 1);
-  const positions = new Map<string, number>();
-  const labels = new Map<string, number>();
-  for (const person of room.participants) {
-    const next = (positions.get(person.name) ?? 0) + 1;
-    positions.set(person.name, next);
-    if (counts.get(person.name)! > 1) labels.set(person.id, next);
-  }
-  return labels;
-}
-
 export function WaitingScreen(props: {
   room: WaitingRoomView; busy: boolean; notice: string; activity: string; name: string; nameError: string;
   copyMessage: string; confirmClose: boolean; confirmLeave: boolean;
@@ -68,11 +56,10 @@ export function WaitingScreen(props: {
 }) {
   const exitButton = useRef<HTMLButtonElement>(null);
   const [pendingConfiguration, setPendingConfiguration] = useState(false);
+  const [pendingBots, setPendingBots] = useState(false);
   const submitName = (event: FormEvent) => { event.preventDefault(); props.onSaveName(); };
   const isHost = props.room.participant.role === 'HOST';
-  const displayed = suffixes(props.room);
   const players = props.room.participants.filter((person) => person.isPlayer);
-  const observer = props.room.participants.find((person) => !person.isPlayer);
   const cancel = () => {
     if (isHost) props.onCancelClose(); else props.onCancelLeave();
     exitButton.current?.focus();
@@ -91,29 +78,8 @@ export function WaitingScreen(props: {
       </div>
       {!props.connected && <p className="connection-notice" role="status">Conexión interrumpida. Intentando recuperarla…</p>}
       {props.room.lifecycle.warning && <ExpiryWarning lifecycle={props.room.lifecycle} onZero={props.onConfirmExpiry} />}
-      <div className="waiting-columns"><section aria-labelledby="players-heading">
-      <h2 id="players-heading">Jugadores</h2>
-      <p className="occupancy">{players.length} de 5 jugadores</p>
-      <ol className="participant-list">
-        {players.map((person) => <li className="participant" key={person.id}>
-          <strong>{person.name}{displayed.has(person.id) && <span className="name-suffix"> ({displayed.get(person.id)})</span>}</strong>
-          <span className="participant-badges">
-            {person.id === props.room.participant.id && <span className="badge">Tú</span>}
-            {person.role === 'HOST' && <span className="badge">Anfitrión</span>}
-            {person.presence === 'RECONNECTING' && <span className="badge reconnecting">Reconectando</span>}
-          </span>
-        </li>)}
-      </ol>
-      {observer && <div className="observer-line">
-        <strong>{observer.name}{displayed.has(observer.id) && <span className="name-suffix"> ({displayed.get(observer.id)})</span>}</strong>
-        <span>Anfitrión · Observador</span>
-        <span className="participant-badges">
-          {observer.id === props.room.participant.id && <span className="badge">Tú</span>}
-          {observer.presence === 'RECONNECTING' && <span className="badge reconnecting">Reconectando</span>}
-        </span>
-      </div>}
-      </section><RoomConfiguration room={props.room} connected={props.connected} onRoom={props.onRoom} onPendingChange={setPendingConfiguration} /></div>
-      {isHost && <StartRoomControl room={props.room} connected={props.connected} pending={pendingConfiguration} onCurrent={props.onCurrent} />}
+      <div className="waiting-columns"><WaitingPlayers room={props.room} connected={props.connected} onRoom={props.onRoom} onCurrent={props.onCurrent} onPendingChange={setPendingBots} /><RoomConfiguration room={props.room} connected={props.connected} onRoom={props.onRoom} onPendingChange={setPendingConfiguration} /></div>
+      {isHost && <StartRoomControl room={props.room} connected={props.connected} pending={pendingConfiguration || pendingBots} onCurrent={props.onCurrent} />}
       <form onSubmit={submitName}>
         <label htmlFor="player-name">Editar mi nombre</label>
         <div className="name-row">

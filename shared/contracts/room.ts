@@ -1,7 +1,18 @@
 import type { DeckSummary } from './deck.js';
 import type { InitialGameView } from './game.js';
 
-export type ParticipantView = { id: string; name: string; role: 'HOST' | 'GUEST'; isPlayer: boolean; presence: 'CONNECTED' | 'RECONNECTING' };
+export type BotDifficulty = 'EASY' | 'NORMAL';
+export type HumanParticipant = { id: string; name: string; kind: 'HUMAN'; role: 'HOST' | 'GUEST'; isPlayer: boolean; botDifficulty: null };
+export type BotParticipant = { id: string; name: string; kind: 'BOT'; role: null; isPlayer: true; botDifficulty: BotDifficulty };
+export type ParticipantView = HumanParticipant & { presence: 'CONNECTED' | 'RECONNECTING' }
+  | BotParticipant & { presence: null };
+export type BotOperation = { type: 'ADD' } | { type: 'DIFFICULTY'; botId: string; difficulty: BotDifficulty }
+  | { type: 'RENAME'; botId: string; name: string } | { type: 'REMOVE'; botId: string };
+export type AddBotRequest = { requestId: string; roomId: string };
+export type ChangeBotDifficultyRequest = AddBotRequest & { botId: string; difficulty: BotDifficulty };
+export type RenameBotRequest = AddBotRequest & { botId: string; name: string };
+export type RemoveBotRequest = AddBotRequest & { botId: string };
+export type BotResponse = { room: RoomView; botId: string };
 export type RoomSettings = {
   deckId: string | null;
   deckContentVersion: number | null;
@@ -23,24 +34,25 @@ export type WaitingRoomView = {
   code: string;
   status: 'WAITING';
   revision: number;
-  participant: ParticipantView;
+  participant: Extract<ParticipantView, { kind: 'HUMAN' }>;
   participants: ParticipantView[];
   lifecycle: { serverNow: number; expiresAt: number; warning: boolean };
   settings: RoomSettings;
   selectedDeck: DeckSummary | null;
 };
 
-export type GameParticipantView = Omit<ParticipantView, 'presence'> & { presence: 'CONNECTED' | 'DISCONNECTED'; score: number | null; playStatus: 'ACTIVE' | 'AUTOMATIC' | null };
+export type GameParticipantView = HumanParticipant & { presence: 'CONNECTED' | 'DISCONNECTED'; score: number | null; playStatus: 'ACTIVE' | 'AUTOMATIC' | null }
+  | BotParticipant & { presence: null; score: number; playStatus: null };
 export type InitialGameRoomView = {
   id: string; code: string; status: 'IN_GAME'; revision: number;
-  participant: GameParticipantView; participants: GameParticipantView[];
+  participant: Extract<GameParticipantView, { kind: 'HUMAN' }>; participants: GameParticipantView[];
   settings: RoomSettings; selectedDeck: DeckSummary; game: InitialGameView;
 };
-export type ResultParticipantView = Omit<GameParticipantView, 'presence' | 'playStatus'>;
+export type ResultParticipantView = HumanParticipant & { score: number | null } | BotParticipant & { score: number };
 export type LastResult = { roomId: string; gameId: string; expiresAt: number };
 export type ResultsRoomView = {
   id: string; code: string; status: 'RESULTS'; revision: number;
-  participant: ResultParticipantView; participants: ResultParticipantView[]; settings: RoomSettings; selectedDeck: DeckSummary;
+  participant: Extract<ResultParticipantView, { kind: 'HUMAN' }>; participants: ResultParticipantView[]; settings: RoomSettings; selectedDeck: DeckSummary;
   result: { gameId: string; endReason: 'DECK_COMPLETED' | 'NO_ACTIVE_HUMAN_PLAYERS'; completedNormally: boolean;
     standings: { playerId: string; score: number; position: number }[]; winnerIds: string[]; tieBreakWinnerId: string | null;
     retention: { presentedAt: number; serverNow: number; expiresAt: number } };
@@ -63,6 +75,7 @@ export type PublicErrorCode =
   | 'CODE_EXHAUSTED'
   | 'ALREADY_IN_ROOM'
   | 'ROOM_FULL'
+  | 'BOT_NOT_AVAILABLE'
   | 'REQUEST_CONFLICT'
   | 'PARTICIPATION_ENDED'
   | 'DECK_NOT_AVAILABLE'
@@ -77,7 +90,7 @@ export type PublicErrorCode =
 export type ErrorResponse = { error: { code: PublicErrorCode; message: string } };
 
 export type SocketAck<T> = { ok: true } & T | { ok: false; error: ErrorResponse['error'] };
-export type RoomChange = { id: string; kind: 'LEFT' | 'RECONNECTED' | 'PRESENCE_EXPIRED'; participantId: string; name: string };
+export type RoomChange = { id: string; kind: 'LEFT' | 'RECONNECTED' | 'PRESENCE_EXPIRED' | 'BOT_REMOVED'; participantId: string; name: string };
 export type RoomStateEvent = { room: RoomView; change?: RoomChange };
 export type RoomLeftEvent = { roomId: string; participantId: string; reason?: 'VOLUNTARY' | 'RECONNECT_TIMEOUT' };
 export type RoomClosedEvent = { roomId: string; revision: number; reason: 'HOST_CLOSED' | 'HOST_DISCONNECTED' | 'INACTIVITY' };
