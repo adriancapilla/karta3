@@ -179,3 +179,21 @@ test('B09 E4 navegador: rename incierto conserva ID/payload, cierre sin cancelac
     expect(server.botRequests.filter((r) => r.event === 'room:bot-rename')).toHaveLength(2);
   } finally { await context.close(); await server.stop(); }
 });
+test('B09 pendientes independientes: retirar conserva foco aunque siguiente renombre y Añadir estén inciertos', async ({ browser }) => {
+  test.setTimeout(45_000);
+  const server = await configurationBrowserServer(); const context = await browser.newContext({ viewport: { width: 390, height: 844 } }); const host = await context.newPage();
+  try {
+    await host.goto(server.base); await host.getByRole('button', { name: 'Crear sala', exact: true }).click();
+    for (let n = 1; n <= 2; n++) { await host.getByRole('button', { name: 'Añadir bot', exact: true }).click(); await expect(host.locator('.bot-controls select')).toHaveCount(n); }
+    server.interceptBot((event, _payload, deliver, result) => { if (event === 'room:bot-remove') deliver(result); });
+    const row = (name: string) => host.locator('.participant').filter({ has: host.getByText(name, { exact: true }) });
+    await row('Bot 2').getByRole('button', { name: 'Cambiar nombre' }).click(); await host.getByLabel('Nombre del bot', { exact: true }).fill('Pendiente');
+    await host.getByRole('button', { name: 'Aceptar', exact: true }).click(); await expect(host.getByRole('dialog').getByRole('alert')).toContainText('No se pudo confirmar', { timeout: 8000 });
+    await host.getByRole('button', { name: 'Cerrar', exact: true }).click(); await host.getByRole('button', { name: 'Añadir bot', exact: true }).click();
+    await expect(host.getByRole('button', { name: 'Recuperar estado de la sala', exact: true })).toHaveCount(2, { timeout: 8000 });
+    await expect(row('Pendiente').getByRole('button', { name: 'Cambiar nombre' })).toBeDisabled(); await expect(host.getByRole('button', { name: 'Añadir bot', exact: true })).toBeDisabled();
+    await row('Bot 1').getByRole('button', { name: 'Retirar bot', exact: true }).click();
+    await expect(row('Pendiente').getByRole('button', { name: 'Retirar bot', exact: true })).toBeFocused();
+    await expect(host.getByRole('button', { name: 'Recuperar estado de la sala', exact: true })).toHaveCount(2);
+  } finally { await context.close(); await server.stop(); }
+});

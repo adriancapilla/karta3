@@ -3,28 +3,32 @@ import type { CurrentRoomResponse, RoomView, WaitingRoomView } from '../shared/c
 import { suffixes } from './participantNames';
 import { useBotActions } from './useBotActions';
 
+function focusAvailable(button: HTMLButtonElement | null | undefined, heading: HTMLHeadingElement | null) {
+  (button?.isConnected && !button.disabled ? button : heading)?.focus();
+}
 export function WaitingPlayers({ room, connected, onRoom, onCurrent, onPendingChange }: {
   room: WaitingRoomView; connected: boolean; onRoom: (room: RoomView) => boolean; onPendingChange: (pending: boolean) => void;
   onCurrent: (response: CurrentRoomResponse) => void;
 }) {
   const bots = useBotActions(room.id, onRoom, onCurrent); const host = room.participant.role === 'HOST';
   const add = useRef<HTMLButtonElement>(null); const dialog = useRef<HTMLDialogElement>(null); const input = useRef<HTMLInputElement>(null);
+  const heading = useRef<HTMLHeadingElement>(null);
   const [editing, setEditing] = useState<{ id: string; name: string; trigger: HTMLButtonElement } | null>(null);
   const [draft, setDraft] = useState('');
   const focusedRow = useRef('');
   useEffect(() => {
     if (focusedRow.current && !room.participants.some((person) => `participant-${person.id}` === focusedRow.current)
-      && document.activeElement === document.body) add.current?.focus();
+      && document.activeElement === document.body) focusAvailable(add.current, heading.current);
   }, [room.participants]);
   useEffect(() => onPendingChange(bots.pending), [bots.pending, onPendingChange]);
   const target = room.participants.find((p) => p.id === editing?.id && p.kind === 'BOT');
   const renameKey = editing ? `${editing.id}:RENAME` : '';
   const sendingName = bots.attempts[renameKey]?.state === 'SENDING';
-  const close = () => { dialog.current?.close(); if (editing?.trigger.isConnected) editing.trigger.focus(); else add.current?.focus(); setEditing(null); };
+  const close = () => { dialog.current?.close(); focusAvailable(editing?.trigger.isConnected ? editing.trigger : add.current, heading.current); setEditing(null); };
   useEffect(() => { if (editing && dialog.current && !dialog.current.open) { dialog.current.showModal(); input.current?.focus(); } }, [editing]);
   useEffect(() => {
     if (editing && !target) {
-      dialog.current?.close(); add.current?.focus();
+      dialog.current?.close(); focusAvailable(add.current, heading.current);
     }
   }, [editing, target]);
   const labels = suffixes(room); const players = room.participants.filter((p) => p.isPlayer); const observer = room.participants.find((p) => !p.isPlayer);
@@ -32,11 +36,11 @@ export function WaitingPlayers({ room, connected, onRoom, onCurrent, onPendingCh
   const remove = async (id: string) => {
     const focused = document.activeElement; const row = document.getElementById(`participant-${id}`);
     const moveFocus = !!row?.contains(focused);
-    const next = row?.nextElementSibling?.querySelector<HTMLButtonElement>('button') ?? row?.previousElementSibling?.querySelector<HTMLButtonElement>('button');
-    if (await bots.execute({ type: 'REMOVE', botId: id }) && moveFocus) (next?.isConnected ? next : add.current)?.focus();
+    const next = row?.nextElementSibling?.querySelector<HTMLButtonElement>('button:not(:disabled)') ?? row?.previousElementSibling?.querySelector<HTMLButtonElement>('button:not(:disabled)');
+    if (await bots.execute({ type: 'REMOVE', botId: id }) && moveFocus) focusAvailable(next?.isConnected ? next : add.current, heading.current);
   };
   return <section aria-labelledby="players-heading" onFocusCapture={(event) => { focusedRow.current = (event.target as Element).closest('.participant')?.id ?? ''; }}>
-    <h2 id="players-heading">Jugadores</h2><p className="occupancy">{players.length} de 5 jugadores</p>
+    <h2 ref={heading} id="players-heading" tabIndex={-1}>Jugadores</h2><p className="occupancy">{players.length} de 5 jugadores</p>
     <ol className="participant-list">{players.map((person) => <li className="participant" id={`participant-${person.id}`} key={person.id}>
       <strong>{name(person)}</strong><span className="participant-badges">
         {person.id === room.participant.id && <span className="badge">Tú</span>}{person.role === 'HOST' && <span className="badge">Anfitrión</span>}
