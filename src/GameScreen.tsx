@@ -69,7 +69,7 @@ export function GameScreen({ room, connected, activity, onRoom, onCurrent }: { r
             {person.id === room.game.interaction.turn?.playerId && <span className="badge">Juega</span>}
             {person.presence === 'DISCONNECTED' && <span className="badge reconnecting">Sin conexión</span>}
             {person.playStatus === 'AUTOMATIC' && <span className="badge">Automático</span>}
-            {person.kind === 'BOT' && <span className="badge">Bot · {person.botDifficulty === 'EASY' ? 'Fácil' : 'Normal'}</span>}
+            {person.kind === 'BOT' && <span className="badge">Bot · {person.botDifficulty === 'EASY' ? 'Fácil' : 'Difícil'}</span>}
           </span>
         </li>)}</ol>
         {observer && <div className="observer-line"><strong>{label(observer.id)}</strong><span>Anfitrión · Observador</span>

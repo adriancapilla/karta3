@@ -45,13 +45,13 @@ export function WaitingPlayers({ room, connected, onRoom, onCurrent, onPendingCh
       <strong>{name(person)}</strong><span className="participant-badges">
         {person.id === room.participant.id && <span className="badge">Tú</span>}{person.role === 'HOST' && <span className="badge">Anfitrión</span>}
         {person.presence === 'RECONNECTING' && <span className="badge reconnecting">Reconectando</span>}
-        {person.kind === 'BOT' && <span className="badge">Bot · {person.botDifficulty === 'EASY' ? 'Fácil' : 'Normal'}</span>}
+        {person.kind === 'BOT' && <span className="badge">Bot · {person.botDifficulty === 'EASY' ? 'Fácil' : 'Difícil'}</span>}
       </span>
       {host && person.kind === 'BOT' && <div className="bot-controls">
         <label>Nivel de {name(person)}<select aria-label={`Nivel de ${name(person)}`} value={person.botDifficulty}
           disabled={!connected || !!bots.attempts[`${person.id}:DIFFICULTY`]}
           onChange={(event) => void bots.execute({ type: 'DIFFICULTY', botId: person.id, difficulty: event.target.value as 'EASY' | 'NORMAL' })}>
-          <option value="EASY">Fácil</option><option value="NORMAL">Normal</option></select></label>
+          <option value="EASY">Fácil</option><option value="NORMAL">Difícil</option></select></label>
         {bots.attempts[`${person.id}:DIFFICULTY`]?.state === 'SENDING' && <span role="status">Aplicando…</span>}
         {bots.errors[`${person.id}:DIFFICULTY`] && <p role="alert" className="field-error">{bots.errors[`${person.id}:DIFFICULTY`]}</p>}
         <button className="secondary" disabled={!connected || !!bots.attempts[`${person.id}:RENAME`]} onClick={(event) => { setEditing({ id: person.id, name: person.name, trigger: event.currentTarget }); setDraft(person.name); }}>Cambiar nombre</button>

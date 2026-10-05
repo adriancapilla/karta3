@@ -10,7 +10,7 @@ export function ResultsScreen({ room, activity, error, busy, onHome }: {
   const duplicates = suffixes(room);
   const name = (id: string) => {
     const person = room.participants.find((item) => item.id === id)!;
-    return `${person.name}${duplicates.has(id) ? ` (${duplicates.get(id)})` : ''}${id === room.participant.id ? ' (tú)' : ''}${person.kind === 'BOT' ? ` · Bot · ${person.botDifficulty === 'EASY' ? 'Fácil' : 'Normal'}` : ''}`;
+    return `${person.name}${duplicates.has(id) ? ` (${duplicates.get(id)})` : ''}${id === room.participant.id ? ' (tú)' : ''}${person.kind === 'BOT' ? ` · Bot · ${person.botDifficulty === 'EASY' ? 'Fácil' : 'Difícil'}` : ''}`;
   };
   const observer = room.participants.find((person) => !person.isPlayer);
   return <main className="shell game-shell results-shell">

@@ -25,9 +25,10 @@ for (const width of [360, 390, 1280]) test(`B09 P1 ${width}: gestión explícita
     await Promise.all([host.goto(server.base), guest.goto(server.base)]); await host.getByRole('button', { name: 'Crear sala', exact: true }).click();
     const code = await host.locator('.code').textContent(); await guest.getByLabel('Código de sala').fill(code!); await guest.getByLabel('Tu nombre', { exact: true }).fill('Bot 1');
     await guest.getByRole('button', { name: 'Entrar', exact: true }).click(); await tab.goto(server.base);
-    await host.getByRole('button', { name: 'Añadir bot', exact: true }).click(); await expect(guest.locator('.participant-list')).toContainText('Bot · Normal');
+    await host.getByRole('button', { name: 'Añadir bot', exact: true }).click(); await expect(guest.locator('.participant-list')).toContainText('Bot · Difícil');
     expect(await guest.getByRole('button', { name: 'Añadir bot' }).count()).toBe(0);
-    const row = host.locator('.participant').filter({ has: host.getByText('Bot · Normal', { exact: true }) });
+    const row = host.locator('.participant').filter({ has: host.getByText('Bot · Difícil', { exact: true }) });
+    await expect(row.getByRole('combobox')).toHaveValue('NORMAL'); await expect(row.locator('option[value="NORMAL"]')).toHaveText('Difícil');
     await row.getByRole('button', { name: 'Cambiar nombre' }).click(); const field = host.getByLabel('Nombre del bot', { exact: true });
     await expect(field).toHaveValue('Bot 1'); await expect(field).toBeFocused(); const requestsBeforeCancel = server.botRequests.length; await field.fill('Cancelado'); await field.press('Escape');
     await expect(host.getByRole('dialog')).toHaveCount(0); await expect(row.getByRole('button', { name: 'Cambiar nombre' })).toBeFocused();
@@ -39,7 +40,7 @@ for (const width of [360, 390, 1280]) test(`B09 P1 ${width}: gestión explícita
     await row.getByRole('button', { name: 'Cambiar nombre' }).click(); await field.fill(''); await host.getByRole('button', { name: 'Aceptar', exact: true }).click();
     await expect(host.getByRole('dialog')).toBeVisible(); await expect(host.getByRole('dialog').getByRole('alert')).toContainText('1 a 16');
     await field.fill('Mi borrador');
-    const remote = tab.locator('.participant').filter({ has: tab.getByText('Bot · Normal', { exact: true }) });
+    const remote = tab.locator('.participant').filter({ has: tab.getByText('Bot · Difícil', { exact: true }) });
     await remote.getByRole('button', { name: 'Cambiar nombre' }).click(); await tab.getByLabel('Nombre del bot', { exact: true }).fill('Remoto'); await tab.getByRole('button', { name: 'Aceptar', exact: true }).click();
     await expect(host.getByText('Nombre aceptado vigente: Remoto.', { exact: false })).toBeVisible(); await expect(field).toHaveValue('Mi borrador');
     await host.getByRole('dialog').getByRole('button', { name: 'Aceptar', exact: true }).click(); await expect(host.getByRole('dialog')).toHaveCount(0);
@@ -89,7 +90,7 @@ for (const [count, seed, width, review] of [[2, 2, 360, 0], [3, 3, 390, 5], [4, 
     expect(result.participants.filter((person) => person.kind === 'BOT')).toHaveLength(count - 1);
     expect(finalRounds.size).toBe(3); expect(sawTie || count === 3).toBe(true); expect(server.permutations()).toBe(2);
     await Promise.all([p.host, human, tab].map((page) => expect(page.getByRole('heading', { name: 'Partida terminada', exact: true })).toBeVisible()));
-    await expect(human.getByText('Bot · Normal', { exact: false }).first()).toBeVisible(); await expect(human.locator('.game-hand')).toHaveCount(0);
+    await expect(human.getByText('Bot · Difícil', { exact: false }).first()).toBeVisible(); await expect(human.locator('.game-hand')).toHaveCount(0);
     for (const page of [p.host, human, tab]) expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
     await human.screenshot({ path: info.outputPath(`B09-results-${count}-${width}.png`), fullPage: true });
     await human.getByRole('button', { name: 'Volver al inicio', exact: true }).click(); await expect(tab.getByRole('button', { name: 'Crear sala', exact: true })).toBeVisible();
@@ -97,25 +98,32 @@ for (const [count, seed, width, review] of [[2, 2, 360, 0], [3, 3, 390, 5], [4, 
   } finally { await p.close(); await server.stop(); }
 });
 
-test('B09 P2 normal compilado genérica 2: persona contra fácil/normal, entropía/plazos normales, resultado y otra sala', async ({ browser, baseURL }, info) => {
+test('B09 P2 normal compilado genérica 2: persona contra fácil/difícil, entropía/plazos normales, resultado y otra sala', async ({ browser, baseURL }, info) => {
   test.setTimeout(120_000);
   const p = await manualTable(browser, baseURL!, { count: 1, bots: ['NORMAL', 'EASY'], review: 0, turn: 60, width: 1280 });
   const tab = await p.contexts[0].newPage();
   try {
     expect(await p.host.evaluate(async () => (await (await fetch('/api/decks')).json()).decks.map((deck: { id: string; contentVersion: number }) => [deck.id, deck.contentVersion]))).toEqual([['generica', 2]]);
     await tab.goto(baseURL!); let moves = 0; const final = new Set<number>();
+    for (const page of [p.host, tab]) {
+      await expect(page.getByText('Bot · Difícil', { exact: true })).toBeVisible(); await expect(page.getByText('Bot · Fácil', { exact: true })).toBeVisible();
+    }
     while ((await readRoom(p.host)).status === 'IN_GAME') {
       await expect.poll(async () => { const view = await readRoom(p.host); return view.status !== 'IN_GAME' || view.game.interaction.turn?.playerId === view.participant.id; }).toBe(true);
       const view = await readRoom(p.host); if (view.status !== 'IN_GAME') break;
       if (view.game.phase === 'FINAL_PHASE') final.add(view.game.round.number);
       expect(view.game.hand.length).toBeGreaterThan(0); expect(view.game.interaction.turn!.timing).not.toBeNull();
       await playOwn(p.host, view, false); moves++;
-      if (moves === 3) { await p.host.reload(); await tab.reload(); }
+      if (moves === 3) {
+        await p.host.reload(); await tab.reload();
+        for (const page of [p.host, tab]) await expect(page.getByText('Bot · Difícil', { exact: true })).toBeVisible();
+      }
     }
     const result = await readRoom(p.host) as ResultsRoomView;
     expect(result.selectedDeck).toMatchObject({ id: 'generica', contentVersion: 2 }); expect(result.result.completedNormally).toBe(true);
     expect(result.result.standings.reduce((sum, p) => sum + p.score, 0)).toBe(45); expect(moves).toBe(15); expect(final.size).toBe(3);
     await expect(p.host.getByRole('heading', { name: 'Partida terminada', exact: true })).toBeVisible();
+    await expect(p.host.locator('.standings')).toContainText('Bot · Difícil'); await expect(p.host.locator('.standings')).toContainText('Bot · Fácil');
     await p.host.screenshot({ path: info.outputPath('B09-generica2-normal-1280.png'), fullPage: true });
     await p.host.getByRole('button', { name: 'Volver al inicio', exact: true }).click(); await expect(tab.getByRole('button', { name: 'Crear sala', exact: true })).toBeVisible();
     await tab.getByRole('button', { name: 'Crear sala', exact: true }).click(); await expect(p.host.getByLabel('Baraja', { exact: true })).toHaveValue('');
