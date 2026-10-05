@@ -71,7 +71,7 @@ karta3/
 └── tools/                  control de dependencias y sus casos negativos
 ```
 
-El directorio `server/domain/` contiene la validación pura de `Deck` B04 y el agregado `Game` B06/B07; no se creó vacío para T01. Su ejecución actual es manual humana; los requisitos futuros de bots/tiempos/automático no están implementados. `tools/decks.ts` delega a composición, que selecciona las mismas operaciones de infraestructura para comando, construcción y arranque. Una prueba cercana al módulo que comprueba es válida. Se mantiene un solo repositorio.
+El directorio `server/domain/` contiene la validación pura de `Deck` B04 y el agregado `Game` iniciado en B06/B07; no se creó vacío para T01. B08 añadió plazos y automático humano; B09 añade bots EASY/NORMAL mediante políticas puras y la misma coordinación de ejecución. Los apartados siguientes describen cada incremento y su alcance. `tools/decks.ts` delega a composición, que selecciona las mismas operaciones de infraestructura para comando, construcción y arranque. Una prueba cercana al módulo que comprueba es válida. Se mantiene un solo repositorio.
 
 ### Estado del primer bloque tras T01
 
