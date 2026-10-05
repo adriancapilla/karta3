@@ -334,7 +334,10 @@ for (const review of [0, 5]) test(`B07 M2 resolución, puntuación, revisión ${
     expect(after.game.round.direction).toBeNull(); expect(after.game.drawPileCount).toBe(before.game.drawPileCount - 3);
     expect(after.participants.map((person) => person.score)).toEqual([0, 2]);
     expect(after.game.round.openerPlayerId).toBe(before.participant.id);
-    expect(server.permutations()).toBe(1); await expect(first.getByRole('timer')).toHaveCount(0);
+    expect(server.permutations()).toBe(1);
+    await expect(first.locator('.round-review')).toHaveCount(0);
+    await expect(first.getByRole('timer')).toHaveCount(1); // B08 activa solo el nuevo turno tras revisión.
+    expect(after.game.interaction.turn!.timing!.endsAt - after.game.interaction.turn!.timing!.startedAt).toBe(30000);
     expect(await first.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   } finally { await p.close(); await server.stop(); }
 });

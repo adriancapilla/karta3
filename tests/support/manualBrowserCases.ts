@@ -3,7 +3,7 @@ import type { InitialGameRoomView, RoomView } from '../../shared/contracts/room.
 
 export const readRoom = (page: Page): Promise<RoomView> => page.evaluate(async () => (await (await fetch('/api/rooms/current')).json()).room);
 export const readGame = async (page: Page) => await readRoom(page) as InitialGameRoomView;
-export async function manualTable(browser: Browser, base: string, options: { width?: number; count?: number; observer?: boolean; deckId?: string; version?: number; review?: number; tie?: boolean } = {}) {
+export async function manualTable(browser: Browser, base: string, options: { width?: number; count?: number; observer?: boolean; deckId?: string; version?: number; review?: number; tie?: boolean; turn?: 15 | 30 | 60; names?: readonly string[] } = {}) {
   const width = options.width ?? 1280; const count = options.count ?? 2;
   const contexts = await Promise.all(Array.from({ length: count + Number(!!options.observer) }, () => browser.newContext({ viewport: { width, height: 844 }, hasTouch: width < 760, isMobile: width < 760 })));
   const pages = await Promise.all(contexts.map((context) => context.newPage()));
@@ -13,12 +13,13 @@ export async function manualTable(browser: Browser, base: string, options: { wid
   if (options.observer) await host.getByLabel('El anfitrión juega').uncheck();
   for (let index = 1; index < pages.length; index++) {
     await pages[index].getByLabel('Código de sala').fill(code);
-    await pages[index].getByLabel('Tu nombre', { exact: true }).fill(`Persona ${index}`);
+    await pages[index].getByLabel('Tu nombre', { exact: true }).fill(options.names?.[index - 1] ?? `Persona ${index}`);
     await pages[index].getByRole('button', { name: 'Entrar', exact: true }).click();
     await expect(pages[index].getByRole('heading', { name: 'Ya estás en la sala' })).toBeVisible();
   }
   await host.getByLabel('Baraja', { exact: true }).selectOption(JSON.stringify({ id: options.deckId ?? 'generica', contentVersion: options.version ?? 2 }));
   if (options.review !== undefined) await host.getByLabel('Revisión de ronda').selectOption(String(options.review));
+  if (options.turn !== undefined) await host.getByLabel('Tiempo por turno').selectOption(String(options.turn));
   if (options.tie) await host.getByLabel('Forzar desempate').check();
   await expect(host.getByRole('button', { name: 'Iniciar partida', exact: true })).toBeEnabled();
   await host.getByRole('button', { name: 'Iniciar partida', exact: true }).click();

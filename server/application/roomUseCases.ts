@@ -10,7 +10,7 @@ import type { WaitingLifecycle } from './waitingLifecycle.js';
 import type { GameActions } from './gameCoordinator.js';
 import type { OpeningDirectionRequest, PlayCardRequest } from '../../shared/contracts/game.js';
 
-export interface RoomActions extends GameActions {
+export interface RoomActions extends Omit<GameActions, 'started'> {
   current(sessionId: string): RoomView | null;
   resume(sessionId: string): CurrentRoomResponse;
   presenceChanged(sessionId: string): void;
@@ -55,12 +55,10 @@ export class RoomUseCases implements RoomActions {
 
   presenceChanged(sessionId: string): void { this.lifecycle.presenceChanged(sessionId); }
   openingDirection(sessionId: string, input: OpeningDirectionRequest): RoomView {
-    this.lifecycle.prepare();
     if (!this.games) throw new RoomError('INTERNAL_ERROR', 'Coordinación de juego no conectada.');
     return this.games.openingDirection(sessionId, input);
   }
   playCard(sessionId: string, input: PlayCardRequest): RoomView {
-    this.lifecycle.prepare();
     if (!this.games) throw new RoomError('INTERNAL_ERROR', 'Coordinación de juego no conectada.');
     return this.games.playCard(sessionId, input);
   }
@@ -262,6 +260,9 @@ export class RoomUseCases implements RoomActions {
           settings: { turnTimeout: room.settings.turnSeconds, forceTieBreak: room.settings.forceTieBreak },
           permutation: this.permute(snapshot.definition.cards.map((card) => card.id)) });
         room.beginGame(game, snapshot);
+        // El primer plazo queda fijado antes de cualquier vista o confirmación del inicio.
+        if (this.games) this.games.started(room);
+        else room.activateTurn(this.lifecycle.clock.now());
         this.repository.save(room);
         // Registrar aceptación antes de emitir: perder el ack no permite repetir el reparto.
         this.requests.save(sessionId, requestId, { kind: 'START', signature, roomId, participantId: room.participantId });

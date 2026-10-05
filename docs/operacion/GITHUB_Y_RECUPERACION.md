@@ -1,9 +1,25 @@
 # GitHub, comprobaciones y recuperación
 
-Actualizado: 04/10/2026. Repositorio existente: `E:\KARTA3\KARTA3_IA\APP\karta3`.
+Actualizado: 05/10/2026. Repositorio existente: `E:\KARTA3\KARTA3_IA\APP\karta3`.
 Versión de paquete: 0.1.0. Remoto privado: `https://github.com/adriancapilla/karta3.git`.
 
-## Publicación B06 y B07 — 04/10/2026
+## Publicación B08 — 05/10/2026
+
+Base remota verificada: `main` en `097cffc21e1224aebc30ed3c353df837f4166839`; entrega `feat/b08-temporizacion-automatico`, HEAD original `e30a7803d16fc4aa9e61a5d71666af1c4afea5f9`, árbol limpio y seis commits originales conservados. Repositorio privado, sin PR abierta al comenzar. Encargo autorizado: revisión completa, PR, comprobaciones del HEAD final, squash, CI posterior y reproducción desde GitHub; conservar rama y commits, sin despliegue ni bloque de bots.
+
+B08 hace efectivos 15/30/60 segundos, timeout único y dirección parcial aceptada a tiempo; solo una jugada manual completa válida reinicia el contador. Dos vencimientos consecutivos convierten a automático permanente. Continúa sin clientes; cuando no queda humano ACTIVE termina/puntúa/revisa la ronda vigente, sin otra base ni nuevo desempate. Un desempate ya iniciado sí termina y reconoce vencedor sin puntos adicionales. Conserva privacidad, revisión, recuperación, retorno y retención de 30 minutos. Bots, vigilancia de dos minutos, mejoras generales de distribución, visualización configurable y despliegue siguen pendientes; estado en memoria de un proceso.
+
+Evidencia histórica local B08 (§11): 341 pruebas en 31 archivos, 74 recorridos Chrome (6,2 minutos con dos trabajadores), 59 módulos y vencimiento real desconectado de 15 segundos. El autor confirma en este encargo funcionamiento del juego y automático; esta confirmación nueva se distingue de los ensayos locales y no reescribe su cierre histórico. Arquitectura ya actualizó las fuentes generales TFM; no se copian ni editan desde APP.
+
+Revisión completa respecto a main: política pura/58 ubicaciones, contador/control/final por roster base, permisos/contexto/dedupe, registro síncrono antes de publicación, igualdad temporal/callback temprano o retrasado, cancelación/generaciones, pasos acotados sin clientes, proyecciones privadas, cliente y regresiones. No contradicción funcional detectada. Búsqueda acotada de tokens, claves privadas y credenciales en URL en los seis commits originales: cero archivos coincidentes; no auditoría general. Sin ASSETS/TFM/MASTER, secretos o artefactos generados versionados. JSON genérica, dependencias y lockfile intactos; huellas aprobadas en la tabla histórica B04/B05.
+
+Presupuesto CI conservado: Chrome 20 minutos y trabajo 30, un trabajador y cero reintentos. La referencia local B08 de 6,2 minutos con dos trabajadores sugiere reservar unos 12,4 minutos seriales más variación; la suficiencia se acredita con la duración remota real, no con esa estimación. No se eliminan pruebas ni se cambian criterios/plazos individuales.
+
+**Comprobación nueva de publicación:** clon limpio real desde GitHub en `E:\KARTA3\KARTA3_IA\APP\karta3-verificacion-b08-20261005`, commit `e84da2e`, Windows/Node 24.13.0/npm 11.6.2, sin ASSETS/TFM/MASTER. `npm ci` correcto (328 paquetes); `npm run check` salida 0: tipos/lint/preparación/build, **341/341 en 31 archivos** (17,36 s) y **59 módulos** sin imports prohibidos/ciclos. Arranque normal `PORT=3001 npm start`, inicio/catálogo 200, genérica formato 1/contenido 2 disponible, `no-store` y sin cookie; JSON privados 404 y ambas huellas aprobadas exactas. Servidor de ensayo detenido. No se repite navegador local; batería completa prevista en CI del HEAD final y después de main. El commit posterior solo registra evidencia y un enlace documental, sin cambiar aplicación/dependencias/pruebas.
+
+El cierre remoto de esta publicación se registra en la [PR de esta rama](https://github.com/adriancapilla/karta3/pulls?q=is%3Apr+head%3Afeat%2Fb08-temporizacion-automatico): enlaces de CI del HEAD final y de main, recuentos/duraciones reales, SHA integrado, reproducción desde clon limpio y estado local/remoto. Ese registro de ejecución se completa después de cada puerta, sin crear commits solo para anotar el SHA recién integrado. Revisión/CI antes de squash autorizado; después CI de main y sincronización local/remota/clon. Se mantiene separada la evidencia histórica siguiente.
+
+## Evidencia histórica de publicación B06 y B07 — 04/10/2026
 
 Base remota verificada: `main` en `4dd073d`; entrega `feat/b07-partida-manual-completa`, HEAD original `043813e424b28f64733687b95c0c279189622f91`, árbol limpio y ocho commits posteriores conservados. Repositorio privado, sin PR abierta al comenzar. Encargo autorizado: revisión completa B06/B07, publicación por PR y squash tras comprobaciones, sincronización y reproducción desde GitHub. Conservar rama y commits; sin despliegue ni siguiente bloque.
 
@@ -67,7 +83,7 @@ Ejecuta `npm run check` en orden: tipos, análisis estático, preparación/compi
 
 La validación/preparación de barajas existe desde B04: `npm run decks:validate -- --package barajas/generica` valida individualmente y `npm run decks:prepare` genera el catálogo. La preparación también forma parte de `build`, incluido en `check`; las pruebas cubren JSON/formato/dominio/recursos, disponibilidad, privacidad, vigencia del catálogo y arranque. `sharp` y sus paquetes nativos se instalan desde el lockfile; su ejecución y los recursos reales se han comprobado también en la CI Linux enlazada arriba.
 
-Se mantienen locales la revisión humana de interfaz, pruebas con personas y averías físicas de red; HTTPS real y despliegue requieren sus encargos posteriores. Los límites temporales y simulaciones se describen en cada bloque; revisión y retención B07 están temporizadas, el turno todavía no. El catálogo es una instantánea por proceso: nueva copia requiere preparar y reiniciar; salas/partidas/resultados/sesiones en memoria se pierden al reiniciar. El resultado retenido se consulta por cookie de su roster original aunque se haya liberado la asociación para otra sala; no hay historial permanente.
+Se mantienen locales la revisión humana de interfaz, pruebas con personas y averías físicas de red; HTTPS real y despliegue requieren sus encargos posteriores. Los límites temporales y simulaciones se describen en cada bloque; revisión y retención B07 están temporizadas; B08 aplica también turnos y automático. El catálogo es una instantánea por proceso: nueva copia requiere preparar y reiniciar; salas/partidas/resultados/sesiones en memoria se pierden al reiniciar. El resultado retenido se consulta por cookie de su roster original aunque se haya liberado la asociación para otra sala; no hay historial permanente.
 
 Referencias: [GitHub Actions para Node](https://docs.github.com/en/actions/tutorials/build-and-test-code/nodejs), [CI de Playwright](https://playwright.dev/docs/ci).
 

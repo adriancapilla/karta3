@@ -19,7 +19,7 @@ export function initialGameCases(options: { gameDecks?: PublishedGameDecks; perm
   const catalog = new LoadedDeckCatalog([summary], new Map([[deckId, { contentVersion: 7, definition,
     presentation: definition.cards.map((card) => ({ id: card.id, imageUrl: null, imageAlt: '' })) }]]), new Map());
   const repository = new MemoryRoomRepository(); const requests = new MemoryRoomRequests();
-  const events = { updated: vi.fn(), closed: vi.fn(), left: vi.fn(), roundResolved: vi.fn(), resultsHome: vi.fn(), technicalFailure: vi.fn() };
+  const events = { updated: vi.fn(), closed: vi.fn(), left: vi.fn(), roundResolved: vi.fn(), turnExpired: vi.fn(), resultsHome: vi.fn(), technicalFailure: vi.fn() };
   const connected = new Set(['host', 'other', ...Array.from({ length: 6 }, (_, n) => `g${n}`)]);
   const ends = new Map(); const time = new ControlledTime();
   const waiting = new WaitingLifecycle(repository, time, time, { isConnected: (id) => connected.has(id) },

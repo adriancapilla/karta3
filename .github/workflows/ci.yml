@@ -18,7 +18,7 @@ jobs:
   checks:
     name: Tipos, análisis, pruebas, arquitectura y compilación
     runs-on: ubuntu-24.04
-    # B07: 63 recorridos, 5,8 min locales con dos trabajadores.
+    # B08: 74 recorridos, 6,2 min locales con dos trabajadores.
     # CI conserva uno: reservar margen para ejecución serial e instalación.
     timeout-minutes: 30
     steps:

@@ -130,17 +130,19 @@ it('B06-06 pérdida del ack del primer inicio: HTTP y repetición recuperan la a
   expect(s.permutation).toHaveBeenCalledTimes(1);
 });
 
-it.each([false, true])('B06-12/13 conexiones reales, varias pestañas y tiempo controlado >30 min; observador=%s', async (observer) => {
+it.each([false, true])('B06-12/13/B08 conexiones reales, varias pestañas y ausencia antes del plazo; observador=%s', async (observer) => {
   const s = await boot(observer); const accepted = game(await s.start()); const tab = await s.tab(s.host.cookie);
   s.host.socket.disconnect(); await ack(tab, 'room:resume', {});
   expect(game(await ack(s.guest.socket, 'room:resume', {})).participants.find((p) => p.role === 'HOST')!.presence).toBe('CONNECTED');
   tab.disconnect(); s.guest.socket.disconnect(); if (observer) s.third.socket.disconnect();
   await vi.waitFor(() => expect(s.repository.findById(s.room.id)!.participants.every((p) => p.presence === 'DISCONNECTED')).toBe(true));
   expect((await request(s.base).get('/api/rooms/current').set('Cookie', s.host.cookie)).body.room.participant.presence).toBe('DISCONNECTED');
-  for (const ms of [30_001, 120_001, 1_800_001]) s.time.advance(ms);
-  expect(s.time.pending).toBe(0); expect(s.repository.findById(s.room.id)!.status).toBe('IN_GAME');
+  s.time.elapse(1000);
+  expect(s.time.pending).toBe(1); expect(s.repository.findById(s.room.id)!.status).toBe('IN_GAME');
   const restored = await s.tab(s.host.cookie); const view = game(await ack(restored, 'room:resume', {}));
-  expect(view.game).toEqual(accepted.game); expect(view.settings).toEqual(accepted.settings); expect(view.participant.presence).toBe('CONNECTED');
+  expect(view.game.hand).toEqual(accepted.game.hand); expect(view.game.round).toEqual(accepted.game.round);
+  expect(view.game.interaction.turn!.timing!.endsAt).toBe(accepted.game.interaction.turn!.timing!.endsAt);
+  expect(view.settings).toEqual(accepted.settings); expect(view.participant.presence).toBe('CONNECTED');
   expect(s.permutation).toHaveBeenCalledTimes(1);
 });
 

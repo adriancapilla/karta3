@@ -12,14 +12,17 @@ export type RoundResultView = {
   ranking: { playerId: string; card: CardView; playValue: number; position: number }[];
   winnerPlayerId: string; nextOpenerPlayerId: string | null; awardedCardCount: number;
 };
+export type TurnTiming = { serverNow: number; startedAt: number; endsAt: number };
+export type TurnExpiredEvent = { id: string; roomId: string; gameId: string; roundNumber: number;
+  turnId: string; playerId: string; automatic: boolean };
 export type InitialGameView = {
-  id: string; phase: 'PLAYING' | 'FINAL_PHASE' | 'TIE_BREAK' | 'FINISHED'; execution: 'MANUAL_WITHOUT_TURN_TIMEOUT';
+  id: string; phase: 'PLAYING' | 'FINAL_PHASE' | 'TIE_BREAK' | 'FINISHED'; execution: 'TIMED_TURNS';
   attributes: { id: string; name: string; unit: string }[];
   round: { number: number; kind: 'BASE' | 'TIE_BREAK'; finalRoundIndex: number | null; playerIds: string[];
     state: 'WAITING_FOR_DIRECTION' | 'WAITING_FOR_PLAYS' | 'RESOLVED'; openerPlayerId: string; indicator: CardView;
-    activeAttributeId: string; direction: Direction | null; plays: { playerId: string; card: CardView; order: number; mode: 'MANUAL' }[] };
-  drawPileCount: number; hand: CardView[];
-  interaction: { stage: 'AWAITING_PLAY' | 'ROUND_REVIEW'; turn: { id: string; playerId: string } | null;
+    activeAttributeId: string; direction: Direction | null; plays: { playerId: string; card: CardView; order: number; mode: 'MANUAL' | 'TIMEOUT' | 'AUTOMATIC' }[] };
+  drawPileCount: number; hand: CardView[]; ownConsecutiveTimeouts: 0 | 1 | 2 | null;
+  interaction: { stage: 'AWAITING_PLAY' | 'ROUND_REVIEW'; turn: { id: string; playerId: string; timing: TurnTiming | null } | null;
     openingSelection: { direction: Direction | null } | null;
     review: { id: string; serverNow: number; endsAt: number; nextStage: 'ROUND' | 'TIE_BREAK' | 'RESULTS'; result: RoundResultView } | null };
 };

@@ -3,7 +3,7 @@ import { parseCookie } from 'cookie';
 import { Server } from 'socket.io';
 import type { CurrentRoomResponse, ResultsHomeEvent, RoomChange, RoomClosedEvent, RoomLeftEvent, RoomStateEvent, RoomView, SocketAck } from '../../shared/contracts/room.js';
 import type { GameChanges, SessionPresence } from '../application/ports.js';
-import type { RoundResolvedEvent } from '../../shared/contracts/game.js';
+import type { RoundResolvedEvent, TurnExpiredEvent } from '../../shared/contracts/game.js';
 import type { RoomActions } from '../application/roomUseCases.js';
 import { RoomError } from '../application/roomError.js';
 import type { MemorySessions } from './memorySessions.js';
@@ -113,12 +113,12 @@ export class SocketRoomChanges implements GameChanges, SessionPresence {
         } catch (error) { respond(ack, ackError(error)); }
       });
       socket.on('game:opening-direction', (payload: unknown, ack: unknown) => {
-        try { rooms.current(sessionId); respond(ack, { ok: true, room: rooms.openingDirection(sessionId, gameInput(payload, false)) }); }
-        catch (error) { respond(ack, ackError(error)); }
+        try { respond(ack, { ok: true, room: rooms.openingDirection(sessionId, gameInput(payload, false)) }); }
+        catch (error) { rooms.current(sessionId); respond(ack, ackError(error)); }
       });
       socket.on('game:play', (payload: unknown, ack: unknown) => {
-        try { rooms.current(sessionId); respond(ack, { ok: true, room: rooms.playCard(sessionId, gameInput(payload, true)) }); }
-        catch (error) { respond(ack, ackError(error)); }
+        try { respond(ack, { ok: true, room: rooms.playCard(sessionId, gameInput(payload, true)) }); }
+        catch (error) { rooms.current(sessionId); respond(ack, ackError(error)); }
       });
       socket.on('results:return-home', (payload: unknown, ack: unknown) => {
         try {
@@ -138,6 +138,9 @@ export class SocketRoomChanges implements GameChanges, SessionPresence {
   }
   roundResolved(sessionIds: string[], event: RoundResolvedEvent): void {
     for (const id of sessionIds) this.io?.to(sessionRoom(id)).emit('game:round-resolved', event);
+  }
+  turnExpired(sessionIds: string[], event: TurnExpiredEvent): void {
+    for (const id of sessionIds) this.io?.to(sessionRoom(id)).emit('game:turn-expired', event);
   }
   resultsHome(sessionId: string, event: ResultsHomeEvent): void { this.io?.to(sessionRoom(sessionId)).emit('results:home', event); }
   technicalFailure(): void { console.error('Fallo técnico al publicar o avanzar una revisión de partida. Recuperación disponible.'); }

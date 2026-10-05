@@ -3,7 +3,7 @@ import type { CurrentRoomResponse, LastResult, ResultsHomeEvent, ResultsRoomView
 import { api, ApiError } from './api';
 import { send, sendGame, socket, type RoomAck } from './socket';
 import { acceptsRoom, automaticEndMessage } from './roomState';
-import type { RoundResolvedEvent } from '../shared/contracts/game';
+import type { RoundResolvedEvent, TurnExpiredEvent } from '../shared/contracts/game';
 
 function roomPath(id: string) { return `/sala/${id}`; }
 function isRoomPath() { return window.location.pathname.startsWith('/sala/'); }
@@ -24,6 +24,9 @@ export function useRoomFlow() {
   const closed = useRef(new Set<string>());
   const seenChanges = useRef(new Set<string>());
   const seenResolutions = useRef(new Set<string>());
+  const seenTimeouts = useRef(new Set<string>());
+  const timeoutNoticeTimer = useRef<number | undefined>(undefined);
+  const [timeoutNotice, setTimeoutNotice] = useState('');
   const dirtyName = useRef(false);
   const pendingJoin = useRef<{ id: string; code: string; name: string } | null>(null);
   const pendingLeave = useRef<{ id: string; roomId: string; participantId: string } | null>(null);
@@ -49,6 +52,7 @@ export function useRoomFlow() {
     setConfirmClose(false);
     setConfirmLeave(false);
     setActivity('');
+    setTimeoutNotice('');
     navigate('/');
     setNotice(noticeText);
   }, []);
@@ -144,6 +148,19 @@ export function useRoomFlow() {
       showActivity(result.kind === 'TIE_BREAK' ? `${name(result.winnerPlayerId)} ganó el desempate`
         : `Ronda ${result.roundNumber}: ganó ${name(result.winnerPlayerId)} · +${result.awardedCardCount} puntos${result.nextOpenerPlayerId ? ` · abre ${name(result.nextOpenerPlayerId)}` : ' · fin de la partida base'}`);
     };
+    const onExpired = (event: TurnExpiredEvent) => {
+      const current = roomRef.current;
+      if (!active || !current || current.status !== 'IN_GAME' || current.id !== event.roomId || current.game.id !== event.gameId
+        || current.game.round.number !== event.roundNumber || seenTimeouts.current.has(event.id)) return;
+      const person = current.participants.find((item) => item.id === event.playerId);
+      if (!person) return;
+      const duplicates = current.participants.filter((item) => item.name === person.name);
+      const name = `${person.name}${duplicates.length > 1 ? ` (${duplicates.findIndex((item) => item.id === person.id) + 1})` : ''}`;
+      seenTimeouts.current.add(event.id);
+      window.clearTimeout(timeoutNoticeTimer.current);
+      setTimeoutNotice(`${name} agotó el tiempo; se jugó su carta más antigua${event.automatic ? ` · ${name} ha pasado a automático` : ''}`);
+      timeoutNoticeTimer.current = window.setTimeout(() => setTimeoutNotice(''), 5000);
+    };
     const onState = (event: RoomStateEvent) => {
       if (!active) return;
       const accepted = applyRoom(event.room);
@@ -189,6 +206,7 @@ export function useRoomFlow() {
     const onDisconnect = () => { if (active) setConnected(false); };
     socket.on('room:state', onState);
     socket.on('game:round-resolved', onResolved);
+    socket.on('game:turn-expired', onExpired);
     socket.on('results:home', onHome);
     socket.on('room:left', onLeft);
     socket.on('room:closed', onClosed);
@@ -207,8 +225,10 @@ export function useRoomFlow() {
     return () => {
       active = false;
       window.clearTimeout(noticeTimer.current);
+      window.clearTimeout(timeoutNoticeTimer.current);
       socket.off('room:state', onState);
       socket.off('game:round-resolved', onResolved);
+      socket.off('game:turn-expired', onExpired);
       socket.off('results:home', onHome);
       socket.off('room:left', onLeft);
       socket.off('room:closed', onClosed);
@@ -350,7 +370,7 @@ export function useRoomFlow() {
   }
 
   return {
-    room, loading, busy, joining, notice, activity, code, joinName, joinError, name, nameError, copyMessage, connected, confirmExpiry, applyRoom, applyCurrent,
+    room, loading, busy, joining, notice, activity: [activity, timeoutNotice].filter(Boolean).join(' · '), code, joinName, joinError, name, nameError, copyMessage, connected, confirmExpiry, applyRoom, applyCurrent,
     lastResult, resultError, openResult, returnHome,
     confirmClose, confirmLeave, refresh, createRoom, joinRoom, editName, saveName, copyCode,
     closeRoom, leaveRoom, setConfirmClose, setConfirmLeave,

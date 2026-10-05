@@ -114,16 +114,17 @@ it('B07 resultados/retorno reales por sesión: copia autorizada, nueva sala y l�
   expect(s.repository.findById(result.id)).toBeUndefined(); expect(s.host.homes).toHaveLength(1);
 });
 
-it('B07 conexiones reales y reloj controlado: varias pestañas/ausencia no ejecutan límites aplazados', async () => {
+it('B07/B08 conexiones reales y reloj controlado: varias pestañas/ausencia conservan mesa y plazo antes de vencer', async () => {
   const s = await boot(2, { observer: true }); const first = s.people[1]; const tab = await s.tab(first.cookie);
   const view = await s.own(first) as InitialGameRoomView;
   await socketAck(first.socket, 'game:opening-direction', { requestId: 'partial', roomId: view.id, gameId: view.game.id, roundNumber: 1, turnId: view.game.interaction.turn!.id, direction: 'LOW' });
   first.socket.disconnect(); await new Promise<void>((resolve) => setTimeout(resolve, 15));
   expect((await s.own(first) as InitialGameRoomView).participant.presence).toBe('CONNECTED'); tab.disconnect();
   s.people.forEach((person) => person.socket.disconnect()); await new Promise<void>((resolve) => setTimeout(resolve, 15));
-  s.time.advance(31 * 60_000); const away = await s.own(first) as InitialGameRoomView;
+  s.time.elapse(1000); const away = await s.own(first) as InitialGameRoomView;
   expect(away.game.hand).toEqual(view.game.hand); expect(away.game.interaction.openingSelection?.direction).toBe('LOW'); expect(away.participant.presence).toBe('DISCONNECTED');
-  expect(away.game.round.plays).toEqual([]); expect(s.time.pending).toBe(0);
+  expect(away.game.round.plays).toEqual([]); expect(s.time.pending).toBe(1);
+  expect(away.game.interaction.turn!.timing!.endsAt).toBe(view.game.interaction.turn!.timing!.endsAt);
   const restored = await s.tab(first.cookie); const ack = accepted(await socketAck(restored, 'room:resume', {})) as InitialGameRoomView;
   expect(ack.participant.presence).toBe('CONNECTED'); expect(ack.game.hand).toEqual(view.game.hand); expect(s.permutation).toHaveBeenCalledTimes(1);
 });

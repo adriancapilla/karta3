@@ -2,10 +2,11 @@ import { initialGameCases } from './initialGameCases.js';
 import { manualTrace } from './manualGameTrace.js';
 import type { InitialGameRoomView } from '../../shared/contracts/room.js';
 
-export function manualApplication(count = 2, options: { observer?: boolean; tie?: boolean; review?: 0 | 5; winners?: readonly number[] } = {}) {
+export function manualApplication(count = 2, options: { observer?: boolean; tie?: boolean; review?: 0 | 5; winners?: readonly number[]; turn?: 15 | 30 | 60 } = {}) {
   const prepared = manualTrace(count, options.winners); const f = initialGameCases({ fixture: prepared.fixture });
   f.configure({ field: 'reviewSeconds', value: options.review ?? 0 });
   f.configure({ field: 'forceTieBreak', value: options.tie ?? false });
+  if (options.turn) f.configure({ field: 'turnSeconds', value: options.turn });
   if (options.observer) f.configure({ field: 'hostPlays', value: false });
   f.select();
   for (let index = 0; index < count - Number(!options.observer); index++) f.join(`g${index}`);

@@ -5,10 +5,10 @@ import { api, ApiError } from './api';
 import { sendGame, type RoomAck } from './socket';
 
 export function gameSelectionContext(room: InitialGameRoomView): string {
-  return `${room.id}:${room.game.id}:${room.game.round.number}:${room.game.interaction.turn?.id ?? 'review'}:${room.participant.id}`;
+  return `${room.id}:${room.game.id}:${room.game.round.number}:${room.game.interaction.turn?.id ?? 'review'}:${room.participant.id}:${room.participant.playStatus}`;
 }
 
-export function useGameActions(room: InitialGameRoomView, connected: boolean, onRoom: (room: RoomView) => boolean, onCurrent: (result: CurrentRoomResponse) => void) {
+export function useGameActions(room: InitialGameRoomView, connected: boolean, onRoom: (room: RoomView) => boolean, onCurrent: (result: CurrentRoomResponse) => void, expired = false) {
   const key = gameSelectionContext(room);
   const [selection, setSelection] = useState<{ key: string; cardId: string } | null>(null);
   const [pending, setPending] = useState<{ event: string; payload: PlayCardRequest | OpeningDirectionRequest; recovered: boolean } | null>(null);
@@ -18,11 +18,11 @@ export function useGameActions(room: InitialGameRoomView, connected: boolean, on
   const error = errorState?.key === key ? errorState.text : '';
   const setError = (text: string) => setErrorState({ key, text });
   const activePending = pending && pending.payload.roomId === room.id && pending.payload.gameId === room.game.id
-    && pending.payload.roundNumber === room.game.round.number && pending.payload.turnId === room.game.interaction.turn?.id ? pending : null;
-  const actor = room.game.interaction.stage === 'AWAITING_PLAY' && room.game.interaction.turn?.playerId === room.participant.id;
+    && room.participant.playStatus === 'ACTIVE' && pending.payload.roundNumber === room.game.round.number && pending.payload.turnId === room.game.interaction.turn?.id ? pending : null;
+  const actor = room.participant.playStatus === 'ACTIVE' && room.game.interaction.stage === 'AWAITING_PLAY' && room.game.interaction.turn?.playerId === room.participant.id;
   const selectedCard = actor && selection?.key === key && room.game.hand.some((card) => card.id === selection.cardId) ? selection.cardId : null;
   const opening = actor && room.game.interaction.openingSelection !== null;
-  const enabled = actor && connected && !busy && !activePending;
+  const enabled = actor && connected && !busy && !activePending && !expired;
 
   async function recover() {
     if (inFlight.current) return;
@@ -69,5 +69,5 @@ export function useGameActions(room: InitialGameRoomView, connected: boolean, on
     else void transmit('game:opening-direction', { ...context(), direction });
   }
   return { enabled, opening, selectedCard, busy, error, pending: activePending, chooseCard, chooseDirection, recover,
-    retry: () => { if (activePending?.recovered && connected) void transmit(activePending.event, activePending.payload); } };
+    retry: () => { if (activePending?.recovered && connected && !expired) void transmit(activePending.event, activePending.payload); } };
 }

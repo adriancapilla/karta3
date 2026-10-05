@@ -22,17 +22,20 @@ export function toInitialGameRoomView(room: Room, sessionId: string, serverNow =
   const cardView = (card: Card) => toCardView(room, card);
   const participants: GameParticipantView[] = room.participants.map((person) => ({ id: person.id, name: person.name,
     role: person.role, isPlayer: person.isPlayer, presence: person.presence === 'CONNECTED' ? 'CONNECTED' : 'DISCONNECTED',
-    score: person.isPlayer ? game.score(person.id) : null }));
+    score: person.isPlayer ? game.score(person.id) : null, playStatus: game.players.find((player) => player.id === person.id)?.status ?? null }));
   const participant = participants.find((person) => person.id === room.participantFor(sessionId)!.id)!;
   return { id: room.id, code: room.code, status: 'IN_GAME', revision: room.revision, participant, participants,
     settings: room.settings, selectedDeck: room.selectedDeck!, game: {
-      id: game.id, phase: game.phase, execution: 'MANUAL_WITHOUT_TURN_TIMEOUT', attributes: game.definition.attributes.map((attribute) => ({ ...attribute })),
+      id: game.id, phase: game.phase, execution: 'TIMED_TURNS', attributes: game.definition.attributes.map((attribute) => ({ ...attribute })),
       round: { number: game.round.number, kind: game.round.kind, finalRoundIndex: game.round.finalRoundIndex, playerIds: [...game.round.playerIds], state: game.round.state, openerPlayerId: game.round.openerPlayerId,
         indicator: cardView(game.round.indicator), activeAttributeId: game.round.activeAttributeId, direction: game.round.direction,
         plays: game.round.plays.map((play) => ({ playerId: play.playerId, card: cardView(play.card), order: play.order, mode: play.mode })) },
       interaction: room.gameReview ? { stage: 'ROUND_REVIEW', turn: null, openingSelection: null,
         review: { id: room.gameReview.id, serverNow, endsAt: room.gameReview.unix, nextStage: game.resolution!.nextStage, result: toRoundResult(room) } }
-        : { stage: 'AWAITING_PLAY', turn: game.turn, openingSelection: game.round.plays.length === 0 && game.turn?.playerId === participant.id ? { direction: room.openingDirection } : null, review: null },
-      drawPileCount: game.drawPile.length, hand: game.players.find((player) => player.id === participant.id)?.hand.map(cardView) ?? []
+        : { stage: 'AWAITING_PLAY', turn: game.turn ? { ...game.turn, timing: room.gameTurn
+          ? { serverNow, startedAt: room.gameTurn.startedAt, endsAt: room.gameTurn.endsAt } : null } : null,
+          openingSelection: game.round.plays.length === 0 && game.turn?.playerId === participant.id && participant.playStatus === 'ACTIVE' ? { direction: room.openingDirection } : null, review: null },
+      drawPileCount: game.drawPile.length, hand: game.players.find((player) => player.id === participant.id)?.hand.map(cardView) ?? [],
+      ownConsecutiveTimeouts: game.players.find((player) => player.id === participant.id)?.consecutiveTimeouts ?? null
     } };
 }
