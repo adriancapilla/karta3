@@ -9,6 +9,7 @@ import { RoomError } from '../application/roomError.js';
 import type { MemorySessions } from './memorySessions.js';
 import { configurationInput, exactObject } from './configurationInput.js';
 import { gameInput } from './gameInput.js';
+import { botInput } from './botInput.js';
 
 const sessionRoom = (sessionId: string) => `session:${sessionId}`;
 const invalid = () => new RoomError('INVALID_INPUT', 'Los datos enviados no son válidos.');
@@ -104,6 +105,15 @@ export class SocketRoomChanges implements GameChanges, SessionPresence {
           respond(ack, { ok: true, room: rooms.configure(sessionId, payload.requestId, payload.roomId, configurationInput(payload.change)) });
         } catch (error) { respond(ack, ackError(error)); }
       });
+      for (const [event, type] of [['room:bot-add', 'ADD'], ['room:bot-difficulty', 'DIFFICULTY'], ['room:bot-rename', 'RENAME'], ['room:bot-remove', 'REMOVE']] as const) {
+        socket.on(event, (payload: unknown, ack: unknown) => {
+          try {
+            rooms.current(sessionId);
+            const input = botInput(payload, type);
+            respond(ack, { ok: true, ...rooms.bot(sessionId, input.requestId, input.roomId, input.operation) });
+          } catch (error) { respond(ack, ackError(error)); }
+        });
+      }
       socket.on('room:start', (payload: unknown, ack: (result: SocketAck<{ room: RoomView }>) => void) => {
         try {
           rooms.current(sessionId);

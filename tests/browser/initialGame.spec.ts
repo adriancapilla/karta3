@@ -165,7 +165,7 @@ test('B06-06 inicio pendiente y rechazo accesible; ack incierto recupera antes d
   try {
     let release: (() => void) | undefined;
     s.intercept((_payload, deliver, result) => { release = () => deliver(result); });
-    await choose(p.host); await expect(p.host.getByText('Espera la confirmación de tus cambios de configuración.')).toBeVisible();
+    await choose(p.host); await expect(p.host.getByText('Espera la confirmación de tus cambios de preparación.')).toBeVisible();
     await expect(p.host.getByRole('button', { name: 'Iniciar partida', exact: true })).toBeDisabled(); release!(); s.intercept(undefined); await ready(p.host);
     s.permutation(() => []); s.interceptStart(() => {});
     await p.host.getByRole('button', { name: 'Iniciar partida', exact: true }).click();

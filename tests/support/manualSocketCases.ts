@@ -10,6 +10,8 @@ import { prepareDecks } from '../../server/infrastructure/decks/catalog.js';
 import { MemoryRoomRepository } from '../../server/infrastructure/memoryRoomRepository.js';
 import { MemorySessions } from '../../server/infrastructure/memorySessions.js';
 import { manualTrace } from './manualGameTrace.js';
+import { botTrace } from './botTrace.js';
+import { botPlayPolicy } from '../../server/domain/botPlay.js';
 import { writeFixture, realImage } from './deckFixtures.js';
 import { ControlledTime } from './controlledTime.js';
 import { removeTestInstallation } from './compiledDeckServer.js';
@@ -23,13 +25,14 @@ export function accepted(result: SocketAck<{ room: RoomView }>): RoomView {
   if (!result.ok) throw new Error(`${result.error.code}: ${result.error.message}`);
   return result.room;
 }
-export async function manualSockets(count = 2, options: { observer?: boolean; tie?: boolean; review?: 0 | 5; winners?: readonly number[]; turn?: 15 | 30 | 60 } = {}) {
+export async function manualSockets(count = 2, options: { observer?: boolean; tie?: boolean; review?: 0 | 5; winners?: readonly number[]; turn?: 15 | 30 | 60; botSeed?: number } = {}) {
   const root = await fs.mkdtemp(path.join(os.tmpdir(), 'karta3-b04-b07-sockets-'));
-  const prepared = manualTrace(count, options.winners); const fixture = prepared.fixture;
+  const mixed = options.botSeed === undefined ? undefined : botTrace(count, options.botSeed);
+  const prepared = { ...manualTrace(count, options.winners), fixture: mixed?.fixture ?? manualTrace(count, options.winners).fixture }; const fixture = prepared.fixture;
   fixture.collection.cards[0].imageRef = 'imagenes/carta.png'; fixture.collection.cards[0].imageAlt = 'Imagen validada de traza manual';
   const directory = await writeFixture(root, fixture); await fs.mkdir(path.join(directory, 'imagenes')); await fs.writeFile(path.join(directory, 'imagenes/carta.png'), await realImage('png'));
   const loaded = await prepareDecks(root); const time = new ControlledTime(); const repository = new MemoryRoomRepository(); const sessions = new MemorySessions();
-  const permutation = vi.fn((ids: readonly string[]) => [...ids]); let code = 42;
+  const permutation = vi.fn((ids: readonly string[]) => ids.length === 58 && mixed ? mixed.permutation : [...ids]); let code = 42;
   const runtime = createRuntime({ repository, sessions, clock: time, scheduler: time, decks: loaded.catalog, deckVersions: loaded.catalog, gameDecks: loaded.catalog,
     permutation, codes: () => code++ });
   const server = createServer(runtime.app); const channel = runtime.attachRealtime(server);
@@ -48,14 +51,16 @@ export async function manualSockets(count = 2, options: { observer?: boolean; ti
     socket.on('game:turn-expired', (event) => expirations.push(event));
     return { cookie, socket, states, resolutions, homes, expirations, sessionId: sessions.get(cookie.split('=')[1])! };
   };
-  const people = []; for (let index = 0; index < count + Number(!!options.observer); index++) people.push(await session());
+  const people = []; for (let index = 0; index < (mixed ? 1 : count) + Number(!!options.observer); index++) people.push(await session());
   const host = people[0]; const room: RoomView = (await request(base).post('/api/rooms').set('Cookie', host.cookie).send({})).body.room;
   const config = (id: string, change: unknown) => socketAck(host.socket, 'room:configure', { requestId: id, roomId: room.id, change });
   if (options.observer) await config('observer', { field: 'hostPlays', value: false });
   await config('review', { field: 'reviewSeconds', value: options.review ?? 0 }); await config('tie', { field: 'forceTieBreak', value: options.tie ?? false });
   if (options.turn) await config('turn', { field: 'turnSeconds', value: options.turn });
+  const botAdds = [];
+  if (mixed) for (let index = 1; index < count; index++) botAdds.push(await socketAck<{ room: RoomView; botId: string }>(host.socket, 'room:bot-add', { requestId: `bot-${index}`, roomId: room.id }));
   for (let index = 1; index < people.length; index++) await socketAck(people[index].socket, 'room:join', { requestId: 'join', code: room.code, name: `Persona ${index}` });
-  await config('deck', { field: 'deck', value: { id: 'manual', contentVersion: 7 } });
+  await config('deck', { field: 'deck', value: { id: fixture.metadata.id, contentVersion: 7 } });
   const start = accepted(await socketAck(host.socket, 'room:start', { requestId: 'start', roomId: room.id })) as InitialGameRoomView;
   const own = async (person = host) => (await request(base).get('/api/rooms/current').set('Cookie', person.cookie)).body.room as RoomView;
   let n = 0;
@@ -64,16 +69,21 @@ export async function manualSockets(count = 2, options: { observer?: boolean; ti
     const current = await own() as InitialGameRoomView;
     const person = people.find((item) => sessions.get(item.cookie.split('=')[1]) === repository.findById(room.id)!.participants.find((p) => p.id === current.game.interaction.turn!.playerId)!.sessionId)!;
     const view = await own(person) as InitialGameRoomView;
-    const input = { requestId: `human-${++n}`, roomId: room.id, gameId: view.game.id, roundNumber: view.game.round.number, turnId: view.game.interaction.turn!.id,
-      cardId: view.game.hand[0].id, direction: view.game.round.direction ? null : 'HIGH' };
+    const game = repository.findById(room.id)!.game!;
+    const player = game.players.find((p) => p.id === view.participant.id)!;
+    const choice = mixed ? botPlayPolicy(player.hand, game.round.activeAttributeId, !game.round.plays.length, game.round.direction, 'HARD')
+      : { cardId: view.game.hand[0].id, direction: view.game.round.direction ? null : 'HIGH' };
+    const input = { requestId: `human-${++n}`, roomId: room.id, gameId: view.game.id, roundNumber: view.game.round.number, turnId: view.game.interaction.turn!.id, ...choice };
     const ack = accepted(await socketAck(person.socket, 'game:play', input)); inputs.push({ person, input, ack }); return ack;
   }
   async function complete() {
     while (repository.findById(room.id)!.status === 'IN_GAME') {
+      if (mixed) time.advance(0);
+      if (repository.findById(room.id)!.status !== 'IN_GAME') break;
       if (repository.findById(room.id)!.gameReview) time.advance((options.review ?? 0) * 1000); else await play();
     }
     await new Promise<void>((resolve) => setImmediate(resolve));
   }
-  return { base, root, runtime, channel, repository, sessions, time, people, host, prepared, start, room, own, play, complete, inputs, config, tab, session, permutation,
+  return { base, root, runtime, channel, repository, sessions, time, people, host, prepared, start, room, own, play, complete, inputs, config, tab, session, permutation, botAdds,
     stop: async () => { runtime.dispose(); clients.forEach((socket) => socket.disconnect()); await new Promise<void>((resolve) => channel.close(() => resolve())); await removeTestInstallation(root); } };
 }

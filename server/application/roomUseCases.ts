@@ -1,4 +1,4 @@
-import type { ConfigurationChange, CurrentRoomResponse, LastResult, ResultsRoomView, ReturnHomeRequest, RoomView } from '../../shared/contracts/room.js';
+import type { BotOperation, BotResponse, ConfigurationChange, CurrentRoomResponse, LastResult, ResultsRoomView, ReturnHomeRequest, RoomView } from '../../shared/contracts/room.js';
 import type { PublishedDeckVersions, PublishedGameDecks } from './deckCatalog.js';
 import type { CardPermutation, CodeCandidateSource, IdentifierGenerator, RoomRepository, RoomRequests } from './ports.js';
 import { Game, GameInitializationError } from '../domain/game.js';
@@ -22,6 +22,7 @@ export interface RoomActions extends Omit<GameActions, 'started'> {
   leave(sessionId: string, requestId: string, roomId: string, participantId: string): void;
   configure(sessionId: string, requestId: string, roomId: string, change: ConfigurationChange): RoomView;
   start(sessionId: string, requestId: string, roomId: string): RoomView;
+  bot(sessionId: string, requestId: string, roomId: string, operation: BotOperation): BotResponse;
 }
 
 const ALREADY = 'Ya estás en una sala. Sal de ella antes de crear otra o entrar en una distinta.';
@@ -227,6 +228,44 @@ export class RoomUseCases implements RoomActions {
     } catch (error) {
       if (error instanceof RoomError && !this.requests.get(sessionId, requestId)) this.requests.save(sessionId, requestId, {
         kind: 'CONFIGURE', signature, roomId, participantId: room.participantId, error: { code: error.code, message: error.message }
+      });
+      throw error;
+    }
+  }
+
+  bot(sessionId: string, requestId: string, roomId: string, operation: BotOperation): BotResponse {
+    const room = this.authorize(sessionId, roomId);
+    if (room.hostSessionId !== sessionId) throw new RoomError('FORBIDDEN', 'Solo el anfitrión puede gestionar bots.');
+    const kind = `BOT_${operation.type}` as 'BOT_ADD' | 'BOT_DIFFICULTY' | 'BOT_RENAME' | 'BOT_REMOVE';
+    const signature = JSON.stringify([roomId, operation.type, operation.type === 'ADD' ? null : operation.botId,
+      operation.type === 'RENAME' ? operation.name : operation.type === 'DIFFICULTY' ? operation.difficulty : null]);
+    const previous = this.requests.get(sessionId, requestId);
+    if (previous) {
+      this.checkReplay(previous.kind, previous.signature, kind, signature);
+      if (previous.error) throw new RoomError(previous.error.code, previous.error.message);
+      return { room: this.lifecycle.view(room, sessionId), botId: previous.botId! };
+    }
+    let botId = operation.type === 'ADD' ? '' : operation.botId;
+    try {
+      this.requireWaiting(room);
+      const now = this.lifecycle.clock.now();
+      let name = '';
+      let changed;
+      if (operation.type === 'ADD') {
+        if (room.playerCount >= 5) throw new RoomError('ROOM_FULL', 'No quedan plazas para añadir un bot.');
+        botId = this.createId(); room.addBot(botId, now); changed = true;
+      } else {
+        if (operation.type === 'REMOVE' && room.participants.some((person) => person.id === botId && person.kind === 'BOT')) name = displayName(room, botId);
+        changed = room.manageBot(operation, now);
+      }
+      if (changed) this.repository.save(room);
+      this.requests.save(sessionId, requestId, { kind, signature, roomId, participantId: room.participantId, botId });
+      if (changed) this.lifecycle.publish(room, operation.type === 'REMOVE'
+        ? { id: `${roomId}:${room.revision}`, kind: 'BOT_REMOVED', participantId: botId, name } : undefined);
+      return { room: this.lifecycle.view(room, sessionId), botId };
+    } catch (error) {
+      if (error instanceof RoomError && !this.requests.get(sessionId, requestId)) this.requests.save(sessionId, requestId, {
+        kind, signature, roomId, participantId: room.participantId, error: { code: error.code, message: error.message }
       });
       throw error;
     }

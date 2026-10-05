@@ -15,7 +15,7 @@
 .configuration-hint, .config-control p { color: #5b6578; font-size: 14px; line-height: 1.5; }
 .config-control { margin: 16px 0; }
 .config-control label { display: block; font-weight: 750; margin-bottom: 8px; }
-.config-control select { width: 100%; min-width: 0; min-height: 48px; border: 2px solid #bac4d5; border-radius: 12px; padding: 10px; font: inherit; background: #fff; color: #1c2540; }
+.config-control select, .bot-controls select { width: 100%; min-width: 0; min-height: 48px; border: 2px solid #bac4d5; border-radius: 12px; padding: 10px; font: inherit; background: #fff; color: #1c2540; }
 .config-control .check-label { display: flex; align-items: center; gap: 12px; min-height: 44px; }
 .check-label input { width: 22px; height: 22px; flex-shrink: 0; accent-color: #182b58; }
 .config-control .control-state:empty { display: none; }
@@ -49,3 +49,9 @@ select:focus-visible { outline: 3px solid #ed914f; outline-offset: 3px; }
 .card-values{width:100%;border-collapse:collapse;font-size:14px;table-layout:fixed}.card-values th,.card-values td{text-align:left;padding:8px 3px;border-bottom:1px solid #d4dbe8;overflow-wrap:anywhere}.card-values th:first-child{width:42%}.card-values thead th{font-size:13px}.active-attribute{background:#fff0d9}.active-label{display:block;font-size:12px;color:#765306}.card-details-button{width:100%;margin-top:14px;padding:8px}.indicator-compact{display:none}
 .card-details-dialog{border:1px solid #cbd3e2;border-radius:18px;padding:22px;width:min(480px,calc(100% - 28px));max-height:calc(100dvh - 36px);overflow:auto;color:#1c2540}.card-details-dialog::backdrop{background:#141d35ad}.card-details-dialog h2{font-size:22px;overflow-wrap:anywhere}.card-details-dialog>button{margin-top:20px}.card-characteristic,.card-note{line-height:1.5;overflow-wrap:anywhere}.swipe-hint{color:#5b6578;font-size:14px}
 @media(max-width:760px){.game-layout{grid-template-columns:minmax(0,1fr);gap:14px}.game-people,.game-plays,.game-indicator,.game-hand,.game-initial-state{grid-column:1;grid-row:auto}.game-plays{min-height:110px}.indicator-full{display:none}.indicator-compact{display:flex;gap:12px;align-items:center;justify-content:space-between}.indicator-compact strong{min-width:0}.hand-row .game-card{flex:0 0 220px}.game-panel{padding:16px}.game-players li{padding:8px 0}.game-shell header{margin-bottom:16px}.game-people .badge{padding:5px 9px}}
+.bot-controls { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; width: 100%; }
+.bot-controls label { flex: 1 1 8rem; margin: 0; }
+.bot-controls .danger-link { min-height: 48px; }
+.bot-name-dialog { width: min(28rem, calc(100vw - 2rem)); border: 1px solid var(--border, #ccc); border-radius: 1rem; padding: 1.25rem; max-height: calc(100dvh - 36px); overflow: auto; }
+.bot-name-dialog::backdrop { background: #0008; }
+.bot-name-dialog input { width: 100%; }

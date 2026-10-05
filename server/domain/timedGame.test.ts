@@ -11,7 +11,7 @@ function initial(oldest = 1) {
   fixture.collection.cards.forEach((card) => { card.values.atributo2.playValue = 59 - card.values.atributo1.playValue; });
   const deck = validatePackageFormat(fixture.metadata, fixture.collection, 'prueba').data!.definition;
   const card = deck.cards.find((item) => item.values.atributo1.playValue === oldest)!;
-  return new Game({ id: 'timed', deck, players: [{ id: 'a', name: 'Ana' }, { id: 'b', name: 'Ana' }],
+  return new Game({ id: 'timed', deck, players: [{ kind: 'HUMAN', id: 'a', name: 'Ana' }, { kind: 'HUMAN', id: 'b', name: 'Ana' }],
     settings: { turnTimeout: 15, forceTieBreak: false }, permutation: [card.id, ...deck.cards.filter((item) => item.id !== card.id).map((item) => item.id)] });
 }
 function conserved(game: Game) { expect(game.locations()).toHaveLength(58); expect(new Set(game.locations().map((card) => card.id)).size).toBe(58); }
@@ -34,7 +34,7 @@ describe('B08 T1 política pura de vencimiento', () => {
 function traced(count: number, winners?: readonly number[]) {
   const prepared = manualTrace(count, winners);
   const deck = validatePackageFormat(prepared.fixture.metadata, prepared.fixture.collection, 'manual').data!.definition;
-  return { prepared, game: new Game({ id: 'trace', deck, players: Array.from({ length: count }, (_, n) => ({ id: `p${n}`, name: 'Ana' })),
+  return { prepared, game: new Game({ id: 'trace', deck, players: Array.from({ length: count }, (_, n) => ({ kind: 'HUMAN' as const, id: `p${n}`, name: 'Ana' })),
     settings: { turnTimeout: 15, forceTieBreak: true }, permutation: deck.cards.map((card) => card.id) }) };
 }
 function move(game: Game, timeout: boolean, direction: 'HIGH' | 'LOW' = 'HIGH') {

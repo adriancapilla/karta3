@@ -16,7 +16,7 @@ export default function App() {
 
   if (flow.room.status === 'IN_GAME') return <GameScreen room={flow.room} connected={flow.connected} activity={flow.activity} onRoom={flow.applyRoom} onCurrent={(result) => flow.applyCurrent(result, flow.room!.id)} />;
   if (flow.room.status === 'RESULTS') return <ResultsScreen room={flow.room} activity={flow.activity} error={flow.resultError} busy={flow.busy} onHome={() => void flow.returnHome()} />;
-  return <WaitingScreen
+  return <WaitingScreen key={flow.room.id}
     room={flow.room}
     connected={flow.connected}
     onRoom={flow.applyRoom}

@@ -3,7 +3,7 @@ import type { InitialGameRoomView, RoomView } from '../../shared/contracts/room.
 
 export const readRoom = (page: Page): Promise<RoomView> => page.evaluate(async () => (await (await fetch('/api/rooms/current')).json()).room);
 export const readGame = async (page: Page) => await readRoom(page) as InitialGameRoomView;
-export async function manualTable(browser: Browser, base: string, options: { width?: number; count?: number; observer?: boolean; deckId?: string; version?: number; review?: number; tie?: boolean; turn?: 15 | 30 | 60; names?: readonly string[] } = {}) {
+export async function manualTable(browser: Browser, base: string, options: { width?: number; count?: number; observer?: boolean; deckId?: string; version?: number; review?: number; tie?: boolean; turn?: 15 | 30 | 60; names?: readonly string[]; bots?: readonly ('EASY' | 'HARD')[] } = {}) {
   const width = options.width ?? 1280; const count = options.count ?? 2;
   const contexts = await Promise.all(Array.from({ length: count + Number(!!options.observer) }, () => browser.newContext({ viewport: { width, height: 844 }, hasTouch: width < 760, isMobile: width < 760 })));
   const pages = await Promise.all(contexts.map((context) => context.newPage()));
@@ -11,6 +11,12 @@ export async function manualTable(browser: Browser, base: string, options: { wid
   const host = pages[0]; await host.getByRole('button', { name: 'Crear sala', exact: true }).click();
   const code = (await host.locator('.code').textContent())!;
   if (options.observer) await host.getByLabel('El anfitrión juega').uncheck();
+  for (const difficulty of options.bots ?? []) {
+    const count = await host.locator('.bot-controls select').count();
+    await host.getByRole('button', { name: 'Añadir bot', exact: true }).click();
+    await expect(host.locator('.bot-controls select')).toHaveCount(count + 1);
+    if (difficulty === 'EASY') { await host.locator('.bot-controls select').last().selectOption('EASY'); await expect(host.locator('.bot-controls select').last()).toHaveValue('EASY'); }
+  }
   for (let index = 1; index < pages.length; index++) {
     await pages[index].getByLabel('Código de sala').fill(code);
     await pages[index].getByLabel('Tu nombre', { exact: true }).fill(options.names?.[index - 1] ?? `Persona ${index}`);

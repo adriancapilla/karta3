@@ -18,10 +18,12 @@ export interface RoomRepository {
 }
 
 export type RequestRecord = {
-  kind: 'JOIN' | 'LEAVE' | 'CONFIGURE' | 'START' | 'OPENING_DIRECTION' | 'PLAY' | 'RETURN_HOME';
+  kind: 'JOIN' | 'LEAVE' | 'CONFIGURE' | 'START' | 'OPENING_DIRECTION' | 'PLAY' | 'RETURN_HOME'
+    | 'BOT_ADD' | 'BOT_DIFFICULTY' | 'BOT_RENAME' | 'BOT_REMOVE';
   signature: string;
   roomId: string;
   participantId: string;
+  botId?: string;
   error?: { code: RoomErrorCode; message: string };
 };
 

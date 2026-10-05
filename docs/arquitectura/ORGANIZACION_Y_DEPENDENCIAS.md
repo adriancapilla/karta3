@@ -71,7 +71,7 @@ karta3/
 └── tools/                  control de dependencias y sus casos negativos
 ```
 
-El directorio `server/domain/` contiene la validación pura de `Deck` B04 y el agregado `Game` B06/B07; no se creó vacío para T01. Su ejecución actual es manual humana; los requisitos futuros de bots/tiempos/automático no están implementados. `tools/decks.ts` delega a composición, que selecciona las mismas operaciones de infraestructura para comando, construcción y arranque. Una prueba cercana al módulo que comprueba es válida. Se mantiene un solo repositorio.
+El directorio `server/domain/` contiene la validación pura de `Deck` B04 y el agregado `Game` iniciado en B06/B07; no se creó vacío para T01. B08 añadió plazos y automático humano; B09 añade bots mediante políticas puras y la misma coordinación de ejecución, alineados en EASY/HARD por T02. Los apartados siguientes describen cada incremento y su alcance. `tools/decks.ts` delega a composición, que selecciona las mismas operaciones de infraestructura para comando, construcción y arranque. Una prueba cercana al módulo que comprueba es válida. Se mantiene un solo repositorio.
 
 ### Estado del primer bloque tras T01
 
@@ -84,7 +84,7 @@ Las carpetas nuevas se crean al implementar funciones nuevas o al extraer una re
 | Necesidad | Lugar responsable | Ejemplo de límite |
 |---|---|---|
 | Comparar cartas, resolver la ronda, atribuir cartas ganadas | Dominio | Un punto por **carta** ganada, no por ronda. |
-| Seleccionar jugada de bot fácil/normal o automático humano | Dominio | Recibe su mano y la información permitida; no consulta otros jugadores en infraestructura. |
+| Seleccionar jugada de bot Fácil/Difícil o automático humano | Dominio | Recibe su mano y la información permitida; no consulta otros jugadores en infraestructura. |
 | Preparar y resolver la ronda única de desempate | Dominio | Solo empatados en cabeza; cartas adicionales no cambian puntos ni puestos base. |
 | Crear sala, admitir participantes y bots, comprobar permisos | Aplicación | Coordina la preparación y consulta el dominio al iniciar la partida. |
 | Recibir una jugada o dirección parcial y relacionarla con identidad/turno | Aplicación | Verifica fase y delega el movimiento completo a `Game`. |
@@ -184,7 +184,30 @@ Comprobación por reglas puras, aplicación con tiempo controlado sin ejecutar c
 
 La descripción general TFM y la errata §24.2 corresponden a sus responsables; no se editan desde esta entrega. C09–C10 continúan parciales: no acreditan comprensión con usuarios, equilibrio o dispositivos físicos.
 
+<a id="incremento-de-bots-fácilnormal--b09"></a>
+
+### Incremento de bots Fácil/Difícil — B09 y T02
+
+B09 amplía preparación/ejecución B01–B08 con jugadores HUMAN/BOT discriminados. T02 alinea EASY/Fácil y HARD/Difícil; HARD es el predeterminado y conserva exactamente la política antes llamada NORMAL. NORMAL se rechaza sin alias; el algoritmo avanzado y otros niveles no están implementados. Los cierres B09 y del ajuste visual conservan su histórico. La descripción B08 anterior es histórica; actualmente las continuaciones comparten el mismo coordinador/planificador. Sin servicios de IA, registro anticipado, adaptadores nuevos o temporizador paralelo.
+
+| Pieza concreta | Responsabilidad y comprobación |
+|---|---|
+| `domain/botPlay.ts` | EASY/HARD puras y sin memoria, sobre mano propia en adquisición, atributo/dirección/apertura/dificultad. No recibe Game, cartas rivales ni mazo. EASY abre antigua favorable y no abre segunda mejor; HARD extrema distancia 0/59 con empate HIGH, o mejor oficial. Separada de autoPlay. Pruebas de extremos/empates/manos 1–3/información irrelevante y 324 decisiones capturadas de la base anterior. |
+| `domain/game.ts` | PlayerPreparation/InitialPlayer discriminan HUMAN (status/contador) y BOT (dificultad), sin campos humanos de bot en ejecución. Valida kind/nivel y aplica botPlay con modo BOT exclusivo. Misma conservación/puntos/orden/final/desempate; inactividad filtra solo HUMAN del roster base, aunque esté fuera de desempate reducido. Trazas legales con políticas reales, sin asignación de puntos. |
+| `application/room.ts` | Lista única de incorporación de invitados humanos/bots, host jugador último/observador aparte; capacidad cuenta reservas humanas. BotNumber creciente por incorporación aceptada, ID/nombre/nivel sin presencia/sesión. Gestiones efectivas renuevan espera, no reservas. startPlayers exige humano jugador y conexiones solo humanas; beginGame fija kind/niveles/orden. activateTurn solo HUMAN ACTIVE. |
+| `RoomUseCases` / `ports.ts` | Una operación bot discriminada para cuatro casos: vencimientos, identidad/host/fase/objetivo/capacidad, transición y registro síncronos. RoomRequests conserva tipo/firma/botId mínimo y replay proyecta al host actual, nunca al bot. Guarda antes de emitir; retirada publica BOT_REMOVED con nombre/sufijo anterior, sin room:left. No nuevo puerto o adaptador. |
+| `GameCoordinator` | machineStep reutiliza mapa/tareas/contexto/generación B08: BOT llama botPlay, HUMAN AUTOMATIC llama automaticPlay. Un movimiento por paso, cede a Scheduler, para en humano/revisión/resultado. BOT sin deadline/timeout. Revisión cero comunica antes de avanzar; positiva conserva límite. Pérdida de emisión no repite transición. |
+| `WaitingLifecycle`, repositorio/proyecciones | Presencia, cierres, asociaciones/índices y destinatarios solo HUMAN. Proyecciones explícitas kind/botDifficulty, bot role/presence/playStatus null y score; participante autenticado siempre HUMAN. Solo mano propia humana, observador sin mano, ningún contador privado ajeno. Resultado/retención/retorno siguen B07. |
+| `infrastructure/botInput.ts` / `socketRooms` | Decodificación estricta de cuatro eventos, claves requeridas/exactas, IDs/tipos/nivel; cookie/autenticación existentes. Invoca aplicación y entrega ack seguro con botId. Sin decisiones de estrategia/plazas/numeración en transporte ni endpoint de actuación BOT. |
+| Composición | Sin piezas nuevas: conecta los puertos/adaptadores existentes; una memoria, catálogo validado/instantánea, GameCoordinator, entropía y Clock/Scheduler por proceso. Genérica/ASSETS no cambian. |
+| `WaitingPlayers` / `useBotActions` / `participantNames` | Controles explícitos/dialog accesible y sufijos comunes. Pending por operación/bot/campo, payload inmutable, recuperación antes de confirmación explícita del mismo ID, sin cola ni reenvío. Error corregible conserva borrador; remoto no lo borra. WaitingScreen usa key por sala para invalidar contexto anterior. |
+| `GameScreen` / `ResultsScreen` / contratos | Reutilizan mesa/resultados con marcas Bot · Fácil/Difícil y valores EASY/HARD; sin gestión/control de bot al iniciar. TIMED_TURNS y modo BOT; timing/openingSelection null para bot. React muestra/envía, no decide cartas o resultado. |
+
+Fixtures completas temporales y permutaciones reproducibles en tests/support: seeds 2/3/56/98 con 2/3/4/5 jugadores. Las pruebas invocan botPlay y solo gestos legales humanos; cubren desempate con manos 3/2/1, cinco a 10 y solo bots empatados con humano ACTIVE fuera. HTTP/Socket reales inspeccionan claves y cartas por destinatario; navegador usa compilación vigente, 360/390/1280 y dos sesiones/pestañas. Montajes controlados y pruebas con adaptadores normales se distinguen en [B09 §11](../sdd/BLOQUE_09_BOTS.md). Control automático de imports/ciclos más revisión semántica de información limitada, atomicidad, índices humanos, privacidad y coordinación única. C09–C10 continúan parciales; TFM se mantiene sin editar y se entrega actualización descriptiva a sus responsables.
+
 ## 7. Comprobaciones y cambio arquitectónico
+
+T02 mantiene estos límites y las cuatro operaciones/acks B09. La captura `tests/fixtures/bot-policy-4917d96.json` pertenece solo a pruebas: esperaba EASY/NORMAL antes de editar, y `botPolicyAlignment.test.ts` compara decisiones congeladas con EASY/HARD sin otra política en producción. Validadores rechazan NORMAL/otros tipos/niveles; nombres como normalizeName/completedNormally y rondas/procesos normales se conservan. [T02](../sdd/BLOQUE_T02_ALINEACION_DIFICULTADES_BOTS.md) registra equivalencia, contrato y traslado a Arquitectura; no se editan fuentes generales TFM.
 
 Para cada bloque acordado:
 

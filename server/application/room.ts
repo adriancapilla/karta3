@@ -1,16 +1,20 @@
 import { RoomError } from './roomError.js';
 import type { TimePoint } from './waitingTime.js';
-import type { ConfigurationChange, RoomSettings } from '../../shared/contracts/room.js';
+import type { BotOperation, ConfigurationChange, RoomSettings } from '../../shared/contracts/room.js';
+import { isBotDifficulty } from '../domain/botPlay.js';
 import type { DeckSummary } from '../../shared/contracts/deck.js';
 import { publicDeckSummary } from './deckCatalog.js';
 import type { CardPresentation, GameDeckSnapshot } from './deckCatalog.js';
-import type { Game } from '../domain/game.js';
+import type { Game, PlayerPreparation } from '../domain/game.js';
 
 export const PRESENCE_GRACE_MS = 30_000;
 export const WAITING_EXPIRY_MS = 30 * 60_000;
 export const WARNING_BEFORE_MS = 60_000;
 export type WaitingDeadline = { kind: 'WARNING' | 'INACTIVITY' | 'ABSENCE'; at: number; generation: number; participantId?: string };
 type Presence = { connected: boolean; generation: number; absence?: { at: number; initial: boolean } };
+type Guest = { id: string; name: string } & (
+  { kind: 'HUMAN'; sessionId: string; botDifficulty: null }
+  | { kind: 'BOT'; sessionId?: never; botDifficulty: 'EASY' | 'HARD' });
 export type GameReview = Readonly<{ id: string; gameId: string; roundNumber: number; at: number; unix: number }>;
 export type GameTurnDeadline = Readonly<{ gameId: string; roundNumber: number; turnId: string; playerId: string;
   generation: number; started: number; at: number; startedAt: number; endsAt: number }>;
@@ -35,7 +39,8 @@ export class Room {
   readonly hostSessionId: string;
   readonly participantId: string;
   private participantName = 'Jugador 1';
-  private readonly guests: { id: string; sessionId: string; name: string }[] = [];
+  private readonly guests: Guest[] = [];
+  private botNumber = 0;
   private state: 'WAITING' | 'IN_GAME' | 'RESULTS' | 'CLOSED' = 'WAITING';
   private initialGame?: Game;
   private partialDirection: 'HIGH' | 'LOW' | null = null;
@@ -91,7 +96,8 @@ export class Room {
   get gameTaskGeneration() { return this.gameGeneration; }
   activateTurn(now: TimePoint): void {
     const game = this.initialGame!; const turn = game.turn;
-    if (this.state !== 'IN_GAME' || !turn || this.review || game.players.find((person) => person.id === turn.playerId)!.status !== 'ACTIVE') return;
+    const actor = turn && game.players.find((person) => person.id === turn.playerId);
+    if (this.state !== 'IN_GAME' || !turn || this.review || !actor || actor.kind !== 'HUMAN' || actor.status !== 'ACTIVE') return;
     if (this.turnDeadline?.turnId === turn.id) return;
     this.turnDeadline = Object.freeze({ gameId: game.id, roundNumber: game.round.number, turnId: turn.id,
       playerId: turn.playerId, generation: this.gameGeneration, started: now.monotonic,
@@ -125,27 +131,34 @@ export class Room {
   }
   get name(): string { return this.participantName; }
   get revision(): number { return this.roomRevision; }
-  get memberSessions(): string[] { return [...this.guests.map((guest) => guest.sessionId), this.hostSessionId]; }
+  get memberSessions(): string[] { return [...this.guests.flatMap((guest) => guest.kind === 'HUMAN' ? [guest.sessionId] : []), this.hostSessionId]; }
   get participants() {
-    return [...this.guests.map((guest) => ({ ...guest, role: 'GUEST' as const, isPlayer: true })),
-      { id: this.participantId, sessionId: this.hostSessionId, name: this.participantName, role: 'HOST' as const, isPlayer: this.roomSettings.hostPlays }]
-      .map((person) => ({ ...person, presence: this.presence.get(person.id)!.connected ? 'CONNECTED' as const
-        : this.state === 'IN_GAME' ? 'DISCONNECTED' as const : 'RECONNECTING' as const }));
+    return [...this.guests.map((guest) => guest.kind === 'BOT'
+      ? { ...guest, role: null, isPlayer: true as const, presence: null }
+      : { ...guest, role: 'GUEST' as const, isPlayer: true as const, presence: this.humanPresence(guest.id) }),
+      { id: this.participantId, sessionId: this.hostSessionId, name: this.participantName, kind: 'HUMAN' as const,
+        botDifficulty: null, role: 'HOST' as const, isPlayer: this.roomSettings.hostPlays, presence: this.humanPresence(this.participantId) }];
+  }
+  private humanPresence(id: string) {
+    return this.presence.get(id)!.connected ? 'CONNECTED' as const : this.state === 'IN_GAME' ? 'DISCONNECTED' as const : 'RECONNECTING' as const;
   }
   get settings() { return { ...this.roomSettings }; }
   get selectedDeck() { return this.deck ? publicDeckSummary(this.deck) : null; }
   get playerCount() { return this.guests.length + Number(this.roomSettings.hostPlays); }
 
-  participantFor(sessionId: string) { return this.participants.find((person) => person.sessionId === sessionId); }
+  participantFor(sessionId: string) { return this.participants.find((person): person is Extract<typeof person, { kind: 'HUMAN' }> => person.kind === 'HUMAN' && person.sessionId === sessionId); }
 
   startPlayers() {
     this.ensureWaiting();
     if (!this.deck) throw new RoomError('START_NOT_READY', 'Selecciona una baraja antes de iniciar.');
-    if (this.playerCount < 2 || this.playerCount > 5) throw new RoomError('START_NOT_READY', 'Se necesitan entre dos y cinco jugadores humanos.');
-    if (this.participants.some((person) => person.presence !== 'CONNECTED')) {
+    if (this.playerCount < 2 || this.playerCount > 5) throw new RoomError('START_NOT_READY', 'Se necesitan entre dos y cinco jugadores.');
+    if (!this.participants.some((person) => person.kind === 'HUMAN' && person.isPlayer)) throw new RoomError('START_NOT_READY', 'Debe jugar al menos una persona humana. El observador no cuenta.');
+    if (this.participants.some((person) => person.kind === 'HUMAN' && person.presence !== 'CONNECTED')) {
       throw new RoomError('START_NOT_READY', 'Todos los participantes deben estar conectados, también el anfitrión observador.');
     }
-    return this.participants.filter((person) => person.isPlayer).map((person) => ({ id: person.id, name: person.name }));
+    return this.participants.filter((person) => person.isPlayer).map((person): PlayerPreparation => person.kind === 'BOT'
+      ? { id: person.id, name: person.name, kind: 'BOT', botDifficulty: person.botDifficulty }
+      : { id: person.id, name: person.name, kind: 'HUMAN' });
   }
 
   beginGame(game: Game, snapshot: GameDeckSnapshot): void {
@@ -153,7 +166,8 @@ export class Room {
     if (game.id === this.id || game.definition.id !== this.roomSettings.deckId
       || snapshot.summary.id !== this.roomSettings.deckId || snapshot.summary.contentVersion !== this.roomSettings.deckContentVersion
       || game.settings.turnTimeout !== this.roomSettings.turnSeconds || game.settings.forceTieBreak !== this.roomSettings.forceTieBreak
-      || players.some((person, index) => game.players[index]?.id !== person.id || game.players[index]?.displayName !== person.name) || game.players.length !== players.length
+      || players.some((person, index) => game.players[index]?.id !== person.id || game.players[index]?.displayName !== person.name
+        || game.players[index]?.kind !== person.kind || game.players[index]?.botDifficulty !== person.botDifficulty) || game.players.length !== players.length
       || snapshot.presentation.length !== 58 || new Set(snapshot.presentation.map((card) => card.id)).size !== 58
       || game.definition.cards.some((card) => !snapshot.presentation.some((image) => image.id === card.id))) {
       throw new RoomError('INTERNAL_ERROR', 'No se pudo preparar la partida. Inténtalo de nuevo.');
@@ -186,7 +200,7 @@ export class Room {
     const name = normalizeName(value);
     if (this.participantFor(sessionId)) throw new Error('La sesión ya pertenece a la sala.');
     if (this.playerCount >= 5) throw new RoomError('ROOM_FULL', 'La sala está llena. Puedes volver a intentarlo cuando quede una plaza.');
-    this.guests.push({ id, sessionId, name });
+    this.guests.push({ id, sessionId, name, kind: 'HUMAN', botDifficulty: null });
     this.addPresence(id, connected, now);
     this.renew(now);
     this.roomRevision += 1;
@@ -194,6 +208,32 @@ export class Room {
 
   rename(value: unknown, now: TimePoint): void {
     this.renameFor(this.hostSessionId, value, now);
+  }
+
+  /** Sin identidad/conexión de sesión: solo miembros humanos generan reservas e índices. */
+  addBot(id: string, now: TimePoint): void {
+    this.ensureWaiting();
+    if (this.playerCount >= 5) throw new RoomError('ROOM_FULL', 'No quedan plazas para añadir un bot.');
+    if (!id || this.participants.some((person) => person.id === id)) throw new Error('Identidad interna de bot inválida.');
+    this.guests.push({ id, name: `Bot ${++this.botNumber}`, kind: 'BOT', botDifficulty: 'HARD' });
+    this.renew(now); this.roomRevision++;
+  }
+  manageBot(operation: Exclude<BotOperation, { type: 'ADD' }>, now: TimePoint): boolean {
+    this.ensureWaiting();
+    const index = this.guests.findIndex((person) => person.id === operation.botId && person.kind === 'BOT');
+    const bot = this.guests[index];
+    if (!bot || bot.kind !== 'BOT') throw new RoomError('BOT_NOT_AVAILABLE', 'Ese bot ya no está disponible en esta sala.');
+    if (operation.type === 'REMOVE') this.guests.splice(index, 1);
+    else if (operation.type === 'DIFFICULTY') {
+      if (!isBotDifficulty(operation.difficulty)) throw new RoomError('INVALID_INPUT', 'Elige Fácil o Difícil.');
+      if (bot.botDifficulty === operation.difficulty) return false;
+      bot.botDifficulty = operation.difficulty;
+    } else {
+      const name = normalizeName(operation.name);
+      if (bot.name === name) return false;
+      bot.name = name;
+    }
+    this.renew(now); this.roomRevision++; return true;
   }
 
   configure(change: ConfigurationChange, selected: DeckSummary | null, now: TimePoint): boolean {
@@ -243,7 +283,7 @@ export class Room {
     const name = normalizeName(value);
     if (person.name === name) return false;
     if (sessionId === this.hostSessionId) this.participantName = name;
-    else this.guests.find((guest) => guest.sessionId === sessionId)!.name = name;
+    else this.guests.find((guest) => guest.kind === 'HUMAN' && guest.sessionId === sessionId)!.name = name;
     this.renew(now);
     this.roomRevision += 1;
     return true;
@@ -260,12 +300,13 @@ export class Room {
       throw new Error('Ausencia no vencida de un invitado.');
     }
     const person = this.participants.find((item) => item.id === deadline.participantId)!;
+    if (person.kind !== 'HUMAN') throw new Error('Una ausencia no pertenece a un bot.');
     this.removeGuest(person.sessionId, person.id);
   }
 
   private removeGuest(sessionId: string, participantId: string): { id: string; name: string } {
     this.ensureWaiting();
-    const index = this.guests.findIndex((guest) => guest.sessionId === sessionId && guest.id === participantId);
+    const index = this.guests.findIndex((guest) => guest.kind === 'HUMAN' && guest.sessionId === sessionId && guest.id === participantId);
     if (index < 0) throw new RoomError('FORBIDDEN', 'No tienes permiso para esta sala.');
     const [guest] = this.guests.splice(index, 1);
     this.presence.delete(guest.id);

@@ -168,6 +168,7 @@ export function useRoomFlow() {
         seenChanges.current.add(event.change.id);
         showActivity(event.change.kind === 'RECONNECTED' ? `${event.change.name} ha recuperado la conexión`
           : event.change.kind === 'PRESENCE_EXPIRED' ? `${event.change.name} no recuperó la conexión; su plaza ha quedado libre`
+          : event.change.kind === 'BOT_REMOVED' ? `${event.change.name} ha sido retirado; su plaza ha quedado libre`
           : `${event.change.name} ha salido de la sala`);
       }
     };

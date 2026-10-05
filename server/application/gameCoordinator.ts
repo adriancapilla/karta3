@@ -28,7 +28,7 @@ export class GameCoordinator implements GameActions {
     for (const room of this.repository.allActive()) {
       if (room.status === 'IN_GAME' && room.gameReview && room.gameReview.at <= this.clock.now().monotonic) this.completeReview(room, room.gameReview.id);
       else if (room.status === 'IN_GAME' && room.gameTurn && room.gameTurn.at <= this.clock.now().monotonic) this.expireTurn(room, room.gameTurn.turnId);
-      else if (room.status === 'IN_GAME' && !room.gameReview && !room.gameTurn && room.game!.turn) this.automaticStep(room, room.game!.turn!.id, room.gameTaskGeneration);
+      else if (room.status === 'IN_GAME' && !room.gameReview && !room.gameTurn && room.game!.turn) this.machineStep(room, room.game!.turn!.id, room.gameTaskGeneration);
       else if (room.status === 'RESULTS' && room.retention!.at <= this.clock.now().monotonic) this.expire(room);
     }
   }
@@ -50,13 +50,15 @@ export class GameCoordinator implements GameActions {
       () => this.expireTurn(room, deadline.turnId));
     else {
       const turn = room.game!.turn!; const generation = room.gameTaskGeneration;
-      this.setTask(room, `${room.game!.id}:${turn.id}:automatic:${generation}`, 0, () => this.automaticStep(room, turn.id, generation));
+      this.setTask(room, `${room.game!.id}:${turn.id}:machine:${generation}`, 0, () => this.machineStep(room, turn.id, generation));
     }
   }
-  private automaticStep(room: Room, turnId: string, generation: number): void {
+  private machineStep(room: Room, turnId: string, generation: number): void {
     if (this.stopped || room.status !== 'IN_GAME' || room.gameReview || room.gameTurn || room.gameTaskGeneration !== generation
-      || room.game!.turn?.id !== turnId || room.game!.players.find((person) => person.id === room.game!.turn!.playerId)?.status !== 'AUTOMATIC') return;
-    room.applyGame(room.game!.automaticPlay(room.game!.turn!.playerId));
+      || room.game!.turn?.id !== turnId) return;
+    const actor = room.game!.players.find((person) => person.id === room.game!.turn!.playerId)!;
+    if (actor.kind !== 'BOT' && actor.status !== 'AUTOMATIC') return;
+    room.applyGame(actor.kind === 'BOT' ? room.game!.botPlay(actor.id) : room.game!.automaticPlay(actor.id));
     this.afterPlay(room); this.repository.save(room);
     try {
       this.publish(room);
