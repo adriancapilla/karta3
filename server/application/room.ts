@@ -14,7 +14,7 @@ export type WaitingDeadline = { kind: 'WARNING' | 'INACTIVITY' | 'ABSENCE'; at: 
 type Presence = { connected: boolean; generation: number; absence?: { at: number; initial: boolean } };
 type Guest = { id: string; name: string } & (
   { kind: 'HUMAN'; sessionId: string; botDifficulty: null }
-  | { kind: 'BOT'; sessionId?: never; botDifficulty: 'EASY' | 'NORMAL' });
+  | { kind: 'BOT'; sessionId?: never; botDifficulty: 'EASY' | 'HARD' });
 export type GameReview = Readonly<{ id: string; gameId: string; roundNumber: number; at: number; unix: number }>;
 export type GameTurnDeadline = Readonly<{ gameId: string; roundNumber: number; turnId: string; playerId: string;
   generation: number; started: number; at: number; startedAt: number; endsAt: number }>;
@@ -215,7 +215,7 @@ export class Room {
     this.ensureWaiting();
     if (this.playerCount >= 5) throw new RoomError('ROOM_FULL', 'No quedan plazas para añadir un bot.');
     if (!id || this.participants.some((person) => person.id === id)) throw new Error('Identidad interna de bot inválida.');
-    this.guests.push({ id, name: `Bot ${++this.botNumber}`, kind: 'BOT', botDifficulty: 'NORMAL' });
+    this.guests.push({ id, name: `Bot ${++this.botNumber}`, kind: 'BOT', botDifficulty: 'HARD' });
     this.renew(now); this.roomRevision++;
   }
   manageBot(operation: Exclude<BotOperation, { type: 'ADD' }>, now: TimePoint): boolean {
@@ -225,7 +225,7 @@ export class Room {
     if (!bot || bot.kind !== 'BOT') throw new RoomError('BOT_NOT_AVAILABLE', 'Ese bot ya no está disponible en esta sala.');
     if (operation.type === 'REMOVE') this.guests.splice(index, 1);
     else if (operation.type === 'DIFFICULTY') {
-      if (!isBotDifficulty(operation.difficulty)) throw new RoomError('INVALID_INPUT', 'Elige Fácil o Normal.');
+      if (!isBotDifficulty(operation.difficulty)) throw new RoomError('INVALID_INPUT', 'Elige Fácil o Difícil.');
       if (bot.botDifficulty === operation.difficulty) return false;
       bot.botDifficulty = operation.difficulty;
     } else {

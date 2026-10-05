@@ -5,7 +5,7 @@ import { deckFixture } from './deckFixtures.js';
 
 /** Entropía sustituida solo en pruebas. Paquete completo validado y actuaciones legales:
  * BOT siempre llama a Game.botPlay; el humano confirma elecciones reproducibles de su propia mano. */
-export function botTrace(count: number, seed: number, difficulty: BotDifficulty = 'NORMAL') {
+export function botTrace(count: number, seed: number, difficulty: BotDifficulty = 'HARD') {
   const fixture = deckFixture('mixta');
   const definition = validatePackageFormat(fixture.metadata, fixture.collection, 'mixta').data!.definition;
   let state = seed;
@@ -22,6 +22,6 @@ export function botTrace(count: number, seed: number, difficulty: BotDifficulty 
 export function mixedMove(game: Game) {
   const player = game.players.find((person) => person.id === game.turn!.playerId)!;
   if (player.kind === 'BOT') return game.botPlay(player.id);
-  const choice = botPlayPolicy(player.hand, game.round.activeAttributeId, game.round.plays.length === 0, game.round.direction, 'NORMAL');
+  const choice = botPlayPolicy(player.hand, game.round.activeAttributeId, game.round.plays.length === 0, game.round.direction, 'HARD');
   return game.play(player.id, choice.cardId, choice.direction);
 }

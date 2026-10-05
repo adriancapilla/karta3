@@ -1,7 +1,7 @@
 import type { Card } from './deck.js';
 
-export type BotDifficulty = 'EASY' | 'NORMAL';
-export function isBotDifficulty(value: unknown): value is BotDifficulty { return value === 'EASY' || value === 'NORMAL'; }
+export type BotDifficulty = 'EASY' | 'HARD';
+export function isBotDifficulty(value: unknown): value is BotDifficulty { return value === 'EASY' || value === 'HARD'; }
 
 /** Entrada limitada a mano propia en adquisición y datos públicos necesarios. Sin memoria de rivales. */
 export function botPlayPolicy(hand: readonly Card[], attribute: string, opening: boolean,
@@ -17,5 +17,5 @@ export function botPlayPolicy(hand: readonly Card[], attribute: string, opening:
     return { cardId: card.id, direction: value(card) <= 29 ? 'LOW' : 'HIGH' };
   }
   const ordered = [...hand].sort((a, b) => (value(a) - value(b)) * (direction === 'HIGH' ? -1 : 1));
-  return { cardId: ordered[difficulty === 'NORMAL' || hand.length === 1 ? 0 : 1].id, direction: null };
+  return { cardId: ordered[difficulty === 'HARD' || hand.length === 1 ? 0 : 1].id, direction: null };
 }

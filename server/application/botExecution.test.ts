@@ -13,7 +13,7 @@ function setup(count = 3, seed = 3, review: 0 | 5 = 0) {
   const start = (id = 'start') => f.start(id) as InitialGameRoomView;
   const human = () => {
     const game = f.room.game!; const player = game.players.find((person) => person.id === game.turn!.playerId)!;
-    const choice = botPlayPolicy(player.hand, game.round.activeAttributeId, !game.round.plays.length, game.round.direction, 'NORMAL');
+    const choice = botPlayPolicy(player.hand, game.round.activeAttributeId, !game.round.plays.length, game.round.direction, 'HARD');
     return f.rooms.playCard('host', { requestId: `human-${++n}`, roomId: f.room.id, gameId: game.id, roundNumber: game.round.number, turnId: game.turn!.id, ...choice });
   };
   const complete = () => {
@@ -36,7 +36,7 @@ it.each([2, 3, 4, 5])('B09 P2 inicio único %i mixtos fija preparación, BOT sin
   expect(f.bot({ type: 'ADD' }, 'bot-1').botId).toBe(f.added[0].botId); // prepare puede procesar un paso; nunca vista BOT
   f.time.advance(0); expect(f.room.game!.turn!.playerId).toBe(f.room.participantId); expect(f.room.gameTurn!.playerId).toBe(f.room.participantId);
   expect(f.room.game!.round.plays.map((play) => play.mode)).toEqual(Array(count - 1).fill('BOT'));
-  expect(frozen.players.filter((p) => p.kind === 'BOT').map((p) => p.botDifficulty)).toEqual(Array(count - 1).fill('NORMAL'));
+  expect(frozen.players.filter((p) => p.kind === 'BOT').map((p) => p.botDifficulty)).toEqual(Array(count - 1).fill('HARD'));
   expect(f.permutation).toHaveBeenCalledTimes(1); expect(f.start().game.id).toBe(first.game.id);
 });
 it('B09 E5 solo BOT bloqueado; observador/invitado humano inicia, exige conexión humana y conserva índices humanos', () => {

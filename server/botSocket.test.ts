@@ -9,6 +9,10 @@ afterEach(async () => { await stop?.(); stop = undefined; });
 const boot = async (count = 3, observer = false, review: 0 | 5 = 0) => { const s = await manualSockets(count, { botSeed: ({ 2: 2, 3: 3, 4: 56, 5: 98 })[count], observer, tie: true, review, turn: 15 }); stop = s.stop; return s; };
 function privacy(view: RoomView, ids: string[]) {
   expect(view.participant.kind).toBe('HUMAN'); expect(view.participant.botDifficulty).toBeNull();
+  for (const person of view.participants) {
+    if (person.kind === 'BOT') expect(['EASY', 'HARD']).toContain(person.botDifficulty);
+    else expect(person.botDifficulty).toBeNull();
+  }
   if (view.status === 'IN_GAME') {
     const visible = [view.game.round.indicator.id, ...view.game.hand.map((p) => p.id), ...view.game.round.plays.map((p) => p.card.id)];
     assertGamePrivacy(view, view.game.hand.map((p) => p.id), ids.filter((id) => !visible.includes(id)), (condition, reason) => expect(condition, reason).toBe(true));
@@ -40,6 +44,36 @@ it.each([2, 3, 4, 5])('B09 HTTP/Socket reales %i mixtos: políticas BOT, partida
   const newAction = await socketAck(tab, 'room:bot-remove', { requestId: 'after', roomId: s.room.id, botId: bot.id });
   expect(newAction).toMatchObject({ ok: false, error: { code: 'GAME_FINISHED' } });
 });
+it('T02 espera con sockets reales: HARD inicial, EASY/HARD aceptados, cliente NORMAL y tipos/campos falsos rechazados sin efectos', async () => {
+  const s = await boot(); const host = await s.session(); const tab = await s.tab(host.cookie); const guest = await s.session();
+  const room = (await request(s.base).post('/api/rooms').set('Cookie', host.cookie).send({})).body.room as RoomView;
+  accepted(await socketAck(guest.socket, 'room:join', { requestId: 'join', code: room.code, name: 'Persona' }));
+  const add = await socketAck<BotResponse>(host.socket, 'room:bot-add', { requestId: 'add', roomId: room.id });
+  expect(add.ok).toBe(true); if (!add.ok) return;
+  expect(add.room.participants.find((p) => p.id === add.botId)?.botDifficulty).toBe('HARD');
+  const input = { requestId: 'invalid', roomId: room.id, botId: add.botId, difficulty: 'HARD' };
+  const invalids: object[] = ['NORMAL', 'UNKNOWN', 'hard', 'easy', true, 1, null].map((difficulty) => ({ ...input, difficulty }));
+  invalids.push({ ...input, extra: 1 });
+  for (const field of Object.keys(input)) { const absent: Record<string, unknown> = { ...input }; delete absent[field]; invalids.push(absent); }
+  const waiting = s.repository.findById(room.id)!; const before = waiting.participants; const revision = waiting.revision; const expiry = waiting.lifecycle(0).expiresAt;
+  s.time.elapse(1000);
+  for (const invalid of invalids) {
+    const ack = await socketAck(tab, 'room:bot-difficulty', invalid);
+    expect(ack).toMatchObject({ ok: false, error: { code: 'INVALID_INPUT' } });
+    expect(Object.keys(ack).sort()).toEqual(['error', 'ok']);
+    if (!ack.ok) expect(Object.keys(ack.error).sort()).toEqual(['code', 'message']);
+    expect(waiting.participants).toEqual(before); expect(waiting.revision).toBe(revision); expect(waiting.lifecycle(0).expiresAt).toBe(expiry);
+  }
+  for (const difficulty of ['EASY', 'HARD'] as const) {
+    const ack = await socketAck<BotResponse>(tab, 'room:bot-difficulty', { ...input, requestId: difficulty, difficulty });
+    expect(ack.ok).toBe(true); if (ack.ok) expect(ack.room.participants.find((p) => p.id === add.botId)?.botDifficulty).toBe(difficulty);
+  }
+  const current = (await request(s.base).get('/api/rooms/current').set('Cookie', guest.cookie)).body.room as RoomView;
+  expect(current.participants.find((p) => p.id === add.botId)?.botDifficulty).toBe('HARD');
+  expect(await socketAck(guest.socket, 'room:bot-difficulty', { ...input, requestId: 'guest' })).toMatchObject({ ok: false, error: { code: 'FORBIDDEN' } });
+  const replay = await socketAck<BotResponse>(tab, 'room:bot-add', { requestId: 'add', roomId: room.id });
+  expect(replay.ok).toBe(true); if (replay.ok) expect(replay.room.participant.id).toBe(add.room.participant.id);
+});
 it('B09 conexiones reales sin clientes: BOT/HUMAN automático terminan por inactividad y se recupera resultado', async () => {
   const s = await boot(3, false, 5); s.people.forEach((p) => p.socket.disconnect());
   await expect.poll(() => s.channel.engine.clientsCount).toBe(0);
@@ -54,7 +88,7 @@ it('B09 canales reales: host dos pestañas, huésped/tercero/sesión ausente; en
   const s = await boot(2, true); const tab = await s.tab(s.host.cookie); const third = await s.session();
   const bot = s.start.participants.find((p) => p.kind === 'BOT')!;
   for (const person of [s.people[1], third]) expect(await socketAck(person.socket, 'room:bot-remove', { requestId: 'deny', roomId: s.room.id, botId: bot.id })).toMatchObject({ ok: false, error: { code: 'FORBIDDEN' } });
-  for (const invalid of [{ requestId: 'extra', roomId: s.room.id, botId: bot.id, difficulty: 'NORMAL', extra: 1 }, { requestId: 'hard', roomId: s.room.id, botId: bot.id, difficulty: 'HARD' }]) {
+  for (const invalid of [{ requestId: 'extra', roomId: s.room.id, botId: bot.id, difficulty: 'HARD', extra: 1 }, { requestId: 'legacy', roomId: s.room.id, botId: bot.id, difficulty: 'NORMAL' }]) {
     expect(await socketAck(tab, 'room:bot-difficulty', invalid)).toMatchObject({ ok: false, error: { code: 'INVALID_INPUT' } });
   }
   const replay = await socketAck<BotResponse>(tab, 'room:bot-add', { requestId: 'bot-1', roomId: s.room.id });

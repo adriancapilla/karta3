@@ -26,7 +26,7 @@ function base(game: Game, inspect: (game: Game) => void = conserve) {
   }
   return game;
 }
-it.each([2, 3, 4, 5].flatMap((count) => ['EASY', 'NORMAL'].map((difficulty) => ({ count, difficulty: difficulty as 'EASY' | 'NORMAL' }))))(
+it.each([2, 3, 4, 5].flatMap((count) => ['EASY', 'HARD'].map((difficulty) => ({ count, difficulty: difficulty as 'EASY' | 'HARD' }))))(
   'B09 P2 completa $count mixtos con política $difficulty, conservación/adquisición/final y vencedor', ({ count, difficulty }) => {
     const prepared = botTrace(count, 17, difficulty); const final: { round: number; size: number; indicator: string }[] = [];
     let game = base(prepared.game, (next) => {
@@ -74,8 +74,18 @@ it('B09 discrimina kind/nivel en ejecución; nadie juega manual/timeout por un b
   expect(() => game.play(bot.id, bot.hand[0].id, 'HIGH')).toThrow('INVALID_INPUT');
   expect(() => game.timeout(bot.id, null)).toThrow('INVALID_INPUT'); expect(() => game.automaticPlay(bot.id)).toThrow('INVALID_INPUT');
   const human = game.botPlay(bot.id); expect(() => human.botPlay('p1')).toThrow('INVALID_INPUT');
-  for (const players of [prepared.players.map((p) => ({ ...p, kind: 'ALIEN' })), prepared.players.map((p) => ({ ...p, kind: 'BOT', botDifficulty: 'HARD' })), prepared.players.map((p) => ({ ...p, kind: 'BOT', botDifficulty: 'NORMAL' }))]) {
-    expect(() => new Game({ id: 'bad', deck: prepared.definition, players: players as PlayerPreparation[], settings: game.settings, permutation: prepared.permutation })).toThrow('INVALID_PLAYERS');
+});
+it('T02 Game rechaza dificultad inválida incluso con un roster mixto que sí contiene humano', () => {
+  const prepared = botTrace(2, 2);
+  for (const difficulty of ['NORMAL', 'UNKNOWN', 'hard', false, 1, null]) {
+    const players = [{ ...prepared.players[0], botDifficulty: difficulty }, prepared.players[1]];
+    expect(() => new Game({ id: 'bad', deck: prepared.definition, players: players as PlayerPreparation[], settings: prepared.game.settings, permutation: prepared.permutation })).toThrow('INVALID_PLAYERS');
+  }
+});
+it('T02 Game separa kind inválido y ausencia de humanos con dificultades HARD válidas', () => {
+  const prepared = botTrace(2, 2);
+  for (const players of [prepared.players.map((p) => ({ ...p, kind: 'ALIEN' })), prepared.players.map((p) => ({ ...p, kind: 'BOT', botDifficulty: 'HARD' }))]) {
+    expect(() => new Game({ id: 'bad', deck: prepared.definition, players: players as PlayerPreparation[], settings: prepared.game.settings, permutation: prepared.permutation })).toThrow('INVALID_PLAYERS');
   }
 });
 it('B09 E8 segundo timeout durante desempate ya iniciado: completa/reconoce BOT vencedor sin puntos nuevos', () => {

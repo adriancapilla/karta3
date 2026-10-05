@@ -11,7 +11,7 @@ export function botInput(value: unknown, type: BotOperation['type']): { requestI
   if (type === 'ADD') operation = { type };
   else if (type === 'REMOVE') operation = { type, botId: value.botId as string };
   else if (type === 'DIFFICULTY') {
-    if (value.difficulty !== 'EASY' && value.difficulty !== 'NORMAL') throw invalid();
+    if (value.difficulty !== 'EASY' && value.difficulty !== 'HARD') throw invalid();
     operation = { type, botId: value.botId as string, difficulty: value.difficulty };
   } else {
     if (typeof value.name !== 'string' || value.name.length > 128) throw invalid();

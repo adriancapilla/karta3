@@ -22,7 +22,7 @@ export function assertGamePrivacy(view: InitialGameRoomView, ownIds: readonly st
   keys(view.selectedDeck, ['id', 'schemaVersion', 'contentVersion', 'name', 'subtitle', 'description', 'imageUrl', 'imageAlt']);
   for (const person of [view.participant, ...view.participants]) keys(person, ['id', 'name', 'kind', 'botDifficulty', 'role', 'isPlayer', 'presence', 'score', 'playStatus']);
   assert(view.participant.kind === 'HUMAN' && view.participant.botDifficulty === null, 'Destinatario humano autenticado');
-  for (const person of view.participants) assert(person.kind === 'BOT' ? person.role === null && person.presence === null && person.playStatus === null && ['EASY', 'NORMAL'].includes(person.botDifficulty) : person.botDifficulty === null, 'Discriminación pública de jugador');
+  for (const person of view.participants) assert(person.kind === 'BOT' ? person.role === null && person.presence === null && person.playStatus === null && ['EASY', 'HARD'].includes(person.botDifficulty) : person.botDifficulty === null, 'Discriminación pública de jugador');
   for (const attribute of view.game.attributes) keys(attribute, ['id', 'name', 'unit']);
   for (const card of [view.game.round.indicator, ...view.game.hand, ...view.game.round.plays.map((play) => play.card)]) {
     keys(card, ['id', 'name', 'characteristic', 'imageUrl', 'imageAlt', 'values', 'roundAttribute', 'note']);

@@ -71,7 +71,7 @@ export async function manualSockets(count = 2, options: { observer?: boolean; ti
     const view = await own(person) as InitialGameRoomView;
     const game = repository.findById(room.id)!.game!;
     const player = game.players.find((p) => p.id === view.participant.id)!;
-    const choice = mixed ? botPlayPolicy(player.hand, game.round.activeAttributeId, !game.round.plays.length, game.round.direction, 'NORMAL')
+    const choice = mixed ? botPlayPolicy(player.hand, game.round.activeAttributeId, !game.round.plays.length, game.round.direction, 'HARD')
       : { cardId: view.game.hand[0].id, direction: view.game.round.direction ? null : 'HIGH' };
     const input = { requestId: `human-${++n}`, roomId: room.id, gameId: view.game.id, roundNumber: view.game.round.number, turnId: view.game.interaction.turn!.id, ...choice };
     const ack = accepted(await socketAck(person.socket, 'game:play', input)); inputs.push({ person, input, ack }); return ack;

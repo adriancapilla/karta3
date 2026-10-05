@@ -3,7 +3,7 @@ import type { InitialGameRoomView, RoomView } from '../../shared/contracts/room.
 
 export const readRoom = (page: Page): Promise<RoomView> => page.evaluate(async () => (await (await fetch('/api/rooms/current')).json()).room);
 export const readGame = async (page: Page) => await readRoom(page) as InitialGameRoomView;
-export async function manualTable(browser: Browser, base: string, options: { width?: number; count?: number; observer?: boolean; deckId?: string; version?: number; review?: number; tie?: boolean; turn?: 15 | 30 | 60; names?: readonly string[]; bots?: readonly ('EASY' | 'NORMAL')[] } = {}) {
+export async function manualTable(browser: Browser, base: string, options: { width?: number; count?: number; observer?: boolean; deckId?: string; version?: number; review?: number; tie?: boolean; turn?: 15 | 30 | 60; names?: readonly string[]; bots?: readonly ('EASY' | 'HARD')[] } = {}) {
   const width = options.width ?? 1280; const count = options.count ?? 2;
   const contexts = await Promise.all(Array.from({ length: count + Number(!!options.observer) }, () => browser.newContext({ viewport: { width, height: 844 }, hasTouch: width < 760, isMobile: width < 760 })));
   const pages = await Promise.all(contexts.map((context) => context.newPage()));

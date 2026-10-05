@@ -50,8 +50,8 @@ export function WaitingPlayers({ room, connected, onRoom, onCurrent, onPendingCh
       {host && person.kind === 'BOT' && <div className="bot-controls">
         <label>Nivel de {name(person)}<select aria-label={`Nivel de ${name(person)}`} value={person.botDifficulty}
           disabled={!connected || !!bots.attempts[`${person.id}:DIFFICULTY`]}
-          onChange={(event) => void bots.execute({ type: 'DIFFICULTY', botId: person.id, difficulty: event.target.value as 'EASY' | 'NORMAL' })}>
-          <option value="EASY">Fácil</option><option value="NORMAL">Difícil</option></select></label>
+          onChange={(event) => void bots.execute({ type: 'DIFFICULTY', botId: person.id, difficulty: event.target.value as 'EASY' | 'HARD' })}>
+          <option value="EASY">Fácil</option><option value="HARD">Difícil</option></select></label>
         {bots.attempts[`${person.id}:DIFFICULTY`]?.state === 'SENDING' && <span role="status">Aplicando…</span>}
         {bots.errors[`${person.id}:DIFFICULTY`] && <p role="alert" className="field-error">{bots.errors[`${person.id}:DIFFICULTY`]}</p>}
         <button className="secondary" disabled={!connected || !!bots.attempts[`${person.id}:RENAME`]} onClick={(event) => { setEditing({ id: person.id, name: person.name, trigger: event.currentTarget }); setDraft(person.name); }}>Cambiar nombre</button>

@@ -1,7 +1,7 @@
 import type { DeckSummary } from './deck.js';
 import type { InitialGameView } from './game.js';
 
-export type BotDifficulty = 'EASY' | 'NORMAL';
+export type BotDifficulty = 'EASY' | 'HARD';
 export type HumanParticipant = { id: string; name: string; kind: 'HUMAN'; role: 'HOST' | 'GUEST'; isPlayer: boolean; botDifficulty: null };
 export type BotParticipant = { id: string; name: string; kind: 'BOT'; role: null; isPlayer: true; botDifficulty: BotDifficulty };
 export type ParticipantView = HumanParticipant & { presence: 'CONNECTED' | 'RECONNECTING' }

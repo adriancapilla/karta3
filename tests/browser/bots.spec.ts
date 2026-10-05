@@ -4,10 +4,10 @@ import { manualTable, readGame, readRoom } from '../support/manualBrowserCases.j
 import type { Page } from '@playwright/test';
 import type { InitialGameRoomView, ResultsRoomView } from '../../shared/contracts/room.js';
 
-async function playOwn(page: Page, own: InitialGameRoomView, normal = true) {
+async function playOwn(page: Page, own: InitialGameRoomView, preferBest = true) {
   const value = (card: typeof own.game.hand[number]) => card.values[own.game.round.activeAttributeId].playValue;
   const opening = own.game.round.direction === null;
-  const chosen = normal ? [...own.game.hand].sort((a, b) => opening ? Math.min(value(a), 59 - value(a)) - Math.min(value(b), 59 - value(b)) || value(b) - value(a)
+  const chosen = preferBest ? [...own.game.hand].sort((a, b) => opening ? Math.min(value(a), 59 - value(a)) - Math.min(value(b), 59 - value(b)) || value(b) - value(a)
     : (value(a) - value(b)) * (own.game.round.direction === 'HIGH' ? -1 : 1))[0] : own.game.hand[0];
   const button = page.locator(`.game-hand [data-card-id="${chosen.id}"] .card-play-button`);
   await expect(button).toBeEnabled();
@@ -28,7 +28,7 @@ for (const width of [360, 390, 1280]) test(`B09 P1 ${width}: gestión explícita
     await host.getByRole('button', { name: 'Añadir bot', exact: true }).click(); await expect(guest.locator('.participant-list')).toContainText('Bot · Difícil');
     expect(await guest.getByRole('button', { name: 'Añadir bot' }).count()).toBe(0);
     const row = host.locator('.participant').filter({ has: host.getByText('Bot · Difícil', { exact: true }) });
-    await expect(row.getByRole('combobox')).toHaveValue('NORMAL'); await expect(row.locator('option[value="NORMAL"]')).toHaveText('Difícil');
+    await expect(row.getByRole('combobox')).toHaveValue('HARD'); await expect(row.locator('option[value="HARD"]')).toHaveText('Difícil');
     await row.getByRole('button', { name: 'Cambiar nombre' }).click(); const field = host.getByLabel('Nombre del bot', { exact: true });
     await expect(field).toHaveValue('Bot 1'); await expect(field).toBeFocused(); const requestsBeforeCancel = server.botRequests.length; await field.fill('Cancelado'); await field.press('Escape');
     await expect(host.getByRole('dialog')).toHaveCount(0); await expect(row.getByRole('button', { name: 'Cambiar nombre' })).toBeFocused();
@@ -62,7 +62,7 @@ for (const width of [360, 390, 1280]) test(`B09 P1 ${width}: gestión explícita
 for (const [count, seed, width, review] of [[2, 2, 360, 0], [3, 3, 390, 5], [4, 56, 1280, 0], [5, 98, 390, 5]]) test(`B09 P2 ${count} mixtos ${width}: final/desempate legal review=${review}, observador, privacidad y F5`, async ({ browser }, info) => {
   test.setTimeout(100_000);
   const server = await configurationBrowserServer(true, true, { count, botSeed: seed });
-  const p = await manualTable(browser, server.base, { count: 1, observer: true, bots: Array(count - 1).fill('NORMAL'), width, review, tie: true, turn: 60, deckId: 'mixta', version: 7 });
+  const p = await manualTable(browser, server.base, { count: 1, observer: true, bots: Array(count - 1).fill('HARD'), width, review, tie: true, turn: 60, deckId: 'mixta', version: 7 });
   const human = p.pages[1]; const tab = await p.contexts[1].newPage();
   try {
     await tab.goto(server.base); let moves = 0; const finalRounds = new Set<number>(); let sawTie = false;
@@ -100,7 +100,7 @@ for (const [count, seed, width, review] of [[2, 2, 360, 0], [3, 3, 390, 5], [4, 
 
 test('B09 P2 normal compilado genérica 2: persona contra fácil/difícil, entropía/plazos normales, resultado y otra sala', async ({ browser, baseURL }, info) => {
   test.setTimeout(120_000);
-  const p = await manualTable(browser, baseURL!, { count: 1, bots: ['NORMAL', 'EASY'], review: 0, turn: 60, width: 1280 });
+  const p = await manualTable(browser, baseURL!, { count: 1, bots: ['HARD', 'EASY'], review: 0, turn: 60, width: 1280 });
   const tab = await p.contexts[0].newPage();
   try {
     expect(await p.host.evaluate(async () => (await (await fetch('/api/decks')).json()).decks.map((deck: { id: string; contentVersion: number }) => [deck.id, deck.contentVersion]))).toEqual([['generica', 2]]);
@@ -152,7 +152,7 @@ test('B09 observador: solo bots no inicia; respuesta antigua Add no restaura esp
 
 test('B09 inactividad: dos timeouts HUMAN, solo observar/Detalles; sin páginas termina review y recupera resultados', async ({ browser }) => {
   const server = await configurationBrowserServer(true, true, { count: 3, botSeed: 3 });
-  const p = await manualTable(browser, server.base, { count: 1, bots: ['NORMAL', 'EASY'], deckId: 'mixta', version: 7, width: 360, review: 5, turn: 15 });
+  const p = await manualTable(browser, server.base, { count: 1, bots: ['HARD', 'EASY'], deckId: 'mixta', version: 7, width: 360, review: 5, turn: 15 });
   try {
     server.time.advance(0); server.time.advance(15000);
     await expect(p.host.getByText('No completaste tu último turno a tiempo.', { exact: false })).toBeVisible();

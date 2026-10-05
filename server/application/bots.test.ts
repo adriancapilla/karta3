@@ -7,9 +7,10 @@ const setup = () => {
   const bot = (operation: BotOperation = { type: 'ADD' }, id = `bot-${++n}`, session = 'host') => f.rooms.bot(session, id, f.room.id, operation);
   return { ...f, bot };
 };
-it('P1 añade NORMAL/IDs únicos/números crecientes; replay, retirada y nombres duplicados sin sesiones bot', () => {
+it('P1 añade HARD/IDs únicos/números crecientes; replay, retirada y nombres duplicados sin sesiones bot', () => {
   const f = setup(); const one = f.bot({ type: 'ADD' }, 'one'); const two = f.bot();
   expect(one.room.participant.kind).toBe('HUMAN'); expect(one.botId).not.toBe(two.botId);
+  expect(one.room.participants[0].botDifficulty).toBe('HARD');
   f.bot({ type: 'RENAME', botId: one.botId, name: '  Bot 2  ' });
   f.bot({ type: 'DIFFICULTY', botId: one.botId, difficulty: 'EASY' });
   const remove = f.bot({ type: 'REMOVE', botId: one.botId }, 'remove');
@@ -40,7 +41,7 @@ it('P1 efecto renueva, iguales/replays/errores/lecturas no; no renueva reserva a
   const f = setup(); f.join(); f.connected.delete('g0'); f.rooms.presenceChanged('g0'); const reserve = f.room.deadlines().find((d) => d.kind === 'ABSENCE');
   f.time.elapse(1000); const one = f.bot(); const view = one.room as WaitingRoomView; expect(view.lifecycle.expiresAt).toBe(f.time.now().unix + 1800000);
   expect(f.room.deadlines()).toContainEqual(reserve); const revision = f.room.revision;
-  f.time.elapse(1000); f.bot({ type: 'DIFFICULTY', botId: one.botId, difficulty: 'NORMAL' });
+  f.time.elapse(1000); f.bot({ type: 'DIFFICULTY', botId: one.botId, difficulty: 'HARD' });
   f.bot({ type: 'RENAME', botId: one.botId, name: ' Bot 1 ' }); f.rooms.current('host');
   expect(f.room.revision).toBe(revision); expect(f.room.lifecycle(0).expiresAt).toBe(view.lifecycle.expiresAt);
   f.time.elapse(1800000); expect(() => f.bot({ type: 'RENAME', botId: one.botId, name: 'Tarde' })).toThrow('no está disponible');
@@ -51,9 +52,20 @@ it('P1 permisos, objetivos, nombres/niveles inválidos y conflicto; observer ges
   for (const session of ['g0', 'third']) expect(() => f.bot({ type: 'ADD' }, `deny-${session}`, session)).toThrow(expect.objectContaining({ code: 'FORBIDDEN' }));
   for (const botId of ['unknown', f.room.participantId, f.room.participantFor('g0')!.id]) expect(() => f.bot({ type: 'REMOVE', botId })).toThrow('bot');
   for (const name of ['', 'a'.repeat(17), '\n', '\u200b']) expect(() => f.bot({ type: 'RENAME', botId: one.botId, name })).toThrow();
-  for (const difficulty of ['HARD', false, 1]) expect(() => f.bot({ type: 'DIFFICULTY', botId: one.botId, difficulty: difficulty as 'EASY' })).toThrow('Fácil');
+  for (const difficulty of ['NORMAL', 'UNKNOWN', 'hard', false, 1, null]) expect(() => f.bot({ type: 'DIFFICULTY', botId: one.botId, difficulty: difficulty as 'EASY' })).toThrow('Fácil o Difícil');
   f.bot({ type: 'RENAME', botId: one.botId, name: 'A' }, 'shared'); expect(() => f.bot({ type: 'REMOVE', botId: one.botId }, 'shared')).toThrow('otros datos');
   f.configure({ field: 'hostPlays', value: false }); expect(f.bot().room.participant.isPlayer).toBe(false);
+});
+it('T02 dificultad rechazada no cambia nivel/orden/plaza/actividad; EASY/HARD válidos se conservan', () => {
+  const f = setup(); const added = f.bot(); const before = f.room.participants; const revision = f.room.revision; const expiry = f.room.lifecycle(0).expiresAt;
+  f.time.elapse(1000); f.events.updated.mockClear();
+  for (const difficulty of ['NORMAL', 'UNKNOWN', 'hard', 'easy', true, 1, null]) {
+    expect(() => f.bot({ type: 'DIFFICULTY', botId: added.botId, difficulty: difficulty as 'EASY' })).toThrow(expect.objectContaining({ code: 'INVALID_INPUT' }));
+    expect(f.room.participants).toEqual(before); expect(f.room.playerCount).toBe(2); expect(f.room.revision).toBe(revision);
+    expect(f.room.lifecycle(0).expiresAt).toBe(expiry); expect(f.events.updated).not.toHaveBeenCalled();
+  }
+  f.bot({ type: 'DIFFICULTY', botId: added.botId, difficulty: 'EASY' }); expect(f.room.participants[0].botDifficulty).toBe('EASY');
+  f.bot({ type: 'DIFFICULTY', botId: added.botId, difficulty: 'HARD' }); expect(f.room.participants[0].botDifficulty).toBe('HARD');
 });
 it('P1 registro antes de emisión: fallo al añadir/retirar no duplica ni restaura', () => {
   const f = setup(); f.events.updated.mockImplementationOnce(() => { throw new Error('emisión'); });
