@@ -130,9 +130,9 @@ for (const width of [360, 390, 1280]) test(`B06-15/16 recursos reales/nulos/fall
     const card = p.guest.locator('.game-hand .game-card').first();
     await expect(card.getByAltText('Imagen validada de carta 1')).toBeVisible();
     expect(await card.locator('img').evaluate((image) => (image as HTMLImageElement).naturalWidth)).toBe(8);
-    await expect(card.locator('thead th')).toHaveText(['Atributo', 'Jugable', 'Dato']);
+    await expect(card.locator('thead th')).toHaveText(['Atributo', 'Dato', 'J']);
     await expect(card.locator('tbody tr').first().locator('td')).toHaveText(['1', '1']);
-    await expect(card.locator('tbody tr').nth(1).locator('td')).toHaveText(['1', 'Dato 700 km']);
+    await expect(card.locator('tbody tr').nth(1).locator('td')).toHaveText(['Dato 700 km', '1']);
     await expect(card.locator('.active-attribute')).toContainText('Magnitud 2'); await expect(card).not.toContainText('NO HEREDAR');
     await expect(p.host.locator('.game-hand .game-card img')).toHaveCount(0); // Mano par nula; no se solicita sustitución.
     const scroll = p.guest.locator('.hand-row'); if (width < 760) await scroll.evaluate((element) => { element.scrollLeft = 100; });

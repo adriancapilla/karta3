@@ -61,42 +61,42 @@ export function GameScreen({ room, connected, activity, onRoom, onCurrent }: { r
     <div className="game-layout">
       <aside className="game-panel game-people" aria-labelledby="game-players-title">
         <h2 id="game-players-title">Jugadores y puntuaciones</h2>
-        <ol className="game-players">{players.map((person) => <li key={person.id}>
+        <ol className="game-players">{players.map((person) => <li key={person.id} className={person.id === round.openerPlayerId ? 'is-opener' : undefined}>
           <strong>{label(person.id)}</strong><span className="game-score">{person.score} puntos</span>
           <span className="participant-badges">
-            {person.role === 'HOST' && <span className="badge">Anfitrión</span>}
-            {person.id === round.openerPlayerId && <span className="badge">Abridor</span>}
+            {person.role === 'HOST' && <span className="badge host-badge">Anfitrión</span>}
+            {person.id === round.openerPlayerId && <span className="badge opener-badge">Abridor</span>}
             {person.id === room.game.interaction.turn?.playerId && <span className="badge">Juega</span>}
             {person.presence === 'DISCONNECTED' && <span className="badge reconnecting">Sin conexión</span>}
             {person.playStatus === 'AUTOMATIC' && <span className="badge">Automático</span>}
-            {person.kind === 'BOT' && <span className="badge">Bot · {person.botDifficulty === 'EASY' ? 'Fácil' : 'Difícil'}</span>}
+            {person.kind === 'BOT' && <><span className="badge bot-badge">Bot · {person.botDifficulty === 'EASY' ? 'Fácil' : 'Difícil'}</span><span className="bot-level" role="img" aria-label={`Bot · ${person.botDifficulty === 'EASY' ? 'Fácil' : 'Difícil'}`}>{person.botDifficulty === 'EASY' ? 'BF' : 'BD'}</span></>}
           </span>
         </li>)}</ol>
-        {observer && <div className="observer-line"><strong>{label(observer.id)}</strong><span>Anfitrión · Observador</span>
+        {observer && <div className="observer-line"><strong>{label(observer.id)}<span className="observer-abbreviation" role="img" aria-label="Observador"> (O)</span></strong><span className="observer-description">Anfitrión · Observador</span>
           {observer.presence === 'DISCONNECTED' && <span className="badge reconnecting">Sin conexión</span>}</div>}
         {!room.participant.isPlayer && <p className="observing">Observando</p>}
       </aside>
-      <section className="game-panel game-plays" aria-labelledby="game-plays-title"><h2 id="game-plays-title">Cartas jugadas</h2>
-        {!round.plays.length && <p>Aún no hay cartas jugadas</p>}
-        <div className="played-row">{round.plays.map((play) => <div key={play.playerId}><p>{play.order}. {label(play.playerId)}</p><GameCard card={play.card} attributes={attributes} activeAttributeId={round.activeAttributeId} onDetails={showDetails} /></div>)}</div>
+      <section className="game-panel game-plays" aria-labelledby="game-plays-title">
+        {!round.plays.length && <p className="empty-mesa">Aún no hay cartas jugadas</p>}
+        <div className="played-row">{round.plays.map((play) => <div key={play.playerId} role="group" aria-label={`Jugada de ${label(play.playerId)}`}><GameCard card={play.card} attributes={attributes} activeAttributeId={round.activeAttributeId} onDetails={showDetails} /><p className="play-author"><span className="play-number">{play.order}. </span>{label(play.playerId)}</p></div>)}</div>
+        <h2 id="game-plays-title"><span className="mesa-title">Mesa</span><span className="mobile-mesa-title">Cartas jugadas</span></h2>
       </section>
       <section className="game-panel game-indicator" aria-labelledby="game-indicator-title">
-        <h2 id="game-indicator-title">Carta indicadora</h2>
-        <p>Atributo indicador: {active.name}</p>
+        <div className="game-card-panel-heading"><h2 id="game-indicator-title">Carta indicadora</h2><p>Atributo indicador: {active.name}</p></div>
         <div className="indicator-full"><GameCard card={round.indicator} attributes={attributes} activeAttributeId={round.activeAttributeId} onDetails={showDetails} /></div>
         <div className="indicator-compact"><strong>{round.indicator.name}</strong>
           <button className="secondary" aria-label={`Detalles de ${round.indicator.name}`} onClick={(event) => showDetails(round.indicator, event.currentTarget)}>Detalles</button></div>
       </section>
       {room.participant.isPlayer && <section className="game-panel game-hand" aria-labelledby="game-hand-title">
-        <h2 id="game-hand-title">Tu mano</h2>{overflows && <p className="swipe-hint" id="hand-scroll-hint">Desliza para ver tus cartas</p>}
+        <div className="game-card-panel-heading"><h2 id="game-hand-title">Tu mano</h2>{overflows && <p className="swipe-hint" id="hand-scroll-hint">Desliza para ver tus cartas</p>}</div>
         <div ref={hand} className="hand-row" tabIndex={0} role="region" aria-label="Cartas de tu mano" aria-describedby={overflows ? 'hand-scroll-hint' : undefined}>
           {room.game.hand.map((card) => <GameCard key={card.id} card={card} attributes={attributes} activeAttributeId={round.activeAttributeId} onDetails={showDetails}
             onChoose={actions.chooseCard} disabled={!actions.enabled} selected={actions.selectedCard === card.id} />)}
         </div>
       </section>}
       <section className="game-panel game-initial-state" aria-labelledby="game-state-title"><h2 id="game-state-title">Estado de la partida</h2>
-        {room.game.interaction.turn && <p role="status">Juega {label(room.game.interaction.turn.playerId)}</p>}
-        {remaining !== null && <p>Tiempo de turno · <span role="timer" aria-live="off">{String(Math.floor(remaining / 60)).padStart(2, '0')}:{String(remaining % 60).padStart(2, '0')}</span></p>}
+        {room.game.interaction.turn && <p role="status" className="turn-player">Juega:<span> {label(room.game.interaction.turn.playerId)}</span></p>}
+        {remaining !== null && <p className="turn-time">Tiempo de turno:<span role="timer" aria-live="off"> {String(Math.floor(remaining / 60)).padStart(2, '0')}:{String(remaining % 60).padStart(2, '0')}</span></p>}
         {remaining === 0 && <p role="status">Esperando actualización del servidor…</p>}
         <p>Abridor: {label(round.openerPlayerId)}</p><p>Atributo activo: <strong>{active.name}</strong></p><p>Dirección: {round.direction === null ? 'Sin elegir' : round.direction === 'HIGH' ? 'ALTO' : 'BAJO'}</p>
         {room.game.interaction.review && <RoundReview room={room} label={label} />}
@@ -110,6 +110,7 @@ export function GameScreen({ room, connected, activity, onRoom, onCurrent }: { r
         {actions.pending && <button disabled={actions.busy || !connected || remaining === 0} onClick={() => actions.pending!.recovered ? actions.retry() : void actions.recover()}>{actions.pending.recovered ? 'Reintentar confirmación' : 'Recuperar mesa'}</button>}
       </section>
     </div>
+    <p className="game-legend">J: valor jugable · BF: bot fácil · BD: bot difícil · O: observador</p>
     {details && <CardDetails card={details.card} attributes={attributes} activeAttributeId={round.activeAttributeId} onClose={closeDetails} />}
   </main>;
 }

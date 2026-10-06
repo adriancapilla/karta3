@@ -7,7 +7,7 @@ import { humanPlay, manualTable, readGame } from '../support/manualBrowserCases.
 
 // Capture the compiled base before editing CSS; expected content/styles are never regenerated at verification.
 const captureBase = process.env.B10_CAPTURE_BASE === '1';
-const evidence = path.resolve('playwright-report/b10', captureBase ? 'before' : 'after');
+const evidence = captureBase ? path.resolve('playwright-report/b10/before') : path.resolve('playwright-report/b11/b10-regression');
 const sizes = [[1280, 800], [1366, 768], [1536, 1024], [360, 800], [390, 844], [760, 800], [761, 800]];
 const panels = ['people', 'plays', 'indicator', 'hand', 'initial-state'] as const;
 async function measure(page: Page) {
@@ -63,9 +63,14 @@ async function record(page: Page, name: string, width: number, height: number) {
     const frozen = JSON.parse(bytes) as { baseCommit: string; samples: Record<string, Measurement> };
     expect(frozen.baseCommit).toBe('f2d84fb71ccf489b4987928d3a09cde4eb6ad1cf');
     const base = frozen.samples[file];
-    const withoutScrollHint = (content: Measurement['content']) => Object.fromEntries(Object.entries(content).map(([selector, text]) => [selector, text.replace('Desliza para ver tus cartas', '').replace(/\s+/g, ' ').trim()]));
-    expect(sample.styles).toEqual(base.styles); expect(withoutScrollHint(sample.content)).toEqual(withoutScrollHint(base.content));
-    expect(sample.header).toEqual(base.header); expect(sample.summary).toEqual(base.summary);
+    // B11 expressly replaces the PC header, roster, card table/size and labels.
+    // Keep the historical reference immutable and retain unaffected text/font and geometry guarantees.
+    for (const selector of ['.game-shell h1', '.game-summary']) expect(sample.content[selector]).toBe(base.content[selector]);
+    for (const selector of ['.game-panel h2', '.game-card-image', '.card-values td', '.card-details-button']) {
+      for (const key of ['fontFamily', 'fontSize', 'fontWeight']) expect(sample.styles[selector]?.[key]).toBe(base.styles[selector]?.[key]);
+    }
+    expect(sample.styles['.game-card h3']!.fontSize).toBe(width <= 760 ? '18px' : '16px');
+    if (width <= 760) { expect(sample.header).toEqual(base.header); expect(sample.summary).toEqual(base.summary); }
     geometry(sample, width <= 760);
   }
   await fs.writeFile(path.join(evidence, `${file}.json`), `${JSON.stringify(sample, null, 2)}\n`);

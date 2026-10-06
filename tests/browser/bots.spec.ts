@@ -106,7 +106,7 @@ test('B09 P2 normal compilado genérica 2: persona contra fácil/difícil, entro
     expect(await p.host.evaluate(async () => (await (await fetch('/api/decks')).json()).decks.map((deck: { id: string; contentVersion: number }) => [deck.id, deck.contentVersion]))).toEqual([['generica', 2]]);
     await tab.goto(baseURL!); let moves = 0; const final = new Set<number>();
     for (const page of [p.host, tab]) {
-      await expect(page.getByText('Bot · Difícil', { exact: true })).toBeVisible(); await expect(page.getByText('Bot · Fácil', { exact: true })).toBeVisible();
+      await expect(page.getByRole('img', { name: 'Bot · Difícil', exact: true })).toHaveText('BD'); await expect(page.getByRole('img', { name: 'Bot · Fácil', exact: true })).toHaveText('BF');
     }
     while ((await readRoom(p.host)).status === 'IN_GAME') {
       await expect.poll(async () => { const view = await readRoom(p.host); return view.status !== 'IN_GAME' || view.game.interaction.turn?.playerId === view.participant.id; }).toBe(true);
@@ -116,7 +116,7 @@ test('B09 P2 normal compilado genérica 2: persona contra fácil/difícil, entro
       await playOwn(p.host, view, false); moves++;
       if (moves === 3) {
         await p.host.reload(); await tab.reload();
-        for (const page of [p.host, tab]) await expect(page.getByText('Bot · Difícil', { exact: true })).toBeVisible();
+        for (const page of [p.host, tab]) await expect(page.getByRole('img', { name: 'Bot · Difícil', exact: true })).toHaveText('BD');
       }
     }
     const result = await readRoom(p.host) as ResultsRoomView;
