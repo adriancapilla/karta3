@@ -1,0 +1,1924 @@
+{
+  "baseCommit": "f2d84fb71ccf489b4987928d3a09cde4eb6ad1cf",
+  "capturedAt": "2026-10-06T09:57:58.2293561Z",
+  "samples": {
+    "1280x800-opening": {
+      "styles": {
+        ".game-panel h2": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "normal",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".game-players li": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "lineHeight": "normal",
+          "padding": "12px 0px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".game-people .badge": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "13px",
+          "fontWeight": "750",
+          "lineHeight": "normal",
+          "padding": "8px 12px",
+          "borderRadius": "50px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".hand-row .game-card": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "lineHeight": "normal",
+          "padding": "12px",
+          "borderRadius": "12px",
+          "flexBasis": "210px",
+          "flexGrow": "1",
+          "flexShrink": "0"
+        },
+        ".game-card h3": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "18px",
+          "fontWeight": "700",
+          "lineHeight": "normal",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".game-card-image": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "lineHeight": "normal",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".card-values": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "lineHeight": "normal",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".card-values thead th": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "13px",
+          "fontWeight": "700",
+          "lineHeight": "normal",
+          "padding": "8px 3px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".card-values td": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "lineHeight": "normal",
+          "padding": "8px 3px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".card-details-button": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "16px",
+          "fontWeight": "750",
+          "lineHeight": "normal",
+          "padding": "8px",
+          "borderRadius": "12px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".game-initial-state fieldset button": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "lineHeight": "normal",
+          "padding": "8px 18px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        }
+      },
+      "content": {
+        ".game-shell header": "KARTA3\nPartida",
+        ".game-shell h1": "Partida · Fixture portada · v7",
+        ".game-summary": "Ronda 1 · Mazo de robo: 42",
+        ".game-people": "Jugadores y puntuaciones\nLucía (tú)\n0 puntos\nAbridor\nJuega\nMarcos\n0 puntos\nSara\n0 puntos\nDiego\n0 puntos\nJugador 1\n0 puntos\nAnfitrión",
+        ".game-plays": "Cartas jugadas\n\nAún no hay cartas jugadas",
+        ".game-indicator": "Carta indicadora\n\nAtributo indicador: Magnitud 3\n\nCarta de prueba 16\nAtributo\tJugable\tDato\n● Magnitud 1\t16\t16\n▲ Magnitud 2\t16\tDato 685 km\n■ Magnitud 3\nActivo\n\t16\tDato 685\nDetalles",
+        ".game-hand": "Tu mano\nCarta de prueba 1\nAtributo\tJugable\tDato\n● Magnitud 1\t1\t1\n▲ Magnitud 2\t1\tDato 700 km\n■ Magnitud 3\nActivo\n\t1\tDato 700\nJugar carta\nDetalles\nCarta de prueba 6\nAtributo\tJugable\tDato\n● Magnitud 1\t6\t6\n▲ Magnitud 2\t6\tDato 695 km\n■ Magnitud 3\nActivo\n\t6\tDato 695\nJugar carta\nDetalles\nCarta de prueba 11\nAtributo\tJugable\tDato\n● Magnitud 1\t11\t11\n▲ Magnitud 2\t11\tDato 690 km\n■ Magnitud 3\nActivo\n\t11\tDato 690\nJugar carta\nDetalles"
+      },
+      "header": {
+        "x": 20,
+        "y": 24
+      },
+      "summary": {
+        "x": 20,
+        "y": 135.40625
+      }
+    },
+    "1280x800-subsequent": {
+      "styles": {
+        ".game-panel h2": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "normal",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".game-players li": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "lineHeight": "normal",
+          "padding": "12px 0px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".game-people .badge": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "13px",
+          "fontWeight": "750",
+          "lineHeight": "normal",
+          "padding": "8px 12px",
+          "borderRadius": "50px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".hand-row .game-card": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "lineHeight": "normal",
+          "padding": "12px",
+          "borderRadius": "12px",
+          "flexBasis": "210px",
+          "flexGrow": "1",
+          "flexShrink": "0"
+        },
+        ".game-card h3": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "18px",
+          "fontWeight": "700",
+          "lineHeight": "normal",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".game-card-image": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "lineHeight": "normal",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".card-values": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "lineHeight": "normal",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".card-values thead th": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "13px",
+          "fontWeight": "700",
+          "lineHeight": "normal",
+          "padding": "8px 3px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".card-values td": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "lineHeight": "normal",
+          "padding": "8px 3px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".card-details-button": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "16px",
+          "fontWeight": "750",
+          "lineHeight": "normal",
+          "padding": "8px",
+          "borderRadius": "12px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".game-initial-state fieldset button": null
+      },
+      "content": {
+        ".game-shell header": "KARTA3\nPartida",
+        ".game-shell h1": "Partida · Fixture portada · v7",
+        ".game-summary": "Ronda 1 · Mazo de robo: 42",
+        ".game-people": "Jugadores y puntuaciones\nLucía\n0 puntos\nAbridor\nMarcos\n0 puntos\nSara\n0 puntos\nDiego\n0 puntos\nJugador 1 (tú)\n0 puntos\nAnfitrión\nJuega",
+        ".game-plays": "Cartas jugadas\n\n1. Lucía\n\nCarta de prueba 1\nAtributo\tJugable\tDato\n● Magnitud 1\t1\t1\n▲ Magnitud 2\t1\tDato 700 km\n■ Magnitud 3\nActivo\n\t1\tDato 700\nDetalles\n\n2. Marcos\n\nCarta de prueba 2\nAtributo\tJugable\tDato\n● Magnitud 1\t2\t2\n▲ Magnitud 2\t2\tDato 699 km\n■ Magnitud 3\nActivo\n\t2\tDato 699\nDetalles\n\n3. Sara\n\nCarta de prueba 3\nAtributo\tJugable\tDato\n● Magnitud 1\t3\t3\n▲ Magnitud 2\t3\tDato 698 km\n■ Magnitud 3\nActivo\n\t3\tDato 698\nDetalles\n\n4. Diego\n\nCarta de prueba 4\nAtributo\tJugable\tDato\n● Magnitud 1\t4\t4\n▲ Magnitud 2\t4\tDato 697 km\n■ Magnitud 3\nActivo\n\t4\tDato 697\nDetalles",
+        ".game-indicator": "Carta indicadora\n\nAtributo indicador: Magnitud 3\n\nCarta de prueba 16\nAtributo\tJugable\tDato\n● Magnitud 1\t16\t16\n▲ Magnitud 2\t16\tDato 685 km\n■ Magnitud 3\nActivo\n\t16\tDato 685\nDetalles",
+        ".game-hand": "Tu mano\nCarta de prueba 5\nAtributo\tJugable\tDato\n● Magnitud 1\t5\t5\n▲ Magnitud 2\t5\tDato 696 km\n■ Magnitud 3\nActivo\n\t5\tDato 696\nJugar carta\nDetalles\nCarta de prueba 10\nAtributo\tJugable\tDato\n● Magnitud 1\t10\t10\n▲ Magnitud 2\t10\tDato 691 km\n■ Magnitud 3\nActivo\n\t10\tDato 691\nJugar carta\nDetalles\nCarta de prueba 15\nAtributo\tJugable\tDato\n● Magnitud 1\t15\t15\n▲ Magnitud 2\t15\tDato 686 km\n■ Magnitud 3\nActivo\n\t15\tDato 686\nJugar carta\nDetalles"
+      },
+      "header": {
+        "x": 20,
+        "y": 24
+      },
+      "summary": {
+        "x": 20,
+        "y": 135.40625
+      }
+    },
+    "1366x768-opening": {
+      "styles": {
+        ".game-panel h2": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "normal",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".game-players li": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "lineHeight": "normal",
+          "padding": "12px 0px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".game-people .badge": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "13px",
+          "fontWeight": "750",
+          "lineHeight": "normal",
+          "padding": "8px 12px",
+          "borderRadius": "50px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".hand-row .game-card": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "lineHeight": "normal",
+          "padding": "12px",
+          "borderRadius": "12px",
+          "flexBasis": "210px",
+          "flexGrow": "1",
+          "flexShrink": "0"
+        },
+        ".game-card h3": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "18px",
+          "fontWeight": "700",
+          "lineHeight": "normal",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".game-card-image": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "lineHeight": "normal",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".card-values": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "lineHeight": "normal",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".card-values thead th": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "13px",
+          "fontWeight": "700",
+          "lineHeight": "normal",
+          "padding": "8px 3px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".card-values td": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "lineHeight": "normal",
+          "padding": "8px 3px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".card-details-button": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "16px",
+          "fontWeight": "750",
+          "lineHeight": "normal",
+          "padding": "8px",
+          "borderRadius": "12px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".game-initial-state fieldset button": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "lineHeight": "normal",
+          "padding": "8px 18px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        }
+      },
+      "content": {
+        ".game-shell header": "KARTA3\nPartida",
+        ".game-shell h1": "Partida · Fixture portada · v7",
+        ".game-summary": "Ronda 1 · Mazo de robo: 42",
+        ".game-people": "Jugadores y puntuaciones\nLucía (tú)\n0 puntos\nAbridor\nJuega\nMarcos\n0 puntos\nSara\n0 puntos\nDiego\n0 puntos\nJugador 1\n0 puntos\nAnfitrión",
+        ".game-plays": "Cartas jugadas\n\nAún no hay cartas jugadas",
+        ".game-indicator": "Carta indicadora\n\nAtributo indicador: Magnitud 3\n\nCarta de prueba 16\nAtributo\tJugable\tDato\n● Magnitud 1\t16\t16\n▲ Magnitud 2\t16\tDato 685 km\n■ Magnitud 3\nActivo\n\t16\tDato 685\nDetalles",
+        ".game-hand": "Tu mano\nCarta de prueba 1\nAtributo\tJugable\tDato\n● Magnitud 1\t1\t1\n▲ Magnitud 2\t1\tDato 700 km\n■ Magnitud 3\nActivo\n\t1\tDato 700\nJugar carta\nDetalles\nCarta de prueba 6\nAtributo\tJugable\tDato\n● Magnitud 1\t6\t6\n▲ Magnitud 2\t6\tDato 695 km\n■ Magnitud 3\nActivo\n\t6\tDato 695\nJugar carta\nDetalles\nCarta de prueba 11\nAtributo\tJugable\tDato\n● Magnitud 1\t11\t11\n▲ Magnitud 2\t11\tDato 690 km\n■ Magnitud 3\nActivo\n\t11\tDato 690\nJugar carta\nDetalles"
+      },
+      "header": {
+        "x": 63,
+        "y": 24
+      },
+      "summary": {
+        "x": 63,
+        "y": 135.40625
+      }
+    },
+    "1366x768-subsequent": {
+      "styles": {
+        ".game-panel h2": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "normal",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".game-players li": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "lineHeight": "normal",
+          "padding": "12px 0px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".game-people .badge": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "13px",
+          "fontWeight": "750",
+          "lineHeight": "normal",
+          "padding": "8px 12px",
+          "borderRadius": "50px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".hand-row .game-card": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "lineHeight": "normal",
+          "padding": "12px",
+          "borderRadius": "12px",
+          "flexBasis": "210px",
+          "flexGrow": "1",
+          "flexShrink": "0"
+        },
+        ".game-card h3": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "18px",
+          "fontWeight": "700",
+          "lineHeight": "normal",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".game-card-image": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "lineHeight": "normal",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".card-values": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "lineHeight": "normal",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".card-values thead th": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "13px",
+          "fontWeight": "700",
+          "lineHeight": "normal",
+          "padding": "8px 3px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".card-values td": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "lineHeight": "normal",
+          "padding": "8px 3px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".card-details-button": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "16px",
+          "fontWeight": "750",
+          "lineHeight": "normal",
+          "padding": "8px",
+          "borderRadius": "12px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".game-initial-state fieldset button": null
+      },
+      "content": {
+        ".game-shell header": "KARTA3\nPartida",
+        ".game-shell h1": "Partida · Fixture portada · v7",
+        ".game-summary": "Ronda 1 · Mazo de robo: 42",
+        ".game-people": "Jugadores y puntuaciones\nLucía\n0 puntos\nAbridor\nMarcos\n0 puntos\nSara\n0 puntos\nDiego\n0 puntos\nJugador 1 (tú)\n0 puntos\nAnfitrión\nJuega",
+        ".game-plays": "Cartas jugadas\n\n1. Lucía\n\nCarta de prueba 1\nAtributo\tJugable\tDato\n● Magnitud 1\t1\t1\n▲ Magnitud 2\t1\tDato 700 km\n■ Magnitud 3\nActivo\n\t1\tDato 700\nDetalles\n\n2. Marcos\n\nCarta de prueba 2\nAtributo\tJugable\tDato\n● Magnitud 1\t2\t2\n▲ Magnitud 2\t2\tDato 699 km\n■ Magnitud 3\nActivo\n\t2\tDato 699\nDetalles\n\n3. Sara\n\nCarta de prueba 3\nAtributo\tJugable\tDato\n● Magnitud 1\t3\t3\n▲ Magnitud 2\t3\tDato 698 km\n■ Magnitud 3\nActivo\n\t3\tDato 698\nDetalles\n\n4. Diego\n\nCarta de prueba 4\nAtributo\tJugable\tDato\n● Magnitud 1\t4\t4\n▲ Magnitud 2\t4\tDato 697 km\n■ Magnitud 3\nActivo\n\t4\tDato 697\nDetalles",
+        ".game-indicator": "Carta indicadora\n\nAtributo indicador: Magnitud 3\n\nCarta de prueba 16\nAtributo\tJugable\tDato\n● Magnitud 1\t16\t16\n▲ Magnitud 2\t16\tDato 685 km\n■ Magnitud 3\nActivo\n\t16\tDato 685\nDetalles",
+        ".game-hand": "Tu mano\nCarta de prueba 5\nAtributo\tJugable\tDato\n● Magnitud 1\t5\t5\n▲ Magnitud 2\t5\tDato 696 km\n■ Magnitud 3\nActivo\n\t5\tDato 696\nJugar carta\nDetalles\nCarta de prueba 10\nAtributo\tJugable\tDato\n● Magnitud 1\t10\t10\n▲ Magnitud 2\t10\tDato 691 km\n■ Magnitud 3\nActivo\n\t10\tDato 691\nJugar carta\nDetalles\nCarta de prueba 15\nAtributo\tJugable\tDato\n● Magnitud 1\t15\t15\n▲ Magnitud 2\t15\tDato 686 km\n■ Magnitud 3\nActivo\n\t15\tDato 686\nJugar carta\nDetalles"
+      },
+      "header": {
+        "x": 63,
+        "y": 24
+      },
+      "summary": {
+        "x": 63,
+        "y": 135.40625
+      }
+    },
+    "1536x1024-opening": {
+      "styles": {
+        ".game-panel h2": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "normal",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".game-players li": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "lineHeight": "normal",
+          "padding": "12px 0px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".game-people .badge": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "13px",
+          "fontWeight": "750",
+          "lineHeight": "normal",
+          "padding": "8px 12px",
+          "borderRadius": "50px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".hand-row .game-card": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "lineHeight": "normal",
+          "padding": "12px",
+          "borderRadius": "12px",
+          "flexBasis": "210px",
+          "flexGrow": "1",
+          "flexShrink": "0"
+        },
+        ".game-card h3": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "18px",
+          "fontWeight": "700",
+          "lineHeight": "normal",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".game-card-image": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "lineHeight": "normal",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".card-values": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "lineHeight": "normal",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".card-values thead th": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "13px",
+          "fontWeight": "700",
+          "lineHeight": "normal",
+          "padding": "8px 3px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".card-values td": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "lineHeight": "normal",
+          "padding": "8px 3px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".card-details-button": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "16px",
+          "fontWeight": "750",
+          "lineHeight": "normal",
+          "padding": "8px",
+          "borderRadius": "12px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".game-initial-state fieldset button": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "lineHeight": "normal",
+          "padding": "8px 18px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        }
+      },
+      "content": {
+        ".game-shell header": "KARTA3\nPartida",
+        ".game-shell h1": "Partida · Fixture portada · v7",
+        ".game-summary": "Ronda 1 · Mazo de robo: 42",
+        ".game-people": "Jugadores y puntuaciones\nLucía (tú)\n0 puntos\nAbridor\nJuega\nMarcos\n0 puntos\nSara\n0 puntos\nDiego\n0 puntos\nJugador 1\n0 puntos\nAnfitrión",
+        ".game-plays": "Cartas jugadas\n\nAún no hay cartas jugadas",
+        ".game-indicator": "Carta indicadora\n\nAtributo indicador: Magnitud 3\n\nCarta de prueba 16\nAtributo\tJugable\tDato\n● Magnitud 1\t16\t16\n▲ Magnitud 2\t16\tDato 685 km\n■ Magnitud 3\nActivo\n\t16\tDato 685\nDetalles",
+        ".game-hand": "Tu mano\nCarta de prueba 1\nAtributo\tJugable\tDato\n● Magnitud 1\t1\t1\n▲ Magnitud 2\t1\tDato 700 km\n■ Magnitud 3\nActivo\n\t1\tDato 700\nJugar carta\nDetalles\nCarta de prueba 6\nAtributo\tJugable\tDato\n● Magnitud 1\t6\t6\n▲ Magnitud 2\t6\tDato 695 km\n■ Magnitud 3\nActivo\n\t6\tDato 695\nJugar carta\nDetalles\nCarta de prueba 11\nAtributo\tJugable\tDato\n● Magnitud 1\t11\t11\n▲ Magnitud 2\t11\tDato 690 km\n■ Magnitud 3\nActivo\n\t11\tDato 690\nJugar carta\nDetalles"
+      },
+      "header": {
+        "x": 148,
+        "y": 24
+      },
+      "summary": {
+        "x": 148,
+        "y": 135.40625
+      }
+    },
+    "1536x1024-subsequent": {
+      "styles": {
+        ".game-panel h2": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "normal",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".game-players li": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "lineHeight": "normal",
+          "padding": "12px 0px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".game-people .badge": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "13px",
+          "fontWeight": "750",
+          "lineHeight": "normal",
+          "padding": "8px 12px",
+          "borderRadius": "50px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".hand-row .game-card": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "lineHeight": "normal",
+          "padding": "12px",
+          "borderRadius": "12px",
+          "flexBasis": "210px",
+          "flexGrow": "1",
+          "flexShrink": "0"
+        },
+        ".game-card h3": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "18px",
+          "fontWeight": "700",
+          "lineHeight": "normal",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".game-card-image": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "lineHeight": "normal",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".card-values": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "lineHeight": "normal",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".card-values thead th": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "13px",
+          "fontWeight": "700",
+          "lineHeight": "normal",
+          "padding": "8px 3px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".card-values td": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "lineHeight": "normal",
+          "padding": "8px 3px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".card-details-button": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "16px",
+          "fontWeight": "750",
+          "lineHeight": "normal",
+          "padding": "8px",
+          "borderRadius": "12px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".game-initial-state fieldset button": null
+      },
+      "content": {
+        ".game-shell header": "KARTA3\nPartida",
+        ".game-shell h1": "Partida · Fixture portada · v7",
+        ".game-summary": "Ronda 1 · Mazo de robo: 42",
+        ".game-people": "Jugadores y puntuaciones\nLucía\n0 puntos\nAbridor\nMarcos\n0 puntos\nSara\n0 puntos\nDiego\n0 puntos\nJugador 1 (tú)\n0 puntos\nAnfitrión\nJuega",
+        ".game-plays": "Cartas jugadas\n\n1. Lucía\n\nCarta de prueba 1\nAtributo\tJugable\tDato\n● Magnitud 1\t1\t1\n▲ Magnitud 2\t1\tDato 700 km\n■ Magnitud 3\nActivo\n\t1\tDato 700\nDetalles\n\n2. Marcos\n\nCarta de prueba 2\nAtributo\tJugable\tDato\n● Magnitud 1\t2\t2\n▲ Magnitud 2\t2\tDato 699 km\n■ Magnitud 3\nActivo\n\t2\tDato 699\nDetalles\n\n3. Sara\n\nCarta de prueba 3\nAtributo\tJugable\tDato\n● Magnitud 1\t3\t3\n▲ Magnitud 2\t3\tDato 698 km\n■ Magnitud 3\nActivo\n\t3\tDato 698\nDetalles\n\n4. Diego\n\nCarta de prueba 4\nAtributo\tJugable\tDato\n● Magnitud 1\t4\t4\n▲ Magnitud 2\t4\tDato 697 km\n■ Magnitud 3\nActivo\n\t4\tDato 697\nDetalles",
+        ".game-indicator": "Carta indicadora\n\nAtributo indicador: Magnitud 3\n\nCarta de prueba 16\nAtributo\tJugable\tDato\n● Magnitud 1\t16\t16\n▲ Magnitud 2\t16\tDato 685 km\n■ Magnitud 3\nActivo\n\t16\tDato 685\nDetalles",
+        ".game-hand": "Tu mano\nCarta de prueba 5\nAtributo\tJugable\tDato\n● Magnitud 1\t5\t5\n▲ Magnitud 2\t5\tDato 696 km\n■ Magnitud 3\nActivo\n\t5\tDato 696\nJugar carta\nDetalles\nCarta de prueba 10\nAtributo\tJugable\tDato\n● Magnitud 1\t10\t10\n▲ Magnitud 2\t10\tDato 691 km\n■ Magnitud 3\nActivo\n\t10\tDato 691\nJugar carta\nDetalles\nCarta de prueba 15\nAtributo\tJugable\tDato\n● Magnitud 1\t15\t15\n▲ Magnitud 2\t15\tDato 686 km\n■ Magnitud 3\nActivo\n\t15\tDato 686\nJugar carta\nDetalles"
+      },
+      "header": {
+        "x": 148,
+        "y": 24
+      },
+      "summary": {
+        "x": 148,
+        "y": 135.40625
+      }
+    },
+    "360x800-opening": {
+      "styles": {
+        ".game-panel h2": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "normal",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".game-players li": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "lineHeight": "normal",
+          "padding": "8px 0px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".game-people .badge": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "13px",
+          "fontWeight": "750",
+          "lineHeight": "normal",
+          "padding": "5px 9px",
+          "borderRadius": "50px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".hand-row .game-card": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "lineHeight": "normal",
+          "padding": "12px",
+          "borderRadius": "12px",
+          "flexBasis": "220px",
+          "flexGrow": "0",
+          "flexShrink": "0"
+        },
+        ".game-card h3": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "18px",
+          "fontWeight": "700",
+          "lineHeight": "normal",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".game-card-image": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "lineHeight": "normal",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".card-values": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "lineHeight": "normal",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".card-values thead th": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "13px",
+          "fontWeight": "700",
+          "lineHeight": "normal",
+          "padding": "8px 3px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".card-values td": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "lineHeight": "normal",
+          "padding": "8px 3px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".card-details-button": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "16px",
+          "fontWeight": "750",
+          "lineHeight": "normal",
+          "padding": "8px",
+          "borderRadius": "12px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".game-initial-state fieldset button": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "lineHeight": "normal",
+          "padding": "8px 18px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        }
+      },
+      "content": {
+        ".game-shell header": "KARTA3\nPartida",
+        ".game-shell h1": "Partida · Fixture portada · v7",
+        ".game-summary": "Ronda 1 · Mazo de robo: 42",
+        ".game-people": "Jugadores y puntuaciones\nLucía (tú)\n0 puntos\nAbridor\nJuega\nMarcos\n0 puntos\nSara\n0 puntos\nDiego\n0 puntos\nJugador 1\n0 puntos\nAnfitrión",
+        ".game-plays": "Cartas jugadas\n\nAún no hay cartas jugadas",
+        ".game-indicator": "Carta indicadora\n\nAtributo indicador: Magnitud 3\n\nCarta de prueba 16\nDetalles",
+        ".game-hand": "Tu mano\n\nDesliza para ver tus cartas\n\nCarta de prueba 1\nAtributo\tJugable\tDato\n● Magnitud 1\t1\t1\n▲ Magnitud 2\t1\tDato 700 km\n■ Magnitud 3\nActivo\n\t1\tDato 700\nJugar carta\nDetalles\nCarta de prueba 6\nAtributo\tJugable\tDato\n● Magnitud 1\t6\t6\n▲ Magnitud 2\t6\tDato 695 km\n■ Magnitud 3\nActivo\n\t6\tDato 695\nJugar carta\nDetalles\nCarta de prueba 11\nAtributo\tJugable\tDato\n● Magnitud 1\t11\t11\n▲ Magnitud 2\t11\tDato 690 km\n■ Magnitud 3\nActivo\n\t11\tDato 690\nJugar carta\nDetalles"
+      },
+      "header": {
+        "x": 14,
+        "y": 18
+      },
+      "summary": {
+        "x": 14,
+        "y": 115.25
+      }
+    },
+    "360x800-subsequent": {
+      "styles": {
+        ".game-panel h2": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "normal",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".game-players li": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "lineHeight": "normal",
+          "padding": "8px 0px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".game-people .badge": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "13px",
+          "fontWeight": "750",
+          "lineHeight": "normal",
+          "padding": "5px 9px",
+          "borderRadius": "50px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".hand-row .game-card": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "lineHeight": "normal",
+          "padding": "12px",
+          "borderRadius": "12px",
+          "flexBasis": "220px",
+          "flexGrow": "0",
+          "flexShrink": "0"
+        },
+        ".game-card h3": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "18px",
+          "fontWeight": "700",
+          "lineHeight": "normal",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".game-card-image": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "lineHeight": "normal",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".card-values": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "lineHeight": "normal",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".card-values thead th": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "13px",
+          "fontWeight": "700",
+          "lineHeight": "normal",
+          "padding": "8px 3px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".card-values td": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "lineHeight": "normal",
+          "padding": "8px 3px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".card-details-button": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "16px",
+          "fontWeight": "750",
+          "lineHeight": "normal",
+          "padding": "8px",
+          "borderRadius": "12px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".game-initial-state fieldset button": null
+      },
+      "content": {
+        ".game-shell header": "KARTA3\nPartida",
+        ".game-shell h1": "Partida · Fixture portada · v7",
+        ".game-summary": "Ronda 1 · Mazo de robo: 42",
+        ".game-people": "Jugadores y puntuaciones\nLucía\n0 puntos\nAbridor\nMarcos\n0 puntos\nSara\n0 puntos\nDiego\n0 puntos\nJugador 1 (tú)\n0 puntos\nAnfitrión\nJuega",
+        ".game-plays": "Cartas jugadas\n\n1. Lucía\n\nCarta de prueba 1\nAtributo\tJugable\tDato\n● Magnitud 1\t1\t1\n▲ Magnitud 2\t1\tDato 700 km\n■ Magnitud 3\nActivo\n\t1\tDato 700\nDetalles\n\n2. Marcos\n\nCarta de prueba 2\nAtributo\tJugable\tDato\n● Magnitud 1\t2\t2\n▲ Magnitud 2\t2\tDato 699 km\n■ Magnitud 3\nActivo\n\t2\tDato 699\nDetalles\n\n3. Sara\n\nCarta de prueba 3\nAtributo\tJugable\tDato\n● Magnitud 1\t3\t3\n▲ Magnitud 2\t3\tDato 698 km\n■ Magnitud 3\nActivo\n\t3\tDato 698\nDetalles\n\n4. Diego\n\nCarta de prueba 4\nAtributo\tJugable\tDato\n● Magnitud 1\t4\t4\n▲ Magnitud 2\t4\tDato 697 km\n■ Magnitud 3\nActivo\n\t4\tDato 697\nDetalles",
+        ".game-indicator": "Carta indicadora\n\nAtributo indicador: Magnitud 3\n\nCarta de prueba 16\nDetalles",
+        ".game-hand": "Tu mano\n\nDesliza para ver tus cartas\n\nCarta de prueba 5\nAtributo\tJugable\tDato\n● Magnitud 1\t5\t5\n▲ Magnitud 2\t5\tDato 696 km\n■ Magnitud 3\nActivo\n\t5\tDato 696\nJugar carta\nDetalles\nCarta de prueba 10\nAtributo\tJugable\tDato\n● Magnitud 1\t10\t10\n▲ Magnitud 2\t10\tDato 691 km\n■ Magnitud 3\nActivo\n\t10\tDato 691\nJugar carta\nDetalles\nCarta de prueba 15\nAtributo\tJugable\tDato\n● Magnitud 1\t15\t15\n▲ Magnitud 2\t15\tDato 686 km\n■ Magnitud 3\nActivo\n\t15\tDato 686\nJugar carta\nDetalles"
+      },
+      "header": {
+        "x": 14,
+        "y": 18
+      },
+      "summary": {
+        "x": 14,
+        "y": 115.25
+      }
+    },
+    "390x844-opening": {
+      "styles": {
+        ".game-panel h2": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "normal",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".game-players li": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "lineHeight": "normal",
+          "padding": "8px 0px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".game-people .badge": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "13px",
+          "fontWeight": "750",
+          "lineHeight": "normal",
+          "padding": "5px 9px",
+          "borderRadius": "50px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".hand-row .game-card": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "lineHeight": "normal",
+          "padding": "12px",
+          "borderRadius": "12px",
+          "flexBasis": "220px",
+          "flexGrow": "0",
+          "flexShrink": "0"
+        },
+        ".game-card h3": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "18px",
+          "fontWeight": "700",
+          "lineHeight": "normal",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".game-card-image": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "lineHeight": "normal",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".card-values": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "lineHeight": "normal",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".card-values thead th": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "13px",
+          "fontWeight": "700",
+          "lineHeight": "normal",
+          "padding": "8px 3px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".card-values td": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "lineHeight": "normal",
+          "padding": "8px 3px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".card-details-button": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "16px",
+          "fontWeight": "750",
+          "lineHeight": "normal",
+          "padding": "8px",
+          "borderRadius": "12px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".game-initial-state fieldset button": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "lineHeight": "normal",
+          "padding": "8px 18px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        }
+      },
+      "content": {
+        ".game-shell header": "KARTA3\nPartida",
+        ".game-shell h1": "Partida · Fixture portada · v7",
+        ".game-summary": "Ronda 1 · Mazo de robo: 42",
+        ".game-people": "Jugadores y puntuaciones\nLucía (tú)\n0 puntos\nAbridor\nJuega\nMarcos\n0 puntos\nSara\n0 puntos\nDiego\n0 puntos\nJugador 1\n0 puntos\nAnfitrión",
+        ".game-plays": "Cartas jugadas\n\nAún no hay cartas jugadas",
+        ".game-indicator": "Carta indicadora\n\nAtributo indicador: Magnitud 3\n\nCarta de prueba 16\nDetalles",
+        ".game-hand": "Tu mano\n\nDesliza para ver tus cartas\n\nCarta de prueba 1\nAtributo\tJugable\tDato\n● Magnitud 1\t1\t1\n▲ Magnitud 2\t1\tDato 700 km\n■ Magnitud 3\nActivo\n\t1\tDato 700\nJugar carta\nDetalles\nCarta de prueba 6\nAtributo\tJugable\tDato\n● Magnitud 1\t6\t6\n▲ Magnitud 2\t6\tDato 695 km\n■ Magnitud 3\nActivo\n\t6\tDato 695\nJugar carta\nDetalles\nCarta de prueba 11\nAtributo\tJugable\tDato\n● Magnitud 1\t11\t11\n▲ Magnitud 2\t11\tDato 690 km\n■ Magnitud 3\nActivo\n\t11\tDato 690\nJugar carta\nDetalles"
+      },
+      "header": {
+        "x": 14,
+        "y": 18
+      },
+      "summary": {
+        "x": 14,
+        "y": 115.25
+      }
+    },
+    "390x844-subsequent": {
+      "styles": {
+        ".game-panel h2": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "normal",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".game-players li": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "lineHeight": "normal",
+          "padding": "8px 0px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".game-people .badge": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "13px",
+          "fontWeight": "750",
+          "lineHeight": "normal",
+          "padding": "5px 9px",
+          "borderRadius": "50px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".hand-row .game-card": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "lineHeight": "normal",
+          "padding": "12px",
+          "borderRadius": "12px",
+          "flexBasis": "220px",
+          "flexGrow": "0",
+          "flexShrink": "0"
+        },
+        ".game-card h3": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "18px",
+          "fontWeight": "700",
+          "lineHeight": "normal",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".game-card-image": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "lineHeight": "normal",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".card-values": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "lineHeight": "normal",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".card-values thead th": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "13px",
+          "fontWeight": "700",
+          "lineHeight": "normal",
+          "padding": "8px 3px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".card-values td": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "lineHeight": "normal",
+          "padding": "8px 3px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".card-details-button": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "16px",
+          "fontWeight": "750",
+          "lineHeight": "normal",
+          "padding": "8px",
+          "borderRadius": "12px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".game-initial-state fieldset button": null
+      },
+      "content": {
+        ".game-shell header": "KARTA3\nPartida",
+        ".game-shell h1": "Partida · Fixture portada · v7",
+        ".game-summary": "Ronda 1 · Mazo de robo: 42",
+        ".game-people": "Jugadores y puntuaciones\nLucía\n0 puntos\nAbridor\nMarcos\n0 puntos\nSara\n0 puntos\nDiego\n0 puntos\nJugador 1 (tú)\n0 puntos\nAnfitrión\nJuega",
+        ".game-plays": "Cartas jugadas\n\n1. Lucía\n\nCarta de prueba 1\nAtributo\tJugable\tDato\n● Magnitud 1\t1\t1\n▲ Magnitud 2\t1\tDato 700 km\n■ Magnitud 3\nActivo\n\t1\tDato 700\nDetalles\n\n2. Marcos\n\nCarta de prueba 2\nAtributo\tJugable\tDato\n● Magnitud 1\t2\t2\n▲ Magnitud 2\t2\tDato 699 km\n■ Magnitud 3\nActivo\n\t2\tDato 699\nDetalles\n\n3. Sara\n\nCarta de prueba 3\nAtributo\tJugable\tDato\n● Magnitud 1\t3\t3\n▲ Magnitud 2\t3\tDato 698 km\n■ Magnitud 3\nActivo\n\t3\tDato 698\nDetalles\n\n4. Diego\n\nCarta de prueba 4\nAtributo\tJugable\tDato\n● Magnitud 1\t4\t4\n▲ Magnitud 2\t4\tDato 697 km\n■ Magnitud 3\nActivo\n\t4\tDato 697\nDetalles",
+        ".game-indicator": "Carta indicadora\n\nAtributo indicador: Magnitud 3\n\nCarta de prueba 16\nDetalles",
+        ".game-hand": "Tu mano\n\nDesliza para ver tus cartas\n\nCarta de prueba 5\nAtributo\tJugable\tDato\n● Magnitud 1\t5\t5\n▲ Magnitud 2\t5\tDato 696 km\n■ Magnitud 3\nActivo\n\t5\tDato 696\nJugar carta\nDetalles\nCarta de prueba 10\nAtributo\tJugable\tDato\n● Magnitud 1\t10\t10\n▲ Magnitud 2\t10\tDato 691 km\n■ Magnitud 3\nActivo\n\t10\tDato 691\nJugar carta\nDetalles\nCarta de prueba 15\nAtributo\tJugable\tDato\n● Magnitud 1\t15\t15\n▲ Magnitud 2\t15\tDato 686 km\n■ Magnitud 3\nActivo\n\t15\tDato 686\nJugar carta\nDetalles"
+      },
+      "header": {
+        "x": 14,
+        "y": 18
+      },
+      "summary": {
+        "x": 14,
+        "y": 115.25
+      }
+    },
+    "760x800-opening": {
+      "styles": {
+        ".game-panel h2": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "normal",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".game-players li": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "lineHeight": "normal",
+          "padding": "8px 0px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".game-people .badge": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "13px",
+          "fontWeight": "750",
+          "lineHeight": "normal",
+          "padding": "5px 9px",
+          "borderRadius": "50px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".hand-row .game-card": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "lineHeight": "normal",
+          "padding": "12px",
+          "borderRadius": "12px",
+          "flexBasis": "220px",
+          "flexGrow": "0",
+          "flexShrink": "0"
+        },
+        ".game-card h3": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "18px",
+          "fontWeight": "700",
+          "lineHeight": "normal",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".game-card-image": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "lineHeight": "normal",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".card-values": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "lineHeight": "normal",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".card-values thead th": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "13px",
+          "fontWeight": "700",
+          "lineHeight": "normal",
+          "padding": "8px 3px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".card-values td": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "lineHeight": "normal",
+          "padding": "8px 3px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".card-details-button": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "16px",
+          "fontWeight": "750",
+          "lineHeight": "normal",
+          "padding": "8px",
+          "borderRadius": "12px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".game-initial-state fieldset button": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "lineHeight": "normal",
+          "padding": "8px 18px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        }
+      },
+      "content": {
+        ".game-shell header": "KARTA3\nPartida",
+        ".game-shell h1": "Partida · Fixture portada · v7",
+        ".game-summary": "Ronda 1 · Mazo de robo: 42",
+        ".game-people": "Jugadores y puntuaciones\nLucía (tú)\n0 puntos\nAbridor\nJuega\nMarcos\n0 puntos\nSara\n0 puntos\nDiego\n0 puntos\nJugador 1\n0 puntos\nAnfitrión",
+        ".game-plays": "Cartas jugadas\n\nAún no hay cartas jugadas",
+        ".game-indicator": "Carta indicadora\n\nAtributo indicador: Magnitud 3\n\nCarta de prueba 16\nDetalles",
+        ".game-hand": "Tu mano\n\nDesliza para ver tus cartas\n\nCarta de prueba 1\nAtributo\tJugable\tDato\n● Magnitud 1\t1\t1\n▲ Magnitud 2\t1\tDato 700 km\n■ Magnitud 3\nActivo\n\t1\tDato 700\nJugar carta\nDetalles\nCarta de prueba 6\nAtributo\tJugable\tDato\n● Magnitud 1\t6\t6\n▲ Magnitud 2\t6\tDato 695 km\n■ Magnitud 3\nActivo\n\t6\tDato 695\nJugar carta\nDetalles\nCarta de prueba 11\nAtributo\tJugable\tDato\n● Magnitud 1\t11\t11\n▲ Magnitud 2\t11\tDato 690 km\n■ Magnitud 3\nActivo\n\t11\tDato 690\nJugar carta\nDetalles"
+      },
+      "header": {
+        "x": 20,
+        "y": 24
+      },
+      "summary": {
+        "x": 20,
+        "y": 127.34375
+      }
+    },
+    "760x800-subsequent": {
+      "styles": {
+        ".game-panel h2": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "normal",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".game-players li": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "lineHeight": "normal",
+          "padding": "8px 0px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".game-people .badge": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "13px",
+          "fontWeight": "750",
+          "lineHeight": "normal",
+          "padding": "5px 9px",
+          "borderRadius": "50px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".hand-row .game-card": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "lineHeight": "normal",
+          "padding": "12px",
+          "borderRadius": "12px",
+          "flexBasis": "220px",
+          "flexGrow": "0",
+          "flexShrink": "0"
+        },
+        ".game-card h3": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "18px",
+          "fontWeight": "700",
+          "lineHeight": "normal",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".game-card-image": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "lineHeight": "normal",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".card-values": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "lineHeight": "normal",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".card-values thead th": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "13px",
+          "fontWeight": "700",
+          "lineHeight": "normal",
+          "padding": "8px 3px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".card-values td": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "lineHeight": "normal",
+          "padding": "8px 3px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".card-details-button": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "16px",
+          "fontWeight": "750",
+          "lineHeight": "normal",
+          "padding": "8px",
+          "borderRadius": "12px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".game-initial-state fieldset button": null
+      },
+      "content": {
+        ".game-shell header": "KARTA3\nPartida",
+        ".game-shell h1": "Partida · Fixture portada · v7",
+        ".game-summary": "Ronda 1 · Mazo de robo: 42",
+        ".game-people": "Jugadores y puntuaciones\nLucía\n0 puntos\nAbridor\nMarcos\n0 puntos\nSara\n0 puntos\nDiego\n0 puntos\nJugador 1 (tú)\n0 puntos\nAnfitrión\nJuega",
+        ".game-plays": "Cartas jugadas\n\n1. Lucía\n\nCarta de prueba 1\nAtributo\tJugable\tDato\n● Magnitud 1\t1\t1\n▲ Magnitud 2\t1\tDato 700 km\n■ Magnitud 3\nActivo\n\t1\tDato 700\nDetalles\n\n2. Marcos\n\nCarta de prueba 2\nAtributo\tJugable\tDato\n● Magnitud 1\t2\t2\n▲ Magnitud 2\t2\tDato 699 km\n■ Magnitud 3\nActivo\n\t2\tDato 699\nDetalles\n\n3. Sara\n\nCarta de prueba 3\nAtributo\tJugable\tDato\n● Magnitud 1\t3\t3\n▲ Magnitud 2\t3\tDato 698 km\n■ Magnitud 3\nActivo\n\t3\tDato 698\nDetalles\n\n4. Diego\n\nCarta de prueba 4\nAtributo\tJugable\tDato\n● Magnitud 1\t4\t4\n▲ Magnitud 2\t4\tDato 697 km\n■ Magnitud 3\nActivo\n\t4\tDato 697\nDetalles",
+        ".game-indicator": "Carta indicadora\n\nAtributo indicador: Magnitud 3\n\nCarta de prueba 16\nDetalles",
+        ".game-hand": "Tu mano\n\nDesliza para ver tus cartas\n\nCarta de prueba 5\nAtributo\tJugable\tDato\n● Magnitud 1\t5\t5\n▲ Magnitud 2\t5\tDato 696 km\n■ Magnitud 3\nActivo\n\t5\tDato 696\nJugar carta\nDetalles\nCarta de prueba 10\nAtributo\tJugable\tDato\n● Magnitud 1\t10\t10\n▲ Magnitud 2\t10\tDato 691 km\n■ Magnitud 3\nActivo\n\t10\tDato 691\nJugar carta\nDetalles\nCarta de prueba 15\nAtributo\tJugable\tDato\n● Magnitud 1\t15\t15\n▲ Magnitud 2\t15\tDato 686 km\n■ Magnitud 3\nActivo\n\t15\tDato 686\nJugar carta\nDetalles"
+      },
+      "header": {
+        "x": 20,
+        "y": 24
+      },
+      "summary": {
+        "x": 20,
+        "y": 127.34375
+      }
+    },
+    "761x800-opening": {
+      "styles": {
+        ".game-panel h2": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "normal",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".game-players li": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "lineHeight": "normal",
+          "padding": "12px 0px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".game-people .badge": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "13px",
+          "fontWeight": "750",
+          "lineHeight": "normal",
+          "padding": "8px 12px",
+          "borderRadius": "50px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".hand-row .game-card": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "lineHeight": "normal",
+          "padding": "12px",
+          "borderRadius": "12px",
+          "flexBasis": "210px",
+          "flexGrow": "1",
+          "flexShrink": "0"
+        },
+        ".game-card h3": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "18px",
+          "fontWeight": "700",
+          "lineHeight": "normal",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".game-card-image": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "lineHeight": "normal",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".card-values": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "lineHeight": "normal",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".card-values thead th": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "13px",
+          "fontWeight": "700",
+          "lineHeight": "normal",
+          "padding": "8px 3px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".card-values td": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "lineHeight": "normal",
+          "padding": "8px 3px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".card-details-button": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "16px",
+          "fontWeight": "750",
+          "lineHeight": "normal",
+          "padding": "8px",
+          "borderRadius": "12px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".game-initial-state fieldset button": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "lineHeight": "normal",
+          "padding": "8px 18px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        }
+      },
+      "content": {
+        ".game-shell header": "KARTA3\nPartida",
+        ".game-shell h1": "Partida · Fixture portada · v7",
+        ".game-summary": "Ronda 1 · Mazo de robo: 42",
+        ".game-people": "Jugadores y puntuaciones\nLucía (tú)\n0 puntos\nAbridor\nJuega\nMarcos\n0 puntos\nSara\n0 puntos\nDiego\n0 puntos\nJugador 1\n0 puntos\nAnfitrión",
+        ".game-plays": "Cartas jugadas\n\nAún no hay cartas jugadas",
+        ".game-indicator": "Carta indicadora\n\nAtributo indicador: Magnitud 3\n\nCarta de prueba 16\nAtributo\tJugable\tDato\n● Magnitud 1\t16\t16\n▲ Magnitud 2\t16\tDato 685 km\n■ Magnitud 3\nActivo\n\t16\tDato 685\nDetalles",
+        ".game-hand": "Tu mano\n\nDesliza para ver tus cartas\n\nCarta de prueba 1\nAtributo\tJugable\tDato\n● Magnitud 1\t1\t1\n▲ Magnitud 2\t1\tDato 700 km\n■ Magnitud 3\nActivo\n\t1\tDato 700\nJugar carta\nDetalles\nCarta de prueba 6\nAtributo\tJugable\tDato\n● Magnitud 1\t6\t6\n▲ Magnitud 2\t6\tDato 695 km\n■ Magnitud 3\nActivo\n\t6\tDato 695\nJugar carta\nDetalles\nCarta de prueba 11\nAtributo\tJugable\tDato\n● Magnitud 1\t11\t11\n▲ Magnitud 2\t11\tDato 690 km\n■ Magnitud 3\nActivo\n\t11\tDato 690\nJugar carta\nDetalles"
+      },
+      "header": {
+        "x": 20,
+        "y": 24
+      },
+      "summary": {
+        "x": 20,
+        "y": 131.390625
+      }
+    },
+    "761x800-subsequent": {
+      "styles": {
+        ".game-panel h2": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "20px",
+          "fontWeight": "700",
+          "lineHeight": "normal",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".game-players li": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "lineHeight": "normal",
+          "padding": "12px 0px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".game-people .badge": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "13px",
+          "fontWeight": "750",
+          "lineHeight": "normal",
+          "padding": "8px 12px",
+          "borderRadius": "50px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".hand-row .game-card": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "lineHeight": "normal",
+          "padding": "12px",
+          "borderRadius": "12px",
+          "flexBasis": "210px",
+          "flexGrow": "1",
+          "flexShrink": "0"
+        },
+        ".game-card h3": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "18px",
+          "fontWeight": "700",
+          "lineHeight": "normal",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".game-card-image": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "lineHeight": "normal",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".card-values": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "lineHeight": "normal",
+          "padding": "0px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".card-values thead th": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "13px",
+          "fontWeight": "700",
+          "lineHeight": "normal",
+          "padding": "8px 3px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".card-values td": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "14px",
+          "fontWeight": "400",
+          "lineHeight": "normal",
+          "padding": "8px 3px",
+          "borderRadius": "0px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".card-details-button": {
+          "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "fontSize": "16px",
+          "fontWeight": "750",
+          "lineHeight": "normal",
+          "padding": "8px",
+          "borderRadius": "12px",
+          "flexBasis": "auto",
+          "flexGrow": "0",
+          "flexShrink": "1"
+        },
+        ".game-initial-state fieldset button": null
+      },
+      "content": {
+        ".game-shell header": "KARTA3\nPartida",
+        ".game-shell h1": "Partida · Fixture portada · v7",
+        ".game-summary": "Ronda 1 · Mazo de robo: 42",
+        ".game-people": "Jugadores y puntuaciones\nLucía\n0 puntos\nAbridor\nMarcos\n0 puntos\nSara\n0 puntos\nDiego\n0 puntos\nJugador 1 (tú)\n0 puntos\nAnfitrión\nJuega",
+        ".game-plays": "Cartas jugadas\n\n1. Lucía\n\nCarta de prueba 1\nAtributo\tJugable\tDato\n● Magnitud 1\t1\t1\n▲ Magnitud 2\t1\tDato 700 km\n■ Magnitud 3\nActivo\n\t1\tDato 700\nDetalles\n\n2. Marcos\n\nCarta de prueba 2\nAtributo\tJugable\tDato\n● Magnitud 1\t2\t2\n▲ Magnitud 2\t2\tDato 699 km\n■ Magnitud 3\nActivo\n\t2\tDato 699\nDetalles\n\n3. Sara\n\nCarta de prueba 3\nAtributo\tJugable\tDato\n● Magnitud 1\t3\t3\n▲ Magnitud 2\t3\tDato 698 km\n■ Magnitud 3\nActivo\n\t3\tDato 698\nDetalles\n\n4. Diego\n\nCarta de prueba 4\nAtributo\tJugable\tDato\n● Magnitud 1\t4\t4\n▲ Magnitud 2\t4\tDato 697 km\n■ Magnitud 3\nActivo\n\t4\tDato 697\nDetalles",
+        ".game-indicator": "Carta indicadora\n\nAtributo indicador: Magnitud 3\n\nCarta de prueba 16\nAtributo\tJugable\tDato\n● Magnitud 1\t16\t16\n▲ Magnitud 2\t16\tDato 685 km\n■ Magnitud 3\nActivo\n\t16\tDato 685\nDetalles",
+        ".game-hand": "Tu mano\n\nDesliza para ver tus cartas\n\nCarta de prueba 5\nAtributo\tJugable\tDato\n● Magnitud 1\t5\t5\n▲ Magnitud 2\t5\tDato 696 km\n■ Magnitud 3\nActivo\n\t5\tDato 696\nJugar carta\nDetalles\nCarta de prueba 10\nAtributo\tJugable\tDato\n● Magnitud 1\t10\t10\n▲ Magnitud 2\t10\tDato 691 km\n■ Magnitud 3\nActivo\n\t10\tDato 691\nJugar carta\nDetalles\nCarta de prueba 15\nAtributo\tJugable\tDato\n● Magnitud 1\t15\t15\n▲ Magnitud 2\t15\tDato 686 km\n■ Magnitud 3\nActivo\n\t15\tDato 686\nJugar carta\nDetalles"
+      },
+      "header": {
+        "x": 20,
+        "y": 24
+      },
+      "summary": {
+        "x": 20,
+        "y": 131.390625
+      }
+    }
+  }
+}
