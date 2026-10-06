@@ -28,6 +28,8 @@ La presentación vigente [B12 — Mesa centrada 03](docs/sdd/BLOQUE_12_MESA_CENT
 
 Todo el estado se mantiene en memoria de un proceso. **Reiniciar el servidor elimina salas, partidas, resultados y sesiones.** En juego no hay salida/cierre/cancelación; el anfitrión ausente no cierra la mesa y el servidor continúa sin navegadores. No existe opción de modo manual. Revisión (0/2/5/10/15/30 s) y conservación de resultados (30 minutos desde publicación final tras revisión, incluso sin clientes) están aplicadas. Volver al inicio libera solo la sesión solicitante en todas sus pestañas; permite consultar su último resultado y crear/entrar en otra sala sin reiniciar. No es historial permanente ni revancha. Para limpiar todos los ensayos se reinicia el proceso.
 
+Para esta publicación conjunta B10–B12, el autor considera la jugabilidad PC suficientemente correcta para esta etapa. Esta aceptación posterior no reescribe los pendientes históricos de cada cierre ni acredita otros tamaños o C09–C10 completos. Las [fuentes y referencias originales de Diseño](docs/diseno/README.md) distinguen antecedentes, propuestas y decisiones implementadas; las maquetas no son capturas del producto final.
+
 Las reglas para desarrollar los siguientes bloques están en [`AGENTS.md`](AGENTS.md). La [organización y dependencias](docs/arquitectura/ORGANIZACION_Y_DEPENDENCIAS.md) explica cómo separar dominio, aplicación, infraestructura e interfaz a partir de este primer bloque.
 
 ## Requisitos e instalación
