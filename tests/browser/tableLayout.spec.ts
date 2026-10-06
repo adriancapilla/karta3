@@ -7,7 +7,7 @@ import { humanPlay, manualTable, readGame } from '../support/manualBrowserCases.
 
 // Capture the compiled base before editing CSS; expected content/styles are never regenerated at verification.
 const captureBase = process.env.B10_CAPTURE_BASE === '1';
-const evidence = captureBase ? path.resolve('playwright-report/b10/before') : path.resolve('playwright-report/b11/b10-regression');
+const evidence = captureBase ? path.resolve('playwright-report/b10/before') : path.resolve('playwright-report/b12/b10-regression');
 const sizes = [[1280, 800], [1366, 768], [1536, 1024], [360, 800], [390, 844], [760, 800], [761, 800]];
 const panels = ['people', 'plays', 'indicator', 'hand', 'initial-state'] as const;
 async function measure(page: Page) {

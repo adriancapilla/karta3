@@ -6,7 +6,7 @@ import { configurationBrowserServer } from '../support/configurationBrowserServe
 import { manualTable, humanPlay, readGame } from '../support/manualBrowserCases.js';
 
 const before = process.env.B11_CAPTURE_BASE === '1';
-const evidence = path.resolve('playwright-report/b11', before ? 'before' : 'after');
+const evidence = before ? path.resolve('playwright-report/b11/before') : path.resolve('playwright-report/b12/b11-regression');
 async function measure(page: Page) {
   return page.evaluate(() => {
     const box = (element: Element) => { const b = element.getBoundingClientRect(); return { x: b.x, y: b.y + scrollY, width: b.width, height: b.height, right: b.right, bottom: b.bottom + scrollY }; };
@@ -33,7 +33,9 @@ type Measurement = Awaited<ReturnType<typeof measure>>;
 function reference(sample: Measurement, review = false) {
   expect(sample.viewport).toEqual({ width: 1800, height: 1600, dpr: 1, scale: 1 });
   expect(sample.pageWidth).toBeLessThanOrEqual(1800); expect(sample.pageHeight).toBeLessThanOrEqual(1600);
-  expect(sample.handOverflow).toBeLessThanOrEqual(1); expect(sample.playsOverflow).toBeLessThanOrEqual(1);
+  expect(sample.handOverflow).toBeLessThanOrEqual(1);
+  // B12 limita Mesa a cuatro completas y permite consultar la quinta lateralmente.
+  expect(sample.playsOverflow).toBe(sample.cards.filter((card) => card.area === 'plays').length === 5 ? 276 : 0);
   const panels = sample.panels; expect(Math.abs(panels.indicator!.y - panels.hand!.y)).toBeLessThanOrEqual(2);
   for (const card of sample.cards) {
     expect(card.width).toBe(230); expect(card.height).toBe(321); expect(card.overflow).toBe(false);

@@ -24,6 +24,8 @@ El [bloque 10](docs/sdd/BLOQUE_10_REDISTRIBUCION_MESA.md) redistribuye los mismo
 
 El [ajuste B11 de mesa PC](docs/sdd/BLOQUE_11_AJUSTE_MESA_PC_02.md) conserva esa composición y usa la referencia aprobada de **1800×1600 píxeles CSS al 100 %**, con cartas exteriores **230×321 px** en juego normal. Compacta cabecera/jugadores, muestra BF/BD y abridor sombreado, Mesa/autores al pie, tabla Atributo/Dato/J e icono propio. Detalles permanece dentro; «Jugar carta» queda fuera y también se puede pulsar la superficie informativa sin arrastrar. El turno mantiene reloj y parcial privada, con ALTO sobre BAJO. El encuadre de referencia no acredita el de una pantalla física de 1920×1080; otros tamaños conservan acceso/scroll y la revisión visual del autor sigue pendiente. No se ha rediseñado móvil, espera o resultados.
 
+La presentación vigente [B12 — Mesa centrada 03](docs/sdd/BLOQUE_12_MESA_CENTRADA_03.md) limita el contenedor PC a **1400 px** cuando existe ese ancho útil, con grid de **1368**, laterales264/mano816/estado264 y cartas230×321. Mesa mide1092: muestra cuatro completas y permite consultar la quinta lateralmente, con ayuda y acceso de teclado/ratón/táctil. Las jugadas públicas se muestran por J activo descendente ALTO/ascendente BAJO, y durante revisión siguen el ranking confirmado; la mano mantiene adquisición. En ese modo desaparece la línea superior «Atributo indicador: …», se compactan ambos encabezados y «Tu mano» queda centrado. Sigue habiendo atributo activo en turno/cartas. El scroll vertical es natural y está permitido; en menos ancho permanece la adaptación anterior, sin rediseño móvil. Los cierres B10/B11 conservan sus objetivos y evidencias históricos.
+
 Todo el estado se mantiene en memoria de un proceso. **Reiniciar el servidor elimina salas, partidas, resultados y sesiones.** En juego no hay salida/cierre/cancelación; el anfitrión ausente no cierra la mesa y el servidor continúa sin navegadores. No existe opción de modo manual. Revisión (0/2/5/10/15/30 s) y conservación de resultados (30 minutos desde publicación final tras revisión, incluso sin clientes) están aplicadas. Volver al inicio libera solo la sesión solicitante en todas sus pestañas; permite consultar su último resultado y crear/entrar en otra sala sin reiniciar. No es historial permanente ni revancha. Para limpiar todos los ensayos se reinicia el proceso.
 
 Las reglas para desarrollar los siguientes bloques están en [`AGENTS.md`](AGENTS.md). La [organización y dependencias](docs/arquitectura/ORGANIZACION_Y_DEPENDENCIAS.md) explica cómo separar dominio, aplicación, infraestructura e interfaz a partir de este primer bloque.
@@ -221,7 +223,7 @@ Tras actualizar, detener la instancia anterior y arrancar la compilación vigent
 
 ## Revisar B11: mesa PC 02
 
-La [evidencia B11](docs/sdd/BLOQUE_11_AJUSTE_MESA_PC_02.md#cierre-técnico--06102026) registra verificación técnica, medidas/capturas y límites. La aprobación visual del autor está pendiente. El objetivo es **1800×1600 CSS px al 100 %** y carta **230×321** en juego normal; una pantalla física de 1920×1080 no ofrece esa altura útil. No reducir zoom para simular el encuadre.
+La [evidencia B11](docs/sdd/BLOQUE_11_AJUSTE_MESA_PC_02.md#cierre-técnico--06102026) registra verificación técnica, medidas/capturas y límites históricos. La revisión vigente sigue B12, descrita debajo: cuatro cartas públicas completas y quinta lateral, encabezados compactos y scroll vertical permitido. El objetivo anterior B11 fue **1800×1600 CSS px al 100 %** y carta **230×321** en juego normal; una pantalla física de 1920×1080 no ofrece esa altura útil. No reducir zoom para simular el encuadre.
 
 1. Desde esta carpeta ejecutar `npm run build` y `npm run start`; detener antes con Ctrl+C una instancia anterior si ocupa el puerto. Abrir `http://127.0.0.1:3000` con perfiles A/B independientes y una segunda pestaña de A. Seleccionar genérica 2 explícitamente, turno 60 s y revisión 5 s; iniciar con ambos conectados. Reiniciar pierde toda la memoria; F5 conserva la misma partida.
 2. A zoom100 %, registrar área útil real del navegador, pantalla/escala/barras y versión. Revisar jugadores/Mesa arriba e indicadora/mano/turno debajo: cartas completas, datos de baraja/ronda/mazo, acciones exteriores, reloj, dirección y leyenda. En PC el abridor está sombreado, «Juega» identifica al activo y BF/BD significa bot Fácil/Difícil. No se destaca la mejor carta.
@@ -237,3 +239,24 @@ npm run test:browser -- --workers=2 tests/browser/pcTable02.spec.ts tests/browse
 ```
 
 La automatización usa viewport de referencia y conexiones reales con tiempo sustituido en los casos de comparación; otros recorridos normales usan adaptadores/entropía normales. No acredita una prueba humana, dispositivos físicos o encuadre en otras resoluciones. Las adaptaciones siguientes necesitan su acuerdo y C09–C10 siguen parciales.
+
+## Revisar B12: mesa centrada 03
+
+La aprobación visual del autor queda separada de la [evidencia técnica B12](docs/sdd/BLOQUE_12_MESA_CENTRADA_03.md). No configurar una altura artificial ni ocultar barras para aparentar encuadre; registrar área real y zoom100 %. El modo centrado necesita1400 px útiles, considerando la barra vertical. Si falta ancho, mantiene la adaptación anterior.
+
+1. Compilar con `npm run build`, detener con Ctrl+C una instancia anterior si ocupa3000 y arrancar `npm run start`. Abrir `http://127.0.0.1:3000` en dos perfiles independientes A/B y otra pestaña del mismo perfil A. Genérica2 se selecciona explícitamente; turno60 s y revisión30 s facilitan consultar sin alterar los plazos del producto. Reiniciar pierde memoria; F5 recupera la misma partida.
+2. Con ancho suficiente, revisar contenedor centrado1400/grid1368 y carta230×321. Indicadora/mano tienen cartas alineadas, «Tu mano» centrado y ya no hay línea «Atributo indicador: …» sobre la indicadora. Atributo activo, Dato/J/unidades/icono propio y Detalles siguen completos.
+3. Probar las aperturas carta→dirección y dirección→carta, botón exterior/Enter/Espacio y Detalles/Escape. La parcial recuperada en otra pestaña no juega ni renueva el reloj; ningún gesto de consulta envía cartas. Comprobar turno posterior y mano en adquisición, también con una/dos cartas.
+4. Para cinco jugadores, añadir invitados o bots con los controles existentes. En turno, cuatro jugadas públicas caben enteras y se ordenan por J del atributo activo: ALTO descendente/BAJO ascendente. Autores permanecen unidos a su carta; no se anuncia un ganador provisional.
+5. Con quinta jugada, Mesa conserva ancho y muestra «5 cartas · desliza →». Llegar a «Cartas públicas de Mesa» con Tab y usar flechas horizontales hasta consultar la quinta/autor/Detalles. Probar rueda horizontal o gesto táctil; mano/página no se desplazan horizontalmente ni se juega. Abrir Detalles, incorporar una jugada desde otra sesión y cerrar: misma carta y retorno de foco. Durante revisión el orden corresponde al ranking confirmado.
+6. Recargar A/B y usar otra pestaña: misma partida/orden/identidad, sin enviar otra jugada ni reiniciar plazos. Repetir con revisión0 y positiva. Para observador, A observa, B/C juegan desde perfiles independientes: estado ocupa cuatro columnas y A no tiene mano/acciones ficticias.
+7. Comparar [antes](playwright-report/b12/before/1920x1080-turn-full.png) y [después](playwright-report/b12/after/1920x1080-turn-full.png), además de revisión/quinta y JSON del cierre. Artefactos locales ignorados; no vienen en el clon Git. Registrar versión, viewport/pantalla/escala/barras, aprobación o diferencias visuales y desplazamiento residual. Las muestras automatizadas1920×1080/950 no acreditan una pantalla física del autor ni un encuadre universal.
+
+Comprobaciones seleccionadas sobre build vigente:
+
+```powershell
+npm run check
+npm run test:browser -- --workers=2 tests/browser/centeredTable03.spec.ts tests/browser/pcTable02.spec.ts tests/browser/tableLayout.spec.ts tests/browser/initialGame.spec.ts tests/browser/manualGame.spec.ts tests/browser/timedGame.spec.ts tests/browser/bots.spec.ts
+```
+
+E1/E2 de orden y los estados comparables se reproducen con genérica2 copiada a una instalación temporal y una permutación legal sustituida; no se modifica contenido editorial ni se publica esa instalación. Las conexiones son reales y los plazos controlados. Otras regresiones usan adaptadores/entropía normales. Prueba humana, equipo físico y aprobación visual se registran solo cuando se realicen. C09–C10 continúan parciales.
