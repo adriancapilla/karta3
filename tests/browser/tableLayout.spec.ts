@@ -34,6 +34,27 @@ async function measure(page: Page) {
   }, [...panels]);
 }
 type Measurement = Awaited<ReturnType<typeof measure>>;
+async function originalHeader(page: Page, content: Measurement['content']) {
+  // Render the unchanged f2d84fb prefix with its frozen original stylesheet in
+  // this browser/OS. System-font metrics differ between Windows and Linux;
+  // the historical Windows coordinates are not a cross-platform baseline.
+  const css = (await fs.readFile('tests/fixtures/style-f2d84fb.css', 'utf8')).replace(/\r\n/g, '\n');
+  expect(createHash('sha256').update(css).digest('hex')).toBe('a00933484ee9c7676df79e850b676b387f86729253648f8cbed040ea0344dc20');
+  const reference = await page.context().newPage();
+  try {
+    await reference.setViewportSize(page.viewportSize()!);
+    await reference.setContent('<!doctype html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"></head><body><div id="root"><main class="shell game-shell"><header><span class="brand">KARTA<span>3</span></span><span class="top-label">Partida</span></header><h1 tabindex="-1"></h1><p class="game-summary"></p><div style="height:100vh"></div></main></div></body></html>');
+    await reference.addStyleTag({ content: css });
+    expect(await reference.evaluate(() => innerWidth)).toBe(page.viewportSize()!.width);
+    return await reference.evaluate((content) => {
+      document.querySelector('h1')!.textContent = content['.game-shell h1'];
+      document.querySelector('.game-summary')!.textContent = content['.game-summary'];
+      const header = document.querySelector('header')!.getBoundingClientRect();
+      const summary = document.querySelector('.game-summary')!.getBoundingClientRect();
+      return { header: { x: header.x, y: header.y + scrollY }, summary: { x: summary.x, y: summary.y + scrollY } };
+    }, content);
+  } finally { await reference.close(); }
+}
 function geometry(sample: Measurement, mobile: boolean) {
   const { people, plays, indicator, hand, 'initial-state': state } = sample.boxes;
   const aligned = (a: number, b: number) => expect(Math.abs(a - b)).toBeLessThanOrEqual(2);
@@ -70,7 +91,11 @@ async function record(page: Page, name: string, width: number, height: number) {
       for (const key of ['fontFamily', 'fontSize', 'fontWeight']) expect(sample.styles[selector]?.[key]).toBe(base.styles[selector]?.[key]);
     }
     expect(sample.styles['.game-card h3']!.fontSize).toBe(width <= 760 ? '18px' : '16px');
-    if (width <= 760) { expect(sample.header).toEqual(base.header); expect(sample.summary).toEqual(base.summary); }
+    if (width <= 760) {
+      expect(sample.content['.game-shell header']).toBe(base.content['.game-shell header']);
+      const original = await originalHeader(page, base.content);
+      expect(sample.header).toEqual(original.header); expect(sample.summary).toEqual(original.summary);
+    }
     geometry(sample, width <= 760);
   }
   await fs.writeFile(path.join(evidence, `${file}.json`), `${JSON.stringify(sample, null, 2)}\n`);
