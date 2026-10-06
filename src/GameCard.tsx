@@ -13,6 +13,19 @@ export function CardImage({ card }: { card: CardView }) {
 export function CardInformation({ card, attributes, activeAttributeId, details = false }: {
   card: CardView; attributes: InitialGameView['attributes']; activeAttributeId: string; details?: boolean;
 }) {
+  if (!details) {
+    const ownAttribute = attributes.find((attribute) => attribute.id === card.roundAttribute)!;
+    return <>
+      <div className="card-heading"><h3>{card.name}</h3><span className="card-round-attribute" role="img" aria-label={`Atributo indicador: ${ownAttribute.name}`}>{['●', '▲', '■'][attributes.indexOf(ownAttribute)]}</span></div>
+      <CardImage key={`${card.id}:${card.imageUrl}`} card={card} />
+      <table className="card-values"><thead><tr><th scope="col">Atributo</th><th scope="col">Dato</th><th scope="col" aria-label="J: valor jugable">J</th></tr></thead>
+        <tbody>{attributes.map((attribute, index) => <tr key={attribute.id} className={attribute.id === activeAttributeId ? 'active-attribute' : undefined}>
+          <th scope="row" aria-label={attribute.id === activeAttributeId ? `${attribute.name}, atributo activo` : attribute.name}><span aria-hidden="true">{['●', '▲', '■'][index]} </span>{attribute.name}{attribute.id === activeAttributeId && <span className="active-mark" aria-hidden="true">◆</span>}</th>
+          <td>{card.values[attribute.id].displayValue}{card.values[attribute.id].unit && ` ${card.values[attribute.id].unit}`}</td><td>{card.values[attribute.id].playValue}</td>
+        </tr>)}</tbody>
+      </table>
+    </>;
+  }
   return <>
     <h3>{card.name}</h3>
     <CardImage key={`${card.id}:${card.imageUrl}`} card={card} />
@@ -31,13 +44,20 @@ export function GameCard({ card, attributes, activeAttributeId, onDetails, onCho
   card: CardView; attributes: InitialGameView['attributes']; activeAttributeId: string; onDetails: (card: CardView, button: HTMLButtonElement) => void;
   onChoose?: (id: string) => void; selected?: boolean; disabled?: boolean;
 }) {
-  return <article className={`game-card${selected ? ' selected-card' : ''}`} data-card-id={card.id}>
-    <div className={onChoose ? 'card-play-surface' : undefined}>
+  const pointer = useRef({ x: 0, y: 0, dragged: false });
+  return <div className="game-card-slot" data-card-id={card.id}>
+    <article className={`game-card${selected ? ' selected-card' : ''}`}>
+    <div className={onChoose ? 'card-play-surface' : undefined}
+      onPointerDown={(event) => { pointer.current = { x: event.clientX, y: event.clientY, dragged: false }; }}
+      onPointerMove={(event) => { if (Math.hypot(event.clientX - pointer.current.x, event.clientY - pointer.current.y) > 6) pointer.current.dragged = true; }}
+      onPointerCancel={() => { pointer.current.dragged = true; }}
+      onClick={() => { if (!disabled && !pointer.current.dragged) onChoose?.(card.id); }}>
       <CardInformation card={card} attributes={attributes} activeAttributeId={activeAttributeId} />
-      {onChoose && <button className="primary card-play-button" aria-label={`Jugar ${card.name}`} aria-pressed={selected} disabled={disabled} onClick={() => onChoose(card.id)}><span>{selected ? 'Carta seleccionada' : 'Jugar carta'}</span></button>}
     </div>
     <button className="secondary card-details-button" aria-label={`Detalles de ${card.name}`} onClick={(event) => onDetails(card, event.currentTarget)}>Detalles</button>
-  </article>;
+    </article>
+    {onChoose && <button className="primary card-play-button" aria-label={`Jugar ${card.name}`} aria-pressed={selected} disabled={disabled} onClick={() => onChoose(card.id)}>{selected ? 'Carta seleccionada' : 'Jugar carta'}</button>}
+  </div>;
 }
 
 export function CardDetails({ card, attributes, activeAttributeId, onClose }: {
