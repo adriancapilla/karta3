@@ -124,6 +124,11 @@ if (!before) {
     const p = await manualTable(browser, s.base, { width, deckId: 'portada', version: 7, turn: 60 });
     try {
       const actor = p.pages[1]; await actor.setViewportSize({ width, height: width === 390 ? 844 : 800 });
+      let confirmDirection: (() => void) | undefined;
+      if (width === 1280) s.interceptGame((event, _payload, deliver, result) => {
+        if (event === 'game:opening-direction') confirmDirection = () => deliver(result);
+        else deliver(result);
+      });
       await actor.getByRole('button', { name: 'BAJO', exact: true }).click(); expect(s.gameRequests.filter((r) => r.event === 'game:play')).toHaveLength(0);
       if (width === 390) {
         const row = actor.locator('.hand-row'); await row.scrollIntoViewIfNeeded();
@@ -136,10 +141,20 @@ if (!before) {
         await row.evaluate((element) => { element.scrollLeft = 0; });
       }
       const details = actor.locator('.game-hand .card-details-button').first(); await details.click(); await expect(actor.getByRole('dialog')).toContainText('700 km');
-      await actor.getByRole('button', { name: 'Cerrar detalles' }).press('Escape'); await expect(details).toBeFocused();
+      await actor.getByRole('button', { name: 'Cerrar detalles' }).press('Escape');
+      await expect(actor.locator('.card-details-dialog')).toHaveCount(0); await expect(details).toBeFocused();
       const surface = actor.locator('.game-hand .card-play-surface').first();
+      const playButton = actor.locator('.game-hand .card-play-button').first();
+      if (width === 1280) {
+        // Esperar el ack: un botón deshabilitado no puede recibir foco de teclado.
+        await expect(playButton).toBeDisabled();
+        expect(s.gameRequests.filter((r) => r.event === 'game:play')).toHaveLength(0);
+        await expect.poll(() => Boolean(confirmDirection)).toBe(true); confirmDirection!();
+      }
+      await expect(actor.getByRole('button', { name: 'BAJO', exact: true })).toHaveAttribute('aria-pressed', 'true');
+      await expect(playButton).toBeEnabled();
       if (width === 390) { await surface.scrollIntoViewIfNeeded(); const b = (await surface.boundingBox())!; await actor.touchscreen.tap(b.x + 20, b.y + 20); }
-      else await actor.locator('.game-hand .card-play-button').first().press('Space');
+      else await playButton.press('Space');
       await expect.poll(async () => (await readGame(p.host)).game.round.plays.length).toBe(1);
       expect(s.gameRequests.filter((r) => r.event === 'game:play')).toHaveLength(1);
       expect(await actor.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
