@@ -1,9 +1,27 @@
 # GitHub, comprobaciones y recuperación
 
-Actualizado: 05/10/2026. Repositorio existente: `E:\KARTA3\KARTA3_IA\APP\karta3`.
+Actualizado: 06/10/2026. Repositorio existente: `E:\KARTA3\KARTA3_IA\APP\karta3`.
 Versión de paquete: 0.1.0. Remoto privado: `https://github.com/adriancapilla/karta3.git`.
 
-## Publicación B09, ajuste visual y T02 — 05/10/2026
+## Publicación conjunta B10–B12 — 06/10/2026
+
+Base remota verificada: `main` en `f2d84fb71ccf489b4987928d3a09cde4eb6ad1cf` (PR #5). Entrega `feat/b12-mesa-centrada-03`, HEAD original `d2c1f019bf8e4fbe8d9a5563309f4b7e578319e6`, once commits originales conservados. No había modificaciones rastreadas; `docs/diseno/` estaba sin registrar. El commit separado `721a7a50879e53d1bcb3283e95b8269336ea9282` incorpora sus dieciséis originales y un [índice](../diseno/README.md) que distingue antecedentes, propuestas y decisiones implementadas. Las capturas originales y maquetas necesarias para esos enlaces no son nuevos ensayos; no se incorporan informes, compilaciones o capturas regenerables de pruebas.
+
+La entrega redistribuye paneles, compacta cartas/controles y centra la composición PC cuando dispone de 1400 px útiles: cuatro cartas públicas completas y quinta consultable lateralmente. Ordena únicamente su presentación por J activo ALTO/BAJO; durante revisión utiliza el ranking confirmado del servidor. Mantiene mano en adquisición, reglas, autoridad del servidor, privacidad, plazos y bots. El autor considera la jugabilidad PC suficientemente correcta para esta etapa; esta aceptación nueva no reescribe las evidencias ni pendientes históricos de B10/B11/B12.
+
+Revisión completa desde main: cambios de producción limitados a interfaz, estilos y proyección de jugadas públicas; servidor, contratos, dependencias y baraja aprobada intactos. La proyección ordena una copia de las jugadas públicas, conserva sus identidades y no calcula resultados oficiales ni utiliza información privada. Se revisan activación manual, arrastre/teclado/Detalles, foco, scrolls independientes, observador y ensayos de regresión. La reparación del ensayo de teclado espera la confirmación y habilitación del botón antes de activarlo, manteniendo el envío único; no cambia el producto para superar la prueba. Sin contradicción funcional detectada. Búsqueda acotada de claves privadas, tokens y credenciales en URL en los once commits originales y fuentes de Diseño: cero archivos coincidentes; no auditoría general. Sin ASSETS/TFM/MASTER, secretos ni artefactos de ejecución versionados.
+
+Evidencia **histórica local**, separada de la nueva CI: cierre B12 **413 pruebas / 65 módulos / 28 recorridos afectados finales**, estos últimos en 49,4 s (54,4 s incluida construcción). Se conserva el intento **77/78**, la reparación exclusiva del ensayo de teclado y las otras **50 regresiones** superadas sobre producto idéntico. No se presenta esa composición como una ejecución final 78/78. Los cierres B10/B11 mantienen sus resultados propios.
+
+Batería actual enumerada: **114 recorridos Chrome en 14 archivos**. CI conserva **un trabajador, cero reintentos, Chrome 20 minutos y trabajo 30**. La CI anterior de main (86 recorridos, 16:07 de Chrome) es referencia histórica, no acredita la batería ampliada ni su duración. La ejecución remota del HEAD final determinará la suficiencia real del margen; no se eliminan pruebas ni debilitan criterios.
+
+Se comprobará desde clon limpio de GitHub instalación reproducible, `npm run check`, arranque y catálogo genérica formato 1/contenido 2, referencias internas Diseño/SDD y las dos huellas aprobadas. Las referencias externas históricas a TFM se identifican como contexto y no se copian. Las comprobaciones nuevas y el cierre de ejecución (HEAD publicado, revisión, CI de PR/main, squash y sincronización) se registran en la [PR de esta rama](https://github.com/adriancapilla/karta3/pulls?q=is%3Apr+head%3Afeat%2Fb12-mesa-centrada-03), sin crear commits solo para anotar el SHA integrado.
+
+Repositorio privado; conservar rama y commits originales. INC-01, adaptación de otros tamaños, vigilancia técnica, C09–C10 restantes y despliegue siguen pendientes. Arquitectura ya alineó sus fuentes generales según el autor; este encargo no modifica ni incorpora TFM.
+
+## Evidencia histórica de publicación B09, ajuste visual y T02 — 05/10/2026
+
+Publicación cerrada mediante [PR #5](https://github.com/adriancapilla/karta3/pull/5), squash `f2d84fb71ccf489b4987928d3a09cde4eb6ad1cf`. [CI de PR](https://github.com/adriancapilla/karta3/actions/runs/37370496926): intento 1 cancelado sin ejecutar pasos por falta de adquisición de ejecutor; intento 2 correcto, 408 pruebas/64 módulos/86 Chrome, Chrome 15:42 y trabajo 17:31. [CI de main](https://github.com/adriancapilla/karta3/actions/runs/37378138350) correcta, mismos recuentos, Chrome 16:07 y trabajo 18:05. Clon, instalación/check/arranque, huellas y sincronización comprobados. Esta evidencia cierra los pendientes de ejecución del registro siguiente; no acredita B10–B12.
 
 Base remota verificada: `main` en `8d305e0e2e13b60b6dc2e412ae9fc073d6bff28f`; entrega `feat/b09-bots`, HEAD original `328c8b2a13ed86cc0ad146d6fbf71fa6a0194225`, árbol limpio y doce commits originales conservados. Repositorio privado, sin PR abierta al comenzar. Encargo autorizado: revisión, PR, CI del HEAD final, squash, CI de main y clon limpio; conservar rama y commits, sin despliegue, fuentes TFM ni bloque de mesa.
 

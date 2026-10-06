@@ -18,8 +18,8 @@ jobs:
   checks:
     name: Tipos, análisis, pruebas, arquitectura y compilación
     runs-on: ubuntu-24.04
-    # B09/T02: 86 recorridos, 8,2 min locales incluida construcción con dos trabajadores.
-    # CI conserva uno: reservar margen para ejecución serial e instalación.
+    # B10-B12: 114 recorridos; conservar el margen 20 min Chrome / 30 min trabajo.
+    # Un trabajador y cero reintentos; comprobar su suficiencia con la ejecución remota.
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
