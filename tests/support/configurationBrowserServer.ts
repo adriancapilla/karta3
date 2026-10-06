@@ -11,7 +11,7 @@ import { botTrace } from './botTrace.js';
 import type { TurnExpiredEvent } from '../../shared/contracts/game.js';
 
 /** Conexiones y paquetes reales, compilación actual; solamente el reloj es sustituido. */
-export async function configurationBrowserServer(single = false, initialGame = false, manual?: { count: number; winners?: readonly number[]; botSeed?: number }) {
+export async function configurationBrowserServer(single = false, initialGame = false, manual?: { count: number; winners?: readonly number[]; botSeed?: number }, presentation: { longText?: boolean } = {}) {
   const { createRuntime } = await import('../../dist-server/server/composition/createApp.js');
   const { prepareDecks, loadPreparedDecks } = await import('../../dist-server/server/infrastructure/decks/catalog.js');
   const { attachPublicFiles } = await import('../../dist-server/server/infrastructure/http/publicFiles.js');
@@ -34,6 +34,10 @@ export async function configurationBrowserServer(single = false, initialGame = f
     });
   }
   if (manual) { image.collection.cards[0].imageRef = 'imagenes/portada.png'; image.collection.cards[0].imageAlt = 'Imagen validada de traza manual'; }
+  if (presentation.longText) {
+    image.metadata.attributes[0].name = 'Magnitud de observación longitudinal';
+    image.collection.cards.forEach((card) => { card.values.atributo1.unit = 'kilómetros por segundo cuadrado'; });
+  }
   const dir = await writeFixture(root, image); await fs.mkdir(path.join(dir, 'imagenes')); await fs.writeFile(path.join(dir, image.metadata.imageRef), await realImage('png'));
   if (!single) await writeFixture(root, deckFixture('sin-imagen', true, 1));
   await writeFixture(root, deckFixture('borrador', false, 2));
