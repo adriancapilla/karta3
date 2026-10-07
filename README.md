@@ -34,8 +34,18 @@ Las reglas para desarrollar los siguientes bloques están en [`AGENTS.md`](AGENT
 
 ## Requisitos e instalación
 
-- Node.js 24 LTS y npm.
+- **Node.js 24.19.0 LTS**, referencia fijada en `.node-version` y compartida con CI. El requisito admite `>=24.19.0 <25`; `.npmrc` rechaza instalaciones con versiones incompatibles. Se ha comprobado con npm **11.6.2**.
 - Chrome instalado para las pruebas de navegador.
+
+Selecciona esa versión mediante tu gestor de versiones o una [distribución oficial portable de Node 24.19.0](https://nodejs.org/en/blog/release/v24.19.0). Para usar una portable sin cambiar instalaciones globales, antepón su carpeta —que contiene Node y npm— al PATH **solo de las terminales del proyecto**. Comprueba versión y ruta antes de instalar y en cada terminal que arranque o pruebe la aplicación:
+
+```powershell
+node --version
+npm --version
+Get-Command node,npm | Select-Object Name,Source
+```
+
+T03 adopta un entorno operativo reproducible: el clon Windows falló nativamente en TypeScript con 24.13.0 y funcionó con 24.19.0; la CI Linux anterior sí pasó con 24.13.0. Esto no demuestra la causa original del fallo. No hace falta cambiar runtimes de otras herramientas. El [registro T03](docs/sdd/BLOQUE_T03_ENTORNO_Y_DEPENDENCIAS.md) distingue esa evidencia histórica de sus comprobaciones nuevas.
 
 Clona el repositorio con una cuenta autorizada mientras sea privado. En PowerShell:
 
@@ -47,6 +57,20 @@ npm run dev
 ```
 
 Abrir `http://127.0.0.1:5173`. El paso `predev` prepara las barajas antes de arrancar. Vite envía `/api`, `/media`, `/barajas` y `/socket.io` al servidor en `127.0.0.1:3000` y bloquea el acceso directo a datos internos. Para probar la entrada, usa otro navegador o perfil con cookies independientes; una segunda pestaña del mismo perfil representa a la misma persona. El estado reside en la memoria del servidor; reiniciarlo elimina las salas. No hacen falta cuentas ni variables de entorno para desarrollo local.
+
+Antes de repetir `npm ci`, detén las instancias de este proyecto que estén utilizando sus módulos nativos. En Windows, un archivo de `sharp` abierto puede impedir la reinstalación; una instalación interrumpida no acredita dependencias completas. Repite `npm ci` después de liberar el archivo, conservando el lockfile. Detener/reiniciar el servidor pierde su estado en memoria.
+
+### Dependencias de desarrollo
+
+T03 alinea `@types/node` con la serie 24 (**24.19.1**). Vite conserva su versión y resuelve PostCSS **8.5.29**, que incorpora `source-map-js` **1.2.2**. `concurrently` **10.0.5** aún fija `shell-quote` 1.9.0: un override limitado a ese incorporador lo sustituye por **1.11.0**, corrección del [aviso oficial](https://github.com/advisories/GHSA-pqg4-j6r4-53mv). Revisarlo cuando el incorporador publique su actualización; no extenderlo a otros paquetes. Las demás versiones bloqueadas se conservan. Diagnóstico reproducible:
+
+```powershell
+npm audit
+npm audit --omit=dev
+npm ls concurrently shell-quote postcss source-map-js @types/node --all
+```
+
+Conserva `package-lock.json`; no utilices `audit fix --force` para resolver estos avisos. Los resultados de auditoría corresponden a su fecha, no garantizan ausencia de avisos futuros.
 
 ## Comprobaciones
 

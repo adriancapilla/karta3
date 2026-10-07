@@ -1,7 +1,15 @@
 # GitHub, comprobaciones y recuperación
 
-Actualizado: 06/10/2026. Repositorio existente: `E:\KARTA3\KARTA3_IA\APP\karta3`.
+Actualizado: 07/10/2026. Repositorio existente: `E:\KARTA3\KARTA3_IA\APP\karta3`.
 Versión de paquete: 0.1.0. Remoto privado: `https://github.com/adriancapilla/karta3.git`.
+
+## T03 — Entorno y dependencias vigentes
+
+La referencia de Node pasa a **24.19.0 LTS** en `.node-version`; CI lee ese archivo. `engines` admite `>=24.19.0 <25`, con `engine-strict=true` para instalaciones. Tipos de Node **24.19.1**, compatibles con la serie utilizada. No se cambia ninguna instalación global. Para reproducir, seleccionar Node y npm en las dos terminales del proyecto, comprobar versiones/rutas, ejecutar `npm ci`, `npm run check` y arrancar la compilación actual antes de la batería completa de navegador. Véanse [README](../../README.md#requisitos-e-instalación) y [alcance/evidencia T03](../sdd/BLOQUE_T03_ENTORNO_Y_DEPENDENCIAS.md).
+
+Diagnóstico nuevo anterior: tres alertas de desarrollo, cero de producción. PostCSS **8.5.28→8.5.29** incorpora `source-map-js` **1.2.1→1.2.2**. `concurrently` sigue en **10.0.5**, última publicación que fija shell-quote vulnerable; override específico **1.9.0→1.11.0**, sin downgrade mayor ni corrección forzada. Mantener ese override hasta que el incorporador pueda resolver una versión corregida. Lockfile conservado; solo cinco entradas de paquetes cambian versión, incluidos `@types/node`/`undici-types`.
+
+El éxito con 24.19.0 resuelve reproducibilidad local; no demuestra la causa del `0xC0000005` original. La publicación anterior con Linux/24.13.0 y sus auditorías es evidencia histórica conservada debajo. La CI remota nueva se comprobará posteriormente en el hilo GitHub; esta tarea no publica, integra ni despliega. Resultados realmente ejecutados y límites nuevos constan en T03.
 
 ## Publicación conjunta B10–B12 — 06/10/2026
 
@@ -125,7 +133,7 @@ La publicación anterior quedó cerrada: PR [#2](https://github.com/adriancapill
 
 ## Automatización vigente
 
-`.github/workflows/ci.yml` se ejecuta en cambios de `main`, pull requests hacia `main` y petición manual. Usa Ubuntu 24.04, Node 24.13.0 y `npm ci` desde el lockfile. Las acciones oficiales se fijan por commit, con permiso de lectura y sin conservar credenciales en el checkout.
+`.github/workflows/ci.yml` se ejecuta en cambios de `main`, pull requests hacia `main` y petición manual. Usa Ubuntu 24.04, Node 24.19.0 mediante `.node-version` y `npm ci` desde el lockfile. Las acciones oficiales se fijan por commit, con permiso de lectura y sin conservar credenciales en el checkout. Esta configuración T03 todavía necesita su ejecución remota posterior.
 
 Ejecuta `npm run check` en orden: tipos, análisis estático, preparación/compilación, pruebas de dominio/aplicación/adaptadores/API y control de capas. Después instala Chrome con Playwright y ejecuta todos los recorridos existentes. En CI el paso de navegador arranca el servidor compilado, espera su disponibilidad y lo detiene al salir; Playwright usa un solo trabajador sin reintentos. Ese paso tiene un límite de 20 minutos y el trabajo completo 30, justificados arriba para B07. No usa secretos ni despliega.
 
