@@ -1,7 +1,39 @@
 # GitHub, comprobaciones y recuperación
 
-Actualizado: 06/10/2026. Repositorio existente: `E:\KARTA3\KARTA3_IA\APP\karta3`.
+Actualizado: 07/10/2026. Repositorio existente: `E:\KARTA3\KARTA3_IA\APP\karta3`.
 Versión de paquete: 0.1.0. Remoto privado: `https://github.com/adriancapilla/karta3.git`.
+
+## Publicación conjunta T03/T04 — 07/10/2026
+
+Base local/remota verificada: `main` en `dd20e0a9d648f5d96ee034254fabbf91ac1bcc5c` (PR #6). Rama `fix/t04-aviso-resultado-anterior`, HEAD original `7684dff23a4aef8e2ab3faa8b056b710dd467097`, seis commits originales conservados. Árbol limpio al verificar; remoto privado y sin PR abierta. El autor prueba localmente y prepara Diseño en paralelo: no se incorporan automáticamente documentos nuevos ni cambios ajenos, ni se utilizan o detienen sus servidores.
+
+Alcance final: T03 fija Node **24.19.0**, tipos compatibles y las dos cadenas de herramientas corregidas, con override limitado a `concurrently > shell-quote`. T04 vincula el aviso de retorno a `gameId`, lo limpia al cambiar de contexto y comprueba el contexto actual antes y después de respuestas asíncronas; una respuesta antigua de A no recupera ni borra B. La revisión completa desde main incluye dependencias, lockfile, CI, coordinación de interfaz y cuatro regresiones nuevas con HTTP/Socket.IO reales y reloj sustituido. Servidor, contratos, reglas, permisos, retención y barajas no cambian. No se detecta contradicción funcional. Búsqueda acotada de claves privadas, tokens y credenciales en URL en los seis commits: cero archivos coincidentes; sin ASSETS/TFM/MASTER, secretos ni artefactos de ejecución versionados. No equivale a auditoría general.
+
+**Evidencia histórica local:** T03 **413 pruebas / 65 módulos / 114 Chrome**, auditorías completa/producción **0/0**; T04 **413 pruebas / 65 módulos / 43 Chrome afectados** (cuatro nuevos y 39 existentes). Se conservan sus intentos fallidos previos y montajes corregidos en los cierres respectivos. No se presentan esos recorridos parciales como una batería final de 118. La revisión humana posterior de INC-01 sigue pendiente.
+
+**Comprobación nueva de publicación:** clon real desde GitHub en `E:\KARTA3\KARTA3_IA\APP\karta3-verificacion-t03-t04-20261007`, commit `7684dff23a4aef8e2ab3faa8b056b710dd467097`, sin ASSETS/TFM/MASTER. Windows, Node **24.19.0** y npm **11.6.2**; selección temporal exclusiva de las terminales de ensayo, sin cambiar instalaciones globales. El registro de `process.version`/`process.execPath` confirma 24.19.0 en todos los procesos registrados de instalación y check. `npm ci`: **328 paquetes / 12,86 s**; `npm run check`: **413/413 en 39 archivos**, **65 módulos**, tipos/lint/preparación/build correctos, **53,71 s** en total (Vitest 18,24 s). Auditorías nueva completa/producción **0/0**, ambas con salida 0. Resoluciones efectivas: tipos 24.19.1, PostCSS 8.5.29, source-map-js 1.2.2, concurrently 10.0.5 y shell-quote 1.11.0 con override específico. No se repite navegador local sin motivo: CI debe ejecutar la batería completa.
+
+Arranque compilado independiente con Node 24.19.0/puerto 3011 correcto: inicio y catálogo 200, genérica **formato 1/contenido 2** disponible, catálogo `no-store` sin cookie. JSON privados 404; huellas aprobadas exactas: `baraja.json` **991406d04f60bfe884166a69fcc43954cfc751f0e058093ae2542f32c989e8ed**, `cartas.json` **868988a43fe6c6be1a73be14013c543dc2fc83970341a4243be868af75b4c35c**. Servidor propio detenido; ningún servidor del autor detenido.
+
+Batería actual enumerada: **118 recorridos Chrome en 15 archivos**. Se conserva **un trabajador, cero reintentos, Chrome 20 minutos y trabajo 30**. La CI anterior de PR #6 ejecutó 114 recorridos en 17:04 y main en 17:34; son referencias históricas, no resultados T03/T04. La nueva ejecución acredita la suficiencia real; no se reduce cobertura ni se debilitan criterios. El comentario del workflow se actualiza al recuento vigente sin alterar límites.
+
+**Primer intento remoto:** [CI 37609425043](https://github.com/adriancapilla/karta3/actions/runs/37609425043), HEAD `7cb4748a0dd10a22d90c656d07e1e9c0331ce8d7`, Node **24.19.0/npm 11.17.0** Linux. Instalación y check correctos: **413/413 en 39 archivos / 65 módulos**. Chrome ejecutó **118 recorridos**, **117 correctos y uno fallido**, incluidas las cuatro regresiones T04 correctas; paso **17:58**, trabajo **19:45**. No se agotó el presupuesto. Falló B10 `cutoff`, al esperar una jugada después de activar BAJO mediante Enter; se conservaron cero jugadas. No se integra ese intento.
+
+**Reparación técnica del ensayo:** el original activa Enter tras cerrar Detalles sin esperar expresamente su retirada ni comprobar habilitación/foco del botón de dirección. Se exige diálogo retirado, botón habilitado y foco confirmado antes de **una única pulsación Enter**. Se mantienen selección, presencia remota, scroll, geometría, privacidad, plazo y las aserciones de una jugada/un solo envío. No se cambia producto, tolerancias, plazos, cobertura ni reintentos. El original aislado en Windows pasó **1/1 en 3,4 s**; el reparado **1/1 en 3,5 s**, ambos con un trabajador/cero reintentos, y lint correcto. Esto identifica y corrige precondiciones ausentes del montaje; no demuestra forensemente la causa del fallo remoto. La nueva CI completa deberá acreditar el HEAD reparado.
+
+El cierre de ejecución se registra en la [PR #7 de T03/T04](https://github.com/adriancapilla/karta3/pull/7): HEAD final publicado, revisión, intentos y resultados/duraciones reales de CI de PR/main, squash y sincronización del proyecto y clon. No se crean commits solo para anotar el SHA integrado. Los ajustes de publicación afectan al registro, referencia README/comentario de CI y sincronización del ensayo B10 descrita arriba; no añaden otra corrección de producto.
+
+Pendientes: revisión humana posterior de INC-01, seguimiento del override cuando el incorporador publique su corrección, otros tamaños y C09–C10 restantes, consolidación/revisión final y despliegue. No se implementa Diseño ni se modifican fuentes TFM.
+
+## Evidencia local T03 — Entorno y dependencias vigentes
+
+La referencia de Node pasa a **24.19.0 LTS** en `.node-version`; CI lee ese archivo. `engines` admite `>=24.19.0 <25`, con `engine-strict=true` para instalaciones. Tipos de Node **24.19.1**, compatibles con la serie utilizada. No se cambia ninguna instalación global. Para reproducir, seleccionar Node y npm en las dos terminales del proyecto, comprobar versiones/rutas, ejecutar `npm ci`, `npm run check` y arrancar la compilación actual antes de la batería completa de navegador. Véanse [README](../../README.md#requisitos-e-instalación) y [alcance/evidencia T03](../sdd/BLOQUE_T03_ENTORNO_Y_DEPENDENCIAS.md).
+
+Diagnóstico nuevo anterior: tres alertas de desarrollo, cero de producción. PostCSS **8.5.28→8.5.29** incorpora `source-map-js` **1.2.1→1.2.2**. `concurrently` sigue en **10.0.5**, última publicación que fija shell-quote vulnerable; override específico **1.9.0→1.11.0**, sin downgrade mayor ni corrección forzada. Mantener ese override hasta que el incorporador pueda resolver una versión corregida. Lockfile conservado; solo cinco entradas de paquetes cambian versión, incluidos `@types/node`/`undici-types`.
+
+Verificación local nueva del 07/10/2026, cambio `271b8ff`: Node 24.19.0/npm 11.6.2, instalación limpia **328 paquetes / 50,40 s**, check **413/413 en 39 archivos / 65 módulos / 59,42 s**, navegador completo **114/114 en 14 archivos**, dos trabajadores, 8,1 min de Chrome (495,05 s incluido build), cero reintentos. Auditorías final completa/producción **0/0**. Desarrollo con dos sesiones y compilado responden correctamente; catálogo genérica 2 y JSON privados 404. Huellas aprobadas intactas en APP/ASSETS; instancias propias detenidas. Las rutas, comandos, horarios, incidencias del montaje y límites constan en T03. No se han modificado criterios ni cobertura.
+
+El éxito con 24.19.0 resuelve reproducibilidad local; no demuestra la causa del `0xC0000005` original. La publicación anterior con Linux/24.13.0 y sus auditorías es evidencia histórica conservada debajo. La CI remota nueva se comprobará posteriormente en el hilo GitHub; esta tarea no publica, integra ni despliega. Resultados realmente ejecutados y límites nuevos constan en T03.
 
 ## Publicación conjunta B10–B12 — 06/10/2026
 
@@ -125,7 +157,7 @@ La publicación anterior quedó cerrada: PR [#2](https://github.com/adriancapill
 
 ## Automatización vigente
 
-`.github/workflows/ci.yml` se ejecuta en cambios de `main`, pull requests hacia `main` y petición manual. Usa Ubuntu 24.04, Node 24.13.0 y `npm ci` desde el lockfile. Las acciones oficiales se fijan por commit, con permiso de lectura y sin conservar credenciales en el checkout.
+`.github/workflows/ci.yml` se ejecuta en cambios de `main`, pull requests hacia `main` y petición manual. Usa Ubuntu 24.04, Node 24.19.0 mediante `.node-version` y `npm ci` desde el lockfile. Las acciones oficiales se fijan por commit, con permiso de lectura y sin conservar credenciales en el checkout. Las ejecuciones nuevas de esta configuración se registran en la PR T03/T04, separadas de los históricos anteriores.
 
 Ejecuta `npm run check` en orden: tipos, análisis estático, preparación/compilación, pruebas de dominio/aplicación/adaptadores/API y control de capas. Después instala Chrome con Playwright y ejecuta todos los recorridos existentes. En CI el paso de navegador arranca el servidor compilado, espera su disponibilidad y lo detiene al salir; Playwright usa un solo trabajador sin reintentos. Ese paso tiene un límite de 20 minutos y el trabajo completo 30, justificados arriba para B07. No usa secretos ni despliega.
 

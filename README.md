@@ -28,14 +28,28 @@ La presentación vigente [B12 — Mesa centrada 03](docs/sdd/BLOQUE_12_MESA_CENT
 
 Todo el estado se mantiene en memoria de un proceso. **Reiniciar el servidor elimina salas, partidas, resultados y sesiones.** En juego no hay salida/cierre/cancelación; el anfitrión ausente no cierra la mesa y el servidor continúa sin navegadores. No existe opción de modo manual. Revisión (0/2/5/10/15/30 s) y conservación de resultados (30 minutos desde publicación final tras revisión, incluso sin clientes) están aplicadas. Volver al inicio libera solo la sesión solicitante en todas sus pestañas; permite consultar su último resultado y crear/entrar en otra sala sin reiniciar. No es historial permanente ni revancha. Para limpiar todos los ensayos se reinicia el proceso.
 
+La [corrección T04 de INC-01](docs/sdd/BLOQUE_T04_AVISO_RESULTADO_ANTERIOR.md) asocia los errores de retorno al resultado correspondiente: un aviso de una partida anterior no acompaña a la nueva clasificación. Conserva la retención original de 30 minutos y la lectura autorizada; consultar no prolonga disponibilidad.
+
 Para esta publicación conjunta B10–B12, el autor considera la jugabilidad PC suficientemente correcta para esta etapa. Esta aceptación posterior no reescribe los pendientes históricos de cada cierre ni acredita otros tamaños o C09–C10 completos. Las [fuentes y referencias originales de Diseño](docs/diseno/README.md) distinguen antecedentes, propuestas y decisiones implementadas; las maquetas no son capturas del producto final.
 
 Las reglas para desarrollar los siguientes bloques están en [`AGENTS.md`](AGENTS.md). La [organización y dependencias](docs/arquitectura/ORGANIZACION_Y_DEPENDENCIAS.md) explica cómo separar dominio, aplicación, infraestructura e interfaz a partir de este primer bloque.
 
 ## Requisitos e instalación
 
-- Node.js 24 LTS y npm.
+- **Node.js 24.19.0 LTS**, referencia fijada en `.node-version` y compartida con CI. El requisito admite `>=24.19.0 <25`; `.npmrc` rechaza instalaciones con versiones incompatibles. Se ha comprobado con npm **11.6.2**.
 - Chrome instalado para las pruebas de navegador.
+
+Selecciona esa versión mediante tu gestor de versiones o una [distribución oficial portable de Node 24.19.0](https://nodejs.org/en/blog/release/v24.19.0). Para usar una portable sin cambiar instalaciones globales, antepón su carpeta —que contiene Node y npm— al PATH **solo de las terminales del proyecto**. Comprueba versión y ruta antes de instalar y en cada terminal que arranque o pruebe la aplicación:
+
+```powershell
+node --version
+npm --version
+Get-Command node,npm | Select-Object Name,Source
+```
+
+La [verificación local T03 del 07/10/2026](docs/sdd/BLOQUE_T03_ENTORNO_Y_DEPENDENCIAS.md) superó instalación limpia, check **413/413**, control de **65 módulos**, desarrollo/compilado y navegador completo **114/114**, con auditoría completa y de producción **0/0**. El [registro de publicación](docs/operacion/GITHUB_Y_RECUPERACION.md) y la PR de T03/T04 distinguen esa evidencia local de las nuevas ejecuciones remotas de la batería completa, ampliada a **118 recorridos**.
+
+T03 adopta un entorno operativo reproducible: el clon Windows falló nativamente en TypeScript con 24.13.0 y funcionó con 24.19.0; la CI Linux anterior sí pasó con 24.13.0. Esto no demuestra la causa original del fallo. No hace falta cambiar runtimes de otras herramientas. El [registro T03](docs/sdd/BLOQUE_T03_ENTORNO_Y_DEPENDENCIAS.md) distingue esa evidencia histórica de sus comprobaciones nuevas.
 
 Clona el repositorio con una cuenta autorizada mientras sea privado. En PowerShell:
 
@@ -47,6 +61,20 @@ npm run dev
 ```
 
 Abrir `http://127.0.0.1:5173`. El paso `predev` prepara las barajas antes de arrancar. Vite envía `/api`, `/media`, `/barajas` y `/socket.io` al servidor en `127.0.0.1:3000` y bloquea el acceso directo a datos internos. Para probar la entrada, usa otro navegador o perfil con cookies independientes; una segunda pestaña del mismo perfil representa a la misma persona. El estado reside en la memoria del servidor; reiniciarlo elimina las salas. No hacen falta cuentas ni variables de entorno para desarrollo local.
+
+Antes de repetir `npm ci`, detén las instancias de este proyecto que estén utilizando sus módulos nativos. En Windows, un archivo de `sharp` abierto puede impedir la reinstalación; una instalación interrumpida no acredita dependencias completas. Repite `npm ci` después de liberar el archivo, conservando el lockfile. Detener/reiniciar el servidor pierde su estado en memoria.
+
+### Dependencias de desarrollo
+
+T03 alinea `@types/node` con la serie 24 (**24.19.1**). Vite conserva su versión y resuelve PostCSS **8.5.29**, que incorpora `source-map-js` **1.2.2**. `concurrently` **10.0.5** aún fija `shell-quote` 1.9.0: un override limitado a ese incorporador lo sustituye por **1.11.0**, corrección del [aviso oficial](https://github.com/advisories/GHSA-pqg4-j6r4-53mv). Revisarlo cuando el incorporador publique su actualización; no extenderlo a otros paquetes. Las demás versiones bloqueadas se conservan. Diagnóstico reproducible:
+
+```powershell
+npm audit
+npm audit --omit=dev
+npm ls concurrently shell-quote postcss source-map-js @types/node --all
+```
+
+Conserva `package-lock.json`; no utilices `audit fix --force` para resolver estos avisos. Los resultados de auditoría corresponden a su fecha, no garantizan ausencia de avisos futuros.
 
 ## Comprobaciones
 
