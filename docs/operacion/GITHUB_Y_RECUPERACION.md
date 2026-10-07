@@ -9,6 +9,8 @@ La referencia de Node pasa a **24.19.0 LTS** en `.node-version`; CI lee ese arch
 
 Diagnóstico nuevo anterior: tres alertas de desarrollo, cero de producción. PostCSS **8.5.28→8.5.29** incorpora `source-map-js` **1.2.1→1.2.2**. `concurrently` sigue en **10.0.5**, última publicación que fija shell-quote vulnerable; override específico **1.9.0→1.11.0**, sin downgrade mayor ni corrección forzada. Mantener ese override hasta que el incorporador pueda resolver una versión corregida. Lockfile conservado; solo cinco entradas de paquetes cambian versión, incluidos `@types/node`/`undici-types`.
 
+Verificación local nueva del 07/10/2026, cambio `271b8ff`: Node 24.19.0/npm 11.6.2, instalación limpia **328 paquetes / 50,40 s**, check **413/413 en 39 archivos / 65 módulos / 59,42 s**, navegador completo **114/114 en 14 archivos**, dos trabajadores, 8,1 min de Chrome (495,05 s incluido build), cero reintentos. Auditorías final completa/producción **0/0**. Desarrollo con dos sesiones y compilado responden correctamente; catálogo genérica 2 y JSON privados 404. Huellas aprobadas intactas en APP/ASSETS; instancias propias detenidas. Las rutas, comandos, horarios, incidencias del montaje y límites constan en T03. No se han modificado criterios ni cobertura.
+
 El éxito con 24.19.0 resuelve reproducibilidad local; no demuestra la causa del `0xC0000005` original. La publicación anterior con Linux/24.13.0 y sus auditorías es evidencia histórica conservada debajo. La CI remota nueva se comprobará posteriormente en el hilo GitHub; esta tarea no publica, integra ni despliega. Resultados realmente ejecutados y límites nuevos constan en T03.
 
 ## Publicación conjunta B10–B12 — 06/10/2026

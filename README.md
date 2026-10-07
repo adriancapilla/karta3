@@ -45,6 +45,8 @@ npm --version
 Get-Command node,npm | Select-Object Name,Source
 ```
 
+La [verificación local T03 del 07/10/2026](docs/sdd/BLOQUE_T03_ENTORNO_Y_DEPENDENCIAS.md) superó instalación limpia, check **413/413**, control de **65 módulos**, desarrollo/compilado y navegador completo **114/114**, con auditoría completa y de producción **0/0**. La nueva CI remota queda pendiente.
+
 T03 adopta un entorno operativo reproducible: el clon Windows falló nativamente en TypeScript con 24.13.0 y funcionó con 24.19.0; la CI Linux anterior sí pasó con 24.13.0. Esto no demuestra la causa original del fallo. No hace falta cambiar runtimes de otras herramientas. El [registro T03](docs/sdd/BLOQUE_T03_ENTORNO_Y_DEPENDENCIAS.md) distingue esa evidencia histórica de sus comprobaciones nuevas.
 
 Clona el repositorio con una cuenta autorizada mientras sea privado. En PowerShell:
