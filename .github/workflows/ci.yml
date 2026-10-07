@@ -18,7 +18,7 @@ jobs:
   checks:
     name: Tipos, análisis, pruebas, arquitectura y compilación
     runs-on: ubuntu-24.04
-    # B10-B12: 114 recorridos; conservar el margen 20 min Chrome / 30 min trabajo.
+    # T03/T04: 118 recorridos; conservar el margen 20 min Chrome / 30 min trabajo.
     # Un trabajador y cero reintentos; comprobar su suficiencia con la ejecución remota.
     timeout-minutes: 30
     steps:
