@@ -2,7 +2,7 @@ import { createServer } from 'node:http';
 import fs from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
-import type { ConfigureRoomRequest, StartRoomRequest, RoomView, SocketAck, CurrentRoomResponse, ReturnHomeRequest, BotResponse } from '../../shared/contracts/room.js';
+import type { ConfigureRoomRequest, StartRoomRequest, RoomView, SocketAck, CurrentRoomResponse, ReturnHomeRequest, ResultsHomeEvent, BotResponse } from '../../shared/contracts/room.js';
 import { ControlledTime } from './controlledTime.js';
 import { deckFixture, realImage, writeFixture } from './deckFixtures.js';
 import { removeTestInstallation } from './compiledDeckServer.js';
@@ -125,6 +125,7 @@ export async function configurationBrowserServer(single = false, initialGame = f
     permutations: () => permutations,
     disconnect: (sessionId: string) => { io.in(`session:${sessionId}`).disconnectSockets(true); },
     dropOneTransport: (sessionId: string) => { [...io.sockets.sockets.values()].find((socket) => socket.data.sessionId === sessionId)?.conn.close(); },
+    repeatResultsHome: (sessionId: string, event: ResultsHomeEvent) => { io.to(`session:${sessionId}`).emit('results:home', event); },
     repeatTurnExpired: (event: TurnExpiredEvent) => {
       for (const sessionId of repository.findById(event.roomId)!.memberSessions) io.to(`session:${sessionId}`).emit('game:turn-expired', event);
     },

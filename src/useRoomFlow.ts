@@ -18,7 +18,7 @@ export function useRoomFlow() {
   const releasedRooms = useRef(new Set<string>());
   const seenHomes = useRef(new Set<string>());
   const [lastResult, setLastResult] = useState<LastResult | undefined>();
-  const [resultError, setResultError] = useState('');
+  const [resultError, setResultError] = useState<{ gameId: string; message: string } | null>(null);
   const pendingHome = useRef<ReturnHomeRequest | null>(null);
   const ended = useRef(new Set<string>());
   const closed = useRef(new Set<string>());
@@ -53,6 +53,7 @@ export function useRoomFlow() {
     setConfirmLeave(false);
     setActivity('');
     setTimeoutNotice('');
+    setResultError(null);
     navigate('/');
     setNotice(noticeText);
   }, []);
@@ -69,6 +70,7 @@ export function useRoomFlow() {
     roomRef.current = incoming;
     activeRoomRef.current = incoming;
     setRoom(incoming);
+    setResultError((error) => incoming.status === 'RESULTS' && error?.gameId === incoming.result.gameId ? error : null);
     navigate(incoming.status === 'RESULTS' ? `/resultado/${encodeURIComponent(incoming.result.gameId)}` : roomPath(incoming.id));
     setNotice('');
     return true;
@@ -98,7 +100,7 @@ export function useRoomFlow() {
   }, [applyRoom, clearRoom]);
 
   const showResult = useCallback((result: ResultsRoomView) => {
-    roomRef.current = result; setRoom(result); setResultError(''); setNotice('');
+    roomRef.current = result; setRoom(result); setResultError(null); setNotice('');
     navigate(`/resultado/${encodeURIComponent(result.result.gameId)}`);
   }, []);
   const openResult = useCallback(async (gameId: string) => {
@@ -345,34 +347,44 @@ export function useRoomFlow() {
   async function returnHome() {
     const current = roomRef.current;
     if (!current || current.status !== 'RESULTS' || busy) return;
-    setBusy(true); setResultError('');
+    setBusy(true); setResultError(null);
     const input = pendingHome.current?.gameId === current.result.gameId ? pendingHome.current
       : { requestId: crypto.randomUUID(), roomId: current.id, gameId: current.result.gameId };
     pendingHome.current = input;
+    const isCurrentResult = () => roomRef.current?.id === current.id && roomRef.current.status === 'RESULTS'
+      && roomRef.current.result.gameId === input.gameId;
     try {
       const result = await sendGame<CurrentRoomResponse>('results:return-home', input);
-      if (activeRoomRef.current && activeRoomRef.current.id !== current.id || roomRef.current && roomRef.current.id !== current.id) {
-        pendingHome.current = null; return; // una confirmación anterior no limpia la nueva sala
+      if (!isCurrentResult() || activeRoomRef.current && activeRoomRef.current.id !== current.id) {
+        if (pendingHome.current === input) pendingHome.current = null;
+        return; // una confirmación anterior no limpia la nueva sala
       }
       explicitResult.current = null; releasedRooms.current.add(current.id); pendingHome.current = null;
       clearRoom(''); applyCurrent(result, current.id);
     } catch (error) {
-      setResultError(message(error));
+      if (!isCurrentResult()) return;
+      setResultError({ gameId: input.gameId, message: message(error) });
       try {
         const expectedRoomId = activeRoomRef.current?.id ?? null;
         const result = await api.current();
+        if (!isCurrentResult()) return;
         if (result.room?.id !== current.id || error instanceof ApiError && error.code === 'RESULT_NOT_AVAILABLE') {
-          explicitResult.current = null; releasedRooms.current.add(current.id); pendingHome.current = null;
           if (activeRoomRef.current?.id !== expectedRoomId && result.room?.id !== activeRoomRef.current?.id) return;
+          explicitResult.current = null; releasedRooms.current.add(current.id); pendingHome.current = null;
           clearRoom(''); applyCurrent(result, expectedRoomId);
         }
-      } catch { setResultError('No se pudo confirmar el retorno. Recupera la conexión antes de reintentar.'); }
-    } finally { setBusy(false); }
+      } catch {
+        if (isCurrentResult()) setResultError({ gameId: input.gameId, message: 'No se pudo confirmar el retorno. Recupera la conexión antes de reintentar.' });
+      }
+    } finally {
+      if (!isCurrentResult() && pendingHome.current === input) pendingHome.current = null;
+      setBusy(false);
+    }
   }
 
   return {
     room, loading, busy, joining, notice, activity: [activity, timeoutNotice].filter(Boolean).join(' · '), code, joinName, joinError, name, nameError, copyMessage, connected, confirmExpiry, applyRoom, applyCurrent,
-    lastResult, resultError, openResult, returnHome,
+    lastResult, resultError: room?.status === 'RESULTS' && resultError?.gameId === room.result.gameId ? resultError.message : '', openResult, returnHome,
     confirmClose, confirmLeave, refresh, createRoom, joinRoom, editName, saveName, copyCode,
     closeRoom, leaveRoom, setConfirmClose, setConfirmLeave,
     setCode: (value: string) => { setCode(value); setJoinError(''); pendingJoin.current = null; },
