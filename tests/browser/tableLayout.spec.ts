@@ -172,7 +172,10 @@ if (!captureBase) {
       await p.host.close(); await expect(actor.getByText('Sin conexión', { exact: true })).toBeVisible(); await expect(close).toBeFocused();
       await close.press('Escape'); await expect(details).toBeFocused(); await expect(selected).toHaveAttribute('aria-pressed', 'true');
       expect(server.gameRequests).toHaveLength(0);
-      await actor.getByRole('button', { name: 'BAJO', exact: true }).press('Enter');
+      await expect(actor.getByRole('dialog')).toHaveCount(0);
+      const direction = actor.getByRole('button', { name: 'BAJO', exact: true });
+      await expect(direction).toBeEnabled(); await direction.focus(); await expect(direction).toBeFocused();
+      await actor.keyboard.press('Enter');
       await expect.poll(async () => (await readGame(actor)).game.round.plays.length).toBe(1);
       expect(server.gameRequests.filter((item) => item.event === 'game:play')).toHaveLength(1);
     } finally { await p.close(); await server.stop(); }
