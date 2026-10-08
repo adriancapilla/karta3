@@ -38,6 +38,8 @@ Un bloque técnico declara el comportamiento y contrato que conserva, la versió
 
 ## Cambios y evidencia
 
+El [bloque técnico T05: empaquetado de Pruebas](BLOQUE_T05_EMPAQUETADO_PRUEBAS.md), implementado y preparado para revisión el 08/10/2026 desde `4b56914` en `chore/docker-pruebas`, cambio revisado `844e104`, entrega Docker/Compose/Caddy y configuración de arranque según el plan compartido. Evidencia nueva: check **415/415 / 65 módulos**, **1/1** recorrido HTTPS/polling/WSS mediante Caddy Windows real y **20/20** regresiones compiladas; huellas genérica 2 intactas. Motor Docker local ausente: imagen Linux, digest real, ACME público, aislamiento/volúmenes/reversión operativos y VPS **pendientes**, sin declarar verificación completa ni despliegue. Solo main adapta HOST; contratos/reglas/históricos/TFM intactos. Publicación y operación posteriores se coordinan mediante textos trasladados por el autor; no mensajes a otros hilos.
+
 En la propia especificación del bloque se registra cada cambio relevante: fecha, observación o motivo, decisión tomada, criterios modificados y documentos especializados afectados. Las decisiones específicas del incremento se documentan allí. Si una decisión completa o cambia una regla general, se comunica al ámbito responsable para alinear su documento; el resumen de coordinación identifica esta tarea. Las ampliaciones futuras permanecen como candidatas hasta que se acuerden expresamente. Los defectos de implementación se corrigen contra la especificación vigente sin convertirlos en cambios de regla.
 
 Para cerrar un bloque se anotan, de forma breve:

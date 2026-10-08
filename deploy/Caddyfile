@@ -1,0 +1,10 @@
+{
+    # Administración por archivos/Compose; no API administrativa HTTP.
+    admin off
+}
+
+{$KARTA3_DOMAIN} {
+    header X-Robots-Tag "noindex, nofollow"
+    # Mantiene Host, Cookie y Upgrade; APP decide permisos y vistas seguras.
+    reverse_proxy {$KARTA3_UPSTREAM:app:3000}
+}

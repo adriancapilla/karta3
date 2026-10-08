@@ -30,6 +30,8 @@ Todo el estado se mantiene en memoria de un proceso. **Reiniciar el servidor eli
 
 La [corrección T04 de INC-01](docs/sdd/BLOQUE_T04_AVISO_RESULTADO_ANTERIOR.md) asocia los errores de retorno al resultado correspondiente: un aviso de una partida anterior no acompaña a la nueva clasificación. Conserva la retención original de 30 minutos y la lectura autorizada; consultar no prolonga disponibilidad.
 
+El [empaquetado Docker de Pruebas](docs/operacion/DOCKER_PRUEBAS.md) prepara una imagen Linux desde APP, Compose y Caddy con certificados persistentes. Configuración por arranque y referencia por digest; app privada, un proceso por entorno y solo Caddy en TCP 80/443. La guía distingue comprobación local, imagen Linux pendiente de CI y operación posterior por el autor. No acredita VPS desplegado. El arranque local mantiene 127.0.0.1; `HOST` permite la escucha en la red del contenedor.
+
 Para esta publicación conjunta B10–B12, el autor considera la jugabilidad PC suficientemente correcta para esta etapa. Esta aceptación posterior no reescribe los pendientes históricos de cada cierre ni acredita otros tamaños o C09–C10 completos. Las [fuentes y referencias originales de Diseño](docs/diseno/README.md) distinguen antecedentes, propuestas y decisiones implementadas; las maquetas no son capturas del producto final.
 
 Las reglas para desarrollar los siguientes bloques están en [`AGENTS.md`](AGENTS.md). La [organización y dependencias](docs/arquitectura/ORGANIZACION_Y_DEPENDENCIAS.md) explica cómo separar dominio, aplicación, infraestructura e interfaz a partir de este primer bloque.

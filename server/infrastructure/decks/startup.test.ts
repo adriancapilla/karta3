@@ -14,6 +14,18 @@ let stop: (() => Promise<void>) | undefined;
 beforeEach(async () => { root = await compiledInstallation(); });
 afterEach(async () => { await stop?.(); stop = undefined; await removeTestInstallation(root); });
 
+it.each([undefined, '0.0.0.0'])('T05 arranque compilado HOST=%s: catálogo y sesión segura de producción', async (host) => {
+  await fs.cp(path.resolve('barajas/generica'), path.join(root, 'barajas/generica'), { recursive: true });
+  await prepareDecks(path.join(root, 'barajas'));
+  const server = await startCompiledDeckServer(root, 0, { host, production: true }); stop = server.stop;
+  expect(server.output()).toContain(`KARTA3: http://${host ?? '127.0.0.1'}:`);
+  expect(await (await fetch(`${server.base}/api/decks`)).json()).toEqual({ decks: [approvedGeneric] });
+  const current = await fetch(`${server.base}/api/rooms/current`);
+  expect(current.headers.get('set-cookie')).toMatch(/HttpOnly; Secure; SameSite=Strict/i);
+  expect(await fs.readdir(root)).not.toContain('asset-access.txt');
+  expect(server.errors()).toBe('');
+}, 15_000);
+
 it('AGV2-02/03 y B04-01/08 construcción real con genérica 2 aislada de ASSETS; consulta conserva instantánea', async () => {
   await expect(promisify(execFile)(process.execPath, ['--import', './guard.mjs', '--input-type=module', '-e', 'import fs from "node:fs/promises"; await fs.readFile("ASSETS/probe.json");'], { cwd: root, windowsHide: true })).rejects.toMatchObject({ stderr: expect.stringContaining('ASSETS no permitido') });
   await expect(promisify(execFile)(process.execPath, ['--import', './guard.mjs', '--input-type=module', '-e', 'import fs from "node:fs"; fs.realpathSync.native("ASSETS/probe.json");'], { cwd: root, windowsHide: true })).rejects.toMatchObject({ stderr: expect.stringContaining('ASSETS no permitido') });
