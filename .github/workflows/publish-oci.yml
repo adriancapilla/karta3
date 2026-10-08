@@ -59,6 +59,8 @@ jobs:
           mkdir -p "$proof" "$DOCKER_CONFIG"
           trap 'docker rm -f karta3-readonly-check >/dev/null 2>&1 || true' EXIT
           gh api users/adriancapilla/packages/container/karta3 > "$proof/package.json"
+          gh api graphql -f query='{ repository(owner:"adriancapilla", name:"karta3") { nameWithOwner isPrivate packages(first:100) { nodes { id name packageType repository { nameWithOwner isPrivate } } } } }' > "$proof/repository-packages-graphql.json" || true
+          cat "$proof/repository-packages-graphql.json"
           jq -e '.visibility == "private"' "$proof/package.json"
           gh run download 37771631223 --repo adriancapilla/karta3 --name karta3-linux-amd64-37771631223-1 --dir "$RUNNER_TEMP/readonly-source"
           printf '%s' "$GH_TOKEN" | skopeo login --authfile "$RUNNER_TEMP/readonly-auth.json" --username "$GITHUB_ACTOR" --password-stdin ghcr.io
