@@ -73,6 +73,12 @@ karta3/
 
 El directorio `server/domain/` contiene la validación pura de `Deck` B04 y el agregado `Game` iniciado en B06/B07; no se creó vacío para T01. B08 añadió plazos y automático humano; B09 añade bots mediante políticas puras y la misma coordinación de ejecución, alineados en EASY/HARD por T02. Los apartados siguientes describen cada incremento y su alcance. `tools/decks.ts` delega a composición, que selecciona las mismas operaciones de infraestructura para comando, construcción y arranque. Una prueba cercana al módulo que comprueba es válida. Se mantiene un solo repositorio.
 
+### Empaquetado de Pruebas — T05
+
+`Dockerfile` construye desde APP con Node/lockfile y genera el catálogo en Linux; la ejecución conserva solo dependencias de producción, compilados y barajas aprobadas. `deploy/compose.yaml` conecta una app sin puerto publicado a Caddy; la red de juego es interna, Caddy publica TCP 80/443 y sus certificados persisten. `deploy/Caddyfile` conserva Host/Cookie/Upgrade y no sirve archivos internos ni API administrativa. Entorno/dominio/configuración privada se suministran al arrancar; el cliente mantiene rutas relativas. Un mismo digest puede reutilizarse en futuro Play con estado propio y Caddy compartido, todavía sin preparar Play.
+
+`server/main.ts` selecciona HOST, predeterminado 127.0.0.1 local y 0.0.0.0 en Compose. No mueve reglas/casos de uso, amplía confianza del proxy ni cambia sesión/contratos. El healthcheck usa la consulta pública de catálogo existente. Los montajes de HTTPS local y excepciones de CA viven exclusivamente en pruebas. [Guía operativa](../operacion/DOCKER_PRUEBAS.md) y [evidencia T05](../sdd/BLOQUE_T05_EMPAQUETADO_PRUEBAS.md) distinguen aplicación compilada local, Caddy Windows real, imagen Linux y despliegue; no se infiere uno de otro.
+
 ### Estado del primer bloque tras T01
 
 T01 separó `server/roomStore.ts` y `server/app.ts`: `Room` conserva estado y transiciones; `RoomUseCases` coordina identidad interna, permisos, código y repositorio; `roomView.ts` proyecta la respuesta; infraestructura conserva mapas, cookie, cripto y Express; composición los conecta. Los contratos públicos viven en `shared/contracts`. El comportamiento HTTP y la interfaz del bloque 01 se conservaron y se comprobaron de nuevo.

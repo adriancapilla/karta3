@@ -38,6 +38,8 @@ Un bloque técnico declara el comportamiento y contrato que conserva, la versió
 
 ## Cambios y evidencia
 
+El [bloque técnico T05: empaquetado de Pruebas](BLOQUE_T05_EMPAQUETADO_PRUEBAS.md), acordado el 08/10/2026, prepara Docker/Compose/Caddy y configuración de arranque conforme al plan compartido. Su evidencia distingue verificación local, contenedor Linux y VPS; publicación y operación posteriores corresponden a sus responsables mediante mensajes trasladados por el autor. Sin cambios funcionales ni nuevas fuentes TFM.
+
 En la propia especificación del bloque se registra cada cambio relevante: fecha, observación o motivo, decisión tomada, criterios modificados y documentos especializados afectados. Las decisiones específicas del incremento se documentan allí. Si una decisión completa o cambia una regla general, se comunica al ámbito responsable para alinear su documento; el resumen de coordinación identifica esta tarea. Las ampliaciones futuras permanecen como candidatas hasta que se acuerden expresamente. Los defectos de implementación se corrigen contra la especificación vigente sin convertirlos en cambios de regla.
 
 Para cerrar un bloque se anotan, de forma breve:

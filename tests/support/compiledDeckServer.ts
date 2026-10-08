@@ -43,8 +43,10 @@ syncBuiltinESMExports();
   return root;
 }
 
-export async function startCompiledDeckServer(root: string, port = 0) {
-  const environment: NodeJS.ProcessEnv = { ...process.env, PORT: String(port), NODE_ENV: 'test' };
+export async function startCompiledDeckServer(root: string, port = 0, options: { host?: string; production?: boolean } = {}) {
+  const environment: NodeJS.ProcessEnv = { ...process.env, PORT: String(port), NODE_ENV: options.production ? 'production' : 'test' };
+  if (options.host === undefined) delete environment.HOST;
+  else environment.HOST = options.host;
   // Playwright fija FORCE_COLOR y hereda NO_COLOR: evitar el aviso de flags contradictorios en el hijo.
   delete environment.FORCE_COLOR;
   const child = spawn(process.execPath, ['--import', './guard.mjs', 'dist-server/server/main.js'], { cwd: root, env: environment, windowsHide: true, stdio: ['ignore', 'pipe', 'pipe'] });
@@ -55,8 +57,8 @@ export async function startCompiledDeckServer(root: string, port = 0) {
     const timeout = setTimeout(() => { child.kill(); reject(new Error(`Arranque agotado: ${output} ${errors}`)); }, 10_000);
     child.stdout.on('data', (data: Buffer) => {
       output += data.toString();
-      const url = /KARTA3: (http:\/\/127\.0\.0\.1:\d+)/.exec(output)?.[1];
-      if (url) { clearTimeout(timeout); resolve(url); }
+      const url = /KARTA3: (http:\/\/(?:127\.0\.0\.1|0\.0\.0\.0):\d+)/.exec(output)?.[1];
+      if (url) { clearTimeout(timeout); resolve(url.replace('0.0.0.0', '127.0.0.1')); }
     });
     child.once('exit', (code) => { clearTimeout(timeout); reject(new Error(`Arranque fallido ${code}: ${output} ${errors}`)); });
     child.once('error', (error) => { clearTimeout(timeout); reject(error); });

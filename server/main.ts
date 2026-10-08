@@ -10,11 +10,13 @@ try {
   const runtime = createRuntime({ decks: loaded.catalog, deckVersions: loaded.catalog, gameDecks: loaded.catalog });
   attachPublicFiles(runtime.app, path.join(installationRoot, 'dist'), loaded.catalog);
   const port = Number(process.env.PORT ?? 3000);
+  const host = process.env.HOST ?? '127.0.0.1';
   const server = createServer(runtime.app);
   runtime.attachRealtime(server);
-  server.listen(port, '127.0.0.1', () => {
+  server.listen(port, host, () => {
     const address = server.address();
-    console.log(`KARTA3: http://127.0.0.1:${address && typeof address === 'object' ? address.port : port}`);
+    const boundHost = address && typeof address === 'object' ? address.address : host;
+    console.log(`KARTA3: http://${boundHost.includes(':') ? `[${boundHost}]` : boundHost}:${address && typeof address === 'object' ? address.port : port}`);
   });
 } catch (error) {
   if (error instanceof DeckLoadError) {

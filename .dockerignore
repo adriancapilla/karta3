@@ -1,0 +1,37 @@
+# Lista de entrada: contexto exclusivamente APP/karta3.
+**
+!package.json
+!package-lock.json
+!.npmrc
+!.node-version
+!index.html
+!tsconfig*.json
+!vite.config.ts
+!vitest.config.ts
+!eslint.config.js
+!playwright.config.ts
+!src/
+!src/**
+!shared/
+!shared/**
+!server/
+!server/**
+!tools/
+!tools/**
+!tests/
+!tests/**
+!public/
+!public/**
+!barajas/
+!barajas/**
+# Siempre generado dentro de Linux; nunca reutilizar dependencias/binarios de Windows.
+barajas/catalogo.json
+barajas/.catalogo-*.tmp
+**/*.log
+**/*.tsbuildinfo
+**/.env
+**/.env.*
+**/*.pem
+**/*.key
+**/node_modules/
+**/.git/

@@ -1,0 +1,62 @@
+name: ${COMPOSE_PROJECT_NAME:-karta3-pruebas}
+
+services:
+  app:
+    image: ${KARTA3_IMAGE:?Indica el digest de la imagen KARTA3 comprobada}
+    # Nombre único: Compose no puede escalar este servicio con memoria independiente.
+    container_name: ${COMPOSE_PROJECT_NAME:-karta3-pruebas}-app
+    init: true
+    restart: unless-stopped
+    env_file:
+      - path: .env.private
+        required: false
+    environment:
+      NODE_ENV: ${NODE_ENV:-production}
+      HOST: 0.0.0.0
+      PORT: "3000"
+    labels:
+      org.karta3.environment: ${KARTA3_ENV:-pruebas}
+    read_only: true
+    tmpfs:
+      - /tmp
+    networks:
+      - game
+    logging:
+      driver: local
+      options:
+        max-size: 10m
+        max-file: "5"
+
+  caddy:
+    image: ${CADDY_IMAGE:?Indica una referencia concreta de Caddy}
+    restart: unless-stopped
+    command: ["caddy", "run", "--config", "/etc/caddy/Caddyfile", "--adapter", "caddyfile"]
+    environment:
+      KARTA3_DOMAIN: ${KARTA3_DOMAIN:?Indica el dominio de Pruebas}
+    ports:
+      - "80:80/tcp"
+      - "443:443/tcp"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    networks:
+      - edge
+      - game
+    depends_on:
+      app:
+        condition: service_healthy
+    logging:
+      driver: local
+      options:
+        max-size: 10m
+        max-file: "5"
+
+networks:
+  edge:
+  game:
+    internal: true
+
+volumes:
+  caddy_data:
+  caddy_config:
