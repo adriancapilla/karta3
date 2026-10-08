@@ -37,12 +37,54 @@ jobs:
     runs-on: ubuntu-24.04
     permissions:
       contents: read
+      actions: read
       packages: read
     steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          persist-credentials: false
       - name: Consultar metadatos de paquete sin escribir
         run: gh api users/adriancapilla/packages/container/karta3 --jq '{name,visibility,repository,html_url}'
         env:
           GH_TOKEN: ${{ github.token }}
+      - name: Descargar por digest y verificar arranque sin publicar
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends -y skopeo
+          proof="$RUNNER_TEMP/readonly-proof"
+          export DOCKER_CONFIG="$RUNNER_TEMP/readonly-auth"
+          mkdir -p "$proof" "$DOCKER_CONFIG"
+          trap 'docker rm -f karta3-readonly-check >/dev/null 2>&1 || true' EXIT
+          gh api users/adriancapilla/packages/container/karta3 > "$proof/package.json"
+          jq -e '.visibility == "private"' "$proof/package.json"
+          gh run download 37771631223 --repo adriancapilla/karta3 --name karta3-linux-amd64-37771631223-1 --dir "$RUNNER_TEMP/readonly-source"
+          printf '%s' "$GH_TOKEN" | skopeo login --authfile "$RUNNER_TEMP/readonly-auth.json" --username "$GITHUB_ACTOR" --password-stdin ghcr.io
+          reference='ghcr.io/adriancapilla/karta3@sha256:33de30c84c8947286fa9b8dc4031e1c0449bb206b5c371dd13ff00239e05b57a'
+          skopeo inspect --authfile "$RUNNER_TEMP/readonly-auth.json" --raw "docker://$reference" > "$proof/downloaded-manifest.json"
+          cmp "$RUNNER_TEMP/readonly-source/manifest.json" "$proof/downloaded-manifest.json"
+          printf '%s' "$GH_TOKEN" | docker login ghcr.io --username "$GITHUB_ACTOR" --password-stdin
+          docker pull --platform linux/amd64 "$reference"
+          test "$(docker image inspect "$reference" --format '{{.Id}}')" = 'sha256:3a4c81ef173d46362281ccb42344998e22d0a06fb48b42c124cb4cde98fe5535'
+          docker image inspect "$reference" > "$proof/image.json"
+          docker run -d --name karta3-readonly-check --read-only --tmpfs /tmp "$reference"
+          ready=false
+          for attempt in {1..60}; do
+            if [ "$(docker inspect karta3-readonly-check --format '{{.State.Health.Status}}')" = healthy ]; then ready=true; break; fi
+            sleep 1
+          done
+          test "$ready" = true
+          docker exec -i karta3-readonly-check node --input-type=module < tools/ci-image-runtime.mjs > "$proof/runtime.json"
+          cat "$proof/runtime.json"
+          gh api users/adriancapilla/packages/container/karta3 --jq '{name,visibility,repository}'
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        if: always()
+        with:
+          name: karta3-descarga-diagnostico-${{ github.run_id }}
+          path: ${{ runner.temp }}/readonly-proof/
+          retention-days: 90
   publish:
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-24.04
