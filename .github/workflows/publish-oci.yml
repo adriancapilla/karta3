@@ -32,6 +32,17 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  diagnose:
+    if: github.ref != 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+      packages: read
+    steps:
+      - name: Consultar metadatos de paquete sin escribir
+        run: gh api users/adriancapilla/packages/container/karta3 --jq '{name,visibility,repository,html_url}'
+        env:
+          GH_TOKEN: ${{ github.token }}
   publish:
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-24.04
