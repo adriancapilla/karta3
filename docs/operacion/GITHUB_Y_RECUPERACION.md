@@ -3,7 +3,21 @@
 Actualizado: 08/10/2026. Repositorio existente: `E:\KARTA3\KARTA3_IA\APP\karta3`.
 Versión de paquete: 0.1.0. Remoto privado: `https://github.com/adriancapilla/karta3.git`.
 
-## Revisión y CI de empaquetado T05 — 08/10/2026
+## Integración y publicación manual OCI — autorización 08/10/2026
+
+El autor acepta **GHCR privado `ghcr.io/adriancapilla/karta3`**, descarga mediante PAT clásico **read:packages / 90 días iniciales**, y conservación del digest desplegado y anterior con configuración compatible, **sin borrado automático**. La credencial la crea/introduce el autor fuera del chat, guiado posteriormente desde VPS; no se usa para publicar desde CI ni se guarda en APP. Este encargo posterior autoriza integrar PR #8 y publicar el archivo ya comprobado; no autoriza operaciones VPS.
+
+Revalidación previa: PR #8 en HEAD fuente **0a65a5cd46e189f1b94899fb451e00db71f9d474**, CI **37771631223** completamente correcta, sin comentarios/revisiones/hilos pendientes. Squash autorizado: **207b0de3216f92a2b923293ca16fb47a8b5565c2**. Árbol de integración idéntico al fuente; rama/commits originales conservados, main alineado antes del trabajo posterior de workflow. Evidencia nueva PR: **415/415 en39 archivos / 66 módulos / 119 Chrome**, Chrome17:48/trabajo19:34; imagen Linux+Compose trabajo2:46, proxy1/1 en4,6 s. El módulo adicional es el verificador de tools. No modifica el histórico local65 ni se suman como120 casos distintos.
+
+`.github/workflows/publish-oci.yml` prepara una **invocación manual exclusiva en main**, sin build, despliegue, SSH, tokens persistentes ni borrado de paquetes. Se incorpora mediante rama/PR independiente y revisión, siguiendo el procedimiento de APP. Solo el trabajo publicador obtiene contents:read/actions:read/packages:write y usa el token temporal de Actions. Valida repositorio privado, ejecución fuente correcta, ID de artefacto no caducado, huella del archivo, manifiesto/configuración/revisión y árbol fuente idéntico a integración, que debe pertenecer a main.
+
+Entrada aprobada inicial: artefacto **11548556814** de CI **37771631223**, commit fuente **0a65a5c**, integración **207b0de**. Digest OCI **sha256:33de30c84c8947286fa9b8dc4031e1c0449bb206b5c371dd13ff00239e05b57a**, ID/configuración **sha256:3a4c81ef173d46362281ccb42344998e22d0a06fb48b42c124cb4cde98fe5535** y SHA256 del archivo **8a69b02873bbb6d65733f29ca9584625ddd8d59fd1946b7a571ff894b1d04ee8**. Las tres identidades se registran separadamente. El archivo OCI queda retenido hasta07/11; evidencia de publicación90 días.
+
+El publicador copia ese OCI con **preservación de digest**, sin reconstruir ni modificar etiquetas OCI. Mantiene la revisión fuente dentro de la imagen y registra la integración separadamente. Comprueba paquete privado/asociado al repositorio, manifiesto publicado idéntico, descarga real por digest, ID de configuración, arranque/salud, sharp/usuario/solo lectura/genérica/huellas. Una CI posterior de main puede crear otro candidato: **no sustituye el artefacto aprobado para esta publicación**. Si falla una comprobación posterior a subir, conservar el intento y aclarar qué se publicó/qué queda sin acreditar; no marcar éxito ni borrar imágenes automáticamente.
+
+Resultados y enlaces de publicación/CI de main se registran al terminar en PR #8 y en la PR del workflow, sin commits dedicados solo a anotar sus SHA. Hasta confirmar la ejecución, el workflow es preparación y no evidencia de publicación. Siguen pendientes la credencial personal/descarga desde VPS, DNS/firewall/HTTPS público y operación/reversión por el autor.
+
+## Revisión y CI de empaquetado T05 — 08/10/2026 (encargo anterior)
 
 Base remota comprobada: `main/origin-main` **7f340a06934a7befecc3b516f567bd4ff6b8669f** (PR #7), repositorio privado. Rama `chore/docker-pruebas`, entrega **52d39219c6ac42e015041a88f623c9dca3890583**, limpia. Se conservan `844e104`/`52d3921` y la base local `4b56914`: esta última añade la revisión documental de T04 sobre PR #7, todavía no publicada en main. Su evidencia técnica y revisión humana pendiente se conservan; no se atribuye validación humana nueva. Sin cambios ajenos incorporados ni servidores del autor utilizados/detenidos.
 
@@ -209,4 +223,4 @@ Antes de automatizar copias, acordar destino, acceso, retención y frecuencia. U
 
 ## Mantenimiento
 
-Actualizar Node, dependencias y commits de acciones mediante PR y repetir comprobaciones. Revisar fallos en Actions, conservar referencias a ejecuciones relevantes y mantener acceso y permisos mínimos. Al añadir pruebas o herramientas de barajas, incorporar su comando real y actualizar esta descripción. Despliegue, Docker, Caddy y VPS quedan fuera de este encargo.
+Actualizar Node, dependencias y commits de acciones mediante PR y repetir comprobaciones. Revisar fallos en Actions, conservar referencias a ejecuciones relevantes y mantener acceso y permisos mínimos. Al añadir pruebas o herramientas de barajas, incorporar su comando real y actualizar esta descripción. T05 comprueba Docker/Caddy en CI; la publicación posterior usa el OCI aprobado mediante invocación manual, conforme al registro superior. Despliegue y operaciones VPS requieren su encargo y ejecución por el autor.

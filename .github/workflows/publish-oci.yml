@@ -1,0 +1,66 @@
+name: Publicar OCI comprobado en GHCR privado
+
+on:
+  workflow_dispatch:
+    inputs:
+      source_run:
+        description: Ejecución CI completa correcta que conserva el OCI
+        required: true
+        type: string
+        default: '37771631223'
+      artifact_id:
+        description: ID del artefacto OCI de esa ejecución
+        required: true
+        type: string
+        default: '11548556814'
+      integration_sha:
+        description: SHA completo de integración con el mismo árbol que el commit fuente
+        required: true
+        type: string
+        default: '207b0de3216f92a2b923293ca16fb47a8b5565c2'
+      expected_digest:
+        description: Digest del manifiesto OCI aprobado
+        required: true
+        type: string
+        default: 'sha256:33de30c84c8947286fa9b8dc4031e1c0449bb206b5c371dd13ff00239e05b57a'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: publish-karta3-oci
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    permissions:
+      contents: read
+      actions: read
+      packages: write
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Instalar transporte OCI
+        run: |
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends -y skopeo
+      - name: Publicar el archivo comprobado y verificar descarga por digest
+        run: bash tools/publish-oci.sh
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SOURCE_RUN: ${{ inputs.source_run }}
+          ARTIFACT_ID: ${{ inputs.artifact_id }}
+          INTEGRATION_SHA: ${{ inputs.integration_sha }}
+          EXPECTED_DIGEST: ${{ inputs.expected_digest }}
+      - name: Conservar evidencia de publicación y descarga
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        with:
+          name: karta3-publicacion-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/karta3-publication-proof/
+          if-no-files-found: error
+          retention-days: 90
