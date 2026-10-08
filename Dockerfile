@@ -22,6 +22,7 @@ FROM ${NODE_IMAGE} AS runtime
 WORKDIR /app
 ARG VCS_REF=unrecorded
 LABEL org.opencontainers.image.revision=${VCS_REF}
+LABEL org.opencontainers.image.source=https://github.com/adriancapilla/karta3
 # Predeterminados de ejecución; no dominio, secretos ni modo de Pruebas en el bundle.
 ENV NODE_ENV=production HOST=0.0.0.0 PORT=3000
 COPY --from=production-dependencies --chown=node:node /app/node_modules ./node_modules

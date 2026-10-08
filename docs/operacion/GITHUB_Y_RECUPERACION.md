@@ -1,7 +1,23 @@
 # GitHub, comprobaciones y recuperación
 
-Actualizado: 07/10/2026. Repositorio existente: `E:\KARTA3\KARTA3_IA\APP\karta3`.
+Actualizado: 08/10/2026. Repositorio existente: `E:\KARTA3\KARTA3_IA\APP\karta3`.
 Versión de paquete: 0.1.0. Remoto privado: `https://github.com/adriancapilla/karta3.git`.
+
+## Revisión y CI de empaquetado T05 — 08/10/2026
+
+Base remota comprobada: `main/origin-main` **7f340a06934a7befecc3b516f567bd4ff6b8669f** (PR #7), repositorio privado. Rama `chore/docker-pruebas`, entrega **52d39219c6ac42e015041a88f623c9dca3890583**, limpia. Se conservan `844e104`/`52d3921` y la base local `4b56914`: esta última añade la revisión documental de T04 sobre PR #7, todavía no publicada en main. Su evidencia técnica y revisión humana pendiente se conservan; no se atribuye validación humana nueva. Sin cambios ajenos incorporados ni servidores del autor utilizados/detenidos.
+
+Revisión acumulada: Docker por etapas, Node/dependencias Linux bloqueados, contexto limitado a APP, configuración externa, usuario node y healthcheck; Compose de una instancia privada, solo Caddy TCP80/443 y volúmenes persistentes. Único ajuste de ejecución: HOST configurable, predeterminado local conservado. Sesiones/orígenes/privacidad/reglas no cambian. La entrega local T05 acredita **415/415 / 65 módulos**, **1/1 Caddy Windows** y **20/20 regresiones compiladas**; su construcción Linux fallida por motor ausente se conserva como límite histórico, no como prueba ejecutada. El motor local sigue inaccesible; la CI Linux debe acreditar la imagen real.
+
+CI preparada sobre el **HEAD de la rama**, sin confundirlo con el commit sintético de combinación: instalación reproducible, check completo y **119 recorridos** con un trabajador/cero reintentos, Chrome20/trabajo30 minutos. Segundo trabajo independiente (30 min, paso imagen20): exporta una imagen **OCI linux/amd64** desde APP, cuyo Dockerfile vuelve a ejecutar check en el contexto limpio Linux; importa ese mismo archivo en el motor local del runner y coteja su configuración con el manifiesto. Comprueba sharp nativo, Node24.19.0/usuario no root, filesystem de app solo lectura, salud/red interna/ausencia de puerto host, catálogo genérica1/2, huellas aprobadas y ausencia de fuentes/configuración externa. Ejecuta **1 recorrido HTTPS adicional** mediante Compose/Caddy sobre la imagen final, con dos sesiones, cookies/permisos/privacidad/polling/WSS/F5. No sustituye los 119 del proyecto ni se suman como 120 casos distintos. Recrea únicamente Caddy y coteja CA persistente y continuidad de la misma instancia de juego.
+
+TLS es local: curl verifica certificado/nombre con la CA propia; Chrome mantiene la excepción explícita del montaje T05. No acredita ACME público ni despliegue. Sondeos de disponibilidad no son reintentos de pruebas. Limpieza elimina exclusivamente volúmenes efímeros de CI, nunca los de Pruebas. No publicación en registros, permisos packages:write, credenciales SSH ni operaciones VPS.
+
+Tras superar el trabajo de imagen se conserva **30 días** un artefacto privado de Actions con archivo OCI, manifiesto, identidad/configuración, huellas y `trace.json`: commit fuente, ejecución/intento, digest del manifiesto OCI, digest de configuración/ID de imagen y SHA-256 del archivo, cada uno identificado por separado. No son hashes intercambiables. Ese archivo es el candidato probado: la futura publicación autorizada deberá importarlo con preservación de digest y verificar descarga por digest, sin reconstruir. No hay todavía referencia GHCR publicada. Antes de que caduque el artefacto, publicar o conservarlo de manera deliberada; si se reconstruye, es otro artefacto que requiere nueva comprobación.
+
+Registro/autenticación/retención siguen como propuesta: **GHCR privado `ghcr.io/adriancapilla/karta3`**, permiso de descarga mediante PAT clásico read:packages con acceso al paquete, introducido por el autor en credenciales privadas del gestor Docker. Futuro publicador con token de Actions limitado a packages:write en ese trabajo. Conservar digest desplegado y anterior con configuración compatible; durante preparación conservar todos los candidatos aprobados, sin borrado automático. Comprobar disponibilidad/nombre/permisos del paquete al autorizar publicación; no se amplía acceso ni se configura token ahora.
+
+La PR registra HEAD final, revisión, resultados/duraciones reales, intentos fallidos y enlace/identidad del artefacto. **Este encargo no autoriza integrar la PR, publicar imágenes ni desplegar**; main y ramas originales se conservan. DNS/firewall, HTTPS público, autenticación de descarga efectiva y reversión VPS corresponden al autor posteriormente. No se modifican TFM, Diseño ni reglas.
 
 ## Publicación conjunta T03/T04 — 07/10/2026
 
