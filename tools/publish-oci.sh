@@ -6,6 +6,19 @@ set -euo pipefail
 test "$GITHUB_REPOSITORY" = adriancapilla/karta3
 test "$GITHUB_REF" = refs/heads/main
 repo=$GITHUB_REPOSITORY
+association_verification=api
+verify_package() {
+  jq -e '.visibility == "private"' "$1"
+  if jq -e '.repository != null' "$1" >/dev/null; then
+    jq -e '.repository.full_name == "adriancapilla/karta3" and .repository.private == true' "$1"
+    association_verification=api
+  else
+    # GHCR puede mostrar el origen y acceso heredado en su UI sin informar repository en REST.
+    # El origen OCI y el repositorio privado se comprueban antes de llegar aquí.
+    test "${SOURCE_ASSOCIATION_REVIEWED:-false}" = true
+    association_verification=github-package-settings-manual-review
+  fi
+}
 work="$RUNNER_TEMP/karta3-publication-work"
 proof="$RUNNER_TEMP/karta3-publication-proof"
 mkdir -p "$work" "$proof"
@@ -47,7 +60,7 @@ jq -e --arg sha "$source_sha" '.os == "linux" and .architecture == "amd64"
   and .config.Labels["org.opencontainers.image.source"] == "https://github.com/adriancapilla/karta3"' "$work/config.json"
 # Un paquete existente debe ser privado y estar asociado antes de escribir.
 if gh api users/adriancapilla/packages/container/karta3 > "$work/package-before.json" 2> "$work/package-before-error.txt"; then
-  jq -e '.visibility == "private" and .repository.full_name == "adriancapilla/karta3"' "$work/package-before.json"
+  verify_package "$work/package-before.json"
 else
   grep -q 'HTTP 404' "$work/package-before-error.txt"
 fi
@@ -58,7 +71,7 @@ skopeo copy --authfile "$work/registry-auth.json" --preserve-digests \
   --digestfile "$proof/published-digest.txt" "oci-archive:$archive" "docker://ghcr.io/adriancapilla/karta3:$tag"
 test "$(cat "$proof/published-digest.txt")" = "$EXPECTED_DIGEST"
 gh api users/adriancapilla/packages/container/karta3 > "$proof/package.json"
-jq -e '.visibility == "private" and .repository.full_name == "adriancapilla/karta3" and .repository.private == true' "$proof/package.json"
+verify_package "$proof/package.json"
 skopeo inspect --authfile "$work/registry-auth.json" --raw "docker://$reference" > "$proof/downloaded-manifest.json"
 cmp "$proof/manifest.json" "$proof/downloaded-manifest.json"
 printf '%s' "$GH_TOKEN" | docker login ghcr.io --username "$GITHUB_ACTOR" --password-stdin
@@ -76,9 +89,12 @@ cp "$trace" "$proof/source-trace.json"
 jq -n --arg source "$source_sha" --arg integration "$INTEGRATION_SHA" --arg workflow "$GITHUB_SHA" \
   --arg run "$GITHUB_RUN_ID" --arg artifact "$ARTIFACT_ID" --arg reference "$reference" --arg tag "$tag" \
   --arg digest "$EXPECTED_DIGEST" --arg config "$config_digest" --arg completed "$(date -u +%FT%TZ)" \
+  --arg association "$association_verification" --arg actor "$GITHUB_ACTOR" \
   '{sourceCommit:$source,integrationCommit:$integration,publicationWorkflowCommit:$workflow,
   publicationRun:$run,sourceArtifactId:$artifact,imageReference:$reference,tag:$tag,
   ociManifestDigest:$digest,imageConfigDigest:$config,completed:$completed,
-  private:true,repository:"adriancapilla/karta3",rebuilt:false,pulledByDigest:true,
+  private:true,repository:"adriancapilla/karta3",associationVerification:$association,dispatcher:$actor,
+  associationReviewUrl:"https://github.com/users/adriancapilla/packages/container/karta3/settings",
+  rebuilt:false,pulledByDigest:true,
   startupHealth:true,nativeSharp:true,nonRoot:true,readonly:true,approvedDeckHashes:true}' > "$proof/publication.json"
 cat "$proof/publication.json"

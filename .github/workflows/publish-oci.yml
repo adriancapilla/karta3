@@ -23,6 +23,11 @@ on:
         required: true
         type: string
         default: 'sha256:33de30c84c8947286fa9b8dc4031e1c0449bb206b5c371dd13ff00239e05b57a'
+      source_association_reviewed:
+        description: Repository source comprobado en Package settings; solo necesario si la API devuelve repository nulo
+        required: true
+        type: boolean
+        default: false
 
 permissions:
   contents: read
@@ -57,6 +62,7 @@ jobs:
           ARTIFACT_ID: ${{ inputs.artifact_id }}
           INTEGRATION_SHA: ${{ inputs.integration_sha }}
           EXPECTED_DIGEST: ${{ inputs.expected_digest }}
+          SOURCE_ASSOCIATION_REVIEWED: ${{ inputs.source_association_reviewed }}
       - name: Conservar evidencia de publicación y descarga
         uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
         with:
