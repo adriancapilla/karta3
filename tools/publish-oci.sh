@@ -19,6 +19,10 @@ gh api "repos/$repo" > "$work/repository.json"
 jq -e '.private == true' "$work/repository.json"
 gh api "repos/$repo/actions/runs/$SOURCE_RUN" > "$proof/source-run.json"
 jq -e '.status == "completed" and .conclusion == "success" and .name == "CI" and .path == ".github/workflows/ci.yml"' "$proof/source-run.json"
+gh api "repos/$repo/actions/runs/$SOURCE_RUN/jobs?per_page=100" > "$proof/source-jobs.json"
+jq -e '[.jobs[] | select(.name == "Tipos, análisis, pruebas, arquitectura y compilación"
+  or .name == "Imagen Linux amd64 y Compose/Caddy HTTPS")] | length == 2
+  and all(.[]; .status == "completed" and .conclusion == "success")' "$proof/source-jobs.json"
 gh api "repos/$repo/actions/artifacts/$ARTIFACT_ID" > "$proof/source-artifact.json"
 jq -e --arg run "$SOURCE_RUN" '.expired == false and (.workflow_run.id | tostring) == $run' "$proof/source-artifact.json"
 artifact_name=$(jq -r '.name' "$proof/source-artifact.json")
