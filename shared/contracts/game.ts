@@ -7,6 +7,7 @@ export type Direction = 'HIGH' | 'LOW';
 export type GameContext = { roomId: string; gameId: string; roundNumber: number; turnId: string };
 export type OpeningDirectionRequest = GameContext & { requestId: string; direction: Direction };
 export type PlayCardRequest = GameContext & { requestId: string; cardId: string; direction: Direction | null };
+export type CancelGameRequest = { requestId: string; roomId: string; gameId: string };
 export type RoundResultView = {
   id: string; roundNumber: number; kind: 'BASE' | 'TIE_BREAK';
   ranking: { playerId: string; card: CardView; playValue: number; position: number }[];

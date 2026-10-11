@@ -53,7 +53,7 @@ export type LastResult = { roomId: string; gameId: string; expiresAt: number };
 export type ResultsRoomView = {
   id: string; code: string; status: 'RESULTS'; revision: number;
   participant: Extract<ResultParticipantView, { kind: 'HUMAN' }>; participants: ResultParticipantView[]; settings: RoomSettings; selectedDeck: DeckSummary;
-  result: { gameId: string; endReason: 'DECK_COMPLETED' | 'NO_ACTIVE_HUMAN_PLAYERS'; completedNormally: boolean;
+  result: { gameId: string; endReason: 'DECK_COMPLETED' | 'NO_ACTIVE_HUMAN_PLAYERS' | 'HOST_CANCELLED'; completedNormally: boolean;
     standings: { playerId: string; score: number; position: number }[]; winnerIds: string[]; tieBreakWinnerId: string | null;
     retention: { presentedAt: number; serverNow: number; expiresAt: number } };
 };

@@ -73,3 +73,9 @@ select:focus-visible { outline: 3px solid #ed914f; outline-offset: 3px; }
   .game-card-panel-heading{min-height:0;margin-bottom:8px}.indicator-attribute-label{display:none}.game-hand #game-hand-title{text-align:center}
   .mesa-overflow-hint{display:block;position:absolute;right:16px;bottom:17px;margin:0;font-size:13px;color:#354b88}
 }
+/* B13: acción del anfitrión dentro de la cabecera existente, sin cambiar la mesa. */
+.game-header-actions{display:flex;align-items:center;justify-content:flex-end;flex-wrap:wrap;gap:12px;min-width:0}
+.cancel-game-actions{display:flex;justify-content:flex-end;flex-wrap:wrap;gap:12px;margin-top:20px}
+.cancel-game-dialog p{line-height:1.5}
+.game-shell header.game-header-with-cancel{height:auto;min-height:48px;gap:12px}
+@media(max-width:760px){.cancelled-standings tr{grid-template-columns:minmax(0,1fr) 65px}}

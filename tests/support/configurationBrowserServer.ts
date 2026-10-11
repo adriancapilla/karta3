@@ -72,11 +72,13 @@ export async function configurationBrowserServer(single = false, initialGame = f
   let interceptHome: ((payload: ReturnHomeRequest, deliver: (result: CurrentAck) => void, result: CurrentAck) => void) | undefined;
   let interceptResume: ((deliver: (result: CurrentAck) => void, result: CurrentAck) => void) | undefined;
   let suppressStateFor: string | undefined;
+  let suppressResultsFor: string | undefined;
+  let dropGame: string | undefined;
   const target = io.to.bind(io);
   io.to = (name: string | string[]) => {
     const operator = target(name); const emit = operator.emit.bind(operator);
-    operator.emit = (event: string, data: { room?: RoomView }) => event === 'room:state' && data.room?.status === 'IN_GAME'
-      && name === `session:${suppressStateFor}` ? true : emit(event, data);
+    operator.emit = (event: string, data: { room?: RoomView }) => event === 'room:state'
+      && (data.room?.status === 'IN_GAME' && name === `session:${suppressStateFor}` || data.room?.status === 'RESULTS' && name === `session:${suppressResultsFor}`) ? true : emit(event, data);
     return operator;
   };
   io.on('connection', (socket) => {
@@ -104,10 +106,12 @@ export async function configurationBrowserServer(single = false, initialGame = f
     socket.on('room:start', (payload: StartRoomRequest, ack: (result: Ack) => void) => {
       starts.push(payload); start(payload, (result: Ack) => interceptStart ? interceptStart(payload, ack, result) : ack(result));
     });
-    for (const event of ['game:opening-direction', 'game:play']) {
+    for (const event of ['game:opening-direction', 'game:play', 'game:cancel']) {
       const original = socket.listeners(event)[0]; socket.removeAllListeners(event);
       socket.on(event, (payload: Record<string, unknown>, ack: (result: Ack) => void) => {
-        gameRequests.push({ event, payload }); original(payload, (result: Ack) => interceptGame ? interceptGame(event, payload, ack, result) : ack(result));
+        gameRequests.push({ event, payload });
+        if (dropGame === event) { dropGame = undefined; return; } // Pérdida antes de aplicar, exclusiva del ensayo.
+        original(payload, (result: Ack) => interceptGame ? interceptGame(event, payload, ack, result) : ack(result));
       });
     }
   });
@@ -121,6 +125,9 @@ export async function configurationBrowserServer(single = false, initialGame = f
     interceptHome: (handler: typeof interceptHome) => { interceptHome = handler; },
     interceptResume: (handler: typeof interceptResume) => { interceptResume = handler; },
     suppressGameState: (sessionId?: string) => { suppressStateFor = sessionId; },
+    suppressResultsState: (sessionId?: string) => { suppressResultsFor = sessionId; },
+    dropNextGameRequest: (event: string) => { dropGame = event; },
+    repeatRoomState: (sessionId: string, room: RoomView) => { io.to(`session:${sessionId}`).emit('room:state', { room }); },
     permutation: (handler: typeof permute) => { permute = handler; },
     permutations: () => permutations,
     disconnect: (sessionId: string) => { io.in(`session:${sessionId}`).disconnectSockets(true); },

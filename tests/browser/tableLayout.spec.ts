@@ -34,7 +34,7 @@ async function measure(page: Page) {
   }, [...panels]);
 }
 type Measurement = Awaited<ReturnType<typeof measure>>;
-async function originalHeader(page: Page, content: Measurement['content']) {
+async function originalHeader(page: Page, content: Measurement['content'], hostAction: boolean) {
   // Render the unchanged f2d84fb prefix with its frozen original stylesheet in
   // this browser/OS. System-font metrics differ between Windows and Linux;
   // the historical Windows coordinates are not a cross-platform baseline.
@@ -43,8 +43,11 @@ async function originalHeader(page: Page, content: Measurement['content']) {
   const reference = await page.context().newPage();
   try {
     await reference.setViewportSize(page.viewportSize()!);
-    await reference.setContent('<!doctype html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"></head><body><div id="root"><main class="shell game-shell"><header><span class="brand">KARTA<span>3</span></span><span class="top-label">Partida</span></header><h1 tabindex="-1"></h1><p class="game-summary"></p><div style="height:100vh"></div></main></div></body></html>');
+    // B13 adds a host action to both compared headers; the frozen B10 styles/content stay intact.
+    const header = hostAction ? '<header class="game-header-with-cancel"><span class="brand">KARTA<span>3</span></span><div class="game-header-actions"><span class="top-label">Partida</span><button class="secondary">Cancelar partida</button></div></header>' : '<header><span class="brand">KARTA<span>3</span></span><span class="top-label">Partida</span></header>';
+    await reference.setContent(`<!doctype html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"></head><body><div id="root"><main class="shell game-shell">${header}<h1 tabindex="-1"></h1><p class="game-summary"></p><div style="height:100vh"></div></main></div></body></html>`);
     await reference.addStyleTag({ content: css });
+    await reference.addStyleTag({ content: '.game-header-actions{display:flex;align-items:center;justify-content:flex-end;flex-wrap:wrap;gap:12px;min-width:0}.game-shell header.game-header-with-cancel{height:auto;min-height:48px;gap:12px}' });
     expect(await reference.evaluate(() => innerWidth)).toBe(page.viewportSize()!.width);
     return await reference.evaluate((content) => {
       document.querySelector('h1')!.textContent = content['.game-shell h1'];
@@ -92,8 +95,10 @@ async function record(page: Page, name: string, width: number, height: number) {
     }
     expect(sample.styles['.game-card h3']!.fontSize).toBe(width <= 760 ? '18px' : '16px');
     if (width <= 760) {
-      expect(sample.content['.game-shell header']).toBe(base.content['.game-shell header']);
-      const original = await originalHeader(page, base.content);
+      expect(sample.content['.game-shell header'].replace(/\s*Cancelar partida\s*$/, '')).toBe(base.content['.game-shell header']);
+      const hostAction = sample.content['.game-shell header'].includes('Cancelar partida');
+      await expect(page.locator('header').getByRole('button', { name: 'Cancelar partida', exact: true })).toHaveCount(hostAction ? 1 : 0);
+      const original = await originalHeader(page, base.content, hostAction);
       expect(sample.header).toEqual(original.header); expect(sample.summary).toEqual(original.summary);
     }
     geometry(sample, width <= 760);
