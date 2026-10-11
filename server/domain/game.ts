@@ -26,7 +26,7 @@ export type RoundResolution = Readonly<{
   nextStage: 'ROUND' | 'TIE_BREAK' | 'RESULTS';
 }>;
 export type GameResult = Readonly<{
-  endReason: 'DECK_COMPLETED' | 'NO_ACTIVE_HUMAN_PLAYERS'; completedNormally: boolean;
+  endReason: 'DECK_COMPLETED' | 'NO_ACTIVE_HUMAN_PLAYERS' | 'HOST_CANCELLED'; completedNormally: boolean;
   standings: readonly Readonly<{ playerId: string; score: number; position: number }>[];
   winnerIds: readonly string[]; tieBreakWinnerId: string | null;
 }>;
@@ -92,6 +92,13 @@ export class Game {
   }
 
   score(playerId: string): number { return this.players.find((player) => player.id === playerId)?.wonCards.length ?? 0; }
+
+  /** Excepción aprobada B13: congela lo adjudicado, sin resolver ni mover cartas pendientes. */
+  cancel(): Game {
+    if (this.phase === 'FINISHED') throw new GameRuleError('GAME_FINISHED');
+    return this.evolve({ phase: 'FINISHED', result: { endReason: 'HOST_CANCELLED', completedNormally: false,
+      standings: this.resultFor(this.players, null).standings, winnerIds: [], tieBreakWinnerId: null } });
+  }
 
   get turn(): { id: string; playerId: string } | null {
     if (this.phase === 'FINISHED' || this.round.state === 'RESOLVED') return null;

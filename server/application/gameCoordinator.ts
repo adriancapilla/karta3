@@ -1,4 +1,4 @@
-import type { OpeningDirectionRequest, PlayCardRequest, TurnExpiredEvent } from '../../shared/contracts/game.js';
+import type { CancelGameRequest, OpeningDirectionRequest, PlayCardRequest, TurnExpiredEvent } from '../../shared/contracts/game.js';
 import type { CurrentRoomResponse, LastResult, ResultsRoomView, ReturnHomeRequest, RoomView } from '../../shared/contracts/room.js';
 import { GameRuleError } from '../domain/game.js';
 import type { CardPermutation, Clock, GameChanges, RoomRepository, RoomRequests, Scheduler } from './ports.js';
@@ -11,6 +11,7 @@ export interface GameActions {
   started(room: Room): void;
   openingDirection(sessionId: string, input: OpeningDirectionRequest): RoomView;
   playCard(sessionId: string, input: PlayCardRequest): RoomView;
+  cancelGame(sessionId: string, input: CancelGameRequest): ResultsRoomView;
   getResult(sessionId: string, gameId: string): ResultsRoomView;
   lastResult(sessionId: string): LastResult | undefined;
   returnHome(sessionId: string, input: ReturnHomeRequest): CurrentRoomResponse;
@@ -139,6 +140,33 @@ export class GameCoordinator implements GameActions {
     return room ? { roomId: room.id, gameId: room.game!.id, expiresAt: room.retention!.expiresAt } : undefined;
   }
 
+  cancelGame(sessionId: string, input: CancelGameRequest): ResultsRoomView {
+    this.prepare(); // El límite debido prevalece, incluso si el callback todavía está pendiente.
+    const room = this.repository.findById(input.roomId);
+    if (!room || room.status === 'CLOSED') throw new RoomError('ROOM_NOT_AVAILABLE', 'La sala ya no está disponible.');
+    const person = room.participantFor(sessionId);
+    if (!person || room.hostSessionId !== sessionId) throw new RoomError('FORBIDDEN', 'Solo el anfitrión puede cancelar la partida.');
+    if (!room.game || room.game.id !== input.gameId) throw new RoomError('STALE_GAME_CONTEXT', 'La partida ha cambiado. Recupera el estado.');
+    const signature = JSON.stringify([input.roomId, input.gameId]);
+    const previous = this.requests.get(sessionId, input.requestId);
+    if (previous && (previous.kind !== 'CANCEL_GAME' || previous.signature !== signature)) throw new RoomError('REQUEST_CONFLICT', 'Esta solicitud ya se utilizó con otros datos.');
+    if (room.status === 'RESULTS' && room.game.result!.endReason !== 'HOST_CANCELLED') throw new RoomError('GAME_FINISHED', 'La partida ha terminado.');
+    if (room.status === 'IN_GAME') {
+      const recipients = [...room.memberSessions]; // El roster sigue autorizado aunque se liberen sus asociaciones.
+      this.tasks.get(room.id)?.cancel(); this.tasks.delete(room.id);
+      room.applyGame(room.game.cancel());
+      room.presentResult(this.clock.now());
+      for (const id of recipients) room.releaseResultSession(id);
+      this.repository.save(room);
+      this.requests.save(sessionId, input.requestId, { kind: 'CANCEL_GAME', signature, roomId: room.id, participantId: person.id });
+      this.scheduleRetention(room);
+      this.changes.updated(recipients.map((id) => ({ sessionId: id, room: this.view(room, id) })));
+    } else if (!previous) {
+      this.requests.save(sessionId, input.requestId, { kind: 'CANCEL_GAME', signature, roomId: room.id, participantId: person.id });
+    }
+    return this.view(room, sessionId) as ResultsRoomView;
+  }
+
   returnHome(sessionId: string, input: ReturnHomeRequest): CurrentRoomResponse {
     this.prepare();
     const view = this.getResult(sessionId, input.gameId);
@@ -161,7 +189,7 @@ export class GameCoordinator implements GameActions {
     this.repository.save(room);
     this.requests.save(sessionId, input.requestId, { kind: 'RETURN_HOME', signature, roomId: room.id, participantId: view.participant.id });
     const result = response();
-    if (changed) this.changes.resultsHome(sessionId, { id: `${input.gameId}:home:${input.requestId}`, roomId: room.id, gameId: input.gameId, lastResult: result.lastResult ?? null });
+    if (changed || room.game!.result!.endReason === 'HOST_CANCELLED') this.changes.resultsHome(sessionId, { id: `${input.gameId}:home:${input.requestId}`, roomId: room.id, gameId: input.gameId, lastResult: result.lastResult ?? null });
     return result;
   }
 
