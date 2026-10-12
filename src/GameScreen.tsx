@@ -8,6 +8,7 @@ import type { CurrentRoomResponse, RoomView } from '../shared/contracts/room';
 import { RoundReview } from './RoundReview';
 import { useServerCountdown } from './useServerCountdown';
 import { publicPlays } from './publicPlays';
+import { CancelGameControl } from './CancelGameControl';
 
 export function GameScreen({ room, connected, activity, onRoom, onCurrent }: { room: InitialGameRoomView; connected: boolean; activity: string; onRoom: (room: RoomView) => boolean; onCurrent: (result: CurrentRoomResponse) => void }) {
   const remaining = useServerCountdown(room.game.interaction.turn?.timing ?? null);
@@ -60,7 +61,8 @@ export function GameScreen({ room, connected, activity, onRoom, onCurrent }: { r
     setDetails(null);
   };
   return <main className="shell game-shell">
-    <header><span className="brand">KARTA<span>3</span></span><span className="top-label">Partida</span></header>
+    <header className={room.participant.role === 'HOST' ? 'game-header-with-cancel' : undefined}><span className="brand">KARTA<span>3</span></span><div className="game-header-actions"><span className="top-label">Partida</span>
+      {room.participant.role === 'HOST' && <CancelGameControl room={room} connected={connected} onRoom={onRoom} onCurrent={onCurrent} />}</div></header>
     <h1 ref={title} tabIndex={-1}>Partida · {room.selectedDeck.name} · v{room.selectedDeck.contentVersion}</h1>
     {room.participant.playStatus === 'ACTIVE' && room.game.ownConsecutiveTimeouts === 1 && <p className="initial-table-notice" role="status">No completaste tu último turno a tiempo. Si vuelve a ocurrir sin una jugada manual entre medias, pasarás a automático</p>}
     {room.participant.playStatus === 'AUTOMATIC' && <p className="initial-table-notice" role="status">Has pasado a automático. Puedes seguir viendo la partida, pero ya no jugar manualmente</p>}

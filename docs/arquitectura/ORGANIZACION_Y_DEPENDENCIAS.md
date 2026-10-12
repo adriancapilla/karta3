@@ -1,6 +1,6 @@
 # Organización del código y dependencias de KARTA3
 
-**Estado:** T01 separó creación, B02/B03 espera, B04/B05 barajas/configuración y B06 inicio/mesa inicial. B07 ejecuta partida, revisión/resultados; B08 añade plazos humanos y automático irreversible/final por inactividad. Bots y vigilancia siguen pendientes.
+**Estado:** T01 separó creación, B02/B03 espera, B04/B05 barajas/configuración y B06 inicio/mesa inicial. B07 ejecuta partida/revisión/resultados; B08 temporiza humanos y automático; B09/T02 ejecuta bots EASY/HARD. B10–B12 presentan la mesa y T04 protege el contexto de avisos. B13 añade cancelación por anfitrión. La vigilancia técnica sigue pendiente.
 **Fecha:** 30/09/2026.
 **Alineación documental:** 01/10/2026 — flujo de barajas conforme a infraestructura §9 y contrato formato 1; las dependencias de capas no cambian.
 **Implementación B04:** 02/10/2026 — validación pura, paquetes, catálogo y medios. No se modifica la dirección de dependencias ni se implementa `Game`.
@@ -212,6 +212,22 @@ B09 amplía preparación/ejecución B01–B08 con jugadores HUMAN/BOT discrimina
 Fixtures completas temporales y permutaciones reproducibles en tests/support: seeds 2/3/56/98 con 2/3/4/5 jugadores. Las pruebas invocan botPlay y solo gestos legales humanos; cubren desempate con manos 3/2/1, cinco a 10 y solo bots empatados con humano ACTIVE fuera. HTTP/Socket reales inspeccionan claves y cartas por destinatario; navegador usa compilación vigente, 360/390/1280 y dos sesiones/pestañas. Montajes controlados y pruebas con adaptadores normales se distinguen en [B09 §11](../sdd/BLOQUE_09_BOTS.md). Control automático de imports/ciclos más revisión semántica de información limitada, atomicidad, índices humanos, privacidad y coordinación única. C09–C10 continúan parciales; TFM se mantiene sin editar y se entrega actualización descriptiva a sus responsables.
 
 ## 7. Comprobaciones y cambio arquitectónico
+
+### Cancelación por anfitrión — B13
+
+| Pieza | Responsabilidad concreta y límite |
+|---|---|
+| `domain/game.ts: cancel` | Sucesor terminal puro `HOST_CANCELLED`, sin ganador; congela puntos ya adjudicados y conserva las 58 ubicaciones, incluidas jugadas incompletas. No conoce anfitrión, sesiones o tiempo. Es la excepción aprobada al final con ronda resuelta; los otros motivos conservan sus reglas. |
+| `GameCoordinator.cancelGame` / `RoomUseCases` | Aplica tareas debidas, autoriza HOST del roster original y contexto Game, deduplica y coordina registro síncrono. Una clasificación candidata durante revisión aún permite cancelar; el vencimiento final registra primero el resultado ordinario/inactividad. No espera ni drena una cadena de bots. |
+| `Room`, repositorio y solicitudes existentes | `applyGame` invalida generación/parcial/revisión/turno; `presentResult` fija una retención única. Se liberan todos los HUMAN antes de guardar/emisión, conservando el roster autorizado. Índices comparan roomId: guardar, retornar, expirar o repetir A no desvincula B. Dedupe mínimo, sin vistas/manos. |
+| `GameChanges`, Clock/Scheduler | Se capturan destinatarios originales pese a las asociaciones liberadas. Mismo mapa/planificador y guardas de objeto/contexto/generación; solo queda la retención. Estado, índices y dedupe anteceden a emisión; perder ack/evento no repite cancelación. |
+| `gameInput.ts`, `socketRooms.ts`, HTTP | Decodificación exacta de tres strings, cookie y traducción de errores; invocan aplicación. Se reutilizan `room:state` y HTTP de resultados no-store, proyectados al humano original. Sin evento de salida/cierre ni endpoint de control temporal. Composición sin piezas nuevas. |
+| `CancelGameControl` / `useCancelGame` | Diálogo nativo, foco, estado local del gesto/pending; payload/ID conservados solo para reintento explícito tras recuperar primero gameId y luego current si corresponde. Sin pausa o reenvío automático. Contexto montado por partida descarta ack/HTTP antiguos. |
+| `useRoomFlow`, `GameScreen` / `ResultsScreen` | Asociación activa separada del resumen consultado; recuperar A cancelada por roster no la reactiva. T04 conserva filtros de gameId/sala/revisión/retorno. Botón solo HOST y resumen parcial sin puestos/victoria/manos; puntos recibidos del servidor. |
+
+No cambia la dirección de dependencias ni se introduce un coordinador/temporizador paralelo. La evidencia B13 revisa también el contenido exacto de HTTP/ack/eventos, callbacks extraídos y continuidad A/B, además de imports/ciclos. Las fuentes generales TFM requieren el traslado de [B13 §9](../sdd/BLOQUE_13_CANCELACION_PARTIDA.md), por sus responsables; no se editan en APP. C09–C10 y aprobación humana conservan sus límites.
+
+**Actualización12/10:** Arquitectura ha completado ese traslado en las tres fuentes generales y el contexto, contrastados de solo lectura al preparar publicación. El cierre técnico11/10 conserva su evidencia histórica; la recepción humana posterior es acotada, conforme a [B13 §11](../sdd/BLOQUE_13_CANCELACION_PARTIDA.md#11-recepción-y-preparación-de-publicación--12102026). No acredita publicación de imagen/despliegue ni completa C09–C10.
 
 T02 mantiene estos límites y las cuatro operaciones/acks B09. La captura `tests/fixtures/bot-policy-4917d96.json` pertenece solo a pruebas: esperaba EASY/NORMAL antes de editar, y `botPolicyAlignment.test.ts` compara decisiones congeladas con EASY/HARD sin otra política en producción. Validadores rechazan NORMAL/otros tipos/niveles; nombres como normalizeName/completedNormally y rondas/procesos normales se conservan. [T02](../sdd/BLOQUE_T02_ALINEACION_DIFICULTADES_BOTS.md) registra equivalencia, contrato y traslado a Arquitectura; no se editan fuentes generales TFM.
 

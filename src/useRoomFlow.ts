@@ -61,14 +61,21 @@ export function useRoomFlow() {
   const applyRoom = useCallback((incoming: RoomView): boolean => {
     if (releasedRooms.current.has(incoming.id)) return false;
     if (explicitResult.current) {
-      if (!activeRoomRef.current || activeRoomRef.current.id === incoming.id) activeRoomRef.current = incoming;
+      if (incoming.id !== roomRef.current?.id && (!activeRoomRef.current || activeRoomRef.current.id === incoming.id)) activeRoomRef.current = incoming;
       return false;
     }
     const current = roomRef.current;
     if (!acceptsRoom(current, incoming, ended.current, closed.current)) return false;
     if (!current || !dirtyName.current) setName(incoming.participant.name);
     roomRef.current = incoming;
-    activeRoomRef.current = incoming;
+    const cancelled = incoming.status === 'RESULTS' && incoming.result.endReason === 'HOST_CANCELLED';
+    activeRoomRef.current = cancelled ? null : incoming;
+    if (cancelled) {
+      explicitResult.current = incoming.result.gameId;
+      setLastResult({ roomId: incoming.id, gameId: incoming.result.gameId, expiresAt: incoming.result.retention.expiresAt });
+      window.clearTimeout(noticeTimer.current); window.clearTimeout(timeoutNoticeTimer.current);
+      setActivity(''); setTimeoutNotice('');
+    }
     setRoom(incoming);
     setResultError((error) => incoming.status === 'RESULTS' && error?.gameId === incoming.result.gameId ? error : null);
     navigate(incoming.status === 'RESULTS' ? `/resultado/${encodeURIComponent(incoming.result.gameId)}` : roomPath(incoming.id));
@@ -88,6 +95,21 @@ export function useRoomFlow() {
       if (roomRef.current && roomRef.current.id !== result.room.id) clearRoom(''); // recuperación autorizada de otra asociación vigente
       applyRoom(result.room);
     } else {
+      const previous = roomRef.current;
+      if (previous?.status === 'IN_GAME' && result.lastResult?.gameId === previous.game.id && !result.ended) {
+        // Cancelar libera antes de emitir. Una pestaña desconectada recupera por roster, no por asociación.
+        void api.result(previous.game.id).then((summary) => {
+          if (activeRoomRef.current || roomRef.current?.id !== previous.id || roomRef.current.status !== 'IN_GAME'
+            || roomRef.current.game.id !== previous.game.id || explicitResult.current) return;
+          applyRoom(summary.room);
+        }).catch((error) => {
+          if (activeRoomRef.current || roomRef.current?.id !== previous.id || roomRef.current.status !== 'IN_GAME'
+            || roomRef.current.game.id !== previous.game.id || explicitResult.current) return;
+          clearRoom(error instanceof ApiError && error.code === 'RESULT_NOT_AVAILABLE' ? 'El resultado ya no está disponible'
+            : 'No se pudo recuperar el resumen. Recupera la conexión para consultarlo.');
+        });
+        return;
+      }
       if (result.ended) {
         if (roomRef.current && (roomRef.current.id !== result.ended.roomId
           || roomRef.current.participant.id !== result.ended.participantId)) return;
@@ -101,6 +123,10 @@ export function useRoomFlow() {
 
   const showResult = useCallback((result: ResultsRoomView) => {
     roomRef.current = result; setRoom(result); setResultError(null); setNotice('');
+    if (result.result.endReason === 'HOST_CANCELLED') {
+      window.clearTimeout(noticeTimer.current); window.clearTimeout(timeoutNoticeTimer.current);
+      setActivity(''); setTimeoutNotice('');
+    }
     navigate(`/resultado/${encodeURIComponent(result.result.gameId)}`);
   }, []);
   const openResult = useCallback(async (gameId: string) => {

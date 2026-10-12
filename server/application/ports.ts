@@ -18,7 +18,7 @@ export interface RoomRepository {
 }
 
 export type RequestRecord = {
-  kind: 'JOIN' | 'LEAVE' | 'CONFIGURE' | 'START' | 'OPENING_DIRECTION' | 'PLAY' | 'RETURN_HOME'
+  kind: 'JOIN' | 'LEAVE' | 'CONFIGURE' | 'START' | 'OPENING_DIRECTION' | 'PLAY' | 'RETURN_HOME' | 'CANCEL_GAME'
     | 'BOT_ADD' | 'BOT_DIFFICULTY' | 'BOT_RENAME' | 'BOT_REMOVE';
   signature: string;
   roomId: string;

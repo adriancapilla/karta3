@@ -1,6 +1,14 @@
-import type { OpeningDirectionRequest, PlayCardRequest } from '../../shared/contracts/game.js';
+import type { CancelGameRequest, OpeningDirectionRequest, PlayCardRequest } from '../../shared/contracts/game.js';
 import { RoomError } from '../application/roomError.js';
 import { exactObject } from './configurationInput.js';
+
+export function cancelGameInput(value: unknown): CancelGameRequest {
+  const keys = ['requestId', 'roomId', 'gameId'];
+  if (!exactObject(value, keys) || keys.some((key) => typeof value[key] !== 'string' || !(value[key] as string).length || (value[key] as string).length > 100)) {
+    throw new RoomError('INVALID_INPUT', 'Los datos de cancelación no son válidos.');
+  }
+  return value as CancelGameRequest;
+}
 
 export function gameInput(value: unknown, play: false): OpeningDirectionRequest;
 export function gameInput(value: unknown, play: true): PlayCardRequest;

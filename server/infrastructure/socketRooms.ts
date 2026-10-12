@@ -8,7 +8,7 @@ import type { RoomActions } from '../application/roomUseCases.js';
 import { RoomError } from '../application/roomError.js';
 import type { MemorySessions } from './memorySessions.js';
 import { configurationInput, exactObject } from './configurationInput.js';
-import { gameInput } from './gameInput.js';
+import { cancelGameInput, gameInput } from './gameInput.js';
 import { botInput } from './botInput.js';
 
 const sessionRoom = (sessionId: string) => `session:${sessionId}`;
@@ -129,6 +129,10 @@ export class SocketRoomChanges implements GameChanges, SessionPresence {
       socket.on('game:play', (payload: unknown, ack: unknown) => {
         try { respond(ack, { ok: true, room: rooms.playCard(sessionId, gameInput(payload, true)) }); }
         catch (error) { rooms.current(sessionId); respond(ack, ackError(error)); }
+      });
+      socket.on('game:cancel', (payload: unknown, ack: unknown) => {
+        try { respond(ack, { ok: true, room: rooms.cancelGame(sessionId, cancelGameInput(payload)) }); }
+        catch (error) { respond(ack, ackError(error)); }
       });
       socket.on('results:return-home', (payload: unknown, ack: unknown) => {
         try {

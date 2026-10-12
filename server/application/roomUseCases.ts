@@ -8,7 +8,7 @@ import { RoomError } from './roomError.js';
 import { displayName } from './roomView.js';
 import type { WaitingLifecycle } from './waitingLifecycle.js';
 import type { GameActions } from './gameCoordinator.js';
-import type { OpeningDirectionRequest, PlayCardRequest } from '../../shared/contracts/game.js';
+import type { CancelGameRequest, OpeningDirectionRequest, PlayCardRequest } from '../../shared/contracts/game.js';
 
 export interface RoomActions extends Omit<GameActions, 'started'> {
   current(sessionId: string): RoomView | null;
@@ -55,6 +55,10 @@ export class RoomUseCases implements RoomActions {
   }
 
   presenceChanged(sessionId: string): void { this.lifecycle.presenceChanged(sessionId); }
+  cancelGame(sessionId: string, input: CancelGameRequest): ResultsRoomView {
+    if (!this.games) throw new RoomError('STALE_GAME_CONTEXT', 'La partida no está disponible.');
+    return this.games.cancelGame(sessionId, input);
+  }
   openingDirection(sessionId: string, input: OpeningDirectionRequest): RoomView {
     if (!this.games) throw new RoomError('INTERNAL_ERROR', 'Coordinación de juego no conectada.');
     return this.games.openingDirection(sessionId, input);
