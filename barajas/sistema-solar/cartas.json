@@ -1,0 +1,1515 @@
+{
+  "schemaVersion": 1,
+  "deckId": "sistema-solar",
+  "contentVersion": 2,
+  "cards": [
+    {
+      "id": "itokawa",
+      "name": "Itokawa",
+      "characteristic": "Asteroide",
+      "imageRef": "imagenes/cartas/itokawa.webp",
+      "imageAlt": "Asteroide Itokawa, alargado y bilobulado, con grandes bloques sobre una superficie de escombros.",
+      "values": {
+        "atributo1": {
+          "playValue": 52,
+          "displayValue": "34.519",
+          "unit": "km/s"
+        },
+        "atributo2": {
+          "playValue": 31,
+          "displayValue": "198075402",
+          "unit": "km"
+        },
+        "atributo3": {
+          "playValue": 1,
+          "displayValue": "0.33",
+          "unit": "km"
+        }
+      },
+      "roundAttribute": "atributo1",
+      "note": "Hayabusa trajo sus primeras muestras de asteroide a la Tierra."
+    },
+    {
+      "id": "bennu",
+      "name": "Bennu",
+      "characteristic": "Asteroide",
+      "imageRef": "imagenes/cartas/bennu.webp",
+      "imageAlt": "Asteroide Bennu, oscuro y con forma de peonza, cubierto de rocas y con una marcada cresta ecuatorial.",
+      "values": {
+        "atributo1": {
+          "playValue": 51,
+          "displayValue": "34.506",
+          "unit": "km/s"
+        },
+        "atributo2": {
+          "playValue": 29,
+          "displayValue": "168505699",
+          "unit": "km"
+        },
+        "atributo3": {
+          "playValue": 2,
+          "displayValue": "0.48444",
+          "unit": "km"
+        }
+      },
+      "roundAttribute": "atributo2",
+      "note": "OSIRIS-REx devolvió sus muestras a la Tierra en 2023."
+    },
+    {
+      "id": "ryugu",
+      "name": "Ryugu",
+      "characteristic": "Asteroide",
+      "imageRef": "imagenes/cartas/ryugu.webp",
+      "imageAlt": "Asteroide Ryugu, oscuro, angular y con forma de peonza, sobre un fondo estrellado.",
+      "values": {
+        "atributo1": {
+          "playValue": 48,
+          "displayValue": "33.118",
+          "unit": "km/s"
+        },
+        "atributo2": {
+          "playValue": 30,
+          "displayValue": "178158936",
+          "unit": "km"
+        },
+        "atributo3": {
+          "playValue": 3,
+          "displayValue": "0.896",
+          "unit": "km"
+        }
+      },
+      "roundAttribute": "atributo3",
+      "note": "Hayabusa2 devolvió sus muestras a la Tierra en 2020."
+    },
+    {
+      "id": "tempel-1",
+      "name": "Tempel 1",
+      "characteristic": "Cometa",
+      "imageRef": "imagenes/cartas/tempel-1.webp",
+      "imageAlt": "Cometa Tempel 1 con núcleo oscuro y poroso, rodeado por una coma y colas visibles.",
+      "values": {
+        "atributo1": {
+          "playValue": 45,
+          "displayValue": "29.466",
+          "unit": "km/s"
+        },
+        "atributo2": {
+          "playValue": 42,
+          "displayValue": "470654911",
+          "unit": "km"
+        },
+        "atributo3": {
+          "playValue": 9,
+          "displayValue": "6",
+          "unit": "km"
+        }
+      },
+      "roundAttribute": "atributo1",
+      "note": "Deep Impact chocó contra su núcleo en 2005."
+    },
+    {
+      "id": "halley",
+      "name": "Halley",
+      "characteristic": "Cometa",
+      "imageRef": "imagenes/cartas/halley.webp",
+      "imageAlt": "Cometa Halley con núcleo oscuro dentro de una coma luminosa y dos colas, una blanca y otra azulada.",
+      "values": {
+        "atributo1": {
+          "playValue": 55,
+          "displayValue": "55.108",
+          "unit": "km/s"
+        },
+        "atributo2": {
+          "playValue": 49,
+          "displayValue": "2682085628",
+          "unit": "km"
+        },
+        "atributo3": {
+          "playValue": 10,
+          "displayValue": "11",
+          "unit": "km"
+        }
+      },
+      "roundAttribute": "atributo2",
+      "note": "Regresa cerca del Sol aproximadamente cada 76 años."
+    },
+    {
+      "id": "deimos",
+      "name": "Deimos",
+      "characteristic": "Luna",
+      "imageRef": "imagenes/cartas/deimos.webp",
+      "imageAlt": "Deimos, pequeña luna rojiza y craterizada, con Marte desenfocado al fondo.",
+      "values": {
+        "atributo1": {
+          "playValue": 3,
+          "displayValue": "1.351",
+          "unit": "km/s"
+        },
+        "atributo2": {
+          "playValue": 3,
+          "displayValue": "23457",
+          "unit": "km"
+        },
+        "atributo3": {
+          "playValue": 12,
+          "displayValue": "12.4",
+          "unit": "km"
+        }
+      },
+      "roundAttribute": "atributo3",
+      "note": "Es la más pequeña y exterior de las lunas marcianas."
+    },
+    {
+      "id": "eros",
+      "name": "Eros",
+      "characteristic": "Asteroide",
+      "imageRef": "imagenes/cartas/eros.webp",
+      "imageAlt": "Asteroide Eros, muy alargado y rocoso, con cráteres, crestas y grandes concavidades.",
+      "values": {
+        "atributo1": {
+          "playValue": 47,
+          "displayValue": "30.94",
+          "unit": "km/s"
+        },
+        "atributo2": {
+          "playValue": 32,
+          "displayValue": "218150155",
+          "unit": "km"
+        },
+        "atributo3": {
+          "playValue": 13,
+          "displayValue": "16.84",
+          "unit": "km"
+        }
+      },
+      "roundAttribute": "atributo1",
+      "note": "NEAR Shoemaker aterrizó sobre su superficie en 2001."
+    },
+    {
+      "id": "fobos",
+      "name": "Fobos",
+      "characteristic": "Luna",
+      "imageRef": "imagenes/cartas/fobos.webp",
+      "imageAlt": "Fobos, luna irregular de Marte, con el gran cráter Stickney y numerosos surcos.",
+      "values": {
+        "atributo1": {
+          "playValue": 5,
+          "displayValue": "2.17",
+          "unit": "km/s"
+        },
+        "atributo2": {
+          "playValue": 1,
+          "displayValue": "9375",
+          "unit": "km"
+        },
+        "atributo3": {
+          "playValue": 14,
+          "displayValue": "22.16",
+          "unit": "km"
+        }
+      },
+      "roundAttribute": "atributo2",
+      "note": "Se acerca lentamente a Marte y acabará fragmentándose."
+    },
+    {
+      "id": "hale-bopp",
+      "name": "Hale-Bopp",
+      "characteristic": "Cometa",
+      "imageRef": "imagenes/cartas/hale-bopp.webp",
+      "imageAlt": "Cometa Hale-Bopp con una coma brillante y dos largas colas claramente separadas, blanca y azul.",
+      "values": {
+        "atributo1": {
+          "playValue": 54,
+          "displayValue": "44.58",
+          "unit": "km/s"
+        },
+        "atributo2": {
+          "playValue": 56,
+          "displayValue": "26543656424",
+          "unit": "km"
+        },
+        "atributo3": {
+          "playValue": 17,
+          "displayValue": "60",
+          "unit": "km"
+        }
+      },
+      "roundAttribute": "atributo3",
+      "note": "Fue visible a simple vista durante dieciocho meses."
+    },
+    {
+      "id": "psyche",
+      "name": "Psyche",
+      "characteristic": "Asteroide",
+      "imageRef": "imagenes/cartas/psyche.webp",
+      "imageAlt": "Representación de Psyche como un cuerpo irregular de roca y metal con acabado oscuro y mate.",
+      "values": {
+        "atributo1": {
+          "playValue": 37,
+          "displayValue": "19.945",
+          "unit": "km/s"
+        },
+        "atributo2": {
+          "playValue": 41,
+          "displayValue": "437681552",
+          "unit": "km"
+        },
+        "atributo3": {
+          "playValue": 20,
+          "displayValue": "222",
+          "unit": "km"
+        }
+      },
+      "roundAttribute": "atributo1",
+      "note": "Contiene una mezcla inusual de roca y abundante metal."
+    },
+    {
+      "id": "mimas",
+      "name": "Mimas",
+      "characteristic": "Luna",
+      "imageRef": "imagenes/cartas/mimas.webp",
+      "imageAlt": "Mimas, luna helada dominada por el enorme cráter Herschel, con Saturno al fondo.",
+      "values": {
+        "atributo1": {
+          "playValue": 32,
+          "displayValue": "14.569",
+          "unit": "km/s"
+        },
+        "atributo2": {
+          "playValue": 7,
+          "displayValue": "186000",
+          "unit": "km"
+        },
+        "atributo3": {
+          "playValue": 22,
+          "displayValue": "396.4",
+          "unit": "km"
+        }
+      },
+      "roundAttribute": "atributo2",
+      "note": "El enorme cráter Herschel domina gran parte de su superficie."
+    },
+    {
+      "id": "higia",
+      "name": "Higía",
+      "characteristic": "Asteroide",
+      "imageRef": "imagenes/cartas/higia.webp",
+      "imageAlt": "Higía, cuerpo oscuro casi esférico, con cráteres moderados y variaciones suaves de la superficie.",
+      "values": {
+        "atributo1": {
+          "playValue": 35,
+          "displayValue": "18.676",
+          "unit": "km/s"
+        },
+        "atributo2": {
+          "playValue": 43,
+          "displayValue": "471379006",
+          "unit": "km"
+        },
+        "atributo3": {
+          "playValue": 23,
+          "displayValue": "407.12",
+          "unit": "km"
+        }
+      },
+      "roundAttribute": "atributo3",
+      "note": "Es uno de los mayores asteroides del cinturón principal."
+    },
+    {
+      "id": "miranda",
+      "name": "Miranda",
+      "characteristic": "Luna",
+      "imageRef": "imagenes/cartas/miranda.webp",
+      "imageAlt": "Miranda, luna helada con cañones, crestas y terrenos fracturados, ante Urano.",
+      "values": {
+        "atributo1": {
+          "playValue": 20,
+          "displayValue": "6.687",
+          "unit": "km/s"
+        },
+        "atributo2": {
+          "playValue": 5,
+          "displayValue": "129846",
+          "unit": "km"
+        },
+        "atributo3": {
+          "playValue": 25,
+          "displayValue": "471.6",
+          "unit": "km"
+        }
+      },
+      "roundAttribute": "atributo1",
+      "note": "Posee acantilados gigantes y terrenos extremadamente variados."
+    },
+    {
+      "id": "encelado",
+      "name": "Encélado",
+      "characteristic": "Luna",
+      "imageRef": "imagenes/cartas/encelado.webp",
+      "imageAlt": "Encélado, luna helada con fracturas polares y penachos, con Saturno y sus anillos al fondo.",
+      "values": {
+        "atributo1": {
+          "playValue": 29,
+          "displayValue": "12.677",
+          "unit": "km/s"
+        },
+        "atributo2": {
+          "playValue": 9,
+          "displayValue": "238400",
+          "unit": "km"
+        },
+        "atributo3": {
+          "playValue": 26,
+          "displayValue": "504.2",
+          "unit": "km"
+        }
+      },
+      "roundAttribute": "atributo2",
+      "note": "Expulsa géiseres desde un océano bajo su corteza helada."
+    },
+    {
+      "id": "palas",
+      "name": "Palas",
+      "characteristic": "Asteroide",
+      "imageRef": "imagenes/cartas/palas.webp",
+      "imageAlt": "Representación de Palas como un asteroide oscuro, irregular y craterizado.",
+      "values": {
+        "atributo1": {
+          "playValue": 39,
+          "displayValue": "22.637",
+          "unit": "km/s"
+        },
+        "atributo2": {
+          "playValue": 39,
+          "displayValue": "414320131",
+          "unit": "km"
+        },
+        "atributo3": {
+          "playValue": 27,
+          "displayValue": "513",
+          "unit": "km"
+        }
+      },
+      "roundAttribute": "atributo3",
+      "note": "Su órbita está mucho más inclinada que la mayoría."
+    },
+    {
+      "id": "vesta",
+      "name": "Vesta",
+      "characteristic": "Asteroide",
+      "imageRef": "imagenes/cartas/vesta.webp",
+      "imageAlt": "Vesta, protoplaneta gris y tostado con una gran cuenca polar y relieve marcado.",
+      "values": {
+        "atributo1": {
+          "playValue": 38,
+          "displayValue": "21.217",
+          "unit": "km/s"
+        },
+        "atributo2": {
+          "playValue": 36,
+          "displayValue": "353255320",
+          "unit": "km"
+        },
+        "atributo3": {
+          "playValue": 28,
+          "displayValue": "522.77",
+          "unit": "km"
+        }
+      },
+      "roundAttribute": "atributo1",
+      "note": "Una enorme cuenca de impacto domina su polo sur."
+    },
+    {
+      "id": "ceres",
+      "name": "Ceres",
+      "characteristic": "Planeta enano",
+      "imageRef": "imagenes/cartas/ceres.webp",
+      "imageAlt": "Ceres, planeta enano gris y craterizado, con depósitos blancos en el cráter Occator.",
+      "values": {
+        "atributo1": {
+          "playValue": 36,
+          "displayValue": "19.399",
+          "unit": "km/s"
+        },
+        "atributo2": {
+          "playValue": 38,
+          "displayValue": "413720780",
+          "unit": "km"
+        },
+        "atributo3": {
+          "playValue": 29,
+          "displayValue": "939.4",
+          "unit": "km"
+        }
+      },
+      "roundAttribute": "atributo2",
+      "note": "Dawn encontró depósitos brillantes de sales en el cráter Occator."
+    },
+    {
+      "id": "sedna",
+      "name": "Sedna",
+      "characteristic": "Planeta enano",
+      "imageRef": "imagenes/cartas/sedna.webp",
+      "imageAlt": "Representación de Sedna como un mundo lejano casi esférico de color rojo oscuro.",
+      "values": {
+        "atributo1": {
+          "playValue": 10,
+          "displayValue": "4.654",
+          "unit": "km/s"
+        },
+        "atributo2": {
+          "playValue": 57,
+          "displayValue": "81339283783",
+          "unit": "km"
+        },
+        "atributo3": {
+          "playValue": 30,
+          "displayValue": "1000",
+          "unit": "km"
+        }
+      },
+      "roundAttribute": "atributo3",
+      "note": "Su clasificación como planeta enano todavía no está confirmada."
+    },
+    {
+      "id": "tetis",
+      "name": "Tetis",
+      "characteristic": "Luna",
+      "imageRef": "imagenes/cartas/tetis.webp",
+      "imageAlt": "Tetis, luna helada con el gran cráter Odysseus y el valle Ithaca Chasma, ante Saturno.",
+      "values": {
+        "atributo1": {
+          "playValue": 28,
+          "displayValue": "11.351",
+          "unit": "km/s"
+        },
+        "atributo2": {
+          "playValue": 11,
+          "displayValue": "295000",
+          "unit": "km"
+        },
+        "atributo3": {
+          "playValue": 31,
+          "displayValue": "1062.2",
+          "unit": "km"
+        }
+      },
+      "roundAttribute": "atributo1",
+      "note": "El gigantesco cañón Ithaca Chasma recorre gran parte de Tetis."
+    },
+    {
+      "id": "dione",
+      "name": "Dione",
+      "characteristic": "Luna",
+      "imageRef": "imagenes/cartas/dione.webp",
+      "imageAlt": "Dione, luna craterizada atravesada por fracturas claras, con Saturno desenfocado al fondo.",
+      "values": {
+        "atributo1": {
+          "playValue": 25,
+          "displayValue": "10.041",
+          "unit": "km/s"
+        },
+        "atributo2": {
+          "playValue": 13,
+          "displayValue": "377700",
+          "unit": "km"
+        },
+        "atributo3": {
+          "playValue": 32,
+          "displayValue": "1122.8",
+          "unit": "km"
+        }
+      },
+      "roundAttribute": "atributo2",
+      "note": "Sus brillantes fracturas forman enormes acantilados de hielo."
+    },
+    {
+      "id": "ariel",
+      "name": "Ariel",
+      "characteristic": "Luna",
+      "imageRef": "imagenes/cartas/ariel.webp",
+      "imageAlt": "Ariel, luna clara con valles, escarpes y fosas tectónicas, ante el planeta Urano.",
+      "values": {
+        "atributo1": {
+          "playValue": 14,
+          "displayValue": "5.514",
+          "unit": "km/s"
+        },
+        "atributo2": {
+          "playValue": 8,
+          "displayValue": "190929",
+          "unit": "km"
+        },
+        "atributo3": {
+          "playValue": 33,
+          "displayValue": "1157.8",
+          "unit": "km"
+        }
+      },
+      "roundAttribute": "atributo3",
+      "note": "Sus cañones sugieren actividad geológica en el pasado."
+    },
+    {
+      "id": "umbriel",
+      "name": "Umbriel",
+      "characteristic": "Luna",
+      "imageRef": "imagenes/cartas/umbriel.webp",
+      "imageAlt": "Umbriel, luna muy oscura y craterizada con un distintivo anillo claro, ante Urano.",
+      "values": {
+        "atributo1": {
+          "playValue": 11,
+          "displayValue": "4.686",
+          "unit": "km/s"
+        },
+        "atributo2": {
+          "playValue": 10,
+          "displayValue": "265986",
+          "unit": "km"
+        },
+        "atributo3": {
+          "playValue": 34,
+          "displayValue": "1169.4",
+          "unit": "km"
+        }
+      },
+      "roundAttribute": "atributo1",
+      "note": "Es la más oscura de las grandes lunas uranianas."
+    },
+    {
+      "id": "caronte",
+      "name": "Caronte",
+      "characteristic": "Luna",
+      "imageRef": "imagenes/cartas/caronte.webp",
+      "imageAlt": "Caronte, luna gris con grandes cañones y un casquete polar rojizo, con Plutón al fondo.",
+      "values": {
+        "atributo1": {
+          "playValue": 1,
+          "displayValue": "0.211",
+          "unit": "km/s"
+        },
+        "atributo2": {
+          "playValue": 2,
+          "displayValue": "19600",
+          "unit": "km"
+        },
+        "atributo3": {
+          "playValue": 35,
+          "displayValue": "1212",
+          "unit": "km"
+        }
+      },
+      "roundAttribute": "atributo2",
+      "note": "Es aproximadamente la mitad de grande que Plutón."
+    },
+    {
+      "id": "makemake",
+      "name": "Makemake",
+      "characteristic": "Planeta enano",
+      "imageRef": "imagenes/cartas/makemake.webp",
+      "imageAlt": "Representación de Makemake como un mundo helado rojizo y moteado sobre el espacio oscuro.",
+      "values": {
+        "atributo1": {
+          "playValue": 12,
+          "displayValue": "5.179",
+          "unit": "km/s"
+        },
+        "atributo2": {
+          "playValue": 54,
+          "displayValue": "6817314568",
+          "unit": "km"
+        },
+        "atributo3": {
+          "playValue": 36,
+          "displayValue": "1430",
+          "unit": "km"
+        }
+      },
+      "roundAttribute": "atributo3",
+      "note": "Es el segundo objeto más brillante del cinturón de Kuiper."
+    },
+    {
+      "id": "japeto",
+      "name": "Jápeto",
+      "characteristic": "Luna",
+      "imageRef": "imagenes/cartas/japeto.webp",
+      "imageAlt": "Jápeto, luna con un hemisferio oscuro y otro claro, cresta ecuatorial y cráteres antiguos.",
+      "values": {
+        "atributo1": {
+          "playValue": 7,
+          "displayValue": "3.356",
+          "unit": "km/s"
+        },
+        "atributo2": {
+          "playValue": 24,
+          "displayValue": "3561700",
+          "unit": "km"
+        },
+        "atributo3": {
+          "playValue": 37,
+          "displayValue": "1468.6",
+          "unit": "km"
+        }
+      },
+      "roundAttribute": "atributo1",
+      "note": "Un hemisferio es mucho más oscuro que el otro."
+    },
+    {
+      "id": "oberon",
+      "name": "Oberón",
+      "characteristic": "Luna",
+      "imageRef": "imagenes/cartas/oberon.webp",
+      "imageAlt": "Oberón, luna gris oscura y muy craterizada, con Urano suavemente visible al fondo.",
+      "values": {
+        "atributo1": {
+          "playValue": 6,
+          "displayValue": "3.157",
+          "unit": "km/s"
+        },
+        "atributo2": {
+          "playValue": 18,
+          "displayValue": "583511",
+          "unit": "km"
+        },
+        "atributo3": {
+          "playValue": 38,
+          "displayValue": "1522.8",
+          "unit": "km"
+        }
+      },
+      "roundAttribute": "atributo2",
+      "note": "Es la más exterior de las cinco grandes lunas uranianas."
+    },
+    {
+      "id": "rea",
+      "name": "Rea",
+      "characteristic": "Luna",
+      "imageRef": "imagenes/cartas/rea.webp",
+      "imageAlt": "Rea, luna pálida de hielo densamente craterizada, con Saturno al fondo.",
+      "values": {
+        "atributo1": {
+          "playValue": 24,
+          "displayValue": "8.491",
+          "unit": "km/s"
+        },
+        "atributo2": {
+          "playValue": 17,
+          "displayValue": "527200",
+          "unit": "km"
+        },
+        "atributo3": {
+          "playValue": 39,
+          "displayValue": "1527",
+          "unit": "km"
+        }
+      },
+      "roundAttribute": "atributo3",
+      "note": "Es la segunda luna más grande de Saturno."
+    },
+    {
+      "id": "titania",
+      "name": "Titania",
+      "characteristic": "Luna",
+      "imageRef": "imagenes/cartas/titania.webp",
+      "imageAlt": "Titania, luna helada con cráteres y largos valles de falla, ante Urano.",
+      "values": {
+        "atributo1": {
+          "playValue": 8,
+          "displayValue": "3.651",
+          "unit": "km/s"
+        },
+        "atributo2": {
+          "playValue": 16,
+          "displayValue": "436298",
+          "unit": "km"
+        },
+        "atributo3": {
+          "playValue": 40,
+          "displayValue": "1577.8",
+          "unit": "km"
+        }
+      },
+      "roundAttribute": "atributo1",
+      "note": "Es la luna más grande de Urano."
+    },
+    {
+      "id": "haumea",
+      "name": "Haumea",
+      "characteristic": "Planeta enano",
+      "imageRef": "imagenes/cartas/haumea.webp",
+      "imageAlt": "Haumea, planeta enano muy alargado y claro, con una mancha rojiza y un anillo muy fino.",
+      "values": {
+        "atributo1": {
+          "playValue": 15,
+          "displayValue": "5.527",
+          "unit": "km/s"
+        },
+        "atributo2": {
+          "playValue": 53,
+          "displayValue": "6441727731",
+          "unit": "km"
+        },
+        "atributo3": {
+          "playValue": 41,
+          "displayValue": "1595",
+          "unit": "km"
+        }
+      },
+      "roundAttribute": "atributo2",
+      "note": "Su rápida rotación le proporciona una forma muy alargada."
+    },
+    {
+      "id": "eris",
+      "name": "Eris",
+      "characteristic": "Planeta enano",
+      "imageRef": "imagenes/cartas/eris.webp",
+      "imageAlt": "Representación de Eris como un planeta enano casi esférico, blanco y gris crema.",
+      "values": {
+        "atributo1": {
+          "playValue": 18,
+          "displayValue": "5.782",
+          "unit": "km/s"
+        },
+        "atributo2": {
+          "playValue": 55,
+          "displayValue": "10162773801",
+          "unit": "km"
+        },
+        "atributo3": {
+          "playValue": 42,
+          "displayValue": "2326",
+          "unit": "km"
+        }
+      },
+      "roundAttribute": "atributo3",
+      "note": "Su descubrimiento impulsó la nueva definición científica de planeta."
+    },
+    {
+      "id": "pluton",
+      "name": "Plutón",
+      "characteristic": "Planeta enano",
+      "imageRef": "imagenes/cartas/pluton.webp",
+      "imageAlt": "Plutón en colores naturales, con la región clara en forma de corazón claramente visible.",
+      "values": {
+        "atributo1": {
+          "playValue": 19,
+          "displayValue": "6.123",
+          "unit": "km/s"
+        },
+        "atributo2": {
+          "playValue": 52,
+          "displayValue": "5922374660",
+          "unit": "km"
+        },
+        "atributo3": {
+          "playValue": 43,
+          "displayValue": "2376",
+          "unit": "km"
+        }
+      },
+      "roundAttribute": "atributo1",
+      "note": "New Horizons reveló montañas heladas y un gran corazón brillante."
+    },
+    {
+      "id": "triton",
+      "name": "Tritón",
+      "characteristic": "Luna",
+      "imageRef": "imagenes/cartas/triton.webp",
+      "imageAlt": "Tritón, luna rosada y crema con llanuras heladas y rastros oscuros de géiseres, ante Neptuno.",
+      "values": {
+        "atributo1": {
+          "playValue": 9,
+          "displayValue": "4.389",
+          "unit": "km/s"
+        },
+        "atributo2": {
+          "playValue": 12,
+          "displayValue": "354800",
+          "unit": "km"
+        },
+        "atributo3": {
+          "playValue": 44,
+          "displayValue": "2705.2",
+          "unit": "km"
+        }
+      },
+      "roundAttribute": "atributo2",
+      "note": "Orbita Neptuno al revés y expulsa géiseres de nitrógeno."
+    },
+    {
+      "id": "europa",
+      "name": "Europa",
+      "characteristic": "Luna",
+      "imageRef": "imagenes/cartas/europa.webp",
+      "imageAlt": "Europa, luna de hielo crema recorrida por una red de fracturas rojizas, con Júpiter al fondo.",
+      "values": {
+        "atributo1": {
+          "playValue": 31,
+          "displayValue": "13.864",
+          "unit": "km/s"
+        },
+        "atributo2": {
+          "playValue": 19,
+          "displayValue": "671100",
+          "unit": "km"
+        },
+        "atributo3": {
+          "playValue": 45,
+          "displayValue": "3121.6",
+          "unit": "km"
+        }
+      },
+      "roundAttribute": "atributo3",
+      "note": "Probablemente esconde un océano bajo su corteza helada."
+    },
+    {
+      "id": "luna",
+      "name": "Luna",
+      "characteristic": "Luna",
+      "imageRef": "imagenes/cartas/luna.webp",
+      "imageAlt": "La Luna con mares oscuros, tierras altas y cráteres radiados, con la Tierra al fondo.",
+      "values": {
+        "atributo1": {
+          "playValue": 2,
+          "displayValue": "1.076",
+          "unit": "km/s"
+        },
+        "atributo2": {
+          "playValue": 14,
+          "displayValue": "384400",
+          "unit": "km"
+        },
+        "atributo3": {
+          "playValue": 46,
+          "displayValue": "3474.8",
+          "unit": "km"
+        }
+      },
+      "roundAttribute": "atributo1",
+      "note": "Doce astronautas caminaron sobre su superficie entre 1969 y 1972."
+    },
+    {
+      "id": "io",
+      "name": "Ío",
+      "characteristic": "Luna",
+      "imageRef": "imagenes/cartas/io.webp",
+      "imageAlt": "Ío, luna amarilla, ocre y naranja cubierta de terrenos volcánicos, con Júpiter al fondo.",
+      "values": {
+        "atributo1": {
+          "playValue": 33,
+          "displayValue": "17.4",
+          "unit": "km/s"
+        },
+        "atributo2": {
+          "playValue": 15,
+          "displayValue": "421800",
+          "unit": "km"
+        },
+        "atributo3": {
+          "playValue": 47,
+          "displayValue": "3642.98",
+          "unit": "km"
+        }
+      },
+      "roundAttribute": "atributo2",
+      "note": "Es el mundo con mayor actividad volcánica conocida."
+    },
+    {
+      "id": "calisto",
+      "name": "Calisto",
+      "characteristic": "Luna",
+      "imageRef": "imagenes/cartas/calisto.webp",
+      "imageAlt": "Calisto, luna oscura y muy craterizada con la cuenca multianillo Valhalla, ante Júpiter.",
+      "values": {
+        "atributo1": {
+          "playValue": 23,
+          "displayValue": "8.261",
+          "unit": "km/s"
+        },
+        "atributo2": {
+          "playValue": 23,
+          "displayValue": "1882700",
+          "unit": "km"
+        },
+        "atributo3": {
+          "playValue": 48,
+          "displayValue": "4820.6",
+          "unit": "km"
+        }
+      },
+      "roundAttribute": "atributo3",
+      "note": "Es uno de los mundos más craterizados del Sistema Solar."
+    },
+    {
+      "id": "mercurio",
+      "name": "Mercurio",
+      "characteristic": "Planeta",
+      "imageRef": "imagenes/cartas/mercurio.webp",
+      "imageAlt": "Mercurio, planeta gris parduzco cubierto de cráteres, escarpes y rayos de impacto.",
+      "values": {
+        "atributo1": {
+          "playValue": 56,
+          "displayValue": "58.98",
+          "unit": "km/s"
+        },
+        "atributo2": {
+          "playValue": 26,
+          "displayValue": "57909050",
+          "unit": "km"
+        },
+        "atributo3": {
+          "playValue": 49,
+          "displayValue": "4878.8",
+          "unit": "km"
+        }
+      },
+      "roundAttribute": "atributo1",
+      "note": "Es el planeta más pequeño y más cercano al Sol."
+    },
+    {
+      "id": "titan",
+      "name": "Titán",
+      "characteristic": "Luna",
+      "imageRef": "imagenes/cartas/titan.webp",
+      "imageAlt": "Titán como un globo naranja envuelto en bruma opaca, con Saturno al fondo.",
+      "values": {
+        "atributo1": {
+          "playValue": 17,
+          "displayValue": "5.736",
+          "unit": "km/s"
+        },
+        "atributo2": {
+          "playValue": 21,
+          "displayValue": "1221900",
+          "unit": "km"
+        },
+        "atributo3": {
+          "playValue": 50,
+          "displayValue": "5149.52",
+          "unit": "km"
+        }
+      },
+      "roundAttribute": "atributo2",
+      "note": "Tiene mares de metano y la única atmósfera lunar densa."
+    },
+    {
+      "id": "ganimedes",
+      "name": "Ganimedes",
+      "characteristic": "Luna",
+      "imageRef": "imagenes/cartas/ganimedes.webp",
+      "imageAlt": "Ganímedes con terrenos oscuros y regiones claras atravesadas por surcos, ante Júpiter.",
+      "values": {
+        "atributo1": {
+          "playValue": 27,
+          "displayValue": "10.89",
+          "unit": "km/s"
+        },
+        "atributo2": {
+          "playValue": 20,
+          "displayValue": "1070400",
+          "unit": "km"
+        },
+        "atributo3": {
+          "playValue": 51,
+          "displayValue": "5262.4",
+          "unit": "km"
+        }
+      },
+      "roundAttribute": "atributo3",
+      "note": "Es la luna más grande del Sistema Solar."
+    },
+    {
+      "id": "marte",
+      "name": "Marte",
+      "characteristic": "Planeta",
+      "imageRef": "imagenes/cartas/marte.webp",
+      "imageAlt": "Marte en tonos rojizos, con casquete polar blanco y el gran sistema de Valles Marineris.",
+      "values": {
+        "atributo1": {
+          "playValue": 42,
+          "displayValue": "26.5",
+          "unit": "km/s"
+        },
+        "atributo2": {
+          "playValue": 33,
+          "displayValue": "227939200",
+          "unit": "km"
+        },
+        "atributo3": {
+          "playValue": 52,
+          "displayValue": "6779",
+          "unit": "km"
+        }
+      },
+      "roundAttribute": "atributo1",
+      "note": "Es el planeta rojo y alberga el volcán más alto."
+    },
+    {
+      "id": "venus",
+      "name": "Venus",
+      "characteristic": "Planeta",
+      "imageRef": "imagenes/cartas/venus.webp",
+      "imageAlt": "Venus como un globo crema y amarillo cubierto completamente por nubes arremolinadas.",
+      "values": {
+        "atributo1": {
+          "playValue": 53,
+          "displayValue": "35.26",
+          "unit": "km/s"
+        },
+        "atributo2": {
+          "playValue": 27,
+          "displayValue": "108208000",
+          "unit": "km"
+        },
+        "atributo3": {
+          "playValue": 53,
+          "displayValue": "12103.6",
+          "unit": "km"
+        }
+      },
+      "roundAttribute": "atributo2",
+      "note": "Gira en sentido retrógrado y es el planeta más caliente."
+    },
+    {
+      "id": "tierra",
+      "name": "Tierra",
+      "characteristic": "Planeta",
+      "imageRef": "imagenes/cartas/tierra.webp",
+      "imageAlt": "La Tierra con océanos azules, continentes, nubes blancas, hielo polar y un fino borde atmosférico.",
+      "values": {
+        "atributo1": {
+          "playValue": 46,
+          "displayValue": "30.29",
+          "unit": "km/s"
+        },
+        "atributo2": {
+          "playValue": 28,
+          "displayValue": "149598023",
+          "unit": "km"
+        },
+        "atributo3": {
+          "playValue": 54,
+          "displayValue": "12742",
+          "unit": "km"
+        }
+      },
+      "roundAttribute": "atributo3",
+      "note": "Es el único mundo conocido con vida y océanos líquidos."
+    },
+    {
+      "id": "67p-churyumov-gerasimenko",
+      "name": "67P / Churyumov-Gerasimenko",
+      "characteristic": "Cometa",
+      "imageRef": "imagenes/cartas/67p-churyumov-gerasimenko.webp",
+      "imageAlt": "Cometa 67P con núcleo negro bilobulado, chorros activos, coma y cola visible.",
+      "values": {
+        "atributo1": {
+          "playValue": 50,
+          "displayValue": "34.218",
+          "unit": "km/s"
+        },
+        "atributo2": {
+          "playValue": 45,
+          "displayValue": "517945152",
+          "unit": "km"
+        },
+        "atributo3": {
+          "playValue": 4,
+          "displayValue": "3.4",
+          "unit": "km"
+        }
+      },
+      "roundAttribute": "atributo1",
+      "note": "Rosetta lo orbitó y Philae aterrizó en 2014."
+    },
+    {
+      "id": "hyakutake",
+      "name": "Hyakutake",
+      "characteristic": "Cometa",
+      "imageRef": "imagenes/cartas/hyakutake.webp",
+      "imageAlt": "Cometa Hyakutake con coma azul verdosa, una larga cola iónica azul y otra cola blanca.",
+      "values": {
+        "atributo1": {
+          "playValue": 58,
+          "displayValue": "87.785",
+          "unit": "km/s"
+        },
+        "atributo2": {
+          "playValue": 58,
+          "displayValue": "317858890240",
+          "unit": "km"
+        },
+        "atributo3": {
+          "playValue": 6,
+          "displayValue": "4.2",
+          "unit": "km"
+        }
+      },
+      "roundAttribute": "atributo2",
+      "note": "Su cola fue una de las más largas jamás observadas."
+    },
+    {
+      "id": "wild-2",
+      "name": "Wild 2",
+      "characteristic": "Cometa",
+      "imageRef": "imagenes/cartas/wild-2.webp",
+      "imageAlt": "Cometa Wild 2 con núcleo oscuro y rugoso, numerosos chorros y una amplia coma.",
+      "values": {
+        "atributo1": {
+          "playValue": 44,
+          "displayValue": "29.234",
+          "unit": "km/s"
+        },
+        "atributo2": {
+          "playValue": 44,
+          "displayValue": "516074593",
+          "unit": "km"
+        },
+        "atributo3": {
+          "playValue": 5,
+          "displayValue": "4",
+          "unit": "km"
+        }
+      },
+      "roundAttribute": "atributo3",
+      "note": "Stardust recogió su polvo y lo devolvió a la Tierra."
+    },
+    {
+      "id": "encke",
+      "name": "Encke",
+      "characteristic": "Cometa",
+      "imageRef": "imagenes/cartas/encke.webp",
+      "imageAlt": "Cometa Encke con coma compacta, cola de polvo curvada y una cola iónica azul más tenue.",
+      "values": {
+        "atributo1": {
+          "playValue": 57,
+          "displayValue": "69.645",
+          "unit": "km/s"
+        },
+        "atributo2": {
+          "playValue": 35,
+          "displayValue": "332060705",
+          "unit": "km"
+        },
+        "atributo3": {
+          "playValue": 7,
+          "displayValue": "4.8",
+          "unit": "km"
+        }
+      },
+      "roundAttribute": "atributo1",
+      "note": "Tiene el periodo orbital más corto entre los cometas conocidos."
+    },
+    {
+      "id": "neptuno",
+      "name": "Neptuno",
+      "characteristic": "Planeta",
+      "imageRef": "imagenes/cartas/neptuno.webp",
+      "imageAlt": "Neptuno, planeta azul con bandas sutiles, nubes blancas y una gran tormenta oscura.",
+      "values": {
+        "atributo1": {
+          "playValue": 13,
+          "displayValue": "5.48",
+          "unit": "km/s"
+        },
+        "atributo2": {
+          "playValue": 51,
+          "displayValue": "4495060000",
+          "unit": "km"
+        },
+        "atributo3": {
+          "playValue": 55,
+          "displayValue": "49244",
+          "unit": "km"
+        }
+      },
+      "roundAttribute": "atributo2",
+      "note": "Tiene los vientos más rápidos del Sistema Solar."
+    },
+    {
+      "id": "urano",
+      "name": "Urano",
+      "characteristic": "Planeta",
+      "imageRef": "imagenes/cartas/urano.webp",
+      "imageAlt": "Urano inclinado de lado, con bandas atmosféricas alineadas con sus anillos estrechos y oscuros.",
+      "values": {
+        "atributo1": {
+          "playValue": 21,
+          "displayValue": "7.11",
+          "unit": "km/s"
+        },
+        "atributo2": {
+          "playValue": 50,
+          "displayValue": "2872460000",
+          "unit": "km"
+        },
+        "atributo3": {
+          "playValue": 56,
+          "displayValue": "50724",
+          "unit": "km"
+        }
+      },
+      "roundAttribute": "atributo3",
+      "note": "Gira de lado debido a su extrema inclinación."
+    },
+    {
+      "id": "saturno",
+      "name": "Saturno",
+      "characteristic": "Planeta",
+      "imageRef": "imagenes/cartas/saturno.webp",
+      "imageAlt": "Saturno, planeta dorado pálido con bandas suaves y un amplio sistema de anillos.",
+      "values": {
+        "atributo1": {
+          "playValue": 26,
+          "displayValue": "10.18",
+          "unit": "km/s"
+        },
+        "atributo2": {
+          "playValue": 48,
+          "displayValue": "1433530000",
+          "unit": "km"
+        },
+        "atributo3": {
+          "playValue": 57,
+          "displayValue": "116464",
+          "unit": "km"
+        }
+      },
+      "roundAttribute": "atributo1",
+      "note": "Sus grandes anillos están compuestos principalmente por partículas de hielo."
+    },
+    {
+      "id": "jupiter",
+      "name": "Júpiter",
+      "characteristic": "Planeta",
+      "imageRef": "imagenes/cartas/jupiter.webp",
+      "imageAlt": "Júpiter con bandas de nubes crema y marrones y la Gran Mancha Roja visible.",
+      "values": {
+        "atributo1": {
+          "playValue": 30,
+          "displayValue": "13.72",
+          "unit": "km/s"
+        },
+        "atributo2": {
+          "playValue": 47,
+          "displayValue": "778570000",
+          "unit": "km"
+        },
+        "atributo3": {
+          "playValue": 58,
+          "displayValue": "139822",
+          "unit": "km"
+        }
+      },
+      "roundAttribute": "atributo2",
+      "note": "El planeta más grande posee la Gran Mancha Roja."
+    },
+    {
+      "id": "amaltea",
+      "name": "Amaltea",
+      "characteristic": "Luna",
+      "imageRef": "imagenes/cartas/amaltea.webp",
+      "imageAlt": "Amaltea, luna roja, alargada e irregular, con Júpiter desenfocado al fondo.",
+      "values": {
+        "atributo1": {
+          "playValue": 43,
+          "displayValue": "26.506",
+          "unit": "km/s"
+        },
+        "atributo2": {
+          "playValue": 6,
+          "displayValue": "181400",
+          "unit": "km"
+        },
+        "atributo3": {
+          "playValue": 18,
+          "displayValue": "167",
+          "unit": "km"
+        }
+      },
+      "roundAttribute": "atributo3",
+      "note": "Es rojiza y orbita muy cerca de Júpiter."
+    },
+    {
+      "id": "hiperion",
+      "name": "Hiperión",
+      "characteristic": "Luna",
+      "imageRef": "imagenes/cartas/hiperion.webp",
+      "imageAlt": "Hiperión, luna irregular cubierta de profundos cráteres que le dan aspecto de esponja, ante Saturno.",
+      "values": {
+        "atributo1": {
+          "playValue": 16,
+          "displayValue": "5.622",
+          "unit": "km/s"
+        },
+        "atributo2": {
+          "playValue": 22,
+          "displayValue": "1481500",
+          "unit": "km"
+        },
+        "atributo3": {
+          "playValue": 21,
+          "displayValue": "270",
+          "unit": "km"
+        }
+      },
+      "roundAttribute": "atributo1",
+      "note": "Su forma irregular y porosa recuerda a una esponja."
+    },
+    {
+      "id": "proteo",
+      "name": "Proteo",
+      "characteristic": "Luna",
+      "imageRef": "imagenes/cartas/proteo.webp",
+      "imageAlt": "Proteo, luna oscura, angulosa y muy craterizada, con Neptuno al fondo.",
+      "values": {
+        "atributo1": {
+          "playValue": 22,
+          "displayValue": "7.624",
+          "unit": "km/s"
+        },
+        "atributo2": {
+          "playValue": 4,
+          "displayValue": "117600",
+          "unit": "km"
+        },
+        "atributo3": {
+          "playValue": 24,
+          "displayValue": "416",
+          "unit": "km"
+        }
+      },
+      "roundAttribute": "atributo2",
+      "note": "Es irregular porque su gravedad no logró redondearlo."
+    },
+    {
+      "id": "febe",
+      "name": "Febe",
+      "characteristic": "Luna",
+      "imageRef": "imagenes/cartas/febe.webp",
+      "imageAlt": "Febe, luna oscura y densamente craterizada, con Saturno pequeño y lejano al fondo.",
+      "values": {
+        "atributo1": {
+          "playValue": 4,
+          "displayValue": "2.021",
+          "unit": "km/s"
+        },
+        "atributo2": {
+          "playValue": 25,
+          "displayValue": "12929400",
+          "unit": "km"
+        },
+        "atributo3": {
+          "playValue": 19,
+          "displayValue": "213",
+          "unit": "km"
+        }
+      },
+      "roundAttribute": "atributo3",
+      "note": "Orbita Saturno al revés y probablemente fue capturada."
+    },
+    {
+      "id": "gaspra",
+      "name": "Gaspra",
+      "characteristic": "Asteroide",
+      "imageRef": "imagenes/cartas/gaspra.webp",
+      "imageAlt": "Gaspra, asteroide alargado, angular y facetado, cubierto de pequeños cráteres.",
+      "values": {
+        "atributo1": {
+          "playValue": 40,
+          "displayValue": "23.88",
+          "unit": "km/s"
+        },
+        "atributo2": {
+          "playValue": 34,
+          "displayValue": "330608056",
+          "unit": "km"
+        },
+        "atributo3": {
+          "playValue": 11,
+          "displayValue": "12.2",
+          "unit": "km"
+        }
+      },
+      "roundAttribute": "atributo1",
+      "note": "Galileo realizó el primer sobrevuelo de un asteroide."
+    },
+    {
+      "id": "ida",
+      "name": "Ida",
+      "characteristic": "Asteroide",
+      "imageRef": "imagenes/cartas/ida.webp",
+      "imageAlt": "Ida, asteroide alargado e irregular de color gris parduzco, con numerosos cráteres.",
+      "values": {
+        "atributo1": {
+          "playValue": 34,
+          "displayValue": "18.433",
+          "unit": "km/s"
+        },
+        "atributo2": {
+          "playValue": 40,
+          "displayValue": "428350769",
+          "unit": "km"
+        },
+        "atributo3": {
+          "playValue": 15,
+          "displayValue": "32",
+          "unit": "km"
+        }
+      },
+      "roundAttribute": "atributo2",
+      "note": "Galileo descubrió su pequeña luna Dáctilo."
+    },
+    {
+      "id": "matilde",
+      "name": "Matilde",
+      "characteristic": "Asteroide",
+      "imageRef": "imagenes/cartas/matilde.webp",
+      "imageAlt": "Matilde, asteroide casi negro dominado por varios cráteres gigantes superpuestos.",
+      "values": {
+        "atributo1": {
+          "playValue": 41,
+          "displayValue": "24.001",
+          "unit": "km/s"
+        },
+        "atributo2": {
+          "playValue": 37,
+          "displayValue": "395970787",
+          "unit": "km"
+        },
+        "atributo3": {
+          "playValue": 16,
+          "displayValue": "52.8",
+          "unit": "km"
+        }
+      },
+      "roundAttribute": "atributo3",
+      "note": "NEAR fotografió sus enormes cráteres durante el sobrevuelo de 1997."
+    },
+    {
+      "id": "borrelly",
+      "name": "Borrelly",
+      "characteristic": "Cometa",
+      "imageRef": "imagenes/cartas/borrelly.webp",
+      "imageAlt": "Cometa Borrelly con núcleo alargado, chorros, coma luminosa y dos largas colas.",
+      "values": {
+        "atributo1": {
+          "playValue": 49,
+          "displayValue": "33.355",
+          "unit": "km/s"
+        },
+        "atributo2": {
+          "playValue": 46,
+          "displayValue": "539594236",
+          "unit": "km"
+        },
+        "atributo3": {
+          "playValue": 8,
+          "displayValue": "4.8",
+          "unit": "km"
+        }
+      },
+      "roundAttribute": "atributo1",
+      "note": "Deep Space 1 fotografió su núcleo oscuro en 2001."
+    }
+  ]
+}
