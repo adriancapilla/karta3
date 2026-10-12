@@ -6,6 +6,9 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { compiledInstallation, removeTestInstallation, startCompiledDeckServer } from '../support/compiledDeckServer.js';
 
+// En partidas sin revisión, avanzar el reloj sustituido entre jugadas evita repetir
+// la misma muestra de plazo mientras el contador monotónico del navegador avanza.
+
 for (const cardFirst of [false, true]) test(`B07 M1 apertura ${cardFirst ? 'carta → BAJO' : 'ALTO → carta'} privada, Detalles y recuperación`, async ({ browser }) => {
   const server = await configurationBrowserServer(true, true);
   const p = await manualTable(browser, server.base, { deckId: 'portada', version: 7, width: cardFirst ? 390 : 1280 });
@@ -82,7 +85,7 @@ for (const action of ['retorno', 'resume'] as const) test(`B07 respuesta antigua
   const p = await manualTable(browser, server.base, { deckId: 'manual', version: 7, review: 0, width: 390 });
   const tab = await p.contexts[0].newPage(); let release: (() => void) | undefined;
   try {
-    while ((await readRoom(p.host)).status === 'IN_GAME') await humanPlay(p);
+    while ((await readRoom(p.host)).status === 'IN_GAME') { server.time.elapse(1); await humanPlay(p); }
     await tab.goto(server.base); await expect(tab.getByRole('heading', { name: 'Partida terminada' })).toBeVisible();
     if (action === 'retorno') server.interceptHome((_input, ack, response) => { release = () => ack(response); });
     await p.host.getByRole('button', { name: 'Volver al inicio' }).click();
@@ -187,7 +190,7 @@ test('B07 M4 retorno, lectura explícita y caducidad controlada preservan nueva 
   const server = await configurationBrowserServer(true, true, { count: 2 });
   const p = await manualTable(browser, server.base, { deckId: 'manual', version: 7, width: 390, review: 0 }); const tab = await p.contexts[0].newPage();
   try {
-    while ((await readRoom(p.host)).status === 'IN_GAME') await humanPlay(p);
+    while ((await readRoom(p.host)).status === 'IN_GAME') { server.time.elapse(1); await humanPlay(p); }
     const result = await readRoom(p.host) as ResultsRoomView; await tab.goto(server.base);
     await expect(tab.getByRole('heading', { name: 'Partida terminada' })).toBeVisible();
     await p.host.getByRole('button', { name: 'Volver al inicio' }).click(); await expect(tab.getByRole('button', { name: 'Crear sala', exact: true })).toBeVisible();
@@ -211,7 +214,7 @@ test('B07 resultado por URL: fallo de red conserva incertidumbre y reintento sol
   const server = await configurationBrowserServer(true, true, { count: 2 });
   const p = await manualTable(browser, server.base, { deckId: 'manual', version: 7, width: 390, review: 0 });
   try {
-    while ((await readRoom(p.host)).status === 'IN_GAME') await humanPlay(p);
+    while ((await readRoom(p.host)).status === 'IN_GAME') { server.time.elapse(1); await humanPlay(p); }
     const result = await readRoom(p.host) as ResultsRoomView;
     await p.host.getByRole('button', { name: 'Volver al inicio' }).click();
     await p.host.route('**/api/results/*', (route) => route.abort());
