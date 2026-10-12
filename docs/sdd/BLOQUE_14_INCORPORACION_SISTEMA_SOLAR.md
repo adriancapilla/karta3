@@ -1,6 +1,6 @@
 # B14 — Incorporación de Sistema Solar
 
-**Fecha/acuerdo:** 12/10/2026, autor. **Estado inicial:** alcance autorizado; incorporación y comprobación pendientes. Este encargo permite excepcionalmente a SDD incorporar contenido y comprobarlo.
+**Fecha/acuerdo:** 12/10/2026, autor. **Estado:** incorporado y verificado técnicamente en local; revisión científica nueva y aprobación visual humana no realizadas. El alcance se registró antes de incorporar en `ba0c88f`. Este encargo permite excepcionalmente a SDD incorporar contenido y comprobarlo.
 
 **Numeración:** B14 libre en main al preparar el cambio. **Base:** main integrado `88be67f3affe5c6f49ca90b207f59d5c2ef5aa45`; rama propia `feat/b14-sistema-solar`, checkout `E:\KARTA3\KARTA3_IA\APP\karta3-b14-sistema-solar`. El checkout original sigue en B13 `47087c7`, con cambios ajenos en operación y `tests/browser/tableLayout.spec.ts`; no se incluyen ni modifican. No usar ni detener servidores del autor.
 
@@ -28,14 +28,14 @@ Generar catálogo por `decks:prepare`/build, nunca editarlo a mano. Ambas baraja
 
 ## 3. Criterios previstos
 
-- [ ] **B14-01:** validación común satisfactoria antes y después de activar; 58 cartas, esquema 1/contenido 2/true coherentes. Errores localizados y no ocultados.
-- [ ] **B14-02:** exclusivamente tres cambios editoriales autorizados; 61 archivos maestros/copia iguales por SHA-256; 59 imágenes y genérica sin alteración.
-- [ ] **B14-03:** catálogo normal generado con genérica 2 y Sistema Solar 2; sala sin selección; seleccionar/cambiar/quitar y recargar mantiene estado aceptado en dos sesiones. Invitado no configura.
-- [ ] **B14-04:** portada y cartas cargadas, nombres/atributos/unidades/Detalles legibles; datos largos completos y sin truncación silenciosa, en PC y acceso móvil existente.
-- [ ] **B14-05:** Encke/Borrelly muestran el mismo diámetro heredado y distintos J; ALTO/BAJO compara por J, sin transformar datos científicos.
-- [ ] **B14-06:** partida con Sistema Solar, resultado y cancelación B13; recarga y nueva partida con otra baraja sin contaminación de ficha, cartas o avisos (T04).
-- [ ] **B14-07:** JSON completos inaccesibles por HTTP; catálogo seguro, manos rivales/mazo oculto ausentes en HTTP/ack/eventos; APP autónoma del maestro.
-- [ ] **B14-08:** `npm run check` y navegador pertinente sobre compilación vigente, con expectativas normales actualizadas sin debilitar vacío/no disponible/privacidad; registros reales separados de aprobación humana/científica.
+- [x] **B14-01:** validación común satisfactoria antes y después de activar; 58 cartas, esquema 1/contenido 2/true coherentes. Errores localizados y no ocultados.
+- [x] **B14-02:** exclusivamente tres cambios editoriales autorizados; 61 archivos maestros/copia iguales por SHA-256; 59 imágenes y genérica sin alteración.
+- [x] **B14-03:** catálogo normal generado con genérica 2 y Sistema Solar 2; sala sin selección; seleccionar/cambiar/quitar y recargar mantiene estado aceptado en dos sesiones. Invitado no configura.
+- [x] **B14-04:** portada y cartas cargadas, nombres/atributos/unidades/Detalles legibles; datos largos completos y sin truncación silenciosa, en PC y acceso móvil existente.
+- [x] **B14-05:** Encke/Borrelly muestran el mismo diámetro heredado y distintos J; ALTO/BAJO compara por J, sin transformar datos científicos.
+- [x] **B14-06:** partida con Sistema Solar, resultado y cancelación B13; recarga y nueva partida con otra baraja sin contaminación de ficha, cartas o avisos (T04).
+- [x] **B14-07:** JSON completos inaccesibles por HTTP; catálogo seguro, manos rivales/mazo oculto ausentes en HTTP/ack/eventos; APP autónoma del maestro.
+- [x] **B14-08:** `npm run check` y navegador pertinente sobre compilación vigente, con expectativas normales actualizadas sin debilitar vacío/no disponible/privacidad; registros reales separados de aprobación humana/científica.
 
 ## 4. Plan de comprobación
 
@@ -45,6 +45,65 @@ Ejecutar Node 24.19 del runtime disponible, sin cambiar instalación global. Ins
 
 ## 5. Registro de ejecución y cierre
 
-Pendiente al registrar este alcance. Añadir versión/commits, huellas, archivos propios, resultados por criterio, comandos/entorno, ajustes necesarios y límites. C09–C10 reciben evidencia técnica de una segunda baraja con recursos, sin convertirla en revisión científica, equilibrio o aprobación visual humana.
+La preparación inicial dejó la ejecución pendiente, conservada en `ba0c88f`. La ejecución real se registra a continuación; no sustituye evidencias históricas de otros bloques. C09–C10 reciben evidencia técnica de una segunda baraja con recursos, sin convertirla en revisión científica, equilibrio o aprobación visual humana.
 
 **Ajuste de presentación dentro del alcance, 12/10:** las primeras capturas mostraron los 12 dígitos de Hyakutake partidos entre líneas (columna Dato de 65 px PC/56 px móvil). Se mantiene literal el texto; las tablas con enteros mostrados de nueve o más dígitos adaptan sus columnas y evitan partir ese número, también en Detalles. Sin conversión numérica, separadores nuevos, reducción de fuente, cambio del ancho de cartas o distribución móvil. Se añade comprobación geométrica de número completo dentro de su celda.
+
+### 5.1 Versión incorporada y trazabilidad
+
+Paquete **sistema-solar, formato 1/contenido 2, disponible**, 58 cartas, 59 WebP; 61 archivos/1.741.972 bytes. Solo se modificaron dos contentVersion y publication.available en los maestros: comparación exacta de textos contra las copias previas, sin reserializar los demás datos. Recursos idénticos antes/después. ASSETS no tiene repositorio Git propio ni ancestro; la copia aprobada y sus huellas quedan versionadas en APP, sin crear un repositorio editorial nuevo.
+
+| JSON (maestro = copia APP) | SHA-256 contenido 2 |
+| --- | --- |
+| baraja.json | `e703ced69efd0932a0257d59fcb6ed55f80bae7c4f2a7c199edaed58396c16c6` |
+| cartas.json | `c4d42019d1a0ee911b061b27b93e76ed2cd151872aad98167f1efc9961f95388` |
+
+[Manifiesto completo](evidencias/B14/huellas.json): lista, tamaños, huellas anteriores y actuales de todos los archivos. Recomparación final **61/61** contra ASSETS, **59/59** recursos inalterados. Genérica, tanto maestro como APP, conserva SHA-256 `991406d04f60bfe884166a69fcc43954cfc751f0e058093ae2542f32c989e8ed` / `868988a43fe6c6be1a73be14013c543dc2fc83970341a4243be868af75b4c35c`. `catalogo.json` fue generado por las herramientas y permanece ignorado, no mantenido a mano.
+
+Commits propios locales: `ba0c88f` alcance/proceso; `8e4e26a` copia aprobada y manifiesto; **`20dfb469748abff8ab0b4af55cf97f52e83d501b`** código/pruebas/README comprobados; cierre/evidencias en commit posterior. Archivos de producto modificados: únicamente `src/GameCard.tsx` y `src/style.css`, para legibilidad de números largos. No se modificaron lógica de servidor, contratos, reglas, plazos ni políticas de bots.
+
+Pruebas adaptadas: startup independiente, expectativas normales en decks/proxy/bots; `approvedSolar.ts` fija un resumen esperado independiente del lector y `configurationBrowserServer.ts` puede copiar los paquetes reales en ensayos aislados. Nuevo `solar.spec.ts`: cinco recorridos. `tools/ci-image-runtime.mjs` ajusta la expectativa de catálogo/huellas para una futura imagen; **solo sintaxis comprobada, no se ejecutó Docker/Linux/GHCR**. README ofrece el recorrido manual B14.
+
+### 5.2 Comprobaciones realmente ejecutadas
+
+Entorno: Windows, PowerShell, **Node 24.19.0/npm 11.6.2**, Chrome **154.0.8037.98**, Playwright 1.63.0, KARTA3 0.1.0. Runtime seleccionado solo para los procesos de prueba: Node global 24.13.0 y servidores del autor no se cambiaron. `npm ci` instaló 328 paquetes del lockfile; no cambió dependencias.
+
+| Puerta/recorrido | Resultado real |
+| --- | --- |
+| `decks:validate -- --package <ASSETS/sistema-solar>` antes de activar | Válida, available false. |
+| `decks:validate -- --package barajas/sistema-solar` y `decks:prepare` después | Válida/true; catálogo generado con genérica 2 y Sistema Solar 2. |
+| `npm run check`, final | **466/466 en 42 archivos**, tipos/lint/build correctos; **68 módulos** sin imports prohibidos/ciclos. Vitest 13,14 s. [Registro](evidencias/B14/check-final.txt). |
+| Navegador pertinente inicial | **25/28**, 58,2 s, dos trabajadores: **23 regresiones completas satisfactorias** y dos B14 de espera; tres B14 nuevos fallan únicamente al comparar serverNow. [Registro y errores](evidencias/B14/browser-inicial.txt). |
+| Reparación focal de esos tres casos | **3/3**, 12,2 s, tras comparar todo el resultado y fechas estables, normalizando solo serverNow y comprobando su avance. [Registro](evidencias/B14/browser-focal.txt). |
+| Navegador B14 sobre la presentación definitiva | **5/5**, 15,2 s, un trabajador efectivo (`--workers=2` como máximo). [Registro](evidencias/B14/browser-final.txt). No repetir los otros 23 por rutina: servidor y lógica T04 no cambiaron; presentación final comprobada en estos cinco casos. |
+
+Selección inicial exacta:
+
+```text
+npm run test:browser -- solar.spec.ts decks.spec.ts activation.spec.ts cancelGame.spec.ts resultNotice.spec.ts bots.spec.ts proxy.spec.ts --grep "B14|B04 catálogo|AGV2|B13|INC-01|B09 P2 normal compilado|T05 origen único" --workers=2
+```
+
+Selección definitiva: `npm run test:browser -- solar.spec.ts --workers=2`. Cada ejecución reconstruyó APP. La instancia normal fue una copia temporal de la compilación/paquetes de APP, con guard que rechaza y registra lecturas de ASSETS, puerto libre asignado por el sistema y Node real. **Cero accesos a ASSETS**. El check también construyó y ejecutó ambas barajas en una instalación aislada con ese guard. Todas las instancias propias se detuvieron y sus carpetas temporales se retiraron.
+
+Incidencias: el sandbox bloqueó inicialmente npm ci (EPERM) y la lectura del maestro (IO_ERROR); repetir las mismas operaciones autorizadas fuera del sandbox resolvió el acceso, sin ocultar errores de contenido. Las comparaciones iniciales de retención confundían hora actual con publicación/caducidad: se reparó solo la prueba, conservando igualdad de los demás campos. La revisión de capturas llevó al ajuste de Dato; una primera distribución estrechó demasiado J, corregido con nowrap y padding horizontal de 2 px. Se añadió prueba de que los tres J siguen en una línea. Los checks se repitieron al cambiar presentación, todos 466/466; la pasada B14 intermedia fue 5/5 (15,1 s), pero la evidencia definitiva es la posterior. No se afirmó que 28/28 pasaran en una única ejecución.
+
+### 5.3 Resultados, medidas y límites
+
+- **B14-01/02:** validador común, tres cambios exactos y manifiesto satisfacen versión/recursos/copia; sin edición científica ni imágenes nuevas.
+- **B14-03:** dos sesiones independientes a 390/1280×844, selección Solar → genérica → Solar, invitados sin selector, recarga/identidad/versiones conservadas. Catálogo vacío/borrador/publicada siguen cubiertos por fixtures separados, sin desactivar copias normales.
+- **B14-04/05:** las 59 imágenes se sirvieron con MIME WebP y bytes SHA-256 del manifiesto; portada/mano/Detalles cargan con naturalWidth positivo. Atributos, unidades, característica y notas heredadas visibles. Encke/Borrelly conservan **Dato 4.8 km y J 7/8**; la resolución real HIGH/LOW invierte el vencedor según J, sin inventar decimales.
+- **B14-06:** ejecución normal (reloj, entropía y adaptadores normales) con un humano y Fácil/Difícil completa 15 rondas/45 puntos, tres rondas finales, resultado y recarga/otra sala. Ensayos controlados cancelan Solar durante revisión, conservan puntos 0/2 sin ganador y crean genérica en las mismas sesiones, sin heredar ficha/cartas/avisos; resumen A conserva fechas. Los nueve B13 y cuatro T04 previos pasaron en la selección inicial.
+- **B14-07:** catálogo con ocho campos por resumen; cuatro JSON privados responden 404 sin HTML. HTTP, ack y room:state respetan forma y manos por destinatario, comprobando manos rivales ausentes antes de convertirse en jugadas públicas. Se observaron por destinatario ack 2/1 y eventos 5/3. Build/runtime independientes de ASSETS demostrados con guard activo.
+- **B14-08:** puertas y revisión semántica realizadas: regex/span/CSS afectan únicamente presentación; J/puntuación/selección/permisos y autoridad siguen en sus capas existentes. No hay nueva dependencia ni contrato. Todo código comprobado corresponde a `20dfb46`; cierre posterior solo documental.
+
+Medidas de Hyakutake: PC **1920×844**, carta **230×359**, tabla 204 px; móvil emulado **390×844**, carta **220×401**, tabla 194 px. El dato de 12 dígitos completo cabe en una sola línea dentro de su celda; cada J también ocupa una línea y no hay truncación/overflow horizontal de la tabla. La altura mínima anterior sigue siendo mínima: contenido extenso aumenta altura; no prometer cartas de altura fija ni eliminar el desplazamiento vertical. Sin reducir fuente ni rediseñar móvil.
+
+Capturas finales inspeccionadas por SDD, **no aprobación visual del autor**: [PC](evidencias/B14/B14-cartas-1920.png), [móvil](evidencias/B14/B14-cartas-390.png), [espera/portada](evidencias/B14/B14-espera-390.png), [cancelación](evidencias/B14/B14-cancelacion-1920.png), [resultado normal](evidencias/B14/B14-resultado-normal.png); [medidas PC](evidencias/B14/B14-medidas-1920.json)/[móvil](evidencias/B14/B14-medidas-390.json). Son capturas completas de página, no alturas útiles del navegador.
+
+El reloj/entropía sustituidos se usaron solo en Encke/Borrelly y las regresiones que lo declaran. Los 30 minutos se comprobaron de manera controlada en B13/T04, **no en tiempo real**. El smoke de origen único se ejecutó por HTTP loopback, no HTTPS/Caddy. No hay nueva evidencia Linux, VPS o dispositivos físicos. Revisión científica, equilibrio, comprensión y aprobación visual humana siguen pendientes; C09–C10 mantienen esos límites.
+
+### 5.4 Entrega al autor
+
+La rama propia contiene la copia APP lista para integrar, con README, pruebas y evidencia; el checkout original sigue en `feat/b13-cancelacion-partida`/`47087c7`, main en `88be67f`, y sus dos modificaciones previas conservan las huellas iniciales. ASSETS ya conserva los JSON maestros activados; no tiene commit editorial propio. No copiar por separado los archivos a la rama antigua: integrar la entrega revisada en el ámbito GitHub cuando el autor lo decida.
+
+Para Coordinación/Arquitectura: registrar Sistema Solar formato 1/contenido 2 disponible e incorporada/comprobada en local, genérica intacta, sin reglas nuevas ni cambio de contrato. La legibilidad se resuelve localmente en GameCard, sin requerir otro bloque de implementación. Distinguir esta evidencia de revisión científica/aprobación visual y del estado del VPS. No se editaron fuentes generales TFM ni plan VPS, ni se enviaron mensajes. Sin push, PR, GHCR o despliegue.

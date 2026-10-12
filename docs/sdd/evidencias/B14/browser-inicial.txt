@@ -1,0 +1,156 @@
+{"instance":"B14 normal compilada, guard ASSETS","base":"http://127.0.0.1:54282","pid":21732,"node":"v24.19.0","started":"2026-10-12T13:18:29.105Z"}
+
+> karta3@0.1.0 test:browser
+> npm run build && playwright test solar.spec.ts decks.spec.ts activation.spec.ts cancelGame.spec.ts resultNotice.spec.ts bots.spec.ts proxy.spec.ts --grep B14|B04 catálogo|AGV2|B13|INC-01|B09 P2 normal compilado|T05 origen único --workers=2
+
+
+> karta3@0.1.0 build
+> npm run decks:prepare && tsc -b && vite build
+
+
+> karta3@0.1.0 decks:prepare
+> tsx tools/decks.ts prepare
+
+generica: válida; disponibilidad true
+sistema-solar: válida; disponibilidad true
+Catálogo preparado: 2 barajas disponibles.
+vite v8.3.1 building client environment for production...
+transforming...
+✓ 69 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.45 kB │ gzip:  0.29 kB
+dist/assets/index-61uaRTIk.css   16.51 kB │ gzip:  4.34 kB
+dist/assets/index-ChFhQiBR.js   326.08 kB │ gzip: 98.71 kB
+
+✓ built in 149ms
+
+Running 28 tests using 2 workers
+
+(node:24336) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:21256) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  2 tests\browser\activation.spec.ts:21:34 › AGV2-04–08 genérica 2 normal: dos sesiones, selección, permisos, recarga y quitar a 390px (2.0s)
+  ok  3 tests\browser\activation.spec.ts:21:34 › AGV2-04–08 genérica 2 normal: dos sesiones, selección, permisos, recarga y quitar a 1280px (1.3s)
+  ok  4 tests\browser\cancelGame.spec.ts:38:34 › B13 botón/diálogo/resumen 390px: foco, no pausa, cero puntos y retorno en dos pestañas (2.3s)
+  ok  5 tests\browser\cancelGame.spec.ts:38:34 › B13 botón/diálogo/resumen 1800px: foco, no pausa, cero puntos y retorno en dos pestañas (1.6s)
+  ok  6 tests\browser\cancelGame.spec.ts:82:56 › B13/T04 A cancelada → B automatic, F5, avisos/estados antiguos y límites propios (1.9s)
+  ok  7 tests\browser\cancelGame.spec.ts:82:56 › B13/T04 A cancelada → B ordinary, F5, avisos/estados antiguos y límites propios (5.1s)
+  ok  8 tests\browser\cancelGame.spec.ts:113:1 › B13 ack/evento perdidos: incertidumbre, recuperación por gameId y ack A atrasado frente a B (6.5s)
+  ok  9 tests\browser\cancelGame.spec.ts:136:1 › B13 envío perdido antes de registrar: recuperar primero y solo reintento explícito con ID/payload originales (6.0s)
+  ok 10 tests\browser\cancelGame.spec.ts:150:1 › B13 final por inactividad con reloj controlado mientras el diálogo está abierto lo cierra sin cancelar (831ms)
+  ok  1 tests\browser\bots.spec.ts:101:1 › B09 P2 normal compilado genérica 2: persona contra fácil/difícil, entropía/plazos normales, resultado y otra sala (28.9s)
+  ok 12 tests\browser\decks.spec.ts:11:5 › B04 catálogo 390px › AGV2-02/03/08 ejecución normal genérica 2; GET no crea cookie y sala inicialmente sin selección (448ms)
+  ok 13 tests\browser\decks.spec.ts:33:5 › B04 catálogo 390px › AGV2-09 instalación temporal vacía: servicio y presentación sin desactivar genérica normal (1.3s)
+  ok 14 tests\browser\decks.spec.ts:53:5 › B04 catálogo 390px › proceso compilado con fixture publicada: resumen seguro y medio real; borrador excluido (1.1s)
+  ok 15 tests\browser\decks.spec.ts:11:5 › B04 catálogo 1280px › AGV2-02/03/08 ejecución normal genérica 2; GET no crea cookie y sala inicialmente sin selección (401ms)
+  ok 16 tests\browser\decks.spec.ts:33:5 › B04 catálogo 1280px › AGV2-09 instalación temporal vacía: servicio y presentación sin desactivar genérica normal (1.1s)
+  ok 17 tests\browser\decks.spec.ts:53:5 › B04 catálogo 1280px › proceso compilado con fixture publicada: resumen seguro y medio real; borrador excluido (1.2s)
+  ok 18 tests\browser\proxy.spec.ts:5:1 › T05 origen único: dos sesiones, polling/WebSocket, permisos, privacidad y recuperación (1.3s)
+  ok 11 tests\browser\cancelGame.spec.ts:159:1 › B13/T04 HTTP de recuperación A cancelada atrasado no sustituye B recuperada (9.2s)
+  ok 19 tests\browser\resultNotice.spec.ts:38:56 › INC-01 expired A → B automatic: accepted result, reload, controlled expiry and old reads (2.2s)
+  ok 20 tests\browser\cancelGame.spec.ts:181:1 › B13 anfitrión observador, bot y desconectado: resumen/reconexión sin reactivar asociación (2.6s)
+  ok 22 tests\browser\solar.spec.ts:24:34 › B14 catálogo normal, cambio de baraja, portada y recuperación en dos sesiones a 390px (1.4s)
+  ok 23 tests\browser\solar.spec.ts:24:34 › B14 catálogo normal, cambio de baraja, portada y recuperación en dos sesiones a 1280px (1.7s)
+  ok 21 tests\browser\resultNotice.spec.ts:38:56 › INC-01 expired A → B ordinary: accepted result, reload, controlled expiry and old reads (6.0s)
+  x  24 tests\browser\solar.spec.ts:76:51 › B14 Encke/Borrelly HIGH: Dato/J, datos largos, privacidad, B13 y nueva genérica (4.9s)
+(node:20516) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 25 tests\browser\resultNotice.spec.ts:88:1 › INC-01 late A return failure/ack/home cannot change available B or trigger obsolete recovery (6.5s)
+  ok 27 tests\browser\resultNotice.spec.ts:134:1 › INC-01 delayed HTTP recovery of expired A does not clear B after authorized socket recovery (3.0s)
+  x  26 tests\browser\solar.spec.ts:76:51 › B14 Encke/Borrelly LOW: Dato/J, datos largos, privacidad, B13 y nueva genérica (5.2s)
+(node:6380) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  28 tests\browser\solar.spec.ts:155:1 › B14 ejecución normal: Sistema Solar con humano y Fácil/Difícil hasta resultado, recarga y otra sala (2.1s)
+
+
+  1) tests\browser\solar.spec.ts:76:51 › B14 Encke/Borrelly HIGH: Dato/J, datos largos, privacidad, B13 y nueva genérica 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+      Object {
+        "expiresAt": 1800001800002,
+        "presentedAt": 1800000000002,
+    -   "serverNow": 1800000000002,
+    +   "serverNow": 1800000002002,
+      }
+
+      147 |     }
+      148 |     server.time.advance(2000); expect((await readGame(p.host)).selectedDeck).toEqual(approvedGeneric);
+    > 149 |     expect((await result(p.host, gameId)).result.retention).toEqual(a.result.retention);
+          |                                                             ^
+      150 |     await fs.writeFile(info.outputPath(`B14-medidas-${width}.json`), JSON.stringify(measures, null, 2));
+      151 |     await cancel(p.host);
+      152 |   } finally { await p.close(); await server.stop(); }
+        at E:\KARTA3\KARTA3_IA\APP\karta3-b14-sistema-solar\tests\browser\solar.spec.ts:149:61
+
+    Error Context: test-results\solar-B14-Encke-Borrelly-H-69017-acidad-B13-y-nueva-genérica\error-context.md
+
+  2) tests\browser\solar.spec.ts:76:51 › B14 Encke/Borrelly LOW: Dato/J, datos largos, privacidad, B13 y nueva genérica 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+      Object {
+        "expiresAt": 1800001800002,
+        "presentedAt": 1800000000002,
+    -   "serverNow": 1800000000002,
+    +   "serverNow": 1800000002002,
+      }
+
+      147 |     }
+      148 |     server.time.advance(2000); expect((await readGame(p.host)).selectedDeck).toEqual(approvedGeneric);
+    > 149 |     expect((await result(p.host, gameId)).result.retention).toEqual(a.result.retention);
+          |                                                             ^
+      150 |     await fs.writeFile(info.outputPath(`B14-medidas-${width}.json`), JSON.stringify(measures, null, 2));
+      151 |     await cancel(p.host);
+      152 |   } finally { await p.close(); await server.stop(); }
+        at E:\KARTA3\KARTA3_IA\APP\karta3-b14-sistema-solar\tests\browser\solar.spec.ts:149:61
+
+    Error Context: test-results\solar-B14-Encke-Borrelly-L-57d93-acidad-B13-y-nueva-genérica\error-context.md
+
+  3) tests\browser\solar.spec.ts:155:1 › B14 ejecución normal: Sistema Solar con humano y Fácil/Difícil hasta resultado, recarga y otra sala 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+    @@ -3,11 +3,11 @@
+        "endReason": "DECK_COMPLETED",
+        "gameId": "540ad7e2-4160-4bbc-8456-5a3f5edd1f36",
+        "retention": Object {
+          "expiresAt": 1791812971619.5012,
+          "presentedAt": 1791811171619.5012,
+    -     "serverNow": 1791811171652.2134,
+    +     "serverNow": 1791811171713.2698,
+        },
+        "standings": Array [
+          Object {
+            "playerId": "25b905fb-60d4-4db0-aefb-8f371a492b94",
+            "position": 1,
+
+      175 |     expect(JSON.stringify(finished)).not.toMatch(/playValue|"hand"|drawPile|"cards"|sessionId/);
+      176 |     await p.host.reload(); await expect(p.host.getByRole('heading', { name: 'Partida terminada', exact: true })).toBeVisible();
+    > 177 |     expect((await readRoom(p.host) as ResultsRoomView).result).toEqual(finished.result);
+          |                                                                ^
+      178 |     await p.host.screenshot({ path: info.outputPath('B14-resultado-normal.png'), fullPage: true });
+      179 |     await p.host.getByRole('button', { name: 'Volver al inicio', exact: true }).click(); await p.host.getByRole('button', { name: 'Crear sala', exact: true }).click();
+      180 |     await expect(p.host.getByLabel('Baraja', { exact: true })).toHaveValue(''); await expect(p.host.getByRole('alert')).toHaveCount(0);
+        at E:\KARTA3\KARTA3_IA\APP\karta3-b14-sistema-solar\tests\browser\solar.spec.ts:177:64
+
+    Error Context: test-results\solar-B14-ejecución-normal-29c52-sultado-recarga-y-otra-sala\error-context.md
+
+  3 failed
+    tests\browser\solar.spec.ts:76:51 › B14 Encke/Borrelly HIGH: Dato/J, datos largos, privacidad, B13 y nueva genérica 
+    tests\browser\solar.spec.ts:76:51 › B14 Encke/Borrelly LOW: Dato/J, datos largos, privacidad, B13 y nueva genérica 
+    tests\browser\solar.spec.ts:155:1 › B14 ejecución normal: Sistema Solar con humano y Fácil/Difícil hasta resultado, recarga y otra sala 
+  25 passed (58.2s)
+Guard runtime ASSETS: ningún acceso. Fin 2026-10-12T13:19:31.938Z
+B14: instancia propia detenida y carpeta temporal propia retirada.

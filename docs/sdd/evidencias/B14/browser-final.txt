@@ -1,0 +1,40 @@
+{"instance":"B14 normal compilada, guard ASSETS","base":"http://127.0.0.1:58879","pid":20516,"node":"v24.19.0","started":"2026-10-12T13:34:04.207Z"}
+
+> karta3@0.1.0 test:browser
+> npm run build && playwright test solar.spec.ts --workers=2
+
+
+> karta3@0.1.0 build
+> npm run decks:prepare && tsc -b && vite build
+
+
+> karta3@0.1.0 decks:prepare
+> tsx tools/decks.ts prepare
+
+generica: válida; disponibilidad true
+sistema-solar: válida; disponibilidad true
+Catálogo preparado: 2 barajas disponibles.
+vite v8.3.1 building client environment for production...
+transforming...
+✓ 69 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.45 kB │ gzip:  0.29 kB
+dist/assets/index-CBHF-Gk5.css   17.00 kB │ gzip:  4.42 kB
+dist/assets/index-CFu1ufMC.js   326.36 kB │ gzip: 98.80 kB
+
+✓ built in 147ms
+
+Running 5 tests using 1 worker
+
+(node:21760) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 tests\browser\solar.spec.ts:24:34 › B14 catálogo normal, cambio de baraja, portada y recuperación en dos sesiones a 390px (1.6s)
+  ok 2 tests\browser\solar.spec.ts:24:34 › B14 catálogo normal, cambio de baraja, portada y recuperación en dos sesiones a 1280px (1.4s)
+  ok 3 tests\browser\solar.spec.ts:76:51 › B14 Encke/Borrelly HIGH: Dato/J, datos largos, privacidad, B13 y nueva genérica (4.7s)
+  ok 4 tests\browser\solar.spec.ts:76:51 › B14 Encke/Borrelly LOW: Dato/J, datos largos, privacidad, B13 y nueva genérica (4.0s)
+  ok 5 tests\browser\solar.spec.ts:173:1 › B14 ejecución normal: Sistema Solar con humano y Fácil/Difícil hasta resultado, recarga y otra sala (2.3s)
+
+  5 passed (15.2s)
+Guard runtime ASSETS: ningún acceso. Fin 2026-10-12T13:34:24.331Z
+B14: instancia propia detenida y carpeta temporal propia retirada.
