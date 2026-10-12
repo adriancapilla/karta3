@@ -46,3 +46,5 @@ Ejecutar Node 24.19 del runtime disponible, sin cambiar instalación global. Ins
 ## 5. Registro de ejecución y cierre
 
 Pendiente al registrar este alcance. Añadir versión/commits, huellas, archivos propios, resultados por criterio, comandos/entorno, ajustes necesarios y límites. C09–C10 reciben evidencia técnica de una segunda baraja con recursos, sin convertirla en revisión científica, equilibrio o aprobación visual humana.
+
+**Ajuste de presentación dentro del alcance, 12/10:** las primeras capturas mostraron los 12 dígitos de Hyakutake partidos entre líneas (columna Dato de 65 px PC/56 px móvil). Se mantiene literal el texto; las tablas con enteros mostrados de nueve o más dígitos adaptan sus columnas y evitan partir ese número, también en Detalles. Sin conversión numérica, separadores nuevos, reducción de fuente, cambio del ancho de cartas o distribución móvil. Se añade comprobación geométrica de número completo dentro de su celda.

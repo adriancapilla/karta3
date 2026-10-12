@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test';
 import type { InitialGameRoomView, RoomResponse } from '../../shared/contracts/room.js';
-import { approvedGeneric } from '../support/approvedGeneric.js';
+import { approvedInstalledDecks } from '../support/approvedSolar.js';
 
 test('T05 origen único: dos sesiones, polling/WebSocket, permisos, privacidad y recuperación', async ({ browser, baseURL }) => {
   test.setTimeout(45_000);
@@ -19,7 +19,7 @@ test('T05 origen único: dos sesiones, polling/WebSocket, permisos, privacidad y
     const catalog = await a.request.get(`${base}/api/decks`);
     expect(catalog.status()).toBe(200); expect(catalog.headers()['cache-control']).toBe('no-store');
     expect(catalog.headers()['set-cookie']).toBeUndefined();
-    expect(await catalog.json()).toEqual({ decks: [approvedGeneric] });
+    expect(await catalog.json()).toEqual({ decks: approvedInstalledDecks });
     for (const path of ['/barajas/generica/baraja.json', '/barajas/generica/cartas.json', '/docs', '/server', '/api/desconocida', '/media/decks/desconocido']) {
       const response = await a.request.get(`${base}${path}`);
       expect(response.status()).toBe(404); expect(await response.text()).not.toContain('<!doctype html>');

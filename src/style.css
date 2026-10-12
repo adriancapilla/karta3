@@ -79,3 +79,10 @@ select:focus-visible { outline: 3px solid #ed914f; outline-offset: 3px; }
 .cancel-game-dialog p{line-height:1.5}
 .game-shell header.game-header-with-cancel{height:auto;min-height:48px;gap:12px}
 @media(max-width:760px){.cancelled-standings tr{grid-template-columns:minmax(0,1fr) 65px}}
+
+/* B14: conservar enteros informativos largos sin partir sus dígitos. */
+.card-values.long-numbers{table-layout:auto}
+.card-values.long-numbers th:first-child,.game-card .card-values.long-numbers th:first-child,.game-card .card-values.long-numbers th:nth-child(2){width:auto;overflow-wrap:normal}
+.card-values.long-numbers th,.card-values.long-numbers td{padding-left:2px;padding-right:2px}
+.game-card .card-values.long-numbers th:last-child,.game-card .card-values.long-numbers td:last-child{width:1%;white-space:nowrap}
+.card-values .unbroken-number{white-space:nowrap}

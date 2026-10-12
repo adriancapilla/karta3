@@ -10,7 +10,7 @@ La aplicación se construye de forma incremental, con especificaciones, pruebas 
 
 Actualmente permite crear una sala de espera, compartir su código e incorporar participantes desde navegadores independientes. La lista se actualiza en tiempo real y, durante la espera, cada participante puede cambiar su nombre o salir. También gestiona la reconexión temporal y el cierre de esperas por inactividad.
 
-El bloque 04 añade validación común de barajas, preparación del catálogo y consulta pública de resúmenes. La [incorporación de genérica 2](docs/sdd/ACTIVACION_GENERICA_V2.md) conserva formato 1, incorpora contenido 2 aprobado y `available: true`: el catálogo normal ofrece únicamente su resumen seguro, con portada nula. B04/B05 conservan sus evidencias históricas de contenido 1/no disponible.
+El bloque 04 añade validación común de barajas, preparación del catálogo y consulta pública de resúmenes. La [genérica 2](docs/sdd/ACTIVACION_GENERICA_V2.md) y [Sistema Solar 2 (B14)](docs/sdd/BLOQUE_14_INCORPORACION_SISTEMA_SOLAR.md) están disponibles, ambas en formato 1/contenido 2: el catálogo normal ofrece sus resúmenes seguros, sin seleccionar automáticamente ninguna. Genérica conserva portada nula; Sistema Solar incorpora portada y 58 imágenes existentes. B04/B05 conservan sus evidencias históricas de contenido 1/no disponible.
 
 El bloque 05 permite seleccionar/quitar una versión disponible de baraja, participar u observar como anfitrión, configurar tiempo de turno, desempate y revisión. Cada control se confirma de forma independiente y los invitados consultan los valores aceptados.
 
@@ -140,12 +140,13 @@ Desde `E:\KARTA3\KARTA3_IA\APP\karta3`:
 
 ```powershell
 npm run decks:validate -- --package barajas/generica
+npm run decks:validate -- --package barajas/sistema-solar
 npm run decks:prepare
 npm run build
 npm run start
 ```
 
-Consultar `http://127.0.0.1:3000/api/decks`: devuelve `decks` con un resumen `generica`, `schemaVersion: 1`, `contentVersion: 2`, nombre/subtítulo/descripción aprobados, `imageUrl: null` e `imageAlt: ""`. Solo contiene esos ocho campos. `build` siempre prepara `barajas/catalogo.json`; `start` vuelve a validar los paquetes y exige ese catálogo vigente antes de escuchar. El artefacto está ignorado en Git y se genera con orden estable, UTF-8, dos espacios y LF. Solo se leen copias de APP; no hace falta ASSETS ni TFM para construir/ejecutar. Detener la instancia anterior con Ctrl+C antes de `npm run start`: copiar o compilar no actualiza su instantánea. El reinicio pierde las salas; crear esperas nuevas para comprobar la incorporación.
+Consultar `http://127.0.0.1:3000/api/decks`: devuelve dos resúmenes en orden `generica`, `sistema-solar`, ambos `schemaVersion: 1`, `contentVersion: 2`. Cada uno contiene únicamente id/versiones, nombre/subtítulo/descripción y URL/alt de portada (o null/"" en genérica): ocho campos, sin las cartas. `build` siempre prepara `barajas/catalogo.json`; `start` vuelve a validar los paquetes y exige ese catálogo vigente antes de escuchar. El artefacto está ignorado en Git y se genera con orden estable, UTF-8, dos espacios y LF. Solo se leen copias de APP; no hace falta ASSETS ni TFM para construir/ejecutar. Copiar o compilar no actualiza la instantánea de un servidor ya abierto: arrancar una instancia propia de la nueva compilación en un puerto libre para comprobarla, sin detener servidores del autor. Reiniciar una instancia pierde sus salas.
 
 Validar un paquete devuelve salida 0 si es válido, aunque no esté disponible, y 1 si es inválido. Preparar o arrancar informa/excluye borradores inválidos cuyo `false` sea fiable; una disponible inválida o disponibilidad indeterminable bloquea. La aplicación no repara datos ni activa contenido. Incorporar/activar una nueva copia exige revisión y versiones conforme al [contrato](docs/contratos/CONTRATO_BARAJAS_V1.md).
 
@@ -156,13 +157,26 @@ Los JSON internos no son descargables. Las referencias públicas admitidas usan 
 En PowerShell, desde `E:\KARTA3\KARTA3_IA\APP\karta3`, ejecutar `npm ci` si faltan las dependencias y `npm run check`. Detener el servidor anterior y ejecutar `npm run start`. Mantenerlo abierto; en otra terminal del mismo directorio ejecutar `npm run test:browser` para la comprobación automática sobre la compilación actual.
 
 1. Abrir `http://127.0.0.1:3000/api/decks`: debe ofrecer `generica`, contenido 2 y portada nula. Volver a `http://127.0.0.1:3000`.
-2. En sesión A crear sala. Verificar las seis cifras y «Sin baraja seleccionada», aunque exista una única opción. Predeterminados: anfitrión juega, turno 30 s, desempate desactivado y revisión 5 s.
+2. En sesión A crear sala. Verificar las seis cifras y «Sin baraja seleccionada», aunque haya dos barajas disponibles. Predeterminados: anfitrión juega, turno 30 s, desempate desactivado y revisión 5 s.
 3. En otro navegador/perfil con cookies independientes, sesión B entrar con código y nombre. Una segunda pestaña del mismo perfil comparte identidad y no representa a otro participante.
 4. A selecciona «KARTA3 — Baraja genérica · v2». Tras aceptación, A y B ven nombre, descripción e icono neutro sin recargar. B consulta la configuración y no dispone de controles para editarla.
 5. Recargar A y B, sin reiniciar el servidor: conservan identidad, autoridad, orden y selección exacta sin duplicaciones. Reiniciar el servidor pierde la espera y no es una prueba de recuperación mediante recarga.
 6. A elige «Sin baraja seleccionada»: B ve el cambio sin recargar. B prueba salida voluntaria y A cierre con confirmación. Repetir en móvil (390 px) y escritorio (1280 px).
 
 Registrar fecha, versión servida, navegadores/perfiles, acciones, resultados y límites. Estas instrucciones no acreditan ejecución manual. C09–C10 siguen parciales: B07 amplía uso de la baraja, cartas jugadas/manos variables/resultados y privacidad; comprensión con usuarios, equilibrio, móviles físicos y despliegue siguen pendientes. B09 incorpora bots Fácil/Difícil sin acreditar equilibrio.
+
+### Prueba manual B14: Sistema Solar y cambio entre barajas
+
+Con Node 24.19 y dependencias del lockfile, ejecutar `npm run check`. Para este checkout aislado, arrancar una instancia propia en un puerto libre (por ejemplo `$env:PORT='3141'; npm run start`) y abrir su URL. No detener ni actualizar el servidor del autor; el VPS conserva la versión desplegada hasta autorizar una actualización conjunta.
+
+1. Catálogo: genérica y Sistema Solar, contenido 2. Crear sala: ninguna queda seleccionada.
+2. Otro perfil entra como invitado. El anfitrión cambia explícitamente genérica → Sistema Solar → genérica → Sistema Solar; ambos ven la ficha aceptada, portada real o icono nulo según la baraja. Recargar conserva identidad y selección.
+3. Iniciar Sistema Solar con dos humanos, o un humano y bots. Comprobar nombres, Velocidad/Distancia/Diámetro, unidades km/s y km, imágenes y Detalles (característica/nota completas).
+4. Leer Dato y J separados: solo J decide ALTO/BAJO. Encke y Borrelly conservan diámetro mostrado «4.8 km» y J 7/8; no se añaden decimales. El recorrido automatizado B14 dispone ambas cartas mediante entropía controlada; la partida normal conserva barajado real.
+5. Revisar datos largos, por ejemplo Hyakutake «317858890240 km», sin puntos suspensivos ni valores modificados; abrir Detalles. Capturas/medidas automatizadas no sustituyen aprobación visual humana.
+6. Completar una partida y recargar su resultado. En otra, cancelar desde el anfitrión: resumen parcial sin ganador, libre para otra sala. Crear genérica y comprobar que no hereda ficha, cartas ni avisos de Sistema Solar; el resumen anterior sigue autorizado hasta caducar.
+
+La [evidencia B14](docs/sdd/BLOQUE_14_INCORPORACION_SISTEMA_SOLAR.md) separa validación técnica, reloj/entropía controlados y adaptadores normales. Las fuentes científicas/precisión son las de la entrega editorial existente: no se realizó una revisión científica nueva. Sin rediseño ni publicación/despliegue desde B14.
 
 ### Prueba manual B07: dos jugadores y observador
 

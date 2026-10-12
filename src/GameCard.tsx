@@ -13,15 +13,17 @@ export function CardImage({ card }: { card: CardView }) {
 export function CardInformation({ card, attributes, activeAttributeId, details = false }: {
   card: CardView; attributes: InitialGameView['attributes']; activeAttributeId: string; details?: boolean;
 }) {
+  const longInteger = (value: string) => /^\d{9,}$/.test(value);
+  const tableClass = `card-values${Object.values(card.values).some((value) => longInteger(value.displayValue)) ? ' long-numbers' : ''}`;
   if (!details) {
     const ownAttribute = attributes.find((attribute) => attribute.id === card.roundAttribute)!;
     return <>
       <div className="card-heading"><h3>{card.name}</h3><span className="card-round-attribute" role="img" aria-label={`Atributo indicador: ${ownAttribute.name}`}>{['●', '▲', '■'][attributes.indexOf(ownAttribute)]}</span></div>
       <CardImage key={`${card.id}:${card.imageUrl}`} card={card} />
-      <table className="card-values"><thead><tr><th scope="col">Atributo</th><th scope="col">Dato</th><th scope="col" aria-label="J: valor jugable">J</th></tr></thead>
+      <table className={tableClass}><thead><tr><th scope="col">Atributo</th><th scope="col">Dato</th><th scope="col" aria-label="J: valor jugable">J</th></tr></thead>
         <tbody>{attributes.map((attribute, index) => <tr key={attribute.id} className={attribute.id === activeAttributeId ? 'active-attribute' : undefined}>
           <th scope="row" aria-label={attribute.id === activeAttributeId ? `${attribute.name}, atributo activo` : attribute.name}><span aria-hidden="true">{['●', '▲', '■'][index]} </span>{attribute.name}{attribute.id === activeAttributeId && <span className="active-mark" aria-hidden="true">◆</span>}</th>
-          <td>{card.values[attribute.id].displayValue}{card.values[attribute.id].unit && ` ${card.values[attribute.id].unit}`}</td><td>{card.values[attribute.id].playValue}</td>
+          <td><span className={longInteger(card.values[attribute.id].displayValue) ? 'unbroken-number' : undefined}>{card.values[attribute.id].displayValue}</span>{card.values[attribute.id].unit && ` ${card.values[attribute.id].unit}`}</td><td>{card.values[attribute.id].playValue}</td>
         </tr>)}</tbody>
       </table>
     </>;
@@ -30,10 +32,10 @@ export function CardInformation({ card, attributes, activeAttributeId, details =
     <h3>{card.name}</h3>
     <CardImage key={`${card.id}:${card.imageUrl}`} card={card} />
     {details && card.characteristic.trim() && <p className="card-characteristic">{card.characteristic}</p>}
-    <table className="card-values"><thead><tr><th scope="col">Atributo</th><th scope="col">Jugable</th><th scope="col">Dato</th></tr></thead>
+    <table className={tableClass}><thead><tr><th scope="col">Atributo</th><th scope="col">Jugable</th><th scope="col">Dato</th></tr></thead>
       <tbody>{attributes.map((attribute, index) => <tr key={attribute.id} className={attribute.id === activeAttributeId ? 'active-attribute' : undefined}>
         <th scope="row"><span aria-hidden="true">{['●', '▲', '■'][index]} </span>{attribute.name}{attribute.id === activeAttributeId && <span className="active-label">Activo</span>}</th>
-        <td>{card.values[attribute.id].playValue}</td><td>{card.values[attribute.id].displayValue}{card.values[attribute.id].unit && ` ${card.values[attribute.id].unit}`}</td>
+        <td>{card.values[attribute.id].playValue}</td><td><span className={longInteger(card.values[attribute.id].displayValue) ? 'unbroken-number' : undefined}>{card.values[attribute.id].displayValue}</span>{card.values[attribute.id].unit && ` ${card.values[attribute.id].unit}`}</td>
       </tr>)}</tbody>
     </table>
     {details && card.note.trim() && <p className="card-note">{card.note}</p>}

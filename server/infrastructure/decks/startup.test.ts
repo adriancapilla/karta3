@@ -8,6 +8,7 @@ import { deckFixture, writeFixture } from '../../../tests/support/deckFixtures.j
 import { prepareDecks } from './catalog.js';
 import { compiledInstallation, removeTestInstallation, startCompiledDeckServer } from '../../../tests/support/compiledDeckServer.js';
 import { approvedGeneric } from '../../../tests/support/approvedGeneric.js';
+import { approvedInstalledDecks } from '../../../tests/support/approvedSolar.js';
 
 let root: string;
 let stop: (() => Promise<void>) | undefined;
@@ -26,7 +27,7 @@ it.each([undefined, '0.0.0.0'])('T05 arranque compilado HOST=%s: catálogo y ses
   expect(server.errors()).toBe('');
 }, 15_000);
 
-it('AGV2-02/03 y B04-01/08 construcción real con genérica 2 aislada de ASSETS; consulta conserva instantánea', async () => {
+it('B14/AGV2/B04 construcción real con ambas barajas aislada de ASSETS; consulta conserva instantánea', async () => {
   await expect(promisify(execFile)(process.execPath, ['--import', './guard.mjs', '--input-type=module', '-e', 'import fs from "node:fs/promises"; await fs.readFile("ASSETS/probe.json");'], { cwd: root, windowsHide: true })).rejects.toMatchObject({ stderr: expect.stringContaining('ASSETS no permitido') });
   await expect(promisify(execFile)(process.execPath, ['--import', './guard.mjs', '--input-type=module', '-e', 'import fs from "node:fs"; fs.realpathSync.native("ASSETS/probe.json");'], { cwd: root, windowsHide: true })).rejects.toMatchObject({ stderr: expect.stringContaining('ASSETS no permitido') });
   expect(await fs.readFile(path.join(root, 'asset-access.txt'), 'utf8')).toContain('ASSETS/probe.json');
@@ -34,17 +35,18 @@ it('AGV2-02/03 y B04-01/08 construcción real con genérica 2 aislada de ASSETS;
   for (const name of ['server', 'src', 'shared', 'tools']) await fs.cp(path.resolve(name), path.join(root, name), { recursive: true });
   for (const name of ['package.json', 'package-lock.json', 'tsconfig.json', 'tsconfig.server.json', 'tsconfig.client.json', 'vite.config.ts', 'index.html']) await fs.copyFile(path.resolve(name), path.join(root, name));
   await fs.cp(path.resolve('barajas/generica'), path.join(root, 'barajas/generica'), { recursive: true });
+  await fs.cp(path.resolve('barajas/sistema-solar'), path.join(root, 'barajas/sistema-solar'), { recursive: true });
   const npmCli = path.join(path.dirname(process.env.npm_execpath ?? path.join(path.dirname(process.execPath), 'node_modules/npm/bin/npm-cli.js')), 'npm-cli.js');
   const { stdout } = await promisify(execFile)(process.execPath, [npmCli, 'run', 'build'], {
     cwd: root, env: { ...process.env, NODE_OPTIONS: `--import=${pathToFileURL(path.join(root, 'guard.mjs')).href}` }, windowsHide: true,
     timeout: 60_000
   });
-  expect(stdout).toContain('Catálogo preparado: 1 barajas disponibles.');
+  expect(stdout).toContain('Catálogo preparado: 2 barajas disponibles.');
   const server = await startCompiledDeckServer(root); stop = server.stop;
-  expect(await (await fetch(`${server.base}/api/decks`)).json()).toEqual({ decks: [approvedGeneric] });
+  expect(await (await fetch(`${server.base}/api/decks`)).json()).toEqual({ decks: approvedInstalledDecks });
   const cards = path.join(root, 'barajas/generica/cartas.json'); await fs.writeFile(cards, '{');
   await writeFixture(path.join(root, 'barajas'), deckFixture('anadida-despues', true));
-  for (let index = 0; index < 3; index++) expect(await (await fetch(`${server.base}/api/decks`)).json()).toEqual({ decks: [approvedGeneric] });
+  for (let index = 0; index < 3; index++) expect(await (await fetch(`${server.base}/api/decks`)).json()).toEqual({ decks: approvedInstalledDecks });
   expect(await fs.readdir(root)).not.toContain('asset-access.txt');
   const bundle = (await fs.readdir(path.join(root, 'dist/assets'))).filter((name) => name.endsWith('.js'));
   for (const file of bundle) {
