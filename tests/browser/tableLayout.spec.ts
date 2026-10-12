@@ -174,8 +174,15 @@ if (!captureBase) {
       expect(server.gameRequests).toHaveLength(0);
       await expect(actor.getByRole('dialog')).toHaveCount(0);
       const direction = actor.getByRole('button', { name: 'BAJO', exact: true });
-      await expect(direction).toBeEnabled(); await direction.focus(); await expect(direction).toBeFocused();
-      await actor.keyboard.press('Enter');
+      await expect(direction).toBeEnabled();
+      // Comprobar foco y entrada real en el instante de Enter, aunque el botón se retire tras jugar.
+      await direction.evaluate((element) => element.addEventListener('keydown', (event) => {
+        if (event instanceof KeyboardEvent && event.key === 'Enter') {
+          element.ownerDocument.body.setAttribute('data-b10-enter-delivered', String(event.isTrusted && element.ownerDocument.activeElement === element));
+        }
+      }, { once: true }));
+      await direction.press('Enter');
+      await expect(actor.locator('body')).toHaveAttribute('data-b10-enter-delivered', 'true');
       await expect.poll(async () => (await readGame(actor)).game.round.plays.length).toBe(1);
       expect(server.gameRequests.filter((item) => item.event === 'game:play')).toHaveLength(1);
     } finally { await p.close(); await server.stop(); }
