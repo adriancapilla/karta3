@@ -227,6 +227,8 @@ Fixtures completas temporales y permutaciones reproducibles en tests/support: se
 
 No cambia la dirección de dependencias ni se introduce un coordinador/temporizador paralelo. La evidencia B13 revisa también el contenido exacto de HTTP/ack/eventos, callbacks extraídos y continuidad A/B, además de imports/ciclos. Las fuentes generales TFM requieren el traslado de [B13 §9](../sdd/BLOQUE_13_CANCELACION_PARTIDA.md), por sus responsables; no se editan en APP. C09–C10 y aprobación humana conservan sus límites.
 
+**Actualización12/10:** Arquitectura ha completado ese traslado en las tres fuentes generales y el contexto, contrastados de solo lectura al preparar publicación. El cierre técnico11/10 conserva su evidencia histórica; la recepción humana posterior es acotada, conforme a [B13 §11](../sdd/BLOQUE_13_CANCELACION_PARTIDA.md#11-recepción-y-preparación-de-publicación--12102026). No acredita publicación de imagen/despliegue ni completa C09–C10.
+
 T02 mantiene estos límites y las cuatro operaciones/acks B09. La captura `tests/fixtures/bot-policy-4917d96.json` pertenece solo a pruebas: esperaba EASY/NORMAL antes de editar, y `botPolicyAlignment.test.ts` compara decisiones congeladas con EASY/HARD sin otra política en producción. Validadores rechazan NORMAL/otros tipos/niveles; nombres como normalizeName/completedNormally y rondas/procesos normales se conservan. [T02](../sdd/BLOQUE_T02_ALINEACION_DIFICULTADES_BOTS.md) registra equivalencia, contrato y traslado a Arquitectura; no se editan fuentes generales TFM.
 
 Para cada bloque acordado:

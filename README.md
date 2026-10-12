@@ -297,6 +297,8 @@ E1/E2 de orden y los estados comparables se reproducen con genérica 2 copiada a
 
 ## Prueba manual B13: cancelación y otra sala
 
+Recepción humana12/10: el autor comunica prueba satisfactoria con anfitrión solo y anfitrión más invitado, control exclusivo y recepción inmediata. Los pasos siguientes conservan la guía completa; los escenarios no comunicados siguen pendientes. [B13 §11](docs/sdd/BLOQUE_13_CANCELACION_PARTIDA.md#11-recepción-y-preparación-de-publicación--12102026) separa esa recepción del cierre local11/10 y de la nueva publicación.
+
 1. Desde esta carpeta: `npm run check`, detener la instancia anterior propia y ejecutar `npm run start`. Abrir dos perfiles/sesiones independientes A y B en `http://127.0.0.1:3000`; una segunda pestaña de A comparte su sesión.
 2. A crea, B entra, A selecciona explícitamente genérica 2 y configura revisión 5 s. Iniciar con ambos conectados. Solo A tiene «Cancelar partida» arriba a la derecha. Abrir el diálogo: foco inicial «Seguir jugando». Escape y esa acción cierran sin enviar; el reloj, bots y jugadas siguen funcionando mientras está abierto.
 3. Confirmar antes de resolver la primera ronda: ambos perfiles y ambas pestañas de A reciben «Partida cancelada por el anfitrión», «Puntuaciones parciales», cero puntos y «Puntos de rondas ya resueltas. No hay ganador.». No hay puestos, victoria, mano ni jugadas privadas. Repetir tras una ronda resuelta y durante su revisión: conserva únicamente sus puntos. Probar también con A observador, B jugador y un bot Fácil/Difícil; A puede cancelar sin turno o control manual.

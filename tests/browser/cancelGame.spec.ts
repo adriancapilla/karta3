@@ -93,7 +93,8 @@ for (const mode of ['automatic', 'ordinary'] as const) test(`B13/T04 A cancelada
     server.repeatResultsHome(id, { id: 'old-home', roomId: a.id, gameId: a.result.gameId, lastResult: { roomId: a.id, gameId: a.result.gameId, expiresAt: a.result.retention.expiresAt } });
     expect((await readGame(p.host)).game.id).not.toBe(prior.game.id);
     if (mode === 'automatic') server.time.advance(60_000);
-    else { let moves = 0; while ((await readRoom(p.host)).status === 'IN_GAME') { await humanPlay(p, moves % 2 === 0, moves % 3 === 0 ? 'LOW' : 'HIGH'); expect(++moves).toBeLessThanOrEqual(58); } }
+    // Misma reparación diagnosticada en #10: no congelar muestras de plazo durante varias rondas sin revisión.
+    else { let moves = 0; while ((await readRoom(p.host)).status === 'IN_GAME') { server.time.elapse(1); await humanPlay(p, moves % 2 === 0, moves % 3 === 0 ? 'LOW' : 'HIGH'); expect(++moves).toBeLessThanOrEqual(58); } }
     await expect(p.host.getByRole('heading', { name: 'Partida terminada', exact: true })).toBeVisible();
     const b = await readRoom(p.host) as ResultsRoomView; expect(b.result.endReason).toBe(mode === 'automatic' ? 'NO_ACTIVE_HUMAN_PLAYERS' : 'DECK_COMPLETED');
     server.time.elapse(a.result.retention.expiresAt - server.time.now().unix);

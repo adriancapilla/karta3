@@ -1,6 +1,6 @@
 # B13 — Cancelación de partida por el anfitrión
 
-**Estado:** ampliación funcional aprobada por el autor el **11/10/2026**; implementada y verificada técnicamente en local el mismo día. Check y selección final de navegador correctos. La revisión humana y alineación normativa de fuentes generales siguen pendientes, separadas de la evidencia técnica de §10; no se declara cerrado el traslado normativo.
+**Estado:** ampliación funcional aprobada por el autor el **11/10/2026**; implementada y verificada técnicamente en local el mismo día. Check y selección final de navegador correctos. El12/10 se recibe prueba humana acotada y se contrasta la alineación normativa posterior; véase §11. El cierre local de §10 conserva sus límites históricos. Publicación/CI nuevas se registran separadamente, sin acreditar despliegue.
 **Numeración:** comprobada libre en los documentos SDD antes de crear este archivo.
 **Base observada:** rama `fix/ghcr-asociacion-revisada`, HEAD `ee2efbb9d2b4515884629a2578ebc75697202865`; main local `2603d6638f6cc1c1a9f019386359b5e7f1967c8d`. Cambios locales previos en `docs/operacion/GITHUB_Y_RECUPERACION.md` y `tests/browser/tableLayout.spec.ts`: conservarlos, sin incluir su resolución en B13. No se cambió de rama ni se consultó GitHub. B07/B08/B09, presentación B12 y corrección T04 están presentes en el código/documentación consultados; no exigir que commits originales sean ancestros cuando las integraciones se hicieron mediante squash.
 
@@ -266,3 +266,11 @@ Traslado para Coordinación/Arquitectura por el autor: esta entrega implementa l
 | Documentación | README, organización/dependencias, especificación B13 y proceso; prompt/preparación preservados en su commit separado. |
 
 Revisión breve del autor: arrancar build vigente, crear/entrar con dos perfiles, abrir diálogo y probar Escape; confirmar una ronda incompleta y comprobar cero puntos/sin ganador en ambos, F5 del resumen y nueva sala desde otra pestaña. Repetir tras resolver una ronda, con anfitrión observador y durante revisión; revisar PC/móvil y confirmar que el diálogo no pausa el turno. Pérdidas de ack/callbacks/bordes temporales están automatizadas; provocar cortes manualmente no sustituye esos montajes controlados. Registrar la revisión humana cuando se realice; no queda acreditada por el agente.
+
+## 11. Recepción y preparación de publicación — 12/10/2026
+
+El autor confirma pruebas humanas con anfitrión solo y anfitrión más invitado: botón exclusivo y recepción inmediata de cancelación. No extender esa recepción a todos los bordes, dispositivos, INC-01 o VPS. Arquitectura actualizó las tres fuentes generales y el contexto; esta publicación los consulta de solo lectura y contrasta HOST_CANCELLED/excepción D-INV-14, revisión final, liberación/retención, privacidad y T04. Las notas pendientes de §9/§10 describen el cierre del11/10, no una falta actual de ese traslado. No se modifican ni copian fuentes TFM.
+
+La rama original `feat/b13-cancelacion-partida` y sus tres commits `0ab5cba`, `b0173b7`, `47087c7` se conservan en local y GitHub. La rama de publicación nace del main posterior a #10; traslada solo esos tres commits, sin reintroducir cambios heredados ya integrados. Los dos archivos pendientes originales del autor se conservan intactos en su checkout, copias y patch externos; el ajuste de Enter se integró separadamente en #10.
+
+Ajuste técnico de ensayo: el nuevo recorrido B13 ordinario con revisión0 comparte el reloj sustituido congelado diagnosticado en #10. Se avanza1 ms entre jugadas igual que en los bucles B07 reparados. Conserva límites/aserciones, puntos, plazos del producto, cobertura y cero reintentos; no cambia el juego. La CI nueva ejecutará toda la batería, incluida imagenLinux/Compose, no solo los86 recorridos locales pertinentes. Resultados, duraciones, intentos, HEAD, squash y candidatoOCI/vencimiento se registran en la PR y guía operativa. No se publica imagenGHCR ni se actualiza VPS.
