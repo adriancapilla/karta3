@@ -2,7 +2,7 @@
 
 **Fecha/acuerdo:** 12/10/2026, autor. **Estado:** incorporado y verificado técnicamente en local; revisión científica nueva y aprobación visual humana no realizadas. El alcance se registró antes de incorporar en `ba0c88f`. Este encargo permite excepcionalmente a SDD incorporar contenido y comprobarlo.
 
-**Numeración:** B14 libre en main al preparar el cambio. **Base:** main integrado `88be67f3affe5c6f49ca90b207f59d5c2ef5aa45`; rama propia `feat/b14-sistema-solar`, checkout `E:\KARTA3\KARTA3_IA\APP\karta3-b14-sistema-solar`. El checkout original sigue en B13 `47087c7`, con cambios ajenos en operación y `tests/browser/tableLayout.spec.ts`; no se incluyen ni modifican. No usar ni detener servidores del autor.
+**Numeración:** B14 libre en main al preparar el cambio. **Base histórica:** main integrado `88be67f3affe5c6f49ca90b207f59d5c2ef5aa45`; entrega preparada en `feat/b14-sistema-solar`, checkout `E:\KARTA3\KARTA3_IA\APP\karta3-b14-sistema-solar`. El estado inicial de B13 `47087c7` y sus pendientes se conserva como antecedente. **Carpeta única acordada para continuar:** `E:\KARTA3\KARTA3_IA\APP\karta3`, misma rama B14, desde `378b409` más el commit documental de regularización (§7). No usar ni detener servidores del autor.
 
 **Referencias:** [AGENTS](../../AGENTS.md), [proceso](PROCESO_SDD.md), [contrato de barajas §§2–7](../contratos/CONTRATO_BARAJAS_V1.md), [B04](BLOQUE_04_CARGA_BARAJAS.md), [B05](BLOQUE_05_CONFIGURACION_SALA.md), [activación genérica 2](ACTIVACION_GENERICA_V2.md), [B13](BLOQUE_13_CANCELACION_PARTIDA.md), [T04](BLOQUE_T04_AVISO_RESULTADO_ANTERIOR.md); presentación actual `src/GameCard.tsx`. Las evidencias anteriores son históricas, no pruebas nuevas B14.
 
@@ -104,6 +104,29 @@ El reloj/entropía sustituidos se usaron solo en Encke/Borrelly y las regresione
 
 ### 5.4 Entrega al autor
 
-La rama propia contiene la copia APP lista para integrar, con README, pruebas y evidencia; el checkout original sigue en `feat/b13-cancelacion-partida`/`47087c7`, main en `88be67f`, y sus dos modificaciones previas conservan las huellas iniciales. ASSETS ya conserva los JSON maestros activados; no tiene commit editorial propio. No copiar por separado los archivos a la rama antigua: integrar la entrega revisada en el ámbito GitHub cuando el autor lo decida.
+Estado histórico al cerrar la entrega: la rama propia contiene la copia APP lista para integrar, con README, pruebas y evidencia; el checkout original seguía en `feat/b13-cancelacion-partida`/`47087c7`, main en `88be67f`, y sus dos modificaciones previas conservaban las huellas iniciales. ASSETS ya conserva los JSON maestros activados; no tiene commit editorial propio. La regularización posterior se delimita en §7; no copiar por separado los archivos a la rama antigua. La publicación/integración en GitHub requiere su encargo correspondiente.
 
 Para Coordinación/Arquitectura: registrar Sistema Solar formato 1/contenido 2 disponible e incorporada/comprobada en local, genérica intacta, sin reglas nuevas ni cambio de contrato. La legibilidad se resuelve localmente en GameCard, sin requerir otro bloque de implementación. Distinguir esta evidencia de revisión científica/aprobación visual y del estado del VPS. No se editaron fuentes generales TFM ni plan VPS, ni se enviaron mensajes. Sin push, PR, GHCR o despliegue.
+
+## 6. Revisión complementaria de genérica — pendiente de replanificación
+
+El autor revisó las imágenes y pidió aclarar el cambio de código y sus efectos sobre genérica. Se confirma: GameCard/CSS quedaron modificados, sin revertir, pero displayValue/playValue/unidades no se transformaron. Cualquier transformación editorial corresponde al Gestor de Barajas.
+
+La evidencia de §5 comprueba volver de Solar a genérica y recuperar sus cartas; **no contiene una comparación visual específica antes/después de genérica tras el último ajuste compartido**. Se conserva el cierre técnico previo con ese límite explícito. El 13/10/2026 el autor separa la regularización Git de esta revisión: queda pendiente de replanificar junto al nuevo modo de presentación, sin ejecutarla ahora. Los criterios siguientes conservan la preparación anterior; no autorizan implementar el selector ni ajustes de producto.
+
+- [ ] **B14-R01:** genérica comparada antes/después con estados equivalentes, PC 1920×1080/móvil 390×844; indicadora, mano, mesa y Detalles conservan presentación y acceso.
+- [ ] **B14-R02:** selección parcial/envío, foco/Detalles, números J y scroll conservados; cualquier diferencia involuntaria corregida mínimamente y justificada.
+- [ ] **B14-R03:** Sistema Solar mantiene datos largos completos, J legible y Encke/Borrelly; huellas de ambos paquetes intactas.
+- [ ] **B14-R04:** check y navegador focal registrados como evidencia nueva, con capturas/medidas y límites; aprobación visual humana diferenciada.
+
+**Estado de esta continuación:** preparación conservada, ejecución aplazada hasta un nuevo encargo. No se implementaron cambios ni ejecutaron pruebas de producto en esta regularización. [Preparación para la futura revisión](PROMPT_IMPLEMENTACION_BLOQUE_14.md).
+
+## 7. Regularización documental y línea activa — 13/10/2026
+
+El autor autoriza continuar únicamente en `E:\KARTA3\KARTA3_IA\APP\karta3`, rama existente `feat/b14-sistema-solar`, desde `378b4099c3a58d2e0991949b3835e159b0f538c2` más este commit exclusivamente documental. B14 desciende directamente de main `88be67f`, que ya contiene B13: no volver a integrarlo ni revertir completo `20dfb46`.
+
+Procedimiento autorizado: guardar únicamente los pendientes originales de operación y `tableLayout.spec.ts` en la reserva Git `regularizacion-b13-b14-20261013-pendientes-b13`, comprobar sus blobs y registrar su SHA estable en el cierre; no aplicarla a B14 ni eliminarla, pues su reparación ya está integrada. Liberar B14 del checkout secundario mediante Git y activar la misma rama en la carpeta única. La carpeta secundaria se conserva con HEAD separado como referencia de recuperación, junto con las demás ramas/checkouts históricos; no es una segunda línea de desarrollo. El cierre de la operación identificará los HEAD y la reserva reales.
+
+Recuperación por commits: `8e4e26a` contiene Sistema Solar aprobado y el manifiesto; `20dfb46` registra presentación y adaptaciones de pruebas/catálogo; `378b409` conserva el cierre técnico. Una futura sustitución de presentación debe delimitar los cambios de `src/GameCard.tsx`/`src/style.css`, preservando barajas y adaptaciones necesarias, sin revertir el commit mixto completo. Main `88be67f` es referencia histórica para consultar mediante Git desde la misma carpeta, sin crear otro checkout.
+
+Esta operación no cambia código, configuración, dependencias ni paquetes; no ejecuta instalación, build, pruebas o CI, no modifica ASSETS/TFM y no publica ni despliega. El selector y el nuevo modo de presentación requieren especificación e implementación posteriores. Las evidencias de §5 siguen siendo históricas y la revisión de §6 sigue pendiente.
