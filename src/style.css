@@ -87,6 +87,8 @@ html:has(.game-shell){scrollbar-gutter:stable}
 @media(max-width:520px){.game-composition{width:calc(100% - 4px);margin-inline:auto}}
 .literal-text,.card-note,.card-characteristic{white-space:pre-wrap}
 .card-values td,.round-review li{white-space:pre-wrap}
+/* Margen para las métricas de fuentes Linux: mismos anchos y fuente, dato literal sin salto. */
+.game-card .card-values td{padding-left:2px;padding-right:2px}
 .deck-information-button{margin-top:12px}
 .compact-identity,.summary-indicator,.compact-round-pile{display:none}
 .roster-identity{font:inherit;font-weight:700;border:0;background:none;color:inherit;padding:0;text-align:left}
