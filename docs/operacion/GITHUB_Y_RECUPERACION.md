@@ -1,7 +1,58 @@
 # GitHub, comprobaciones y recuperación
 
-Actualizado: 12/10/2026. Repositorio existente: `E:\KARTA3\KARTA3_IA\APP\karta3`.
+Actualizado: 14/10/2026. Repositorio existente: `E:\KARTA3\KARTA3_IA\APP\karta3`.
 Versión de paquete: 0.1.0. Remoto privado: `https://github.com/adriancapilla/karta3.git`.
+
+## Publicación B14+B15 y archivo de líneas históricas — 14/10/2026
+
+Punto de partida verificado: carpeta única `APP/karta3`, rama existente `feat/b14-sistema-solar`, entrega `640e2b4f44009b017e3ee67927ab35286df80dc3`, limpia, directamente sobre main `88be67f`. Se conservan separados los commits de preparación documental, B14, regularización y B15; no se vuelven a integrar B13/B14 ni ramas antiguas. El consumidor V2 y ambas barajas **formato 2/contenido 4 disponibles** se publican juntos con controles compartidos, instrucciones autorizadas y presentación normal/compacta.
+
+La revisión compara el conjunto con main, incluyendo contratos/permisos, configuración congelada, privacidad, validación histórica V1 frente a compatibilidad V2, literalidad y corpus Unicode. El dominio, políticas de bots y mecanismo de plazos/terminales no cambian. Las 63 huellas de paquetes se cotejan con el manifiesto B15; no se incorporan maestros ASSETS ni fuentes TFM. La preparación de Diseño ya registrada conserva sus bytes y su condición de antecedente/propuesta; no se transforma en decisión vigente por publicarla.
+
+**Corrección técnica de publicación:** `tools/ci-image-runtime.mjs` conservaba las huellas y expectativas 1/2 de B14. Se actualizan exclusivamente a los cuatro JSON aprobados 2/4 y la URL Solar v4; se registra ICU/Unicode efectivo. Se mantienen sharp nativo, usuario no root, solo lectura, salud, ausencia de fuentes/configuración externa y catálogo seguro. No se cambia producto ni se reconstruye/publica una imagen fuera de CI. El fallo se detectó por inspección antes de ejecutar; no se atribuye a un intento remoto fallido.
+
+Evidencia local histórica B15: **538/538 y 70 módulos**; navegador en selecciones solapadas con fallos/reparaciones registrados, sin batería completa final acreditada. El autor comunica partidas satisfactorias, PC usable, móvil emulado favorable y Cancelar comprobado; dispositivos físicos, comprensión/equilibrio y C09–C10 siguen pendientes. CI del HEAD final ejecutará check, todos los recorridos Chrome y construcción/comprobación Linux/Compose/Caddy con **un trabajador, cero reintentos, Chrome20/trabajo30 minutos**. Cada resultado remoto, duración, fallo y reparación se registra por separado en la PR; una cola sin ejecutor no acredita pruebas.
+
+Tras revisión y CI correctas: squash, CI del commit integrado y clon limpio de GitHub para instalación/check/arranque, catálogo de ambas 2/4 y huellas, sin dependencia de ASSETS/TFM/MASTER. **Main será la única referencia del desarrollo vigente en `APP/karta3`**; sincronizar por avance normal, preservando cualquier pendiente y proceso del autor, sin reset destructivo. Los HEAD publicado/integrado, ejecuciones, reproducción y candidato OCI reales se identifican en el cierre de la PR y del encargo; no se crean commits solo para anotar el SHA integrado.
+
+### Archivo autorizado y referencias de recuperación
+
+Las etiquetas anotadas siguen `archivo/2026-10-14/<nombre-de-rama>` y apuntan al commit original, no al squash. Antes de retirar cualquier referencia: publicar la etiqueta, comprobar su destino remoto y verificar la PR/árbol equivalente o la ascendencia en la entrega publicada correspondiente. La tabla delimita las ramas cuya retirada queda condicionada a esa verificación y al cierre correcto de B14+B15; el cierre de la PR registra las operaciones realmente completadas. No se usa solo la marca «merged».
+
+| Rama a archivar | Commit original | Evidencia de resolución |
+| --- | --- | --- |
+| `chore/github-ci` | `e49a937` | PR #1, árbol fuente/squash idéntico |
+| `feat/b04-carga-barajas` | `bdd86c8` | PR #2, árbol idéntico |
+| `feat/b06-inicio-mesa-inicial` | `f3aca75` | Ancestro de la fuente PR #3 |
+| `feat/b07-partida-manual-completa` | `763043d` | PR #3, árbol idéntico |
+| `feat/b08-temporizacion-automatico` | `f161b93` | PR #4, árbol idéntico |
+| `feat/b09-bots` | `b9ca095` | PR #5, árbol idéntico |
+| `feat/b10-redistribucion-mesa` | `09f4e5b` | Ancestro de la fuente PR #6 |
+| `feat/b11-ajuste-mesa-pc-02` | `c300fca` | Ancestro de la fuente PR #6 |
+| `feat/b12-mesa-centrada-03` | `11088a0` | PR #6, árbol idéntico |
+| `chore/t03-entorno-dependencias` | `43cc489` | Ancestro de la fuente PR #7 |
+| `fix/t04-aviso-resultado-anterior` | `aaa808a` | PR #7, árbol idéntico |
+| `fix/t04-inc01-verificacion` | `4b56914` | Ancestro de la fuente PR #8 |
+| `chore/docker-pruebas` | `0a65a5c` | PR #8, árbol idéntico |
+| `chore/ghcr-oci-publicacion` | `81e240e` | PR #9, árbol idéntico |
+| `fix/ghcr-asociacion-revisada` | `3c39a94` | PR #10, árbol idéntico |
+| `feat/b13-cancelacion-partida` | `47087c7` | B13 original trasladado a PR #11; producto equivalente, reparación de ensayos/documentación preservada |
+| `feat/b13-publicacion-revisada` | `9b45630` | PR #11, árbol idéntico |
+| `feat/b14-sistema-solar` | HEAD final de esta PR | B14+B15; etiqueta de la fuente final antes de retirar la rama |
+
+Se conserva `chore/ghcr-diagnostico`/`7d2b11c`: tres commits de diagnóstico sin PR integrada, con cambios específicos del publicador no equivalentes al vigente. No incorporarlos a main ni retirar esa rama sin un encargo que resuelva su condición de antecedente o trabajo pendiente. Si aparece otra divergencia o PR abierta, conservarla e identificarla antes de actuar.
+
+Los checkouts históricos se conservan con sus archivos y artefactos; cuando una rama archivada esté vinculada a uno, dejarlo en **HEAD separado en su mismo commit**, solo si está limpio y no afecta a un proceso del autor. No borrar carpetas ni forzar cambios. `karta3-b14-sistema-solar` conserva la referencia histórica `b2b2915`, independiente de la entrega B15.
+
+Recuperación sin crear otro checkout: `git show archivo/2026-10-14/<rama>` o `git log` sobre esa etiqueta. Recuperar una línea editable requiere un encargo posterior, desde la etiqueta comprobada; no fusionar históricos para «unificar». Las etiquetas publicadas conservan todos los ancestros originales, aunque el squash use otros SHA.
+
+**Reserva local permanente:** `regularizacion-b13-b14-20261013-pendientes-b13`, SHA `4516d23d55988898bca8296e179f88d29ee0b52b`, base `47087c7`; contiene únicamente operación y `tableLayout.spec.ts` previos. Consultar `git stash show -p <SHA>`; una recuperación futura mediante `git stash apply <SHA>` corresponde a la base histórica B13, no a main/B15. No aplicarla ni eliminarla en este encargo. El stash es local, no una copia remota.
+
+### Candidato para la publicación posterior en GHCR
+
+Conservar el **OCI ya comprobado de la CI final de main**, con su commit fuente/integrado, ejecución/intento, artefacto, digest de manifiesto, configuración, SHA del archivo y caducidad real. Descargar ese artefacto privado antes de su vencimiento para conservar el candidato; no reconstruir otro como sustitución. Los identificadores iniciales del publicador pertenecen a la imagen histórica, **no a B14+B15**. La futura invocación debe usar los de este cierre y verificar digest y asociación/privacidad.
+
+Esta entrega integra código y prepara trazabilidad: **no ejecuta el publicador GHCR, no publica otra imagen ni actualiza el VPS**. La comprobación HTTPS de CI es local con Caddy/CA propia, no acredita dispositivos físicos, ACME público ni despliegue de B15.
 
 ## Cierre de código PR #10 y publicación B13 — encargo 12/10/2026
 
