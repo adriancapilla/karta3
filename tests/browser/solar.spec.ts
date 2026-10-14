@@ -122,8 +122,14 @@ for (const direction of ['HIGH', 'LOW'] as const) test(`B14 Encke/Borrelly ${dir
       tableWidth: card.querySelector('table')!.getBoundingClientRect().width,
       tableFits: card.querySelector('table')!.getBoundingClientRect().right <= card.getBoundingClientRect().right - 1,
       jugableLines: [...card.querySelectorAll('tbody tr td:last-child')].map((cell) => { const range = document.createRange(); range.selectNodeContents(cell); return range.getClientRects().length; }),
+      textFragments: [...card.querySelectorAll('tbody tr td:last-child')].map((cell) => {
+        const range = document.createRange(); range.selectNodeContents(cell);
+        return { text: cell.textContent, whiteSpace: getComputedStyle(cell).whiteSpace,
+          rects: [...range.getClientRects()].map((rect) => ({ top: rect.top, left: rect.left, width: rect.width, height: rect.height })) };
+      }),
       values: [...card.querySelectorAll('td')].map((cell) => ({ text: cell.textContent, client: cell.clientWidth, scroll: cell.scrollWidth,
         clipped: getComputedStyle(cell).textOverflow === 'ellipsis' || getComputedStyle(cell).overflow === 'hidden' })) }));
+    console.log('SOLAR_TEXT_MEASUREMENT', JSON.stringify(measures));
     expect(measures.tableFits).toBe(true);
     expect(measures.jugableLines).toEqual([1, 1, 1]);
     for (const cell of measures.values) { expect(cell.clipped).toBe(false); expect(cell.scroll).toBeLessThanOrEqual(cell.client + 1); }
