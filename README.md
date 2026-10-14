@@ -6,6 +6,10 @@ La aplicación se construye de forma incremental, con especificaciones, pruebas 
 
 ## Estado actual
 
+B15 está en preparación parcial: existe una entrada interna de validación V2 para fixtures (`validatePackageFormat2`/`validateFormat2Package`), con Unicode/NFC, grafemas, topes y recursos. **El consumidor normal, `decks:validate`, preparación y arranque siguen en V1**, con genérica/Sistema Solar formato 1/contenido 2 intactas. Falta la entrega activada del Gestor para realizar el corte coordinado; F1 no está completada y no se han implementado controles/modos/presentación F2/F3. No copiar candidatas contenido 3 a la instalación normal ni interpretarlas como activadas.
+
+La validación independiente se comprueba con `npx vitest run server/infrastructure/decks/format2.test.ts`. Reutiliza las invariantes de dominio y la lectura/recursos existentes; no normaliza, completa o transforma datos. La segmentación de referencia se contrasta con [fixtures técnicas Unicode 17](tests/fixtures/unicode-17/README.md). Su admisibilidad no acredita legibilidad, aprobación editorial o una imagen Linux comprobada.
+
 [B13](docs/sdd/BLOQUE_13_CANCELACION_PARTIDA.md) permite al anfitrión cancelar para todos una partida en curso, también si observa o está en automático. Requiere confirmación y no pausa la ejecución. Conserva los puntos de rondas resueltas, presenta «Puntuaciones parciales» sin ganador y libera inmediatamente todas las sesiones humanas. El resumen autorizado dura 30 minutos desde la cancelación; permite otra sala sin reiniciar. Los finales ordinarios y por inactividad mantienen sus reglas.
 
 Actualmente permite crear una sala de espera, compartir su código e incorporar participantes desde navegadores independientes. La lista se actualiza en tiempo real y, durante la espera, cada participante puede cambiar su nombre o salir. También gestiona la reconexión temporal y el cierre de esperas por inactividad.

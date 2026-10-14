@@ -213,6 +213,16 @@ Fixtures completas temporales y permutaciones reproducibles en tests/support: se
 
 ## 7. Comprobaciones y cambio arquitectónico
 
+### B15 F1 parcial — validación independiente mientras llega la entrega
+
+`packageFormat.ts` reutiliza su única comprobación de estructura/coherencia y las invariantes puras de dominio mediante dos entradas tipadas: la histórica `validatePackageFormat` (1) y `validatePackageFormat2` (2). `format2Text.ts` pertenece a infraestructura: comprueba Unicode escalar/NFC, controles/bordes, base de grafema, topes por puntos de código y la unión literal dato/unidad por `Intl.Segmenter`. Identifica ICU/Unicode y rechaza diferencias de referencia para revisión, sin convertir datos o añadir un parser temático. No lleva estas reglas a Game ni a contratos de presentación.
+
+`readPackage.ts` comparte la lectura estricta/contención/recursos actuales y añade `validateFormat2Package`, usada por fixtures independientes. Conserva diagnósticos con archivo/path/carta/atributo y escapa controles/invisibles. La ruta histórica `validatePackage` sigue elegida por catálogo/herramienta/composición; ningún flujo normal elige V2 todavía. No hay bandera de producto, servicio paralelo o endpoint de pruebas.
+
+El corpus oficial Unicode 17 y su licencia viven solo en `tests/fixtures/unicode-17`; no se leen en ejecución. Su comprobación de fronteras complementa los ejemplos V2 y no valida cabida visual. Las pruebas de imágenes/JSON se hacen en instalaciones temporales propias y conservan las fixtures históricas V1.
+
+La entrega activada es dependencia externa confirmada pendiente por el autor. F1 seguirá abierta hasta integrar juntos consumidor/catálogo elegible y ambas copias V2 disponibles verificadas; **no** se entrega ahora una instalación normal V2 ni se avanza a F2/F3. Contrato, Diseño y documentos de preparación ajenos permanecen separados; TFM, maestras/candidatas y cierres B14 no se editan.
+
 ### Cancelación por anfitrión — B13
 
 | Pieza | Responsabilidad concreta y límite |
