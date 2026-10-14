@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>KARTA3 — propuesta móvil compacta con carruseles</title>
+  <link rel="stylesheet" href="movil-compacta.css">
+</head>
+<body>
+  <main>
+    <header id="summary" aria-label="Resumen de mesa"></header>
+    <p id="review-note" class="review-note" hidden></p>
+    <section class="zone" aria-labelledby="mesa-title">
+      <h2 id="mesa-title">Mesa <span id="mesa-count"></span></h2>
+      <div id="mesa" class="rail" tabindex="0" role="region" aria-label="Cartas públicas, desplazamiento lateral"></div>
+    </section>
+    <section id="hand-zone" class="zone" aria-labelledby="hand-title">
+      <h2 id="hand-title">Tu mano <span>3 cartas · desliza ↔</span></h2>
+      <div id="hand" class="rail" tabindex="0" role="region" aria-label="Tres cartas de mano, desplazamiento lateral"></div>
+    </section>
+    <p id="demo-status" class="demo-status" role="status" aria-live="polite"></p>
+    <footer id="prototype-note"></footer>
+  </main>
+  <dialog id="details" aria-labelledby="details-title"><div id="details-content"></div><button id="close-details" type="button">Cerrar</button></dialog>
+  <script src="muestras.js"></script>
+  <script src="movil-compacta.js"></script>
+</body>
+</html>

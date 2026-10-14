@@ -1,0 +1,849 @@
+{
+  "date": "2026-10-13",
+  "status": "MAQUETA AISLADA; NO VERIFICACIÓN DE PRODUCTO",
+  "before": {
+    "src/GameCard.tsx": "89a41f8c7699129239848b3c215a547edf3b825f668da8509851fff5a056e3e4",
+    "src/GameScreen.tsx": "2b2865f05154073f9a0b2d495d12aecaf927589126704ab215134b4bad0adf42",
+    "src/style.css": "a9b2ec4053f7b665ca52774fd8a0907fb77a0828c7704a1af034b7d8e2a36ea6",
+    "shared/contracts/game.ts": "4466fd662013bb8a2931e00153f35520e1dc812bb6a4c7f2ae97d77a13d60e2c",
+    "shared/contracts/room.ts": "d2c34e50adeac4d983c43154b1afb6ec4eedc5e4c4313032013880f18a95608f",
+    "barajas/sistema-solar/baraja.json": "e703ced69efd0932a0257d59fcb6ed55f80bae7c4f2a7c199edaed58396c16c6",
+    "barajas/sistema-solar/cartas.json": "c4d42019d1a0ee911b061b27b93e76ed2cd151872aad98167f1efc9961f95388",
+    "barajas/generica/baraja.json": "991406d04f60bfe884166a69fcc43954cfc751f0e058093ae2542f32c989e8ed",
+    "barajas/generica/cartas.json": "868988a43fe6c6be1a73be14013c543dc2fc83970341a4243be868af75b4c35c"
+  },
+  "profiles": {
+    "movil-compacta-dato-390": {
+      "viewport": [
+        390,
+        844
+      ],
+      "page": [
+        390,
+        844
+      ],
+      "boxes": {
+        "summary": {
+          "x": 12,
+          "y": 12,
+          "width": 366,
+          "height": 133,
+          "bottom": 145,
+          "right": 378
+        },
+        "mesa": {
+          "x": 12,
+          "y": 179,
+          "width": 366,
+          "height": 219,
+          "bottom": 398,
+          "right": 378
+        },
+        "hand": {
+          "x": 12,
+          "y": 432,
+          "width": 366,
+          "height": 249,
+          "bottom": 681,
+          "right": 378
+        },
+        "footer": {
+          "x": 12,
+          "y": 689,
+          "width": 366,
+          "height": 32,
+          "bottom": 721,
+          "right": 378
+        }
+      },
+      "rails": {
+        "mesa": {
+          "clientWidth": 366,
+          "scrollWidth": 916,
+          "scrollLeft": 0
+        },
+        "hand": {
+          "clientWidth": 366,
+          "scrollWidth": 686,
+          "scrollLeft": 0
+        }
+      },
+      "card": {
+        "x": 15,
+        "y": 182,
+        "width": 220,
+        "height": 188,
+        "bottom": 370,
+        "right": 235
+      },
+      "handSlot": {
+        "x": 15,
+        "y": 435,
+        "width": 220,
+        "height": 238,
+        "bottom": 673,
+        "right": 235
+      },
+      "valueFont": {
+        "size": "14px",
+        "weight": "400",
+        "family": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif"
+      },
+      "overflow": [],
+      "firstActionVisible": true,
+      "imageLoaded": true,
+      "mock": {
+        "actions": {
+          "plays": 0,
+          "details": 0,
+          "directions": 0
+        },
+        "indicatorId": "bennu",
+        "mode": "data",
+        "review": false,
+        "handIds": [
+          "itokawa",
+          "fobos",
+          "hyakutake"
+        ],
+        "publicIds": [
+          "sedna",
+          "borrelly",
+          "encke",
+          "ryugu"
+        ]
+      }
+    },
+    "movil-compacta-1-58-390": {
+      "viewport": [
+        390,
+        844
+      ],
+      "page": [
+        390,
+        844
+      ],
+      "boxes": {
+        "summary": {
+          "x": 12,
+          "y": 12,
+          "width": 366,
+          "height": 133,
+          "bottom": 145,
+          "right": 378
+        },
+        "mesa": {
+          "x": 12,
+          "y": 179,
+          "width": 366,
+          "height": 219,
+          "bottom": 398,
+          "right": 378
+        },
+        "hand": {
+          "x": 12,
+          "y": 432,
+          "width": 366,
+          "height": 249,
+          "bottom": 681,
+          "right": 378
+        },
+        "footer": {
+          "x": 12,
+          "y": 689,
+          "width": 366,
+          "height": 32,
+          "bottom": 721,
+          "right": 378
+        }
+      },
+      "rails": {
+        "mesa": {
+          "clientWidth": 366,
+          "scrollWidth": 916,
+          "scrollLeft": 0
+        },
+        "hand": {
+          "clientWidth": 366,
+          "scrollWidth": 686,
+          "scrollLeft": 0
+        }
+      },
+      "card": {
+        "x": 15,
+        "y": 182,
+        "width": 220,
+        "height": 188,
+        "bottom": 370,
+        "right": 235
+      },
+      "handSlot": {
+        "x": 15,
+        "y": 435,
+        "width": 220,
+        "height": 238,
+        "bottom": 673,
+        "right": 235
+      },
+      "valueFont": {
+        "size": "14px",
+        "weight": "400",
+        "family": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif"
+      },
+      "overflow": [],
+      "firstActionVisible": true,
+      "imageLoaded": true,
+      "mock": {
+        "actions": {
+          "plays": 0,
+          "details": 0,
+          "directions": 0
+        },
+        "indicatorId": "bennu",
+        "mode": "play",
+        "review": false,
+        "handIds": [
+          "itokawa",
+          "fobos",
+          "hyakutake"
+        ],
+        "publicIds": [
+          "sedna",
+          "borrelly",
+          "encke",
+          "ryugu"
+        ]
+      }
+    },
+    "movil-compacta-dato-360": {
+      "viewport": [
+        360,
+        800
+      ],
+      "page": [
+        360,
+        800
+      ],
+      "boxes": {
+        "summary": {
+          "x": 12,
+          "y": 12,
+          "width": 336,
+          "height": 133,
+          "bottom": 145,
+          "right": 348
+        },
+        "mesa": {
+          "x": 12,
+          "y": 179,
+          "width": 336,
+          "height": 219,
+          "bottom": 398,
+          "right": 348
+        },
+        "hand": {
+          "x": 12,
+          "y": 432,
+          "width": 336,
+          "height": 249,
+          "bottom": 681,
+          "right": 348
+        },
+        "footer": {
+          "x": 12,
+          "y": 689,
+          "width": 336,
+          "height": 32,
+          "bottom": 721,
+          "right": 348
+        }
+      },
+      "rails": {
+        "mesa": {
+          "clientWidth": 336,
+          "scrollWidth": 916,
+          "scrollLeft": 0
+        },
+        "hand": {
+          "clientWidth": 336,
+          "scrollWidth": 686,
+          "scrollLeft": 0
+        }
+      },
+      "card": {
+        "x": 15,
+        "y": 182,
+        "width": 220,
+        "height": 188,
+        "bottom": 370,
+        "right": 235
+      },
+      "handSlot": {
+        "x": 15,
+        "y": 435,
+        "width": 220,
+        "height": 238,
+        "bottom": 673,
+        "right": 235
+      },
+      "valueFont": {
+        "size": "14px",
+        "weight": "400",
+        "family": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif"
+      },
+      "overflow": [],
+      "firstActionVisible": true,
+      "imageLoaded": true,
+      "mock": {
+        "actions": {
+          "plays": 0,
+          "details": 0,
+          "directions": 0
+        },
+        "indicatorId": "bennu",
+        "mode": "data",
+        "review": false,
+        "handIds": [
+          "itokawa",
+          "fobos",
+          "hyakutake"
+        ],
+        "publicIds": [
+          "sedna",
+          "borrelly",
+          "encke",
+          "ryugu"
+        ]
+      }
+    },
+    "movil-compacta-revision": {
+      "viewport": [
+        390,
+        844
+      ],
+      "page": [
+        390,
+        844
+      ],
+      "boxes": {
+        "summary": {
+          "x": 12,
+          "y": 12,
+          "width": 366,
+          "height": 133,
+          "bottom": 145,
+          "right": 378
+        },
+        "mesa": {
+          "x": 12,
+          "y": 217,
+          "width": 366,
+          "height": 219,
+          "bottom": 436,
+          "right": 378
+        },
+        "hand": {
+          "x": 12,
+          "y": 470,
+          "width": 366,
+          "height": 249,
+          "bottom": 719,
+          "right": 378
+        },
+        "footer": {
+          "x": 12,
+          "y": 727,
+          "width": 366,
+          "height": 32,
+          "bottom": 759,
+          "right": 378
+        }
+      },
+      "rails": {
+        "mesa": {
+          "clientWidth": 366,
+          "scrollWidth": 1146,
+          "scrollLeft": 0
+        },
+        "hand": {
+          "clientWidth": 366,
+          "scrollWidth": 456,
+          "scrollLeft": 0
+        }
+      },
+      "card": {
+        "x": 15,
+        "y": 220,
+        "width": 220,
+        "height": 188,
+        "bottom": 408,
+        "right": 235
+      },
+      "handSlot": {
+        "x": 15,
+        "y": 473,
+        "width": 220,
+        "height": 238,
+        "bottom": 711,
+        "right": 235
+      },
+      "valueFont": {
+        "size": "14px",
+        "weight": "400",
+        "family": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif"
+      },
+      "overflow": [],
+      "firstActionVisible": true,
+      "imageLoaded": true,
+      "mock": {
+        "actions": {
+          "plays": 0,
+          "details": 0,
+          "directions": 0
+        },
+        "indicatorId": "bennu",
+        "mode": "data",
+        "review": true,
+        "handIds": [
+          "itokawa",
+          "fobos",
+          "hyakutake"
+        ],
+        "publicIds": [
+          "sedna",
+          "borrelly",
+          "encke",
+          "itokawa",
+          "ryugu"
+        ]
+      }
+    },
+    "movil-compacta-abridor": {
+      "viewport": [
+        390,
+        844
+      ],
+      "page": [
+        390,
+        844
+      ],
+      "boxes": {
+        "summary": {
+          "x": 12,
+          "y": 12,
+          "width": 366,
+          "height": 133,
+          "bottom": 145,
+          "right": 378
+        },
+        "mesa": {
+          "x": 12,
+          "y": 179,
+          "width": 366,
+          "height": 219,
+          "bottom": 398,
+          "right": 378
+        },
+        "hand": {
+          "x": 12,
+          "y": 432,
+          "width": 366,
+          "height": 249,
+          "bottom": 681,
+          "right": 378
+        },
+        "footer": {
+          "x": 12,
+          "y": 689,
+          "width": 366,
+          "height": 32,
+          "bottom": 721,
+          "right": 378
+        }
+      },
+      "rails": {
+        "mesa": {
+          "clientWidth": 366,
+          "scrollWidth": 916,
+          "scrollLeft": 0
+        },
+        "hand": {
+          "clientWidth": 366,
+          "scrollWidth": 686,
+          "scrollLeft": 0
+        }
+      },
+      "card": {
+        "x": 15,
+        "y": 182,
+        "width": 220,
+        "height": 188,
+        "bottom": 370,
+        "right": 235
+      },
+      "handSlot": {
+        "x": 15,
+        "y": 435,
+        "width": 220,
+        "height": 238,
+        "bottom": 673,
+        "right": 235
+      },
+      "valueFont": {
+        "size": "14px",
+        "weight": "400",
+        "family": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif"
+      },
+      "overflow": [],
+      "firstActionVisible": true,
+      "imageLoaded": true,
+      "mock": {
+        "actions": {
+          "plays": 0,
+          "details": 0,
+          "directions": 0
+        },
+        "indicatorId": "bennu",
+        "mode": "data",
+        "review": false,
+        "handIds": [
+          "itokawa",
+          "fobos",
+          "hyakutake"
+        ],
+        "publicIds": [
+          "sedna",
+          "borrelly",
+          "encke",
+          "ryugu"
+        ]
+      }
+    },
+    "movil-compacta-observador": {
+      "viewport": [
+        390,
+        844
+      ],
+      "page": [
+        390,
+        844
+      ],
+      "boxes": {
+        "summary": {
+          "x": 12,
+          "y": 12,
+          "width": 366,
+          "height": 133,
+          "bottom": 145,
+          "right": 378
+        },
+        "mesa": {
+          "x": 12,
+          "y": 217,
+          "width": 366,
+          "height": 219,
+          "bottom": 436,
+          "right": 378
+        },
+        "hand": null,
+        "footer": {
+          "x": 12,
+          "y": 444,
+          "width": 366,
+          "height": 32,
+          "bottom": 476,
+          "right": 378
+        }
+      },
+      "rails": {
+        "mesa": {
+          "clientWidth": 366,
+          "scrollWidth": 916,
+          "scrollLeft": 0
+        },
+        "hand": {
+          "clientWidth": 0,
+          "scrollWidth": 0,
+          "scrollLeft": 0
+        }
+      },
+      "card": {
+        "x": 15,
+        "y": 220,
+        "width": 220,
+        "height": 188,
+        "bottom": 408,
+        "right": 235
+      },
+      "handSlot": null,
+      "valueFont": {
+        "size": "14px",
+        "weight": "400",
+        "family": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif"
+      },
+      "overflow": [],
+      "firstActionVisible": true,
+      "imageLoaded": true,
+      "mock": {
+        "actions": {
+          "plays": 0,
+          "details": 0,
+          "directions": 0
+        },
+        "indicatorId": "bennu",
+        "mode": "data",
+        "review": false,
+        "handIds": [
+          "itokawa",
+          "fobos",
+          "hyakutake"
+        ],
+        "publicIds": [
+          "sedna",
+          "borrelly",
+          "encke",
+          "ryugu"
+        ]
+      }
+    },
+    "movil-compacta-nombre-largo": {
+      "viewport": [
+        390,
+        844
+      ],
+      "page": [
+        390,
+        844
+      ],
+      "boxes": {
+        "summary": {
+          "x": 12,
+          "y": 12,
+          "width": 366,
+          "height": 133,
+          "bottom": 145,
+          "right": 378
+        },
+        "mesa": {
+          "x": 12,
+          "y": 179,
+          "width": 366,
+          "height": 250,
+          "bottom": 429,
+          "right": 378
+        },
+        "hand": {
+          "x": 12,
+          "y": 463,
+          "width": 366,
+          "height": 249,
+          "bottom": 712,
+          "right": 378
+        },
+        "footer": {
+          "x": 12,
+          "y": 720,
+          "width": 366,
+          "height": 32,
+          "bottom": 752,
+          "right": 378
+        }
+      },
+      "rails": {
+        "mesa": {
+          "clientWidth": 366,
+          "scrollWidth": 916,
+          "scrollLeft": 0
+        },
+        "hand": {
+          "clientWidth": 366,
+          "scrollWidth": 686,
+          "scrollLeft": 0
+        }
+      },
+      "card": {
+        "x": 15,
+        "y": 182,
+        "width": 220,
+        "height": 188,
+        "bottom": 370,
+        "right": 235
+      },
+      "handSlot": {
+        "x": 15,
+        "y": 466,
+        "width": 220,
+        "height": 238,
+        "bottom": 704,
+        "right": 235
+      },
+      "valueFont": {
+        "size": "14px",
+        "weight": "400",
+        "family": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif"
+      },
+      "overflow": [],
+      "firstActionVisible": true,
+      "imageLoaded": true,
+      "mock": {
+        "actions": {
+          "plays": 0,
+          "details": 0,
+          "directions": 0
+        },
+        "indicatorId": "bennu",
+        "mode": "data",
+        "review": false,
+        "handIds": [
+          "itokawa",
+          "fobos",
+          "hyakutake"
+        ],
+        "publicIds": [
+          "sedna",
+          "borrelly",
+          "67p-churyumov-gerasimenko",
+          "encke"
+        ]
+      }
+    },
+    "movil-compacta-generica": {
+      "viewport": [
+        390,
+        844
+      ],
+      "page": [
+        390,
+        844
+      ],
+      "boxes": {
+        "summary": {
+          "x": 12,
+          "y": 12,
+          "width": 366,
+          "height": 133,
+          "bottom": 145,
+          "right": 378
+        },
+        "mesa": {
+          "x": 12,
+          "y": 179,
+          "width": 366,
+          "height": 219,
+          "bottom": 398,
+          "right": 378
+        },
+        "hand": {
+          "x": 12,
+          "y": 432,
+          "width": 366,
+          "height": 249,
+          "bottom": 681,
+          "right": 378
+        },
+        "footer": {
+          "x": 12,
+          "y": 689,
+          "width": 366,
+          "height": 32,
+          "bottom": 721,
+          "right": 378
+        }
+      },
+      "rails": {
+        "mesa": {
+          "clientWidth": 366,
+          "scrollWidth": 916,
+          "scrollLeft": 0
+        },
+        "hand": {
+          "clientWidth": 366,
+          "scrollWidth": 686,
+          "scrollLeft": 0
+        }
+      },
+      "card": {
+        "x": 15,
+        "y": 182,
+        "width": 220,
+        "height": 188,
+        "bottom": 370,
+        "right": 235
+      },
+      "handSlot": {
+        "x": 15,
+        "y": 435,
+        "width": 220,
+        "height": 238,
+        "bottom": 673,
+        "right": 235
+      },
+      "valueFont": {
+        "size": "14px",
+        "weight": "400",
+        "family": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif"
+      },
+      "overflow": [],
+      "firstActionVisible": true,
+      "imageLoaded": true,
+      "mock": {
+        "actions": {
+          "plays": 0,
+          "details": 0,
+          "directions": 0
+        },
+        "indicatorId": "carta-011",
+        "mode": "data",
+        "review": false,
+        "handIds": [
+          "carta-002",
+          "carta-003",
+          "carta-004"
+        ],
+        "publicIds": [
+          "carta-009",
+          "carta-005",
+          "carta-008",
+          "carta-007"
+        ]
+      }
+    }
+  },
+  "interaction": {
+    "fifth": {
+      "fullyVisible": true,
+      "mesaScroll": 780,
+      "handScroll": 0
+    },
+    "openingStartsEmpty": true,
+    "direction": true,
+    "observer": true,
+    "details": {
+      "plays": 0,
+      "values": [
+        "34.52 km/s",
+        "198.08 MKm",
+        "0.33 km"
+      ],
+      "hasJ": false
+    },
+    "focusReturned": true,
+    "keyboardOneSelection": true,
+    "dragNoSelection": true,
+    "fullNamesAvailable": true
+  },
+  "pageErrors": [],
+  "browser": "154.0.8037.98",
+  "after": {
+    "src/GameCard.tsx": "89a41f8c7699129239848b3c215a547edf3b825f668da8509851fff5a056e3e4",
+    "src/GameScreen.tsx": "2b2865f05154073f9a0b2d495d12aecaf927589126704ab215134b4bad0adf42",
+    "src/style.css": "a9b2ec4053f7b665ca52774fd8a0907fb77a0828c7704a1af034b7d8e2a36ea6",
+    "shared/contracts/game.ts": "4466fd662013bb8a2931e00153f35520e1dc812bb6a4c7f2ae97d77a13d60e2c",
+    "shared/contracts/room.ts": "d2c34e50adeac4d983c43154b1afb6ec4eedc5e4c4313032013880f18a95608f",
+    "barajas/sistema-solar/baraja.json": "e703ced69efd0932a0257d59fcb6ed55f80bae7c4f2a7c199edaed58396c16c6",
+    "barajas/sistema-solar/cartas.json": "c4d42019d1a0ee911b061b27b93e76ed2cd151872aad98167f1efc9961f95388",
+    "barajas/generica/baraja.json": "991406d04f60bfe884166a69fcc43954cfc751f0e058093ae2542f32c989e8ed",
+    "barajas/generica/cartas.json": "868988a43fe6c6be1a73be14013c543dc2fc83970341a4243be868af75b4c35c"
+  },
+  "protectedUnchanged": true
+}
