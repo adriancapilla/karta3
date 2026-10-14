@@ -17,8 +17,11 @@ export function configurationInput(input: unknown): ConfigurationChange {
       if (!exactObject(value, ['id', 'contentVersion']) || typeof value.id !== 'string'
         || !portableId(value.id) || reservedName(value.id) || !Number.isInteger(value.contentVersion) || (value.contentVersion as number) <= 0) throw invalid();
       return { field, value: { id: value.id, contentVersion: value.contentVersion as number } };
-    case 'hostPlays': case 'forceTieBreak':
+    case 'hostPlays': case 'forceTieBreak': case 'optimizeForMobile':
       if (typeof value !== 'boolean') throw invalid();
+      return { field, value };
+    case 'attributeValueMode':
+      if (value !== 'PLAY_VALUE' && value !== 'DISPLAY_VALUE') throw invalid();
       return { field, value };
     case 'turnSeconds':
       if (value !== 15 && value !== 30 && value !== 60) throw invalid();

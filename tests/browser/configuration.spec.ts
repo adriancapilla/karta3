@@ -33,7 +33,7 @@ async function sessionId(context: BrowserContext, s: Awaited<ReturnType<typeof c
 for (const width of [390, 1280]) test(`B05-01/03/04/07/09/11/13/15 recorrido compartido, dos sesiones y dos pestañas a ${width}px`, async ({ browser }) => {
   const s = await configurationBrowserServer(); const p = await pair(browser, s.base, width);
   try {
-    expect((await current(p.host)).settings).toEqual({ deckId: null, deckContentVersion: null, hostPlays: true, turnSeconds: 30, forceTieBreak: false, reviewSeconds: 5 });
+    expect((await current(p.host)).settings).toEqual({ deckId: null, deckContentVersion: null, hostPlays: true, turnSeconds: 30, forceTieBreak: false, reviewSeconds: 5, attributeValueMode: 'PLAY_VALUE', optimizeForMobile: false });
     await expect(p.host.getByLabel('Baraja', { exact: true })).toHaveValue(''); expect(s.requests).toHaveLength(0);
     expect(await p.guest.getByRole('combobox').count()).toBe(0);
     await p.host.getByLabel('Editar mi nombre').fill('Mi borrador'); await p.host.getByLabel('Editar mi nombre').focus();
@@ -46,7 +46,7 @@ for (const width of [390, 1280]) test(`B05-01/03/04/07/09/11/13/15 recorrido com
     }
     await expect(p.host.getByLabel('Editar mi nombre')).toBeFocused(); await expect(p.host.getByLabel('Editar mi nombre')).toHaveValue('Mi borrador');
     const selected = await current(p.guest); expect(Object.keys(selected.selectedDeck!)).toHaveLength(8);
-    expect(JSON.stringify(selected)).not.toMatch(/cards|playValue|sessionId|instructions|publication/);
+    expect(JSON.stringify(selected)).not.toMatch(/"cards"\s*:|"playValue"\s*:|"sessionId"\s*:|"publication"\s*:/);
     await choose(p.host, 'sin-imagen'); await expect(p.guest.getByRole('heading', { name: 'Fixture sin-imagen · v7' })).toBeVisible({ timeout: 2000 });
     await expect(p.host.locator('.neutral-card')).toHaveAttribute('aria-hidden', 'true'); await expect(p.host.locator('.deck-card img')).toHaveCount(0);
     await p.host.getByLabel('El anfitrión juega').uncheck();

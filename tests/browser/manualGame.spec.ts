@@ -121,7 +121,7 @@ test('B07 M4 normal genérica 2: partida completa real, resultados, dos pestaña
     }
     expect(moves).toBe(40); expect(finalRounds).toBe(3);
     await Promise.all([...p.pages, tab].map((page) => expect(page.getByRole('heading', { name: 'Partida terminada', exact: true })).toBeVisible()));
-    const result = await readRoom(p.host) as ResultsRoomView; expect(result.selectedDeck.contentVersion).toBe(2);
+    const result = await readRoom(p.host) as ResultsRoomView; expect(result.selectedDeck.contentVersion).toBe(4);
     expect(result.result.standings.reduce((sum, person) => sum + person.score, 0)).toBe(40);
     await expect(p.host.getByRole('heading', { name: 'Partida terminada', exact: true })).toBeFocused();
     await expect(p.host.locator('.game-hand')).toHaveCount(0); await expect(p.host.getByRole('button', { name: /ALTO|BAJO|Jugar/ })).toHaveCount(0);
@@ -150,7 +150,7 @@ test('B07 M4 normal genérica 2: partida completa real, resultados, dos pestaña
 for (const count of [4, 5]) test(`B07 M4 traza validada ${count} empatados: reparto ${count === 5 ? 1 : 2}, revisión y resultados móviles`, async ({ browser }) => {
   test.setTimeout(90_000);
   const server = await configurationBrowserServer(true, true, { count });
-  const p = await manualTable(browser, server.base, { count, observer: true, deckId: 'manual', version: 7, width: count === 5 ? 360 : 390, review: 5, tie: true });
+  const p = await manualTable(browser, server.base, { count, observer: true, deckId: 'manual', version: 7, width: count === 5 ? 360 : 390, review: 5, tie: true, valueMode: count === 5 ? 'DISPLAY_VALUE' : 'PLAY_VALUE', optimize: count === 5 });
   try {
     let plays = 0; let tie = false;
     while ((await readRoom(p.host)).status === 'IN_GAME') {

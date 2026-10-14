@@ -14,7 +14,7 @@ for (const width of [390, 1280]) {
       expect(await response?.json()).toEqual({ decks: approvedInstalledDecks }); expect(await context.cookies()).toEqual([]);
       await page.goto('/'); await page.getByRole('button', { name: 'Crear sala' }).click();
       await expect(page.getByText('1 de 5 jugadores')).toBeVisible();
-      await expect(page.getByRole('option', { name: 'KARTA3 — Baraja genérica · v2' })).toHaveCount(1);
+      await expect(page.getByRole('option', { name: 'KARTA3 — Baraja genérica · v4' })).toHaveCount(1);
       await expect(page.locator('.no-deck')).toHaveText('Sin baraja seleccionada');
       await expect(page.getByLabel('Baraja', { exact: true })).toHaveValue('');
       await expect(page.getByLabel('El anfitrión juega')).toBeChecked();
@@ -62,7 +62,7 @@ for (const width of [390, 1280]) {
         const server = await startCompiledDeckServer(root); stop = server.stop;
         const response = await page.goto(`${server.base}/api/decks`); expect(response?.status()).toBe(200);
         const payload = await response!.json(); expect(await context.cookies()).toEqual([]);
-        expect(payload).toEqual({ decks: [{ id: 'publicada', schemaVersion: 1, contentVersion: 7, name: 'Fixture publicada', subtitle: '', description: fixture.metadata.description,
+        expect(payload).toEqual({ decks: [{ id: 'publicada', schemaVersion: 2, contentVersion: 7, name: 'Fixture publicada', subtitle: '', description: fixture.metadata.description,
           imageUrl: '/media/decks/publicada/v7/imagenes/portada.webp', imageAlt: 'Portada de prueba' }] });
         const served = await page.evaluate(async (url: string) => { const r = await fetch(url); return { status: r.status, mime: r.headers.get('content-type'), bytes: Array.from(new Uint8Array(await r.arrayBuffer())) }; }, payload.decks[0].imageUrl);
         expect(served.status).toBe(200); expect(served.mime).toBe('image/webp'); expect(Buffer.from(served.bytes)).toEqual(image);

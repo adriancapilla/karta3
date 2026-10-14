@@ -15,8 +15,8 @@ import { deckFixture } from './deckFixtures.js';
 export function initialGameCases(options: { gameDecks?: PublishedGameDecks; permutation?: CardPermutation; fixture?: ReturnType<typeof deckFixture> } = {}) {
   const fixture = options.fixture ?? deckFixture(); const deckId = fixture.metadata.id;
   const definition = validatePackageFormat(fixture.metadata, fixture.collection, fixture.metadata.id).data!.definition;
-  const summary = { id: deckId, schemaVersion: 1 as const, contentVersion: 7, name: 'Prueba', subtitle: '', description: 'Sintética', imageUrl: null, imageAlt: '' };
-  const catalog = new LoadedDeckCatalog([summary], new Map([[deckId, { contentVersion: 7, definition,
+  const summary = { id: deckId, schemaVersion: 2 as const, contentVersion: 7, name: 'Prueba', subtitle: '', description: 'Sintética', imageUrl: null, imageAlt: '' };
+  const catalog = new LoadedDeckCatalog([summary], new Map([[deckId, { contentVersion: 7, definition, instructions: fixture.metadata.instructions,
     presentation: definition.cards.map((card) => ({ id: card.id, imageUrl: null, imageAlt: '' })) }]]), new Map());
   const repository = new MemoryRoomRepository(); const requests = new MemoryRoomRequests();
   const events = { updated: vi.fn(), closed: vi.fn(), left: vi.fn(), roundResolved: vi.fn(), turnExpired: vi.fn(), resultsHome: vi.fn(), technicalFailure: vi.fn() };

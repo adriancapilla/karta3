@@ -18,16 +18,19 @@ export const reservedName = (value: string) => /^(?:con|prn|aux|nul|com[1-9]|lpt
 const attributes = ['atributo1', 'atributo2', 'atributo3'];
 
 export function reliableAvailability(metadata: unknown): boolean | undefined {
-  return isObject(metadata) && metadata.schemaVersion === 1 && isObject(metadata.publication) && typeof metadata.publication.available === 'boolean'
+  return isObject(metadata) && (metadata.schemaVersion === 1 || metadata.schemaVersion === 2) && isObject(metadata.publication) && typeof metadata.publication.available === 'boolean'
     ? metadata.publication.available : undefined;
 }
 
 /** Esquema de archivos y coherencia; las invariantes jugables se delegan al dominio. */
-export function validatePackageFormat(metadata: unknown, collection: unknown, folder: string): { errors: PackageError[]; data?: ParsedPackage } {
-  return validateFormat(metadata, collection, folder, 1);
+export function validatePackageFormat(metadata: unknown, collection: unknown, folder: string): { errors: PackageError[]; data?: ParsedPackage<1 | 2> } {
+  // Si los metadatos no se pudieron leer, validar la colección reconocida ayuda a localizar
+  // sus errores; no vuelve fiable la disponibilidad ni elimina el fallo de lectura.
+  return isObject(metadata) && metadata.schemaVersion === 2 || metadata === undefined && isObject(collection) && collection.schemaVersion === 2
+    ? validatePackageFormat2(metadata, collection, folder) : validateFormat(metadata, collection, folder, 1);
 }
 
-/** Validación independiente F1; el consumidor normal sigue V1 hasta recibir la entrega compatible. */
+/** Contrato V2; V1 mantiene su validación histórica separada. */
 export function validatePackageFormat2(metadata: unknown, collection: unknown, folder: string): { errors: PackageError[]; data?: ParsedPackage<2> } {
   const format = validateFormat(metadata, collection, folder, 2);
   const errors = [...format.errors, ...validateFormat2Text(metadata, collection)].map(escapedPackageIssue);

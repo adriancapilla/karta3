@@ -50,7 +50,7 @@ test('T05 origen único: dos sesiones, polling/WebSocket, permisos, privacidad y
     expect((await b.request.delete(`${base}/api/rooms/${waiting.id}`)).status()).toBe(403);
     expect((await stranger.request.get(`${base}/api/rooms/${waiting.id}`)).status()).toBe(401);
     expect((await a.request.post(`${base}/api/rooms`, { headers: { Origin: 'https://evil.example' }, data: {} })).status()).toBe(403);
-    await host.getByLabel('Baraja', { exact: true }).selectOption(JSON.stringify({ id: 'generica', contentVersion: 2 }));
+    await host.getByLabel('Baraja', { exact: true }).selectOption(JSON.stringify({ id: 'generica', contentVersion: 4 }));
     await host.getByLabel('Tiempo por turno').selectOption('60');
     await expect(host.getByRole('button', { name: 'Iniciar partida', exact: true })).toBeEnabled();
     await host.getByRole('button', { name: 'Iniciar partida', exact: true }).click();

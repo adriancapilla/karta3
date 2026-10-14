@@ -1,22 +1,22 @@
 {
-  "schemaVersion": 1,
-  "contentVersion": 2,
+  "schemaVersion": 2,
+  "contentVersion": 4,
   "id": "sistema-solar",
   "name": "Sistema Solar",
   "subtitle": "",
   "description": "Baraja educativa de KARTA3 con 58 cuerpos del Sistema Solar y tres atributos: velocidad orbital máxima, distancia orbital media y diámetro medio o efectivo. Los valores jugables de 1 a 58 se presentan separados de los datos científicos informativos.",
-  "notes": "Adaptación de las 58 cartas de sistema-solar-karta3-v1.0-datos, procedentes de Sistema Solar v0.3.1. Se conservan los datos, textos e indicadores editoriales de esa fuente; no se han actualizado las mediciones ni realizado una nueva verificación científica. Encke y Borrelly muestran 4.8 km de diámetro y conservan los valores jugables 7 y 8 por el desempate editorial heredado, sin inventar decimales. La distribución heredada de indicadores es 20 de velocidad, 19 de distancia y 19 de diámetro; no es una obligación del formato y su equilibrio queda pendiente de partidas reales.",
-  "instructions": "Velocidad: velocidad orbital máxima alrededor del cuerpo que orbita, en km/s. Distancia: distancia orbital media al cuerpo que orbita, representada por el semieje mayor, en km. Diámetro: diámetro medio o efectivo equivalente, en km; para cuerpos no esféricos se conserva el criterio de la colección de origen. Un valor jugable mayor corresponde a un dato mayor; solo playValue decide la comparación. displayValue conserva como texto el dato original, con punto decimal cuando corresponde, y unit indica su unidad. El indicador de la carta central determina el atributo activo. La referencia física asociaba velocidad con círculo rojo, distancia con triángulo amarillo y diámetro con cuadrado azul; esos elementos gráficos no son campos del formato 1.",
+  "notes": "Adaptación de las 58 cartas de sistema-solar-karta3-v1.0-datos, procedentes de Sistema Solar v0.3.1. Se conservan los datos, textos e indicadores editoriales de esa fuente; no se han actualizado las mediciones ni realizado una nueva verificación científica. Encke y Borrelly muestran 4.8 km de diámetro y conservan los valores jugables 7 y 8 por el desempate editorial heredado, sin inventar decimales. La distribución heredada de indicadores es 20 de velocidad, 19 de distancia y 19 de diámetro; no es una obligación del formato y su equilibrio queda pendiente de partidas reales.\nCandidata editorial de formato 2, contenido 3, pendiente de aprobación. Se conserva la procedencia de la entrega anterior; algunos datos mostrados se expresan en millones de kilómetros y/o se redondean como se explica en las instrucciones. Estos cambios de representación no son mediciones nuevas ni modifican playValue, el indicador o las imágenes.",
+  "instructions": "Vel: Velocidad; Dist: Distancia. Vel es la velocidad orbital máxima alrededor del cuerpo que orbita, en km/s. Dist es la distancia orbital media al cuerpo que orbita, representada por el semieje mayor, en MKm. MKm significa millones de kilómetros: 1 MKm = 1000000 km. Es una notación editorial de esta baraja, con M y K mayúsculas y m minúscula. Por ejemplo, 0.186 MKm equivale a 186000 km; 0.0094 MKm aproxima 9375 km como 9400 km. Diámetro es el diámetro medio o efectivo equivalente, en km; para cuerpos no esféricos se conserva el criterio de la colección de origen.\nLas representaciones se preparan desde los datos de la entrega anterior, sin una nueva verificación científica. La conversión km a MKm se calcula exactamente antes de redondear. Se conserva la mayor cantidad de decimales respaldados por el dato de origen que permita el límite conjunto de diez grafemas para dato, espacio y unidad. Si el dato completo no cabe, se reduce la cantidad de decimales y se redondea al valor más próximo; una mitad exacta se redondea hacia arriba para estos datos positivos. No se añaden ceros finales para igualar longitudes. El punto es el separador decimal; las unidades se guardan explícitamente en cada carta.\nLa precisión varía entre cartas. Un dato que se ha redondeado es una aproximación informativa, no una nueva medición. Por ejemplo, 34.519 km/s se presenta como 34.52 km/s; 317858890240 km se presenta como 317859 MKm. En carta y Detalles se muestra la misma representación de esta versión; no se restaura allí otra precisión. Las coincidencias informativas originales o creadas por el redondeo son admisibles: Encke y Borrelly conservan 4.8 km y sus valores jugables 7 y 8.\nSolo playValue decide la comparación. La carta indicadora fija el atributo activo; su propio dato no se compara. Los ids fijos, los valores jugables y roundAttribute conservan su asignación original. La referencia física asocia Vel con círculo rojo, Dist con triángulo amarillo y Diámetro con cuadrado azul; símbolos y colores son responsabilidad de la presentación, no campos adicionales.",
   "attributes": [
     {
       "id": "atributo1",
-      "name": "Velocidad",
+      "name": "Vel",
       "unit": "km/s"
     },
     {
       "id": "atributo2",
-      "name": "Distancia",
-      "unit": "km"
+      "name": "Dist",
+      "unit": "MKm"
     },
     {
       "id": "atributo3",

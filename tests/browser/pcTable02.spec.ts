@@ -68,7 +68,7 @@ test.beforeAll(async () => {
 for (const count of [2, 5]) test(`B11 reference ${count} humans: opening, subsequent, five public cards/review, one/two/three cards`, async ({ browser }) => {
   test.setTimeout(120_000);
   const s = await configurationBrowserServer(true, true, undefined, { generic: true });
-  const p = await manualTable(browser, s.base, { count, width: 1800, deckId: 'generica', version: 2, turn: 60, review: 5, names: ['Lucía', 'Marcos', 'Sara', 'Diego'] });
+  const p = await manualTable(browser, s.base, { count, width: 1800, deckId: 'generica', version: 4, turn: 60, review: 5, names: ['Lucía', 'Marcos', 'Sara', 'Diego'] });
   try {
     await Promise.all(p.pages.map((page) => page.setViewportSize({ width: 1800, height: 1600 })));
     await record(p.pages[1], `${count}-opening`);
@@ -98,7 +98,7 @@ if (!before) {
       const slot = actor.locator('.game-hand .game-card-slot').first(); const card = slot.locator('.game-card');
       await expect(card.getByRole('img', { name: 'Atributo indicador: Magnitud 2' })).toHaveText('▲');
       await expect(card.locator('.active-attribute th')).toHaveAccessibleName('Magnitud 1, atributo activo');
-      await expect(card.locator('tbody tr').first().locator('td')).toHaveText(['700 km', '1']);
+      await expect(card.locator('tbody tr').first().locator('td')).toHaveText(['1']);
       const action = slot.locator('.card-play-button'); expect(await card.locator('.card-play-button').count()).toBe(0);
       expect((await action.boundingBox())!.y).toBeGreaterThanOrEqual((await card.boundingBox())!.y + (await card.boundingBox())!.height);
       const deadline = view.game.interaction.turn!.timing!.endsAt;
@@ -107,8 +107,8 @@ if (!before) {
       await actor.mouse.move(bounds.x + 10, bounds.y + 20); await actor.mouse.down(); await actor.mouse.move(bounds.x + 80, bounds.y + 20, { steps: 8 }); await actor.mouse.up();
       await expect(action).toHaveAttribute('aria-pressed', 'true'); await expect(actor.locator('.game-hand .card-play-button').nth(1)).toHaveAttribute('aria-pressed', 'false');
       const details = card.locator('.card-details-button'); await details.press('Enter');
-      await expect(actor.getByRole('dialog').locator('thead th')).toHaveText(['Atributo', 'Jugable', 'Dato']);
-      await expect(actor.getByRole('dialog').locator('tbody tr').first().locator('td')).toHaveText(['1', '700 km']);
+      await expect(actor.getByRole('dialog').locator('thead th')).toHaveText(['Atributo', 'Dato']);
+      await expect(actor.getByRole('dialog').locator('tbody tr').first().locator('td')).toHaveText(['700 km']);
       await actor.getByRole('button', { name: 'Cerrar detalles' }).press('Escape'); await expect(details).toBeFocused();
       expect(s.gameRequests).toHaveLength(0); expect((await readGame(actor)).game.interaction.turn!.timing!.endsAt).toBe(deadline);
       await actor.getByRole('button', { name: 'ALTO', exact: true }).press('Space');

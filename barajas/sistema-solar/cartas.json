@@ -1,7 +1,7 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "deckId": "sistema-solar",
-  "contentVersion": 2,
+  "contentVersion": 4,
   "cards": [
     {
       "id": "itokawa",
@@ -12,13 +12,13 @@
       "values": {
         "atributo1": {
           "playValue": 52,
-          "displayValue": "34.519",
+          "displayValue": "34.52",
           "unit": "km/s"
         },
         "atributo2": {
           "playValue": 31,
-          "displayValue": "198075402",
-          "unit": "km"
+          "displayValue": "198.08",
+          "unit": "MKm"
         },
         "atributo3": {
           "playValue": 1,
@@ -38,13 +38,13 @@
       "values": {
         "atributo1": {
           "playValue": 51,
-          "displayValue": "34.506",
+          "displayValue": "34.51",
           "unit": "km/s"
         },
         "atributo2": {
           "playValue": 29,
-          "displayValue": "168505699",
-          "unit": "km"
+          "displayValue": "168.51",
+          "unit": "MKm"
         },
         "atributo3": {
           "playValue": 2,
@@ -64,13 +64,13 @@
       "values": {
         "atributo1": {
           "playValue": 48,
-          "displayValue": "33.118",
+          "displayValue": "33.12",
           "unit": "km/s"
         },
         "atributo2": {
           "playValue": 30,
-          "displayValue": "178158936",
-          "unit": "km"
+          "displayValue": "178.16",
+          "unit": "MKm"
         },
         "atributo3": {
           "playValue": 3,
@@ -90,13 +90,13 @@
       "values": {
         "atributo1": {
           "playValue": 45,
-          "displayValue": "29.466",
+          "displayValue": "29.47",
           "unit": "km/s"
         },
         "atributo2": {
           "playValue": 42,
-          "displayValue": "470654911",
-          "unit": "km"
+          "displayValue": "470.65",
+          "unit": "MKm"
         },
         "atributo3": {
           "playValue": 9,
@@ -116,13 +116,13 @@
       "values": {
         "atributo1": {
           "playValue": 55,
-          "displayValue": "55.108",
+          "displayValue": "55.11",
           "unit": "km/s"
         },
         "atributo2": {
           "playValue": 49,
-          "displayValue": "2682085628",
-          "unit": "km"
+          "displayValue": "2682.1",
+          "unit": "MKm"
         },
         "atributo3": {
           "playValue": 10,
@@ -147,8 +147,8 @@
         },
         "atributo2": {
           "playValue": 3,
-          "displayValue": "23457",
-          "unit": "km"
+          "displayValue": "0.0235",
+          "unit": "MKm"
         },
         "atributo3": {
           "playValue": 12,
@@ -173,8 +173,8 @@
         },
         "atributo2": {
           "playValue": 32,
-          "displayValue": "218150155",
-          "unit": "km"
+          "displayValue": "218.15",
+          "unit": "MKm"
         },
         "atributo3": {
           "playValue": 13,
@@ -199,8 +199,8 @@
         },
         "atributo2": {
           "playValue": 1,
-          "displayValue": "9375",
-          "unit": "km"
+          "displayValue": "0.0094",
+          "unit": "MKm"
         },
         "atributo3": {
           "playValue": 14,
@@ -225,8 +225,8 @@
         },
         "atributo2": {
           "playValue": 56,
-          "displayValue": "26543656424",
-          "unit": "km"
+          "displayValue": "26544",
+          "unit": "MKm"
         },
         "atributo3": {
           "playValue": 17,
@@ -246,13 +246,13 @@
       "values": {
         "atributo1": {
           "playValue": 37,
-          "displayValue": "19.945",
+          "displayValue": "19.95",
           "unit": "km/s"
         },
         "atributo2": {
           "playValue": 41,
-          "displayValue": "437681552",
-          "unit": "km"
+          "displayValue": "437.68",
+          "unit": "MKm"
         },
         "atributo3": {
           "playValue": 20,
@@ -272,13 +272,13 @@
       "values": {
         "atributo1": {
           "playValue": 32,
-          "displayValue": "14.569",
+          "displayValue": "14.57",
           "unit": "km/s"
         },
         "atributo2": {
           "playValue": 7,
-          "displayValue": "186000",
-          "unit": "km"
+          "displayValue": "0.186",
+          "unit": "MKm"
         },
         "atributo3": {
           "playValue": 22,
@@ -298,13 +298,13 @@
       "values": {
         "atributo1": {
           "playValue": 35,
-          "displayValue": "18.676",
+          "displayValue": "18.68",
           "unit": "km/s"
         },
         "atributo2": {
           "playValue": 43,
-          "displayValue": "471379006",
-          "unit": "km"
+          "displayValue": "471.38",
+          "unit": "MKm"
         },
         "atributo3": {
           "playValue": 23,
@@ -329,8 +329,8 @@
         },
         "atributo2": {
           "playValue": 5,
-          "displayValue": "129846",
-          "unit": "km"
+          "displayValue": "0.1298",
+          "unit": "MKm"
         },
         "atributo3": {
           "playValue": 25,
@@ -350,13 +350,13 @@
       "values": {
         "atributo1": {
           "playValue": 29,
-          "displayValue": "12.677",
+          "displayValue": "12.68",
           "unit": "km/s"
         },
         "atributo2": {
           "playValue": 9,
-          "displayValue": "238400",
-          "unit": "km"
+          "displayValue": "0.2384",
+          "unit": "MKm"
         },
         "atributo3": {
           "playValue": 26,
@@ -376,13 +376,13 @@
       "values": {
         "atributo1": {
           "playValue": 39,
-          "displayValue": "22.637",
+          "displayValue": "22.64",
           "unit": "km/s"
         },
         "atributo2": {
           "playValue": 39,
-          "displayValue": "414320131",
-          "unit": "km"
+          "displayValue": "414.32",
+          "unit": "MKm"
         },
         "atributo3": {
           "playValue": 27,
@@ -402,13 +402,13 @@
       "values": {
         "atributo1": {
           "playValue": 38,
-          "displayValue": "21.217",
+          "displayValue": "21.22",
           "unit": "km/s"
         },
         "atributo2": {
           "playValue": 36,
-          "displayValue": "353255320",
-          "unit": "km"
+          "displayValue": "353.26",
+          "unit": "MKm"
         },
         "atributo3": {
           "playValue": 28,
@@ -428,13 +428,13 @@
       "values": {
         "atributo1": {
           "playValue": 36,
-          "displayValue": "19.399",
+          "displayValue": "19.4",
           "unit": "km/s"
         },
         "atributo2": {
           "playValue": 38,
-          "displayValue": "413720780",
-          "unit": "km"
+          "displayValue": "413.72",
+          "unit": "MKm"
         },
         "atributo3": {
           "playValue": 29,
@@ -459,8 +459,8 @@
         },
         "atributo2": {
           "playValue": 57,
-          "displayValue": "81339283783",
-          "unit": "km"
+          "displayValue": "81339",
+          "unit": "MKm"
         },
         "atributo3": {
           "playValue": 30,
@@ -480,13 +480,13 @@
       "values": {
         "atributo1": {
           "playValue": 28,
-          "displayValue": "11.351",
+          "displayValue": "11.35",
           "unit": "km/s"
         },
         "atributo2": {
           "playValue": 11,
-          "displayValue": "295000",
-          "unit": "km"
+          "displayValue": "0.295",
+          "unit": "MKm"
         },
         "atributo3": {
           "playValue": 31,
@@ -506,13 +506,13 @@
       "values": {
         "atributo1": {
           "playValue": 25,
-          "displayValue": "10.041",
+          "displayValue": "10.04",
           "unit": "km/s"
         },
         "atributo2": {
           "playValue": 13,
-          "displayValue": "377700",
-          "unit": "km"
+          "displayValue": "0.3777",
+          "unit": "MKm"
         },
         "atributo3": {
           "playValue": 32,
@@ -537,8 +537,8 @@
         },
         "atributo2": {
           "playValue": 8,
-          "displayValue": "190929",
-          "unit": "km"
+          "displayValue": "0.1909",
+          "unit": "MKm"
         },
         "atributo3": {
           "playValue": 33,
@@ -563,8 +563,8 @@
         },
         "atributo2": {
           "playValue": 10,
-          "displayValue": "265986",
-          "unit": "km"
+          "displayValue": "0.266",
+          "unit": "MKm"
         },
         "atributo3": {
           "playValue": 34,
@@ -589,8 +589,8 @@
         },
         "atributo2": {
           "playValue": 2,
-          "displayValue": "19600",
-          "unit": "km"
+          "displayValue": "0.0196",
+          "unit": "MKm"
         },
         "atributo3": {
           "playValue": 35,
@@ -615,8 +615,8 @@
         },
         "atributo2": {
           "playValue": 54,
-          "displayValue": "6817314568",
-          "unit": "km"
+          "displayValue": "6817.3",
+          "unit": "MKm"
         },
         "atributo3": {
           "playValue": 36,
@@ -641,8 +641,8 @@
         },
         "atributo2": {
           "playValue": 24,
-          "displayValue": "3561700",
-          "unit": "km"
+          "displayValue": "3.5617",
+          "unit": "MKm"
         },
         "atributo3": {
           "playValue": 37,
@@ -667,8 +667,8 @@
         },
         "atributo2": {
           "playValue": 18,
-          "displayValue": "583511",
-          "unit": "km"
+          "displayValue": "0.5835",
+          "unit": "MKm"
         },
         "atributo3": {
           "playValue": 38,
@@ -693,8 +693,8 @@
         },
         "atributo2": {
           "playValue": 17,
-          "displayValue": "527200",
-          "unit": "km"
+          "displayValue": "0.5272",
+          "unit": "MKm"
         },
         "atributo3": {
           "playValue": 39,
@@ -719,8 +719,8 @@
         },
         "atributo2": {
           "playValue": 16,
-          "displayValue": "436298",
-          "unit": "km"
+          "displayValue": "0.4363",
+          "unit": "MKm"
         },
         "atributo3": {
           "playValue": 40,
@@ -745,8 +745,8 @@
         },
         "atributo2": {
           "playValue": 53,
-          "displayValue": "6441727731",
-          "unit": "km"
+          "displayValue": "6441.7",
+          "unit": "MKm"
         },
         "atributo3": {
           "playValue": 41,
@@ -771,8 +771,8 @@
         },
         "atributo2": {
           "playValue": 55,
-          "displayValue": "10162773801",
-          "unit": "km"
+          "displayValue": "10163",
+          "unit": "MKm"
         },
         "atributo3": {
           "playValue": 42,
@@ -797,8 +797,8 @@
         },
         "atributo2": {
           "playValue": 52,
-          "displayValue": "5922374660",
-          "unit": "km"
+          "displayValue": "5922.4",
+          "unit": "MKm"
         },
         "atributo3": {
           "playValue": 43,
@@ -823,8 +823,8 @@
         },
         "atributo2": {
           "playValue": 12,
-          "displayValue": "354800",
-          "unit": "km"
+          "displayValue": "0.3548",
+          "unit": "MKm"
         },
         "atributo3": {
           "playValue": 44,
@@ -844,13 +844,13 @@
       "values": {
         "atributo1": {
           "playValue": 31,
-          "displayValue": "13.864",
+          "displayValue": "13.86",
           "unit": "km/s"
         },
         "atributo2": {
           "playValue": 19,
-          "displayValue": "671100",
-          "unit": "km"
+          "displayValue": "0.6711",
+          "unit": "MKm"
         },
         "atributo3": {
           "playValue": 45,
@@ -875,8 +875,8 @@
         },
         "atributo2": {
           "playValue": 14,
-          "displayValue": "384400",
-          "unit": "km"
+          "displayValue": "0.3844",
+          "unit": "MKm"
         },
         "atributo3": {
           "playValue": 46,
@@ -901,8 +901,8 @@
         },
         "atributo2": {
           "playValue": 15,
-          "displayValue": "421800",
-          "unit": "km"
+          "displayValue": "0.4218",
+          "unit": "MKm"
         },
         "atributo3": {
           "playValue": 47,
@@ -927,8 +927,8 @@
         },
         "atributo2": {
           "playValue": 23,
-          "displayValue": "1882700",
-          "unit": "km"
+          "displayValue": "1.8827",
+          "unit": "MKm"
         },
         "atributo3": {
           "playValue": 48,
@@ -953,8 +953,8 @@
         },
         "atributo2": {
           "playValue": 26,
-          "displayValue": "57909050",
-          "unit": "km"
+          "displayValue": "57.909",
+          "unit": "MKm"
         },
         "atributo3": {
           "playValue": 49,
@@ -979,8 +979,8 @@
         },
         "atributo2": {
           "playValue": 21,
-          "displayValue": "1221900",
-          "unit": "km"
+          "displayValue": "1.2219",
+          "unit": "MKm"
         },
         "atributo3": {
           "playValue": 50,
@@ -1005,8 +1005,8 @@
         },
         "atributo2": {
           "playValue": 20,
-          "displayValue": "1070400",
-          "unit": "km"
+          "displayValue": "1.0704",
+          "unit": "MKm"
         },
         "atributo3": {
           "playValue": 51,
@@ -1031,8 +1031,8 @@
         },
         "atributo2": {
           "playValue": 33,
-          "displayValue": "227939200",
-          "unit": "km"
+          "displayValue": "227.94",
+          "unit": "MKm"
         },
         "atributo3": {
           "playValue": 52,
@@ -1057,8 +1057,8 @@
         },
         "atributo2": {
           "playValue": 27,
-          "displayValue": "108208000",
-          "unit": "km"
+          "displayValue": "108.21",
+          "unit": "MKm"
         },
         "atributo3": {
           "playValue": 53,
@@ -1083,8 +1083,8 @@
         },
         "atributo2": {
           "playValue": 28,
-          "displayValue": "149598023",
-          "unit": "km"
+          "displayValue": "149.6",
+          "unit": "MKm"
         },
         "atributo3": {
           "playValue": 54,
@@ -1104,13 +1104,13 @@
       "values": {
         "atributo1": {
           "playValue": 50,
-          "displayValue": "34.218",
+          "displayValue": "34.22",
           "unit": "km/s"
         },
         "atributo2": {
           "playValue": 45,
-          "displayValue": "517945152",
-          "unit": "km"
+          "displayValue": "517.95",
+          "unit": "MKm"
         },
         "atributo3": {
           "playValue": 4,
@@ -1130,13 +1130,13 @@
       "values": {
         "atributo1": {
           "playValue": 58,
-          "displayValue": "87.785",
+          "displayValue": "87.79",
           "unit": "km/s"
         },
         "atributo2": {
           "playValue": 58,
-          "displayValue": "317858890240",
-          "unit": "km"
+          "displayValue": "317859",
+          "unit": "MKm"
         },
         "atributo3": {
           "playValue": 6,
@@ -1156,13 +1156,13 @@
       "values": {
         "atributo1": {
           "playValue": 44,
-          "displayValue": "29.234",
+          "displayValue": "29.23",
           "unit": "km/s"
         },
         "atributo2": {
           "playValue": 44,
-          "displayValue": "516074593",
-          "unit": "km"
+          "displayValue": "516.07",
+          "unit": "MKm"
         },
         "atributo3": {
           "playValue": 5,
@@ -1182,13 +1182,13 @@
       "values": {
         "atributo1": {
           "playValue": 57,
-          "displayValue": "69.645",
+          "displayValue": "69.65",
           "unit": "km/s"
         },
         "atributo2": {
           "playValue": 35,
-          "displayValue": "332060705",
-          "unit": "km"
+          "displayValue": "332.06",
+          "unit": "MKm"
         },
         "atributo3": {
           "playValue": 7,
@@ -1213,8 +1213,8 @@
         },
         "atributo2": {
           "playValue": 51,
-          "displayValue": "4495060000",
-          "unit": "km"
+          "displayValue": "4495.1",
+          "unit": "MKm"
         },
         "atributo3": {
           "playValue": 55,
@@ -1239,8 +1239,8 @@
         },
         "atributo2": {
           "playValue": 50,
-          "displayValue": "2872460000",
-          "unit": "km"
+          "displayValue": "2872.5",
+          "unit": "MKm"
         },
         "atributo3": {
           "playValue": 56,
@@ -1265,8 +1265,8 @@
         },
         "atributo2": {
           "playValue": 48,
-          "displayValue": "1433530000",
-          "unit": "km"
+          "displayValue": "1433.5",
+          "unit": "MKm"
         },
         "atributo3": {
           "playValue": 57,
@@ -1291,8 +1291,8 @@
         },
         "atributo2": {
           "playValue": 47,
-          "displayValue": "778570000",
-          "unit": "km"
+          "displayValue": "778.57",
+          "unit": "MKm"
         },
         "atributo3": {
           "playValue": 58,
@@ -1312,13 +1312,13 @@
       "values": {
         "atributo1": {
           "playValue": 43,
-          "displayValue": "26.506",
+          "displayValue": "26.51",
           "unit": "km/s"
         },
         "atributo2": {
           "playValue": 6,
-          "displayValue": "181400",
-          "unit": "km"
+          "displayValue": "0.1814",
+          "unit": "MKm"
         },
         "atributo3": {
           "playValue": 18,
@@ -1343,8 +1343,8 @@
         },
         "atributo2": {
           "playValue": 22,
-          "displayValue": "1481500",
-          "unit": "km"
+          "displayValue": "1.4815",
+          "unit": "MKm"
         },
         "atributo3": {
           "playValue": 21,
@@ -1369,8 +1369,8 @@
         },
         "atributo2": {
           "playValue": 4,
-          "displayValue": "117600",
-          "unit": "km"
+          "displayValue": "0.1176",
+          "unit": "MKm"
         },
         "atributo3": {
           "playValue": 24,
@@ -1395,8 +1395,8 @@
         },
         "atributo2": {
           "playValue": 25,
-          "displayValue": "12929400",
-          "unit": "km"
+          "displayValue": "12.929",
+          "unit": "MKm"
         },
         "atributo3": {
           "playValue": 19,
@@ -1421,8 +1421,8 @@
         },
         "atributo2": {
           "playValue": 34,
-          "displayValue": "330608056",
-          "unit": "km"
+          "displayValue": "330.61",
+          "unit": "MKm"
         },
         "atributo3": {
           "playValue": 11,
@@ -1442,13 +1442,13 @@
       "values": {
         "atributo1": {
           "playValue": 34,
-          "displayValue": "18.433",
+          "displayValue": "18.43",
           "unit": "km/s"
         },
         "atributo2": {
           "playValue": 40,
-          "displayValue": "428350769",
-          "unit": "km"
+          "displayValue": "428.35",
+          "unit": "MKm"
         },
         "atributo3": {
           "playValue": 15,
@@ -1468,13 +1468,13 @@
       "values": {
         "atributo1": {
           "playValue": 41,
-          "displayValue": "24.001",
+          "displayValue": "24",
           "unit": "km/s"
         },
         "atributo2": {
           "playValue": 37,
-          "displayValue": "395970787",
-          "unit": "km"
+          "displayValue": "395.97",
+          "unit": "MKm"
         },
         "atributo3": {
           "playValue": 16,
@@ -1494,13 +1494,13 @@
       "values": {
         "atributo1": {
           "playValue": 49,
-          "displayValue": "33.355",
+          "displayValue": "33.36",
           "unit": "km/s"
         },
         "atributo2": {
           "playValue": 46,
-          "displayValue": "539594236",
-          "unit": "km"
+          "displayValue": "539.59",
+          "unit": "MKm"
         },
         "atributo3": {
           "playValue": 8,

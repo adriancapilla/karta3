@@ -137,14 +137,15 @@ for (const [width, height] of sizes) test(`B10 base/comparison ${width}x${height
 if (!captureBase) {
   for (const width of [360, 761]) test(`B10 long text ${width}: full names, attributes, literal units, images and controls stay consultable`, async ({ browser }) => {
     const server = await configurationBrowserServer(true, true, undefined, { longText: true });
-    const p = await manualTable(browser, server.base, { count: 5, width, deckId: 'portada', version: 7, turn: 60, names: ['María Alejandra', 'Alejandro Pérez', 'Nombre muy largo', 'Diego Fernández'] });
+    const p = await manualTable(browser, server.base, { count: 5, width, deckId: 'portada', version: 7, turn: 60, valueMode: 'DISPLAY_VALUE', names: ['María Alejandra', 'Alejandro Pérez', 'Nombre muy largo', 'Diego Fernández'] });
     try {
       const actor = p.pages[1]; const current = await readGame(actor);
       await expect(actor.locator('.game-people')).toContainText('Nombre muy largo');
       const card = actor.locator('.game-hand .game-card').first();
       await expect(card).toContainText(current.game.attributes[0].name); await expect(card).toContainText(current.game.hand[0].values.atributo1.unit);
       await expect(actor.locator('.game-hand img').first()).toBeVisible(); await expect(actor.locator('.game-hand svg')).not.toHaveCount(0);
-      const buttons = actor.locator('.game-initial-state button'); const bounds = (await actor.locator('.game-initial-state').boundingBox())!;
+      await expect(actor.locator('.summary-indicator')).toBeHidden(); // En normal, la indicadora sigue en su panel.
+      const buttons = actor.locator('.game-initial-state button:visible'); const bounds = (await actor.locator('.game-initial-state').boundingBox())!;
       for (const button of await buttons.all()) {
         const box = (await button.boundingBox())!; expect(box.x).toBeGreaterThanOrEqual(bounds.x); expect(box.x + box.width).toBeLessThanOrEqual(bounds.x + bounds.width);
       }

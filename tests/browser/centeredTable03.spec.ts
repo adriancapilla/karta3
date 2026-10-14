@@ -91,9 +91,9 @@ if (!before) {
       const first = (await readGame(p.host)).game.round.plays[0]; const detail = p.host.locator(`.played-row [data-card-id="${first.card.id}"] .card-details-button`);
       await detail.focus(); const scrollY = await p.host.evaluate(() => window.scrollY);
       await humanPlay(p, true, direction); await expect(detail).toBeFocused(); expect(await p.host.evaluate(() => window.scrollY)).toBe(scrollY);
-      await detail.press('Enter'); await expect(p.host.getByRole('dialog').getByRole('heading', { level: 3 })).toHaveText(first.card.name);
+      await detail.press('Enter'); await expect(p.host.getByRole('dialog').getByRole('heading', { level: 2 })).toHaveText(`Detalles de ${first.card.name}`);
       const close = p.host.getByRole('button', { name: 'Cerrar detalles', exact: true }); await expect(close).toBeFocused();
-      await humanPlay(p, false, direction); await expect(close).toBeFocused(); await expect(p.host.getByRole('dialog').getByRole('heading', { level: 3 })).toHaveText(first.card.name);
+      await humanPlay(p, false, direction); await expect(close).toBeFocused(); await expect(p.host.getByRole('dialog').getByRole('heading', { level: 2 })).toHaveText(`Detalles de ${first.card.name}`);
       await close.press('Escape'); await expect(detail).toBeFocused(); await humanPlay(p, true, direction);
       const four = await acceptedOrder(p.host); expect(four.game.round.plays.map((play) => play.card.values.atributo1.playValue)).toEqual([31, 54, 35, 50]);
       expect(four.game.hand).toEqual(ownHost);
@@ -106,7 +106,7 @@ if (!before) {
       await row.focus(); for (let i = 0; i < 12; i++) await row.press('ArrowRight');
       await expect.poll(() => row.evaluate((element) => element.scrollLeft)).toBe(276);
       const fifth = p.host.locator('.played-row>div').last(); const fifthName = await fifth.locator('h3').textContent(); const fifthAuthor = await fifth.locator('.play-author').textContent();
-      const trigger = fifth.locator('.card-details-button'); await trigger.press('Enter'); await expect(p.host.getByRole('dialog').getByRole('heading', { level: 3 })).toHaveText(fifthName!);
+      const trigger = fifth.locator('.card-details-button'); await trigger.press('Enter'); await expect(p.host.getByRole('dialog').getByRole('heading', { level: 2 })).toHaveText(`Detalles de ${fifthName!}`);
       await p.host.getByRole('button', { name: 'Cerrar detalles' }).press('Escape'); await expect(trigger).toBeFocused();
       await expect(fifth.locator('.play-author')).toHaveText(fifthAuthor!); expect(s.gameRequests.filter((r) => r.event === 'game:play')).toHaveLength(5);
       const hostTab = await p.contexts[0].newPage(); await hostTab.goto(p.host.url()); await expect(hostTab.locator('.round-review')).toBeVisible();

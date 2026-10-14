@@ -26,7 +26,7 @@ describe('modelo de sala', () => {
     expect(value.name).toBe('Jugador 1');
     expect(value.code).toBe('000042');
     expect(value.hostSessionId).toBe('host-1');
-    expect(value.settings).toEqual({ deckId: null, deckContentVersion: null, hostPlays: true, turnSeconds: 30, forceTieBreak: false, reviewSeconds: 5 });
+    expect(value.settings).toEqual({ deckId: null, deckContentVersion: null, hostPlays: true, turnSeconds: 30, forceTieBreak: false, reviewSeconds: 5, attributeValueMode: 'PLAY_VALUE', optimizeForMobile: false });
   });
 
   it('E4 recorta y valida grafemas sin alterar identidad ni nombre ante rechazo', () => {

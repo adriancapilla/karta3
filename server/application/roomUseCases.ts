@@ -222,7 +222,7 @@ export class RoomUseCases implements RoomActions {
         if (!result.ok) throw new RoomError(result.reason, result.reason === 'DECK_VERSION_MISMATCH'
           ? 'La versión solicitada no está disponible. Vuelve a consultar el catálogo.'
           : 'La baraja no está disponible. Vuelve a consultar el catálogo.');
-        selected = result.summary;
+        selected = { summary: result.summary, information: result.information };
       }
       const changed = room.configure(change, selected, this.lifecycle.clock.now());
       if (changed) this.repository.save(room);

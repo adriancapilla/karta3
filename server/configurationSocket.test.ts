@@ -43,6 +43,22 @@ const view = async (socket: Socket) => {
   const result = await ack(socket, 'room:resume', {}); if (!result.ok) throw new Error(result.error.code); return result.room;
 };
 
+it('B15 dos controles reales estrictos, dos sesiones/pestañas y solo instrucciones autorizadas', async () => {
+  const s = await boot(); const tab = io(s.base, { transports: ['websocket'], extraHeaders: { Cookie: s.host.cookie, Origin: s.base } }); clients.push(tab);
+  await new Promise<void>(resolve => tab.once('connect', resolve));
+  for (const change of [{ field: 'attributeValueMode', value: 'NORMAL' }, { field: 'attributeValueMode', value: 'Ambos' }, { field: 'attributeValueMode', value: true }, { field: 'optimizeForMobile', value: 'true' }, { field: 'optimizeForMobile', value: 1 }, { field: 'optimizeForMobile', value: true, extra: 1 }]) expect(await ack(s.host.socket, 'room:configure', configured(s.room, change))).toMatchObject({ ok: false, error: { code: 'INVALID_INPUT' } });
+  const changes = [{ field: 'attributeValueMode', value: 'DISPLAY_VALUE' }, { field: 'optimizeForMobile', value: true }];
+  for (const change of changes) for (const socket of [s.guest.socket, s.foreign.socket]) expect(await ack(socket, 'room:configure', configured(s.room, change))).toMatchObject({ ok: false, error: { code: 'FORBIDDEN' } });
+  expect((await Promise.all(changes.map((change,index) => ack(index ? tab : s.host.socket, 'room:configure', configured(s.room, change))))).every(result => result.ok)).toBe(true);
+  await ack(tab, 'room:configure', configured(s.room, { field: 'deck', value: { id: 'prueba', contentVersion: 7 } }));
+  const actual = await view(s.guest.socket); expect(actual.settings).toMatchObject({ attributeValueMode: 'DISPLAY_VALUE', optimizeForMobile: true });
+  expect(actual.deckInformation).toEqual({ id: 'prueba', contentVersion: 7, instructions: '' });
+  expect(Object.keys(actual.selectedDeck!)).toHaveLength(8); expect(JSON.stringify(actual)).not.toMatch(/"cards"|playValue|imageRef|sessionId/);
+  expect((await request(s.base).get('/api/rooms/current').set('Cookie', s.guest.cookie)).body.room).toEqual(actual);
+  expect((await request(s.base).get('/api/decks')).body.decks[0]).not.toHaveProperty('instructions');
+  expect((await request(s.base).get('/api/rooms/current').set('Cookie', s.foreign.cookie)).body.room).toBeNull();
+});
+
 it('B05-03/06/11 comunicación real: dos sesiones y dos pestañas del host, selección segura, últimos cambios y ningún conflicto por revisión', async () => {
   const s = await boot();
   const tab = io(s.base, { transports: ['websocket'], reconnection: false, extraHeaders: { Cookie: s.host.cookie, Origin: s.base } }); clients.push(tab);
@@ -51,7 +67,7 @@ it('B05-03/06/11 comunicación real: dos sesiones y dos pestañas del host, sele
   const result = await ack(s.host.socket, 'room:configure', configured(s.room, { field: 'deck', value: { id: 'prueba', contentVersion: 7 } }));
   expect(result.ok).toBe(true); const guestView = await guestUpdate;
   expect(guestView.selectedDeck).toEqual(s.loaded.response.decks[0]); expect(guestView.participant.role).toBe('GUEST');
-  expect(Object.keys(guestView.selectedDeck!)).toHaveLength(8); expect(JSON.stringify(guestView)).not.toMatch(/cards|playValue|SessionId|publication|instructions/);
+  expect(Object.keys(guestView.selectedDeck!)).toHaveLength(8); expect(JSON.stringify(guestView)).not.toMatch(/cards|playValue|SessionId|publication/);
   const first = await ack(tab, 'room:configure', configured(s.room, { field: 'turnSeconds', value: 15 }, 'first'));
   const outcomes = await Promise.all([
     ack(s.host.socket, 'room:configure', configured(s.room, { field: 'reviewSeconds', value: 0 }, 'review')),
@@ -119,6 +135,6 @@ it('B05-05 el adaptador requiere resumen y definición de la misma versión; un 
   const wrong = new LoadedDeckCatalog([summary], new Map([['prueba', { contentVersion: 8, definition: s.loaded.catalog.definition('prueba')! }]]), new Map());
   expect(wrong.resolveVersion('prueba', 7)).toEqual({ ok: false, reason: 'DECK_NOT_AVAILABLE' });
   expect(s.loaded.catalog.resolveVersion('prueba', 6)).toEqual({ ok: false, reason: 'DECK_VERSION_MISMATCH' });
-  expect(s.loaded.catalog.resolveVersion('prueba', 7)).toEqual({ ok: true, summary });
+  expect(s.loaded.catalog.resolveVersion('prueba', 7)).toEqual({ ok: true, summary, information: { id: summary.id, contentVersion: summary.contentVersion, instructions: '' } });
   expect(s.loaded.catalog.resolveVersion('borrador', 7)).toEqual({ ok: false, reason: 'DECK_NOT_AVAILABLE' });
 });

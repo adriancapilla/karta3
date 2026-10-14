@@ -3,7 +3,7 @@ import fs from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 import { createHash } from 'node:crypto';
-import { deckFixture, realImage } from '../../../tests/support/deckFixtures.js';
+import { deckFixture, legacyDeckFixture, realImage } from '../../../tests/support/deckFixtures.js';
 import { removeTestInstallation } from '../../../tests/support/compiledDeckServer.js';
 import { textValidationRuntime } from './format2Text.js';
 import { validatePackageFormat, validatePackageFormat2 } from './packageFormat.js';
@@ -129,7 +129,7 @@ describe('B15 F1 independiente: Unicode/conjuntos V2, sin incorporar contenido',
     f.collection.cards[0].values.atributo1.displayValue = '13/10/2026'; expect(validate(f).errors).toEqual([]);
   });
   it('V1 permanece histórico: no recibe NFC, bordes ni cupos nuevos', () => {
-    const f = deckFixture('unicode-v2'); f.metadata.name = 'Cafe\u0301'; f.metadata.attributes[0] = { ...f.metadata.attributes[0], name: 'a'.repeat(33) };
+    const f = legacyDeckFixture('unicode-v2'); f.metadata.name = 'Cafe\u0301'; f.metadata.attributes[0] = { ...f.metadata.attributes[0], name: 'a'.repeat(33) };
     f.collection.cards[0].values.atributo1.displayValue = '317858890240';
     expect(validatePackageFormat(f.metadata, f.collection, 'unicode-v2').errors).toEqual([]);
   });
@@ -143,12 +143,11 @@ describe('B15 F1 independiente: archivos reales, coherencia y recursos V2', () =
     const result = await validateFormat2Package(directory); expect(result.valid).toBe(true); expect(result.available).toBe(false);
     expect(result.data!.metadata.schemaVersion).toBe(2); expect(result.images.get('imagenes/a.png')?.bytes).toEqual(bytes);
     expect(result.data!.definition.cards[0].imageRef).toBeNull();
-    // El consumidor normal anterior no empieza a aceptar V2 antes del corte coordinado.
-    expect((await validatePackage(directory)).errors).toContainEqual(expect.objectContaining({ code: 'UNSUPPORTED_SCHEMA' }));
+    expect((await validatePackage(directory)).errors).toEqual([]);
   });
   it('UTF-8 inválido, sustituto escapado y claves duplicadas equivalentes localizados', async () => {
     const f = fixture(); const dir = await write(f); const cards = path.join(dir, 'cartas.json'); const original = await fs.readFile(cards, 'utf8');
-    await fs.writeFile(cards, original.replace('"displayValue":"Dato 700"', '"displayValue":"Dato 700","display\\u0056alue":"otro"'));
+    await fs.writeFile(cards, original.replace('"displayValue":"700"', '"displayValue":"700","display\\u0056alue":"otro"'));
     expect((await validateFormat2Package(dir)).errors).toContainEqual(expect.objectContaining({ code: 'JSON_DUPLICATE_KEY', file: 'cartas.json', path: 'cards[0].values.atributo1.displayValue', message: expect.stringContaining('línea') }));
     f.collection.cards[0].values.atributo1.displayValue = '\uD800'; await write(f);
     expect((await validateFormat2Package(dir)).errors).toContainEqual(expect.objectContaining({ code: 'UNICODE_INVALID', file: 'cartas.json', message: expect.stringContaining('D800') }));
@@ -160,6 +159,8 @@ describe('B15 F1 independiente: archivos reales, coherencia y recursos V2', () =
     const dir = await write(f); const file = path.join(dir, 'baraja.json'); const json = await fs.readFile(file, 'utf8');
     await fs.writeFile(file, json.replace('{', '{"\\u0000":1,"\\u0000":2,'));
     const errors = (await validateFormat2Package(dir)).errors;
+    const commonErrors = (await validatePackage(dir)).errors;
+    expect(commonErrors).toEqual(errors); // Comando/build/arranque también sanitizan diagnósticos JSON/IO.
     expect(errors).toContainEqual(expect.objectContaining({ code: 'JSON_DUPLICATE_KEY', path: '\\u{0000}' }));
     expect(errors).toContainEqual(expect.objectContaining({ code: 'UNICODE_INVALID', cardId: 'carta-\\u{D800}' }));
     for (const issue of errors) for (const text of [issue.path, issue.message, issue.cardId ?? '']) {

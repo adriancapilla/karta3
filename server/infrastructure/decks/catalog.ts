@@ -25,7 +25,7 @@ function freeze<T>(value: T): T {
 }
 
 /** Instantánea interna: las peticiones no abren archivos ni adoptan cambios editoriales. */
-type PublishedDefinition = { contentVersion: number; definition: Deck; presentation?: readonly CardPresentation[] };
+type PublishedDefinition = { contentVersion: number; definition: Deck; instructions: string; presentation?: readonly CardPresentation[] };
 export class LoadedDeckCatalog implements DeckCatalog, PublishedDeckVersions, PublishedGameDecks {
   private readonly summariesList: readonly DeckSummary[];
   private readonly definitions: ReadonlyMap<string, PublishedDefinition>;
@@ -39,11 +39,11 @@ export class LoadedDeckCatalog implements DeckCatalog, PublishedDeckVersions, Pu
   resolveVersion(id: string, contentVersion: number): DeckVersionResult {
     const summary = this.summariesList.find((deck) => deck.id === id);
     const published = this.definitions.get(id);
-    if (!summary || !published || published.definition.id !== id || published.contentVersion !== summary.contentVersion) {
+    if (!summary || !published || published.definition.id !== id || published.contentVersion !== summary.contentVersion || typeof published.instructions !== 'string') {
       return { ok: false, reason: 'DECK_NOT_AVAILABLE' };
     }
     if (summary.contentVersion !== contentVersion) return { ok: false, reason: 'DECK_VERSION_MISMATCH' };
-    return { ok: true, summary };
+    return { ok: true, summary, information: { id, contentVersion, instructions: published.instructions } };
   }
   // Acceso interno para comprobación; ningún transporte expone la definición.
   definition(id: string): Deck | undefined { return this.definitions.get(id)?.definition; }
@@ -52,7 +52,7 @@ export class LoadedDeckCatalog implements DeckCatalog, PublishedDeckVersions, Pu
     if (!version.ok) return version;
     const published = this.definitions.get(id)!;
     if (!published.presentation) return { ok: false, reason: 'DECK_NOT_AVAILABLE' };
-    return { ok: true, snapshot: { summary: version.summary, definition: published.definition, presentation: published.presentation } };
+    return { ok: true, snapshot: { summary: version.summary, information: version.information, definition: published.definition, presentation: published.presentation } };
   }
   image(url: string): ValidatedImage | undefined {
     const image = this.resources.get(url);
@@ -82,15 +82,20 @@ export async function loadPackages(root: string) {
       continue;
     }
     const result = await validatePackage(target);
+    if (result.available === true && result.schemaVersion === 1) {
+      diagnostics.push({ package: directory, valid: false, available: true, errors: [...result.errors,
+        { code: 'CONSUMER_SCHEMA_INCOMPATIBLE', file: 'baraja.json', path: '$.schemaVersion', stage: 'catalog', message: 'El consumidor requiere formato 2 para una baraja disponible; formato 1 solo admite validación histórica.' }] });
+      continue;
+    }
     diagnostics.push({ package: directory, valid: result.valid, available: result.available, errors: result.errors });
     if (!result.valid || !result.available) continue;
     const { metadata, collection, definition } = result.data!;
     const prefix = `/media/decks/${metadata.id}/v${metadata.contentVersion}/`;
-    definitions.set(metadata.id, { contentVersion: metadata.contentVersion, definition,
+    definitions.set(metadata.id, { contentVersion: metadata.contentVersion, definition, instructions: metadata.instructions,
       presentation: collection.cards.map((card) => ({ id: card.id, imageUrl: card.imageRef === null ? null : `${prefix}${card.imageRef}`, imageAlt: card.imageAlt })) });
     for (const [ref, image] of result.images) resources.set(`${prefix}${ref}`, image);
     published.push({ order: metadata.publication.order, summary: {
-      id: metadata.id, schemaVersion: metadata.schemaVersion, contentVersion: metadata.contentVersion,
+      id: metadata.id, schemaVersion: 2, contentVersion: metadata.contentVersion,
       name: metadata.name, subtitle: metadata.subtitle, description: metadata.description,
       imageUrl: metadata.imageRef === null ? null : `${prefix}${metadata.imageRef}`, imageAlt: metadata.imageAlt
     } });
@@ -119,7 +124,7 @@ function catalogShape(value: unknown): value is DecksResponse {
   if (!isObject(value) || Object.keys(value).length !== 1 || !Array.isArray(value.decks)) return false;
   const keys = ['id', 'schemaVersion', 'contentVersion', 'name', 'subtitle', 'description', 'imageUrl', 'imageAlt'];
   return value.decks.every((deck: unknown) => isObject(deck) && Object.keys(deck).length === keys.length && keys.every((key) => Object.hasOwn(deck, key)) &&
-    deck.schemaVersion === 1 && Number.isInteger(deck.contentVersion) && (deck.contentVersion as number) > 0 &&
+    deck.schemaVersion === 2 && Number.isInteger(deck.contentVersion) && (deck.contentVersion as number) > 0 &&
     ['id', 'name', 'subtitle', 'description', 'imageAlt'].every((key) => typeof deck[key] === 'string') && (deck.imageUrl === null || typeof deck.imageUrl === 'string'));
 }
 

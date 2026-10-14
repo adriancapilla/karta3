@@ -37,9 +37,9 @@ for (const width of [390, 1280]) test(`B14 catálogo normal, cambio de baraja, p
     await expect(guest.getByRole('heading', { name: 'Ya estás en la sala' })).toBeVisible();
     await expect(guest.getByRole('combobox')).toHaveCount(0);
     for (const deck of [approvedSolar, approvedGeneric, approvedSolar]) {
-      await host.getByLabel('Baraja', { exact: true }).selectOption(JSON.stringify({ id: deck.id, contentVersion: 2 }));
+      await host.getByLabel('Baraja', { exact: true }).selectOption(JSON.stringify({ id: deck.id, contentVersion: 4 }));
       for (const page of [host, guest]) {
-        await expect(page.locator('.deck-card h3')).toHaveText(`${deck.name} · v2`);
+        await expect(page.locator('.deck-card h3')).toHaveText(`${deck.name} · v4`);
         expect((await readRoom(page)).selectedDeck).toEqual(deck);
         if (deck.imageUrl) { await loadedImages(page, '.deck-card img'); await expect(page.locator('.deck-card img')).toHaveAttribute('alt', deck.imageAlt); }
         else { await expect(page.locator('.deck-card img')).toHaveCount(0); await expect(page.locator('.neutral-card')).toBeVisible(); }
@@ -48,10 +48,10 @@ for (const width of [390, 1280]) test(`B14 catálogo normal, cambio de baraja, p
     const before = await Promise.all([readRoom(host), readRoom(guest)]);
     await Promise.all([host.reload(), guest.reload()]);
     for (const [index, page] of [host, guest].entries()) {
-      await expect(page.locator('.deck-card h3')).toHaveText('Sistema Solar · v2'); await loadedImages(page, '.deck-card img');
+      await expect(page.locator('.deck-card h3')).toHaveText('Sistema Solar · v4'); await loadedImages(page, '.deck-card img');
       const view = await readRoom(page); expect(view.selectedDeck).toEqual(approvedSolar); expect(view.participant.id).toBe(before[index].participant.id);
       expect(view.settings).toEqual(before[index].settings); expect(view.participants.map((p) => p.id)).toEqual(before[index].participants.map((p) => p.id));
-      expect(JSON.stringify(view)).not.toMatch(/playValue|"cards"|imageRef|sessionId|publication|instructions/);
+      expect(JSON.stringify(view)).not.toMatch(/"playValue"\s*:|"cards"\s*:|"imageRef"\s*:|"sessionId"\s*:|"publication"\s*:/);
       expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
     }
     for (const deckId of ['generica', 'sistema-solar']) for (const name of ['baraja.json', 'cartas.json']) {
@@ -62,7 +62,7 @@ for (const width of [390, 1280]) test(`B14 catálogo normal, cambio de baraja, p
       const manifest = JSON.parse(await fs.readFile('docs/sdd/evidencias/B14/huellas.json', 'utf8')) as { files: { file: string; masterSHA256: string }[] };
       const images = manifest.files.filter((entry) => entry.file.startsWith('imagenes/')); expect(images).toHaveLength(59);
       await Promise.all(images.map(async (entry) => {
-        const response = await contexts[0].request.get(`${baseURL}/media/decks/sistema-solar/v2/${entry.file}`);
+        const response = await contexts[0].request.get(`${baseURL}/media/decks/sistema-solar/v4/${entry.file}`);
         expect(response.status()).toBe(200); expect(response.headers()['content-type']).toContain('image/webp');
         expect(createHash('sha256').update(await response.body()).digest('hex')).toBe(entry.masterSHA256);
       }));
@@ -78,7 +78,7 @@ for (const direction of ['HIGH', 'LOW'] as const) test(`B14 Encke/Borrelly ${dir
   const server = await configurationBrowserServer(true, true, undefined, { solar: true, generic: true });
   const prefix = ['encke', 'borrelly', 'hyakutake', 'sedna', 'eris', 'hale-bopp', 'ryugu'];
   server.permutation((ids) => ids.includes('encke') ? [...prefix, ...ids.filter((id) => !prefix.includes(id))] : [...ids]);
-  const p = await manualTable(browser, server.base, { deckId: 'sistema-solar', version: 2, review: 2, width });
+  const p = await manualTable(browser, server.base, { deckId: 'sistema-solar', version: 4, valueMode: 'DISPLAY_VALUE', review: 2, width });
   const captured: InitialGameRoomView[][] = p.pages.map(() => []);
   const traffic = p.pages.map(() => ({ acks: 0, events: 0 }));
   try {
@@ -101,22 +101,22 @@ for (const direction of ['HIGH', 'LOW'] as const) test(`B14 Encke/Borrelly ${dir
       const first = page.locator('.game-hand .game-card').first(); const name = index === 0 ? 'Borrelly' : 'Encke';
       await expect(first.getByRole('heading', { name, exact: true })).toBeVisible();
       await expect(first.locator('tbody tr').last()).toContainText('4.8 km');
-      await expect(first.locator('tbody tr').last().locator('td').last()).toHaveText(index === 0 ? '8' : '7');
+      expect(own[index].game.hand[0].values.atributo3.playValue).toBe(index === 0 ? 8 : 7); await expect(first.locator('tbody tr').last().locator('td')).toHaveCount(1);
       await first.getByRole('button', { name: `Detalles de ${name}`, exact: true }).click();
       await expect(page.getByRole('dialog')).toContainText('Cometa'); await loadedImages(page, 'dialog img');
       await expect(page.getByRole('dialog')).toContainText(index === 0 ? 'Deep Space 1' : 'periodo orbital');
       await page.getByRole('button', { name: 'Cerrar detalles', exact: true }).click();
     }
     const long = p.pages[1].locator('.game-hand [data-card-id="hyakutake"]');
-    await expect(long.locator('tbody tr').nth(1)).toContainText('317858890240 km');
+    await expect(long.locator('tbody tr').nth(1)).toContainText('317859 MKm');
     const numberFits = (number: Element) => {
-      const bounds = number.getBoundingClientRect(); const cell = number.parentElement!.getBoundingClientRect();
+      const bounds = number.getBoundingClientRect(); const cell = number.getBoundingClientRect();
       return number.getClientRects().length === 1 && bounds.left >= cell.left && bounds.right <= cell.right + 1;
     };
-    expect(await long.locator('.unbroken-number').evaluate(numberFits)).toBe(true);
+    expect(await long.locator('tbody tr').nth(1).locator('td').evaluate(numberFits)).toBe(true);
     await long.getByRole('button', { name: 'Detalles de Hyakutake', exact: true }).click();
-    await expect(p.pages[1].getByRole('dialog').locator('tbody tr').nth(1)).toContainText('317858890240 km');
-    expect(await p.pages[1].getByRole('dialog').locator('.unbroken-number').evaluate(numberFits)).toBe(true);
+    await expect(p.pages[1].getByRole('dialog').locator('tbody tr').nth(1)).toContainText('317859 MKm');
+    expect(await p.pages[1].getByRole('dialog').locator('tbody tr').nth(1).locator('td').evaluate(numberFits)).toBe(true);
     await p.pages[1].getByRole('button', { name: 'Cerrar detalles', exact: true }).click();
     const measures = await long.locator('.game-card').evaluate((card) => ({ width: card.getBoundingClientRect().width, height: card.getBoundingClientRect().height,
       tableWidth: card.querySelector('table')!.getBoundingClientRect().width,
@@ -154,7 +154,7 @@ for (const direction of ['HIGH', 'LOW'] as const) test(`B14 Encke/Borrelly ${dir
     await p.pages[1].getByLabel('Tu nombre', { exact: true }).fill('Otra mesa'); await p.pages[1].getByRole('button', { name: 'Entrar', exact: true }).click();
     await expect(p.pages[1].getByRole('heading', { name: 'Ya estás en la sala' })).toBeVisible();
     await expect(p.host.getByLabel('Baraja', { exact: true })).toHaveValue('');
-    await p.host.getByLabel('Baraja', { exact: true }).selectOption(JSON.stringify({ id: 'generica', contentVersion: 2 }));
+    await p.host.getByLabel('Baraja', { exact: true }).selectOption(JSON.stringify({ id: 'generica', contentVersion: 4 }));
     await expect(p.host.getByRole('button', { name: 'Iniciar partida', exact: true })).toBeEnabled(); await p.host.getByRole('button', { name: 'Iniciar partida', exact: true }).click();
     for (const page of p.pages) {
       await expect(page.getByRole('heading', { level: 1 })).toContainText('Partida · KARTA3 — Baraja genérica');
@@ -172,7 +172,7 @@ for (const direction of ['HIGH', 'LOW'] as const) test(`B14 Encke/Borrelly ${dir
 
 test('B14 ejecución normal: Sistema Solar con humano y Fácil/Difícil hasta resultado, recarga y otra sala', async ({ browser, baseURL }, info) => {
   test.setTimeout(90_000);
-  const p = await manualTable(browser, baseURL!, { count: 1, bots: ['EASY', 'HARD'], deckId: 'sistema-solar', version: 2, review: 0, turn: 60 });
+  const p = await manualTable(browser, baseURL!, { count: 1, bots: ['EASY', 'HARD'], deckId: 'sistema-solar', version: 4, review: 0, turn: 60 });
   const finals = new Set<number>(); let moves = 0;
   try {
     while ((await readRoom(p.host)).status === 'IN_GAME') {

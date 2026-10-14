@@ -1,12 +1,12 @@
 {
-  "schemaVersion": 1,
-  "contentVersion": 2,
+  "schemaVersion": 2,
+  "contentVersion": 4,
   "id": "generica",
   "name": "KARTA3 — Baraja genérica",
   "subtitle": "",
   "description": "Baraja abstracta de 58 cartas para aprender a jugar a KARTA3 y apoyar el desarrollo inicial. Cada carta tiene tres atributos, Círculo, Triángulo y Cuadrado, con valores jugables únicos del 1 al 58 por atributo y un indicador del atributo activo cuando aparece como carta central.",
   "notes": "Prototipo editorial autorizado por el autor el 01/10/2026 en el hilo Gestor de Barajas. La documentación genérica de 58 cartas define las escalas y los nombres de los atributos, pero no una tabla completa de valores e indicadores por carta. Con autorización expresa se crean tres permutaciones reproducibles separadas y un ciclo de indicadores Círculo, Triángulo, Cuadrado (20, 19 y 19 cartas). Este reparto es una decisión de este prototipo y no una obligación del contrato. No se declara probado su equilibrio. No se incorporan reglas de los antecedentes de cuatro atributos ni del borrador histórico de 50 cartas. Procedimiento reproducible: para cada atributo y cada id de carta, calcular SHA-256 de la cadena UTF-8 generica-v1:<id-atributo>:<id-carta>, ordenar por el hexadecimal ascendente (desempate por id de carta) y asignar las posiciones 1 a 58. Por ejemplo, generica-v1:atributo1:carta-001. Asignar el indicador recorriendo las cartas de carta-001 a carta-058 en el ciclo atributo1, atributo2, atributo3. El orden del archivo no determina el reparto ni el robo.",
-  "instructions": "Los tres atributos son abstractos y no tienen unidades. El número mostrado coincide intencionadamente con el valor jugable de este prototipo: playValue es un entero y displayValue es su representación textual. Cuando una carta se usa como indicadora, se consulta su atributo principal; al jugarla desde la mano, se compara únicamente el valor del atributo activo. Círculo, Triángulo y Cuadrado mantienen la convención visual de referencia rojo, amarillo y azul, respectivamente. El formato 1 registra los nombres y los datos; los símbolos, colores y el icono común para la ausencia de imagen pertenecen a la presentación de la aplicación.",
+  "instructions": "Los tres atributos son abstractos y no tienen unidades. El número mostrado coincide intencionadamente con el valor jugable de este prototipo: playValue es un entero y displayValue es su representación textual. Cuando una carta se usa como indicadora, se consulta su atributo principal; al jugarla desde la mano, se compara únicamente el valor del atributo activo. Círculo, Triángulo y Cuadrado mantienen la convención visual de referencia rojo, amarillo y azul, respectivamente. El formato 2 registra los nombres y los datos; los símbolos, colores y el icono común para la ausencia de imagen pertenecen a la presentación de la aplicación.",
   "attributes": [
     {
       "id": "atributo1",

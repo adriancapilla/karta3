@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import type { InitialGameRoomView } from '../shared/contracts/room';
 import { countdownSeconds } from './roomState';
+import { cardDisplayValue } from './GameCard';
 
 export function RoundReview({ room, label }: { room: InitialGameRoomView; label: (id: string) => string }) {
   const review = room.game.interaction.review!;
@@ -16,6 +17,6 @@ export function RoundReview({ room, label }: { room: InitialGameRoomView; label:
     {room.settings.reviewSeconds > 0 && <p>Revisión de ronda · siguiente etapa en <span role="timer" aria-live="off">00:{String(remaining).padStart(2, '0')}</span></p>}
     <p>Ganó {label(review.result.winnerPlayerId)}{review.result.awardedCardCount > 0 ? ` · +${review.result.awardedCardCount} puntos` : ' · desempate sin puntos nuevos'}</p>
     {review.result.nextOpenerPlayerId && <p>Abre {label(review.result.nextOpenerPlayerId)}</p>}
-    <ol>{review.result.ranking.map((entry) => <li key={entry.playerId}>{label(entry.playerId)} · {entry.card.name} · Jugable: {entry.playValue}</li>)}</ol>
+    <ol>{review.result.ranking.map((entry) => <li key={entry.playerId}>{label(entry.playerId)} · {entry.card.name} · {room.settings.attributeValueMode === 'PLAY_VALUE' ? `1-58: ${entry.playValue}` : `Dato: ${cardDisplayValue(entry.card.values[room.game.round.activeAttributeId])}`}</li>)}</ol>
   </div>;
 }

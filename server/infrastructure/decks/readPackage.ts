@@ -4,13 +4,14 @@ import { readStrictJson } from './strictJson.js';
 import { escapedPackageIssue, isObject, reliableAvailability, validatePackageFormat, validatePackageFormat2, type PackageError, type ParsedPackage } from './packageFormat.js';
 import { contained, imageReferences, validateImages, type ValidatedImage } from './resources.js';
 
-export type PackageValidation<Schema extends 1 | 2 = 1> = { valid: boolean; available?: boolean; errors: PackageError[]; data?: ParsedPackage<Schema>; images: ReadonlyMap<string, ValidatedImage> };
+export type PackageValidation<Schema extends 1 | 2 = 1 | 2> = { valid: boolean; available?: boolean; schemaVersion?: unknown; errors: PackageError[]; data?: ParsedPackage<Schema>; images: ReadonlyMap<string, ValidatedImage> };
 
 export async function validatePackage(directory: string): Promise<PackageValidation> {
-  return readPackage(directory, validatePackageFormat, reliableAvailability);
+  const result = await readPackage(directory, validatePackageFormat, reliableAvailability);
+  return { ...result, errors: result.errors.map(escapedPackageIssue) };
 }
 
-/** Entrada independiente para fixtures V2, sin cambiar preparación/arranque del conjunto B14. */
+/** Entrada explícita V2 para comprobar entregas y fixtures. */
 export async function validateFormat2Package(directory: string): Promise<PackageValidation<2>> {
   const result = await readPackage(directory, validatePackageFormat2, (metadata) => isObject(metadata) && metadata.schemaVersion === 2
     && isObject(metadata.publication) && typeof metadata.publication.available === 'boolean' ? metadata.publication.available : undefined);
@@ -38,5 +39,5 @@ async function readPackage<Schema extends 1 | 2>(directory: string,
   const format = validate(metadata, collection, path.basename(path.resolve(directory)));
   const resources = await validateImages(directory, imageReferences(metadata, collection));
   errors.push(...format.errors, ...resources.errors);
-  return { valid: errors.length === 0, available, errors, ...(errors.length === 0 ? { data: format.data } : {}), images: resources.images };
+  return { valid: errors.length === 0, available, schemaVersion: isObject(metadata) ? metadata.schemaVersion : undefined, errors, ...(errors.length === 0 ? { data: format.data } : {}), images: resources.images };
 }

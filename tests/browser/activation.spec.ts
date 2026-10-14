@@ -34,9 +34,9 @@ for (const width of [390, 1280]) test(`AGV2-04–08 genérica 2 normal: dos sesi
   try {
     await Promise.all([host.goto(base), guest.goto(base)]);
     await host.getByRole('button', { name: 'Crear sala', exact: true }).click();
-    await expect(host.getByRole('option', { name: 'KARTA3 — Baraja genérica · v2' })).toHaveCount(1);
+    await expect(host.getByRole('option', { name: 'KARTA3 — Baraja genérica · v4' })).toHaveCount(1);
     await expect(host.getByLabel('Baraja', { exact: true })).toHaveValue('');
-    expect((await current(host)).settings).toEqual({ deckId: null, deckContentVersion: null, hostPlays: true, turnSeconds: 30, forceTieBreak: false, reviewSeconds: 5 });
+    expect((await current(host)).settings).toEqual({ deckId: null, deckContentVersion: null, hostPlays: true, turnSeconds: 30, forceTieBreak: false, reviewSeconds: 5, attributeValueMode: 'PLAY_VALUE', optimizeForMobile: false });
     expect(browserConfigurations).toBe(0);
     const code = (await host.locator('.code').textContent())!; expect(code).toMatch(/^\d{6}$/);
     await guest.getByLabel('Código de sala').fill(code); await guest.getByLabel('Tu nombre', { exact: true }).fill('Ana');
@@ -48,9 +48,9 @@ for (const width of [390, 1280]) test(`AGV2-04–08 genérica 2 normal: dos sesi
       await expect(page.locator('.participant-list li strong')).toHaveText(['Ana', 'Jugador 1']);
     }
     expect((await hc.cookies()).find((c) => c.name === 'karta3_session')!.value).not.toBe((await gc.cookies()).find((c) => c.name === 'karta3_session')!.value);
-    await host.getByLabel('Baraja', { exact: true }).selectOption(JSON.stringify({ id: 'generica', contentVersion: 2 }));
+    await host.getByLabel('Baraja', { exact: true }).selectOption(JSON.stringify({ id: 'generica', contentVersion: 4 }));
     for (const page of [host, guest]) {
-      await expect(page.getByRole('heading', { name: 'KARTA3 — Baraja genérica · v2' })).toBeVisible({ timeout: 2000 });
+      await expect(page.getByRole('heading', { name: 'KARTA3 — Baraja genérica · v4' })).toBeVisible({ timeout: 2000 });
       await expect(page.locator('.deck-card')).toContainText(approvedGeneric.description);
       await expect(page.locator('.neutral-card')).toHaveAttribute('aria-hidden', 'true');
       await expect(page.locator('.deck-card img')).toHaveCount(0);
@@ -59,15 +59,15 @@ for (const width of [390, 1280]) test(`AGV2-04–08 genérica 2 normal: dos sesi
     await expect(guest.getByRole('combobox')).toHaveCount(0);
     const acceptedHost = await current(host); const acceptedGuest = await current(guest);
     expect(acceptedHost.selectedDeck).toEqual(approvedGeneric); expect(acceptedGuest.selectedDeck).toEqual(approvedGeneric);
-    expect(acceptedHost.settings).toMatchObject({ deckId: 'generica', deckContentVersion: 2 });
+    expect(acceptedHost.settings).toMatchObject({ deckId: 'generica', deckContentVersion: 4 });
     expect(acceptedHost.participant.role).toBe('HOST'); expect(acceptedGuest.participant.role).toBe('GUEST');
-    expect(JSON.stringify(acceptedHost)).not.toMatch(/cards|playValue|sessionId|instructions|publication|imageRef|ASSETS|baraja\.json/);
+    expect(JSON.stringify(acceptedHost)).not.toMatch(/"cards"\s*:|"playValue"\s*:|"sessionId"\s*:|"publication"\s*:|"imageRef"\s*:|ASSETS|baraja\.json/);
     await host.screenshot({ path: `test-results/AGV2-${width}-host.png`, fullPage: true });
     await guest.screenshot({ path: `test-results/AGV2-${guestWidth}-guest.png`, fullPage: true });
     expect(browserConfigurations).toBe(1);
     await Promise.all([host.reload(), guest.reload()]);
     for (const [page, accepted] of [[host, acceptedHost], [guest, acceptedGuest]] as const) {
-      await expect(page.getByRole('heading', { name: 'KARTA3 — Baraja genérica · v2' })).toBeVisible();
+      await expect(page.getByRole('heading', { name: 'KARTA3 — Baraja genérica · v4' })).toBeVisible();
       await expect(page.locator('.participant-list li strong')).toHaveText(['Ana', 'Jugador 1']);
       await expect.poll(async () => (await current(page)).participants.every((p) => p.presence === 'CONNECTED')).toBe(true);
       const recovered = await current(page);
@@ -80,7 +80,7 @@ for (const width of [390, 1280]) test(`AGV2-04–08 genérica 2 normal: dos sesi
     await expect(guest.getByRole('combobox')).toHaveCount(0);
     hs = await authenticatedSocket(base, hc); gs = await authenticatedSocket(base, gc);
     const beforeErrors = await current(host);
-    const v2: ConfigureRoomRequest = { requestId: 'normal-repeat', roomId: acceptedHost.id, change: { field: 'deck', value: { id: 'generica', contentVersion: 2 } } };
+    const v2: ConfigureRoomRequest = { requestId: 'normal-repeat', roomId: acceptedHost.id, change: { field: 'deck', value: { id: 'generica', contentVersion: 4 } } };
     expect(await configure(gs, { ...v2, requestId: 'guest-forbidden' })).toMatchObject({ ok: false, error: { code: 'FORBIDDEN' } });
     expect(await configure(hs, { ...v2, requestId: 'old-version', change: { field: 'deck', value: { id: 'generica', contentVersion: 1 } } })).toMatchObject({ ok: false, error: { code: 'DECK_VERSION_MISMATCH' } });
     expect(await configure(hs, v2)).toMatchObject({ ok: true, room: { selectedDeck: approvedGeneric } });
