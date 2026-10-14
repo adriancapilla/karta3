@@ -6,6 +6,12 @@ on:
   pull_request:
     branches: [main]
   workflow_dispatch:
+    inputs:
+      chrome_diagnostic:
+        description: 'Regex para diagnóstico focal; vacío ejecuta la batería completa. No acredita integración.'
+        required: false
+        default: ''
+        type: string
 
 permissions:
   contents: read
@@ -16,11 +22,11 @@ concurrency:
 
 jobs:
   checks:
-    name: Tipos, análisis, pruebas, arquitectura y compilación
+    name: ${{ github.event_name == 'workflow_dispatch' && inputs.chrome_diagnostic != '' && 'Diagnóstico focal Chrome (no batería completa)' || 'Tipos, análisis, pruebas, arquitectura y compilación' }}
     runs-on: ubuntu-24.04
-    # B13: batería completa vigente; conservar el margen 20 min Chrome / 30 min trabajo.
-    # Un trabajador y cero reintentos; comprobar su suficiencia con la ejecución remota.
-    timeout-minutes: 30
+    # B15: CI 38592289027 agotó 20 min tras 144/152 resultados, con un fallo Solar pendiente.
+    # Margen 25 min Chrome / 35 min trabajo; misma batería, un trabajador y cero reintentos.
+    timeout-minutes: 35
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
         with:
@@ -35,7 +41,7 @@ jobs:
       - name: Instalar Chrome y dependencias de navegador
         run: npx playwright install --with-deps chrome
       - name: Recorridos de Chrome
-        timeout-minutes: 20
+        timeout-minutes: 25
         shell: bash
         run: |
           node dist-server/server/main.js > "$RUNNER_TEMP/karta3-server.log" 2>&1 &
@@ -53,11 +59,29 @@ jobs:
             cat "$RUNNER_TEMP/karta3-server.log"
             exit 1
           fi
-          npx playwright test
+          if [ -n "$CHROME_DIAGNOSTIC" ]; then
+            npx playwright test --grep "$CHROME_DIAGNOSTIC" --reporter=list,json
+          else
+            npx playwright test --reporter=list,json
+          fi
         env:
           CI: 'true'
+          CHROME_DIAGNOSTIC: ${{ github.event_name == 'workflow_dispatch' && inputs.chrome_diagnostic || '' }}
+          PLAYWRIGHT_JSON_OUTPUT_FILE: ${{ runner.temp }}/karta3-browser.json
+      - name: Conservar resultados y diagnósticos de Chrome
+        if: always()
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        with:
+          name: karta3-browser-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            ${{ runner.temp }}/karta3-browser.json
+            test-results/
+          if-no-files-found: warn
+          retention-days: 7
 
   image:
+    # El diagnóstico manual focal no construye imágenes ni sustituye CI completa.
+    if: github.event_name != 'workflow_dispatch' || inputs.chrome_diagnostic == ''
     name: Imagen Linux amd64 y Compose/Caddy HTTPS
     runs-on: ubuntu-24.04
     timeout-minutes: 30
