@@ -1,0 +1,141 @@
+{
+  "date": "2026-10-14T12:24:37.660Z",
+  "browser": "155.0.8059.40",
+  "viewport": {
+    "width": 1920,
+    "height": 1080,
+    "dpr": 1,
+    "scale": 1
+  },
+  "pageHeight": 1150,
+  "residual": 70,
+  "useful": 1368,
+  "panels": {
+    "people": {
+      "x": 268.5,
+      "y": 167.109375,
+      "width": 264,
+      "height": 278,
+      "bottom": 445.109375
+    },
+    "initial-state": {
+      "x": 1372.5,
+      "y": 592.109375,
+      "width": 264,
+      "height": 260,
+      "bottom": 852.109375
+    },
+    "plays": {
+      "x": 544.5,
+      "y": 167.109375,
+      "width": 1092,
+      "height": 413,
+      "bottom": 580.109375
+    },
+    "hand": {
+      "x": 544.5,
+      "y": 592.109375,
+      "width": 816,
+      "height": 454,
+      "bottom": 1046.109375
+    }
+  },
+  "cards": [
+    {
+      "box": {
+        "x": 561.5,
+        "y": 184.109375,
+        "width": 230,
+        "height": 321,
+        "bottom": 505.109375
+      },
+      "name": "Europa",
+      "nameFont": "16px",
+      "valueFont": "14px"
+    },
+    {
+      "box": {
+        "x": 837.5,
+        "y": 184.109375,
+        "width": 230,
+        "height": 321,
+        "bottom": 505.109375
+      },
+      "name": "Plutón",
+      "nameFont": "16px",
+      "valueFont": "14px"
+    },
+    {
+      "box": {
+        "x": 1113.5,
+        "y": 184.109375,
+        "width": 230,
+        "height": 321,
+        "bottom": 505.109375
+      },
+      "name": "Haumea",
+      "nameFont": "16px",
+      "valueFont": "14px"
+    },
+    {
+      "box": {
+        "x": 1389.5,
+        "y": 184.109375,
+        "width": 230,
+        "height": 321,
+        "bottom": 505.109375
+      },
+      "name": "Tritón",
+      "nameFont": "16px",
+      "valueFont": "14px"
+    },
+    {
+      "box": {
+        "x": 285.5,
+        "y": 644.109375,
+        "width": 230,
+        "height": 321,
+        "bottom": 965.109375
+      },
+      "name": "Encke",
+      "nameFont": "16px",
+      "valueFont": "14px"
+    },
+    {
+      "box": {
+        "x": 561.5,
+        "y": 644.109375,
+        "width": 230,
+        "height": 321,
+        "bottom": 965.109375
+      },
+      "name": "Eris",
+      "nameFont": "16px",
+      "valueFont": "14px"
+    },
+    {
+      "box": {
+        "x": 837.5,
+        "y": 644.109375,
+        "width": 230,
+        "height": 321,
+        "bottom": 965.109375
+      },
+      "name": "Titán",
+      "nameFont": "16px",
+      "valueFont": "14px"
+    },
+    {
+      "box": {
+        "x": 1113.5,
+        "y": 644.109375,
+        "width": 230,
+        "height": 321,
+        "bottom": 965.109375
+      },
+      "name": "Wild 2",
+      "nameFont": "16px",
+      "valueFont": "14px"
+    }
+  ]
+}

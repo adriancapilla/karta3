@@ -1,6 +1,6 @@
 # B15 — Consumidor formato 2, Valor del Atributo y presentación compacta
 
-**Estado:** especificación preparada sobre acuerdos cerrados del autor; pendiente de incorporación, implementación y verificación. Ningún criterio siguiente está superado por redactarlo.
+**Estado actual, 14/10/2026:** implementado y verificado técnicamente en local (F1–F3), con evidencia nueva en §12. Revisión visual humana/dispositivos físicos e imagen Linux pendientes. C09–C10 permanecen parciales. Las secciones de preparación y sus estados anteriores se conservan como antecedente.
 
 **Fecha:** 14/10/2026. **Tipo:** incremento técnico y funcional en tres fases. **Base observada:** `E:\KARTA3\KARTA3_IA\APP\karta3`, rama existente `feat/b14-sistema-solar`, HEAD `b2b29153d6e072c4735edc5d3ff4dce43bee0dd6`. B15 estaba libre. Conservar B14, el cambio previo de `PROCESO_SDD.md`, el contrato V2 y `docs/diseno/DISENO_VALOR_ATRIBUTO_Y_PRESUPUESTOS.md`/`valor-atributo-propuestas/` pendientes de registrar. No crear rama/checkout, revertir B14 completo o incluir trabajo ajeno por un añadido indiscriminado a Git.
 
@@ -26,7 +26,7 @@ No hay contradicción funcional que requiera otra decisión antes de especificar
 
 **Fuera:** edición científica o activación de maestros por Implementación; nuevos campos editoriales, niveles/bots/reglas, presentación Ambos, preferencias individuales, abandono/revancha/expulsión, vigilancia técnica, rediseño de resultados/espera, persistencia, publicación, despliegue y edición de fuentes generales TFM. Añadir controles/información a la espera no es rediseñarla.
 
-## 2. Dependencia editorial: activación pendiente
+## 2. Dependencia editorial: estado de preparación (resuelta según §12)
 
 En la lectura de preparación ambas candidatas tenían `schemaVersion: 2`, `contentVersion: 3`, 58 cartas y `publication.available: false`. La aprobación está vinculada al manifiesto 3 cuyo SHA-256 es `a14fdc710885999fb42699f91e1bd9b0ef644a24710bff418b5525ac2831d886`. Esto identifica la fuente documental; no sustituye la verificación completa futura de archivos por Implementación.
 
@@ -169,7 +169,7 @@ No declarar B15 completo al terminar F1 o F2. Cada fase usa comprobaciones focal
 | E6 | Disponible V1 junto a una V2 válida: preparación/arranque falla por incompatibilidad sin catálogo parcial; la validación histórica V1 permanece válida. |
 | E7 | Cancelación A con consulta abierta, nueva sala B, respuesta/evento A atrasado: B no recibe instrucciones/avisos/configuración de A; retención/caducidad A no libera B. |
 
-Todos los criterios quedan **pendientes de ejecución**:
+Lista conservada de la preparación: todos los criterios estaban **pendientes de ejecución**. Sus resultados técnicos actuales y límites están en §12; estos checks históricos no sustituyen esa evidencia:
 
 - [ ] **B15-01 — Fuente/copia:** entrega activada nueva recibida, aprobación 3 conservada/delta únicamente autorizado, versiones exactas iguales y huellas de JSON/recursos completas; genérica/Solar con cartas/rangos/indicadores/recursos aprobados intactos.
 - [ ] **B15-02 — Formato:** matriz completa V2 §6, válidos/invalidos, NFC/descompuestos, base/marcas/uniones, controles/bordes, unidad vacía y separadores, diez/once conjuntos y cada tope M/M+1 por puntos de código; versiones/propiedades/duplicados y errores localizables. V1 histórico sin restricciones nuevas.
@@ -223,3 +223,106 @@ Decisiones funcionales cerradas: modos/defaults/roles/concurrencia existentes, d
 Implementación devuelve al autor fases completadas, archivos/commits propios si se encargan, pruebas/fallos reparados/huellas/capturas/medidas y límites, junto a conclusiones para Coordinación/Arquitectura sobre consumidor/V2, Room/contratos/proyección y estado de R01–R04. Actualiza README y descripción APP; no edita TFM, Diseño, aprobaciones/candidatas o maestros, ni envía mensajes a otros hilos. Sin push/PR/GHCR/despliegue.
 
 **Evidencia de esta preparación:** lectura de fuentes/contratos/código, vistas de dos referencias gráficas, lectura de metadatos de las candidatas y huellas documentales de aprobación/manifiesto. No ejecuta validador, build, pruebas de producto/maqueta, copia, activación o experimentos de código. No acredita F1–F3, B15-01–14, R01–R04 o formato 2 implementado/verificado. [Prompt de Implementación](PROMPT_IMPLEMENTACION_BLOQUE_15.md).
+
+## 12. Incorporación, implementación y cierre técnico — 14/10/2026
+
+### Base y separación del trabajo
+
+Carpeta única `APP/karta3`, rama conservada `feat/b14-sistema-solar`. Base efectiva inicial `b2b29153d6e072c4735edc5d3ff4dce43bee0dd6`. No ramas/checkouts nuevos, restauraciones, modificaciones TFM/Diseño/ASSETS ni publicación. Los 90 archivos de preparación ajenos se contrastaron con sus SHA-256 iniciales (ninguna diferencia) y quedaron separados en **f534ffe**. La primera validación independiente mientras faltaba la activación quedó en **2b5ff9f**, sin cambiar entonces las copias normales. Tras recibir la entrega, código/copias/fixtures en **ddcbbc8**; distinción validez/compatibilidad y ensayo compacto de avisos en **91a9939e3ee8b7541f46cfe6d059b46bfa23e906**. El cierre documental posterior no cambia esa implementación revisada.
+
+Archivos de la entrega propia: [lista completa](evidencias/B15/archivos-modificados.txt), separada de los documentos previos registrados en f534ffe.
+
+### F1 — entrega y consumidor comprobados
+
+El autor entregó `ASSETS/Entregas/2026-10-14-formato-2-contenido-4`: ambas 2/4, disponibles. Se verificaron aprobación 3, manifiestos, delta textual exacto y lista completa. Solo contentVersion 3→4 en ambos JSON y available false→true en metadatos; no reserialización. **63/63 archivos origen/APP/blob Git coinciden**, 58 cartas por baraja y 59 imágenes Solar conservadas respecto a 3. Las 126 entradas del manifiesto anterior y sus huellas se verificaron; la cifra 141 archivos previos conservados procede del registro de Gestor, sin atribuirle validación de aplicación. ASSETS se trató solo en lectura.
+
+| JSON | SHA-256 origen = APP = Git |
+|---|---|
+| genérica/baraja.json | `b7855547acf56a728618f1e71be80cb19ca5c54a6ce0612cc3bee753270d2bd4` |
+| genérica/cartas.json | `c2896ccae66d0119b808db7adea72cca7b442a283bf576e0cfaa7de2628c5c9b` |
+| Solar/baraja.json | `3e31db300c706738e69d743703f2bd1d4d027b2b08743313fe54d15eb6943e44` |
+| Solar/cartas.json | `bce5740a4ba3daf8da60ffad88a2cbc07271e95baae44bee078d0984973fa7fa` |
+
+Manifiesto 4 original SHA-256 `ce2fb8cbb8c37b9b123667f4fc872aeaf2d905e51877e9200ab9474b681f857c`; manifiesto 3 `a14fdc710885999fb42699f91e1bd9b0ef644a24710bff418b5525ac2831d886`; aprobación 3 `b360d3880a3214cf0b5c27474a2007f3639467b0c62b67454a99eb0b87f21cdb`. [Copia/inventario](evidencias/B15/copia-2-4.json), [manifiesto recibido](evidencias/B15/MANIFIESTO_SHA256.json), [delta](evidencias/B15/DELTA_3_A_4.json) y [registro de Gestor](evidencias/B15/REGISTRO_ACTIVACION.md). Atributos Git específicos conservan los bytes de estos certificados; el catálogo sigue ignorado/generado.
+
+El [contraste de cierre](evidencias/B15/cierre-huellas.json) vuelve a verificar origen/APP/índice y certificados. Tras aplicar los atributos Git se volvió a registrar explícitamente el trío para evitar la normalización previa de finales de línea; los bytes de APP/ASSETS no cambiaron.
+
+`decks:validate` acepta V1 histórico/V2; el conjunto normal distingue **valid** de **compatible**. Una V1 válida disponible se informa «válida; incompatible con este consumidor» y bloquea preparación/arranque, sin parcial. V2 inválida/indeterminables bloquean; borradores reconocidos/false fiables se informan/excluyen y su validación individual falla si son inválidos. Se comprobó rechazo por proceso compilado antes de escuchar y conservación del catálogo anterior.
+
+### Entorno, comandos y resultados reales
+
+Windows, PowerShell, Node **24.19.0** en `C:\Users\Adrian\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\bin\node.exe`; npm 11.6.2 mediante el wrapper local T03 (sin instalación global), TypeScript 6.0.3, Vitest 5.0.2, Playwright 1.63.0. Chrome efectivo final **155.0.8059.40**, headless, DPR/escala visual 1, emulación CSS; no teléfono/monitor físico. ICU **78.3**, Unicode **17.0**, `Intl.Segmenter('es', {granularity:'grapheme'})`. Sus 766 fronteras se contrastan con el corpus oficial versionado. Fuentes efectivas consultadas por CDP: Segoe UI / SegoeUI-Bold; [registro](evidencias/B15/fuentes-efectivas.json).
+
+| Comprobación ejecutada | Resultado nuevo |
+|---|---|
+| Base focal lector/JSON, antes de editar | 80/80 |
+| Validación independiente V2, antes de entrega | 64/64; primer montaje falló por prefijo de limpieza y código esperado, reparados y registrados |
+| `npm run decks:validate -- --package barajas/generica` y `... sistema-solar`; `npm run decks:prepare` | Salida 0, ambas válidas/disponibles, catálogo de dos |
+| F1 lector/recursos/HTTP/arranque con build vigente | 156/156; construcción/arranque aislados con guard real de ASSETS |
+| F2 focal aplicación/cliente y después configuración/inicio/Socket.IO | 180/180 y 54/54 (selecciones solapadas, no sumar como pruebas distintas) |
+| `npm run check`, final 14:53 Europe/Madrid | **538/538**, 43 archivos; tipos/lint/build correctos, **70 módulos** sin imports prohibidos/ciclos |
+| Primera integración, 15 archivos, `--workers=2` | 103/127; 24 fallos tratados, no declarada superada |
+| Reensayo focal de reparación/B15/regresión, 12 archivos y filtro documentado | 62/65; tres mediciones de prueba corregidas |
+| Cierre visual focal, seis archivos/filtro | 27/27 |
+| Cierre literal F3, cuatro archivos/filtro | **21/21**, incluye 18 recorridos B15, partida normal, origen único y timeout real |
+| B15 compacta: aviso propio, desconexión/F5 y automático, ensayo añadido | **1/1**, reloj controlado y conexiones reales |
+| Última compilación de compatibilidad: Solar normal + origen único | **2/2**, adaptadores normales; no fixtures/respuestas simuladas en instalación normal |
+| Captura comparable/ronda 6 legal y consulta de fuentes efectivas | 1/1 cada montaje auxiliar; no pruebas humanas |
+
+No se suman repeticiones ni se afirma una batería de navegador completa pasada. Los 24 fallos iniciales tienen un éxito posterior con el mismo archivo/título en los reensayos focales; el registro estructurado lo contrasta. Los cierres históricos B04–B14 permanecen intactos. Logs brutos locales bajo `playwright-report/b15/` están ignorados; el [registro estructurado](evidencias/B15/resultados.json) conserva comandos/selecciones/resultados y fallos, y las capturas/medidas necesarias se versionan.
+
+Selección inicial exacta: `format2Presentation.spec.ts solar.spec.ts activation.spec.ts decks.spec.ts configuration.spec.ts initialGame.spec.ts tableLayout.spec.ts pcTable02.spec.ts centeredTable03.spec.ts manualGame.spec.ts timedGame.spec.ts timedRealGame.spec.ts bots.spec.ts cancelGame.spec.ts resultNotice.spec.ts`.
+
+Última selección F3 completa: `npm run test:browser -- --workers=2 format2Presentation.spec.ts timedRealGame.spec.ts solar.spec.ts proxy.spec.ts --grep 'B15|B08-19|B14 ejecución normal|T05 origen'`. Ensayo añadido: `npm run test:browser -- --workers=2 format2Presentation.spec.ts --grep 'compacta: primer aviso'`. Último reensayo del consumidor: `npm run test:browser -- --workers=2 solar.spec.ts proxy.spec.ts --grep 'B14 ejecución normal|T05 origen'`.
+
+Se usaron instancias propias con puertos efímeros y `KARTA3_BASE_URL` definido por el montaje, nunca el servidor del autor. El proceso compilado normal final sirvió ambas 2/4 en `http://127.0.0.1:49980` (PID 26072 durante el ensayo); [instantánea del ensayo](evidencias/B15/normal-instance.json). JS servido SHA-256 `c8a92a4581a088ce2a9f27c2cc5672d207dccffb781249fdb95fa03beaf252f6` y CSS `6504f0e1f9a294b278be670c4a5cf5c5705895de18577cf574e95258f5d76d31` coinciden con build. Proceso vivo al cerrar comprobación, stderr vacío y ningún acceso a ASSETS; el montaje lo cerró después y eliminó solo su instalación temporal. Estos puertos ya no son servicios disponibles ni despliegue.
+
+### Tiempo real y tiempo controlado
+
+Timeout real final: genérica 2/4, SystemClock/TimerScheduler/CryptoCardPermutation; inicio **14:03:00.537**, límite **14:03:15.537**, transporte activo cerrado **14:03:00.606**, observado desde otra sesión **14:03:15.969**, 431 ms después del límite. Recuperación del mismo participante, contador propio 1, carta más antigua y modo TIMEOUT; [contexto/evento](evidencias/B15/vencimiento-real.json). No se acortaron los 15 segundos.
+
+Plazos B03/revisión/retención/carreras, parciales, pérdida de ack, inactividad/desempate y montaje de escenas usan reloj sustituido identificado. HTTP/Socket.IO son reales, y las trazas aplican cartas/jugadas legales al motor; nunca puntos asignados ni saltos de fase. Una partida normal Solar con humano y EASY/HARD completó tres rondas finales, 45 puntos, resultado/recarga/otra sala, con entropía y tiempo normales. También se conservaron partidas genérica/humanos y mixtas 2–5 en la selección integrada. Ningún reloj controlado acredita media hora real.
+
+### Resultados por criterio (cobertura técnica local)
+
+| Criterio | Evidencia ejecutada / resultado |
+|---|---|
+| B15-01 | 63 archivos/manifiesto/copia/Git, delta exacto y recursos; correcto |
+| B15-02 | 64 ensayos V2, corpus 766, M/M+1/codepoints/10–11 conjuntos, escalar/NFC/base/control/bordes/duplicados/diagnóstico, V1 histórico; correcto |
+| B15-03 | Matriz preparación/carga y procesos compilados: V1 válida incompatible, V2 inválida, false fiable, indeterminables, vacío, catálogo ausente/corrupto/stale y sin parcial; correcto |
+| B15-04 | 59 recursos Solar reales por URL v4/huella; null/error/escape/junction; build/runtime sin ASSETS y JSON privados; correcto |
+| B15-05 | Defaults, selección/cambio/quitar, ficha/información exacta y catálogo ocho campos; correcto |
+| B15-06 | Nuevos campos estrictos, HOST jugador/observador, invitado/ajeno, no-op/replay/conflicto/concurrencia, vencimiento y reservas; correcto |
+| B15-07 | Dos sesiones/pestañas, pérdida de ack real, F5/sin reenvío, filtros de versiones/fases/contextos; correcto |
+| B15-08 | Ambos decks/modos, tres filas/dos columnas, símbolo propio/activo, Detalles sin J/nombre duplicado, revisión/desempate, datos iguales con rangos distintos y literal fecha/texto/espacios; correcto |
+| B15-09 | Información autorizada id/versión/instrucciones exactas, vacío, LF/HTML literal, cierre/cambio/quitar/anidado/foco; HTTP/ack/eventos seguros; correcto |
+| B15-10 | 1367/1368 útiles medidos, normal on/off equivalente desde 1368, resize sin acciones/reinicio/foco perdido; correcto |
+| B15-11 | Producto/ref final, PC/390/360/intermedio, cinco jugadores/observador/invitado, apertura/revisión/aviso/automático/desconexión; correcto técnicamente, aprobación humana pendiente |
+| B15-12 | Quinta por teclado/foco, consultas anidadas, carruseles independientes, mano en adquisición, iniciales de orden base/O, nombres repetidos, drag no juega y envío único; correcto |
+| B15-13 | Regresión legal humana/mixta/EASY/HARD, review 0/positiva, final/desempate/inactividad, B13/T04 y timeout real; correcto en montajes identificados |
+| B15-14 | Gate final, arquitectura semántica/imports/ciclos, documentación/copia/capturas/medidas/instrucciones; correcto localmente |
+
+### Comparación visual y límites medidos
+
+Se revisaron capturas de producto junto a las referencias finales del 14/10. Antes B14 y producto posterior se comparan con dos jugadores, mismos ids/adquisición/indicadora, 390×844/1920×844, revisión 2 s y plazo 30 s; cambios autorizados: copias 2/4, dos columnas/modo Dato, Información y nueva composición. La primera captura posterior de pruebas usaba 60 s; se hicieron además las comparables de 30 s, sin ocultar esa diferencia. La captura anterior no registró versión binaria de Chrome: se conserva esa limitación, no se afirma igualdad de PNG.
+
+| Perfil comparable | Altura antes → después | Ahorro local | Scroll residual posterior |
+|---|---|---|---|
+| genérica 390×844 | 1472 → 865 | 607 px | 21 px |
+| Solar 390×844 | 1445 → 855 | 590 px | 11 px |
+| genérica 1920×844 | 1055 → 1118 | **−63 px** (crece) | 274 px |
+| Solar 1920×844 | 1093 → 1118 | **−25 px** (crece) | 274 px |
+
+PC conserva 1400/1368, cartas 230×321, nombre 16 y valor 14 px; compacta base 220×188, nombre 18/valor 14, miniatura 32. Hay crecimiento/scroll legítimo por resumen, revisión, avisos o contenido; no alturas universales/recortes/fuentes dinámicas. El bloque Información aporta altura nueva: no se afirma ahorro PC. Referencia de juego alcanzada legalmente: cinco humanos, ronda 6, mazo 12, cuatro públicas y tres en mano activa; 25 puntos oficiales tras cinco rondas, ninguna asignación artificial. En 390×844: 358 útiles, altura 1033/residual 189; en PC 1920×1080: 1368 útiles, altura 1150/residual 70. Cartas/atributo/puntos y rol del actor difieren de los ejemplos de maqueta según la traza: el invitado no recibe Cancelar ni dirección editable tras apertura. [Comparación/medidas](evidencias/B15/comparacion.json) y [capturas](evidencias/B15/capturas/).
+
+Reparaciones registradas: prefijo de limpieza del montaje independiente; expectativas explícitas de copias/fixtures y dos columnas; viewport frente a ancho disponible; encabezado accesible absoluto que escapaba del carrusel; foco nativo tras añadir Información/cierre anidado; cabecera normal preservada; regla móvil antigua que colocaba autor arriba y reservaba 220 px verticales; miniatura sin espacio de línea sobrante; espacios internos literales; diagnóstico común V2 y separación validez/compatibilidad. El montaje auxiliar de comparación necesitó esperar a carga/ResizeObserver tras recuperación, y el ensayo de origen consultó una instancia ya cerrada: ambos se repararon y reejecutaron. No se maquillaron fallos como aprobaciones.
+
+### R01–R04, revisión y traslado
+
+R01–R04 quedan **cubiertos técnicamente por B15**: comparación genérica/Solar/modos/layouts/consultas; selección/foco/quinta/plazos; copias/huellas/unidades/rangos/recursos; gates/capturas/medidas y categorías de evidencia. No se marcan los checks históricos B14 ni se reescribe su §5/6. Pendiente aprobación visual del autor y comprobación en dispositivos físicos; admisibilidad de textos arbitrarios no prueba legibilidad universal ni equilibrio.
+
+Revisión semántica: Unicode/archivos/eligibilidad en infraestructura; selección/configuración/instrucciones/fijación/permisos/vistas en aplicación; Game y políticas sin cambios; DTO explícitos seguros; cliente sin parser temático/cálculo de resultados/temporización autoritativa. ESLint configura el contexto real de los scripts clásicos/módulos de Diseño recibidos, sin modificar sus bytes, excluirlos globalmente o debilitar producción/tests.
+
+README y mapa APP incluyen el recorrido manual: dos perfiles/segunda pestaña, Dato/móvil, selección/quitar/Info/F5, observador, indicadora/Detalles/identidades/scroll/quinta/resize, timeout/revisión/resultados/cancelación/otra sala. **Pendiente como recorrido humano**, no realizado por automatización. C09–C10 conservan cobertura parcial; Linux/CI/imagen, dispositivos físicos, revisión humana, comprensión/equilibrio/publicación/despliegue no acreditados.
+
+Para Coordinación/Arquitectura: consumidor V2 y ambas copias 2/4 disponibles entregados conjuntamente; V1 conserva validez histórica, incompatible si disponible en conjunto normal. Nuevos campos solo RoomSettings/fijados al iniciar, instrucciones versionadas en puertos/proyecciones autorizadas sin catálogo ampliado; normal/compacta medido y orden final correcto. Trasladar descripción efectiva a Aplicación §4/§§7.5–7.7 e Infraestructura §5.3/§9.5; no cambios de reglas, algoritmos o barajas por Implementación. Fuentes generales/Diseño/maestros intactos, sin mensajes a otros hilos ni publicación.

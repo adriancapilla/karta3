@@ -1,0 +1,20 @@
+{
+  "clock": "SystemClock",
+  "scheduler": "TimerScheduler",
+  "entropy": "CryptoCardPermutation",
+  "package": "generica/4 (formato 2)",
+  "roomId": "df65755e-394d-4d6d-851a-662798bebd19",
+  "gameId": "842ee225-882d-4069-9e53-319ebeadfb62",
+  "playerId": "32173e60-2a77-49f3-a4e8-29b03df6f807",
+  "turnId": "842ee225-882d-4069-9e53-319ebeadfb62:r1:p1",
+  "startedAt": "2026-10-14T12:03:00.537Z",
+  "endsAt": "2026-10-14T12:03:15.537Z",
+  "transportClosedAt": "2026-10-14T12:03:00.606Z",
+  "observedAt": "2026-10-14T12:03:15.969Z",
+  "observedAfterLimitMs": 431.208984375,
+  "counter": 1,
+  "recoveredPlayerId": "32173e60-2a77-49f3-a4e8-29b03df6f807",
+  "code": "91a9939e3ee8b7541f46cfe6d059b46bfa23e906",
+  "command": "npm run test:browser -- --workers=2 format2Presentation.spec.ts timedRealGame.spec.ts solar.spec.ts proxy.spec.ts --grep B15|B08-19|B14 ejecución normal|T05 origen",
+  "evidence": "Página activa cerrada; otra sesión observa y la cookie del contexto inicial recupera al mismo participante. Tiempo de 15 s sin sustitución; no equivale a retención real de 30 minutos."
+}

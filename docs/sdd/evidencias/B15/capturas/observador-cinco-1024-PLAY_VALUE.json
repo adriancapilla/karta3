@@ -1,0 +1,59 @@
+{
+  "viewport": {
+    "width": 1024,
+    "height": 768,
+    "dpr": 1,
+    "scale": 1
+  },
+  "contentWidth": 977,
+  "composition": {
+    "x": 16,
+    "y": 102.109375,
+    "width": 977,
+    "height": 325,
+    "bottom": 427.109375
+  },
+  "layout": "compact",
+  "padding": "16px",
+  "bodyWidth": 1009,
+  "pageWidth": 1009,
+  "height": 768,
+  "residual": 0,
+  "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+  "panels": {
+    "people": {
+      "x": 16,
+      "y": 102.109375,
+      "width": 977,
+      "height": 106,
+      "bottom": 208.109375
+    },
+    "initial-state": {
+      "x": 16,
+      "y": 218.109375,
+      "width": 977,
+      "height": 132,
+      "bottom": 350.109375
+    },
+    "plays": {
+      "x": 16,
+      "y": 360.109375,
+      "width": 977,
+      "height": 67,
+      "bottom": 427.109375
+    },
+    "hand": null,
+    "indicator": {
+      "x": 0,
+      "y": 0,
+      "width": 0,
+      "height": 0,
+      "bottom": 0
+    }
+  },
+  "cards": [],
+  "authors": [],
+  "stateCount": 1,
+  "capturedAt": "2026-10-14T12:04:09.587Z",
+  "browserVersion": "155.0.8059.40"
+}

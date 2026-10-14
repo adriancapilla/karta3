@@ -1,0 +1,491 @@
+{
+  "viewport": {
+    "width": 1415,
+    "height": 844,
+    "dpr": 1,
+    "scale": 1
+  },
+  "contentWidth": 1368,
+  "composition": {
+    "x": 16,
+    "y": 190.109375,
+    "width": 1368,
+    "height": 971.4375,
+    "bottom": 1161.546875
+  },
+  "layout": "normal",
+  "padding": "16px",
+  "bodyWidth": 1400,
+  "pageWidth": 1400,
+  "height": 1266,
+  "residual": 422,
+  "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+  "panels": {
+    "people": {
+      "x": 16,
+      "y": 190.109375,
+      "width": 264,
+      "height": 278,
+      "bottom": 468.109375
+    },
+    "initial-state": {
+      "x": 1120,
+      "y": 615.109375,
+      "width": 264,
+      "height": 546.4375,
+      "bottom": 1161.546875
+    },
+    "plays": {
+      "x": 292,
+      "y": 190.109375,
+      "width": 1092,
+      "height": 413,
+      "bottom": 603.109375
+    },
+    "hand": {
+      "x": 292,
+      "y": 615.109375,
+      "width": 816,
+      "height": 454,
+      "bottom": 1069.109375
+    },
+    "indicator": {
+      "x": 16,
+      "y": 615.109375,
+      "width": 264,
+      "height": 390,
+      "bottom": 1005.109375
+    }
+  },
+  "cards": [
+    {
+      "box": {
+        "x": 138,
+        "y": 207.109375,
+        "width": 230,
+        "height": 321,
+        "bottom": 528.109375
+      },
+      "name": "Carta 01",
+      "nameFont": "16px",
+      "valueFont": "14px",
+      "values": [
+        {
+          "text": "25",
+          "client": 98,
+          "scroll": 98,
+          "overflow": "visible",
+          "textOverflow": "clip"
+        },
+        {
+          "text": "51",
+          "client": 98,
+          "scroll": 98,
+          "overflow": "visible",
+          "textOverflow": "clip"
+        },
+        {
+          "text": "11",
+          "client": 98,
+          "scroll": 98,
+          "overflow": "visible",
+          "textOverflow": "clip"
+        }
+      ],
+      "columns": 2,
+      "image": {
+        "x": 151,
+        "y": 248.109375,
+        "width": 204,
+        "height": 80,
+        "bottom": 328.109375
+      }
+    },
+    {
+      "box": {
+        "x": 414,
+        "y": 207.109375,
+        "width": 230,
+        "height": 321,
+        "bottom": 528.109375
+      },
+      "name": "Carta 04",
+      "nameFont": "16px",
+      "valueFont": "14px",
+      "values": [
+        {
+          "text": "26",
+          "client": 98,
+          "scroll": 98,
+          "overflow": "visible",
+          "textOverflow": "clip"
+        },
+        {
+          "text": "36",
+          "client": 98,
+          "scroll": 98,
+          "overflow": "visible",
+          "textOverflow": "clip"
+        },
+        {
+          "text": "27",
+          "client": 98,
+          "scroll": 98,
+          "overflow": "visible",
+          "textOverflow": "clip"
+        }
+      ],
+      "columns": 2,
+      "image": {
+        "x": 427,
+        "y": 248.109375,
+        "width": 204,
+        "height": 80,
+        "bottom": 328.109375
+      }
+    },
+    {
+      "box": {
+        "x": 690,
+        "y": 207.109375,
+        "width": 230,
+        "height": 321,
+        "bottom": 528.109375
+      },
+      "name": "Carta 05",
+      "nameFont": "16px",
+      "valueFont": "14px",
+      "values": [
+        {
+          "text": "28",
+          "client": 98,
+          "scroll": 98,
+          "overflow": "visible",
+          "textOverflow": "clip"
+        },
+        {
+          "text": "49",
+          "client": 98,
+          "scroll": 98,
+          "overflow": "visible",
+          "textOverflow": "clip"
+        },
+        {
+          "text": "29",
+          "client": 98,
+          "scroll": 98,
+          "overflow": "visible",
+          "textOverflow": "clip"
+        }
+      ],
+      "columns": 2,
+      "image": {
+        "x": 703,
+        "y": 248.109375,
+        "width": 204,
+        "height": 80,
+        "bottom": 328.109375
+      }
+    },
+    {
+      "box": {
+        "x": 966,
+        "y": 207.109375,
+        "width": 230,
+        "height": 321,
+        "bottom": 528.109375
+      },
+      "name": "Carta 02",
+      "nameFont": "16px",
+      "valueFont": "14px",
+      "values": [
+        {
+          "text": "37",
+          "client": 98,
+          "scroll": 98,
+          "overflow": "visible",
+          "textOverflow": "clip"
+        },
+        {
+          "text": "4",
+          "client": 98,
+          "scroll": 98,
+          "overflow": "visible",
+          "textOverflow": "clip"
+        },
+        {
+          "text": "31",
+          "client": 98,
+          "scroll": 98,
+          "overflow": "visible",
+          "textOverflow": "clip"
+        }
+      ],
+      "columns": 2,
+      "image": {
+        "x": 979,
+        "y": 248.109375,
+        "width": 204,
+        "height": 80,
+        "bottom": 328.109375
+      }
+    },
+    {
+      "box": {
+        "x": 1242,
+        "y": 207.109375,
+        "width": 230,
+        "height": 321,
+        "bottom": 528.109375
+      },
+      "name": "Carta 03",
+      "nameFont": "16px",
+      "valueFont": "14px",
+      "values": [
+        {
+          "text": "43",
+          "client": 98,
+          "scroll": 98,
+          "overflow": "visible",
+          "textOverflow": "clip"
+        },
+        {
+          "text": "46",
+          "client": 98,
+          "scroll": 98,
+          "overflow": "visible",
+          "textOverflow": "clip"
+        },
+        {
+          "text": "16",
+          "client": 98,
+          "scroll": 98,
+          "overflow": "visible",
+          "textOverflow": "clip"
+        }
+      ],
+      "columns": 2,
+      "image": {
+        "x": 1255,
+        "y": 248.109375,
+        "width": 204,
+        "height": 80,
+        "bottom": 328.109375
+      }
+    },
+    {
+      "box": {
+        "x": 33,
+        "y": 667.109375,
+        "width": 230,
+        "height": 321,
+        "bottom": 988.109375
+      },
+      "name": "Carta 16",
+      "nameFont": "16px",
+      "valueFont": "14px",
+      "values": [
+        {
+          "text": "30",
+          "client": 98,
+          "scroll": 98,
+          "overflow": "visible",
+          "textOverflow": "clip"
+        },
+        {
+          "text": "37",
+          "client": 98,
+          "scroll": 98,
+          "overflow": "visible",
+          "textOverflow": "clip"
+        },
+        {
+          "text": "43",
+          "client": 98,
+          "scroll": 98,
+          "overflow": "visible",
+          "textOverflow": "clip"
+        }
+      ],
+      "columns": 2,
+      "image": {
+        "x": 46,
+        "y": 708.109375,
+        "width": 204,
+        "height": 80,
+        "bottom": 788.109375
+      }
+    },
+    {
+      "box": {
+        "x": 309,
+        "y": 667.109375,
+        "width": 230,
+        "height": 321,
+        "bottom": 988.109375
+      },
+      "name": "Carta 10",
+      "nameFont": "16px",
+      "valueFont": "14px",
+      "values": [
+        {
+          "text": "40",
+          "client": 98,
+          "scroll": 98,
+          "overflow": "visible",
+          "textOverflow": "clip"
+        },
+        {
+          "text": "1",
+          "client": 98,
+          "scroll": 98,
+          "overflow": "visible",
+          "textOverflow": "clip"
+        },
+        {
+          "text": "12",
+          "client": 98,
+          "scroll": 98,
+          "overflow": "visible",
+          "textOverflow": "clip"
+        }
+      ],
+      "columns": 2,
+      "image": {
+        "x": 322,
+        "y": 708.109375,
+        "width": 204,
+        "height": 80,
+        "bottom": 788.109375
+      }
+    },
+    {
+      "box": {
+        "x": 585,
+        "y": 667.109375,
+        "width": 230,
+        "height": 321,
+        "bottom": 988.109375
+      },
+      "name": "Carta 15",
+      "nameFont": "16px",
+      "valueFont": "14px",
+      "values": [
+        {
+          "text": "11",
+          "client": 98,
+          "scroll": 98,
+          "overflow": "visible",
+          "textOverflow": "clip"
+        },
+        {
+          "text": "12",
+          "client": 98,
+          "scroll": 98,
+          "overflow": "visible",
+          "textOverflow": "clip"
+        },
+        {
+          "text": "36",
+          "client": 98,
+          "scroll": 98,
+          "overflow": "visible",
+          "textOverflow": "clip"
+        }
+      ],
+      "columns": 2,
+      "image": {
+        "x": 598,
+        "y": 708.109375,
+        "width": 204,
+        "height": 80,
+        "bottom": 788.109375
+      }
+    }
+  ],
+  "authors": [
+    {
+      "card": {
+        "x": 138,
+        "y": 207.109375,
+        "width": 230,
+        "height": 321,
+        "bottom": 528.109375
+      },
+      "author": {
+        "x": 138,
+        "y": 534.109375,
+        "width": 230,
+        "height": 17,
+        "bottom": 551.109375
+      }
+    },
+    {
+      "card": {
+        "x": 414,
+        "y": 207.109375,
+        "width": 230,
+        "height": 321,
+        "bottom": 528.109375
+      },
+      "author": {
+        "x": 414,
+        "y": 534.109375,
+        "width": 230,
+        "height": 17,
+        "bottom": 551.109375
+      }
+    },
+    {
+      "card": {
+        "x": 690,
+        "y": 207.109375,
+        "width": 230,
+        "height": 321,
+        "bottom": 528.109375
+      },
+      "author": {
+        "x": 690,
+        "y": 534.109375,
+        "width": 230,
+        "height": 17,
+        "bottom": 551.109375
+      }
+    },
+    {
+      "card": {
+        "x": 966,
+        "y": 207.109375,
+        "width": 230,
+        "height": 321,
+        "bottom": 528.109375
+      },
+      "author": {
+        "x": 966,
+        "y": 534.109375,
+        "width": 230,
+        "height": 17,
+        "bottom": 551.109375
+      }
+    },
+    {
+      "card": {
+        "x": 1242,
+        "y": 207.109375,
+        "width": 230,
+        "height": 321,
+        "bottom": 528.109375
+      },
+      "author": {
+        "x": 1242,
+        "y": 534.109375,
+        "width": 230,
+        "height": 17,
+        "bottom": 551.109375
+      }
+    }
+  ],
+  "stateCount": 1,
+  "capturedAt": "2026-10-14T12:03:41.645Z",
+  "browserVersion": "155.0.8059.40"
+}

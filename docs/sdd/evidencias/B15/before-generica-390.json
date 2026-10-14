@@ -1,0 +1,62 @@
+{
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "dpr": 1,
+  "cards": [
+    {
+      "box": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      },
+      "font": "16px"
+    },
+    {
+      "box": {
+        "x": 35,
+        "y": 963.5,
+        "width": 220,
+        "height": 380,
+        "top": 963.5,
+        "right": 255,
+        "bottom": 1343.5,
+        "left": 35
+      },
+      "font": "16px"
+    },
+    {
+      "box": {
+        "x": 267,
+        "y": 963.5,
+        "width": 220,
+        "height": 380,
+        "top": 963.5,
+        "right": 487,
+        "bottom": 1343.5,
+        "left": 267
+      },
+      "font": "16px"
+    },
+    {
+      "box": {
+        "x": 499,
+        "y": 963.5,
+        "width": 220,
+        "height": 380,
+        "top": 963.5,
+        "right": 719,
+        "bottom": 1343.5,
+        "left": 499
+      },
+      "font": "16px"
+    }
+  ],
+  "height": 1472
+}

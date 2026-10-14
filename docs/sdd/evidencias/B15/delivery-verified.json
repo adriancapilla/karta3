@@ -1,0 +1,65 @@
+{
+  "checked": "2026-10-14T10:08:00.200Z",
+  "node": "v24.19.0",
+  "manifestSHA256": "ce2fb8cbb8c37b9b123667f4fc872aeaf2d905e51877e9200ab9474b681f857c",
+  "entries": 63,
+  "packages": [
+    {
+      "id": "generica",
+      "schemaVersion": 2,
+      "contentVersion": 4,
+      "available": true,
+      "cards": 58,
+      "files": 2,
+      "images": 0,
+      "json": [
+        {
+          "path": "paquetes/generica/baraja.json",
+          "bytes": 4723,
+          "sha256": "b7855547acf56a728618f1e71be80cb19ca5c54a6ce0612cc3bee753270d2bd4"
+        },
+        {
+          "path": "paquetes/generica/cartas.json",
+          "bytes": 34030,
+          "sha256": "c2896ccae66d0119b808db7adea72cca7b442a283bf576e0cfaa7de2628c5c9b"
+        }
+      ]
+    },
+    {
+      "id": "sistema-solar",
+      "schemaVersion": 2,
+      "contentVersion": 4,
+      "available": true,
+      "cards": 58,
+      "files": 61,
+      "images": 59,
+      "json": [
+        {
+          "path": "paquetes/sistema-solar/baraja.json",
+          "bytes": 35160,
+          "sha256": "3e31db300c706738e69d743703f2bd1d4d027b2b08743313fe54d15eb6943e44"
+        },
+        {
+          "path": "paquetes/sistema-solar/cartas.json",
+          "bytes": 44874,
+          "sha256": "bce5740a4ba3daf8da60ffad88a2cbc07271e95baae44bee078d0984973fa7fa"
+        }
+      ]
+    }
+  ],
+  "deltaKeys": [
+    "date",
+    "status",
+    "from",
+    "to",
+    "authorization",
+    "provenance",
+    "intermediateChangesReview",
+    "decks",
+    "preservedPreviousDeliveryFiles",
+    "limits"
+  ],
+  "deltaArrayCounts": {
+    "limits": 3
+  }
+}

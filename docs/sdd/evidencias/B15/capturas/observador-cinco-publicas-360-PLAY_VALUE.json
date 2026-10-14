@@ -1,0 +1,356 @@
+{
+  "viewport": {
+    "width": 360,
+    "height": 800,
+    "dpr": 1,
+    "scale": 1
+  },
+  "contentWidth": 328,
+  "composition": {
+    "x": 16,
+    "y": 232.25,
+    "width": 328,
+    "height": 826.4375,
+    "bottom": 1058.6875
+  },
+  "layout": "compact",
+  "padding": "18px 14px 40px",
+  "bodyWidth": 360,
+  "pageWidth": 360,
+  "height": 1162,
+  "residual": 362,
+  "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+  "panels": {
+    "people": {
+      "x": 16,
+      "y": 232.25,
+      "width": 328,
+      "height": 106,
+      "bottom": 338.25
+    },
+    "initial-state": {
+      "x": 16,
+      "y": 348.25,
+      "width": 328,
+      "height": 422.4375,
+      "bottom": 770.6875
+    },
+    "plays": {
+      "x": 16,
+      "y": 780.6875,
+      "width": 328,
+      "height": 278,
+      "bottom": 1058.6875
+    },
+    "hand": null,
+    "indicator": {
+      "x": 0,
+      "y": 0,
+      "width": 0,
+      "height": 0,
+      "bottom": 0
+    }
+  },
+  "cards": [
+    {
+      "box": {
+        "x": 19,
+        "y": 810.6875,
+        "width": 220,
+        "height": 188,
+        "bottom": 998.6875
+      },
+      "name": "Encke",
+      "nameFont": "18px",
+      "valueFont": "14px",
+      "values": [
+        {
+          "text": "57",
+          "client": 101,
+          "scroll": 101,
+          "overflow": "visible",
+          "textOverflow": "clip"
+        },
+        {
+          "text": "35",
+          "client": 101,
+          "scroll": 101,
+          "overflow": "visible",
+          "textOverflow": "clip"
+        },
+        {
+          "text": "7",
+          "client": 101,
+          "scroll": 101,
+          "overflow": "visible",
+          "textOverflow": "clip"
+        }
+      ],
+      "columns": 2,
+      "image": {
+        "x": 28,
+        "y": 819.6875,
+        "width": 32,
+        "height": 32,
+        "bottom": 851.6875
+      }
+    },
+    {
+      "box": {
+        "x": 249,
+        "y": 810.6875,
+        "width": 220,
+        "height": 188,
+        "bottom": 998.6875
+      },
+      "name": "Borrelly",
+      "nameFont": "18px",
+      "valueFont": "14px",
+      "values": [
+        {
+          "text": "49",
+          "client": 101,
+          "scroll": 101,
+          "overflow": "visible",
+          "textOverflow": "clip"
+        },
+        {
+          "text": "46",
+          "client": 101,
+          "scroll": 101,
+          "overflow": "visible",
+          "textOverflow": "clip"
+        },
+        {
+          "text": "8",
+          "client": 101,
+          "scroll": 101,
+          "overflow": "visible",
+          "textOverflow": "clip"
+        }
+      ],
+      "columns": 2,
+      "image": {
+        "x": 258,
+        "y": 819.6875,
+        "width": 32,
+        "height": 32,
+        "bottom": 851.6875
+      }
+    },
+    {
+      "box": {
+        "x": 479,
+        "y": 810.6875,
+        "width": 220,
+        "height": 188,
+        "bottom": 998.6875
+      },
+      "name": "Eris",
+      "nameFont": "18px",
+      "valueFont": "14px",
+      "values": [
+        {
+          "text": "18",
+          "client": 101,
+          "scroll": 101,
+          "overflow": "visible",
+          "textOverflow": "clip"
+        },
+        {
+          "text": "55",
+          "client": 101,
+          "scroll": 101,
+          "overflow": "visible",
+          "textOverflow": "clip"
+        },
+        {
+          "text": "42",
+          "client": 101,
+          "scroll": 101,
+          "overflow": "visible",
+          "textOverflow": "clip"
+        }
+      ],
+      "columns": 2,
+      "image": {
+        "x": 488,
+        "y": 819.6875,
+        "width": 32,
+        "height": 32,
+        "bottom": 851.6875
+      }
+    },
+    {
+      "box": {
+        "x": 709,
+        "y": 810.6875,
+        "width": 220,
+        "height": 188,
+        "bottom": 998.6875
+      },
+      "name": "Sedna",
+      "nameFont": "18px",
+      "valueFont": "14px",
+      "values": [
+        {
+          "text": "10",
+          "client": 101,
+          "scroll": 101,
+          "overflow": "visible",
+          "textOverflow": "clip"
+        },
+        {
+          "text": "57",
+          "client": 101,
+          "scroll": 101,
+          "overflow": "visible",
+          "textOverflow": "clip"
+        },
+        {
+          "text": "30",
+          "client": 101,
+          "scroll": 101,
+          "overflow": "visible",
+          "textOverflow": "clip"
+        }
+      ],
+      "columns": 2,
+      "image": {
+        "x": 718,
+        "y": 819.6875,
+        "width": 32,
+        "height": 32,
+        "bottom": 851.6875
+      }
+    },
+    {
+      "box": {
+        "x": 939,
+        "y": 810.6875,
+        "width": 220,
+        "height": 188,
+        "bottom": 998.6875
+      },
+      "name": "Hyakutake",
+      "nameFont": "18px",
+      "valueFont": "14px",
+      "values": [
+        {
+          "text": "58",
+          "client": 101,
+          "scroll": 101,
+          "overflow": "visible",
+          "textOverflow": "clip"
+        },
+        {
+          "text": "58",
+          "client": 101,
+          "scroll": 101,
+          "overflow": "visible",
+          "textOverflow": "clip"
+        },
+        {
+          "text": "6",
+          "client": 101,
+          "scroll": 101,
+          "overflow": "visible",
+          "textOverflow": "clip"
+        }
+      ],
+      "columns": 2,
+      "image": {
+        "x": 948,
+        "y": 819.6875,
+        "width": 32,
+        "height": 32,
+        "bottom": 851.6875
+      }
+    }
+  ],
+  "authors": [
+    {
+      "card": {
+        "x": 19,
+        "y": 810.6875,
+        "width": 220,
+        "height": 188,
+        "bottom": 998.6875
+      },
+      "author": {
+        "x": 19,
+        "y": 1002.6875,
+        "width": 220,
+        "height": 44,
+        "bottom": 1046.6875
+      }
+    },
+    {
+      "card": {
+        "x": 249,
+        "y": 810.6875,
+        "width": 220,
+        "height": 188,
+        "bottom": 998.6875
+      },
+      "author": {
+        "x": 249,
+        "y": 1002.6875,
+        "width": 220,
+        "height": 44,
+        "bottom": 1046.6875
+      }
+    },
+    {
+      "card": {
+        "x": 479,
+        "y": 810.6875,
+        "width": 220,
+        "height": 188,
+        "bottom": 998.6875
+      },
+      "author": {
+        "x": 479,
+        "y": 1002.6875,
+        "width": 220,
+        "height": 44,
+        "bottom": 1046.6875
+      }
+    },
+    {
+      "card": {
+        "x": 709,
+        "y": 810.6875,
+        "width": 220,
+        "height": 188,
+        "bottom": 998.6875
+      },
+      "author": {
+        "x": 709,
+        "y": 1002.6875,
+        "width": 220,
+        "height": 44,
+        "bottom": 1046.6875
+      }
+    },
+    {
+      "card": {
+        "x": 939,
+        "y": 810.6875,
+        "width": 220,
+        "height": 188,
+        "bottom": 998.6875
+      },
+      "author": {
+        "x": 939,
+        "y": 1002.6875,
+        "width": 220,
+        "height": 44,
+        "bottom": 1046.6875
+      }
+    }
+  ],
+  "stateCount": 1,
+  "capturedAt": "2026-10-14T12:03:51.503Z",
+  "browserVersion": "155.0.8059.40"
+}
