@@ -28,6 +28,27 @@ async function record(page:Page,name:string) {
   await page.screenshot({path:`${evidence}/${name}-full.png`,fullPage:true}); await page.screenshot({path:`${evidence}/${name}-viewport.png`}); return measurements;
 }
 const literal=(value:{displayValue:string;unit:string})=>value.displayValue+(value.unit===''?'':` ${value.unit}`);
+test('B15 compacta: primer aviso propio, desconexión/recuperación y automático sin control',async({browser})=>{
+  const s=await server();const p=await manualTable(browser,s.base,{deckId:'generica',version:4,valueMode:'DISPLAY_VALUE',optimize:true,width:390,turn:15,review:2});
+  let sawFirst=false;
+  try{
+    for(let step=0;step<12;step++){
+      const view=await readGame(p.host);if(view.participant.playStatus==='AUTOMATIC')break;
+      if(view.game.interaction.review){await expect(p.host.locator('.turn-time')).toHaveCount(0);await expect(p.host.locator('.round-review [role="timer"]')).toHaveCount(1);s.time.advance(2000);continue;}
+      if(view.game.interaction.turn!.playerId===view.participant.id){
+        s.time.advance(15000);await expect.poll(async()=> (await readGame(p.host)).game.ownConsecutiveTimeouts).toBe(view.game.ownConsecutiveTimeouts!+1);
+        if(!sawFirst){sawFirst=true;await expect(p.host.getByText('No completaste tu último turno a tiempo.',{exact:false})).toBeVisible();
+          const session=s.sessions.get((await p.contexts[0].cookies()).find(c=>c.name==='karta3_session')!.value)!;s.disconnect(session);await expect(p.host.locator('.connection-notice')).toBeVisible();
+          await p.host.reload();await expect(p.host.getByRole('heading',{level:1})).toContainText('Partida ·');const recovered=await readGame(p.host);expect(recovered.game.id).toBe(view.game.id);expect(recovered.participant.id).toBe(view.participant.id);expect(recovered.game.ownConsecutiveTimeouts).toBe(1);
+        }
+      }else await humanPlay(p,false,'HIGH');
+    }
+    expect(sawFirst).toBe(true);expect((await readGame(p.host)).participant.playStatus).toBe('AUTOMATIC');await expect(p.host.getByText('Has pasado a automático.',{exact:false})).toBeVisible();
+    const notice=await p.host.locator('.initial-table-notice').boundingBox();const game=await p.host.locator('.game-composition').boundingBox();expect(notice!.y+notice!.height).toBeLessThanOrEqual(game!.y);
+    for(const button of await p.host.locator('.game-hand .card-play-button').all())await expect(button).toBeDisabled();await expect(p.host.getByRole('button',{name:'Cancelar partida',exact:true})).toBeVisible();
+    await record(p.host,'compacta-automatico-aviso');
+  }finally{await p.close();await s.stop();}
+});
 test('B15 fixture V2 fechas/textos/separadores: literal en dos columnas y consultas, sin interpretación', async({browser})=>{
   const s=await configurationBrowserServer(true,true,undefined,{literal:true});const p=await manualTable(browser,s.base,{deckId:'portada',version:7,optimize:true,valueMode:'DISPLAY_VALUE',width:360});
   try{

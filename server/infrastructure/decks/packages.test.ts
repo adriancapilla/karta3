@@ -160,7 +160,7 @@ describe('B04-06/07/08 publicación, catálogo y carga', () => {
     expect((await validatePackage(dir)).valid).toBe(true);
     await writeFixture(root, deckFixture('actual'));
     await fs.writeFile(path.join(root, 'catalogo.json'), 'anterior');
-    for (const operation of [prepareDecks, loadPreparedDecks]) await expect(operation(root)).rejects.toMatchObject({ errors: expect.arrayContaining([expect.objectContaining({ code: 'CONSUMER_SCHEMA_INCOMPATIBLE', file: 'baraja.json', path: '$.schemaVersion' })]) });
+    for (const operation of [prepareDecks, loadPreparedDecks]) await expect(operation(root)).rejects.toMatchObject({ errors: expect.arrayContaining([expect.objectContaining({ code: 'CONSUMER_SCHEMA_INCOMPATIBLE', file: 'baraja.json', path: '$.schemaVersion' })]), diagnostics: expect.arrayContaining([expect.objectContaining({ package: 'historica', valid: true, compatible: false, available: true })]) });
     expect(await fs.readFile(path.join(root, 'catalogo.json'), 'utf8')).toBe('anterior');
   });
   it('B15 V1 borrador válido/ inválido mantiene false fiable y su contrato; no se convierte', async () => {

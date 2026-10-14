@@ -9,7 +9,7 @@ import { contained, type ValidatedImage } from './resources.js';
 import { isObject, type PackageError } from './packageFormat.js';
 import { readStrictJson } from './strictJson.js';
 
-export type PackageDiagnostic = { package: string; available?: boolean; valid: boolean; errors: readonly PackageError[] };
+export type PackageDiagnostic = { package: string; available?: boolean; valid: boolean; compatible?: boolean; errors: readonly PackageError[] };
 export class DeckLoadError extends Error {
   constructor(public readonly errors: readonly PackageError[], public readonly diagnostics: readonly PackageDiagnostic[] = []) { super('No se pudo preparar o cargar el catálogo de barajas.'); }
 }
@@ -83,7 +83,7 @@ export async function loadPackages(root: string) {
     }
     const result = await validatePackage(target);
     if (result.available === true && result.schemaVersion === 1) {
-      diagnostics.push({ package: directory, valid: false, available: true, errors: [...result.errors,
+      diagnostics.push({ package: directory, valid: result.valid, compatible: false, available: true, errors: [...result.errors,
         { code: 'CONSUMER_SCHEMA_INCOMPATIBLE', file: 'baraja.json', path: '$.schemaVersion', stage: 'catalog', message: 'El consumidor requiere formato 2 para una baraja disponible; formato 1 solo admite validación histórica.' }] });
       continue;
     }
@@ -100,7 +100,7 @@ export async function loadPackages(root: string) {
       imageUrl: metadata.imageRef === null ? null : `${prefix}${metadata.imageRef}`, imageAlt: metadata.imageAlt
     } });
   }
-  const fatal = diagnostics.filter((entry) => !entry.valid && entry.available !== false);
+  const fatal = diagnostics.filter((entry) => (!entry.valid || entry.compatible === false) && entry.available !== false);
   if (fatal.length) throw new DeckLoadError(fatal.flatMap((entry) => entry.errors), diagnostics);
   published.sort((a, b) => a.order - b.order || (a.summary.id < b.summary.id ? -1 : a.summary.id > b.summary.id ? 1 : 0));
   const response: DecksResponse = { decks: published.map((entry) => entry.summary) };

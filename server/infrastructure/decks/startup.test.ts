@@ -4,7 +4,7 @@ import path from 'node:path';
 import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
 import { pathToFileURL } from 'node:url';
-import { deckFixture, writeFixture } from '../../../tests/support/deckFixtures.js';
+import { deckFixture, legacyDeckFixture, writeFixture } from '../../../tests/support/deckFixtures.js';
 import { prepareDecks } from './catalog.js';
 import { compiledInstallation, removeTestInstallation, startCompiledDeckServer } from '../../../tests/support/compiledDeckServer.js';
 import { approvedGeneric } from '../../../tests/support/approvedGeneric.js';
@@ -55,7 +55,7 @@ it('B14/AGV2/B04 construcción real con ambas barajas aislada de ASSETS; consult
   }
 }, 60_000);
 
-it.each(['missing', 'corrupt', 'stale', 'available-invalid', 'uncertain'])('B04-08 proceso compilado %s sale con fallo antes de escuchar', async (kind) => {
+it.each(['missing', 'corrupt', 'stale', 'available-invalid', 'uncertain', 'available-v1'])('B04/B15 proceso compilado %s sale con fallo antes de escuchar', async (kind) => {
   const decks = path.join(root, 'barajas'); const f = deckFixture();
   const directory = await writeFixture(decks, f); await prepareDecks(decks);
   const catalog = path.join(decks, 'catalogo.json');
@@ -64,7 +64,12 @@ it.each(['missing', 'corrupt', 'stale', 'available-invalid', 'uncertain'])('B04-
   if (kind === 'stale') await fs.writeFile(catalog, '{"decks":[]}\n');
   if (kind === 'available-invalid') { f.metadata.name = ''; await writeFixture(decks, f); }
   if (kind === 'uncertain') await fs.writeFile(path.join(directory, 'baraja.json'), '{');
-  const code = kind === 'missing' ? 'CATALOG_MISSING' : kind === 'corrupt' ? 'CATALOG_INVALID' : kind === 'stale' ? 'CATALOG_STALE' : kind === 'uncertain' ? 'JSON_SYNTAX' : 'INVALID_VALUE';
+  if (kind === 'available-v1') await writeFixture(decks, legacyDeckFixture('historica'));
+  const code = kind === 'missing' ? 'CATALOG_MISSING' : kind === 'corrupt' ? 'CATALOG_INVALID' : kind === 'stale' ? 'CATALOG_STALE' : kind === 'uncertain' ? 'JSON_SYNTAX' : kind === 'available-v1' ? 'CONSUMER_SCHEMA_INCOMPATIBLE' : 'INVALID_VALUE';
   await expect(promisify(execFile)(process.execPath, ['--import', './guard.mjs', 'dist-server/server/main.js'], { cwd: root, env: { ...process.env, PORT: '0' }, timeout: 5000, windowsHide: true })).rejects.toMatchObject({ code: 1, stderr: expect.stringContaining(code), stdout: expect.not.stringContaining('KARTA3: http') });
   expect(await fs.readdir(root)).not.toContain('asset-access.txt');
+  if (kind === 'available-v1') {
+    await expect(promisify(execFile)(process.execPath, ['--import', './guard.mjs', 'dist-server/server/main.js'], { cwd: root, env: { ...process.env, PORT: '0' }, windowsHide: true })).rejects.toMatchObject({ stdout: expect.stringContaining('historica: válida; incompatible con este consumidor') });
+    expect(await fs.readFile(catalog, 'utf8')).not.toContain('historica');
+  }
 });
