@@ -1,0 +1,1195 @@
+{
+  "date": "2026-10-14",
+  "scope": "Solo maqueta: refinamiento del orden; no producto/dispositivos/B14",
+  "browser": "155.0.8059.40",
+  "previousHashes": {
+    "complemento-7-7.html": "3c4382f425b66c4c8f2b7ffd54cc23a34a151639530d44f5cc80e2f4fa5a6991",
+    "complemento-7-7.css": "815a35828399a833dba110832ec8e18b15a428b38b5b6f4af637ca56875e382a",
+    "complemento-7-7.js": "5e9b961b800af1e9fd8dedb8c9ee62c8b8baf625097bc8130ad11c1f5f6b1864",
+    "medidas-complemento-7-7.json": "27bc70df16ab65292883d996190a5683ab807f5a7f508f5927d9d4e09df1d7ce"
+  },
+  "modes": {
+    "play": {
+      "before": {
+        "state": {
+          "mode": "play",
+          "optimize": true,
+          "useful": 358,
+          "candidate": 1368,
+          "compact": true,
+          "direction": "HIGH",
+          "selected": null,
+          "indicator": "bennu",
+          "members": [
+            {
+              "id": "p1",
+              "label": "A·1",
+              "name": "Alex",
+              "position": 1,
+              "observer": false
+            },
+            {
+              "id": "p2",
+              "label": "A·2",
+              "name": "Ana",
+              "position": 2,
+              "observer": false
+            },
+            {
+              "id": "p3",
+              "label": "A·3",
+              "name": "Alex",
+              "position": 3,
+              "observer": false
+            },
+            {
+              "id": "p4",
+              "label": "A·4",
+              "name": "Alicia",
+              "position": 4,
+              "observer": false
+            },
+            {
+              "id": "p5",
+              "label": "A·5",
+              "name": "Ana",
+              "position": 5,
+              "observer": false
+            }
+          ]
+        },
+        "viewport": [
+          390,
+          844
+        ],
+        "scrollHeight": 951,
+        "pageWidth": 390,
+        "boxes": {
+          "score-summary": null,
+          "summary": {
+            "x": 16,
+            "y": 112.375,
+            "width": 358,
+            "height": 132.1875,
+            "bottom": 244.5625,
+            "visible": true
+          },
+          "people-panel": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "bottom": 0,
+            "visible": false
+          },
+          "mesa-zone": {
+            "x": 16,
+            "y": 254.5625,
+            "width": 358,
+            "height": 303.21875,
+            "bottom": 557.78125,
+            "visible": true
+          },
+          "indicator-zone": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "bottom": 0,
+            "visible": false
+          },
+          "hand-zone": {
+            "x": 16,
+            "y": 567.78125,
+            "width": 358,
+            "height": 275.796875,
+            "bottom": 843.578125,
+            "visible": true
+          }
+        },
+        "card": {
+          "x": 19,
+          "y": 284.359375,
+          "width": 220,
+          "height": 188,
+          "bottom": 472.359375
+        },
+        "style": {
+          "nameSize": "18px",
+          "valueSize": "14px",
+          "valueFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "picture": {
+            "x": 28,
+            "y": 293.359375,
+            "width": 32,
+            "height": 32,
+            "bottom": 325.359375
+          }
+        },
+        "summaryText": "▲ Dist\nTurno: A·5 · 00:24\nIndicadora: Bennu\nALTO\nBAJO\nA·1 5\nA·2 10\nA·3 0\nA·4 5\nA·5 5\nR6 · Mazo: 12",
+        "dialogValues": []
+      },
+      "after": {
+        "state": {
+          "mode": "play",
+          "optimize": true,
+          "useful": 358,
+          "candidate": 1368,
+          "compact": true,
+          "direction": "HIGH",
+          "selected": null,
+          "indicator": "bennu",
+          "members": [
+            {
+              "id": "p1",
+              "label": "A·1",
+              "name": "Alex",
+              "position": 1,
+              "observer": false
+            },
+            {
+              "id": "p2",
+              "label": "A·2",
+              "name": "Ana",
+              "position": 2,
+              "observer": false
+            },
+            {
+              "id": "p3",
+              "label": "A·3",
+              "name": "Alex",
+              "position": 3,
+              "observer": false
+            },
+            {
+              "id": "p4",
+              "label": "A·4",
+              "name": "Alicia",
+              "position": 4,
+              "observer": false
+            },
+            {
+              "id": "p5",
+              "label": "A·5",
+              "name": "Ana",
+              "position": 5,
+              "observer": false
+            }
+          ]
+        },
+        "viewport": [
+          390,
+          844
+        ],
+        "scrollHeight": 994,
+        "pageWidth": 390,
+        "boxes": {
+          "score-summary": {
+            "x": 16,
+            "y": 112.375,
+            "width": 358,
+            "height": 62,
+            "bottom": 174.375,
+            "visible": true
+          },
+          "summary": {
+            "x": 16,
+            "y": 182.375,
+            "width": 358,
+            "height": 105.078125,
+            "bottom": 287.453125,
+            "visible": true
+          },
+          "people-panel": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "bottom": 0,
+            "visible": false
+          },
+          "mesa-zone": {
+            "x": 16,
+            "y": 297.453125,
+            "width": 358,
+            "height": 303.21875,
+            "bottom": 600.671875,
+            "visible": true
+          },
+          "indicator-zone": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "bottom": 0,
+            "visible": false
+          },
+          "hand-zone": {
+            "x": 16,
+            "y": 610.671875,
+            "width": 358,
+            "height": 275.796875,
+            "bottom": 886.46875,
+            "visible": true
+          }
+        },
+        "card": {
+          "x": 19,
+          "y": 327.25,
+          "width": 220,
+          "height": 188,
+          "bottom": 515.25
+        },
+        "style": {
+          "nameSize": "18px",
+          "valueSize": "14px",
+          "valueFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "picture": {
+            "x": 28,
+            "y": 336.25,
+            "width": 32,
+            "height": 32,
+            "bottom": 368.25
+          }
+        },
+        "summaryText": "▲ Dist\nTurno: A·5 · 00:24\nIndicadora: Bennu\nALTO\nBAJO\nR6 · Mazo: 12",
+        "scores": "A·1 5\nA·2 10\nA·3 0\nA·4 5\nA·5 5",
+        "dialogValues": []
+      },
+      "scrollToSummary": {
+        "viewport": [
+          390,
+          800
+        ],
+        "scrollY": 182,
+        "scoreBottom": -7.625,
+        "summaryTop": 0.375,
+        "mesaTop": 115.453125,
+        "handTop": 428.671875
+      }
+    },
+    "data": {
+      "before": {
+        "state": {
+          "mode": "data",
+          "optimize": true,
+          "useful": 358,
+          "candidate": 1368,
+          "compact": true,
+          "direction": "HIGH",
+          "selected": null,
+          "indicator": "bennu",
+          "members": [
+            {
+              "id": "p1",
+              "label": "A·1",
+              "name": "Alex",
+              "position": 1,
+              "observer": false
+            },
+            {
+              "id": "p2",
+              "label": "A·2",
+              "name": "Ana",
+              "position": 2,
+              "observer": false
+            },
+            {
+              "id": "p3",
+              "label": "A·3",
+              "name": "Alex",
+              "position": 3,
+              "observer": false
+            },
+            {
+              "id": "p4",
+              "label": "A·4",
+              "name": "Alicia",
+              "position": 4,
+              "observer": false
+            },
+            {
+              "id": "p5",
+              "label": "A·5",
+              "name": "Ana",
+              "position": 5,
+              "observer": false
+            }
+          ]
+        },
+        "viewport": [
+          390,
+          844
+        ],
+        "scrollHeight": 951,
+        "pageWidth": 390,
+        "boxes": {
+          "score-summary": null,
+          "summary": {
+            "x": 16,
+            "y": 112.375,
+            "width": 358,
+            "height": 132.1875,
+            "bottom": 244.5625,
+            "visible": true
+          },
+          "people-panel": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "bottom": 0,
+            "visible": false
+          },
+          "mesa-zone": {
+            "x": 16,
+            "y": 254.5625,
+            "width": 358,
+            "height": 303.21875,
+            "bottom": 557.78125,
+            "visible": true
+          },
+          "indicator-zone": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "bottom": 0,
+            "visible": false
+          },
+          "hand-zone": {
+            "x": 16,
+            "y": 567.78125,
+            "width": 358,
+            "height": 275.796875,
+            "bottom": 843.578125,
+            "visible": true
+          }
+        },
+        "card": {
+          "x": 19,
+          "y": 284.359375,
+          "width": 220,
+          "height": 188,
+          "bottom": 472.359375
+        },
+        "style": {
+          "nameSize": "18px",
+          "valueSize": "14px",
+          "valueFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "picture": {
+            "x": 28,
+            "y": 293.359375,
+            "width": 32,
+            "height": 32,
+            "bottom": 325.359375
+          }
+        },
+        "summaryText": "▲ Dist\nTurno: A·5 · 00:24\nIndicadora: Bennu\nALTO\nBAJO\nA·1 5\nA·2 10\nA·3 0\nA·4 5\nA·5 5\nR6 · Mazo: 12",
+        "dialogValues": []
+      },
+      "after": {
+        "state": {
+          "mode": "data",
+          "optimize": true,
+          "useful": 358,
+          "candidate": 1368,
+          "compact": true,
+          "direction": "HIGH",
+          "selected": null,
+          "indicator": "bennu",
+          "members": [
+            {
+              "id": "p1",
+              "label": "A·1",
+              "name": "Alex",
+              "position": 1,
+              "observer": false
+            },
+            {
+              "id": "p2",
+              "label": "A·2",
+              "name": "Ana",
+              "position": 2,
+              "observer": false
+            },
+            {
+              "id": "p3",
+              "label": "A·3",
+              "name": "Alex",
+              "position": 3,
+              "observer": false
+            },
+            {
+              "id": "p4",
+              "label": "A·4",
+              "name": "Alicia",
+              "position": 4,
+              "observer": false
+            },
+            {
+              "id": "p5",
+              "label": "A·5",
+              "name": "Ana",
+              "position": 5,
+              "observer": false
+            }
+          ]
+        },
+        "viewport": [
+          390,
+          844
+        ],
+        "scrollHeight": 994,
+        "pageWidth": 390,
+        "boxes": {
+          "score-summary": {
+            "x": 16,
+            "y": 112.375,
+            "width": 358,
+            "height": 62,
+            "bottom": 174.375,
+            "visible": true
+          },
+          "summary": {
+            "x": 16,
+            "y": 182.375,
+            "width": 358,
+            "height": 105.078125,
+            "bottom": 287.453125,
+            "visible": true
+          },
+          "people-panel": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "bottom": 0,
+            "visible": false
+          },
+          "mesa-zone": {
+            "x": 16,
+            "y": 297.453125,
+            "width": 358,
+            "height": 303.21875,
+            "bottom": 600.671875,
+            "visible": true
+          },
+          "indicator-zone": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "bottom": 0,
+            "visible": false
+          },
+          "hand-zone": {
+            "x": 16,
+            "y": 610.671875,
+            "width": 358,
+            "height": 275.796875,
+            "bottom": 886.46875,
+            "visible": true
+          }
+        },
+        "card": {
+          "x": 19,
+          "y": 327.25,
+          "width": 220,
+          "height": 188,
+          "bottom": 515.25
+        },
+        "style": {
+          "nameSize": "18px",
+          "valueSize": "14px",
+          "valueFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+          "picture": {
+            "x": 28,
+            "y": 336.25,
+            "width": 32,
+            "height": 32,
+            "bottom": 368.25
+          }
+        },
+        "summaryText": "▲ Dist\nTurno: A·5 · 00:24\nIndicadora: Bennu\nALTO\nBAJO\nR6 · Mazo: 12",
+        "scores": "A·1 5\nA·2 10\nA·3 0\nA·4 5\nA·5 5",
+        "dialogValues": []
+      },
+      "scrollToSummary": {
+        "viewport": [
+          390,
+          800
+        ],
+        "scrollY": 182,
+        "scoreBottom": -7.625,
+        "summaryTop": 0.375,
+        "mesaTop": 115.453125,
+        "handTop": 428.671875
+      }
+    }
+  },
+  "wide": {
+    "0": {
+      "state": {
+        "mode": "data",
+        "optimize": false,
+        "useful": 1368,
+        "candidate": 1368,
+        "compact": false,
+        "direction": "HIGH",
+        "selected": null,
+        "indicator": "bennu",
+        "members": [
+          {
+            "id": "p1",
+            "label": "A·1",
+            "name": "Alex",
+            "position": 1,
+            "observer": false
+          },
+          {
+            "id": "p2",
+            "label": "A·2",
+            "name": "Ana",
+            "position": 2,
+            "observer": false
+          },
+          {
+            "id": "p3",
+            "label": "A·3",
+            "name": "Alex",
+            "position": 3,
+            "observer": false
+          },
+          {
+            "id": "p4",
+            "label": "A·4",
+            "name": "Alicia",
+            "position": 4,
+            "observer": false
+          },
+          {
+            "id": "p5",
+            "label": "A·5",
+            "name": "Ana",
+            "position": 5,
+            "observer": false
+          }
+        ]
+      },
+      "viewport": [
+        1400,
+        1080
+      ],
+      "scrollHeight": 1103,
+      "pageWidth": 1400,
+      "boxes": {
+        "score-summary": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "bottom": 0,
+          "visible": false
+        },
+        "summary": {
+          "x": 1120,
+          "y": 544.578125,
+          "width": 264,
+          "height": 212.5625,
+          "bottom": 757.140625,
+          "visible": true
+        },
+        "people-panel": {
+          "x": 16,
+          "y": 94.1875,
+          "width": 264,
+          "height": 331.265625,
+          "bottom": 425.453125,
+          "visible": true
+        },
+        "mesa-zone": {
+          "x": 292,
+          "y": 94.1875,
+          "width": 1092,
+          "height": 438.390625,
+          "bottom": 532.578125,
+          "visible": true
+        },
+        "indicator-zone": {
+          "x": 16,
+          "y": 544.578125,
+          "width": 264,
+          "height": 384.390625,
+          "bottom": 928.96875,
+          "visible": true
+        },
+        "hand-zone": {
+          "x": 292,
+          "y": 544.578125,
+          "width": 816,
+          "height": 442.390625,
+          "bottom": 986.96875,
+          "visible": true
+        }
+      },
+      "card": {
+        "x": 309,
+        "y": 111.1875,
+        "width": 230,
+        "height": 321,
+        "bottom": 432.1875
+      },
+      "style": {
+        "nameSize": "16px",
+        "valueSize": "14px",
+        "valueFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "picture": {
+          "x": 322,
+          "y": 151.578125,
+          "width": 204,
+          "height": 78,
+          "bottom": 229.578125
+        }
+      },
+      "summaryText": "▲ Dist\nTurno: A·5 · 00:24\nIndicadora: Bennu\nALTO\nBAJO\n\nAbridor: Ana (2)",
+      "scores": "A·1 5A·2 10A·3 0A·4 5A·5 5",
+      "dialogValues": [],
+      "sameFrameHash": "989924ae876a098db14f598313975c7552e6477bddfd135866ee358001cb225f",
+      "images": [
+        {
+          "src": "../../../barajas/sistema-solar/imagenes/cartas/sedna.webp",
+          "left": 372,
+          "top": 151.578125,
+          "right": 476,
+          "bottom": 229.578125
+        },
+        {
+          "src": "../../../barajas/sistema-solar/imagenes/cartas/borrelly.webp",
+          "left": 648,
+          "top": 151.578125,
+          "right": 752,
+          "bottom": 229.578125
+        },
+        {
+          "src": "../../../barajas/sistema-solar/imagenes/cartas/67p-churyumov-gerasimenko.webp",
+          "left": 924,
+          "top": 168.1875,
+          "right": 1028,
+          "bottom": 246.1875
+        },
+        {
+          "src": "../../../barajas/sistema-solar/imagenes/cartas/encke.webp",
+          "left": 1200,
+          "top": 151.578125,
+          "right": 1304,
+          "bottom": 229.578125
+        },
+        {
+          "src": "../../../barajas/sistema-solar/imagenes/cartas/bennu.webp",
+          "left": 96,
+          "top": 631.359375,
+          "right": 200,
+          "bottom": 709.359375
+        },
+        {
+          "src": "../../../barajas/sistema-solar/imagenes/cartas/itokawa.webp",
+          "left": 372,
+          "top": 631.359375,
+          "right": 476,
+          "bottom": 709.359375
+        },
+        {
+          "src": "../../../barajas/sistema-solar/imagenes/cartas/fobos.webp",
+          "left": 648,
+          "top": 631.359375,
+          "right": 752,
+          "bottom": 709.359375
+        },
+        {
+          "src": "../../../barajas/sistema-solar/imagenes/cartas/hyakutake.webp",
+          "left": 924,
+          "top": 631.359375,
+          "right": 1028,
+          "bottom": 709.359375
+        }
+      ]
+    },
+    "1": {
+      "state": {
+        "mode": "data",
+        "optimize": true,
+        "useful": 1368,
+        "candidate": 1368,
+        "compact": false,
+        "direction": "HIGH",
+        "selected": null,
+        "indicator": "bennu",
+        "members": [
+          {
+            "id": "p1",
+            "label": "A·1",
+            "name": "Alex",
+            "position": 1,
+            "observer": false
+          },
+          {
+            "id": "p2",
+            "label": "A·2",
+            "name": "Ana",
+            "position": 2,
+            "observer": false
+          },
+          {
+            "id": "p3",
+            "label": "A·3",
+            "name": "Alex",
+            "position": 3,
+            "observer": false
+          },
+          {
+            "id": "p4",
+            "label": "A·4",
+            "name": "Alicia",
+            "position": 4,
+            "observer": false
+          },
+          {
+            "id": "p5",
+            "label": "A·5",
+            "name": "Ana",
+            "position": 5,
+            "observer": false
+          }
+        ]
+      },
+      "viewport": [
+        1400,
+        1080
+      ],
+      "scrollHeight": 1103,
+      "pageWidth": 1400,
+      "boxes": {
+        "score-summary": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "bottom": 0,
+          "visible": false
+        },
+        "summary": {
+          "x": 1120,
+          "y": 544.578125,
+          "width": 264,
+          "height": 212.5625,
+          "bottom": 757.140625,
+          "visible": true
+        },
+        "people-panel": {
+          "x": 16,
+          "y": 94.1875,
+          "width": 264,
+          "height": 331.265625,
+          "bottom": 425.453125,
+          "visible": true
+        },
+        "mesa-zone": {
+          "x": 292,
+          "y": 94.1875,
+          "width": 1092,
+          "height": 438.390625,
+          "bottom": 532.578125,
+          "visible": true
+        },
+        "indicator-zone": {
+          "x": 16,
+          "y": 544.578125,
+          "width": 264,
+          "height": 384.390625,
+          "bottom": 928.96875,
+          "visible": true
+        },
+        "hand-zone": {
+          "x": 292,
+          "y": 544.578125,
+          "width": 816,
+          "height": 442.390625,
+          "bottom": 986.96875,
+          "visible": true
+        }
+      },
+      "card": {
+        "x": 309,
+        "y": 111.1875,
+        "width": 230,
+        "height": 321,
+        "bottom": 432.1875
+      },
+      "style": {
+        "nameSize": "16px",
+        "valueSize": "14px",
+        "valueFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "picture": {
+          "x": 322,
+          "y": 151.578125,
+          "width": 204,
+          "height": 78,
+          "bottom": 229.578125
+        }
+      },
+      "summaryText": "▲ Dist\nTurno: A·5 · 00:24\nIndicadora: Bennu\nALTO\nBAJO\n\nAbridor: Ana (2)",
+      "scores": "A·1 5A·2 10A·3 0A·4 5A·5 5",
+      "dialogValues": [],
+      "sameFrameHash": "ed5018018a87f5c683a50ef732df974c8ea11ae29c73c73de5fd0835c8b0bd28",
+      "images": [
+        {
+          "src": "../../../barajas/sistema-solar/imagenes/cartas/sedna.webp",
+          "left": 372,
+          "top": 151.578125,
+          "right": 476,
+          "bottom": 229.578125
+        },
+        {
+          "src": "../../../barajas/sistema-solar/imagenes/cartas/borrelly.webp",
+          "left": 648,
+          "top": 151.578125,
+          "right": 752,
+          "bottom": 229.578125
+        },
+        {
+          "src": "../../../barajas/sistema-solar/imagenes/cartas/67p-churyumov-gerasimenko.webp",
+          "left": 924,
+          "top": 168.1875,
+          "right": 1028,
+          "bottom": 246.1875
+        },
+        {
+          "src": "../../../barajas/sistema-solar/imagenes/cartas/encke.webp",
+          "left": 1200,
+          "top": 151.578125,
+          "right": 1304,
+          "bottom": 229.578125
+        },
+        {
+          "src": "../../../barajas/sistema-solar/imagenes/cartas/bennu.webp",
+          "left": 96,
+          "top": 631.359375,
+          "right": 200,
+          "bottom": 709.359375
+        },
+        {
+          "src": "../../../barajas/sistema-solar/imagenes/cartas/itokawa.webp",
+          "left": 372,
+          "top": 631.359375,
+          "right": 476,
+          "bottom": 709.359375
+        },
+        {
+          "src": "../../../barajas/sistema-solar/imagenes/cartas/fobos.webp",
+          "left": 648,
+          "top": 631.359375,
+          "right": 752,
+          "bottom": 709.359375
+        },
+        {
+          "src": "../../../barajas/sistema-solar/imagenes/cartas/hyakutake.webp",
+          "left": 924,
+          "top": 631.359375,
+          "right": 1028,
+          "bottom": 709.359375
+        }
+      ]
+    }
+  },
+  "checks": {
+    "movedIdentityFocus": true,
+    "ordered": true,
+    "noScoresInsideTurn": true,
+    "noInterleavedBlocks": true,
+    "cardGeometryUnchanged": true,
+    "turnComplete": true,
+    "focusTransition": true,
+    "detailsStillData": true,
+    "normalOnOffEqual": true,
+    "scoresCanScrollAway": true,
+    "offStillNormal": true,
+    "previousReferencesUnchanged": true,
+    "noJsErrors": true
+  },
+  "errors": [],
+  "narrow": {
+    "state": {
+      "mode": "data",
+      "optimize": true,
+      "useful": 328,
+      "candidate": 1368,
+      "compact": true,
+      "direction": "HIGH",
+      "selected": null,
+      "indicator": "bennu",
+      "members": [
+        {
+          "id": "p1",
+          "label": "A·1",
+          "name": "Alex",
+          "position": 1,
+          "observer": false
+        },
+        {
+          "id": "p2",
+          "label": "A·2",
+          "name": "Ana",
+          "position": 2,
+          "observer": false
+        },
+        {
+          "id": "p3",
+          "label": "A·3",
+          "name": "Alex",
+          "position": 3,
+          "observer": false
+        },
+        {
+          "id": "p4",
+          "label": "A·4",
+          "name": "Alicia",
+          "position": 4,
+          "observer": false
+        },
+        {
+          "id": "p5",
+          "label": "A·5",
+          "name": "Ana",
+          "position": 5,
+          "observer": false
+        }
+      ]
+    },
+    "viewport": [
+      360,
+      800
+    ],
+    "scrollHeight": 994,
+    "pageWidth": 360,
+    "boxes": {
+      "score-summary": {
+        "x": 16,
+        "y": 112.375,
+        "width": 328,
+        "height": 62,
+        "bottom": 174.375,
+        "visible": true
+      },
+      "summary": {
+        "x": 16,
+        "y": 182.375,
+        "width": 328,
+        "height": 105.078125,
+        "bottom": 287.453125,
+        "visible": true
+      },
+      "people-panel": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "bottom": 0,
+        "visible": false
+      },
+      "mesa-zone": {
+        "x": 16,
+        "y": 297.453125,
+        "width": 328,
+        "height": 303.21875,
+        "bottom": 600.671875,
+        "visible": true
+      },
+      "indicator-zone": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "bottom": 0,
+        "visible": false
+      },
+      "hand-zone": {
+        "x": 16,
+        "y": 610.671875,
+        "width": 328,
+        "height": 275.796875,
+        "bottom": 886.46875,
+        "visible": true
+      }
+    },
+    "card": {
+      "x": 19,
+      "y": 327.25,
+      "width": 220,
+      "height": 188,
+      "bottom": 515.25
+    },
+    "style": {
+      "nameSize": "18px",
+      "valueSize": "14px",
+      "valueFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+      "picture": {
+        "x": 28,
+        "y": 336.25,
+        "width": 32,
+        "height": 32,
+        "bottom": 368.25
+      }
+    },
+    "summaryText": "▲ Dist\nTurno: A·5 · 00:24\nIndicadora: Bennu\nALTO\nBAJO\nR6 · Mazo: 12",
+    "scores": "A·1 5\nA·2 10\nA·3 0\nA·4 5\nA·5 5",
+    "dialogValues": []
+  },
+  "identities": "A·1 · Alex (1)\nAlex (1) · GUEST · 5 puntos · BOT Fácil\n\nA·2 · Ana (2)\nAna (2) · GUEST · 10 puntos · Abridor · Sin conexión\n\nA·3 · Alex (3)\nAlex (3) · GUEST · 0 puntos · BOT Difícil\n\nA·4 · Alicia (4)\nAlicia (4) · GUEST · 5 puntos · Automático\n\nA·5 · Ana (5)\nAna (5) · tú · HOST · 5 puntos · Juega · Conectado",
+  "focusWide": {
+    "id": "p2",
+    "parent": "people-inline"
+  },
+  "focusNarrow": {
+    "id": "p2",
+    "parent": "score-summary"
+  },
+  "detailsValues": [
+    "34.52 km/s",
+    "198.08 MKm",
+    "0.33 km"
+  ],
+  "normalPixelComparison": {
+    "differentPixels": 21969,
+    "outsideImages": 0,
+    "maxDifference": 3,
+    "note": "Registrar la variación de rasterización de fotos entre capturas; no afirmar identidad binaria de PNG ni fijar una tolerancia normativa a partir de este ensayo. Composición, fuente, textos y recursos se comparan explícitamente."
+  },
+  "off": {
+    "state": {
+      "mode": "data",
+      "optimize": false,
+      "useful": 358,
+      "candidate": 1368,
+      "compact": false,
+      "direction": "HIGH",
+      "selected": null,
+      "indicator": "bennu",
+      "members": [
+        {
+          "id": "p1",
+          "label": "A·1",
+          "name": "Alex",
+          "position": 1,
+          "observer": false
+        },
+        {
+          "id": "p2",
+          "label": "A·2",
+          "name": "Ana",
+          "position": 2,
+          "observer": false
+        },
+        {
+          "id": "p3",
+          "label": "A·3",
+          "name": "Alex",
+          "position": 3,
+          "observer": false
+        },
+        {
+          "id": "p4",
+          "label": "A·4",
+          "name": "Alicia",
+          "position": 4,
+          "observer": false
+        },
+        {
+          "id": "p5",
+          "label": "A·5",
+          "name": "Ana",
+          "position": 5,
+          "observer": false
+        }
+      ]
+    },
+    "viewport": [
+      390,
+      844
+    ],
+    "scrollHeight": 2075,
+    "pageWidth": 390,
+    "boxes": {
+      "score-summary": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "bottom": 0,
+        "visible": false
+      },
+      "summary": {
+        "x": 16,
+        "y": 112.375,
+        "width": 358,
+        "height": 212.5625,
+        "bottom": 324.9375,
+        "visible": true
+      },
+      "people-panel": {
+        "x": 16,
+        "y": 336.9375,
+        "width": 358,
+        "height": 305.765625,
+        "bottom": 642.703125,
+        "visible": true
+      },
+      "mesa-zone": {
+        "x": 16,
+        "y": 654.703125,
+        "width": 358,
+        "height": 438.390625,
+        "bottom": 1093.09375,
+        "visible": true
+      },
+      "indicator-zone": {
+        "x": 16,
+        "y": 1105.09375,
+        "width": 358,
+        "height": 384.390625,
+        "bottom": 1489.484375,
+        "visible": true
+      },
+      "hand-zone": {
+        "x": 16,
+        "y": 1501.484375,
+        "width": 358,
+        "height": 442.390625,
+        "bottom": 1943.875,
+        "visible": true
+      }
+    },
+    "card": {
+      "x": 33,
+      "y": 671.703125,
+      "width": 230,
+      "height": 321,
+      "bottom": 992.703125
+    },
+    "style": {
+      "nameSize": "16px",
+      "valueSize": "14px",
+      "valueFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+      "picture": {
+        "x": 46,
+        "y": 712.09375,
+        "width": 204,
+        "height": 78,
+        "bottom": 790.09375
+      }
+    },
+    "summaryText": "▲ Dist\nTurno: A·5 · 00:24\nIndicadora: Bennu\nALTO\nBAJO\n\nAbridor: Ana (2)",
+    "scores": "A·1 5A·2 10A·3 0A·4 5A·5 5",
+    "dialogValues": []
+  }
+}

@@ -28,6 +28,7 @@ export function toRoomView(room: Room, sessionId: string = room.hostSessionId, s
       : { id: person.id, name: person.name, kind: 'HUMAN', botDifficulty: null, role: person.role, isPlayer: person.isPlayer, presence: person.presence === 'CONNECTED' ? 'CONNECTED' : 'RECONNECTING' }),
     lifecycle: room.lifecycle(serverNow),
     settings: room.settings,
-    selectedDeck: room.selectedDeck
+    selectedDeck: room.selectedDeck,
+    deckInformation: room.deckInformation
   };
 }

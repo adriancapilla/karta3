@@ -1,0 +1,81 @@
+{
+  "date": "2026-10-14T12:24:27.995Z",
+  "browser": "155.0.8059.40",
+  "viewport": {
+    "width": 390,
+    "height": 844,
+    "dpr": 1,
+    "scale": 1
+  },
+  "pageHeight": 855,
+  "residual": 11,
+  "useful": 358,
+  "panels": {
+    "people": {
+      "x": 16,
+      "y": 125.25,
+      "width": 358,
+      "height": 62,
+      "bottom": 187.25
+    },
+    "initial-state": {
+      "x": 16,
+      "y": 197.25,
+      "width": 358,
+      "height": 161,
+      "bottom": 358.25
+    },
+    "plays": {
+      "x": 16,
+      "y": 368.25,
+      "width": 358,
+      "height": 67,
+      "bottom": 435.25
+    },
+    "hand": {
+      "x": 16,
+      "y": 445.25,
+      "width": 358,
+      "height": 307,
+      "bottom": 752.25
+    }
+  },
+  "cards": [
+    {
+      "box": {
+        "x": 19,
+        "y": 506.25,
+        "width": 220,
+        "height": 188,
+        "bottom": 694.25
+      },
+      "name": "Borrelly",
+      "nameFont": "18px",
+      "valueFont": "14px"
+    },
+    {
+      "box": {
+        "x": 249,
+        "y": 506.25,
+        "width": 220,
+        "height": 188,
+        "bottom": 694.25
+      },
+      "name": "Sedna",
+      "nameFont": "18px",
+      "valueFont": "14px"
+    },
+    {
+      "box": {
+        "x": 479,
+        "y": 506.25,
+        "width": 220,
+        "height": 188,
+        "bottom": 694.25
+      },
+      "name": "Hale-Bopp",
+      "nameFont": "18px",
+      "valueFont": "14px"
+    }
+  ]
+}

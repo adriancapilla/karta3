@@ -1,0 +1,432 @@
+{
+  "viewport": {
+    "width": 360,
+    "height": 800,
+    "dpr": 1,
+    "scale": 1
+  },
+  "contentWidth": 328,
+  "composition": {
+    "x": 16,
+    "y": 111.25,
+    "width": 328,
+    "height": 882,
+    "bottom": 993.25
+  },
+  "layout": "compact",
+  "padding": "18px 14px 40px",
+  "bodyWidth": 360,
+  "pageWidth": 360,
+  "height": 1096,
+  "residual": 296,
+  "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+  "panels": {
+    "people": {
+      "x": 16,
+      "y": 111.25,
+      "width": 328,
+      "height": 106,
+      "bottom": 217.25
+    },
+    "initial-state": {
+      "x": 16,
+      "y": 227.25,
+      "width": 328,
+      "height": 161,
+      "bottom": 388.25
+    },
+    "plays": {
+      "x": 16,
+      "y": 398.25,
+      "width": 328,
+      "height": 278,
+      "bottom": 676.25
+    },
+    "hand": {
+      "x": 16,
+      "y": 686.25,
+      "width": 328,
+      "height": 307,
+      "bottom": 993.25
+    },
+    "indicator": {
+      "x": 0,
+      "y": 0,
+      "width": 0,
+      "height": 0,
+      "bottom": 0
+    }
+  },
+  "cards": [
+    {
+      "box": {
+        "x": 19,
+        "y": 428.25,
+        "width": 220,
+        "height": 188,
+        "bottom": 616.25
+      },
+      "name": "Encke",
+      "nameFont": "18px",
+      "valueFont": "14px",
+      "values": [
+        {
+          "text": "57",
+          "client": 101,
+          "scroll": 101,
+          "overflow": "visible",
+          "textOverflow": "clip"
+        },
+        {
+          "text": "35",
+          "client": 101,
+          "scroll": 101,
+          "overflow": "visible",
+          "textOverflow": "clip"
+        },
+        {
+          "text": "7",
+          "client": 101,
+          "scroll": 101,
+          "overflow": "visible",
+          "textOverflow": "clip"
+        }
+      ],
+      "columns": 2,
+      "image": {
+        "x": 28,
+        "y": 437.25,
+        "width": 32,
+        "height": 32,
+        "bottom": 469.25
+      }
+    },
+    {
+      "box": {
+        "x": 249,
+        "y": 428.25,
+        "width": 220,
+        "height": 188,
+        "bottom": 616.25
+      },
+      "name": "Borrelly",
+      "nameFont": "18px",
+      "valueFont": "14px",
+      "values": [
+        {
+          "text": "49",
+          "client": 101,
+          "scroll": 101,
+          "overflow": "visible",
+          "textOverflow": "clip"
+        },
+        {
+          "text": "46",
+          "client": 101,
+          "scroll": 101,
+          "overflow": "visible",
+          "textOverflow": "clip"
+        },
+        {
+          "text": "8",
+          "client": 101,
+          "scroll": 101,
+          "overflow": "visible",
+          "textOverflow": "clip"
+        }
+      ],
+      "columns": 2,
+      "image": {
+        "x": 258,
+        "y": 437.25,
+        "width": 32,
+        "height": 32,
+        "bottom": 469.25
+      }
+    },
+    {
+      "box": {
+        "x": 479,
+        "y": 428.25,
+        "width": 220,
+        "height": 188,
+        "bottom": 616.25
+      },
+      "name": "Sedna",
+      "nameFont": "18px",
+      "valueFont": "14px",
+      "values": [
+        {
+          "text": "10",
+          "client": 101,
+          "scroll": 101,
+          "overflow": "visible",
+          "textOverflow": "clip"
+        },
+        {
+          "text": "57",
+          "client": 101,
+          "scroll": 101,
+          "overflow": "visible",
+          "textOverflow": "clip"
+        },
+        {
+          "text": "30",
+          "client": 101,
+          "scroll": 101,
+          "overflow": "visible",
+          "textOverflow": "clip"
+        }
+      ],
+      "columns": 2,
+      "image": {
+        "x": 488,
+        "y": 437.25,
+        "width": 32,
+        "height": 32,
+        "bottom": 469.25
+      }
+    },
+    {
+      "box": {
+        "x": 709,
+        "y": 428.25,
+        "width": 220,
+        "height": 188,
+        "bottom": 616.25
+      },
+      "name": "Hyakutake",
+      "nameFont": "18px",
+      "valueFont": "14px",
+      "values": [
+        {
+          "text": "58",
+          "client": 101,
+          "scroll": 101,
+          "overflow": "visible",
+          "textOverflow": "clip"
+        },
+        {
+          "text": "58",
+          "client": 101,
+          "scroll": 101,
+          "overflow": "visible",
+          "textOverflow": "clip"
+        },
+        {
+          "text": "6",
+          "client": 101,
+          "scroll": 101,
+          "overflow": "visible",
+          "textOverflow": "clip"
+        }
+      ],
+      "columns": 2,
+      "image": {
+        "x": 718,
+        "y": 437.25,
+        "width": 32,
+        "height": 32,
+        "bottom": 469.25
+      }
+    },
+    {
+      "box": {
+        "x": 19,
+        "y": 747.25,
+        "width": 220,
+        "height": 188,
+        "bottom": 935.25
+      },
+      "name": "Eris",
+      "nameFont": "18px",
+      "valueFont": "14px",
+      "values": [
+        {
+          "text": "18",
+          "client": 101,
+          "scroll": 101,
+          "overflow": "visible",
+          "textOverflow": "clip"
+        },
+        {
+          "text": "55",
+          "client": 101,
+          "scroll": 101,
+          "overflow": "visible",
+          "textOverflow": "clip"
+        },
+        {
+          "text": "42",
+          "client": 101,
+          "scroll": 101,
+          "overflow": "visible",
+          "textOverflow": "clip"
+        }
+      ],
+      "columns": 2,
+      "image": {
+        "x": 28,
+        "y": 756.25,
+        "width": 32,
+        "height": 32,
+        "bottom": 788.25
+      }
+    },
+    {
+      "box": {
+        "x": 249,
+        "y": 747.25,
+        "width": 220,
+        "height": 188,
+        "bottom": 935.25
+      },
+      "name": "Tempel 1",
+      "nameFont": "18px",
+      "valueFont": "14px",
+      "values": [
+        {
+          "text": "45",
+          "client": 101,
+          "scroll": 101,
+          "overflow": "visible",
+          "textOverflow": "clip"
+        },
+        {
+          "text": "42",
+          "client": 101,
+          "scroll": 101,
+          "overflow": "visible",
+          "textOverflow": "clip"
+        },
+        {
+          "text": "9",
+          "client": 101,
+          "scroll": 101,
+          "overflow": "visible",
+          "textOverflow": "clip"
+        }
+      ],
+      "columns": 2,
+      "image": {
+        "x": 258,
+        "y": 756.25,
+        "width": 32,
+        "height": 32,
+        "bottom": 788.25
+      }
+    },
+    {
+      "box": {
+        "x": 479,
+        "y": 747.25,
+        "width": 220,
+        "height": 188,
+        "bottom": 935.25
+      },
+      "name": "Psyche",
+      "nameFont": "18px",
+      "valueFont": "14px",
+      "values": [
+        {
+          "text": "37",
+          "client": 101,
+          "scroll": 101,
+          "overflow": "visible",
+          "textOverflow": "clip"
+        },
+        {
+          "text": "41",
+          "client": 101,
+          "scroll": 101,
+          "overflow": "visible",
+          "textOverflow": "clip"
+        },
+        {
+          "text": "20",
+          "client": 101,
+          "scroll": 101,
+          "overflow": "visible",
+          "textOverflow": "clip"
+        }
+      ],
+      "columns": 2,
+      "image": {
+        "x": 488,
+        "y": 756.25,
+        "width": 32,
+        "height": 32,
+        "bottom": 788.25
+      }
+    }
+  ],
+  "authors": [
+    {
+      "card": {
+        "x": 19,
+        "y": 428.25,
+        "width": 220,
+        "height": 188,
+        "bottom": 616.25
+      },
+      "author": {
+        "x": 19,
+        "y": 620.25,
+        "width": 220,
+        "height": 44,
+        "bottom": 664.25
+      }
+    },
+    {
+      "card": {
+        "x": 249,
+        "y": 428.25,
+        "width": 220,
+        "height": 188,
+        "bottom": 616.25
+      },
+      "author": {
+        "x": 249,
+        "y": 620.25,
+        "width": 220,
+        "height": 44,
+        "bottom": 664.25
+      }
+    },
+    {
+      "card": {
+        "x": 479,
+        "y": 428.25,
+        "width": 220,
+        "height": 188,
+        "bottom": 616.25
+      },
+      "author": {
+        "x": 479,
+        "y": 620.25,
+        "width": 220,
+        "height": 44,
+        "bottom": 664.25
+      }
+    },
+    {
+      "card": {
+        "x": 709,
+        "y": 428.25,
+        "width": 220,
+        "height": 188,
+        "bottom": 616.25
+      },
+      "author": {
+        "x": 709,
+        "y": 620.25,
+        "width": 220,
+        "height": 44,
+        "bottom": 664.25
+      }
+    }
+  ],
+  "stateCount": 1,
+  "capturedAt": "2026-10-14T12:03:51.306Z",
+  "browserVersion": "155.0.8059.40"
+}

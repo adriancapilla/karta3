@@ -3,7 +3,7 @@ import type { InitialGameRoomView } from '../../shared/contracts/room.js';
 /** Forma exacta y ubicaciones autorizadas; compartida solo por las baterías de pruebas. */
 export function assertGamePrivacy(view: InitialGameRoomView, ownIds: readonly string[], forbiddenIds: readonly string[], assert: (condition: boolean, reason: string) => void) {
   const keys = (value: object, expected: string[]) => assert(JSON.stringify(Object.keys(value).sort()) === JSON.stringify([...expected].sort()), `Claves: ${Object.keys(value).join(',')}`);
-  keys(view, ['id', 'code', 'status', 'revision', 'participant', 'participants', 'settings', 'selectedDeck', 'game']);
+  keys(view, ['id', 'code', 'status', 'revision', 'participant', 'participants', 'settings', 'selectedDeck', 'deckInformation', 'game']);
   keys(view.game, ['id', 'phase', 'execution', 'attributes', 'round', 'drawPileCount', 'hand', 'interaction', 'ownConsecutiveTimeouts']);
   keys(view.game.round, ['number', 'kind', 'finalRoundIndex', 'playerIds', 'state', 'openerPlayerId', 'indicator', 'activeAttributeId', 'direction', 'plays']);
   keys(view.game.interaction, ['stage', 'turn', 'openingSelection', 'review']);
@@ -18,7 +18,9 @@ export function assertGamePrivacy(view: InitialGameRoomView, ownIds: readonly st
     for (const entry of view.game.interaction.review.result.ranking) keys(entry, ['playerId', 'card', 'playValue', 'position']);
   }
   for (const play of view.game.round.plays) keys(play, ['playerId', 'card', 'order', 'mode']);
-  keys(view.settings, ['deckId', 'deckContentVersion', 'hostPlays', 'turnSeconds', 'forceTieBreak', 'reviewSeconds']);
+  keys(view.settings, ['deckId', 'deckContentVersion', 'hostPlays', 'turnSeconds', 'forceTieBreak', 'reviewSeconds', 'attributeValueMode', 'optimizeForMobile']);
+  keys(view.deckInformation, ['id', 'contentVersion', 'instructions']);
+  assert(view.deckInformation.id === view.selectedDeck.id && view.deckInformation.contentVersion === view.selectedDeck.contentVersion, 'Información de la misma versión autorizada');
   keys(view.selectedDeck, ['id', 'schemaVersion', 'contentVersion', 'name', 'subtitle', 'description', 'imageUrl', 'imageAlt']);
   for (const person of [view.participant, ...view.participants]) keys(person, ['id', 'name', 'kind', 'botDifficulty', 'role', 'isPlayer', 'presence', 'score', 'playStatus']);
   assert(view.participant.kind === 'HUMAN' && view.participant.botDifficulty === null, 'Destinatario humano autenticado');

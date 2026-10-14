@@ -8,6 +8,15 @@ const ready = () => { const s = initialGameCases(); s.join(); s.select(); return
 const expectCode = (action: () => unknown, code: string) => { try { action(); throw new Error('Se esperaba rechazo'); } catch (error) { expect(error).toMatchObject({ code }); } };
 
 describe('B06 inicio/coordinación con tiempo y puertos controlados', () => {
+  it('B15 fija modos e instrucciones exactas al iniciar; replay recupera actual y nuevas mutaciones fallan', () => {
+    const s = ready(); s.configure({ field: 'attributeValueMode', value: 'DISPLAY_VALUE' }, 'display'); s.configure({ field: 'optimizeForMobile', value: true });
+    const started = gameView(s.start()); expect(started.settings).toMatchObject({ attributeValueMode: 'DISPLAY_VALUE', optimizeForMobile: true });
+    expect(started.deckInformation).toEqual({ id: 'prueba', contentVersion: 7, instructions: '' });
+    expect(Object.keys(s.room.game!.settings).sort()).toEqual(['forceTieBreak', 'turnTimeout']);
+    expect(s.rooms.configure('host', 'display', s.room.id, { field: 'attributeValueMode', value: 'DISPLAY_VALUE' })).toEqual(started);
+    for (const change of [{ field: 'attributeValueMode', value: 'PLAY_VALUE' }, { field: 'optimizeForMobile', value: false }] as const) expectCode(() => s.configure(change), 'GAME_ALREADY_STARTED');
+    expect(gameView(s.rooms.current('g0')!).deckInformation).toEqual(started.deckInformation);
+  });
   it('B06-01/02/03 autoriza anfitrión, requiere selección/dos humanos/conexión de todos', () => {
     const s = initialGameCases(); expectCode(s.start, 'START_NOT_READY'); s.select();
     expectCode(() => s.start('one'), 'START_NOT_READY'); s.join();

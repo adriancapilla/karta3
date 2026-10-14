@@ -9,9 +9,9 @@ import { RoomUseCases } from './roomUseCases.js';
 import { WaitingLifecycle } from './waitingLifecycle.js';
 import { ControlledTime } from '../../tests/support/controlledTime.js';
 
-const summary: DeckSummary = { id: 'prueba', schemaVersion: 1, contentVersion: 7, name: 'Prueba', subtitle: '', description: 'Sintética', imageUrl: null, imageAlt: '' };
+const summary: DeckSummary = { id: 'prueba', schemaVersion: 2, contentVersion: 7, name: 'Prueba', subtitle: '', description: 'Sintética', imageUrl: null, imageAlt: '' };
 const versions: PublishedDeckVersions = { resolveVersion: (id, contentVersion) => id !== 'prueba'
-  ? { ok: false, reason: 'DECK_NOT_AVAILABLE' } : contentVersion !== 7 ? { ok: false, reason: 'DECK_VERSION_MISMATCH' } : { ok: true, summary } };
+  ? { ok: false, reason: 'DECK_NOT_AVAILABLE' } : contentVersion !== 7 ? { ok: false, reason: 'DECK_VERSION_MISMATCH' } : { ok: true, summary, information: { id, contentVersion, instructions: 'Instrucciones\nliterales' } } };
 function setup(port = versions) {
   const data = new Map<string, Room>();
   const repository: RoomRepository = {
@@ -37,9 +37,38 @@ function setup(port = versions) {
 }
 
 describe('B05 preparación con puertos sustitutos y tiempo controlado', () => {
+  it('B15 controles independientes, defaults, no-op/replay/conflicto, reservas y selección conservados', () => {
+    const s = setup(); s.join('g0');
+    expect(s.initial.settings).toMatchObject({ attributeValueMode: 'PLAY_VALUE', optimizeForMobile: false }); expect(s.initial.deckInformation).toBeNull();
+    s.connected.delete('g0'); s.rooms.presenceChanged('g0');
+    const reserve = s.room.deadlines().find(d => d.kind === 'ABSENCE'); s.time.elapse(1000);
+    const first = s.configure({ field: 'attributeValueMode', value: 'DISPLAY_VALUE' }, 'mode-first');
+    expect(first.settings.attributeValueMode).toBe('DISPLAY_VALUE');
+    s.configure({ field: 'optimizeForMobile', value: true }); s.configure({ field: 'reviewSeconds', value: 2 });
+    const current = s.configure({ field: 'attributeValueMode', value: 'PLAY_VALUE' });
+    expect(current.settings).toMatchObject({ attributeValueMode: 'PLAY_VALUE', optimizeForMobile: true, reviewSeconds: 2 });
+    const count = s.events.updated.mock.calls.length; s.time.elapse(1000);
+    expect(s.configure({ field: 'attributeValueMode', value: 'DISPLAY_VALUE' }, 'mode-first')).toEqual(s.rooms.current('host'));
+    expect(s.configure({ field: 'attributeValueMode', value: 'PLAY_VALUE' }).revision).toBe(current.revision);
+    expect(s.events.updated).toHaveBeenCalledTimes(count); expect(s.room.deadlines()).toContainEqual(reserve);
+    expect(() => s.configure({ field: 'attributeValueMode', value: 'PLAY_VALUE' }, 'mode-first')).toThrow(expect.objectContaining({ code: 'REQUEST_CONFLICT' }));
+    const selected = s.configure({ field: 'deck', value: { id: 'prueba', contentVersion: 7 } });
+    expect(selected.deckInformation).toEqual({ id: 'prueba', contentVersion: 7, instructions: 'Instrucciones\nliterales' });
+    Object.assign(selected.deckInformation!, { instructions: 'Alteradas', cards: [] });
+    expect(s.rooms.current('g0')!.deckInformation).toEqual({ id: 'prueba', contentVersion: 7, instructions: 'Instrucciones\nliterales' });
+    const removed = s.configure({ field: 'deck', value: null }); expect(removed.deckInformation).toBeNull();
+    expect(removed.settings).toMatchObject({ attributeValueMode: 'PLAY_VALUE', optimizeForMobile: true });
+  });
+  it.each(['attributeValueMode', 'optimizeForMobile'] as const)('B15 %s: anfitrión observador sí; invitado/ajeno no; vencimiento exacto primero', field => {
+    const s = setup(); s.join('g0'); s.configure({ field: 'hostPlays', value: false });
+    const change = field === 'attributeValueMode' ? { field, value: 'DISPLAY_VALUE' } as const : { field, value: true } as const;
+    for (const session of ['g0', 'foreign']) expect(() => s.rooms.configure(session, `bad-${session}`, s.room.id, change)).toThrow(expect.objectContaining({ code: 'FORBIDDEN' }));
+    const accepted = s.configure(change); expect(accepted.participant.isPlayer).toBe(false);
+    s.time.elapse(30 * 60_000); expect(() => s.configure(change)).toThrow(expect.objectContaining({ code: 'ROOM_NOT_AVAILABLE' }));
+  });
   it('B05-01/03/04 inicia sin selección, proyecta solo ficha, selección/quitar son atómicos y no comparte referencias', () => {
     const s = setup();
-    expect(s.initial.settings).toEqual({ deckId: null, deckContentVersion: null, hostPlays: true, turnSeconds: 30, forceTieBreak: false, reviewSeconds: 5 });
+    expect(s.initial.settings).toEqual({ deckId: null, deckContentVersion: null, hostPlays: true, turnSeconds: 30, forceTieBreak: false, reviewSeconds: 5, attributeValueMode: 'PLAY_VALUE', optimizeForMobile: false });
     expect(s.initial.selectedDeck).toBeNull();
     s.join('g0'); s.time.elapse(1000);
     const before = s.room.revision;

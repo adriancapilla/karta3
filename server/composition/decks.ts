@@ -12,7 +12,7 @@ export const loadInstallationDecks = () => loadPreparedDecks(decksRoot);
 
 export function reportDeckDiagnostics(diagnostics: readonly PackageDiagnostic[]) {
   for (const entry of diagnostics) {
-    console.log(`${entry.package}: ${entry.valid ? 'válida' : 'inválida'}; disponibilidad ${entry.available === undefined ? 'indeterminable' : entry.available ? 'true' : 'false'}`);
+    console.log(`${entry.package}: ${entry.valid ? 'válida' : 'inválida'}${entry.compatible === false ? '; incompatible con este consumidor' : ''}; disponibilidad ${entry.available === undefined ? 'indeterminable' : entry.available ? 'true' : 'false'}`);
     for (const issue of entry.errors) console.error(`[${issue.stage}/${issue.code}] ${entry.package}/${issue.file} ${issue.path}: ${issue.message}`);
   }
 }

@@ -6,7 +6,7 @@ import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
 import { createHash } from 'node:crypto';
 import { removeTestInstallation } from '../../../tests/support/compiledDeckServer.js';
-import { deckFixture, realImage, writeFixture } from '../../../tests/support/deckFixtures.js';
+import { deckFixture, legacyDeckFixture, realImage, writeFixture } from '../../../tests/support/deckFixtures.js';
 import { validatePackage } from './readPackage.js';
 import { DeckLoadError, loadPreparedDecks, prepareDecks } from './catalog.js';
 
@@ -41,12 +41,12 @@ describe('B04-03/04 formato y coherencia', () => {
     ['subtítulo tipo', (f: Mutable) => { f.metadata.subtitle = null; }, 'baraja.json', 'subtitle', 'INVALID_TYPE'],
     ['versión textual', (f: Mutable) => { f.metadata.contentVersion = '7'; }, 'baraja.json', 'contentVersion', 'INVALID_TYPE'],
     ['versión cero', (f: Mutable) => { f.metadata.contentVersion = 0; }, 'baraja.json', 'contentVersion', 'INVALID_VALUE'],
-    ['schema desconocido', (f: Mutable) => { f.metadata.schemaVersion = 2; }, 'baraja.json', 'schemaVersion', 'UNSUPPORTED_SCHEMA'],
+    ['schema desconocido', (f: Mutable) => { f.metadata.schemaVersion = 9; }, 'baraja.json', 'schemaVersion', 'UNSUPPORTED_SCHEMA'],
     ['schema textual', (f: Mutable) => { f.metadata.schemaVersion = '1'; }, 'baraja.json', 'schemaVersion', 'UNSUPPORTED_SCHEMA'],
     ['id carpeta', (f: Mutable) => { f.metadata.id = 'otro'; }, 'baraja.json', 'id', 'DECK_ID_MISMATCH'],
     ['id colección', (f: Mutable) => { f.collection.deckId = 'otro'; }, 'cartas.json', 'deckId', 'DECK_ID_MISMATCH'],
     ['versiones distintas', (f: Mutable) => { f.collection.contentVersion = 8; }, 'cartas.json', 'contentVersion', 'VERSION_MISMATCH'],
-    ['schema colección', (f: Mutable) => { f.collection.schemaVersion = 2; }, 'cartas.json', 'schemaVersion', 'UNSUPPORTED_SCHEMA'],
+    ['schema colección', (f: Mutable) => { f.collection.schemaVersion = 9; }, 'cartas.json', 'schemaVersion', 'UNSUPPORTED_SCHEMA'],
     ['atributos fuera de orden', (f: Mutable) => { (f.metadata.attributes as unknown[]).reverse(); }, 'baraja.json', 'attributes[0].id', 'INVALID_VALUE'],
     ['atributo visible en vez de id', (f: Mutable) => { (f.metadata.attributes as Record<string, unknown>[])[0].id = 'Magnitud'; }, 'baraja.json', 'attributes[0].id', 'INVALID_VALUE'],
     ['publicación orden', (f: Mutable) => { (f.metadata.publication as Record<string, unknown>).order = -1; }, 'baraja.json', 'publication.order', 'INVALID_VALUE'],
@@ -94,19 +94,19 @@ describe('B04-03/04 formato y coherencia', () => {
 });
 
 describe('B04-05 recursos reales', () => {
-  it('AGV2-01 copia real aprobada: formato 1/contenido 2 disponible, 58 cartas y null sin directorio', async () => {
+  it('B15-01 copia real aprobada: formato 2/contenido 4 disponible, 58 cartas y null sin directorio', async () => {
     const result = await validatePackage(path.resolve('barajas/generica'));
-    expect(result).toMatchObject({ valid: true, available: true, errors: [], data: { metadata: { schemaVersion: 1, contentVersion: 2, imageRef: null, imageAlt: '' } } });
+    expect(result).toMatchObject({ valid: true, available: true, errors: [], data: { metadata: { schemaVersion: 2, contentVersion: 4, imageRef: null, imageAlt: '' } } });
     const collection = JSON.parse(await fs.readFile(path.resolve('barajas/generica/cartas.json'), 'utf8'));
-    expect(collection).toMatchObject({ schemaVersion: 1, contentVersion: 2, deckId: 'generica' });
+    expect(collection).toMatchObject({ schemaVersion: 2, contentVersion: 4, deckId: 'generica' });
     expect(collection.cards).toHaveLength(58);
     for (const card of collection.cards) expect(card).toMatchObject({ imageRef: null, imageAlt: '' });
     expect(result.data!.metadata.notes).toContain('generica-v1');
     expect(result.images.size).toBe(0);
     expect(await fs.readdir(path.resolve('barajas/generica'))).toEqual(['baraja.json', 'cartas.json']);
     for (const [file, expected] of [
-      ['baraja.json', '991406d04f60bfe884166a69fcc43954cfc751f0e058093ae2542f32c989e8ed'],
-      ['cartas.json', '868988a43fe6c6be1a73be14013c543dc2fc83970341a4243be868af75b4c35c']
+      ['baraja.json', 'b7855547acf56a728618f1e71be80cb19ca5c54a6ce0612cc3bee753270d2bd4'],
+      ['cartas.json', 'c2896ccae66d0119b808db7adea72cca7b442a283bf576e0cfaa7de2628c5c9b']
     ]) expect(createHash('sha256').update(await fs.readFile(path.resolve('barajas/generica', file))).digest('hex')).toBe(expected);
   });
   it.each(['png', 'jpeg', 'webp'] as const)('decodifica portada y carta %s; repetición de recurso permitida', async (format) => {
@@ -155,6 +155,22 @@ describe('B04-05 recursos reales', () => {
 });
 
 describe('B04-06/07/08 publicación, catálogo y carga', () => {
+  it('B15 E6: V1 disponible válida históricamente bloquea junto a V2, sin escribir catálogo parcial', async () => {
+    const dir = await writeFixture(root, legacyDeckFixture('historica'));
+    expect((await validatePackage(dir)).valid).toBe(true);
+    await writeFixture(root, deckFixture('actual'));
+    await fs.writeFile(path.join(root, 'catalogo.json'), 'anterior');
+    for (const operation of [prepareDecks, loadPreparedDecks]) await expect(operation(root)).rejects.toMatchObject({ errors: expect.arrayContaining([expect.objectContaining({ code: 'CONSUMER_SCHEMA_INCOMPATIBLE', file: 'baraja.json', path: '$.schemaVersion' })]), diagnostics: expect.arrayContaining([expect.objectContaining({ package: 'historica', valid: true, compatible: false, available: true })]) });
+    expect(await fs.readFile(path.join(root, 'catalogo.json'), 'utf8')).toBe('anterior');
+  });
+  it('B15 V1 borrador válido/ inválido mantiene false fiable y su contrato; no se convierte', async () => {
+    const f = legacyDeckFixture('historica', false); f.metadata.name = 'Cafe\u0301';
+    const dir = await writeFixture(root, f); expect((await validatePackage(dir)).valid).toBe(true);
+    await writeFixture(root, deckFixture('actual')); expect((await prepareDecks(root)).response.decks.map(d => d.id)).toEqual(['actual']);
+    f.collection.cards = []; await writeFixture(root, f);
+    const result = await prepareDecks(root); expect(result.diagnostics.find(d => d.package === 'historica')).toMatchObject({ available: false, valid: false });
+    expect((await validatePackage(dir)).valid).toBe(false);
+  });
   it('ordena por order e id ASCII, excluye no disponibles; bytes deterministas sin depender del catálogo previo', async () => {
     for (const [id, available, order] of [['zeta', true, 1], ['beta', true, 1], ['alfa', true, 0], ['borrador', false, 0]] as const) await writeFixture(root, deckFixture(id, available, order));
     await fs.writeFile(path.join(root, 'catalogo.json'), 'anterior inválido');
@@ -186,7 +202,7 @@ describe('B04-06/07/08 publicación, catálogo y carga', () => {
     if (kind === 'available-invalid') f.metadata.name = '';
     if (kind === 'missing-availability') delete (mutable.publication as Record<string, unknown>).available;
     if (kind === 'wrong-availability') (mutable.publication as Record<string, unknown>).available = 'false';
-    if (kind === 'unknown-schema') mutable.schemaVersion = 2;
+    if (kind === 'unknown-schema') mutable.schemaVersion = 9;
     const directory = await writeFixture(root, f);
     if (kind === 'broken-metadata') await fs.writeFile(path.join(directory, 'baraja.json'), '{');
     if (kind === 'duplicate-metadata') await fs.writeFile(path.join(directory, 'baraja.json'), '{"schemaVersion":1,"publication":{"available":false},"name":"a","name":"b"}');

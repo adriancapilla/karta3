@@ -1,12 +1,26 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { readStrictJson } from './strictJson.js';
-import { reliableAvailability, validatePackageFormat, type PackageError, type ParsedPackage } from './packageFormat.js';
+import { escapedPackageIssue, isObject, reliableAvailability, validatePackageFormat, validatePackageFormat2, type PackageError, type ParsedPackage } from './packageFormat.js';
 import { contained, imageReferences, validateImages, type ValidatedImage } from './resources.js';
 
-export type PackageValidation = { valid: boolean; available?: boolean; errors: PackageError[]; data?: ParsedPackage; images: ReadonlyMap<string, ValidatedImage> };
+export type PackageValidation<Schema extends 1 | 2 = 1 | 2> = { valid: boolean; available?: boolean; schemaVersion?: unknown; errors: PackageError[]; data?: ParsedPackage<Schema>; images: ReadonlyMap<string, ValidatedImage> };
 
 export async function validatePackage(directory: string): Promise<PackageValidation> {
+  const result = await readPackage(directory, validatePackageFormat, reliableAvailability);
+  return { ...result, errors: result.errors.map(escapedPackageIssue) };
+}
+
+/** Entrada explícita V2 para comprobar entregas y fixtures. */
+export async function validateFormat2Package(directory: string): Promise<PackageValidation<2>> {
+  const result = await readPackage(directory, validatePackageFormat2, (metadata) => isObject(metadata) && metadata.schemaVersion === 2
+    && isObject(metadata.publication) && typeof metadata.publication.available === 'boolean' ? metadata.publication.available : undefined);
+  return { ...result, errors: result.errors.map(escapedPackageIssue) };
+}
+
+async function readPackage<Schema extends 1 | 2>(directory: string,
+  validate: (metadata: unknown, collection: unknown, folder: string) => { errors: PackageError[]; data?: ParsedPackage<Schema> },
+  availability: (metadata: unknown) => boolean | undefined): Promise<PackageValidation<Schema>> {
   const errors: PackageError[] = [];
   async function read(file: string) {
     try {
@@ -21,9 +35,9 @@ export async function validatePackage(directory: string): Promise<PackageValidat
   }
   const metadata = await read('baraja.json');
   const collection = await read('cartas.json');
-  const available = reliableAvailability(metadata);
-  const format = validatePackageFormat(metadata, collection, path.basename(path.resolve(directory)));
+  const available = availability(metadata);
+  const format = validate(metadata, collection, path.basename(path.resolve(directory)));
   const resources = await validateImages(directory, imageReferences(metadata, collection));
   errors.push(...format.errors, ...resources.errors);
-  return { valid: errors.length === 0, available, errors, ...(errors.length === 0 ? { data: format.data } : {}), images: resources.images };
+  return { valid: errors.length === 0, available, schemaVersion: isObject(metadata) ? metadata.schemaVersion : undefined, errors, ...(errors.length === 0 ? { data: format.data } : {}), images: resources.images };
 }

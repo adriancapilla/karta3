@@ -1,0 +1,464 @@
+{
+  "schemaVersion": 2,
+  "contentVersion": 4,
+  "id": "sistema-solar",
+  "name": "Sistema Solar",
+  "subtitle": "",
+  "description": "Baraja educativa de KARTA3 con 58 cuerpos del Sistema Solar y tres atributos: velocidad orbital máxima, distancia orbital media y diámetro medio o efectivo. Los valores jugables de 1 a 58 se presentan separados de los datos científicos informativos.",
+  "notes": "Adaptación de las 58 cartas de sistema-solar-karta3-v1.0-datos, procedentes de Sistema Solar v0.3.1. Se conservan los datos, textos e indicadores editoriales de esa fuente; no se han actualizado las mediciones ni realizado una nueva verificación científica. Encke y Borrelly muestran 4.8 km de diámetro y conservan los valores jugables 7 y 8 por el desempate editorial heredado, sin inventar decimales. La distribución heredada de indicadores es 20 de velocidad, 19 de distancia y 19 de diámetro; no es una obligación del formato y su equilibrio queda pendiente de partidas reales.\nCandidata editorial de formato 2, contenido 3, pendiente de aprobación. Se conserva la procedencia de la entrega anterior; algunos datos mostrados se expresan en millones de kilómetros y/o se redondean como se explica en las instrucciones. Estos cambios de representación no son mediciones nuevas ni modifican playValue, el indicador o las imágenes.",
+  "instructions": "Vel: Velocidad; Dist: Distancia. Vel es la velocidad orbital máxima alrededor del cuerpo que orbita, en km/s. Dist es la distancia orbital media al cuerpo que orbita, representada por el semieje mayor, en MKm. MKm significa millones de kilómetros: 1 MKm = 1000000 km. Es una notación editorial de esta baraja, con M y K mayúsculas y m minúscula. Por ejemplo, 0.186 MKm equivale a 186000 km; 0.0094 MKm aproxima 9375 km como 9400 km. Diámetro es el diámetro medio o efectivo equivalente, en km; para cuerpos no esféricos se conserva el criterio de la colección de origen.\nLas representaciones se preparan desde los datos de la entrega anterior, sin una nueva verificación científica. La conversión km a MKm se calcula exactamente antes de redondear. Se conserva la mayor cantidad de decimales respaldados por el dato de origen que permita el límite conjunto de diez grafemas para dato, espacio y unidad. Si el dato completo no cabe, se reduce la cantidad de decimales y se redondea al valor más próximo; una mitad exacta se redondea hacia arriba para estos datos positivos. No se añaden ceros finales para igualar longitudes. El punto es el separador decimal; las unidades se guardan explícitamente en cada carta.\nLa precisión varía entre cartas. Un dato que se ha redondeado es una aproximación informativa, no una nueva medición. Por ejemplo, 34.519 km/s se presenta como 34.52 km/s; 317858890240 km se presenta como 317859 MKm. En carta y Detalles se muestra la misma representación de esta versión; no se restaura allí otra precisión. Las coincidencias informativas originales o creadas por el redondeo son admisibles: Encke y Borrelly conservan 4.8 km y sus valores jugables 7 y 8.\nSolo playValue decide la comparación. La carta indicadora fija el atributo activo; su propio dato no se compara. Los ids fijos, los valores jugables y roundAttribute conservan su asignación original. La referencia física asocia Vel con círculo rojo, Dist con triángulo amarillo y Diámetro con cuadrado azul; símbolos y colores son responsabilidad de la presentación, no campos adicionales.",
+  "attributes": [
+    {
+      "id": "atributo1",
+      "name": "Vel",
+      "unit": "km/s"
+    },
+    {
+      "id": "atributo2",
+      "name": "Dist",
+      "unit": "MKm"
+    },
+    {
+      "id": "atributo3",
+      "name": "Diámetro",
+      "unit": "km"
+    }
+  ],
+  "imageRef": "imagenes/portada.webp",
+  "imageAlt": "Composición del Sistema Solar con el Sol, varios planetas, una luna, un asteroide y un cometa sobre un fondo estrellado.",
+  "publication": {
+    "available": true,
+    "order": 0
+  },
+  "credits": [
+    {
+      "name": "StatDeck",
+      "role": "Compilación, selección de datos, textos y estructura de la baraja original",
+      "license": "CC BY 4.0",
+      "url": "https://creativecommons.org/licenses/by/4.0/"
+    },
+    {
+      "name": "StatDeck (dirección editorial; generación mediante OpenAI/Codex)",
+      "role": "Imágenes de las 58 cartas y portada. Generación propia para StatDeck basada en referencias científicas NASA/JPL.",
+      "license": "CC0 1.0 Universal — https://creativecommons.org/publicdomain/zero/1.0/",
+      "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Fuente editorial local: sistema-solar-karta3-v1.0-datos\\cartas.csv",
+      "url": "",
+      "note": "E:\\PROGRAMCION\\Statdeck\\datos\\barajas-oficiales\\sistema-solar-karta3-v1.0-datos\\cartas.csv; SHA-256: a6e72af6289d4ff44eadf284fdbce0e9f1a612d0a9deb507439b6621cc5d092c. Consultada el 01/10/2026; datos y atribuciones conservados sin nueva verificación científica."
+    },
+    {
+      "title": "Fuente editorial local: sistema-solar-karta3-v1.0-datos\\README.md",
+      "url": "",
+      "note": "E:\\PROGRAMCION\\Statdeck\\datos\\barajas-oficiales\\sistema-solar-karta3-v1.0-datos\\README.md; SHA-256: eae4b8994949f3581ae6ff9bff7505acf2d0948cdfab93f2c3bcacd3704fb4c6. Consultada el 01/10/2026; datos y atribuciones conservados sin nueva verificación científica."
+    },
+    {
+      "title": "Fuente editorial local: sistema-solar-v0.3.1\\cartas.csv",
+      "url": "",
+      "note": "E:\\PROGRAMCION\\Statdeck\\datos\\barajas-oficiales\\sistema-solar-v0.3.1\\cartas.csv; SHA-256: 0c86180cdbc6c7a11fe6a3d3d5d2be105517dd0f917b215382cd59f5d89c9ab5. Consultada el 01/10/2026; datos y atribuciones conservados sin nueva verificación científica."
+    },
+    {
+      "title": "Fuente editorial local: sistema-solar-v0.3.1\\baraja.csv",
+      "url": "",
+      "note": "E:\\PROGRAMCION\\Statdeck\\datos\\barajas-oficiales\\sistema-solar-v0.3.1\\baraja.csv; SHA-256: a44f3f2cb4cc970c2485831fc08be3dacc82ef04211d7989551887e98595a229. Consultada el 01/10/2026; datos y atribuciones conservados sin nueva verificación científica."
+    },
+    {
+      "title": "Fuente editorial local: sistema-solar-v0.3.1\\LICENCIAS.md",
+      "url": "",
+      "note": "E:\\PROGRAMCION\\Statdeck\\datos\\barajas-oficiales\\sistema-solar-v0.3.1\\LICENCIAS.md; SHA-256: eb7684d14e5f802a684fa905c2b18ddf360b47f2bc3b0094cea09468d83bbbcc. Consultada el 01/10/2026; datos y atribuciones conservados sin nueva verificación científica."
+    },
+    {
+      "title": "Fuente de datos conservada para itokawa",
+      "url": "https://ssd-api.jpl.nasa.gov/sbdb.api?des=25143&phys-par=1&full-prec=1",
+      "note": "Referencia heredada del campo fuente_datos de las cartas indicadas. Las fuentes científicas conservan sus condiciones de origen; no se ha realizado una nueva comprobación de su contenido."
+    },
+    {
+      "title": "Fuente de datos conservada para itokawa",
+      "url": "https://science.nasa.gov/solar-system/asteroids/25143-itokawa/",
+      "note": "Referencia heredada del campo fuente_datos de las cartas indicadas. Las fuentes científicas conservan sus condiciones de origen; no se ha realizado una nueva comprobación de su contenido."
+    },
+    {
+      "title": "Fuente de datos conservada para bennu",
+      "url": "https://ssd-api.jpl.nasa.gov/sbdb.api?des=101955&phys-par=1&full-prec=1",
+      "note": "Referencia heredada del campo fuente_datos de las cartas indicadas. Las fuentes científicas conservan sus condiciones de origen; no se ha realizado una nueva comprobación de su contenido."
+    },
+    {
+      "title": "Fuente de datos conservada para bennu",
+      "url": "https://science.nasa.gov/solar-system/asteroids/101955-bennu/facts/",
+      "note": "Referencia heredada del campo fuente_datos de las cartas indicadas. Las fuentes científicas conservan sus condiciones de origen; no se ha realizado una nueva comprobación de su contenido."
+    },
+    {
+      "title": "Fuente de datos conservada para ryugu",
+      "url": "https://ssd-api.jpl.nasa.gov/sbdb.api?des=162173&phys-par=1&full-prec=1",
+      "note": "Referencia heredada del campo fuente_datos de las cartas indicadas. Las fuentes científicas conservan sus condiciones de origen; no se ha realizado una nueva comprobación de su contenido."
+    },
+    {
+      "title": "Fuente de datos conservada para ryugu",
+      "url": "https://global.jaxa.jp/projects/sas/hayabusa2/",
+      "note": "Referencia heredada del campo fuente_datos de las cartas indicadas. Las fuentes científicas conservan sus condiciones de origen; no se ha realizado una nueva comprobación de su contenido."
+    },
+    {
+      "title": "Fuente de datos conservada para tempel-1",
+      "url": "https://ssd-api.jpl.nasa.gov/sbdb.api?des=9P&phys-par=1&full-prec=1",
+      "note": "Referencia heredada del campo fuente_datos de las cartas indicadas. Las fuentes científicas conservan sus condiciones de origen; no se ha realizado una nueva comprobación de su contenido."
+    },
+    {
+      "title": "Fuente de datos conservada para tempel-1, hyakutake, wild-2",
+      "url": "https://science.nasa.gov/solar-system/comets/facts/",
+      "note": "Referencia heredada del campo fuente_datos de las cartas indicadas. Las fuentes científicas conservan sus condiciones de origen; no se ha realizado una nueva comprobación de su contenido."
+    },
+    {
+      "title": "Fuente de datos conservada para halley",
+      "url": "https://ssd-api.jpl.nasa.gov/sbdb.api?des=1P&phys-par=1&full-prec=1",
+      "note": "Referencia heredada del campo fuente_datos de las cartas indicadas. Las fuentes científicas conservan sus condiciones de origen; no se ha realizado una nueva comprobación de su contenido."
+    },
+    {
+      "title": "Fuente de datos conservada para halley",
+      "url": "https://science.nasa.gov/solar-system/comets/1p-halley/",
+      "note": "Referencia heredada del campo fuente_datos de las cartas indicadas. Las fuentes científicas conservan sus condiciones de origen; no se ha realizado una nueva comprobación de su contenido."
+    },
+    {
+      "title": "Fuente de datos conservada para deimos, fobos, mimas, miranda, encelado, tetis, dione, ariel, umbriel, caronte, japeto, oberon, rea, titania, triton, europa, luna, io, calisto, titan, ganimedes, amaltea, hiperion, proteo, febe",
+      "url": "https://ssd.jpl.nasa.gov/sats/phys_par/",
+      "note": "Referencia heredada del campo fuente_datos de las cartas indicadas. Las fuentes científicas conservan sus condiciones de origen; no se ha realizado una nueva comprobación de su contenido."
+    },
+    {
+      "title": "Fuente de datos conservada para deimos, fobos, mimas, miranda, encelado, tetis, dione, ariel, umbriel, caronte, japeto, oberon, rea, titania, triton, europa, luna, io, calisto, titan, ganimedes, amaltea, hiperion, proteo, febe",
+      "url": "https://ssd.jpl.nasa.gov/sats/elem/",
+      "note": "Referencia heredada del campo fuente_datos de las cartas indicadas. Las fuentes científicas conservan sus condiciones de origen; no se ha realizado una nueva comprobación de su contenido."
+    },
+    {
+      "title": "Fuente de datos conservada para deimos, fobos, mimas, miranda, encelado, tetis, dione, ariel, umbriel, caronte, japeto, oberon, rea, titania, triton, europa, luna, io, calisto, titan, ganimedes, amaltea, hiperion, proteo, febe, gaspra, ida, matilde",
+      "url": "https://ssd.jpl.nasa.gov/api/horizons.api",
+      "note": "Referencia heredada del campo fuente_datos de las cartas indicadas. Las fuentes científicas conservan sus condiciones de origen; no se ha realizado una nueva comprobación de su contenido."
+    },
+    {
+      "title": "Fuente de datos conservada para deimos, fobos",
+      "url": "https://science.nasa.gov/mars/moons/facts/",
+      "note": "Referencia heredada del campo fuente_datos de las cartas indicadas. Las fuentes científicas conservan sus condiciones de origen; no se ha realizado una nueva comprobación de su contenido."
+    },
+    {
+      "title": "Fuente de datos conservada para eros",
+      "url": "https://ssd-api.jpl.nasa.gov/sbdb.api?des=433&phys-par=1&full-prec=1",
+      "note": "Referencia heredada del campo fuente_datos de las cartas indicadas. Las fuentes científicas conservan sus condiciones de origen; no se ha realizado una nueva comprobación de su contenido."
+    },
+    {
+      "title": "Fuente de datos conservada para eros",
+      "url": "https://science.nasa.gov/solar-system/asteroids/433-eros/",
+      "note": "Referencia heredada del campo fuente_datos de las cartas indicadas. Las fuentes científicas conservan sus condiciones de origen; no se ha realizado una nueva comprobación de su contenido."
+    },
+    {
+      "title": "Fuente de datos conservada para hale-bopp",
+      "url": "https://ssd-api.jpl.nasa.gov/sbdb.api?des=1995%20O1&phys-par=1&full-prec=1",
+      "note": "Referencia heredada del campo fuente_datos de las cartas indicadas. Las fuentes científicas conservan sus condiciones de origen; no se ha realizado una nueva comprobación de su contenido."
+    },
+    {
+      "title": "Fuente de datos conservada para hale-bopp",
+      "url": "https://science.nasa.gov/solar-system/comets/c-1995-o1-hale-bopp/",
+      "note": "Referencia heredada del campo fuente_datos de las cartas indicadas. Las fuentes científicas conservan sus condiciones de origen; no se ha realizado una nueva comprobación de su contenido."
+    },
+    {
+      "title": "Fuente de datos conservada para psyche",
+      "url": "https://ssd-api.jpl.nasa.gov/sbdb.api?des=16&phys-par=1&full-prec=1",
+      "note": "Referencia heredada del campo fuente_datos de las cartas indicadas. Las fuentes científicas conservan sus condiciones de origen; no se ha realizado una nueva comprobación de su contenido."
+    },
+    {
+      "title": "Fuente de datos conservada para psyche",
+      "url": "https://science.nasa.gov/solar-system/asteroids/16-psyche/",
+      "note": "Referencia heredada del campo fuente_datos de las cartas indicadas. Las fuentes científicas conservan sus condiciones de origen; no se ha realizado una nueva comprobación de su contenido."
+    },
+    {
+      "title": "Fuente de datos conservada para mimas, tetis, dione, japeto, rea",
+      "url": "https://science.nasa.gov/saturn/moons/facts/",
+      "note": "Referencia heredada del campo fuente_datos de las cartas indicadas. Las fuentes científicas conservan sus condiciones de origen; no se ha realizado una nueva comprobación de su contenido."
+    },
+    {
+      "title": "Fuente de datos conservada para higia",
+      "url": "https://ssd-api.jpl.nasa.gov/sbdb.api?des=10&phys-par=1&full-prec=1",
+      "note": "Referencia heredada del campo fuente_datos de las cartas indicadas. Las fuentes científicas conservan sus condiciones de origen; no se ha realizado una nueva comprobación de su contenido."
+    },
+    {
+      "title": "Fuente de datos conservada para higia, palas",
+      "url": "https://science.nasa.gov/solar-system/asteroids/facts/",
+      "note": "Referencia heredada del campo fuente_datos de las cartas indicadas. Las fuentes científicas conservan sus condiciones de origen; no se ha realizado una nueva comprobación de su contenido."
+    },
+    {
+      "title": "Fuente de datos conservada para miranda, ariel, umbriel, oberon, titania",
+      "url": "https://science.nasa.gov/uranus/moons/facts/",
+      "note": "Referencia heredada del campo fuente_datos de las cartas indicadas. Las fuentes científicas conservan sus condiciones de origen; no se ha realizado una nueva comprobación de su contenido."
+    },
+    {
+      "title": "Fuente de datos conservada para encelado",
+      "url": "https://science.nasa.gov/saturn/moons/enceladus/facts/",
+      "note": "Referencia heredada del campo fuente_datos de las cartas indicadas. Las fuentes científicas conservan sus condiciones de origen; no se ha realizado una nueva comprobación de su contenido."
+    },
+    {
+      "title": "Fuente de datos conservada para palas",
+      "url": "https://ssd-api.jpl.nasa.gov/sbdb.api?des=2&phys-par=1&full-prec=1",
+      "note": "Referencia heredada del campo fuente_datos de las cartas indicadas. Las fuentes científicas conservan sus condiciones de origen; no se ha realizado una nueva comprobación de su contenido."
+    },
+    {
+      "title": "Fuente de datos conservada para vesta",
+      "url": "https://ssd-api.jpl.nasa.gov/sbdb.api?des=4&phys-par=1&full-prec=1",
+      "note": "Referencia heredada del campo fuente_datos de las cartas indicadas. Las fuentes científicas conservan sus condiciones de origen; no se ha realizado una nueva comprobación de su contenido."
+    },
+    {
+      "title": "Fuente de datos conservada para vesta",
+      "url": "https://science.nasa.gov/solar-system/asteroids/4-vesta/",
+      "note": "Referencia heredada del campo fuente_datos de las cartas indicadas. Las fuentes científicas conservan sus condiciones de origen; no se ha realizado una nueva comprobación de su contenido."
+    },
+    {
+      "title": "Fuente de datos conservada para ceres",
+      "url": "https://ssd-api.jpl.nasa.gov/sbdb.api?des=1&phys-par=1&full-prec=1",
+      "note": "Referencia heredada del campo fuente_datos de las cartas indicadas. Las fuentes científicas conservan sus condiciones de origen; no se ha realizado una nueva comprobación de su contenido."
+    },
+    {
+      "title": "Fuente de datos conservada para ceres",
+      "url": "https://science.nasa.gov/dwarf-planets/ceres/facts/",
+      "note": "Referencia heredada del campo fuente_datos de las cartas indicadas. Las fuentes científicas conservan sus condiciones de origen; no se ha realizado una nueva comprobación de su contenido."
+    },
+    {
+      "title": "Fuente de datos conservada para sedna",
+      "url": "https://ssd-api.jpl.nasa.gov/sbdb.api?des=90377&phys-par=1&full-prec=1",
+      "note": "Referencia heredada del campo fuente_datos de las cartas indicadas. Las fuentes científicas conservan sus condiciones de origen; no se ha realizado una nueva comprobación de su contenido."
+    },
+    {
+      "title": "Fuente de datos conservada para sedna, makemake, haumea, eris",
+      "url": "https://ssd.jpl.nasa.gov/tools/sbdb_lookup.html",
+      "note": "Referencia heredada del campo fuente_datos de las cartas indicadas. Las fuentes científicas conservan sus condiciones de origen; no se ha realizado una nueva comprobación de su contenido."
+    },
+    {
+      "title": "Fuente de datos conservada para sedna, makemake, haumea, eris",
+      "url": "https://science.nasa.gov/dwarf-planets/",
+      "note": "Referencia heredada del campo fuente_datos de las cartas indicadas. Las fuentes científicas conservan sus condiciones de origen; no se ha realizado una nueva comprobación de su contenido."
+    },
+    {
+      "title": "Fuente de datos conservada para caronte, triton",
+      "url": "https://science.nasa.gov/solar-system/moons/facts/",
+      "note": "Referencia heredada del campo fuente_datos de las cartas indicadas. Las fuentes científicas conservan sus condiciones de origen; no se ha realizado una nueva comprobación de su contenido."
+    },
+    {
+      "title": "Fuente de datos conservada para makemake",
+      "url": "https://ssd-api.jpl.nasa.gov/sbdb.api?des=136472&phys-par=1&full-prec=1",
+      "note": "Referencia heredada del campo fuente_datos de las cartas indicadas. Las fuentes científicas conservan sus condiciones de origen; no se ha realizado una nueva comprobación de su contenido."
+    },
+    {
+      "title": "Fuente de datos conservada para haumea",
+      "url": "https://ssd-api.jpl.nasa.gov/sbdb.api?des=136108&phys-par=1&full-prec=1",
+      "note": "Referencia heredada del campo fuente_datos de las cartas indicadas. Las fuentes científicas conservan sus condiciones de origen; no se ha realizado una nueva comprobación de su contenido."
+    },
+    {
+      "title": "Fuente de datos conservada para haumea",
+      "url": "https://science.nasa.gov/dwarf-planets/haumea/",
+      "note": "Referencia heredada del campo fuente_datos de las cartas indicadas. Las fuentes científicas conservan sus condiciones de origen; no se ha realizado una nueva comprobación de su contenido."
+    },
+    {
+      "title": "Fuente de datos conservada para eris",
+      "url": "https://ssd-api.jpl.nasa.gov/sbdb.api?des=136199&phys-par=1&full-prec=1",
+      "note": "Referencia heredada del campo fuente_datos de las cartas indicadas. Las fuentes científicas conservan sus condiciones de origen; no se ha realizado una nueva comprobación de su contenido."
+    },
+    {
+      "title": "Fuente de datos conservada para pluton",
+      "url": "https://ssd-api.jpl.nasa.gov/sbdb.api?des=134340&phys-par=1&full-prec=1",
+      "note": "Referencia heredada del campo fuente_datos de las cartas indicadas. Las fuentes científicas conservan sus condiciones de origen; no se ha realizado una nueva comprobación de su contenido."
+    },
+    {
+      "title": "Fuente de datos conservada para pluton",
+      "url": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/plutofact.html",
+      "note": "Referencia heredada del campo fuente_datos de las cartas indicadas. Las fuentes científicas conservan sus condiciones de origen; no se ha realizado una nueva comprobación de su contenido."
+    },
+    {
+      "title": "Fuente de datos conservada para pluton",
+      "url": "https://science.nasa.gov/dwarf-planets/pluto/facts/",
+      "note": "Referencia heredada del campo fuente_datos de las cartas indicadas. Las fuentes científicas conservan sus condiciones de origen; no se ha realizado una nueva comprobación de su contenido."
+    },
+    {
+      "title": "Fuente de datos conservada para europa",
+      "url": "https://science.nasa.gov/jupiter/jupiter-moons/europa/facts/",
+      "note": "Referencia heredada del campo fuente_datos de las cartas indicadas. Las fuentes científicas conservan sus condiciones de origen; no se ha realizado una nueva comprobación de su contenido."
+    },
+    {
+      "title": "Fuente de datos conservada para luna",
+      "url": "https://science.nasa.gov/moon/facts/",
+      "note": "Referencia heredada del campo fuente_datos de las cartas indicadas. Las fuentes científicas conservan sus condiciones de origen; no se ha realizado una nueva comprobación de su contenido."
+    },
+    {
+      "title": "Fuente de datos conservada para io",
+      "url": "https://science.nasa.gov/jupiter/jupiter-moons/io/facts/",
+      "note": "Referencia heredada del campo fuente_datos de las cartas indicadas. Las fuentes científicas conservan sus condiciones de origen; no se ha realizado una nueva comprobación de su contenido."
+    },
+    {
+      "title": "Fuente de datos conservada para calisto",
+      "url": "https://science.nasa.gov/jupiter/jupiter-moons/callisto/",
+      "note": "Referencia heredada del campo fuente_datos de las cartas indicadas. Las fuentes científicas conservan sus condiciones de origen; no se ha realizado una nueva comprobación de su contenido."
+    },
+    {
+      "title": "Fuente de datos conservada para mercurio, marte, venus, tierra, neptuno, urano, saturno, jupiter",
+      "url": "https://ssd.jpl.nasa.gov/planets/phys_par.html",
+      "note": "Referencia heredada del campo fuente_datos de las cartas indicadas. Las fuentes científicas conservan sus condiciones de origen; no se ha realizado una nueva comprobación de su contenido."
+    },
+    {
+      "title": "Fuente de datos conservada para mercurio, marte, venus, tierra, neptuno, urano, saturno, jupiter",
+      "url": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/",
+      "note": "Referencia heredada del campo fuente_datos de las cartas indicadas. Las fuentes científicas conservan sus condiciones de origen; no se ha realizado una nueva comprobación de su contenido."
+    },
+    {
+      "title": "Fuente de datos conservada para mercurio",
+      "url": "https://science.nasa.gov/mercury/facts/",
+      "note": "Referencia heredada del campo fuente_datos de las cartas indicadas. Las fuentes científicas conservan sus condiciones de origen; no se ha realizado una nueva comprobación de su contenido."
+    },
+    {
+      "title": "Fuente de datos conservada para titan",
+      "url": "https://science.nasa.gov/saturn/moons/titan/facts/",
+      "note": "Referencia heredada del campo fuente_datos de las cartas indicadas. Las fuentes científicas conservan sus condiciones de origen; no se ha realizado una nueva comprobación de su contenido."
+    },
+    {
+      "title": "Fuente de datos conservada para ganimedes",
+      "url": "https://science.nasa.gov/jupiter/jupiter-moons/ganymede/facts/",
+      "note": "Referencia heredada del campo fuente_datos de las cartas indicadas. Las fuentes científicas conservan sus condiciones de origen; no se ha realizado una nueva comprobación de su contenido."
+    },
+    {
+      "title": "Fuente de datos conservada para marte",
+      "url": "https://science.nasa.gov/mars/facts/",
+      "note": "Referencia heredada del campo fuente_datos de las cartas indicadas. Las fuentes científicas conservan sus condiciones de origen; no se ha realizado una nueva comprobación de su contenido."
+    },
+    {
+      "title": "Fuente de datos conservada para venus",
+      "url": "https://science.nasa.gov/venus/venus-facts/",
+      "note": "Referencia heredada del campo fuente_datos de las cartas indicadas. Las fuentes científicas conservan sus condiciones de origen; no se ha realizado una nueva comprobación de su contenido."
+    },
+    {
+      "title": "Fuente de datos conservada para tierra",
+      "url": "https://science.nasa.gov/earth/facts/",
+      "note": "Referencia heredada del campo fuente_datos de las cartas indicadas. Las fuentes científicas conservan sus condiciones de origen; no se ha realizado una nueva comprobación de su contenido."
+    },
+    {
+      "title": "Fuente de datos conservada para tierra",
+      "url": "https://ntrs.nasa.gov/citations/20240016463",
+      "note": "Referencia heredada del campo fuente_datos de las cartas indicadas. Las fuentes científicas conservan sus condiciones de origen; no se ha realizado una nueva comprobación de su contenido."
+    },
+    {
+      "title": "Fuente de datos conservada para tierra",
+      "url": "https://adsabs.harvard.edu/pdf/1991PASP..103..315S",
+      "note": "Referencia heredada del campo fuente_datos de las cartas indicadas. Las fuentes científicas conservan sus condiciones de origen; no se ha realizado una nueva comprobación de su contenido."
+    },
+    {
+      "title": "Fuente de datos conservada para 67p-churyumov-gerasimenko",
+      "url": "https://ssd-api.jpl.nasa.gov/sbdb.api?des=67P&phys-par=1&full-prec=1",
+      "note": "Referencia heredada del campo fuente_datos de las cartas indicadas. Las fuentes científicas conservan sus condiciones de origen; no se ha realizado una nueva comprobación de su contenido."
+    },
+    {
+      "title": "Fuente de datos conservada para 67p-churyumov-gerasimenko",
+      "url": "https://science.nasa.gov/solar-system/comets/67p-churyumov-gerasimenko/",
+      "note": "Referencia heredada del campo fuente_datos de las cartas indicadas. Las fuentes científicas conservan sus condiciones de origen; no se ha realizado una nueva comprobación de su contenido."
+    },
+    {
+      "title": "Fuente de datos conservada para hyakutake",
+      "url": "https://ssd-api.jpl.nasa.gov/sbdb.api?des=1996%20B2&phys-par=1&full-prec=1",
+      "note": "Referencia heredada del campo fuente_datos de las cartas indicadas. Las fuentes científicas conservan sus condiciones de origen; no se ha realizado una nueva comprobación de su contenido."
+    },
+    {
+      "title": "Fuente de datos conservada para hyakutake",
+      "url": "https://www.cbat.eps.harvard.edu/pressinfo/HaleBopp.html",
+      "note": "Referencia heredada del campo fuente_datos de las cartas indicadas. Las fuentes científicas conservan sus condiciones de origen; no se ha realizado una nueva comprobación de su contenido."
+    },
+    {
+      "title": "Fuente de datos conservada para wild-2",
+      "url": "https://ssd-api.jpl.nasa.gov/sbdb.api?des=81P&phys-par=1&full-prec=1",
+      "note": "Referencia heredada del campo fuente_datos de las cartas indicadas. Las fuentes científicas conservan sus condiciones de origen; no se ha realizado una nueva comprobación de su contenido."
+    },
+    {
+      "title": "Fuente de datos conservada para encke",
+      "url": "https://ssd-api.jpl.nasa.gov/sbdb.api?des=2P&phys-par=1&full-prec=1",
+      "note": "Referencia heredada del campo fuente_datos de las cartas indicadas. Las fuentes científicas conservan sus condiciones de origen; no se ha realizado una nueva comprobación de su contenido."
+    },
+    {
+      "title": "Fuente de datos conservada para encke",
+      "url": "https://science.nasa.gov/solar-system/comets/2p-encke/",
+      "note": "Referencia heredada del campo fuente_datos de las cartas indicadas. Las fuentes científicas conservan sus condiciones de origen; no se ha realizado una nueva comprobación de su contenido."
+    },
+    {
+      "title": "Fuente de datos conservada para neptuno",
+      "url": "https://science.nasa.gov/neptune/neptune-facts/",
+      "note": "Referencia heredada del campo fuente_datos de las cartas indicadas. Las fuentes científicas conservan sus condiciones de origen; no se ha realizado una nueva comprobación de su contenido."
+    },
+    {
+      "title": "Fuente de datos conservada para urano",
+      "url": "https://science.nasa.gov/uranus/facts/",
+      "note": "Referencia heredada del campo fuente_datos de las cartas indicadas. Las fuentes científicas conservan sus condiciones de origen; no se ha realizado una nueva comprobación de su contenido."
+    },
+    {
+      "title": "Fuente de datos conservada para saturno",
+      "url": "https://science.nasa.gov/saturn/facts/",
+      "note": "Referencia heredada del campo fuente_datos de las cartas indicadas. Las fuentes científicas conservan sus condiciones de origen; no se ha realizado una nueva comprobación de su contenido."
+    },
+    {
+      "title": "Fuente de datos conservada para jupiter",
+      "url": "https://science.nasa.gov/jupiter/facts/",
+      "note": "Referencia heredada del campo fuente_datos de las cartas indicadas. Las fuentes científicas conservan sus condiciones de origen; no se ha realizado una nueva comprobación de su contenido."
+    },
+    {
+      "title": "Fuente de datos conservada para amaltea",
+      "url": "https://science.nasa.gov/jupiter/jupiter-moons/amalthea/",
+      "note": "Referencia heredada del campo fuente_datos de las cartas indicadas. Las fuentes científicas conservan sus condiciones de origen; no se ha realizado una nueva comprobación de su contenido."
+    },
+    {
+      "title": "Fuente de datos conservada para hiperion",
+      "url": "https://science.nasa.gov/saturn/moons/hyperion/",
+      "note": "Referencia heredada del campo fuente_datos de las cartas indicadas. Las fuentes científicas conservan sus condiciones de origen; no se ha realizado una nueva comprobación de su contenido."
+    },
+    {
+      "title": "Fuente de datos conservada para proteo",
+      "url": "https://science.nasa.gov/neptune/moons/proteus/",
+      "note": "Referencia heredada del campo fuente_datos de las cartas indicadas. Las fuentes científicas conservan sus condiciones de origen; no se ha realizado una nueva comprobación de su contenido."
+    },
+    {
+      "title": "Fuente de datos conservada para febe",
+      "url": "https://science.nasa.gov/saturn/moons/phoebe/",
+      "note": "Referencia heredada del campo fuente_datos de las cartas indicadas. Las fuentes científicas conservan sus condiciones de origen; no se ha realizado una nueva comprobación de su contenido."
+    },
+    {
+      "title": "Fuente de datos conservada para gaspra",
+      "url": "https://ssd-api.jpl.nasa.gov/sbdb.api?des=951&phys-par=1&full-prec=1",
+      "note": "Referencia heredada del campo fuente_datos de las cartas indicadas. Las fuentes científicas conservan sus condiciones de origen; no se ha realizado una nueva comprobación de su contenido."
+    },
+    {
+      "title": "Fuente de datos conservada para gaspra",
+      "url": "https://science.nasa.gov/solar-system/asteroids/951-gaspra/",
+      "note": "Referencia heredada del campo fuente_datos de las cartas indicadas. Las fuentes científicas conservan sus condiciones de origen; no se ha realizado una nueva comprobación de su contenido."
+    },
+    {
+      "title": "Fuente de datos conservada para ida",
+      "url": "https://ssd-api.jpl.nasa.gov/sbdb.api?des=243&phys-par=1&full-prec=1",
+      "note": "Referencia heredada del campo fuente_datos de las cartas indicadas. Las fuentes científicas conservan sus condiciones de origen; no se ha realizado una nueva comprobación de su contenido."
+    },
+    {
+      "title": "Fuente de datos conservada para ida",
+      "url": "https://science.nasa.gov/solar-system/asteroids/243-ida/",
+      "note": "Referencia heredada del campo fuente_datos de las cartas indicadas. Las fuentes científicas conservan sus condiciones de origen; no se ha realizado una nueva comprobación de su contenido."
+    },
+    {
+      "title": "Fuente de datos conservada para matilde",
+      "url": "https://ssd-api.jpl.nasa.gov/sbdb.api?des=253&phys-par=1&full-prec=1",
+      "note": "Referencia heredada del campo fuente_datos de las cartas indicadas. Las fuentes científicas conservan sus condiciones de origen; no se ha realizado una nueva comprobación de su contenido."
+    },
+    {
+      "title": "Fuente de datos conservada para matilde",
+      "url": "https://science.nasa.gov/solar-system/asteroids/253-mathilde/",
+      "note": "Referencia heredada del campo fuente_datos de las cartas indicadas. Las fuentes científicas conservan sus condiciones de origen; no se ha realizado una nueva comprobación de su contenido."
+    },
+    {
+      "title": "Fuente de datos conservada para borrelly",
+      "url": "https://ssd-api.jpl.nasa.gov/sbdb.api?des=19P&phys-par=1&full-prec=1",
+      "note": "Referencia heredada del campo fuente_datos de las cartas indicadas. Las fuentes científicas conservan sus condiciones de origen; no se ha realizado una nueva comprobación de su contenido."
+    },
+    {
+      "title": "Fuente de datos conservada para borrelly",
+      "url": "https://science.nasa.gov/solar-system/comets/19p-borrelly/",
+      "note": "Referencia heredada del campo fuente_datos de las cartas indicadas. Las fuentes científicas conservan sus condiciones de origen; no se ha realizado una nueva comprobación de su contenido."
+    }
+  ]
+}

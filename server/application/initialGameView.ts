@@ -27,7 +27,7 @@ export function toInitialGameRoomView(room: Room, sessionId: string, serverNow =
       score: person.isPlayer ? game.score(person.id) : null, playStatus: game.players.find((player) => player.id === person.id)?.status ?? null });
   const participant = participants.find((person): person is Extract<GameParticipantView, { kind: 'HUMAN' }> => person.kind === 'HUMAN' && person.id === room.participantFor(sessionId)!.id)!;
   return { id: room.id, code: room.code, status: 'IN_GAME', revision: room.revision, participant, participants,
-    settings: room.settings, selectedDeck: room.selectedDeck!, game: {
+    settings: room.settings, selectedDeck: room.selectedDeck!, deckInformation: room.deckInformation!, game: {
       id: game.id, phase: game.phase, execution: 'TIMED_TURNS', attributes: game.definition.attributes.map((attribute) => ({ ...attribute })),
       round: { number: game.round.number, kind: game.round.kind, finalRoundIndex: game.round.finalRoundIndex, playerIds: [...game.round.playerIds], state: game.round.state, openerPlayerId: game.round.openerPlayerId,
         indicator: cardView(game.round.indicator), activeAttributeId: game.round.activeAttributeId, direction: game.round.direction,

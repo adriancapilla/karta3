@@ -3,7 +3,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { deckFixture, realImage, writeFixture } from '../support/deckFixtures.js';
 import { compiledInstallation, removeTestInstallation, startCompiledDeckServer } from '../support/compiledDeckServer.js';
-import { approvedGeneric } from '../support/approvedGeneric.js';
+import { approvedInstalledDecks } from '../support/approvedSolar.js';
 
 for (const width of [390, 1280]) {
   test.describe(`B04 catálogo ${width}px`, () => {
@@ -11,10 +11,10 @@ for (const width of [390, 1280]) {
     test('AGV2-02/03/08 ejecución normal genérica 2; GET no crea cookie y sala inicialmente sin selección', async ({ page, context }) => {
       const response = await page.goto('/api/decks');
       expect(response?.status()).toBe(200); expect(response?.headers()['cache-control']).toBe('no-store');
-      expect(await response?.json()).toEqual({ decks: [approvedGeneric] }); expect(await context.cookies()).toEqual([]);
+      expect(await response?.json()).toEqual({ decks: approvedInstalledDecks }); expect(await context.cookies()).toEqual([]);
       await page.goto('/'); await page.getByRole('button', { name: 'Crear sala' }).click();
       await expect(page.getByText('1 de 5 jugadores')).toBeVisible();
-      await expect(page.getByRole('option', { name: 'KARTA3 — Baraja genérica · v2' })).toHaveCount(1);
+      await expect(page.getByRole('option', { name: 'KARTA3 — Baraja genérica · v4' })).toHaveCount(1);
       await expect(page.locator('.no-deck')).toHaveText('Sin baraja seleccionada');
       await expect(page.getByLabel('Baraja', { exact: true })).toHaveValue('');
       await expect(page.getByLabel('El anfitrión juega')).toBeChecked();
@@ -22,7 +22,7 @@ for (const width of [390, 1280]) {
       await expect(page.getByLabel('Forzar desempate')).not.toBeChecked();
       await expect(page.getByLabel('Revisión de ronda')).toHaveValue('5');
       const responseAgain = await page.evaluate(async () => (await (await fetch('/api/decks')).json()));
-      expect(responseAgain).toEqual({ decks: [approvedGeneric] });
+      expect(responseAgain).toEqual({ decks: approvedInstalledDecks });
       expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
       for (const url of ['/barajas/generica/baraja.json', '/barajas/generica/cartas.json', '/barajas/catalogo.json', '/media/decks/generica/v1/imagenes/a.png', '/media/decks/generica/v2/imagenes/a.png', '/api/no-existe']) {
         const denied = await page.evaluate(async (path) => { const r = await fetch(path); return { status: r.status, text: await r.text() }; }, url);
@@ -62,7 +62,7 @@ for (const width of [390, 1280]) {
         const server = await startCompiledDeckServer(root); stop = server.stop;
         const response = await page.goto(`${server.base}/api/decks`); expect(response?.status()).toBe(200);
         const payload = await response!.json(); expect(await context.cookies()).toEqual([]);
-        expect(payload).toEqual({ decks: [{ id: 'publicada', schemaVersion: 1, contentVersion: 7, name: 'Fixture publicada', subtitle: '', description: fixture.metadata.description,
+        expect(payload).toEqual({ decks: [{ id: 'publicada', schemaVersion: 2, contentVersion: 7, name: 'Fixture publicada', subtitle: '', description: fixture.metadata.description,
           imageUrl: '/media/decks/publicada/v7/imagenes/portada.webp', imageAlt: 'Portada de prueba' }] });
         const served = await page.evaluate(async (url: string) => { const r = await fetch(url); return { status: r.status, mime: r.headers.get('content-type'), bytes: Array.from(new Uint8Array(await r.arrayBuffer())) }; }, payload.decks[0].imageUrl);
         expect(served.status).toBe(200); expect(served.mime).toBe('image/webp'); expect(Buffer.from(served.bytes)).toEqual(image);

@@ -1,3 +1,7 @@
 * text=auto eol=lf
 # Copias aprobadas: conservar todos los bytes, también al clonar en Windows.
 barajas/** -text whitespace=cr-at-eol
+# Certificados recibidos B15: sus huellas identifican bytes, no JSON reserializado.
+docs/sdd/evidencias/B15/MANIFIESTO_SHA256.json -text whitespace=cr-at-eol
+docs/sdd/evidencias/B15/DELTA_3_A_4.json -text whitespace=cr-at-eol
+docs/sdd/evidencias/B15/REGISTRO_ACTIVACION.md -text whitespace=cr-at-eol

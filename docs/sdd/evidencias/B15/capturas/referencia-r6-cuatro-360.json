@@ -1,0 +1,129 @@
+{
+  "date": "2026-10-14T12:24:38.673Z",
+  "browser": "155.0.8059.40",
+  "viewport": {
+    "width": 360,
+    "height": 800,
+    "dpr": 1,
+    "scale": 1
+  },
+  "pageHeight": 1033,
+  "residual": 233,
+  "useful": 328,
+  "panels": {
+    "people": {
+      "x": 16,
+      "y": 111.25,
+      "width": 328,
+      "height": 62,
+      "bottom": 173.25
+    },
+    "initial-state": {
+      "x": 16,
+      "y": 183.25,
+      "width": 328,
+      "height": 142,
+      "bottom": 325.25
+    },
+    "plays": {
+      "x": 16,
+      "y": 335.25,
+      "width": 328,
+      "height": 278,
+      "bottom": 613.25
+    },
+    "hand": {
+      "x": 16,
+      "y": 623.25,
+      "width": 328,
+      "height": 307,
+      "bottom": 930.25
+    }
+  },
+  "cards": [
+    {
+      "box": {
+        "x": 19,
+        "y": 365.25,
+        "width": 220,
+        "height": 188,
+        "bottom": 553.25
+      },
+      "name": "Europa",
+      "nameFont": "18px",
+      "valueFont": "14px"
+    },
+    {
+      "box": {
+        "x": 249,
+        "y": 365.25,
+        "width": 220,
+        "height": 188,
+        "bottom": 553.25
+      },
+      "name": "Plutón",
+      "nameFont": "18px",
+      "valueFont": "14px"
+    },
+    {
+      "box": {
+        "x": 479,
+        "y": 365.25,
+        "width": 220,
+        "height": 188,
+        "bottom": 553.25
+      },
+      "name": "Haumea",
+      "nameFont": "18px",
+      "valueFont": "14px"
+    },
+    {
+      "box": {
+        "x": 709,
+        "y": 365.25,
+        "width": 220,
+        "height": 188,
+        "bottom": 553.25
+      },
+      "name": "Tritón",
+      "nameFont": "18px",
+      "valueFont": "14px"
+    },
+    {
+      "box": {
+        "x": 19,
+        "y": 684.25,
+        "width": 220,
+        "height": 188,
+        "bottom": 872.25
+      },
+      "name": "Eris",
+      "nameFont": "18px",
+      "valueFont": "14px"
+    },
+    {
+      "box": {
+        "x": 249,
+        "y": 684.25,
+        "width": 220,
+        "height": 188,
+        "bottom": 872.25
+      },
+      "name": "Titán",
+      "nameFont": "18px",
+      "valueFont": "14px"
+    },
+    {
+      "box": {
+        "x": 479,
+        "y": 684.25,
+        "width": 220,
+        "height": 188,
+        "bottom": 872.25
+      },
+      "name": "Wild 2",
+      "nameFont": "18px",
+      "valueFont": "14px"
+    }
+  ]
+}

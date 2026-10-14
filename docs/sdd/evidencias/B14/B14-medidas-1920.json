@@ -1,0 +1,59 @@
+{
+  "width": 230,
+  "height": 359,
+  "tableWidth": 204,
+  "tableFits": true,
+  "jugableLines": [
+    1,
+    1,
+    1
+  ],
+  "values": [
+    {
+      "text": "87.785 km/s",
+      "client": 103,
+      "scroll": 103,
+      "clipped": false
+    },
+    {
+      "text": "58",
+      "client": 19,
+      "scroll": 19,
+      "clipped": false
+    },
+    {
+      "text": "317858890240 km",
+      "client": 103,
+      "scroll": 103,
+      "clipped": false
+    },
+    {
+      "text": "58",
+      "client": 19,
+      "scroll": 19,
+      "clipped": false
+    },
+    {
+      "text": "4.2 km",
+      "client": 103,
+      "scroll": 103,
+      "clipped": false
+    },
+    {
+      "text": "6",
+      "client": 19,
+      "scroll": 19,
+      "clipped": false
+    }
+  ],
+  "traffic": [
+    {
+      "acks": 3,
+      "events": 5
+    },
+    {
+      "acks": 1,
+      "events": 3
+    }
+  ]
+}

@@ -103,7 +103,7 @@ test('B09 P2 normal compilado genérica 2: persona contra fácil/difícil, entro
   const p = await manualTable(browser, baseURL!, { count: 1, bots: ['HARD', 'EASY'], review: 0, turn: 60, width: 1280 });
   const tab = await p.contexts[0].newPage();
   try {
-    expect(await p.host.evaluate(async () => (await (await fetch('/api/decks')).json()).decks.map((deck: { id: string; contentVersion: number }) => [deck.id, deck.contentVersion]))).toEqual([['generica', 2]]);
+    expect(await p.host.evaluate(async () => (await (await fetch('/api/decks')).json()).decks.map((deck: { id: string; contentVersion: number }) => [deck.id, deck.contentVersion]))).toEqual([['generica', 4], ['sistema-solar', 4]]);
     await tab.goto(baseURL!); let moves = 0; const final = new Set<number>();
     for (const page of [p.host, tab]) {
       await expect(page.getByRole('img', { name: 'Bot · Difícil', exact: true })).toHaveText('BD'); await expect(page.getByRole('img', { name: 'Bot · Fácil', exact: true })).toHaveText('BF');
@@ -120,7 +120,7 @@ test('B09 P2 normal compilado genérica 2: persona contra fácil/difícil, entro
       }
     }
     const result = await readRoom(p.host) as ResultsRoomView;
-    expect(result.selectedDeck).toMatchObject({ id: 'generica', contentVersion: 2 }); expect(result.result.completedNormally).toBe(true);
+    expect(result.selectedDeck).toMatchObject({ id: 'generica', contentVersion: 4 }); expect(result.result.completedNormally).toBe(true);
     expect(result.result.standings.reduce((sum, p) => sum + p.score, 0)).toBe(45); expect(moves).toBe(15); expect(final.size).toBe(3);
     await expect(p.host.getByRole('heading', { name: 'Partida terminada', exact: true })).toBeVisible();
     await expect(p.host.locator('.standings')).toContainText('Bot · Difícil'); await expect(p.host.locator('.standings')).toContainText('Bot · Fácil');

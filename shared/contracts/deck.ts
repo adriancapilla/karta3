@@ -1,6 +1,6 @@
 export type DeckSummary = Readonly<{
   id: string;
-  schemaVersion: 1;
+  schemaVersion: 2;
   contentVersion: number;
   name: string;
   subtitle: string;
@@ -9,3 +9,4 @@ export type DeckSummary = Readonly<{
   imageAlt: string;
 }>;
 export type DecksResponse = Readonly<{ decks: readonly DeckSummary[] }>;
+export type DeckInformationView = Readonly<{ id: string; contentVersion: number; instructions: string }>;

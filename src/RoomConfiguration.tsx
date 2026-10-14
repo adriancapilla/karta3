@@ -4,6 +4,7 @@ import type { DeckSummary } from '../shared/contracts/deck';
 import { api } from './api';
 import { useRoomConfiguration } from './useRoomConfiguration';
 import type { ConfigurationField } from './configurationState';
+import { DeckInformation } from './DeckInformation';
 
 type Catalog = { status: 'LOADING' | 'READY' | 'ERROR'; decks: readonly DeckSummary[]; showReload: boolean };
 function useDeckCatalog(host: boolean) {
@@ -53,7 +54,7 @@ export function RoomConfiguration({ room, connected, onRoom, onPendingChange }: 
   const shown = (field: Exclude<ConfigurationField, 'deck'>) => attempts[field]?.status === 'PENDING' ? attempts[field]!.change.value : room.settings[field];
   const submit = (value: ConfigurationChange) => void change(value);
   return <section className="configuration" aria-labelledby="configuration-heading">
-    <h2 id="configuration-heading">Configuración</h2>
+    <h2 id="configuration-heading" tabIndex={-1}>Configuración</h2>
     {host ? <>
       <p className="configuration-hint">Cada cambio se aplica al confirmarlo el servidor.</p>
       <div className="config-control">
@@ -72,7 +73,14 @@ export function RoomConfiguration({ room, connected, onRoom, onPendingChange }: 
       </div>
     </> : <p className="configuration-hint">Valores aceptados por el anfitrión.</p>}
     {acceptedDeck ? <DeckCard key={deckValue(acceptedDeck)} deck={acceptedDeck} /> : <p className="no-deck">Sin baraja seleccionada</p>}
+    <DeckInformation deck={acceptedDeck} information={room.deckInformation} context={room.id} />
     {host ? <div className="configuration-controls">
+      <div className="config-control"><label htmlFor="config-attributeValueMode">Valor del Atributo</label><select {...attrs('attributeValueMode')} value={String(shown('attributeValueMode'))}
+        onChange={(event) => submit({ field: 'attributeValueMode', value: event.target.value as 'PLAY_VALUE' | 'DISPLAY_VALUE' })}>
+        <option value="PLAY_VALUE">1-58</option><option value="DISPLAY_VALUE">Dato</option>
+      </select>{info('attributeValueMode')}</div>
+      <div className="config-control"><label className="check-label" htmlFor="config-optimizeForMobile"><input {...attrs('optimizeForMobile')} type="checkbox" checked={shown('optimizeForMobile') === true}
+        onChange={(event) => submit({ field: 'optimizeForMobile', value: event.target.checked })} />Optimizar para móvil</label>{info('optimizeForMobile')}</div>
       <div className="config-control"><label className="check-label" htmlFor="config-hostPlays"><input {...attrs('hostPlays')} type="checkbox" checked={shown('hostPlays') === true}
         onChange={(event) => submit({ field: 'hostPlays', value: event.target.checked })} />El anfitrión juega</label>{info('hostPlays')}</div>
       <div className="config-control"><label htmlFor="config-turnSeconds">Tiempo por turno</label><select {...attrs('turnSeconds')} value={String(shown('turnSeconds'))}
@@ -87,6 +95,8 @@ export function RoomConfiguration({ room, connected, onRoom, onPendingChange }: 
       </select>{info('reviewSeconds')}</div>
       {!connected && <p className="connection-notice">Sin conexión. Los cambios no se enviarán hasta un nuevo gesto con conexión.</p>}
     </div> : <dl className="configuration-summary">
+      <dt>Valor del Atributo</dt><dd>{room.settings.attributeValueMode === 'PLAY_VALUE' ? '1-58' : 'Dato'}</dd>
+      <dt>Optimizar para móvil</dt><dd>{room.settings.optimizeForMobile ? 'Sí' : 'No'}</dd>
       <dt>El anfitrión juega</dt><dd>{room.settings.hostPlays ? 'Sí' : 'No (observador)'}</dd>
       <dt>Tiempo por turno</dt><dd>{room.settings.turnSeconds} s</dd>
       <dt>Forzar desempate</dt><dd>{room.settings.forceTieBreak ? 'Sí' : 'No'}</dd>

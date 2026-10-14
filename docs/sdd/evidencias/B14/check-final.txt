@@ -1,0 +1,54 @@
+
+> karta3@0.1.0 check
+> npm run typecheck && npm run lint && npm run build && npm run test && npm run check:architecture
+
+
+> karta3@0.1.0 typecheck
+> tsc -b --pretty false
+
+
+> karta3@0.1.0 lint
+> eslint .
+
+
+> karta3@0.1.0 build
+> npm run decks:prepare && tsc -b && vite build
+
+
+> karta3@0.1.0 decks:prepare
+> tsx tools/decks.ts prepare
+
+generica: válida; disponibilidad true
+sistema-solar: válida; disponibilidad true
+Catálogo preparado: 2 barajas disponibles.
+vite v8.3.1 building client environment for production...
+transforming...
+✓ 69 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.45 kB │ gzip:  0.29 kB
+dist/assets/index-CBHF-Gk5.css   17.00 kB │ gzip:  4.42 kB
+dist/assets/index-CFu1ufMC.js   326.36 kB │ gzip: 98.80 kB
+
+✓ built in 152ms
+
+> karta3@0.1.0 test
+> vitest run
+
+
+ RUN  v5.0.2 E:/KARTA3/KARTA3_IA/APP/karta3-b14-sistema-solar
+
+
+ Test Files  42 passed (42)
+      Tests  466 passed (466)
+   Start at  15:32:20
+   Duration  13.14s (tests 79%, import 17%, transform 3%)
+
+    Isolate  42 workers spawned · ~172ms startup each (spawn + environment, per file)
+             at least ~1.27s faster with isolate: false — reuses workers across files instead of one per file
+
+
+> karta3@0.1.0 check:architecture
+> node tools/check-architecture.mjs
+
+Arquitectura: 68 módulos revisados, sin imports prohibidos ni ciclos.

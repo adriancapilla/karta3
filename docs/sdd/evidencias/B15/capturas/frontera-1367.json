@@ -1,0 +1,255 @@
+{
+  "viewport": {
+    "width": 1414,
+    "height": 844,
+    "dpr": 1,
+    "scale": 1
+  },
+  "contentWidth": 1367,
+  "composition": {
+    "x": 16,
+    "y": 102.109375,
+    "width": 1367,
+    "height": 778,
+    "bottom": 880.109375
+  },
+  "layout": "compact",
+  "padding": "16px",
+  "bodyWidth": 1399,
+  "pageWidth": 1399,
+  "height": 959,
+  "residual": 115,
+  "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+  "panels": {
+    "people": {
+      "x": 16,
+      "y": 102.109375,
+      "width": 1367,
+      "height": 62,
+      "bottom": 164.109375
+    },
+    "initial-state": {
+      "x": 16,
+      "y": 174.109375,
+      "width": 1367,
+      "height": 132,
+      "bottom": 306.109375
+    },
+    "plays": {
+      "x": 16,
+      "y": 316.109375,
+      "width": 1367,
+      "height": 278,
+      "bottom": 594.109375
+    },
+    "hand": {
+      "x": 16,
+      "y": 604.109375,
+      "width": 1367,
+      "height": 276,
+      "bottom": 880.109375
+    },
+    "indicator": {
+      "x": 0,
+      "y": 0,
+      "width": 0,
+      "height": 0,
+      "bottom": 0
+    }
+  },
+  "cards": [
+    {
+      "box": {
+        "x": 19,
+        "y": 346.109375,
+        "width": 220,
+        "height": 188,
+        "bottom": 534.109375
+      },
+      "name": "Carta 01",
+      "nameFont": "18px",
+      "valueFont": "14px",
+      "values": [
+        {
+          "text": "25",
+          "client": 101,
+          "scroll": 101,
+          "overflow": "visible",
+          "textOverflow": "clip"
+        },
+        {
+          "text": "51",
+          "client": 101,
+          "scroll": 101,
+          "overflow": "visible",
+          "textOverflow": "clip"
+        },
+        {
+          "text": "11",
+          "client": 101,
+          "scroll": 101,
+          "overflow": "visible",
+          "textOverflow": "clip"
+        }
+      ],
+      "columns": 2,
+      "image": {
+        "x": 28,
+        "y": 355.109375,
+        "width": 32,
+        "height": 32,
+        "bottom": 387.109375
+      }
+    },
+    {
+      "box": {
+        "x": 19,
+        "y": 634.109375,
+        "width": 220,
+        "height": 188,
+        "bottom": 822.109375
+      },
+      "name": "Carta 05",
+      "nameFont": "18px",
+      "valueFont": "14px",
+      "values": [
+        {
+          "text": "28",
+          "client": 101,
+          "scroll": 101,
+          "overflow": "visible",
+          "textOverflow": "clip"
+        },
+        {
+          "text": "49",
+          "client": 101,
+          "scroll": 101,
+          "overflow": "visible",
+          "textOverflow": "clip"
+        },
+        {
+          "text": "29",
+          "client": 101,
+          "scroll": 101,
+          "overflow": "visible",
+          "textOverflow": "clip"
+        }
+      ],
+      "columns": 2,
+      "image": {
+        "x": 28,
+        "y": 643.109375,
+        "width": 32,
+        "height": 32,
+        "bottom": 675.109375
+      }
+    },
+    {
+      "box": {
+        "x": 249,
+        "y": 634.109375,
+        "width": 220,
+        "height": 188,
+        "bottom": 822.109375
+      },
+      "name": "Carta 10",
+      "nameFont": "18px",
+      "valueFont": "14px",
+      "values": [
+        {
+          "text": "40",
+          "client": 101,
+          "scroll": 101,
+          "overflow": "visible",
+          "textOverflow": "clip"
+        },
+        {
+          "text": "1",
+          "client": 101,
+          "scroll": 101,
+          "overflow": "visible",
+          "textOverflow": "clip"
+        },
+        {
+          "text": "12",
+          "client": 101,
+          "scroll": 101,
+          "overflow": "visible",
+          "textOverflow": "clip"
+        }
+      ],
+      "columns": 2,
+      "image": {
+        "x": 258,
+        "y": 643.109375,
+        "width": 32,
+        "height": 32,
+        "bottom": 675.109375
+      }
+    },
+    {
+      "box": {
+        "x": 479,
+        "y": 634.109375,
+        "width": 220,
+        "height": 188,
+        "bottom": 822.109375
+      },
+      "name": "Carta 15",
+      "nameFont": "18px",
+      "valueFont": "14px",
+      "values": [
+        {
+          "text": "11",
+          "client": 101,
+          "scroll": 101,
+          "overflow": "visible",
+          "textOverflow": "clip"
+        },
+        {
+          "text": "12",
+          "client": 101,
+          "scroll": 101,
+          "overflow": "visible",
+          "textOverflow": "clip"
+        },
+        {
+          "text": "36",
+          "client": 101,
+          "scroll": 101,
+          "overflow": "visible",
+          "textOverflow": "clip"
+        }
+      ],
+      "columns": 2,
+      "image": {
+        "x": 488,
+        "y": 643.109375,
+        "width": 32,
+        "height": 32,
+        "bottom": 675.109375
+      }
+    }
+  ],
+  "authors": [
+    {
+      "card": {
+        "x": 19,
+        "y": 346.109375,
+        "width": 220,
+        "height": 188,
+        "bottom": 534.109375
+      },
+      "author": {
+        "x": 19,
+        "y": 538.109375,
+        "width": 220,
+        "height": 44,
+        "bottom": 582.109375
+      }
+    }
+  ],
+  "stateCount": 1,
+  "capturedAt": "2026-10-14T12:03:39.862Z",
+  "browserVersion": "155.0.8059.40"
+}

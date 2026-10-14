@@ -1,28 +1,48 @@
 import { validateDeck, type Attribute, type Card, type Deck, type DeckError } from '../../domain/deck.js';
+import { escapeTextDiagnostic, validateFormat2Text } from './format2Text.js';
 
 export type PackageError = DeckError & { stage: 'json' | 'format' | 'coherence' | 'domain' | 'resources' | 'catalog' | 'io'; file: string };
-export type Metadata = {
-  schemaVersion: 1; contentVersion: number; id: string; name: string; subtitle: string; description: string;
+export type Metadata<Schema extends 1 | 2 = 1> = {
+  schemaVersion: Schema; contentVersion: number; id: string; name: string; subtitle: string; description: string;
   notes: string; instructions: string; attributes: Attribute[]; imageRef: string | null; imageAlt: string;
   publication: { available: boolean; order: number };
   credits: { name: string; role: string; license: string; url: string }[];
   sources: { title: string; url: string; note: string }[];
 };
 export type PackageCard = Card & { imageAlt: string };
-export type Collection = { schemaVersion: 1; contentVersion: number; deckId: string; cards: PackageCard[] };
-export type ParsedPackage = { metadata: Metadata; collection: Collection; definition: Deck };
+export type Collection<Schema extends 1 | 2 = 1> = { schemaVersion: Schema; contentVersion: number; deckId: string; cards: PackageCard[] };
+export type ParsedPackage<Schema extends 1 | 2 = 1> = { metadata: Metadata<Schema>; collection: Collection<Schema>; definition: Deck };
 export const isObject = (value: unknown): value is Record<string, unknown> => value !== null && typeof value === 'object' && !Array.isArray(value);
 export const portableId = (value: string) => /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(value) && value.length <= 64;
 export const reservedName = (value: string) => /^(?:con|prn|aux|nul|com[1-9]|lpt[1-9])$/.test(value);
 const attributes = ['atributo1', 'atributo2', 'atributo3'];
 
 export function reliableAvailability(metadata: unknown): boolean | undefined {
-  return isObject(metadata) && metadata.schemaVersion === 1 && isObject(metadata.publication) && typeof metadata.publication.available === 'boolean'
+  return isObject(metadata) && (metadata.schemaVersion === 1 || metadata.schemaVersion === 2) && isObject(metadata.publication) && typeof metadata.publication.available === 'boolean'
     ? metadata.publication.available : undefined;
 }
 
 /** Esquema de archivos y coherencia; las invariantes jugables se delegan al dominio. */
-export function validatePackageFormat(metadata: unknown, collection: unknown, folder: string): { errors: PackageError[]; data?: ParsedPackage } {
+export function validatePackageFormat(metadata: unknown, collection: unknown, folder: string): { errors: PackageError[]; data?: ParsedPackage<1 | 2> } {
+  // Si los metadatos no se pudieron leer, validar la colección reconocida ayuda a localizar
+  // sus errores; no vuelve fiable la disponibilidad ni elimina el fallo de lectura.
+  return isObject(metadata) && metadata.schemaVersion === 2 || metadata === undefined && isObject(collection) && collection.schemaVersion === 2
+    ? validatePackageFormat2(metadata, collection, folder) : validateFormat(metadata, collection, folder, 1);
+}
+
+/** Contrato V2; V1 mantiene su validación histórica separada. */
+export function validatePackageFormat2(metadata: unknown, collection: unknown, folder: string): { errors: PackageError[]; data?: ParsedPackage<2> } {
+  const format = validateFormat(metadata, collection, folder, 2);
+  const errors = [...format.errors, ...validateFormat2Text(metadata, collection)].map(escapedPackageIssue);
+  return { errors, ...(errors.length === 0 ? { data: format.data } : {}) };
+}
+
+export function escapedPackageIssue(issue: PackageError): PackageError {
+  return { ...issue, path: escapeTextDiagnostic(issue.path), message: escapeTextDiagnostic(issue.message),
+    ...(issue.cardId === undefined ? {} : { cardId: escapeTextDiagnostic(issue.cardId) }) };
+}
+
+function validateFormat<Schema extends 1 | 2>(metadata: unknown, collection: unknown, folder: string, schema: Schema): { errors: PackageError[]; data?: ParsedPackage<Schema> } {
   const errors: PackageError[] = [];
   let file = 'baraja.json';
   function error(code: string, path: string, message: string, stage: PackageError['stage'] = 'format') { errors.push({ code, path, message, stage, file }); }
@@ -47,7 +67,7 @@ export function validatePackageFormat(metadata: unknown, collection: unknown, fo
     else if (value < min) error('INVALID_VALUE', path, `Debe ser mayor o igual que ${min}.`);
   }
   function version(value: Record<string, unknown>) {
-    if (Object.hasOwn(value, 'schemaVersion') && value.schemaVersion !== 1) error('UNSUPPORTED_SCHEMA', 'schemaVersion', 'Solo se admite el formato 1.');
+    if (Object.hasOwn(value, 'schemaVersion') && value.schemaVersion !== schema) error('UNSUPPORTED_SCHEMA', 'schemaVersion', `Solo se admite el formato ${schema}.`);
     integer(value.contentVersion, 'contentVersion', 1);
   }
   function array(value: unknown, path: string, inspect: (entry: unknown, path: string, index: number) => void) {
@@ -121,7 +141,7 @@ export function validatePackageFormat(metadata: unknown, collection: unknown, fo
       const attribute = /\.values\.([^.]+)/.exec(issue.path)?.[1];
       errors[index] = { ...issue, ...(isObject(card) && typeof card.id === 'string' ? { cardId: card.id } : {}), ...(attribute ? { attributeId: attribute } : {}) };
     });
-    if (errors.length === 0) return { errors, data: { metadata: metadata as Metadata, collection: collection as Collection, definition: definition as Deck } };
+    if (errors.length === 0) return { errors, data: { metadata: metadata as Metadata<Schema>, collection: collection as Collection<Schema>, definition: definition as Deck } };
   }
   return { errors };
 }

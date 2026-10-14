@@ -1,7 +1,7 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "deckId": "generica",
-  "contentVersion": 2,
+  "contentVersion": 4,
   "cards": [
     {
       "id": "carta-001",

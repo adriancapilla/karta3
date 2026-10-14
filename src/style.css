@@ -63,7 +63,7 @@ select:focus-visible { outline: 3px solid #ed914f; outline-offset: 3px; }
   .game-layout{grid-template-columns:264px minmax(0,1fr) 240px;gap:12px}.game-panel{padding:12px}.game-panel h2{margin:0;font-size:20px}.game-card-panel-heading{min-height:68px}.game-card-panel-heading p{margin:6px 0 0}.indicator-full{padding:4px}
   .game-players{list-style:none;padding:0;margin-top:8px}.game-players li{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 8px;padding:8px 6px}.game-players li.is-opener{background:#edf1f9}.game-score{display:inline;margin:0;white-space:nowrap}.game-players .participant-badges{display:contents}.game-people .badge{padding:0;border-radius:0;background:none;font-size:13px}.game-people .host-badge,.game-people .bot-badge{display:none}.game-people .opener-badge{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}.bot-level,.observer-abbreviation{display:inline;font-size:13px}.observer-description{display:none}.game-people .observer-line{padding:8px;margin-top:8px;gap:4px}.game-people .observing{margin:8px 0 0}
   .game-plays{justify-content:flex-start;position:relative}.played-row{min-height:354px;align-items:flex-start}.played-row>div{flex:0 0 230px}.game-plays .empty-mesa{position:absolute;top:12px;left:16px;margin:0}.game-plays h2{margin-top:6px}.play-author{font-size:13px;margin:6px 0 0}.play-number,.mobile-mesa-title{display:none}.mesa-title{display:inline}
-  .game-card-slot,.hand-row .game-card-slot{flex:0 0 230px;width:230px}.game-card-slot .game-card{width:230px;min-height:321px;display:flex;flex-direction:column}.game-card h3{font-size:16px;margin:0}.card-heading{margin-bottom:4px}.game-card .card-values th,.game-card .card-values td{padding:6px 3px}.game-card .card-values th:first-child{width:54%}.game-card .card-values th:nth-child(2){width:32%}.game-card .card-values th:last-child,.game-card .card-values td:last-child{width:14%;text-align:right}.game-card .card-details-button{flex:1;min-height:56px;margin-top:3px}.card-play-button{min-height:48px;padding:8px}
+  .game-card-slot,.hand-row .game-card-slot{flex:0 0 230px;width:230px}.game-card-slot .game-card{width:230px;min-height:321px;display:flex;flex-direction:column}.game-card h3{font-size:16px;margin:0}.card-heading{margin-bottom:4px}.game-card .card-values th,.game-card .card-values td{padding:6px 3px}.game-card .card-values th:first-child{width:52%}.game-card .card-values th:last-child,.game-card .card-values td:last-child{width:48%;text-align:right}.game-card .card-details-button{flex:1;min-height:56px;margin-top:3px}.card-play-button{min-height:48px;padding:8px}
   .game-initial-state p{margin:10px 0}.turn-player>span,.turn-time>span{display:block}.game-initial-state fieldset{margin:10px 0 0;padding:8px}.game-initial-state fieldset button{display:block;width:100%;margin:4px 0;padding:8px}.game-initial-state fieldset p{font-size:14px}.game-legend{font-size:13px;margin:8px 0 0}
 }
 .played-row:focus-visible{outline:3px solid #ed914f;outline-offset:2px}.mesa-overflow-hint{display:none}
@@ -79,3 +79,82 @@ select:focus-visible { outline: 3px solid #ed914f; outline-offset: 3px; }
 .cancel-game-dialog p{line-height:1.5}
 .game-shell header.game-header-with-cancel{height:auto;min-height:48px;gap:12px}
 @media(max-width:760px){.cancelled-standings tr{grid-template-columns:minmax(0,1fr) 65px}}
+
+/* B15: mismo borde de composición en ambos layouts; el carrusel nunca determina el corte. */
+html:has(.game-shell){scrollbar-gutter:stable}
+.game-shell{max-width:1400px}
+.game-composition{width:100%;min-width:0}
+@media(max-width:520px){.game-composition{width:calc(100% - 4px);margin-inline:auto}}
+.literal-text,.card-note,.card-characteristic{white-space:pre-wrap}
+.card-values td,.round-review li{white-space:pre-wrap}
+/* Margen para las métricas de fuentes Linux: mismos anchos y fuente, dato literal sin salto. */
+.game-card .card-values td{padding-left:2px;padding-right:2px}
+.deck-information-button{margin-top:12px}
+.compact-identity,.summary-indicator,.compact-round-pile{display:none}
+.roster-identity{font:inherit;font-weight:700;border:0;background:none;color:inherit;padding:0;text-align:left}
+.roster-identity:focus-visible{outline:3px solid #ed914f;outline-offset:2px}
+.identity-link{font:inherit;border:0;background:none;color:inherit;padding:0;text-align:left;text-decoration:underline;cursor:pointer}
+.identity-link:focus-visible{outline:3px solid #ed914f;outline-offset:2px}
+.game-compact .game-layout{display:flex;flex-direction:column;gap:10px}
+.game-compact .game-panel{width:100%;padding:0;background:transparent;border:0;border-radius:0;min-height:0}
+.game-compact .game-people{order:0;padding:8px;background:white;border:1px solid #e2e6ef;border-radius:12px}
+.game-compact .game-people h2,.game-compact #game-state-title{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+.game-compact .game-players{display:flex;gap:2px;flex-wrap:wrap;list-style:none;padding:0;margin:0}
+.game-compact .game-players li{padding:0;border:0;display:block}
+.game-compact .normal-identity,.game-compact .game-score,.game-compact .game-people .participant-badges,.game-compact .observer-description,.game-compact .observer-line>.badge,.game-compact .observing,.game-compact .observer-abbreviation{display:none}
+.game-compact .compact-identity{display:inline}
+.game-compact .roster-identity{display:inline-block;border:0;background:transparent;color:inherit;font:inherit;min-width:44px;min-height:44px;padding:4px}
+.game-compact .observer-line{display:inline;padding:0;margin:0;background:none}
+.game-compact .game-initial-state{order:1;padding:8px;background:white;border:1px solid #e2e6ef;border-radius:12px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px}
+.game-compact .game-initial-state>*{grid-column:1/-1}
+.game-compact .game-initial-state .turn-player{grid-column:1;grid-row:1}
+.game-compact .game-initial-state .turn-time{grid-column:2;grid-row:1}
+.game-compact .game-initial-state .summary-attribute{grid-column:1;grid-row:2}
+.game-compact .game-initial-state .summary-direction{grid-column:2;grid-row:2}
+.game-compact .game-initial-state .summary-indicator{grid-column:1;grid-row:3}
+.game-compact .game-initial-state .compact-round-pile{grid-column:2;grid-row:3}
+.game-compact .summary-opener{display:none}
+.game-compact .game-initial-state h2{font-size:16px}
+.game-compact .game-initial-state p{margin:4px 0;font-size:14px}
+.game-compact .turn-player>span,.game-compact .turn-time>span{display:inline}
+.game-compact .summary-indicator{display:inline-block;min-height:44px;padding:6px 8px;margin:4px 0;font-size:14px}
+.game-compact .compact-round-pile{display:block}
+.game-compact .game-initial-state fieldset{padding:6px;margin:4px 0}
+.game-compact .game-initial-state fieldset button{display:inline-block;width:auto;min-height:44px;margin:4px;padding:6px 14px}
+.game-compact .game-plays{order:2;display:flex;flex-direction:column;text-align:left;justify-content:flex-start}
+.game-compact .game-plays h2{order:-1;margin:0 0 6px;font-size:16px}
+.game-compact .mesa-title{display:inline}.game-compact .mobile-mesa-title{display:none}
+.game-compact .game-plays .empty-mesa{position:static;margin:4px 0}
+.game-compact .game-indicator,.game-compact>.game-summary{display:none}
+.game-compact .game-hand{order:3}
+.game-compact .game-card-panel-heading{min-height:0;margin:0 0 6px}
+.game-compact .game-card-panel-heading h2{font-size:16px;text-align:left}
+.game-compact .swipe-hint{margin:4px 0}
+.game-compact .played-row,.game-compact .hand-row{gap:10px;min-height:0;padding:3px 3px 8px;scrollbar-gutter:auto}
+.game-compact .played-row>div,.game-compact .game-card-slot,.game-compact .hand-row .game-card-slot{width:220px;flex:0 0 220px}
+.game-compact .game-card-slot .game-card{width:220px;min-height:188px;padding:8px;position:relative}
+.game-compact .card-play-surface,.game-compact .game-card>div:first-child{display:grid;grid-template-columns:32px minmax(0,1fr);gap:4px;align-items:start}
+.game-compact .card-heading{grid-column:2;grid-row:1;margin:0;min-height:34px}
+.game-compact .card-heading h3{font-size:18px;line-height:1.22}
+.game-compact .game-card-image{grid-column:1;grid-row:1;min-height:32px;display:grid;place-items:center}
+.game-compact .game-card-image img,.game-compact .game-card-image svg{height:32px;width:32px;object-fit:contain}
+.game-compact .card-values{grid-column:1/-1;line-height:1.3;font-size:14px}
+.game-compact .game-card .card-values thead{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+.game-compact .game-card .card-values th,.game-compact .game-card .card-values td{padding:4px 2px}
+.game-compact .card-details-button{min-height:44px;margin-top:4px;flex:1;font-size:14px}
+.game-compact .card-play-button{min-height:44px;padding:6px 8px;margin-top:6px;font-size:14px}
+.game-compact .play-author{margin:4px 0;font-size:13px;min-height:44px;order:0}
+.game-compact .play-author .identity-link{display:block;min-height:44px;width:100%;text-align:left}
+.game-compact .play-number{display:none}
+.game-compact .played-row .game-card-slot{flex:none}
+.game-compact .mesa-overflow-hint{position:static;margin:4px 0}
+.game-compact .game-legend{display:none}
+.game-compact .consultation .game-card-slot,.game-compact .consultation .game-card{width:230px}
+.game-compact .consultation .game-card{min-height:321px;padding:12px;display:flex;flex-direction:column}
+.game-compact .consultation .game-card>div:first-child{display:block}
+.game-compact .consultation .card-heading h3{font-size:16px;line-height:normal}
+.game-compact .consultation .game-card-image{min-height:78px}
+.game-compact .consultation .game-card-image img{width:auto;height:78px;max-width:100%}
+.game-compact .consultation .game-card-image svg{width:85px;height:76px}
+.game-compact .consultation .game-card .card-values thead{position:static;width:auto;height:auto;overflow:visible;clip-path:none}
+.game-compact .consultation .card-details-button{min-height:56px}

@@ -1,0 +1,93 @@
+{
+  "date": "2026-10-14T12:24:25.169Z",
+  "browser": "155.0.8059.40",
+  "viewport": {
+    "width": 1920,
+    "height": 844,
+    "dpr": 1,
+    "scale": 1
+  },
+  "pageHeight": 1118,
+  "residual": 274,
+  "useful": 1368,
+  "panels": {
+    "people": {
+      "x": 268.5,
+      "y": 135.109375,
+      "width": 264,
+      "height": 164,
+      "bottom": 299.109375
+    },
+    "initial-state": {
+      "x": 1372.5,
+      "y": 560.109375,
+      "width": 264,
+      "height": 260,
+      "bottom": 820.109375
+    },
+    "plays": {
+      "x": 544.5,
+      "y": 135.109375,
+      "width": 1092,
+      "height": 413,
+      "bottom": 548.109375
+    },
+    "hand": {
+      "x": 544.5,
+      "y": 560.109375,
+      "width": 816,
+      "height": 454,
+      "bottom": 1014.109375
+    }
+  },
+  "cards": [
+    {
+      "box": {
+        "x": 285.5,
+        "y": 612.109375,
+        "width": 230,
+        "height": 321,
+        "bottom": 933.109375
+      },
+      "name": "Carta 07",
+      "nameFont": "16px",
+      "valueFont": "14px"
+    },
+    {
+      "box": {
+        "x": 561.5,
+        "y": 612.109375,
+        "width": 230,
+        "height": 321,
+        "bottom": 933.109375
+      },
+      "name": "Carta 02",
+      "nameFont": "16px",
+      "valueFont": "14px"
+    },
+    {
+      "box": {
+        "x": 837.5,
+        "y": 612.109375,
+        "width": 230,
+        "height": 321,
+        "bottom": 933.109375
+      },
+      "name": "Carta 04",
+      "nameFont": "16px",
+      "valueFont": "14px"
+    },
+    {
+      "box": {
+        "x": 1113.5,
+        "y": 612.109375,
+        "width": 230,
+        "height": 321,
+        "bottom": 933.109375
+      },
+      "name": "Carta 06",
+      "nameFont": "16px",
+      "valueFont": "14px"
+    }
+  ]
+}

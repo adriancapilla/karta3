@@ -1,0 +1,1216 @@
+{
+  "recordedAt": "2026-10-14T13:13:21.861Z",
+  "base": "b2b29153d6e072c4735edc5d3ff4dce43bee0dd6",
+  "code": "91a9939e3ee8b7541f46cfe6d059b46bfa23e906",
+  "branch": "feat/b14-sistema-solar",
+  "foreignPreparationCommit": "f534ffe",
+  "stages": {
+    "F1": "Comprobada",
+    "F2": "Comprobada",
+    "F3": "Verificada técnicamente en local; aprobación humana pendiente"
+  },
+  "environment": {
+    "os": "Windows",
+    "shell": "PowerShell",
+    "node": "24.19.0",
+    "nodePath": "C:\\Users\\Adrian\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+    "npm": "11.6.2",
+    "typescript": "6.0.3",
+    "vitest": "5.0.2",
+    "playwright": "1.63.0",
+    "chrome": "155.0.8059.40",
+    "icu": "78.3",
+    "unicode": "17.0",
+    "segmenter": "es/grapheme",
+    "fonts": "Segoe UI / SegoeUI-Bold, CDP",
+    "scale": 1
+  },
+  "gate": {
+    "typecheck": "passed",
+    "lint": "passed",
+    "build": "passed",
+    "tests": 538,
+    "testFiles": 43,
+    "architectureModules": 70,
+    "cycles": 0,
+    "forbiddenImports": 0
+  },
+  "focused": {
+    "beforeChange": 80,
+    "V2BeforeDelivery": 64,
+    "unicodeReferenceCases": 766,
+    "F1": 156,
+    "F2": [
+      180,
+      54
+    ],
+    "note": "Selecciones focales y reensayos solapados; no sumar."
+  },
+  "runs": [
+    {
+      "kind": "npm run check",
+      "log": "check-final-compatible.log",
+      "logSHA256": "8e3de4cfd21a637d0b1514a120e6c0c7b10d078b7d24e0ff95f45dbfd0b3a730",
+      "command": "npm run check",
+      "date": "2026-10-14T12:53:32+00:00",
+      "passed": 538,
+      "failed": 0,
+      "selection": null,
+      "summary": [
+        " Test Files  43 passed (43)",
+        "      Tests  538 passed (538)",
+        "Arquitectura: 70 módulos revisados, sin imports prohibidos ni ciclos."
+      ],
+      "passedTests": [],
+      "failedTests": []
+    },
+    {
+      "kind": "initial",
+      "log": "browser-initial-integration.log",
+      "logSHA256": "92bb88a93e76cec03a667f20895ea540b9ac566b4a5dffe7682c3d5e5f66f6c6",
+      "command": "npm run test:browser -- --workers=2 format2Presentation.spec.ts solar.spec.ts activation.spec.ts decks.spec.ts configuration.spec.ts initialGame.spec.ts tableLayout.spec.ts pcTable02.spec.ts centeredTable03.spec.ts manualGame.spec.ts timedGame.spec.ts timedRealGame.spec.ts bots.spec.ts cancelGame.spec.ts resultNotice.spec.ts",
+      "date": "2026-10-14T11:26:30.602Z",
+      "passed": 103,
+      "failed": 24,
+      "selection": [
+        "format2Presentation.spec.ts",
+        "solar.spec.ts",
+        "activation.spec.ts",
+        "decks.spec.ts",
+        "configuration.spec.ts",
+        "initialGame.spec.ts",
+        "tableLayout.spec.ts",
+        "pcTable02.spec.ts",
+        "centeredTable03.spec.ts",
+        "manualGame.spec.ts",
+        "timedGame.spec.ts",
+        "timedRealGame.spec.ts",
+        "bots.spec.ts",
+        "cancelGame.spec.ts",
+        "resultNotice.spec.ts"
+      ],
+      "summary": [
+        "  24 failed",
+        "  103 passed (10.2m)"
+      ],
+      "passedTests": [
+        {
+          "file": "cancelGame.spec.ts",
+          "title": "B13 botón/diálogo/resumen 390px: foco, no pausa, cero puntos y retorno en dos pestañas"
+        },
+        {
+          "file": "cancelGame.spec.ts",
+          "title": "B13/T04 A cancelada → B automatic, F5, avisos/estados antiguos y límites propios"
+        },
+        {
+          "file": "cancelGame.spec.ts",
+          "title": "B13/T04 A cancelada → B ordinary, F5, avisos/estados antiguos y límites propios"
+        },
+        {
+          "file": "cancelGame.spec.ts",
+          "title": "B13 ack/evento perdidos: incertidumbre, recuperación por gameId y ack A atrasado frente a B"
+        },
+        {
+          "file": "bots.spec.ts",
+          "title": "B09 P1 360: gestión explícita, diálogo/teclado/cancelación, mezcla y foco con dos sesiones y pestañas"
+        },
+        {
+          "file": "cancelGame.spec.ts",
+          "title": "B13 envío perdido antes de registrar: recuperar primero y solo reintento explícito con ID/payload originales"
+        },
+        {
+          "file": "cancelGame.spec.ts",
+          "title": "B13 final por inactividad con reloj controlado mientras el diálogo está abierto lo cierra sin cancelar"
+        },
+        {
+          "file": "cancelGame.spec.ts",
+          "title": "B13/T04 HTTP de recuperación A cancelada atrasado no sustituye B recuperada"
+        },
+        {
+          "file": "cancelGame.spec.ts",
+          "title": "B13 anfitrión observador, bot y desconectado: resumen/reconexión sin reactivar asociación"
+        },
+        {
+          "file": "bots.spec.ts",
+          "title": "B09 P1 390: gestión explícita, diálogo/teclado/cancelación, mezcla y foco con dos sesiones y pestañas"
+        },
+        {
+          "file": "centeredTable03.spec.ts",
+          "title": "B12 widths: larger/smaller and reserved vertical scrollbar select by available area, existing mobile/1280 access"
+        },
+        {
+          "file": "centeredTable03.spec.ts",
+          "title": "B12 fifth consultation with touch and horizontal mouse wheel does not play or move hand/page"
+        },
+        {
+          "file": "centeredTable03.spec.ts",
+          "title": "B12 E5 narrow access: consulted scroll/focus survive the last inserted play and remote review"
+        },
+        {
+          "file": "centeredTable03.spec.ts",
+          "title": "B12 E6 centered observer: state spans four columns, no private hand or actions"
+        },
+        {
+          "file": "centeredTable03.spec.ts",
+          "title": "B12 equivalent 1920x1080: four, review five and fifth consultation"
+        },
+        {
+          "file": "centeredTable03.spec.ts",
+          "title": "B12 equivalent 1920x950: four, review five and fifth consultation"
+        },
+        {
+          "file": "configuration.spec.ts",
+          "title": "B05-01/03/04/07/09/11/13/15 recorrido compartido, dos sesiones y dos pestañas a 390px"
+        },
+        {
+          "file": "configuration.spec.ts",
+          "title": "B05-01/03/04/07/09/11/13/15 recorrido compartido, dos sesiones y dos pestañas a 1280px"
+        },
+        {
+          "file": "configuration.spec.ts",
+          "title": "B05-02 catálogo retrasado/error/reintento con una sola baraja; lectura no renueva ni selecciona, foco y nombre siguen"
+        },
+        {
+          "file": "configuration.spec.ts",
+          "title": "B05-05/08/11 pendientes por control, acks invertidos, rechazo asociado y portada fallida conservan estado/foco/borrador"
+        },
+        {
+          "file": "bots.spec.ts",
+          "title": "B09 P1 1280: gestión explícita, diálogo/teclado/cancelación, mezcla y foco con dos sesiones y pestañas"
+        },
+        {
+          "file": "configuration.spec.ts",
+          "title": "B05-08/13 resultado sin confirmación y gesto offline no se reenvían; otra pestaña mantiene presencia"
+        },
+        {
+          "file": "configuration.spec.ts",
+          "title": "B05-09/10/13 observador con cinco invitados, reservas y retirada con tiempo controlado, autoridad y cierre por ausencia"
+        },
+        {
+          "file": "configuration.spec.ts",
+          "title": "B05-14 cambios efectivos renuevan, lecturas no; caducidad exacta y ack antiguo no reabren"
+        },
+        {
+          "file": "configuration.spec.ts",
+          "title": "B05-08 rechazo de un control conserva otro pendiente, foco y nombre en edición"
+        },
+        {
+          "file": "configuration.spec.ts",
+          "title": "B05-13 reconexión real sin F5 recupera configuración/observación sin reenviar y otra pestaña conserva presencia"
+        },
+        {
+          "file": "decks.spec.ts",
+          "title": "B04 catálogo 390px › AGV2-02/03/08 ejecución normal genérica 2; GET no crea cookie y sala inicialmente sin selección"
+        },
+        {
+          "file": "decks.spec.ts",
+          "title": "B04 catálogo 390px › AGV2-09 instalación temporal vacía: servicio y presentación sin desactivar genérica normal"
+        },
+        {
+          "file": "decks.spec.ts",
+          "title": "B04 catálogo 390px › proceso compilado con fixture publicada: resumen seguro y medio real; borrador excluido"
+        },
+        {
+          "file": "decks.spec.ts",
+          "title": "B04 catálogo 1280px › AGV2-02/03/08 ejecución normal genérica 2; GET no crea cookie y sala inicialmente sin selección"
+        },
+        {
+          "file": "decks.spec.ts",
+          "title": "B04 catálogo 1280px › AGV2-09 instalación temporal vacía: servicio y presentación sin desactivar genérica normal"
+        },
+        {
+          "file": "decks.spec.ts",
+          "title": "B04 catálogo 1280px › proceso compilado con fixture publicada: resumen seguro y medio real; borrador excluido"
+        },
+        {
+          "file": "format2Presentation.spec.ts",
+          "title": "B15 E7: consulta de A cancelada no sobrevive ni contamina B ante eventos antiguos"
+        },
+        {
+          "file": "format2Presentation.spec.ts",
+          "title": "B15 generica PLAY_VALUE 390: producto, información, indicadora, Detalles y privacidad"
+        },
+        {
+          "file": "format2Presentation.spec.ts",
+          "title": "B15 generica PLAY_VALUE 1920: producto, información, indicadora, Detalles y privacidad"
+        },
+        {
+          "file": "format2Presentation.spec.ts",
+          "title": "B15 generica DISPLAY_VALUE 390: producto, información, indicadora, Detalles y privacidad"
+        },
+        {
+          "file": "format2Presentation.spec.ts",
+          "title": "B15 generica DISPLAY_VALUE 1920: producto, información, indicadora, Detalles y privacidad"
+        },
+        {
+          "file": "format2Presentation.spec.ts",
+          "title": "B15 sistema-solar PLAY_VALUE 1920: producto, información, indicadora, Detalles y privacidad"
+        },
+        {
+          "file": "format2Presentation.spec.ts",
+          "title": "B15 sistema-solar DISPLAY_VALUE 390: producto, información, indicadora, Detalles y privacidad"
+        },
+        {
+          "file": "bots.spec.ts",
+          "title": "B09 P2 2 mixtos 360: final/desempate legal review=0, observador, privacidad y F5"
+        },
+        {
+          "file": "format2Presentation.spec.ts",
+          "title": "B15 sistema-solar DISPLAY_VALUE 1920: producto, información, indicadora, Detalles y privacidad"
+        },
+        {
+          "file": "format2Presentation.spec.ts",
+          "title": "B15 espera: dos sesiones y pestañas, info ligada a selección, cambios concurrentes y confirmación incierta"
+        },
+        {
+          "file": "format2Presentation.spec.ts",
+          "title": "B15 frontera medida 1367/1368, equivalencia normal on/off, foco, parciales, resize y quinta"
+        },
+        {
+          "file": "format2Presentation.spec.ts",
+          "title": "B15 observador, cinco jugadores e identidades estables 360"
+        },
+        {
+          "file": "format2Presentation.spec.ts",
+          "title": "B15 observador, cinco jugadores e identidades estables 1024"
+        },
+        {
+          "file": "bots.spec.ts",
+          "title": "B09 P2 3 mixtos 390: final/desempate legal review=5, observador, privacidad y F5"
+        },
+        {
+          "file": "bots.spec.ts",
+          "title": "B09 P2 4 mixtos 1280: final/desempate legal review=0, observador, privacidad y F5"
+        },
+        {
+          "file": "bots.spec.ts",
+          "title": "B09 P2 5 mixtos 390: final/desempate legal review=5, observador, privacidad y F5"
+        },
+        {
+          "file": "bots.spec.ts",
+          "title": "B09 P2 normal compilado genérica 2: persona contra fácil/difícil, entropía/plazos normales, resultado y otra sala"
+        },
+        {
+          "file": "bots.spec.ts",
+          "title": "B09 observador: solo bots no inicia; respuesta antigua Add no restaura espera tras inicio remoto"
+        },
+        {
+          "file": "bots.spec.ts",
+          "title": "B09 inactividad: dos timeouts HUMAN, solo observar/Detalles; sin páginas termina review y recupera resultados"
+        },
+        {
+          "file": "bots.spec.ts",
+          "title": "B09 E4 navegador: rename incierto conserva ID/payload, cierre sin cancelación ficticia, retirada remota y confirmación original"
+        },
+        {
+          "file": "bots.spec.ts",
+          "title": "B09 pendientes independientes: retirar conserva foco aunque siguiente renombre y Añadir estén inciertos"
+        },
+        {
+          "file": "manualGame.spec.ts",
+          "title": "B07 M1 apertura ALTO → carta privada, Detalles y recuperación"
+        },
+        {
+          "file": "manualGame.spec.ts",
+          "title": "B07 M1 apertura carta → BAJO privada, Detalles y recuperación"
+        },
+        {
+          "file": "manualGame.spec.ts",
+          "title": "B07 parcial remoto no completa carta local; teclado y F5 recuperan solo dirección"
+        },
+        {
+          "file": "initialGame.spec.ts",
+          "title": "B06-14 cinco jugadores, nombres repetidos y anfitrión al final, mazo 42"
+        },
+        {
+          "file": "initialGame.spec.ts",
+          "title": "B06-06 inicio pendiente y rechazo accesible; ack incierto recupera antes de reintentar el mismo ID"
+        },
+        {
+          "file": "initialGame.spec.ts",
+          "title": "B06-07 error técnico tras aceptación: recuperar antes de ofrecer nuevo inicio"
+        },
+        {
+          "file": "initialGame.spec.ts",
+          "title": "B06-06 ack/evento perdidos: incertidumbre bloquea nuevo envío hasta recuperar aceptación HTTP"
+        },
+        {
+          "file": "manualGame.spec.ts",
+          "title": "B07 respuesta antigua de retorno no borra sala nueva creada en otra pestaña"
+        },
+        {
+          "file": "pcTable02.spec.ts",
+          "title": "B11 reference 2 humans: opening, subsequent, five public cards/review, one/two/three cards"
+        },
+        {
+          "file": "pcTable02.spec.ts",
+          "title": "B11 reference 5 humans: opening, subsequent, five public cards/review, one/two/three cards"
+        },
+        {
+          "file": "pcTable02.spec.ts",
+          "title": "B11 access 390: touch/keyboard, direction first, full data, scroll and focus"
+        },
+        {
+          "file": "pcTable02.spec.ts",
+          "title": "B11 access 1280: touch/keyboard, direction first, full data, scroll and focus"
+        },
+        {
+          "file": "pcTable02.spec.ts",
+          "title": "B11 observer and repeated long names: separate O, no hand, public cards, compact roster"
+        },
+        {
+          "file": "resultNotice.spec.ts",
+          "title": "INC-01 expired A → B automatic: accepted result, reload, controlled expiry and old reads"
+        },
+        {
+          "file": "resultNotice.spec.ts",
+          "title": "INC-01 expired A → B ordinary: accepted result, reload, controlled expiry and old reads"
+        },
+        {
+          "file": "resultNotice.spec.ts",
+          "title": "INC-01 late A return failure/ack/home cannot change available B or trigger obsolete recovery"
+        },
+        {
+          "file": "resultNotice.spec.ts",
+          "title": "INC-01 delayed HTTP recovery of expired A does not clear B after authorized socket recovery"
+        },
+        {
+          "file": "solar.spec.ts",
+          "title": "B14 Encke/Borrelly HIGH: Dato/J, datos largos, privacidad, B13 y nueva genérica"
+        },
+        {
+          "file": "manualGame.spec.ts",
+          "title": "B07 respuesta antigua de resume no borra sala nueva creada en otra pestaña"
+        },
+        {
+          "file": "solar.spec.ts",
+          "title": "B14 Encke/Borrelly LOW: Dato/J, datos largos, privacidad, B13 y nueva genérica"
+        },
+        {
+          "file": "solar.spec.ts",
+          "title": "B14 ejecución normal: Sistema Solar con humano y Fácil/Difícil hasta resultado, recarga y otra sala"
+        },
+        {
+          "file": "tableLayout.spec.ts",
+          "title": "B10 base/comparison 1280x800: opening and subsequent turn, five humans"
+        },
+        {
+          "file": "tableLayout.spec.ts",
+          "title": "B10 base/comparison 1366x768: opening and subsequent turn, five humans"
+        },
+        {
+          "file": "tableLayout.spec.ts",
+          "title": "B10 base/comparison 1536x1024: opening and subsequent turn, five humans"
+        },
+        {
+          "file": "tableLayout.spec.ts",
+          "title": "B10 base/comparison 761x800: opening and subsequent turn, five humans"
+        },
+        {
+          "file": "tableLayout.spec.ts",
+          "title": "B10 mobile: table and hand scroll independently, waiting player blocked, Details does not play"
+        },
+        {
+          "file": "tableLayout.spec.ts",
+          "title": "B10 observer 390: no fictitious hand, state beside players/mobile and indicator/PC"
+        },
+        {
+          "file": "manualGame.spec.ts",
+          "title": "B07 M4 normal genérica 2: partida completa real, resultados, dos pestañas, F5 y otra sala sin reinicio"
+        },
+        {
+          "file": "tableLayout.spec.ts",
+          "title": "B10 observer 761: no fictitious hand, state beside players/mobile and indicator/PC"
+        },
+        {
+          "file": "tableLayout.spec.ts",
+          "title": "B10 observer 1280: no fictitious hand, state beside players/mobile and indicator/PC"
+        },
+        {
+          "file": "timedGame.spec.ts",
+          "title": "B08 T1 390: deadline estable, carta local ignorada, aviso y recuperación"
+        },
+        {
+          "file": "timedGame.spec.ts",
+          "title": "B08 T1 1280: deadline estable, carta local ignorada, aviso y recuperación"
+        },
+        {
+          "file": "timedGame.spec.ts",
+          "title": "B08 tiempo 60/01:00: hora cliente no manda; cero desconectado conserva Detalles y no encola jugadas"
+        },
+        {
+          "file": "timedGame.spec.ts",
+          "title": "B08 confirmación parcial antigua después del timeout no restaura dirección/acción del turno viejo"
+        },
+        {
+          "file": "manualGame.spec.ts",
+          "title": "B07 M4 traza validada 4 empatados: reparto 2, revisión y resultados móviles"
+        },
+        {
+          "file": "timedGame.spec.ts",
+          "title": "B08 aviso cinco segundos, nombres repetidos y evento duplicado no reanima aviso en la misma ronda"
+        },
+        {
+          "file": "manualGame.spec.ts",
+          "title": "B07 M4 traza validada 5 empatados: reparto 1, revisión y resultados móviles"
+        },
+        {
+          "file": "timedGame.spec.ts",
+          "title": "B08 T2 360: reset, dos fallos, automático sin control, revisión y resultado"
+        },
+        {
+          "file": "timedGame.spec.ts",
+          "title": "B08 T2 390: reset, dos fallos, automático sin control, revisión y resultado"
+        },
+        {
+          "file": "timedGame.spec.ts",
+          "title": "B08 T2 1280: reset, dos fallos, automático sin control, revisión y resultado"
+        },
+        {
+          "file": "timedGame.spec.ts",
+          "title": "B08 navegador 2 empatados legales: final, mano reducida y automático en desempate revisado"
+        },
+        {
+          "file": "timedGame.spec.ts",
+          "title": "B08 navegador 5 empatados legales: final, mano reducida y automático en desempate revisado"
+        },
+        {
+          "file": "timedRealGame.spec.ts",
+          "title": "B08-19/E7 15 segundos reales: transporte activo cerrado, observación y recuperación; APP normal sin ASSETS"
+        },
+        {
+          "file": "manualGame.spec.ts",
+          "title": "B07 M4 retorno, lectura explícita y caducidad controlada preservan nueva sala y copia ya mostrada"
+        },
+        {
+          "file": "manualGame.spec.ts",
+          "title": "B07 resultado por URL: fallo de red conserva incertidumbre y reintento solo de lectura"
+        },
+        {
+          "file": "manualGame.spec.ts",
+          "title": "B07 main compilado autónomo: genérica 2 real, observador, partida completa y reinicio de resultados"
+        },
+        {
+          "file": "manualGame.spec.ts",
+          "title": "B07 ack de jugada y evento perdidos: incertidumbre, recuperación y ninguna cola al reconectar"
+        },
+        {
+          "file": "manualGame.spec.ts",
+          "title": "B07 M3 cinco humanos y observador: siete normales, tres finales, mano variable y revisión final"
+        },
+        {
+          "file": "manualGame.spec.ts",
+          "title": "B07 M2 resolución, puntuación, revisión 0 y reposición sin duplicación"
+        },
+        {
+          "file": "manualGame.spec.ts",
+          "title": "B07 M2 resolución, puntuación, revisión 5 y reposición sin duplicación"
+        }
+      ],
+      "failedTests": [
+        {
+          "file": "activation.spec.ts",
+          "title": "AGV2-04–08 genérica 2 normal: dos sesiones, selección, permisos, recarga y quitar a 390px"
+        },
+        {
+          "file": "activation.spec.ts",
+          "title": "AGV2-04–08 genérica 2 normal: dos sesiones, selección, permisos, recarga y quitar a 1280px"
+        },
+        {
+          "file": "cancelGame.spec.ts",
+          "title": "B13 botón/diálogo/resumen 1800px: foco, no pausa, cero puntos y retorno en dos pestañas"
+        },
+        {
+          "file": "centeredTable03.spec.ts",
+          "title": "B12 E1–E6 HIGH: private partial, new plays, focus/Details, keyboard fifth, tabs and reload"
+        },
+        {
+          "file": "centeredTable03.spec.ts",
+          "title": "B12 E1–E6 LOW: private partial, new plays, focus/Details, keyboard fifth, tabs and reload"
+        },
+        {
+          "file": "format2Presentation.spec.ts",
+          "title": "B15 sistema-solar PLAY_VALUE 390: producto, información, indicadora, Detalles y privacidad"
+        },
+        {
+          "file": "initialGame.spec.ts",
+          "title": "B06 E1/01/03/10–12/14–16 genérica 2 normal, dos sesiones, reparto privado y recuperación 360px"
+        },
+        {
+          "file": "initialGame.spec.ts",
+          "title": "B06 E1/01/03/10–12/14–16 genérica 2 normal, dos sesiones, reparto privado y recuperación 390px"
+        },
+        {
+          "file": "initialGame.spec.ts",
+          "title": "B06 E1/01/03/10–12/14–16 genérica 2 normal, dos sesiones, reparto privado y recuperación 1280px"
+        },
+        {
+          "file": "initialGame.spec.ts",
+          "title": "B06 E2/02/10–14 anfitrión observador normal y dos invitados en tres sesiones, recarga de todos"
+        },
+        {
+          "file": "initialGame.spec.ts",
+          "title": "B06-15/16 recursos reales/nulos/fallidos, valores literales, Detalles y presencia 360px"
+        },
+        {
+          "file": "initialGame.spec.ts",
+          "title": "B06-15/16 recursos reales/nulos/fallidos, valores literales, Detalles y presencia 390px"
+        },
+        {
+          "file": "initialGame.spec.ts",
+          "title": "B06-15/16 recursos reales/nulos/fallidos, valores literales, Detalles y presencia 1280px"
+        },
+        {
+          "file": "initialGame.spec.ts",
+          "title": "B06-17/E7 reinicio real de main compilado sin ASSETS elimina mesa/identidad y permite otra espera"
+        },
+        {
+          "file": "manualGame.spec.ts",
+          "title": "B07 Detalles conserva foco si otra pestaña juega la carta mostrada"
+        },
+        {
+          "file": "pcTable02.spec.ts",
+          "title": "B11 card data and gestures: own triangle/active circle, Dato/J, outside action, drag, Details and one complete send"
+        },
+        {
+          "file": "solar.spec.ts",
+          "title": "B14 catálogo normal, cambio de baraja, portada y recuperación en dos sesiones a 390px"
+        },
+        {
+          "file": "solar.spec.ts",
+          "title": "B14 catálogo normal, cambio de baraja, portada y recuperación en dos sesiones a 1280px"
+        },
+        {
+          "file": "tableLayout.spec.ts",
+          "title": "B10 base/comparison 360x800: opening and subsequent turn, five humans"
+        },
+        {
+          "file": "tableLayout.spec.ts",
+          "title": "B10 base/comparison 390x844: opening and subsequent turn, five humans"
+        },
+        {
+          "file": "tableLayout.spec.ts",
+          "title": "B10 base/comparison 760x800: opening and subsequent turn, five humans"
+        },
+        {
+          "file": "tableLayout.spec.ts",
+          "title": "B10 long text 360: full names, attributes, literal units, images and controls stay consultable"
+        },
+        {
+          "file": "tableLayout.spec.ts",
+          "title": "B10 long text 761: full names, attributes, literal units, images and controls stay consultable"
+        },
+        {
+          "file": "tableLayout.spec.ts",
+          "title": "B10 cutoff: selection, details, focus, scroll and private partial survive resize and remote presence"
+        }
+      ]
+    },
+    {
+      "kind": "repaired",
+      "log": "browser-repaired-integration.log",
+      "logSHA256": "aad927867607587f2ba2a120ad80d26d68cca9138be267a0b8ec8ee4daba0e84",
+      "command": "npm run test:browser -- --workers=2 format2Presentation.spec.ts activation.spec.ts initialGame.spec.ts solar.spec.ts centeredTable03.spec.ts pcTable02.spec.ts tableLayout.spec.ts manualGame.spec.ts cancelGame.spec.ts resultNotice.spec.ts timedRealGame.spec.ts bots.spec.ts --grep B15|AGV2-04|B06|B12 E1–E6|B11 card data|B10 base|B10 long text|B10 cutoff|B07 Detalles|B07 M4 traza|B13 botón|B14 catálogo|B08-19|B14 ejecución normal|B09 P2 normal|INC-01|B13/T04|B13 ack|B13 envío|B13 anfitrión",
+      "date": "2026-10-14T11:41:04.806Z",
+      "passed": 62,
+      "failed": 3,
+      "selection": [
+        "format2Presentation.spec.ts",
+        "activation.spec.ts",
+        "initialGame.spec.ts",
+        "solar.spec.ts",
+        "centeredTable03.spec.ts",
+        "pcTable02.spec.ts",
+        "tableLayout.spec.ts",
+        "manualGame.spec.ts",
+        "cancelGame.spec.ts",
+        "resultNotice.spec.ts",
+        "timedRealGame.spec.ts",
+        "bots.spec.ts",
+        "--grep",
+        "B15|AGV2-04|B06|B12 E1–E6|B11 card data|B10 base|B10 long text|B10 cutoff|B07 Detalles|B07 M4 traza|B13 botón|B14 catálogo|B08-19|B14 ejecución normal|B09 P2 normal|INC-01|B13/T04|B13 ack|B13 envío|B13 anfitrión"
+      ],
+      "summary": [
+        "  3 failed",
+        "  62 passed (2.5m)"
+      ],
+      "passedTests": [
+        {
+          "file": "activation.spec.ts",
+          "title": "AGV2-04–08 genérica 2 normal: dos sesiones, selección, permisos, recarga y quitar a 390px"
+        },
+        {
+          "file": "activation.spec.ts",
+          "title": "AGV2-04–08 genérica 2 normal: dos sesiones, selección, permisos, recarga y quitar a 1280px"
+        },
+        {
+          "file": "cancelGame.spec.ts",
+          "title": "B13 botón/diálogo/resumen 390px: foco, no pausa, cero puntos y retorno en dos pestañas"
+        },
+        {
+          "file": "cancelGame.spec.ts",
+          "title": "B13/T04 A cancelada → B automatic, F5, avisos/estados antiguos y límites propios"
+        },
+        {
+          "file": "cancelGame.spec.ts",
+          "title": "B13/T04 A cancelada → B ordinary, F5, avisos/estados antiguos y límites propios"
+        },
+        {
+          "file": "cancelGame.spec.ts",
+          "title": "B13 ack/evento perdidos: incertidumbre, recuperación por gameId y ack A atrasado frente a B"
+        },
+        {
+          "file": "bots.spec.ts",
+          "title": "B09 P2 normal compilado genérica 2: persona contra fácil/difícil, entropía/plazos normales, resultado y otra sala"
+        },
+        {
+          "file": "cancelGame.spec.ts",
+          "title": "B13 envío perdido antes de registrar: recuperar primero y solo reintento explícito con ID/payload originales"
+        },
+        {
+          "file": "centeredTable03.spec.ts",
+          "title": "B12 E1–E6 HIGH: private partial, new plays, focus/Details, keyboard fifth, tabs and reload"
+        },
+        {
+          "file": "centeredTable03.spec.ts",
+          "title": "B12 E1–E6 LOW: private partial, new plays, focus/Details, keyboard fifth, tabs and reload"
+        },
+        {
+          "file": "format2Presentation.spec.ts",
+          "title": "B15 fixture V2 fechas/textos/separadores: literal en dos columnas y consultas, sin interpretación"
+        },
+        {
+          "file": "cancelGame.spec.ts",
+          "title": "B13/T04 HTTP de recuperación A cancelada atrasado no sustituye B recuperada"
+        },
+        {
+          "file": "cancelGame.spec.ts",
+          "title": "B13 anfitrión observador, bot y desconectado: resumen/reconexión sin reactivar asociación"
+        },
+        {
+          "file": "format2Presentation.spec.ts",
+          "title": "B15 E7: consulta de A cancelada no sobrevive ni contamina B ante eventos antiguos"
+        },
+        {
+          "file": "format2Presentation.spec.ts",
+          "title": "B15 generica PLAY_VALUE 390: producto, información, indicadora, Detalles y privacidad"
+        },
+        {
+          "file": "initialGame.spec.ts",
+          "title": "B06 E1/01/03/10–12/14–16 genérica 2 normal, dos sesiones, reparto privado y recuperación 360px"
+        },
+        {
+          "file": "format2Presentation.spec.ts",
+          "title": "B15 generica PLAY_VALUE 1920: producto, información, indicadora, Detalles y privacidad"
+        },
+        {
+          "file": "initialGame.spec.ts",
+          "title": "B06 E1/01/03/10–12/14–16 genérica 2 normal, dos sesiones, reparto privado y recuperación 390px"
+        },
+        {
+          "file": "format2Presentation.spec.ts",
+          "title": "B15 generica DISPLAY_VALUE 390: producto, información, indicadora, Detalles y privacidad"
+        },
+        {
+          "file": "format2Presentation.spec.ts",
+          "title": "B15 generica DISPLAY_VALUE 1920: producto, información, indicadora, Detalles y privacidad"
+        },
+        {
+          "file": "initialGame.spec.ts",
+          "title": "B06 E1/01/03/10–12/14–16 genérica 2 normal, dos sesiones, reparto privado y recuperación 1280px"
+        },
+        {
+          "file": "initialGame.spec.ts",
+          "title": "B06 E2/02/10–14 anfitrión observador normal y dos invitados en tres sesiones, recarga de todos"
+        },
+        {
+          "file": "initialGame.spec.ts",
+          "title": "B06-14 cinco jugadores, nombres repetidos y anfitrión al final, mazo 42"
+        },
+        {
+          "file": "format2Presentation.spec.ts",
+          "title": "B15 sistema-solar PLAY_VALUE 390: producto, información, indicadora, Detalles y privacidad"
+        },
+        {
+          "file": "initialGame.spec.ts",
+          "title": "B06-15/16 recursos reales/nulos/fallidos, valores literales, Detalles y presencia 360px"
+        },
+        {
+          "file": "initialGame.spec.ts",
+          "title": "B06-15/16 recursos reales/nulos/fallidos, valores literales, Detalles y presencia 390px"
+        },
+        {
+          "file": "format2Presentation.spec.ts",
+          "title": "B15 sistema-solar PLAY_VALUE 1920: producto, información, indicadora, Detalles y privacidad"
+        },
+        {
+          "file": "initialGame.spec.ts",
+          "title": "B06-15/16 recursos reales/nulos/fallidos, valores literales, Detalles y presencia 1280px"
+        },
+        {
+          "file": "format2Presentation.spec.ts",
+          "title": "B15 sistema-solar DISPLAY_VALUE 390: producto, información, indicadora, Detalles y privacidad"
+        },
+        {
+          "file": "format2Presentation.spec.ts",
+          "title": "B15 sistema-solar DISPLAY_VALUE 1920: producto, información, indicadora, Detalles y privacidad"
+        },
+        {
+          "file": "initialGame.spec.ts",
+          "title": "B06-06 inicio pendiente y rechazo accesible; ack incierto recupera antes de reintentar el mismo ID"
+        },
+        {
+          "file": "initialGame.spec.ts",
+          "title": "B06-07 error técnico tras aceptación: recuperar antes de ofrecer nuevo inicio"
+        },
+        {
+          "file": "initialGame.spec.ts",
+          "title": "B06-06 ack/evento perdidos: incertidumbre bloquea nuevo envío hasta recuperar aceptación HTTP"
+        },
+        {
+          "file": "format2Presentation.spec.ts",
+          "title": "B15 espera: dos sesiones y pestañas, info ligada a selección, cambios concurrentes y confirmación incierta"
+        },
+        {
+          "file": "initialGame.spec.ts",
+          "title": "B06-17/E7 reinicio real de main compilado sin ASSETS elimina mesa/identidad y permite otra espera"
+        },
+        {
+          "file": "manualGame.spec.ts",
+          "title": "B07 Detalles conserva foco si otra pestaña juega la carta mostrada"
+        },
+        {
+          "file": "manualGame.spec.ts",
+          "title": "B07 M4 traza validada 4 empatados: reparto 2, revisión y resultados móviles"
+        },
+        {
+          "file": "format2Presentation.spec.ts",
+          "title": "B15 frontera medida 1367/1368, equivalencia normal on/off, foco, parciales, resize y quinta"
+        },
+        {
+          "file": "format2Presentation.spec.ts",
+          "title": "B15 observador, cinco jugadores e identidades estables 360 PLAY_VALUE"
+        },
+        {
+          "file": "manualGame.spec.ts",
+          "title": "B07 M4 traza validada 5 empatados: reparto 1, revisión y resultados móviles"
+        },
+        {
+          "file": "pcTable02.spec.ts",
+          "title": "B11 card data and gestures: own triangle/active circle, Dato/J, outside action, drag, Details and one complete send"
+        },
+        {
+          "file": "resultNotice.spec.ts",
+          "title": "INC-01 expired A → B automatic: accepted result, reload, controlled expiry and old reads"
+        },
+        {
+          "file": "format2Presentation.spec.ts",
+          "title": "B15 observador, cinco jugadores e identidades estables 360 DISPLAY_VALUE"
+        },
+        {
+          "file": "resultNotice.spec.ts",
+          "title": "INC-01 expired A → B ordinary: accepted result, reload, controlled expiry and old reads"
+        },
+        {
+          "file": "format2Presentation.spec.ts",
+          "title": "B15 observador, cinco jugadores e identidades estables 390 PLAY_VALUE"
+        },
+        {
+          "file": "resultNotice.spec.ts",
+          "title": "INC-01 late A return failure/ack/home cannot change available B or trigger obsolete recovery"
+        },
+        {
+          "file": "format2Presentation.spec.ts",
+          "title": "B15 observador, cinco jugadores e identidades estables 390 DISPLAY_VALUE"
+        },
+        {
+          "file": "resultNotice.spec.ts",
+          "title": "INC-01 delayed HTTP recovery of expired A does not clear B after authorized socket recovery"
+        },
+        {
+          "file": "solar.spec.ts",
+          "title": "B14 catálogo normal, cambio de baraja, portada y recuperación en dos sesiones a 390px"
+        },
+        {
+          "file": "format2Presentation.spec.ts",
+          "title": "B15 observador, cinco jugadores e identidades estables 1024 PLAY_VALUE"
+        },
+        {
+          "file": "solar.spec.ts",
+          "title": "B14 catálogo normal, cambio de baraja, portada y recuperación en dos sesiones a 1280px"
+        },
+        {
+          "file": "solar.spec.ts",
+          "title": "B14 ejecución normal: Sistema Solar con humano y Fácil/Difícil hasta resultado, recarga y otra sala"
+        },
+        {
+          "file": "format2Presentation.spec.ts",
+          "title": "B15 observador, cinco jugadores e identidades estables 1024 DISPLAY_VALUE"
+        },
+        {
+          "file": "tableLayout.spec.ts",
+          "title": "B10 base/comparison 1280x800: opening and subsequent turn, five humans"
+        },
+        {
+          "file": "tableLayout.spec.ts",
+          "title": "B10 base/comparison 1366x768: opening and subsequent turn, five humans"
+        },
+        {
+          "file": "tableLayout.spec.ts",
+          "title": "B10 base/comparison 1536x1024: opening and subsequent turn, five humans"
+        },
+        {
+          "file": "tableLayout.spec.ts",
+          "title": "B10 base/comparison 360x800: opening and subsequent turn, five humans"
+        },
+        {
+          "file": "tableLayout.spec.ts",
+          "title": "B10 base/comparison 390x844: opening and subsequent turn, five humans"
+        },
+        {
+          "file": "tableLayout.spec.ts",
+          "title": "B10 base/comparison 760x800: opening and subsequent turn, five humans"
+        },
+        {
+          "file": "tableLayout.spec.ts",
+          "title": "B10 base/comparison 761x800: opening and subsequent turn, five humans"
+        },
+        {
+          "file": "timedRealGame.spec.ts",
+          "title": "B08-19/E7 15 segundos reales: transporte activo cerrado, observación y recuperación; APP normal sin ASSETS"
+        },
+        {
+          "file": "tableLayout.spec.ts",
+          "title": "B10 cutoff: selection, details, focus, scroll and private partial survive resize and remote presence"
+        }
+      ],
+      "failedTests": [
+        {
+          "file": "cancelGame.spec.ts",
+          "title": "B13 botón/diálogo/resumen 1800px: foco, no pausa, cero puntos y retorno en dos pestañas"
+        },
+        {
+          "file": "tableLayout.spec.ts",
+          "title": "B10 long text 360: full names, attributes, literal units, images and controls stay consultable"
+        },
+        {
+          "file": "tableLayout.spec.ts",
+          "title": "B10 long text 761: full names, attributes, literal units, images and controls stay consultable"
+        }
+      ]
+    },
+    {
+      "kind": "visual",
+      "log": "browser-final-visual.log",
+      "logSHA256": "5f8931c67bb8dc9d84de0d54fe2b6922c402cb813bf690e9cfd09e74844fac59",
+      "command": "npm run test:browser -- --workers=2 format2Presentation.spec.ts cancelGame.spec.ts tableLayout.spec.ts solar.spec.ts manualGame.spec.ts timedRealGame.spec.ts --grep B15|B13 botón|B10 long text|B14 Encke|B07 M4 traza|B08-19",
+      "date": "2026-10-14T11:48:35.501Z",
+      "passed": 27,
+      "failed": 0,
+      "selection": [
+        "format2Presentation.spec.ts",
+        "cancelGame.spec.ts",
+        "tableLayout.spec.ts",
+        "solar.spec.ts",
+        "manualGame.spec.ts",
+        "timedRealGame.spec.ts",
+        "--grep",
+        "B15|B13 botón|B10 long text|B14 Encke|B07 M4 traza|B08-19"
+      ],
+      "summary": [
+        "  27 passed (1.6m)"
+      ],
+      "passedTests": [
+        {
+          "file": "format2Presentation.spec.ts",
+          "title": "B15 fixture V2 fechas/textos/separadores: literal en dos columnas y consultas, sin interpretación"
+        },
+        {
+          "file": "cancelGame.spec.ts",
+          "title": "B13 botón/diálogo/resumen 390px: foco, no pausa, cero puntos y retorno en dos pestañas"
+        },
+        {
+          "file": "format2Presentation.spec.ts",
+          "title": "B15 E7: consulta de A cancelada no sobrevive ni contamina B ante eventos antiguos"
+        },
+        {
+          "file": "cancelGame.spec.ts",
+          "title": "B13 botón/diálogo/resumen 1800px: foco, no pausa, cero puntos y retorno en dos pestañas"
+        },
+        {
+          "file": "format2Presentation.spec.ts",
+          "title": "B15 generica PLAY_VALUE 390: producto, información, indicadora, Detalles y privacidad"
+        },
+        {
+          "file": "format2Presentation.spec.ts",
+          "title": "B15 generica PLAY_VALUE 1920: producto, información, indicadora, Detalles y privacidad"
+        },
+        {
+          "file": "manualGame.spec.ts",
+          "title": "B07 M4 traza validada 4 empatados: reparto 2, revisión y resultados móviles"
+        },
+        {
+          "file": "format2Presentation.spec.ts",
+          "title": "B15 generica DISPLAY_VALUE 390: producto, información, indicadora, Detalles y privacidad"
+        },
+        {
+          "file": "format2Presentation.spec.ts",
+          "title": "B15 generica DISPLAY_VALUE 1920: producto, información, indicadora, Detalles y privacidad"
+        },
+        {
+          "file": "manualGame.spec.ts",
+          "title": "B07 M4 traza validada 5 empatados: reparto 1, revisión y resultados móviles"
+        },
+        {
+          "file": "format2Presentation.spec.ts",
+          "title": "B15 sistema-solar PLAY_VALUE 390: producto, información, indicadora, Detalles y privacidad"
+        },
+        {
+          "file": "format2Presentation.spec.ts",
+          "title": "B15 sistema-solar PLAY_VALUE 1920: producto, información, indicadora, Detalles y privacidad"
+        },
+        {
+          "file": "solar.spec.ts",
+          "title": "B14 Encke/Borrelly HIGH: Dato/J, datos largos, privacidad, B13 y nueva genérica"
+        },
+        {
+          "file": "format2Presentation.spec.ts",
+          "title": "B15 sistema-solar DISPLAY_VALUE 390: producto, información, indicadora, Detalles y privacidad"
+        },
+        {
+          "file": "solar.spec.ts",
+          "title": "B14 Encke/Borrelly LOW: Dato/J, datos largos, privacidad, B13 y nueva genérica"
+        },
+        {
+          "file": "tableLayout.spec.ts",
+          "title": "B10 long text 360: full names, attributes, literal units, images and controls stay consultable"
+        },
+        {
+          "file": "format2Presentation.spec.ts",
+          "title": "B15 sistema-solar DISPLAY_VALUE 1920: producto, información, indicadora, Detalles y privacidad"
+        },
+        {
+          "file": "tableLayout.spec.ts",
+          "title": "B10 long text 761: full names, attributes, literal units, images and controls stay consultable"
+        },
+        {
+          "file": "format2Presentation.spec.ts",
+          "title": "B15 espera: dos sesiones y pestañas, info ligada a selección, cambios concurrentes y confirmación incierta"
+        },
+        {
+          "file": "timedRealGame.spec.ts",
+          "title": "B08-19/E7 15 segundos reales: transporte activo cerrado, observación y recuperación; APP normal sin ASSETS"
+        },
+        {
+          "file": "format2Presentation.spec.ts",
+          "title": "B15 frontera medida 1367/1368, equivalencia normal on/off, foco, parciales, resize y quinta"
+        },
+        {
+          "file": "format2Presentation.spec.ts",
+          "title": "B15 observador, cinco jugadores e identidades estables 360 PLAY_VALUE"
+        },
+        {
+          "file": "format2Presentation.spec.ts",
+          "title": "B15 observador, cinco jugadores e identidades estables 360 DISPLAY_VALUE"
+        },
+        {
+          "file": "format2Presentation.spec.ts",
+          "title": "B15 observador, cinco jugadores e identidades estables 390 PLAY_VALUE"
+        },
+        {
+          "file": "format2Presentation.spec.ts",
+          "title": "B15 observador, cinco jugadores e identidades estables 390 DISPLAY_VALUE"
+        },
+        {
+          "file": "format2Presentation.spec.ts",
+          "title": "B15 observador, cinco jugadores e identidades estables 1024 PLAY_VALUE"
+        },
+        {
+          "file": "format2Presentation.spec.ts",
+          "title": "B15 observador, cinco jugadores e identidades estables 1024 DISPLAY_VALUE"
+        }
+      ],
+      "failedTests": []
+    },
+    {
+      "kind": "literal",
+      "log": "browser-final-literal.log",
+      "logSHA256": "ff753c776f9cdd75333ea15c35c14f6f099c960b5231991cb278923a60d05df8",
+      "command": "npm run test:browser -- --workers=2 format2Presentation.spec.ts timedRealGame.spec.ts solar.spec.ts proxy.spec.ts --grep B15|B08-19|B14 ejecución normal|T05 origen",
+      "date": "2026-10-14T12:02:48.026Z",
+      "passed": 21,
+      "failed": 0,
+      "selection": [
+        "format2Presentation.spec.ts",
+        "timedRealGame.spec.ts",
+        "solar.spec.ts",
+        "proxy.spec.ts",
+        "--grep",
+        "B15|B08-19|B14 ejecución normal|T05 origen"
+      ],
+      "summary": [
+        "  21 passed (1.4m)"
+      ],
+      "passedTests": [
+        {
+          "file": "proxy.spec.ts",
+          "title": "T05 origen único: dos sesiones, polling/WebSocket, permisos, privacidad y recuperación"
+        },
+        {
+          "file": "format2Presentation.spec.ts",
+          "title": "B15 fixture V2 fechas/textos/separadores: literal en dos columnas y consultas, sin interpretación"
+        },
+        {
+          "file": "solar.spec.ts",
+          "title": "B14 ejecución normal: Sistema Solar con humano y Fácil/Difícil hasta resultado, recarga y otra sala"
+        },
+        {
+          "file": "format2Presentation.spec.ts",
+          "title": "B15 E7: consulta de A cancelada no sobrevive ni contamina B ante eventos antiguos"
+        },
+        {
+          "file": "format2Presentation.spec.ts",
+          "title": "B15 generica PLAY_VALUE 390: producto, información, indicadora, Detalles y privacidad"
+        },
+        {
+          "file": "format2Presentation.spec.ts",
+          "title": "B15 generica PLAY_VALUE 1920: producto, información, indicadora, Detalles y privacidad"
+        },
+        {
+          "file": "format2Presentation.spec.ts",
+          "title": "B15 generica DISPLAY_VALUE 390: producto, información, indicadora, Detalles y privacidad"
+        },
+        {
+          "file": "format2Presentation.spec.ts",
+          "title": "B15 generica DISPLAY_VALUE 1920: producto, información, indicadora, Detalles y privacidad"
+        },
+        {
+          "file": "timedRealGame.spec.ts",
+          "title": "B08-19/E7 15 segundos reales: transporte activo cerrado, observación y recuperación; APP normal sin ASSETS"
+        },
+        {
+          "file": "format2Presentation.spec.ts",
+          "title": "B15 sistema-solar PLAY_VALUE 390: producto, información, indicadora, Detalles y privacidad"
+        },
+        {
+          "file": "format2Presentation.spec.ts",
+          "title": "B15 sistema-solar PLAY_VALUE 1920: producto, información, indicadora, Detalles y privacidad"
+        },
+        {
+          "file": "format2Presentation.spec.ts",
+          "title": "B15 sistema-solar DISPLAY_VALUE 390: producto, información, indicadora, Detalles y privacidad"
+        },
+        {
+          "file": "format2Presentation.spec.ts",
+          "title": "B15 sistema-solar DISPLAY_VALUE 1920: producto, información, indicadora, Detalles y privacidad"
+        },
+        {
+          "file": "format2Presentation.spec.ts",
+          "title": "B15 espera: dos sesiones y pestañas, info ligada a selección, cambios concurrentes y confirmación incierta"
+        },
+        {
+          "file": "format2Presentation.spec.ts",
+          "title": "B15 frontera medida 1367/1368, equivalencia normal on/off, foco, parciales, resize y quinta"
+        },
+        {
+          "file": "format2Presentation.spec.ts",
+          "title": "B15 observador, cinco jugadores e identidades estables 360 PLAY_VALUE"
+        },
+        {
+          "file": "format2Presentation.spec.ts",
+          "title": "B15 observador, cinco jugadores e identidades estables 360 DISPLAY_VALUE"
+        },
+        {
+          "file": "format2Presentation.spec.ts",
+          "title": "B15 observador, cinco jugadores e identidades estables 390 PLAY_VALUE"
+        },
+        {
+          "file": "format2Presentation.spec.ts",
+          "title": "B15 observador, cinco jugadores e identidades estables 390 DISPLAY_VALUE"
+        },
+        {
+          "file": "format2Presentation.spec.ts",
+          "title": "B15 observador, cinco jugadores e identidades estables 1024 PLAY_VALUE"
+        },
+        {
+          "file": "format2Presentation.spec.ts",
+          "title": "B15 observador, cinco jugadores e identidades estables 1024 DISPLAY_VALUE"
+        }
+      ],
+      "failedTests": []
+    },
+    {
+      "kind": "latest",
+      "log": "browser-final.log",
+      "logSHA256": "93e380463bda90c66eb089b45e783a01574ef5be67541ad1c8df2404af80c122",
+      "command": "npm run test:browser -- --workers=2 solar.spec.ts proxy.spec.ts --grep B14 ejecución normal|T05 origen",
+      "date": "2026-10-14T12:57:19.885Z",
+      "passed": 2,
+      "failed": 0,
+      "selection": [
+        "solar.spec.ts",
+        "proxy.spec.ts",
+        "--grep",
+        "B14 ejecución normal|T05 origen"
+      ],
+      "summary": [
+        "  2 passed (4.1s)"
+      ],
+      "passedTests": [
+        {
+          "file": "proxy.spec.ts",
+          "title": "T05 origen único: dos sesiones, polling/WebSocket, permisos, privacidad y recuperación"
+        },
+        {
+          "file": "solar.spec.ts",
+          "title": "B14 ejecución normal: Sistema Solar con humano y Fácil/Difícil hasta resultado, recarga y otra sala"
+        }
+      ],
+      "failedTests": []
+    },
+    {
+      "kind": "compact-warning-added",
+      "command": "npm run test:browser -- --workers=2 format2Presentation.spec.ts --grep \"compacta: primer aviso\"",
+      "passed": 1,
+      "failed": 0,
+      "evidence": "Resultado del proceso ejecutado 1/1 (5.4 s) y captura/medidas compacta-automatico-aviso.*",
+      "clock": "ControlledClock/Scheduler; HTTP/Socket.IO reales",
+      "note": "Añadida antes del check final; no ejecución humana."
+    }
+  ],
+  "rerunCoverage": {
+    "initialFailures": 24,
+    "unmatchedByTitle": [],
+    "note": "Compara títulos de los fallos iniciales con éxitos focales posteriores; no afirma un reensayo completo 127/127."
+  },
+  "repairs": [
+    "Montaje independiente: prefijo de limpieza y expectativa de error",
+    "Expectativas explícitas de nuevas copias/fixtures/columnas",
+    "Medición de ancho disponible frente a viewport; scroll body/html",
+    "Encabezado accesible de carrusel, foco nativo y diálogos anidados",
+    "Autor público debajo de carta compacta y basis vertical heredado",
+    "Miniatura 32px sin espacio de línea; espacios literales sin colapso",
+    "Diagnóstico V2 común y separación valid/compatible",
+    "Espera de ResizeObserver en captura tras recuperación y origen apuntado a instancia propia viva",
+    "Lint de scripts clásicos de Diseño: globals según contexto sin modificar documentos recibidos"
+  ],
+  "proofCategories": {
+    "pure": "Validación/modelos",
+    "controlledTime": "Bordes/carreras/revisión/retención y fixtures",
+    "realConnections": "HTTP/Socket.IO con reloj sustituido en casos dirigidos",
+    "normalAdapters": "Partida completa Solar + EASY/HARD; origen único; copias normales 2/4; CryptoCardPermutation",
+    "realTimeout": "vencimiento-real.json",
+    "visualAutomation": "Capturas y mediciones Chrome; comparación por agente, no aprobación humana",
+    "manualHuman": "Pendiente del autor",
+    "physicalDevices": "No usados",
+    "linuxImage": "No comprobada"
+  },
+  "limits": [
+    "Sin batería completa de navegador repetida por rutina; selección exacta registrada",
+    "30 minutos de retención con reloj controlado, no espera real",
+    "ASSETS solo lectura durante recepción; guard de build/runtime impide accesos",
+    "Instancias de pruebas propias cerradas; no servidores del autor detenidos",
+    "C09–C10 parciales: no equilibrio/comprensión/legibilidad universal",
+    "Sin cambios TFM/Diseño/maestros, publicación, despliegue o mensajes a otros hilos"
+  ]
+}

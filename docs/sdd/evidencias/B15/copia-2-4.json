@@ -1,0 +1,388 @@
+{
+  "date": "2026-10-14T10:19:07.651Z",
+  "source": "E:\\KARTA3\\KARTA3_IA\\ASSETS\\Entregas\\2026-10-14-formato-2-contenido-4",
+  "node": "v24.19.0",
+  "manifestSHA256": "ce2fb8cbb8c37b9b123667f4fc872aeaf2d905e51877e9200ab9474b681f857c",
+  "previousManifestSHA256": "a14fdc710885999fb42699f91e1bd9b0ef644a24710bff418b5525ac2831d886",
+  "previousEntriesVerified": 126,
+  "files": [
+    {
+      "file": "generica/baraja.json",
+      "bytes": 4723,
+      "sourceSHA256": "b7855547acf56a728618f1e71be80cb19ca5c54a6ce0612cc3bee753270d2bd4",
+      "appSHA256": "b7855547acf56a728618f1e71be80cb19ca5c54a6ce0612cc3bee753270d2bd4"
+    },
+    {
+      "file": "generica/cartas.json",
+      "bytes": 34030,
+      "sourceSHA256": "c2896ccae66d0119b808db7adea72cca7b442a283bf576e0cfaa7de2628c5c9b",
+      "appSHA256": "c2896ccae66d0119b808db7adea72cca7b442a283bf576e0cfaa7de2628c5c9b"
+    },
+    {
+      "file": "sistema-solar/baraja.json",
+      "bytes": 35160,
+      "sourceSHA256": "3e31db300c706738e69d743703f2bd1d4d027b2b08743313fe54d15eb6943e44",
+      "appSHA256": "3e31db300c706738e69d743703f2bd1d4d027b2b08743313fe54d15eb6943e44"
+    },
+    {
+      "file": "sistema-solar/cartas.json",
+      "bytes": 44874,
+      "sourceSHA256": "bce5740a4ba3daf8da60ffad88a2cbc07271e95baae44bee078d0984973fa7fa",
+      "appSHA256": "bce5740a4ba3daf8da60ffad88a2cbc07271e95baae44bee078d0984973fa7fa"
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/67p-churyumov-gerasimenko.webp",
+      "bytes": 31666,
+      "sourceSHA256": "2ef88be9dd0f2184aa50a4706999e37e0d0ace4f8c8b25f452e4db4cccc0939a",
+      "appSHA256": "2ef88be9dd0f2184aa50a4706999e37e0d0ace4f8c8b25f452e4db4cccc0939a"
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/amaltea.webp",
+      "bytes": 35438,
+      "sourceSHA256": "4bb6ed025fb778136683165233e70c609e5094ba3150fd929acbdc114f00c3ad",
+      "appSHA256": "4bb6ed025fb778136683165233e70c609e5094ba3150fd929acbdc114f00c3ad"
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/ariel.webp",
+      "bytes": 34226,
+      "sourceSHA256": "3e4368410c2e794d1dded4b9959e5f5d79aec7ffb073bf6f8da2114d878590cc",
+      "appSHA256": "3e4368410c2e794d1dded4b9959e5f5d79aec7ffb073bf6f8da2114d878590cc"
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/bennu.webp",
+      "bytes": 32444,
+      "sourceSHA256": "e3b65dd7fafb34e7a7801a7a34b6784ee04c289102e1e1485a80d5ab0d750ede",
+      "appSHA256": "e3b65dd7fafb34e7a7801a7a34b6784ee04c289102e1e1485a80d5ab0d750ede"
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/borrelly.webp",
+      "bytes": 15466,
+      "sourceSHA256": "40e700f2aac1a7e4c5bb8be6db3d7f46c262f4dc1c3f815be87409d298e16686",
+      "appSHA256": "40e700f2aac1a7e4c5bb8be6db3d7f46c262f4dc1c3f815be87409d298e16686"
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/calisto.webp",
+      "bytes": 47102,
+      "sourceSHA256": "e773591a1b6374c03a4484084ec6e3c7170f5f37c43b525a22ecf89bdface071",
+      "appSHA256": "e773591a1b6374c03a4484084ec6e3c7170f5f37c43b525a22ecf89bdface071"
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/caronte.webp",
+      "bytes": 23076,
+      "sourceSHA256": "4fcdfde78f77cc9bf8c352c46e350eb2842adc8da64cc71d96779dde1d2ba71b",
+      "appSHA256": "4fcdfde78f77cc9bf8c352c46e350eb2842adc8da64cc71d96779dde1d2ba71b"
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/ceres.webp",
+      "bytes": 36136,
+      "sourceSHA256": "d0a24a577d8bf79ee964d4b814850000707bb2f704e99e028e2f0e9d6b3acd46",
+      "appSHA256": "d0a24a577d8bf79ee964d4b814850000707bb2f704e99e028e2f0e9d6b3acd46"
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/deimos.webp",
+      "bytes": 15158,
+      "sourceSHA256": "ce146aee9bdcf787c9454f6d48f248841b4ac49ed5036653e159b82f78823fad",
+      "appSHA256": "ce146aee9bdcf787c9454f6d48f248841b4ac49ed5036653e159b82f78823fad"
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/dione.webp",
+      "bytes": 32684,
+      "sourceSHA256": "2c9b37c86ff8532f3c8fc59bdfcbcd9fab83bf40328d91487d3964db0f945331",
+      "appSHA256": "2c9b37c86ff8532f3c8fc59bdfcbcd9fab83bf40328d91487d3964db0f945331"
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/encelado.webp",
+      "bytes": 23628,
+      "sourceSHA256": "730baf70e7f8ff42015bf1180b5cea1342705c6b9849363740453ad5abf2898c",
+      "appSHA256": "730baf70e7f8ff42015bf1180b5cea1342705c6b9849363740453ad5abf2898c"
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/encke.webp",
+      "bytes": 18334,
+      "sourceSHA256": "0f22d015612437d660551033da742a68b3d81edbe7694ebf7bb70de638fb5a6b",
+      "appSHA256": "0f22d015612437d660551033da742a68b3d81edbe7694ebf7bb70de638fb5a6b"
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/eris.webp",
+      "bytes": 23938,
+      "sourceSHA256": "9e033588b2072ac4915149cf6792fca0bec06a9012055eddb8903d3ce1d7ee8b",
+      "appSHA256": "9e033588b2072ac4915149cf6792fca0bec06a9012055eddb8903d3ce1d7ee8b"
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/eros.webp",
+      "bytes": 30156,
+      "sourceSHA256": "e9aab53bf0941c6dc02f45b00ed8c0ce54ce028237da783d0a211fd953c35220",
+      "appSHA256": "e9aab53bf0941c6dc02f45b00ed8c0ce54ce028237da783d0a211fd953c35220"
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/europa.webp",
+      "bytes": 32000,
+      "sourceSHA256": "8fe76cf8ac3f5c24a1c8db0bbdf5b3b8812e760abfe14ded4180803210f2ea4d",
+      "appSHA256": "8fe76cf8ac3f5c24a1c8db0bbdf5b3b8812e760abfe14ded4180803210f2ea4d"
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/febe.webp",
+      "bytes": 38764,
+      "sourceSHA256": "047d4d929468260ce55b2bed4f14831994a9def23460c78109ef517b58499aa1",
+      "appSHA256": "047d4d929468260ce55b2bed4f14831994a9def23460c78109ef517b58499aa1"
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/fobos.webp",
+      "bytes": 31056,
+      "sourceSHA256": "65d68d6406deefa57aa35b6063a72bf1a28c23e81792057651a7692c12d31fa0",
+      "appSHA256": "65d68d6406deefa57aa35b6063a72bf1a28c23e81792057651a7692c12d31fa0"
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/ganimedes.webp",
+      "bytes": 35668,
+      "sourceSHA256": "3f5bef0109dad0d914f5016be09655b5fbf56d899eb9fcc10aa3603825b1ac4a",
+      "appSHA256": "3f5bef0109dad0d914f5016be09655b5fbf56d899eb9fcc10aa3603825b1ac4a"
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/gaspra.webp",
+      "bytes": 25810,
+      "sourceSHA256": "aad637c9f9f14f4f6d11bc7afca77624486565d63cbd1092503b6b5af07cf5db",
+      "appSHA256": "aad637c9f9f14f4f6d11bc7afca77624486565d63cbd1092503b6b5af07cf5db"
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/hale-bopp.webp",
+      "bytes": 33522,
+      "sourceSHA256": "04777bec98af9227e08ed89a1b1ba927a42f958adf19f2dde0bd2b2223caca90",
+      "appSHA256": "04777bec98af9227e08ed89a1b1ba927a42f958adf19f2dde0bd2b2223caca90"
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/halley.webp",
+      "bytes": 9086,
+      "sourceSHA256": "794716cd6311050e749e00de4558a5243c95f6d63f69b6297ba933d12ba87ee3",
+      "appSHA256": "794716cd6311050e749e00de4558a5243c95f6d63f69b6297ba933d12ba87ee3"
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/haumea.webp",
+      "bytes": 18146,
+      "sourceSHA256": "3aadc7b169b97816c8d81044816816a4c88bf0cc0b97def73d420196c6614699",
+      "appSHA256": "3aadc7b169b97816c8d81044816816a4c88bf0cc0b97def73d420196c6614699"
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/higia.webp",
+      "bytes": 21594,
+      "sourceSHA256": "6c7b6f57468e1ebb5d363c72c36b2e753cfac62166794f0cedaca8954ed3752c",
+      "appSHA256": "6c7b6f57468e1ebb5d363c72c36b2e753cfac62166794f0cedaca8954ed3752c"
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/hiperion.webp",
+      "bytes": 53264,
+      "sourceSHA256": "cecb08bfda73e870c919952b3ddd5dd733b850b7893d84f0e072897dc22182fa",
+      "appSHA256": "cecb08bfda73e870c919952b3ddd5dd733b850b7893d84f0e072897dc22182fa"
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/hyakutake.webp",
+      "bytes": 15496,
+      "sourceSHA256": "25863460e25f99a6d0c3f85886819b6c289ebdbc4bf811660e7cd014aefaaac1",
+      "appSHA256": "25863460e25f99a6d0c3f85886819b6c289ebdbc4bf811660e7cd014aefaaac1"
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/ida.webp",
+      "bytes": 30624,
+      "sourceSHA256": "47e915e2b81c58a9ebb52c53f7f115a917cde8983c9c5411270a033ed1b08db7",
+      "appSHA256": "47e915e2b81c58a9ebb52c53f7f115a917cde8983c9c5411270a033ed1b08db7"
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/io.webp",
+      "bytes": 38964,
+      "sourceSHA256": "da1534a673b32b84dc8a26c5d49729a595920ccca69e14894961df3655df4eac",
+      "appSHA256": "da1534a673b32b84dc8a26c5d49729a595920ccca69e14894961df3655df4eac"
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/itokawa.webp",
+      "bytes": 34988,
+      "sourceSHA256": "cd4174e4091b1e11deed98e55a459c7ca56c722238fceb8fb68f630ac0b12935",
+      "appSHA256": "cd4174e4091b1e11deed98e55a459c7ca56c722238fceb8fb68f630ac0b12935"
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/japeto.webp",
+      "bytes": 26822,
+      "sourceSHA256": "cd5f32948cf1154e7714d5aeae531d7df0a215ff5eeb224d095b8162cd4b9e2b",
+      "appSHA256": "cd5f32948cf1154e7714d5aeae531d7df0a215ff5eeb224d095b8162cd4b9e2b"
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/jupiter.webp",
+      "bytes": 14894,
+      "sourceSHA256": "9756ff63cf0410cff04e95a6527b1eace13841aa0a8abca8e959cbdb7c067a98",
+      "appSHA256": "9756ff63cf0410cff04e95a6527b1eace13841aa0a8abca8e959cbdb7c067a98"
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/luna.webp",
+      "bytes": 31094,
+      "sourceSHA256": "8320620c47a36c338a7a26e88f3bf44c3c95ef8b472435a3a8ddaaf281ed359c",
+      "appSHA256": "8320620c47a36c338a7a26e88f3bf44c3c95ef8b472435a3a8ddaaf281ed359c"
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/makemake.webp",
+      "bytes": 26830,
+      "sourceSHA256": "f0fa818a1fcbb70b8052b6a0d11b1ca2fd1f265d12f8e3b7aedc62f556e48f28",
+      "appSHA256": "f0fa818a1fcbb70b8052b6a0d11b1ca2fd1f265d12f8e3b7aedc62f556e48f28"
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/marte.webp",
+      "bytes": 30112,
+      "sourceSHA256": "c052dea2f7ec91146d9db59d9ce76b0538ebcbece2656afec23934d56aded0c7",
+      "appSHA256": "c052dea2f7ec91146d9db59d9ce76b0538ebcbece2656afec23934d56aded0c7"
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/matilde.webp",
+      "bytes": 33260,
+      "sourceSHA256": "cae4fc6064d5e59ab7d7ffefd9eebdaebab25f0fc687d01953d656bc7d0919df",
+      "appSHA256": "cae4fc6064d5e59ab7d7ffefd9eebdaebab25f0fc687d01953d656bc7d0919df"
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/mercurio.webp",
+      "bytes": 36420,
+      "sourceSHA256": "ce847d0b7e5ec02923459b914c9ee7f4f5effa31a374b8d97fcf4da67e8592c8",
+      "appSHA256": "ce847d0b7e5ec02923459b914c9ee7f4f5effa31a374b8d97fcf4da67e8592c8"
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/mimas.webp",
+      "bytes": 23534,
+      "sourceSHA256": "8842061587c546c962040599787da4de38ac8faeaa1d09c6101caa1831bb7600",
+      "appSHA256": "8842061587c546c962040599787da4de38ac8faeaa1d09c6101caa1831bb7600"
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/miranda.webp",
+      "bytes": 32972,
+      "sourceSHA256": "5c9b32986d623583e7cea1ce8d2369792828df04aa89eb1c2b45e801c8a60902",
+      "appSHA256": "5c9b32986d623583e7cea1ce8d2369792828df04aa89eb1c2b45e801c8a60902"
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/neptuno.webp",
+      "bytes": 8696,
+      "sourceSHA256": "e6b83028e4d7101e87700c029b713199bbb61814ab70eba0e63c85f3e1143e50",
+      "appSHA256": "e6b83028e4d7101e87700c029b713199bbb61814ab70eba0e63c85f3e1143e50"
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/oberon.webp",
+      "bytes": 32638,
+      "sourceSHA256": "58cef7003752840ea7d030920cdf03e212a67c000e7c7922b581f562613e9dbe",
+      "appSHA256": "58cef7003752840ea7d030920cdf03e212a67c000e7c7922b581f562613e9dbe"
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/palas.webp",
+      "bytes": 26432,
+      "sourceSHA256": "cb037aaca95a19a1f44096c1f16b10fa73405b442d18f5081470d18a29c1b6ce",
+      "appSHA256": "cb037aaca95a19a1f44096c1f16b10fa73405b442d18f5081470d18a29c1b6ce"
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/pluton.webp",
+      "bytes": 31086,
+      "sourceSHA256": "055d3e1a08caf670d34c0a405fefd3abc9de9bda28f7219b417b7647033a231d",
+      "appSHA256": "055d3e1a08caf670d34c0a405fefd3abc9de9bda28f7219b417b7647033a231d"
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/proteo.webp",
+      "bytes": 31622,
+      "sourceSHA256": "c6a865fdad99eeef4794c237ef967800aeb98a74de4e7759dc3c11d41907fd1e",
+      "appSHA256": "c6a865fdad99eeef4794c237ef967800aeb98a74de4e7759dc3c11d41907fd1e"
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/psyche.webp",
+      "bytes": 35298,
+      "sourceSHA256": "0f2b7eb598c072e56cf5b6941d785f4a8df0abe76e9355e31c2f07366941d78c",
+      "appSHA256": "0f2b7eb598c072e56cf5b6941d785f4a8df0abe76e9355e31c2f07366941d78c"
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/rea.webp",
+      "bytes": 42226,
+      "sourceSHA256": "1e085abc15da7a955b23bf5c8aed326d01850285b0a9046f79e72c3b308aef40",
+      "appSHA256": "1e085abc15da7a955b23bf5c8aed326d01850285b0a9046f79e72c3b308aef40"
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/ryugu.webp",
+      "bytes": 29890,
+      "sourceSHA256": "5aabf47e8a2296306e0dfe05d892d91516ec219c8ffefc47a631a137dc87ac43",
+      "appSHA256": "5aabf47e8a2296306e0dfe05d892d91516ec219c8ffefc47a631a137dc87ac43"
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/saturno.webp",
+      "bytes": 16072,
+      "sourceSHA256": "459428fb497b2bada18d6364f12eae27ceedbc156645a5e7e2d4f4cae73ab14f",
+      "appSHA256": "459428fb497b2bada18d6364f12eae27ceedbc156645a5e7e2d4f4cae73ab14f"
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/sedna.webp",
+      "bytes": 24502,
+      "sourceSHA256": "059f2496f1882315450fcb3d67f7039f05cfcfcc41725e180b46e5ec580e84ec",
+      "appSHA256": "059f2496f1882315450fcb3d67f7039f05cfcfcc41725e180b46e5ec580e84ec"
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/tempel-1.webp",
+      "bytes": 16658,
+      "sourceSHA256": "6cbefdd8e756cb420e4ea93aac13b26b17e46de35fbaf2128a51f367bfa50b61",
+      "appSHA256": "6cbefdd8e756cb420e4ea93aac13b26b17e46de35fbaf2128a51f367bfa50b61"
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/tetis.webp",
+      "bytes": 33280,
+      "sourceSHA256": "4105c1f5bbb1e119dcfcfde06f1cbb755e21cba0eb115a07b72366da3ec48b2a",
+      "appSHA256": "4105c1f5bbb1e119dcfcfde06f1cbb755e21cba0eb115a07b72366da3ec48b2a"
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/tierra.webp",
+      "bytes": 33316,
+      "sourceSHA256": "bc10f09b417f718f2440556010622e0737cb519a2bed5bd53675d5dd631b8175",
+      "appSHA256": "bc10f09b417f718f2440556010622e0737cb519a2bed5bd53675d5dd631b8175"
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/titan.webp",
+      "bytes": 11212,
+      "sourceSHA256": "90f408391f0c45f1a1a2300e4a9c5a6049d39f9a485f3e4d288d8991ebe3f15a",
+      "appSHA256": "90f408391f0c45f1a1a2300e4a9c5a6049d39f9a485f3e4d288d8991ebe3f15a"
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/titania.webp",
+      "bytes": 36626,
+      "sourceSHA256": "2b6294cc550cfb43e76fb4c314e3331f2b3efc708561ff4e5aef45cd44509a23",
+      "appSHA256": "2b6294cc550cfb43e76fb4c314e3331f2b3efc708561ff4e5aef45cd44509a23"
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/triton.webp",
+      "bytes": 24432,
+      "sourceSHA256": "4c7cfd3dc935bb9a4a628b737a0f090ebb7351bd98491005fd92d7635aca0cc4",
+      "appSHA256": "4c7cfd3dc935bb9a4a628b737a0f090ebb7351bd98491005fd92d7635aca0cc4"
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/umbriel.webp",
+      "bytes": 27258,
+      "sourceSHA256": "9c7c3ae728e3685691843e154d03526b2e070a5d44cc970b0e49453f821e102d",
+      "appSHA256": "9c7c3ae728e3685691843e154d03526b2e070a5d44cc970b0e49453f821e102d"
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/urano.webp",
+      "bytes": 9192,
+      "sourceSHA256": "b01b3a66fbfd21995bbf0d9d3b84a1c3198fffbdd72f7bd26f79e42311240f42",
+      "appSHA256": "b01b3a66fbfd21995bbf0d9d3b84a1c3198fffbdd72f7bd26f79e42311240f42"
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/venus.webp",
+      "bytes": 12804,
+      "sourceSHA256": "ffc1347233043ec8a2123f77d9ed620007f3c666933675165beae3dd4281953a",
+      "appSHA256": "ffc1347233043ec8a2123f77d9ed620007f3c666933675165beae3dd4281953a"
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/vesta.webp",
+      "bytes": 43362,
+      "sourceSHA256": "3b4e4f6fcf0c9387be916a03545e10d54610795d46dbfb0ddf147567a4aadbfa",
+      "appSHA256": "3b4e4f6fcf0c9387be916a03545e10d54610795d46dbfb0ddf147567a4aadbfa"
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/wild-2.webp",
+      "bytes": 23438,
+      "sourceSHA256": "2e2717beba5596a5a565de961126918abff76a2a6541bb6c432052f3bff525bc",
+      "appSHA256": "2e2717beba5596a5a565de961126918abff76a2a6541bb6c432052f3bff525bc"
+    },
+    {
+      "file": "sistema-solar/imagenes/portada.webp",
+      "bytes": 39128,
+      "sourceSHA256": "7c253f180be58d8d7cc748e722c47aece951799143170dcd4f429575cac726fb",
+      "appSHA256": "7c253f180be58d8d7cc748e722c47aece951799143170dcd4f429575cac726fb"
+    }
+  ]
+}

@@ -31,7 +31,7 @@ test('B08-19/E7 15 segundos reales: transporte activo cerrado, observación y re
     expect(current.game.interaction.turn!.id).not.toBe(turnId);
     expect(await fs.access(path.join(root, 'asset-access.txt')).then(() => true, () => false)).toBe(false);
     expect(server.errors()).toBe('');
-    const evidence = { clock: 'SystemClock', scheduler: 'TimerScheduler', entropy: 'CryptoCardPermutation', package: 'generica/2',
+    const evidence = { clock: 'SystemClock', scheduler: 'TimerScheduler', entropy: 'CryptoCardPermutation', package: 'generica/4 (formato 2)',
       roomId: original.id, gameId, playerId: original.participant.id, turnId, startedAt: new Date(timing.startedAt).toISOString(),
       endsAt: new Date(timing.endsAt).toISOString(), transportClosedAt: new Date(closedAt).toISOString(), observedAt: new Date(observedAt).toISOString(),
       observedAfterLimitMs: observedAt - timing.endsAt, counter: current.game.ownConsecutiveTimeouts, recoveredPlayerId: current.participant.id };

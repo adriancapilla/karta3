@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>KARTA3 — Maquetas de Valor del Atributo</title>
+  <link rel="stylesheet" href="maquetas.css">
+</head>
+<body>
+  <main>
+    <header class="inspector">
+      <h1>Valor del Atributo · comparación de propuestas</h1>
+      <p>Maqueta independiente. Sin partida, conexión o envío de jugadas.</p>
+      <div class="controls">
+        <label>Baraja <select id="deck"><option value="solar">Sistema Solar</option><option value="generic">Genérica</option></select></label>
+        <label>Valor del Atributo <select id="mode"><option value="play">1-58</option><option value="data">Dato</option></select></label>
+        <label>Contenido <select id="content"><option value="proposal">Propuesta editorial identificada</option><option value="current">Actual, sin adaptar</option></select></label>
+        <label><input id="optimize" type="checkbox"> Optimizar para pantallas pequeñas · propuesta de presentación</label>
+      </div>
+      <p id="editorial-label"></p>
+    </header>
+    <div class="context">Atributo activo: Distancia · ALTO · turno de ejemplo: 00:24</div>
+    <section id="sample" class="sample"><div class="indicator-area"><h2>Indicadora</h2><div id="indicator"></div></div><div class="hand-area"><h2>Tu mano</h2><div id="hand" class="rail hand" tabindex="0" role="region" aria-label="Cartas de mano, maqueta"></div></div></section>
+    <section class="review-area"><h2>Revisión · Diámetro · ALTO</h2><p>Escenario ilustrativo: Encke y Borrelly muestran el mismo dato; el orden lo proporciona el resultado de ejemplo.</p><div id="mesa" class="rail mesa" tabindex="0" role="region" aria-label="Mesa de cinco cartas, maqueta"></div><p>5 cartas · desplaza lateralmente para consultar la quinta</p></section>
+    <section class="examples"><h2>Ejemplos ficticios y pruebas de anchura</h2><p>Fechas/textos y cadenas de contraste ficticios; la última carta conserva el nombre real de 67P, de Sistema Solar. Las abreviaturas son propuestas editoriales.</p><div id="examples" class="examples-grid"></div></section>
+    <p id="demo-status" role="status" aria-live="polite">Ninguna acción de maqueta.</p>
+    <footer>Controles superiores para comparar maquetas; no constituyen el formulario de preparación del producto.</footer>
+  </main>
+  <dialog id="details" aria-labelledby="details-title"><div id="details-content"></div><button id="close-details" type="button">Cerrar detalles</button></dialog>
+  <script src="muestras.js"></script>
+  <script src="maqueta.js"></script>
+</body>
+</html>

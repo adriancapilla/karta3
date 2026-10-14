@@ -1,0 +1,82 @@
+[
+  {
+    "date": "2026-10-14T12:05:13.427Z",
+    "browser": "155.0.8059.40",
+    "width": 390,
+    "fonts": [
+      {
+        "selector": ".game-hand h3",
+        "fonts": [
+          {
+            "familyName": "Segoe UI",
+            "postScriptName": "SegoeUI-Bold",
+            "isCustomFont": false,
+            "glyphCount": 5
+          }
+        ]
+      },
+      {
+        "selector": ".game-hand td",
+        "fonts": [
+          {
+            "familyName": "Segoe UI",
+            "postScriptName": "SegoeUI",
+            "isCustomFont": false,
+            "glyphCount": 10
+          }
+        ]
+      },
+      {
+        "selector": ".game-hand th",
+        "fonts": [
+          {
+            "familyName": "Segoe UI",
+            "postScriptName": "SegoeUI-Bold",
+            "isCustomFont": false,
+            "glyphCount": 8
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "date": "2026-10-14T12:05:15.920Z",
+    "browser": "155.0.8059.40",
+    "width": 1920,
+    "fonts": [
+      {
+        "selector": ".game-hand h3",
+        "fonts": [
+          {
+            "familyName": "Segoe UI",
+            "postScriptName": "SegoeUI-Bold",
+            "isCustomFont": false,
+            "glyphCount": 5
+          }
+        ]
+      },
+      {
+        "selector": ".game-hand td",
+        "fonts": [
+          {
+            "familyName": "Segoe UI",
+            "postScriptName": "SegoeUI",
+            "isCustomFont": false,
+            "glyphCount": 10
+          }
+        ]
+      },
+      {
+        "selector": ".game-hand th",
+        "fonts": [
+          {
+            "familyName": "Segoe UI",
+            "postScriptName": "SegoeUI-Bold",
+            "isCustomFont": false,
+            "glyphCount": 8
+          }
+        ]
+      }
+    ]
+  }
+]

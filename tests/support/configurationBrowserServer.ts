@@ -11,7 +11,7 @@ import { botTrace } from './botTrace.js';
 import type { TurnExpiredEvent } from '../../shared/contracts/game.js';
 
 /** Conexiones y paquetes reales, compilación actual; solamente el reloj es sustituido. */
-export async function configurationBrowserServer(single = false, initialGame = false, manual?: { count: number; winners?: readonly number[]; botSeed?: number }, presentation: { longText?: boolean; generic?: boolean; distinct?: boolean } = {}) {
+export async function configurationBrowserServer(single = false, initialGame = false, manual?: { count: number; winners?: readonly number[]; botSeed?: number }, presentation: { longText?: boolean; generic?: boolean; distinct?: boolean; solar?: boolean; literal?: boolean } = {}) {
   const { createRuntime } = await import('../../dist-server/server/composition/createApp.js');
   const { prepareDecks, loadPreparedDecks } = await import('../../dist-server/server/infrastructure/decks/catalog.js');
   const { attachPublicFiles } = await import('../../dist-server/server/infrastructure/http/publicFiles.js');
@@ -35,8 +35,8 @@ export async function configurationBrowserServer(single = false, initialGame = f
   }
   if (manual) { image.collection.cards[0].imageRef = 'imagenes/portada.png'; image.collection.cards[0].imageAlt = 'Imagen validada de traza manual'; }
   if (presentation.longText) {
-    image.metadata.attributes[0].name = 'Magnitud de observación longitudinal';
-    image.collection.cards.forEach((card) => { card.values.atributo1.unit = 'kilómetros por segundo cuadrado'; });
+    image.metadata.attributes[0].name = 'Magnitud de observación';
+    image.collection.cards.forEach((card) => { card.values.atributo1.unit = 'km/s²'; });
   }
   if (presentation.distinct) {
     image.collection.cards[0].roundAttribute = 'atributo2';
@@ -44,10 +44,19 @@ export async function configurationBrowserServer(single = false, initialGame = f
     image.collection.cards[0].values.atributo1.displayValue = '700';
     image.collection.cards[0].values.atributo1.unit = 'km';
   }
+  if (presentation.literal) {
+    image.metadata.instructions = 'Primera línea\n<b>Literal, sin ejecutar HTML</b>';
+    for (const [index, card] of image.collection.cards.entries()) {
+      card.values.atributo1.displayValue = '13/10/2026'; card.values.atributo1.unit = '';
+      card.values.atributo2.displayValue = 'sin dato'; card.values.atributo2.unit = '';
+      card.values.atributo3.displayValue = index % 2 ? '1\u202F234' : '1  234'; card.values.atributo3.unit = 'km';
+    }
+  }
   const dir = await writeFixture(root, image); await fs.mkdir(path.join(dir, 'imagenes')); await fs.writeFile(path.join(dir, image.metadata.imageRef), await realImage('png'));
   if (!single) await writeFixture(root, deckFixture('sin-imagen', true, 1));
   await writeFixture(root, deckFixture('borrador', false, 2));
   if (presentation.generic) await fs.cp(path.resolve('barajas/generica'), path.join(root, 'generica'), { recursive: true });
+  if (presentation.solar) await fs.cp(path.resolve('barajas/sistema-solar'), path.join(root, 'sistema-solar'), { recursive: true });
   const loaded = await prepareDecks(root).then(() => loadPreparedDecks(root)).catch(async (error: unknown) => { await removeTestInstallation(root); throw error; });
   const time = new ControlledTime(); const repository = new MemoryRoomRepository(); const sessions = new MemorySessions();
   let permute: (ids: readonly string[]) => readonly string[] = (ids) => mixed && ids.length === 58 ? mixed.permutation : [...ids];

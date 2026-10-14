@@ -28,7 +28,7 @@ export function manualTrace(count: number, winners?: readonly number[]) {
   if (value !== 59 || new Set(values.keys()).size !== 58) throw new Error('Traza no conserva 58 cartas');
   for (const card of fixture.collection.cards) {
     card.name = `Carta manual ${card.id}`; card.roundAttribute = 'atributo1';
-    for (const entry of Object.values(card.values)) { entry.playValue = values.get(card.id)!; entry.displayValue = `Dato inverso ${100 - entry.playValue}`; }
+    for (const entry of Object.values(card.values)) { entry.playValue = values.get(card.id)!; entry.displayValue = `Inv ${100 - entry.playValue}`; }
   }
   return { fixture, trace, indicators, points: Array.from({ length: count }, (_, player) => plan.filter((id) => id === player).length * count) };
 }

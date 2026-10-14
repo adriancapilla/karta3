@@ -1,0 +1,29 @@
+{
+  "date": "2026-10-14T13:17:33.336Z",
+  "code": "91a9939e3ee8b7541f46cfe6d059b46bfa23e906",
+  "packageFiles": 63,
+  "sourceAppGitIdentical": true,
+  "certificates": [
+    {
+      "file": "MANIFIESTO_SHA256.json",
+      "bytes": 13347,
+      "sha256": "ce2fb8cbb8c37b9b123667f4fc872aeaf2d905e51877e9200ab9474b681f857c",
+      "sourceAppGitIdentical": true
+    },
+    {
+      "file": "DELTA_3_A_4.json",
+      "bytes": 16472,
+      "sha256": "33e1b53a6d79f58c1a3e574e33168d50d7f9f8a5b21531975c19cf514296948f",
+      "sourceAppGitIdentical": true
+    },
+    {
+      "file": "REGISTRO_ACTIVACION.md",
+      "bytes": 3007,
+      "sha256": "058cfb79d54bd0488e48ad49c6b7d1e32f7ec8446180ce7b1f14a0b30c781023",
+      "sourceAppGitIdentical": true
+    }
+  ],
+  "preparationUnchangedAtClosure": 88,
+  "ownFiles": 220,
+  "note": "Verificación sobre el índice que se va a registrar. B15/proceso son las dos actualizaciones documentales autorizadas; las restantes 88 entradas de la preparación conservan sus huellas iniciales. Catálogo y artefactos de construcción permanecen ignorados."
+}

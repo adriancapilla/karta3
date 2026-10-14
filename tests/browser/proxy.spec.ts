@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test';
 import type { InitialGameRoomView, RoomResponse } from '../../shared/contracts/room.js';
-import { approvedGeneric } from '../support/approvedGeneric.js';
+import { approvedInstalledDecks } from '../support/approvedSolar.js';
 
 test('T05 origen único: dos sesiones, polling/WebSocket, permisos, privacidad y recuperación', async ({ browser, baseURL }) => {
   test.setTimeout(45_000);
@@ -19,7 +19,7 @@ test('T05 origen único: dos sesiones, polling/WebSocket, permisos, privacidad y
     const catalog = await a.request.get(`${base}/api/decks`);
     expect(catalog.status()).toBe(200); expect(catalog.headers()['cache-control']).toBe('no-store');
     expect(catalog.headers()['set-cookie']).toBeUndefined();
-    expect(await catalog.json()).toEqual({ decks: [approvedGeneric] });
+    expect(await catalog.json()).toEqual({ decks: approvedInstalledDecks });
     for (const path of ['/barajas/generica/baraja.json', '/barajas/generica/cartas.json', '/docs', '/server', '/api/desconocida', '/media/decks/desconocido']) {
       const response = await a.request.get(`${base}${path}`);
       expect(response.status()).toBe(404); expect(await response.text()).not.toContain('<!doctype html>');
@@ -50,7 +50,7 @@ test('T05 origen único: dos sesiones, polling/WebSocket, permisos, privacidad y
     expect((await b.request.delete(`${base}/api/rooms/${waiting.id}`)).status()).toBe(403);
     expect((await stranger.request.get(`${base}/api/rooms/${waiting.id}`)).status()).toBe(401);
     expect((await a.request.post(`${base}/api/rooms`, { headers: { Origin: 'https://evil.example' }, data: {} })).status()).toBe(403);
-    await host.getByLabel('Baraja', { exact: true }).selectOption(JSON.stringify({ id: 'generica', contentVersion: 2 }));
+    await host.getByLabel('Baraja', { exact: true }).selectOption(JSON.stringify({ id: 'generica', contentVersion: 4 }));
     await host.getByLabel('Tiempo por turno').selectOption('60');
     await expect(host.getByRole('button', { name: 'Iniciar partida', exact: true })).toBeEnabled();
     await host.getByRole('button', { name: 'Iniciar partida', exact: true }).click();

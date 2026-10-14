@@ -48,12 +48,12 @@ for (const width of [360, 390, 1280]) test(`B06 E1/01/03/10–12/14–16 genéri
     await expect(p.host.getByLabel('Baraja', { exact: true })).toHaveValue('');
     await expect(p.host.getByRole('button', { name: 'Iniciar partida', exact: true })).toBeDisabled();
     await expect(p.guest.getByRole('button', { name: 'Iniciar partida', exact: true })).toHaveCount(0);
-    await choose(p.host, 'generica', 2); await ready(p.host); await tab.goto(baseURL!);
-    await expect(tab.getByLabel('Baraja', { exact: true })).toHaveValue(JSON.stringify({ id: 'generica', contentVersion: 2 }));
+    await choose(p.host, 'generica', 4); await ready(p.host); await tab.goto(baseURL!);
+    await expect(tab.getByLabel('Baraja', { exact: true })).toHaveValue(JSON.stringify({ id: 'generica', contentVersion: 4 }));
     const waiting = await current(p.host); await p.host.getByRole('button', { name: 'Iniciar partida', exact: true }).click();
     await Promise.all([table(p.host), table(p.guest), table(tab)]);
     const h = await current(p.host); const g = await current(p.guest);
-    expect(h.game.id).not.toBe(h.id); expect(h.id).toBe(waiting.id); expect(h.selectedDeck.contentVersion).toBe(2);
+    expect(h.game.id).not.toBe(h.id); expect(h.id).toBe(waiting.id); expect(h.selectedDeck.contentVersion).toBe(4);
     expect(h.game.round).toEqual(g.game.round); expect(h.game.id).toBe(g.game.id);
     expect(h.game.drawPileCount).toBe(51); expect(h.game.hand).toHaveLength(3); expect(g.game.hand).toHaveLength(3);
     expect(new Set([...h.game.hand, ...g.game.hand, h.game.round.indicator].map((card) => card.id)).size).toBe(7);
@@ -94,7 +94,7 @@ for (const width of [360, 390, 1280]) test(`B06 E1/01/03/10–12/14–16 genéri
 test('B06 E2/02/10–14 anfitrión observador normal y dos invitados en tres sesiones, recarga de todos', async ({ browser, baseURL }) => {
   const p = await pair(browser, baseURL!, 390); const third = await browser.newContext({ viewport: { width: 1280, height: 800 } }); const guest2 = await third.newPage();
   try {
-    await p.host.getByLabel('El anfitrión juega').uncheck(); await choose(p.host, 'generica', 2);
+    await p.host.getByLabel('El anfitrión juega').uncheck(); await choose(p.host, 'generica', 4);
     await expect(p.host.getByRole('button', { name: 'Iniciar partida', exact: true })).toBeDisabled();
     await guest2.goto(baseURL!); await enter(guest2, p.code, 'Ana'); await ready(p.host);
     await p.host.getByRole('button', { name: 'Iniciar partida', exact: true }).click(); await Promise.all([table(p.host), table(p.guest), table(guest2)]);
@@ -130,9 +130,9 @@ for (const width of [360, 390, 1280]) test(`B06-15/16 recursos reales/nulos/fall
     const card = p.guest.locator('.game-hand .game-card').first();
     await expect(card.getByAltText('Imagen validada de carta 1')).toBeVisible();
     expect(await card.locator('img').evaluate((image) => (image as HTMLImageElement).naturalWidth)).toBe(8);
-    await expect(card.locator('thead th')).toHaveText(['Atributo', 'Dato', 'J']);
-    await expect(card.locator('tbody tr').first().locator('td')).toHaveText(['1', '1']);
-    await expect(card.locator('tbody tr').nth(1).locator('td')).toHaveText(['Dato 700 km', '1']);
+    await expect(card.locator('thead th')).toHaveText(['Atributo', '1-58']);
+    await expect(card.locator('tbody tr').first().locator('td')).toHaveText(['1']);
+    await expect(card.locator('tbody tr').nth(1).locator('td')).toHaveText(['1']);
     await expect(card.locator('.active-attribute')).toContainText('Magnitud 2'); await expect(card).not.toContainText('NO HEREDAR');
     await expect(p.host.locator('.game-hand .game-card img')).toHaveCount(0); // Mano par nula; no se solicita sustitución.
     const scroll = p.guest.locator('.hand-row'); if (width < 760) await scroll.evaluate((element) => { element.scrollLeft = 100; });
@@ -214,7 +214,7 @@ test('B06-17/E7 reinicio real de main compilado sin ASSETS elimina mesa/identida
   try {
     await fs.cp(path.resolve('barajas/generica'), path.join(root, 'barajas/generica'), { recursive: true }); await prepareDecks(path.join(root, 'barajas'));
     instance = await startCompiledDeckServer(root); p = await pair(browser, instance.base, 390);
-    await choose(p.host, 'generica', 2); await ready(p.host); await p.host.getByRole('button', { name: 'Iniciar partida', exact: true }).click(); await table(p.host); await table(p.guest);
+    await choose(p.host, 'generica', 4); await ready(p.host); await p.host.getByRole('button', { name: 'Iniciar partida', exact: true }).click(); await table(p.host); await table(p.guest);
     const accepted = await current(p.host); const oldCookie = (await p.hc.cookies()).find((c) => c.name === 'karta3_session')!.value;
     const port = Number(new URL(instance.base).port);
     await instance.stop(); instance = await startCompiledDeckServer(root, port);

@@ -2,7 +2,7 @@ import { RoomError } from './roomError.js';
 import type { TimePoint } from './waitingTime.js';
 import type { BotOperation, ConfigurationChange, RoomSettings } from '../../shared/contracts/room.js';
 import { isBotDifficulty } from '../domain/botPlay.js';
-import type { DeckSummary } from '../../shared/contracts/deck.js';
+import type { DeckSummary, DeckInformationView } from '../../shared/contracts/deck.js';
 import { publicDeckSummary } from './deckCatalog.js';
 import type { CardPresentation, GameDeckSnapshot } from './deckCatalog.js';
 import type { Game, PlayerPreparation } from '../domain/game.js';
@@ -54,13 +54,16 @@ export class Room {
   private readonly presence = new Map<string, Presence>();
   private expiry: { at: number; unix: number; generation: number; warning: boolean };
   private deck: DeckSummary | null = null;
+  private information: DeckInformationView | null = null;
   private readonly roomSettings: RoomSettings = {
     deckId: null,
     deckContentVersion: null,
     hostPlays: true,
     turnSeconds: 30,
     forceTieBreak: false,
-    reviewSeconds: 5
+    reviewSeconds: 5,
+    attributeValueMode: 'PLAY_VALUE',
+    optimizeForMobile: false
   };
 
   constructor(input: { id: string; code: string; hostSessionId: string; participantId: string; now: TimePoint; connected: boolean }) {
@@ -144,6 +147,7 @@ export class Room {
   }
   get settings() { return { ...this.roomSettings }; }
   get selectedDeck() { return this.deck ? publicDeckSummary(this.deck) : null; }
+  get deckInformation() { return this.information ? { ...this.information } : null; }
   get playerCount() { return this.guests.length + Number(this.roomSettings.hostPlays); }
 
   participantFor(sessionId: string) { return this.participants.find((person): person is Extract<typeof person, { kind: 'HUMAN' }> => person.kind === 'HUMAN' && person.sessionId === sessionId); }
@@ -165,6 +169,8 @@ export class Room {
     const players = this.startPlayers();
     if (game.id === this.id || game.definition.id !== this.roomSettings.deckId
       || snapshot.summary.id !== this.roomSettings.deckId || snapshot.summary.contentVersion !== this.roomSettings.deckContentVersion
+      || snapshot.information.id !== snapshot.summary.id || snapshot.information.contentVersion !== snapshot.summary.contentVersion
+      || snapshot.information.instructions !== this.information?.instructions
       || game.settings.turnTimeout !== this.roomSettings.turnSeconds || game.settings.forceTieBreak !== this.roomSettings.forceTieBreak
       || players.some((person, index) => game.players[index]?.id !== person.id || game.players[index]?.displayName !== person.name
         || game.players[index]?.kind !== person.kind || game.players[index]?.botDifficulty !== person.botDifficulty) || game.players.length !== players.length
@@ -178,6 +184,7 @@ export class Room {
     this.initialGame = game;
     this.graphics = graphics;
     this.deck = summary;
+    this.information = Object.freeze({ id: summary.id, contentVersion: summary.contentVersion, instructions: snapshot.information.instructions });
     this.state = 'IN_GAME';
     this.gameGeneration++;
     for (const state of this.presence.values()) { state.absence = undefined; state.generation++; }
@@ -236,26 +243,29 @@ export class Room {
     this.renew(now); this.roomRevision++; return true;
   }
 
-  configure(change: ConfigurationChange, selected: DeckSummary | null, now: TimePoint): boolean {
+  configure(change: ConfigurationChange, selected: { summary: DeckSummary; information: DeckInformationView } | null, now: TimePoint): boolean {
     this.ensureWaiting();
     if (change.field === 'deck') {
       if (change.value !== null && (typeof change.value !== 'object' || typeof change.value.id !== 'string'
         || !Number.isInteger(change.value.contentVersion) || change.value.contentVersion <= 0)) {
         throw new RoomError('INVALID_INPUT', 'La referencia de baraja no es válida.');
       }
-      if (change.value && (!selected || selected.id !== change.value.id || selected.contentVersion !== change.value.contentVersion)) {
+      if (change.value && (!selected || selected.summary.id !== change.value.id || selected.summary.contentVersion !== change.value.contentVersion
+        || selected.information.id !== change.value.id || selected.information.contentVersion !== change.value.contentVersion || typeof selected.information.instructions !== 'string')) {
         throw new RoomError('DECK_NOT_AVAILABLE', 'La baraja no está disponible. Vuelve a consultar el catálogo.');
       }
       if (this.roomSettings.deckId === (change.value?.id ?? null)
         && this.roomSettings.deckContentVersion === (change.value?.contentVersion ?? null)) return false;
-      this.deck = change.value ? publicDeckSummary(selected!) : null;
+      this.deck = change.value ? publicDeckSummary(selected!.summary) : null;
+      this.information = change.value ? Object.freeze({ id: selected!.information.id, contentVersion: selected!.information.contentVersion, instructions: selected!.information.instructions }) : null;
       this.roomSettings.deckId = this.deck?.id ?? null;
       this.roomSettings.deckContentVersion = this.deck?.contentVersion ?? null;
     } else {
       const { field, value } = change;
       if ((field === 'turnSeconds' && ![15, 30, 60].includes(value))
         || (field === 'reviewSeconds' && ![0, 2, 5, 10, 15, 30].includes(value))
-        || ((field === 'hostPlays' || field === 'forceTieBreak') && typeof value !== 'boolean')) {
+        || ((field === 'hostPlays' || field === 'forceTieBreak' || field === 'optimizeForMobile') && typeof value !== 'boolean')
+        || (field === 'attributeValueMode' && value !== 'PLAY_VALUE' && value !== 'DISPLAY_VALUE')) {
         throw new RoomError('INVALID_INPUT', 'El valor de configuración no es válido.');
       }
       if (this.roomSettings[field] === value) return false;
@@ -268,6 +278,8 @@ export class Room {
         case 'forceTieBreak': this.roomSettings.forceTieBreak = value; break;
         case 'turnSeconds': this.roomSettings.turnSeconds = value; break;
         case 'reviewSeconds': this.roomSettings.reviewSeconds = value; break;
+        case 'attributeValueMode': this.roomSettings.attributeValueMode = value; break;
+        case 'optimizeForMobile': this.roomSettings.optimizeForMobile = value; break;
         default: throw new RoomError('INVALID_INPUT', 'El control de configuración no es válido.');
       }
     }

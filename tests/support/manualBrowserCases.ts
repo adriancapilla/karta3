@@ -3,12 +3,13 @@ import type { InitialGameRoomView, RoomView } from '../../shared/contracts/room.
 
 export const readRoom = (page: Page): Promise<RoomView> => page.evaluate(async () => (await (await fetch('/api/rooms/current')).json()).room);
 export const readGame = async (page: Page) => await readRoom(page) as InitialGameRoomView;
-export async function manualTable(browser: Browser, base: string, options: { width?: number; count?: number; observer?: boolean; deckId?: string; version?: number; review?: number; tie?: boolean; turn?: 15 | 30 | 60; names?: readonly string[]; bots?: readonly ('EASY' | 'HARD')[] } = {}) {
+export async function manualTable(browser: Browser, base: string, options: { width?: number; height?: number; hostName?: string; valueMode?: 'PLAY_VALUE' | 'DISPLAY_VALUE'; optimize?: boolean; count?: number; observer?: boolean; deckId?: string; version?: number; review?: number; tie?: boolean; turn?: 15 | 30 | 60; names?: readonly string[]; bots?: readonly ('EASY' | 'HARD')[] } = {}) {
   const width = options.width ?? 1280; const count = options.count ?? 2;
-  const contexts = await Promise.all(Array.from({ length: count + Number(!!options.observer) }, () => browser.newContext({ viewport: { width, height: 844 }, hasTouch: width < 760, isMobile: width < 760 })));
+  const contexts = await Promise.all(Array.from({ length: count + Number(!!options.observer) }, () => browser.newContext({ viewport: { width, height: options.height ?? 844 }, hasTouch: width < 760, isMobile: width < 760 })));
   const pages = await Promise.all(contexts.map((context) => context.newPage()));
   await Promise.all(pages.map((page) => page.goto(base)));
   const host = pages[0]; await host.getByRole('button', { name: 'Crear sala', exact: true }).click();
+  if (options.hostName) { await host.getByLabel('Editar mi nombre').fill(options.hostName); await host.getByRole('button', { name: 'Guardar', exact: true }).click(); await expect(host.locator('.participant-list')).toContainText(options.hostName); }
   const code = (await host.locator('.code').textContent())!;
   if (options.observer) await host.getByLabel('El anfitrión juega').uncheck();
   for (const difficulty of options.bots ?? []) {
@@ -23,7 +24,9 @@ export async function manualTable(browser: Browser, base: string, options: { wid
     await pages[index].getByRole('button', { name: 'Entrar', exact: true }).click();
     await expect(pages[index].getByRole('heading', { name: 'Ya estás en la sala' })).toBeVisible();
   }
-  await host.getByLabel('Baraja', { exact: true }).selectOption(JSON.stringify({ id: options.deckId ?? 'generica', contentVersion: options.version ?? 2 }));
+  await host.getByLabel('Baraja', { exact: true }).selectOption(JSON.stringify({ id: options.deckId ?? 'generica', contentVersion: options.version ?? 4 }));
+  if (options.valueMode) { await host.getByLabel('Valor del Atributo', { exact: true }).selectOption(options.valueMode); await expect(host.getByLabel('Valor del Atributo', { exact: true })).toHaveValue(options.valueMode); }
+  if (options.optimize !== undefined) { await host.getByLabel('Optimizar para móvil', { exact: true }).setChecked(options.optimize); await expect(host.getByLabel('Optimizar para móvil', { exact: true })).toBeChecked({ checked: options.optimize }); }
   if (options.review !== undefined) await host.getByLabel('Revisión de ronda').selectOption(String(options.review));
   if (options.turn !== undefined) await host.getByLabel('Tiempo por turno').selectOption(String(options.turn));
   if (options.tie) await host.getByLabel('Forzar desempate').check();

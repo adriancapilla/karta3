@@ -1,0 +1,4067 @@
+{
+  "status": "PROPUESTAS DE MAQUETA, NO PAQUETE NI CONTENIDO APROBADO",
+  "sourceVersion": 2,
+  "cards": [
+    {
+      "id": "itokawa",
+      "name": "Itokawa",
+      "current": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Velocidad"
+          },
+          {
+            "full": "Distancia",
+            "label": "Distancia"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "34.519",
+            "unit": "km/s",
+            "play": 52
+          },
+          {
+            "display": "198075402",
+            "unit": "km",
+            "play": 31
+          },
+          {
+            "display": "0.33",
+            "unit": "km",
+            "play": 1
+          }
+        ]
+      },
+      "proposal": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Vel"
+          },
+          {
+            "full": "Distancia",
+            "label": "Dist"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "34.52",
+            "unit": "km/s",
+            "play": 52
+          },
+          {
+            "display": "198.08",
+            "unit": "MKm",
+            "play": 31
+          },
+          {
+            "display": "0.33",
+            "unit": "km",
+            "play": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "bennu",
+      "name": "Bennu",
+      "current": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Velocidad"
+          },
+          {
+            "full": "Distancia",
+            "label": "Distancia"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "34.506",
+            "unit": "km/s",
+            "play": 51
+          },
+          {
+            "display": "168505699",
+            "unit": "km",
+            "play": 29
+          },
+          {
+            "display": "0.48444",
+            "unit": "km",
+            "play": 2
+          }
+        ]
+      },
+      "proposal": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Vel"
+          },
+          {
+            "full": "Distancia",
+            "label": "Dist"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "34.51",
+            "unit": "km/s",
+            "play": 51
+          },
+          {
+            "display": "168.51",
+            "unit": "MKm",
+            "play": 29
+          },
+          {
+            "display": "0.48444",
+            "unit": "km",
+            "play": 2
+          }
+        ]
+      }
+    },
+    {
+      "id": "ryugu",
+      "name": "Ryugu",
+      "current": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Velocidad"
+          },
+          {
+            "full": "Distancia",
+            "label": "Distancia"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "33.118",
+            "unit": "km/s",
+            "play": 48
+          },
+          {
+            "display": "178158936",
+            "unit": "km",
+            "play": 30
+          },
+          {
+            "display": "0.896",
+            "unit": "km",
+            "play": 3
+          }
+        ]
+      },
+      "proposal": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Vel"
+          },
+          {
+            "full": "Distancia",
+            "label": "Dist"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "33.12",
+            "unit": "km/s",
+            "play": 48
+          },
+          {
+            "display": "178.16",
+            "unit": "MKm",
+            "play": 30
+          },
+          {
+            "display": "0.896",
+            "unit": "km",
+            "play": 3
+          }
+        ]
+      }
+    },
+    {
+      "id": "tempel-1",
+      "name": "Tempel 1",
+      "current": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Velocidad"
+          },
+          {
+            "full": "Distancia",
+            "label": "Distancia"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "29.466",
+            "unit": "km/s",
+            "play": 45
+          },
+          {
+            "display": "470654911",
+            "unit": "km",
+            "play": 42
+          },
+          {
+            "display": "6",
+            "unit": "km",
+            "play": 9
+          }
+        ]
+      },
+      "proposal": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Vel"
+          },
+          {
+            "full": "Distancia",
+            "label": "Dist"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "29.47",
+            "unit": "km/s",
+            "play": 45
+          },
+          {
+            "display": "470.65",
+            "unit": "MKm",
+            "play": 42
+          },
+          {
+            "display": "6",
+            "unit": "km",
+            "play": 9
+          }
+        ]
+      }
+    },
+    {
+      "id": "halley",
+      "name": "Halley",
+      "current": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Velocidad"
+          },
+          {
+            "full": "Distancia",
+            "label": "Distancia"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "55.108",
+            "unit": "km/s",
+            "play": 55
+          },
+          {
+            "display": "2682085628",
+            "unit": "km",
+            "play": 49
+          },
+          {
+            "display": "11",
+            "unit": "km",
+            "play": 10
+          }
+        ]
+      },
+      "proposal": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Vel"
+          },
+          {
+            "full": "Distancia",
+            "label": "Dist"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "55.11",
+            "unit": "km/s",
+            "play": 55
+          },
+          {
+            "display": "2682.1",
+            "unit": "MKm",
+            "play": 49
+          },
+          {
+            "display": "11",
+            "unit": "km",
+            "play": 10
+          }
+        ]
+      }
+    },
+    {
+      "id": "deimos",
+      "name": "Deimos",
+      "current": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Velocidad"
+          },
+          {
+            "full": "Distancia",
+            "label": "Distancia"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "1.351",
+            "unit": "km/s",
+            "play": 3
+          },
+          {
+            "display": "23457",
+            "unit": "km",
+            "play": 3
+          },
+          {
+            "display": "12.4",
+            "unit": "km",
+            "play": 12
+          }
+        ]
+      },
+      "proposal": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Vel"
+          },
+          {
+            "full": "Distancia",
+            "label": "Dist"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "1.351",
+            "unit": "km/s",
+            "play": 3
+          },
+          {
+            "display": "0.0235",
+            "unit": "MKm",
+            "play": 3
+          },
+          {
+            "display": "12.4",
+            "unit": "km",
+            "play": 12
+          }
+        ]
+      }
+    },
+    {
+      "id": "eros",
+      "name": "Eros",
+      "current": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Velocidad"
+          },
+          {
+            "full": "Distancia",
+            "label": "Distancia"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "30.94",
+            "unit": "km/s",
+            "play": 47
+          },
+          {
+            "display": "218150155",
+            "unit": "km",
+            "play": 32
+          },
+          {
+            "display": "16.84",
+            "unit": "km",
+            "play": 13
+          }
+        ]
+      },
+      "proposal": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Vel"
+          },
+          {
+            "full": "Distancia",
+            "label": "Dist"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "30.94",
+            "unit": "km/s",
+            "play": 47
+          },
+          {
+            "display": "218.15",
+            "unit": "MKm",
+            "play": 32
+          },
+          {
+            "display": "16.84",
+            "unit": "km",
+            "play": 13
+          }
+        ]
+      }
+    },
+    {
+      "id": "fobos",
+      "name": "Fobos",
+      "current": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Velocidad"
+          },
+          {
+            "full": "Distancia",
+            "label": "Distancia"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "2.17",
+            "unit": "km/s",
+            "play": 5
+          },
+          {
+            "display": "9375",
+            "unit": "km",
+            "play": 1
+          },
+          {
+            "display": "22.16",
+            "unit": "km",
+            "play": 14
+          }
+        ]
+      },
+      "proposal": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Vel"
+          },
+          {
+            "full": "Distancia",
+            "label": "Dist"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "2.17",
+            "unit": "km/s",
+            "play": 5
+          },
+          {
+            "display": "0.0094",
+            "unit": "MKm",
+            "play": 1
+          },
+          {
+            "display": "22.16",
+            "unit": "km",
+            "play": 14
+          }
+        ]
+      }
+    },
+    {
+      "id": "hale-bopp",
+      "name": "Hale-Bopp",
+      "current": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Velocidad"
+          },
+          {
+            "full": "Distancia",
+            "label": "Distancia"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "44.58",
+            "unit": "km/s",
+            "play": 54
+          },
+          {
+            "display": "26543656424",
+            "unit": "km",
+            "play": 56
+          },
+          {
+            "display": "60",
+            "unit": "km",
+            "play": 17
+          }
+        ]
+      },
+      "proposal": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Vel"
+          },
+          {
+            "full": "Distancia",
+            "label": "Dist"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "44.58",
+            "unit": "km/s",
+            "play": 54
+          },
+          {
+            "display": "26544",
+            "unit": "MKm",
+            "play": 56
+          },
+          {
+            "display": "60",
+            "unit": "km",
+            "play": 17
+          }
+        ]
+      }
+    },
+    {
+      "id": "psyche",
+      "name": "Psyche",
+      "current": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Velocidad"
+          },
+          {
+            "full": "Distancia",
+            "label": "Distancia"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "19.945",
+            "unit": "km/s",
+            "play": 37
+          },
+          {
+            "display": "437681552",
+            "unit": "km",
+            "play": 41
+          },
+          {
+            "display": "222",
+            "unit": "km",
+            "play": 20
+          }
+        ]
+      },
+      "proposal": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Vel"
+          },
+          {
+            "full": "Distancia",
+            "label": "Dist"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "19.95",
+            "unit": "km/s",
+            "play": 37
+          },
+          {
+            "display": "437.68",
+            "unit": "MKm",
+            "play": 41
+          },
+          {
+            "display": "222",
+            "unit": "km",
+            "play": 20
+          }
+        ]
+      }
+    },
+    {
+      "id": "mimas",
+      "name": "Mimas",
+      "current": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Velocidad"
+          },
+          {
+            "full": "Distancia",
+            "label": "Distancia"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "14.569",
+            "unit": "km/s",
+            "play": 32
+          },
+          {
+            "display": "186000",
+            "unit": "km",
+            "play": 7
+          },
+          {
+            "display": "396.4",
+            "unit": "km",
+            "play": 22
+          }
+        ]
+      },
+      "proposal": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Vel"
+          },
+          {
+            "full": "Distancia",
+            "label": "Dist"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "14.57",
+            "unit": "km/s",
+            "play": 32
+          },
+          {
+            "display": "0.186",
+            "unit": "MKm",
+            "play": 7
+          },
+          {
+            "display": "396.4",
+            "unit": "km",
+            "play": 22
+          }
+        ]
+      }
+    },
+    {
+      "id": "higia",
+      "name": "Higía",
+      "current": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Velocidad"
+          },
+          {
+            "full": "Distancia",
+            "label": "Distancia"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "18.676",
+            "unit": "km/s",
+            "play": 35
+          },
+          {
+            "display": "471379006",
+            "unit": "km",
+            "play": 43
+          },
+          {
+            "display": "407.12",
+            "unit": "km",
+            "play": 23
+          }
+        ]
+      },
+      "proposal": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Vel"
+          },
+          {
+            "full": "Distancia",
+            "label": "Dist"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "18.68",
+            "unit": "km/s",
+            "play": 35
+          },
+          {
+            "display": "471.38",
+            "unit": "MKm",
+            "play": 43
+          },
+          {
+            "display": "407.12",
+            "unit": "km",
+            "play": 23
+          }
+        ]
+      }
+    },
+    {
+      "id": "miranda",
+      "name": "Miranda",
+      "current": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Velocidad"
+          },
+          {
+            "full": "Distancia",
+            "label": "Distancia"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "6.687",
+            "unit": "km/s",
+            "play": 20
+          },
+          {
+            "display": "129846",
+            "unit": "km",
+            "play": 5
+          },
+          {
+            "display": "471.6",
+            "unit": "km",
+            "play": 25
+          }
+        ]
+      },
+      "proposal": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Vel"
+          },
+          {
+            "full": "Distancia",
+            "label": "Dist"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "6.687",
+            "unit": "km/s",
+            "play": 20
+          },
+          {
+            "display": "0.1298",
+            "unit": "MKm",
+            "play": 5
+          },
+          {
+            "display": "471.6",
+            "unit": "km",
+            "play": 25
+          }
+        ]
+      }
+    },
+    {
+      "id": "encelado",
+      "name": "Encélado",
+      "current": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Velocidad"
+          },
+          {
+            "full": "Distancia",
+            "label": "Distancia"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "12.677",
+            "unit": "km/s",
+            "play": 29
+          },
+          {
+            "display": "238400",
+            "unit": "km",
+            "play": 9
+          },
+          {
+            "display": "504.2",
+            "unit": "km",
+            "play": 26
+          }
+        ]
+      },
+      "proposal": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Vel"
+          },
+          {
+            "full": "Distancia",
+            "label": "Dist"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "12.68",
+            "unit": "km/s",
+            "play": 29
+          },
+          {
+            "display": "0.2384",
+            "unit": "MKm",
+            "play": 9
+          },
+          {
+            "display": "504.2",
+            "unit": "km",
+            "play": 26
+          }
+        ]
+      }
+    },
+    {
+      "id": "palas",
+      "name": "Palas",
+      "current": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Velocidad"
+          },
+          {
+            "full": "Distancia",
+            "label": "Distancia"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "22.637",
+            "unit": "km/s",
+            "play": 39
+          },
+          {
+            "display": "414320131",
+            "unit": "km",
+            "play": 39
+          },
+          {
+            "display": "513",
+            "unit": "km",
+            "play": 27
+          }
+        ]
+      },
+      "proposal": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Vel"
+          },
+          {
+            "full": "Distancia",
+            "label": "Dist"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "22.64",
+            "unit": "km/s",
+            "play": 39
+          },
+          {
+            "display": "414.32",
+            "unit": "MKm",
+            "play": 39
+          },
+          {
+            "display": "513",
+            "unit": "km",
+            "play": 27
+          }
+        ]
+      }
+    },
+    {
+      "id": "vesta",
+      "name": "Vesta",
+      "current": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Velocidad"
+          },
+          {
+            "full": "Distancia",
+            "label": "Distancia"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "21.217",
+            "unit": "km/s",
+            "play": 38
+          },
+          {
+            "display": "353255320",
+            "unit": "km",
+            "play": 36
+          },
+          {
+            "display": "522.77",
+            "unit": "km",
+            "play": 28
+          }
+        ]
+      },
+      "proposal": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Vel"
+          },
+          {
+            "full": "Distancia",
+            "label": "Dist"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "21.22",
+            "unit": "km/s",
+            "play": 38
+          },
+          {
+            "display": "353.26",
+            "unit": "MKm",
+            "play": 36
+          },
+          {
+            "display": "522.77",
+            "unit": "km",
+            "play": 28
+          }
+        ]
+      }
+    },
+    {
+      "id": "ceres",
+      "name": "Ceres",
+      "current": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Velocidad"
+          },
+          {
+            "full": "Distancia",
+            "label": "Distancia"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "19.399",
+            "unit": "km/s",
+            "play": 36
+          },
+          {
+            "display": "413720780",
+            "unit": "km",
+            "play": 38
+          },
+          {
+            "display": "939.4",
+            "unit": "km",
+            "play": 29
+          }
+        ]
+      },
+      "proposal": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Vel"
+          },
+          {
+            "full": "Distancia",
+            "label": "Dist"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "19.4",
+            "unit": "km/s",
+            "play": 36
+          },
+          {
+            "display": "413.72",
+            "unit": "MKm",
+            "play": 38
+          },
+          {
+            "display": "939.4",
+            "unit": "km",
+            "play": 29
+          }
+        ]
+      }
+    },
+    {
+      "id": "sedna",
+      "name": "Sedna",
+      "current": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Velocidad"
+          },
+          {
+            "full": "Distancia",
+            "label": "Distancia"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "4.654",
+            "unit": "km/s",
+            "play": 10
+          },
+          {
+            "display": "81339283783",
+            "unit": "km",
+            "play": 57
+          },
+          {
+            "display": "1000",
+            "unit": "km",
+            "play": 30
+          }
+        ]
+      },
+      "proposal": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Vel"
+          },
+          {
+            "full": "Distancia",
+            "label": "Dist"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "4.654",
+            "unit": "km/s",
+            "play": 10
+          },
+          {
+            "display": "81339",
+            "unit": "MKm",
+            "play": 57
+          },
+          {
+            "display": "1000",
+            "unit": "km",
+            "play": 30
+          }
+        ]
+      }
+    },
+    {
+      "id": "tetis",
+      "name": "Tetis",
+      "current": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Velocidad"
+          },
+          {
+            "full": "Distancia",
+            "label": "Distancia"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "11.351",
+            "unit": "km/s",
+            "play": 28
+          },
+          {
+            "display": "295000",
+            "unit": "km",
+            "play": 11
+          },
+          {
+            "display": "1062.2",
+            "unit": "km",
+            "play": 31
+          }
+        ]
+      },
+      "proposal": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Vel"
+          },
+          {
+            "full": "Distancia",
+            "label": "Dist"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "11.35",
+            "unit": "km/s",
+            "play": 28
+          },
+          {
+            "display": "0.295",
+            "unit": "MKm",
+            "play": 11
+          },
+          {
+            "display": "1062.2",
+            "unit": "km",
+            "play": 31
+          }
+        ]
+      }
+    },
+    {
+      "id": "dione",
+      "name": "Dione",
+      "current": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Velocidad"
+          },
+          {
+            "full": "Distancia",
+            "label": "Distancia"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "10.041",
+            "unit": "km/s",
+            "play": 25
+          },
+          {
+            "display": "377700",
+            "unit": "km",
+            "play": 13
+          },
+          {
+            "display": "1122.8",
+            "unit": "km",
+            "play": 32
+          }
+        ]
+      },
+      "proposal": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Vel"
+          },
+          {
+            "full": "Distancia",
+            "label": "Dist"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "10.04",
+            "unit": "km/s",
+            "play": 25
+          },
+          {
+            "display": "0.3777",
+            "unit": "MKm",
+            "play": 13
+          },
+          {
+            "display": "1122.8",
+            "unit": "km",
+            "play": 32
+          }
+        ]
+      }
+    },
+    {
+      "id": "ariel",
+      "name": "Ariel",
+      "current": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Velocidad"
+          },
+          {
+            "full": "Distancia",
+            "label": "Distancia"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "5.514",
+            "unit": "km/s",
+            "play": 14
+          },
+          {
+            "display": "190929",
+            "unit": "km",
+            "play": 8
+          },
+          {
+            "display": "1157.8",
+            "unit": "km",
+            "play": 33
+          }
+        ]
+      },
+      "proposal": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Vel"
+          },
+          {
+            "full": "Distancia",
+            "label": "Dist"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "5.514",
+            "unit": "km/s",
+            "play": 14
+          },
+          {
+            "display": "0.1909",
+            "unit": "MKm",
+            "play": 8
+          },
+          {
+            "display": "1157.8",
+            "unit": "km",
+            "play": 33
+          }
+        ]
+      }
+    },
+    {
+      "id": "umbriel",
+      "name": "Umbriel",
+      "current": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Velocidad"
+          },
+          {
+            "full": "Distancia",
+            "label": "Distancia"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "4.686",
+            "unit": "km/s",
+            "play": 11
+          },
+          {
+            "display": "265986",
+            "unit": "km",
+            "play": 10
+          },
+          {
+            "display": "1169.4",
+            "unit": "km",
+            "play": 34
+          }
+        ]
+      },
+      "proposal": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Vel"
+          },
+          {
+            "full": "Distancia",
+            "label": "Dist"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "4.686",
+            "unit": "km/s",
+            "play": 11
+          },
+          {
+            "display": "0.266",
+            "unit": "MKm",
+            "play": 10
+          },
+          {
+            "display": "1169.4",
+            "unit": "km",
+            "play": 34
+          }
+        ]
+      }
+    },
+    {
+      "id": "caronte",
+      "name": "Caronte",
+      "current": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Velocidad"
+          },
+          {
+            "full": "Distancia",
+            "label": "Distancia"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "0.211",
+            "unit": "km/s",
+            "play": 1
+          },
+          {
+            "display": "19600",
+            "unit": "km",
+            "play": 2
+          },
+          {
+            "display": "1212",
+            "unit": "km",
+            "play": 35
+          }
+        ]
+      },
+      "proposal": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Vel"
+          },
+          {
+            "full": "Distancia",
+            "label": "Dist"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "0.211",
+            "unit": "km/s",
+            "play": 1
+          },
+          {
+            "display": "0.0196",
+            "unit": "MKm",
+            "play": 2
+          },
+          {
+            "display": "1212",
+            "unit": "km",
+            "play": 35
+          }
+        ]
+      }
+    },
+    {
+      "id": "makemake",
+      "name": "Makemake",
+      "current": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Velocidad"
+          },
+          {
+            "full": "Distancia",
+            "label": "Distancia"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "5.179",
+            "unit": "km/s",
+            "play": 12
+          },
+          {
+            "display": "6817314568",
+            "unit": "km",
+            "play": 54
+          },
+          {
+            "display": "1430",
+            "unit": "km",
+            "play": 36
+          }
+        ]
+      },
+      "proposal": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Vel"
+          },
+          {
+            "full": "Distancia",
+            "label": "Dist"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "5.179",
+            "unit": "km/s",
+            "play": 12
+          },
+          {
+            "display": "6817.3",
+            "unit": "MKm",
+            "play": 54
+          },
+          {
+            "display": "1430",
+            "unit": "km",
+            "play": 36
+          }
+        ]
+      }
+    },
+    {
+      "id": "japeto",
+      "name": "Jápeto",
+      "current": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Velocidad"
+          },
+          {
+            "full": "Distancia",
+            "label": "Distancia"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "3.356",
+            "unit": "km/s",
+            "play": 7
+          },
+          {
+            "display": "3561700",
+            "unit": "km",
+            "play": 24
+          },
+          {
+            "display": "1468.6",
+            "unit": "km",
+            "play": 37
+          }
+        ]
+      },
+      "proposal": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Vel"
+          },
+          {
+            "full": "Distancia",
+            "label": "Dist"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "3.356",
+            "unit": "km/s",
+            "play": 7
+          },
+          {
+            "display": "3.5617",
+            "unit": "MKm",
+            "play": 24
+          },
+          {
+            "display": "1468.6",
+            "unit": "km",
+            "play": 37
+          }
+        ]
+      }
+    },
+    {
+      "id": "oberon",
+      "name": "Oberón",
+      "current": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Velocidad"
+          },
+          {
+            "full": "Distancia",
+            "label": "Distancia"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "3.157",
+            "unit": "km/s",
+            "play": 6
+          },
+          {
+            "display": "583511",
+            "unit": "km",
+            "play": 18
+          },
+          {
+            "display": "1522.8",
+            "unit": "km",
+            "play": 38
+          }
+        ]
+      },
+      "proposal": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Vel"
+          },
+          {
+            "full": "Distancia",
+            "label": "Dist"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "3.157",
+            "unit": "km/s",
+            "play": 6
+          },
+          {
+            "display": "0.5835",
+            "unit": "MKm",
+            "play": 18
+          },
+          {
+            "display": "1522.8",
+            "unit": "km",
+            "play": 38
+          }
+        ]
+      }
+    },
+    {
+      "id": "rea",
+      "name": "Rea",
+      "current": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Velocidad"
+          },
+          {
+            "full": "Distancia",
+            "label": "Distancia"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "8.491",
+            "unit": "km/s",
+            "play": 24
+          },
+          {
+            "display": "527200",
+            "unit": "km",
+            "play": 17
+          },
+          {
+            "display": "1527",
+            "unit": "km",
+            "play": 39
+          }
+        ]
+      },
+      "proposal": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Vel"
+          },
+          {
+            "full": "Distancia",
+            "label": "Dist"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "8.491",
+            "unit": "km/s",
+            "play": 24
+          },
+          {
+            "display": "0.5272",
+            "unit": "MKm",
+            "play": 17
+          },
+          {
+            "display": "1527",
+            "unit": "km",
+            "play": 39
+          }
+        ]
+      }
+    },
+    {
+      "id": "titania",
+      "name": "Titania",
+      "current": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Velocidad"
+          },
+          {
+            "full": "Distancia",
+            "label": "Distancia"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "3.651",
+            "unit": "km/s",
+            "play": 8
+          },
+          {
+            "display": "436298",
+            "unit": "km",
+            "play": 16
+          },
+          {
+            "display": "1577.8",
+            "unit": "km",
+            "play": 40
+          }
+        ]
+      },
+      "proposal": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Vel"
+          },
+          {
+            "full": "Distancia",
+            "label": "Dist"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "3.651",
+            "unit": "km/s",
+            "play": 8
+          },
+          {
+            "display": "0.4363",
+            "unit": "MKm",
+            "play": 16
+          },
+          {
+            "display": "1577.8",
+            "unit": "km",
+            "play": 40
+          }
+        ]
+      }
+    },
+    {
+      "id": "haumea",
+      "name": "Haumea",
+      "current": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Velocidad"
+          },
+          {
+            "full": "Distancia",
+            "label": "Distancia"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "5.527",
+            "unit": "km/s",
+            "play": 15
+          },
+          {
+            "display": "6441727731",
+            "unit": "km",
+            "play": 53
+          },
+          {
+            "display": "1595",
+            "unit": "km",
+            "play": 41
+          }
+        ]
+      },
+      "proposal": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Vel"
+          },
+          {
+            "full": "Distancia",
+            "label": "Dist"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "5.527",
+            "unit": "km/s",
+            "play": 15
+          },
+          {
+            "display": "6441.7",
+            "unit": "MKm",
+            "play": 53
+          },
+          {
+            "display": "1595",
+            "unit": "km",
+            "play": 41
+          }
+        ]
+      }
+    },
+    {
+      "id": "eris",
+      "name": "Eris",
+      "current": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Velocidad"
+          },
+          {
+            "full": "Distancia",
+            "label": "Distancia"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "5.782",
+            "unit": "km/s",
+            "play": 18
+          },
+          {
+            "display": "10162773801",
+            "unit": "km",
+            "play": 55
+          },
+          {
+            "display": "2326",
+            "unit": "km",
+            "play": 42
+          }
+        ]
+      },
+      "proposal": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Vel"
+          },
+          {
+            "full": "Distancia",
+            "label": "Dist"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "5.782",
+            "unit": "km/s",
+            "play": 18
+          },
+          {
+            "display": "10163",
+            "unit": "MKm",
+            "play": 55
+          },
+          {
+            "display": "2326",
+            "unit": "km",
+            "play": 42
+          }
+        ]
+      }
+    },
+    {
+      "id": "pluton",
+      "name": "Plutón",
+      "current": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Velocidad"
+          },
+          {
+            "full": "Distancia",
+            "label": "Distancia"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "6.123",
+            "unit": "km/s",
+            "play": 19
+          },
+          {
+            "display": "5922374660",
+            "unit": "km",
+            "play": 52
+          },
+          {
+            "display": "2376",
+            "unit": "km",
+            "play": 43
+          }
+        ]
+      },
+      "proposal": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Vel"
+          },
+          {
+            "full": "Distancia",
+            "label": "Dist"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "6.123",
+            "unit": "km/s",
+            "play": 19
+          },
+          {
+            "display": "5922.4",
+            "unit": "MKm",
+            "play": 52
+          },
+          {
+            "display": "2376",
+            "unit": "km",
+            "play": 43
+          }
+        ]
+      }
+    },
+    {
+      "id": "triton",
+      "name": "Tritón",
+      "current": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Velocidad"
+          },
+          {
+            "full": "Distancia",
+            "label": "Distancia"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "4.389",
+            "unit": "km/s",
+            "play": 9
+          },
+          {
+            "display": "354800",
+            "unit": "km",
+            "play": 12
+          },
+          {
+            "display": "2705.2",
+            "unit": "km",
+            "play": 44
+          }
+        ]
+      },
+      "proposal": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Vel"
+          },
+          {
+            "full": "Distancia",
+            "label": "Dist"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "4.389",
+            "unit": "km/s",
+            "play": 9
+          },
+          {
+            "display": "0.3548",
+            "unit": "MKm",
+            "play": 12
+          },
+          {
+            "display": "2705.2",
+            "unit": "km",
+            "play": 44
+          }
+        ]
+      }
+    },
+    {
+      "id": "europa",
+      "name": "Europa",
+      "current": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Velocidad"
+          },
+          {
+            "full": "Distancia",
+            "label": "Distancia"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "13.864",
+            "unit": "km/s",
+            "play": 31
+          },
+          {
+            "display": "671100",
+            "unit": "km",
+            "play": 19
+          },
+          {
+            "display": "3121.6",
+            "unit": "km",
+            "play": 45
+          }
+        ]
+      },
+      "proposal": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Vel"
+          },
+          {
+            "full": "Distancia",
+            "label": "Dist"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "13.86",
+            "unit": "km/s",
+            "play": 31
+          },
+          {
+            "display": "0.6711",
+            "unit": "MKm",
+            "play": 19
+          },
+          {
+            "display": "3121.6",
+            "unit": "km",
+            "play": 45
+          }
+        ]
+      }
+    },
+    {
+      "id": "luna",
+      "name": "Luna",
+      "current": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Velocidad"
+          },
+          {
+            "full": "Distancia",
+            "label": "Distancia"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "1.076",
+            "unit": "km/s",
+            "play": 2
+          },
+          {
+            "display": "384400",
+            "unit": "km",
+            "play": 14
+          },
+          {
+            "display": "3474.8",
+            "unit": "km",
+            "play": 46
+          }
+        ]
+      },
+      "proposal": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Vel"
+          },
+          {
+            "full": "Distancia",
+            "label": "Dist"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "1.076",
+            "unit": "km/s",
+            "play": 2
+          },
+          {
+            "display": "0.3844",
+            "unit": "MKm",
+            "play": 14
+          },
+          {
+            "display": "3474.8",
+            "unit": "km",
+            "play": 46
+          }
+        ]
+      }
+    },
+    {
+      "id": "io",
+      "name": "Ío",
+      "current": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Velocidad"
+          },
+          {
+            "full": "Distancia",
+            "label": "Distancia"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "17.4",
+            "unit": "km/s",
+            "play": 33
+          },
+          {
+            "display": "421800",
+            "unit": "km",
+            "play": 15
+          },
+          {
+            "display": "3642.98",
+            "unit": "km",
+            "play": 47
+          }
+        ]
+      },
+      "proposal": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Vel"
+          },
+          {
+            "full": "Distancia",
+            "label": "Dist"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "17.4",
+            "unit": "km/s",
+            "play": 33
+          },
+          {
+            "display": "0.4218",
+            "unit": "MKm",
+            "play": 15
+          },
+          {
+            "display": "3642.98",
+            "unit": "km",
+            "play": 47
+          }
+        ]
+      }
+    },
+    {
+      "id": "calisto",
+      "name": "Calisto",
+      "current": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Velocidad"
+          },
+          {
+            "full": "Distancia",
+            "label": "Distancia"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "8.261",
+            "unit": "km/s",
+            "play": 23
+          },
+          {
+            "display": "1882700",
+            "unit": "km",
+            "play": 23
+          },
+          {
+            "display": "4820.6",
+            "unit": "km",
+            "play": 48
+          }
+        ]
+      },
+      "proposal": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Vel"
+          },
+          {
+            "full": "Distancia",
+            "label": "Dist"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "8.261",
+            "unit": "km/s",
+            "play": 23
+          },
+          {
+            "display": "1.8827",
+            "unit": "MKm",
+            "play": 23
+          },
+          {
+            "display": "4820.6",
+            "unit": "km",
+            "play": 48
+          }
+        ]
+      }
+    },
+    {
+      "id": "mercurio",
+      "name": "Mercurio",
+      "current": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Velocidad"
+          },
+          {
+            "full": "Distancia",
+            "label": "Distancia"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "58.98",
+            "unit": "km/s",
+            "play": 56
+          },
+          {
+            "display": "57909050",
+            "unit": "km",
+            "play": 26
+          },
+          {
+            "display": "4878.8",
+            "unit": "km",
+            "play": 49
+          }
+        ]
+      },
+      "proposal": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Vel"
+          },
+          {
+            "full": "Distancia",
+            "label": "Dist"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "58.98",
+            "unit": "km/s",
+            "play": 56
+          },
+          {
+            "display": "57.909",
+            "unit": "MKm",
+            "play": 26
+          },
+          {
+            "display": "4878.8",
+            "unit": "km",
+            "play": 49
+          }
+        ]
+      }
+    },
+    {
+      "id": "titan",
+      "name": "Titán",
+      "current": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Velocidad"
+          },
+          {
+            "full": "Distancia",
+            "label": "Distancia"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "5.736",
+            "unit": "km/s",
+            "play": 17
+          },
+          {
+            "display": "1221900",
+            "unit": "km",
+            "play": 21
+          },
+          {
+            "display": "5149.52",
+            "unit": "km",
+            "play": 50
+          }
+        ]
+      },
+      "proposal": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Vel"
+          },
+          {
+            "full": "Distancia",
+            "label": "Dist"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "5.736",
+            "unit": "km/s",
+            "play": 17
+          },
+          {
+            "display": "1.2219",
+            "unit": "MKm",
+            "play": 21
+          },
+          {
+            "display": "5149.52",
+            "unit": "km",
+            "play": 50
+          }
+        ]
+      }
+    },
+    {
+      "id": "ganimedes",
+      "name": "Ganimedes",
+      "current": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Velocidad"
+          },
+          {
+            "full": "Distancia",
+            "label": "Distancia"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "10.89",
+            "unit": "km/s",
+            "play": 27
+          },
+          {
+            "display": "1070400",
+            "unit": "km",
+            "play": 20
+          },
+          {
+            "display": "5262.4",
+            "unit": "km",
+            "play": 51
+          }
+        ]
+      },
+      "proposal": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Vel"
+          },
+          {
+            "full": "Distancia",
+            "label": "Dist"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "10.89",
+            "unit": "km/s",
+            "play": 27
+          },
+          {
+            "display": "1.0704",
+            "unit": "MKm",
+            "play": 20
+          },
+          {
+            "display": "5262.4",
+            "unit": "km",
+            "play": 51
+          }
+        ]
+      }
+    },
+    {
+      "id": "marte",
+      "name": "Marte",
+      "current": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Velocidad"
+          },
+          {
+            "full": "Distancia",
+            "label": "Distancia"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "26.5",
+            "unit": "km/s",
+            "play": 42
+          },
+          {
+            "display": "227939200",
+            "unit": "km",
+            "play": 33
+          },
+          {
+            "display": "6779",
+            "unit": "km",
+            "play": 52
+          }
+        ]
+      },
+      "proposal": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Vel"
+          },
+          {
+            "full": "Distancia",
+            "label": "Dist"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "26.5",
+            "unit": "km/s",
+            "play": 42
+          },
+          {
+            "display": "227.94",
+            "unit": "MKm",
+            "play": 33
+          },
+          {
+            "display": "6779",
+            "unit": "km",
+            "play": 52
+          }
+        ]
+      }
+    },
+    {
+      "id": "venus",
+      "name": "Venus",
+      "current": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Velocidad"
+          },
+          {
+            "full": "Distancia",
+            "label": "Distancia"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "35.26",
+            "unit": "km/s",
+            "play": 53
+          },
+          {
+            "display": "108208000",
+            "unit": "km",
+            "play": 27
+          },
+          {
+            "display": "12103.6",
+            "unit": "km",
+            "play": 53
+          }
+        ]
+      },
+      "proposal": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Vel"
+          },
+          {
+            "full": "Distancia",
+            "label": "Dist"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "35.26",
+            "unit": "km/s",
+            "play": 53
+          },
+          {
+            "display": "108.21",
+            "unit": "MKm",
+            "play": 27
+          },
+          {
+            "display": "12103.6",
+            "unit": "km",
+            "play": 53
+          }
+        ]
+      }
+    },
+    {
+      "id": "tierra",
+      "name": "Tierra",
+      "current": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Velocidad"
+          },
+          {
+            "full": "Distancia",
+            "label": "Distancia"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "30.29",
+            "unit": "km/s",
+            "play": 46
+          },
+          {
+            "display": "149598023",
+            "unit": "km",
+            "play": 28
+          },
+          {
+            "display": "12742",
+            "unit": "km",
+            "play": 54
+          }
+        ]
+      },
+      "proposal": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Vel"
+          },
+          {
+            "full": "Distancia",
+            "label": "Dist"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "30.29",
+            "unit": "km/s",
+            "play": 46
+          },
+          {
+            "display": "149.6",
+            "unit": "MKm",
+            "play": 28
+          },
+          {
+            "display": "12742",
+            "unit": "km",
+            "play": 54
+          }
+        ]
+      }
+    },
+    {
+      "id": "67p-churyumov-gerasimenko",
+      "name": "67P / Churyumov-Gerasimenko",
+      "current": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Velocidad"
+          },
+          {
+            "full": "Distancia",
+            "label": "Distancia"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "34.218",
+            "unit": "km/s",
+            "play": 50
+          },
+          {
+            "display": "517945152",
+            "unit": "km",
+            "play": 45
+          },
+          {
+            "display": "3.4",
+            "unit": "km",
+            "play": 4
+          }
+        ]
+      },
+      "proposal": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Vel"
+          },
+          {
+            "full": "Distancia",
+            "label": "Dist"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "34.22",
+            "unit": "km/s",
+            "play": 50
+          },
+          {
+            "display": "517.95",
+            "unit": "MKm",
+            "play": 45
+          },
+          {
+            "display": "3.4",
+            "unit": "km",
+            "play": 4
+          }
+        ]
+      }
+    },
+    {
+      "id": "hyakutake",
+      "name": "Hyakutake",
+      "current": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Velocidad"
+          },
+          {
+            "full": "Distancia",
+            "label": "Distancia"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "87.785",
+            "unit": "km/s",
+            "play": 58
+          },
+          {
+            "display": "317858890240",
+            "unit": "km",
+            "play": 58
+          },
+          {
+            "display": "4.2",
+            "unit": "km",
+            "play": 6
+          }
+        ]
+      },
+      "proposal": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Vel"
+          },
+          {
+            "full": "Distancia",
+            "label": "Dist"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "87.79",
+            "unit": "km/s",
+            "play": 58
+          },
+          {
+            "display": "317859",
+            "unit": "MKm",
+            "play": 58
+          },
+          {
+            "display": "4.2",
+            "unit": "km",
+            "play": 6
+          }
+        ]
+      }
+    },
+    {
+      "id": "wild-2",
+      "name": "Wild 2",
+      "current": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Velocidad"
+          },
+          {
+            "full": "Distancia",
+            "label": "Distancia"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "29.234",
+            "unit": "km/s",
+            "play": 44
+          },
+          {
+            "display": "516074593",
+            "unit": "km",
+            "play": 44
+          },
+          {
+            "display": "4",
+            "unit": "km",
+            "play": 5
+          }
+        ]
+      },
+      "proposal": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Vel"
+          },
+          {
+            "full": "Distancia",
+            "label": "Dist"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "29.23",
+            "unit": "km/s",
+            "play": 44
+          },
+          {
+            "display": "516.07",
+            "unit": "MKm",
+            "play": 44
+          },
+          {
+            "display": "4",
+            "unit": "km",
+            "play": 5
+          }
+        ]
+      }
+    },
+    {
+      "id": "encke",
+      "name": "Encke",
+      "current": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Velocidad"
+          },
+          {
+            "full": "Distancia",
+            "label": "Distancia"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "69.645",
+            "unit": "km/s",
+            "play": 57
+          },
+          {
+            "display": "332060705",
+            "unit": "km",
+            "play": 35
+          },
+          {
+            "display": "4.8",
+            "unit": "km",
+            "play": 7
+          }
+        ]
+      },
+      "proposal": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Vel"
+          },
+          {
+            "full": "Distancia",
+            "label": "Dist"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "69.65",
+            "unit": "km/s",
+            "play": 57
+          },
+          {
+            "display": "332.06",
+            "unit": "MKm",
+            "play": 35
+          },
+          {
+            "display": "4.8",
+            "unit": "km",
+            "play": 7
+          }
+        ]
+      }
+    },
+    {
+      "id": "neptuno",
+      "name": "Neptuno",
+      "current": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Velocidad"
+          },
+          {
+            "full": "Distancia",
+            "label": "Distancia"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "5.48",
+            "unit": "km/s",
+            "play": 13
+          },
+          {
+            "display": "4495060000",
+            "unit": "km",
+            "play": 51
+          },
+          {
+            "display": "49244",
+            "unit": "km",
+            "play": 55
+          }
+        ]
+      },
+      "proposal": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Vel"
+          },
+          {
+            "full": "Distancia",
+            "label": "Dist"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "5.48",
+            "unit": "km/s",
+            "play": 13
+          },
+          {
+            "display": "4495.1",
+            "unit": "MKm",
+            "play": 51
+          },
+          {
+            "display": "49244",
+            "unit": "km",
+            "play": 55
+          }
+        ]
+      }
+    },
+    {
+      "id": "urano",
+      "name": "Urano",
+      "current": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Velocidad"
+          },
+          {
+            "full": "Distancia",
+            "label": "Distancia"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "7.11",
+            "unit": "km/s",
+            "play": 21
+          },
+          {
+            "display": "2872460000",
+            "unit": "km",
+            "play": 50
+          },
+          {
+            "display": "50724",
+            "unit": "km",
+            "play": 56
+          }
+        ]
+      },
+      "proposal": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Vel"
+          },
+          {
+            "full": "Distancia",
+            "label": "Dist"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "7.11",
+            "unit": "km/s",
+            "play": 21
+          },
+          {
+            "display": "2872.5",
+            "unit": "MKm",
+            "play": 50
+          },
+          {
+            "display": "50724",
+            "unit": "km",
+            "play": 56
+          }
+        ]
+      }
+    },
+    {
+      "id": "saturno",
+      "name": "Saturno",
+      "current": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Velocidad"
+          },
+          {
+            "full": "Distancia",
+            "label": "Distancia"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "10.18",
+            "unit": "km/s",
+            "play": 26
+          },
+          {
+            "display": "1433530000",
+            "unit": "km",
+            "play": 48
+          },
+          {
+            "display": "116464",
+            "unit": "km",
+            "play": 57
+          }
+        ]
+      },
+      "proposal": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Vel"
+          },
+          {
+            "full": "Distancia",
+            "label": "Dist"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "10.18",
+            "unit": "km/s",
+            "play": 26
+          },
+          {
+            "display": "1433.5",
+            "unit": "MKm",
+            "play": 48
+          },
+          {
+            "display": "116464",
+            "unit": "km",
+            "play": 57
+          }
+        ]
+      }
+    },
+    {
+      "id": "jupiter",
+      "name": "Júpiter",
+      "current": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Velocidad"
+          },
+          {
+            "full": "Distancia",
+            "label": "Distancia"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "13.72",
+            "unit": "km/s",
+            "play": 30
+          },
+          {
+            "display": "778570000",
+            "unit": "km",
+            "play": 47
+          },
+          {
+            "display": "139822",
+            "unit": "km",
+            "play": 58
+          }
+        ]
+      },
+      "proposal": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Vel"
+          },
+          {
+            "full": "Distancia",
+            "label": "Dist"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "13.72",
+            "unit": "km/s",
+            "play": 30
+          },
+          {
+            "display": "778.57",
+            "unit": "MKm",
+            "play": 47
+          },
+          {
+            "display": "139822",
+            "unit": "km",
+            "play": 58
+          }
+        ]
+      }
+    },
+    {
+      "id": "amaltea",
+      "name": "Amaltea",
+      "current": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Velocidad"
+          },
+          {
+            "full": "Distancia",
+            "label": "Distancia"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "26.506",
+            "unit": "km/s",
+            "play": 43
+          },
+          {
+            "display": "181400",
+            "unit": "km",
+            "play": 6
+          },
+          {
+            "display": "167",
+            "unit": "km",
+            "play": 18
+          }
+        ]
+      },
+      "proposal": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Vel"
+          },
+          {
+            "full": "Distancia",
+            "label": "Dist"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "26.51",
+            "unit": "km/s",
+            "play": 43
+          },
+          {
+            "display": "0.1814",
+            "unit": "MKm",
+            "play": 6
+          },
+          {
+            "display": "167",
+            "unit": "km",
+            "play": 18
+          }
+        ]
+      }
+    },
+    {
+      "id": "hiperion",
+      "name": "Hiperión",
+      "current": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Velocidad"
+          },
+          {
+            "full": "Distancia",
+            "label": "Distancia"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "5.622",
+            "unit": "km/s",
+            "play": 16
+          },
+          {
+            "display": "1481500",
+            "unit": "km",
+            "play": 22
+          },
+          {
+            "display": "270",
+            "unit": "km",
+            "play": 21
+          }
+        ]
+      },
+      "proposal": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Vel"
+          },
+          {
+            "full": "Distancia",
+            "label": "Dist"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "5.622",
+            "unit": "km/s",
+            "play": 16
+          },
+          {
+            "display": "1.4815",
+            "unit": "MKm",
+            "play": 22
+          },
+          {
+            "display": "270",
+            "unit": "km",
+            "play": 21
+          }
+        ]
+      }
+    },
+    {
+      "id": "proteo",
+      "name": "Proteo",
+      "current": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Velocidad"
+          },
+          {
+            "full": "Distancia",
+            "label": "Distancia"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "7.624",
+            "unit": "km/s",
+            "play": 22
+          },
+          {
+            "display": "117600",
+            "unit": "km",
+            "play": 4
+          },
+          {
+            "display": "416",
+            "unit": "km",
+            "play": 24
+          }
+        ]
+      },
+      "proposal": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Vel"
+          },
+          {
+            "full": "Distancia",
+            "label": "Dist"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "7.624",
+            "unit": "km/s",
+            "play": 22
+          },
+          {
+            "display": "0.1176",
+            "unit": "MKm",
+            "play": 4
+          },
+          {
+            "display": "416",
+            "unit": "km",
+            "play": 24
+          }
+        ]
+      }
+    },
+    {
+      "id": "febe",
+      "name": "Febe",
+      "current": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Velocidad"
+          },
+          {
+            "full": "Distancia",
+            "label": "Distancia"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "2.021",
+            "unit": "km/s",
+            "play": 4
+          },
+          {
+            "display": "12929400",
+            "unit": "km",
+            "play": 25
+          },
+          {
+            "display": "213",
+            "unit": "km",
+            "play": 19
+          }
+        ]
+      },
+      "proposal": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Vel"
+          },
+          {
+            "full": "Distancia",
+            "label": "Dist"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "2.021",
+            "unit": "km/s",
+            "play": 4
+          },
+          {
+            "display": "12.929",
+            "unit": "MKm",
+            "play": 25
+          },
+          {
+            "display": "213",
+            "unit": "km",
+            "play": 19
+          }
+        ]
+      }
+    },
+    {
+      "id": "gaspra",
+      "name": "Gaspra",
+      "current": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Velocidad"
+          },
+          {
+            "full": "Distancia",
+            "label": "Distancia"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "23.88",
+            "unit": "km/s",
+            "play": 40
+          },
+          {
+            "display": "330608056",
+            "unit": "km",
+            "play": 34
+          },
+          {
+            "display": "12.2",
+            "unit": "km",
+            "play": 11
+          }
+        ]
+      },
+      "proposal": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Vel"
+          },
+          {
+            "full": "Distancia",
+            "label": "Dist"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "23.88",
+            "unit": "km/s",
+            "play": 40
+          },
+          {
+            "display": "330.61",
+            "unit": "MKm",
+            "play": 34
+          },
+          {
+            "display": "12.2",
+            "unit": "km",
+            "play": 11
+          }
+        ]
+      }
+    },
+    {
+      "id": "ida",
+      "name": "Ida",
+      "current": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Velocidad"
+          },
+          {
+            "full": "Distancia",
+            "label": "Distancia"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "18.433",
+            "unit": "km/s",
+            "play": 34
+          },
+          {
+            "display": "428350769",
+            "unit": "km",
+            "play": 40
+          },
+          {
+            "display": "32",
+            "unit": "km",
+            "play": 15
+          }
+        ]
+      },
+      "proposal": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Vel"
+          },
+          {
+            "full": "Distancia",
+            "label": "Dist"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "18.43",
+            "unit": "km/s",
+            "play": 34
+          },
+          {
+            "display": "428.35",
+            "unit": "MKm",
+            "play": 40
+          },
+          {
+            "display": "32",
+            "unit": "km",
+            "play": 15
+          }
+        ]
+      }
+    },
+    {
+      "id": "matilde",
+      "name": "Matilde",
+      "current": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Velocidad"
+          },
+          {
+            "full": "Distancia",
+            "label": "Distancia"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "24.001",
+            "unit": "km/s",
+            "play": 41
+          },
+          {
+            "display": "395970787",
+            "unit": "km",
+            "play": 37
+          },
+          {
+            "display": "52.8",
+            "unit": "km",
+            "play": 16
+          }
+        ]
+      },
+      "proposal": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Vel"
+          },
+          {
+            "full": "Distancia",
+            "label": "Dist"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "24",
+            "unit": "km/s",
+            "play": 41
+          },
+          {
+            "display": "395.97",
+            "unit": "MKm",
+            "play": 37
+          },
+          {
+            "display": "52.8",
+            "unit": "km",
+            "play": 16
+          }
+        ]
+      }
+    },
+    {
+      "id": "borrelly",
+      "name": "Borrelly",
+      "current": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Velocidad"
+          },
+          {
+            "full": "Distancia",
+            "label": "Distancia"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "33.355",
+            "unit": "km/s",
+            "play": 49
+          },
+          {
+            "display": "539594236",
+            "unit": "km",
+            "play": 46
+          },
+          {
+            "display": "4.8",
+            "unit": "km",
+            "play": 8
+          }
+        ]
+      },
+      "proposal": {
+        "attributes": [
+          {
+            "full": "Velocidad",
+            "label": "Vel"
+          },
+          {
+            "full": "Distancia",
+            "label": "Dist"
+          },
+          {
+            "full": "Diámetro",
+            "label": "Diámetro"
+          }
+        ],
+        "values": [
+          {
+            "display": "33.36",
+            "unit": "km/s",
+            "play": 49
+          },
+          {
+            "display": "539.59",
+            "unit": "MKm",
+            "play": 46
+          },
+          {
+            "display": "4.8",
+            "unit": "km",
+            "play": 8
+          }
+        ]
+      }
+    }
+  ],
+  "genericAlias": "Triáng. es propuesta pendiente, no nombre aprobado"
+}

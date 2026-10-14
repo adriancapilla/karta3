@@ -44,9 +44,9 @@ for (const width of [390, 1800]) test(`B13 botón/diálogo/resumen ${width}px: f
     await expect(p.pages[1].getByRole('button', { name: 'Cancelar partida', exact: true })).toHaveCount(0);
     const geometry = await button.evaluate((element) => {
       const r = element.getBoundingClientRect(); const h = document.querySelector('h1')!.getBoundingClientRect();
-      return { x: r.x, right: r.right, bottom: r.bottom, headingTop: h.top, width: innerWidth, page: document.documentElement.scrollWidth };
+      return { x: r.x, right: r.right, bottom: r.bottom, headingTop: h.top, width: innerWidth, available: document.body.clientWidth, page: document.documentElement.scrollWidth };
     });
-    expect(geometry.right).toBeLessThanOrEqual(width); expect(geometry.bottom).toBeLessThanOrEqual(geometry.headingTop); expect(geometry.page).toBe(width);
+    expect(geometry.right).toBeLessThanOrEqual(width); expect(geometry.bottom).toBeLessThanOrEqual(geometry.headingTop); expect(geometry.page).toBe(geometry.available);
     await button.click(); await expect(dialog(p.host)).toBeVisible(); await expect(dialog(p.host).getByRole('button', { name: 'Seguir jugando', exact: true })).toBeFocused();
     await expect(dialog(p.host).getByText('La partida terminará inmediatamente. Todos podrán consultar el resumen y crear o unirse a otra mesa.', { exact: true })).toBeVisible();
     await p.host.keyboard.press('Escape'); await expect(dialog(p.host)).toHaveCount(0); await expect(button).toBeFocused(); expect(cancels(server)).toHaveLength(0);

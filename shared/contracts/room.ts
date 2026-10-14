@@ -1,4 +1,4 @@
-import type { DeckSummary } from './deck.js';
+import type { DeckSummary, DeckInformationView } from './deck.js';
 import type { InitialGameView } from './game.js';
 
 export type BotDifficulty = 'EASY' | 'HARD';
@@ -20,10 +20,13 @@ export type RoomSettings = {
   turnSeconds: 15 | 30 | 60;
   forceTieBreak: boolean;
   reviewSeconds: 0 | 2 | 5 | 10 | 15 | 30;
+  attributeValueMode: 'PLAY_VALUE' | 'DISPLAY_VALUE';
+  optimizeForMobile: boolean;
 };
 export type ConfigurationChange =
   | { field: 'deck'; value: { id: string; contentVersion: number } | null }
-  | { field: 'hostPlays' | 'forceTieBreak'; value: boolean }
+  | { field: 'hostPlays' | 'forceTieBreak' | 'optimizeForMobile'; value: boolean }
+  | { field: 'attributeValueMode'; value: RoomSettings['attributeValueMode'] }
   | { field: 'turnSeconds'; value: RoomSettings['turnSeconds'] }
   | { field: 'reviewSeconds'; value: RoomSettings['reviewSeconds'] };
 export type ConfigureRoomRequest = { requestId: string; roomId: string; change: ConfigurationChange };
@@ -39,6 +42,7 @@ export type WaitingRoomView = {
   lifecycle: { serverNow: number; expiresAt: number; warning: boolean };
   settings: RoomSettings;
   selectedDeck: DeckSummary | null;
+  deckInformation: DeckInformationView | null;
 };
 
 export type GameParticipantView = HumanParticipant & { presence: 'CONNECTED' | 'DISCONNECTED'; score: number | null; playStatus: 'ACTIVE' | 'AUTOMATIC' | null }
@@ -46,7 +50,7 @@ export type GameParticipantView = HumanParticipant & { presence: 'CONNECTED' | '
 export type InitialGameRoomView = {
   id: string; code: string; status: 'IN_GAME'; revision: number;
   participant: Extract<GameParticipantView, { kind: 'HUMAN' }>; participants: GameParticipantView[];
-  settings: RoomSettings; selectedDeck: DeckSummary; game: InitialGameView;
+  settings: RoomSettings; selectedDeck: DeckSummary; deckInformation: DeckInformationView; game: InitialGameView;
 };
 export type ResultParticipantView = HumanParticipant & { score: number | null } | BotParticipant & { score: number };
 export type LastResult = { roomId: string; gameId: string; expiresAt: number };
