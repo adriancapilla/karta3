@@ -1,0 +1,348 @@
+{
+  "viewport": {
+    "width": 390,
+    "height": 844,
+    "dpr": 1,
+    "scale": 1
+  },
+  "useful": "358",
+  "layout": "compact",
+  "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+  "pageHeight": 852,
+  "cards": [
+    {
+      "cardId": "carta-002",
+      "name": "Dragón de cristal",
+      "card": {
+        "x": 19,
+        "y": 487.25,
+        "width": 220,
+        "height": 203.46875,
+        "right": 239,
+        "bottom": 690.71875
+      },
+      "surface": {
+        "x": 28,
+        "y": 496.25,
+        "width": 202,
+        "height": 137.46875,
+        "right": 230,
+        "bottom": 633.71875
+      },
+      "heading": {
+        "x": 64,
+        "y": 496.25,
+        "width": 166,
+        "height": 51.90625,
+        "right": 230,
+        "bottom": 548.15625
+      },
+      "image": {
+        "x": 28,
+        "y": 496.25,
+        "width": 32,
+        "height": 32,
+        "right": 60,
+        "bottom": 528.25
+      },
+      "img": {
+        "box": {
+          "x": 28,
+          "y": 496.25,
+          "width": 32,
+          "height": 32,
+          "right": 60,
+          "bottom": 528.25
+        },
+        "naturalWidth": 640,
+        "naturalHeight": 480
+      },
+      "table": {
+        "x": 28,
+        "y": 552.15625,
+        "width": 202,
+        "height": 81.5625,
+        "right": 230,
+        "bottom": 633.71875
+      },
+      "button": {
+        "x": 28,
+        "y": 637.71875,
+        "width": 202,
+        "height": 44,
+        "right": 230,
+        "bottom": 681.71875
+      },
+      "buttonText": "Detalles",
+      "nameFont": "18px",
+      "valueFont": "14px",
+      "rows": [
+        {
+          "box": {
+            "x": 28,
+            "y": 552.15625,
+            "width": 202,
+            "height": 26.6875,
+            "right": 230,
+            "bottom": 578.84375
+          },
+          "text": "● Poder◆38",
+          "border": "1px"
+        },
+        {
+          "box": {
+            "x": 28,
+            "y": 578.84375,
+            "width": 202,
+            "height": 27.1875,
+            "right": 230,
+            "bottom": 606.03125
+          },
+          "text": "▲ Astucia30",
+          "border": "1px"
+        },
+        {
+          "box": {
+            "x": 28,
+            "y": 606.03125,
+            "width": 202,
+            "height": 27.1875,
+            "right": 230,
+            "bottom": 633.21875
+          },
+          "text": "■ Resistencia6",
+          "border": "1px"
+        }
+      ],
+      "topGap": 23.90625,
+      "bottomGap": 57
+    },
+    {
+      "cardId": "carta-004",
+      "name": "Dragón de los bosques",
+      "card": {
+        "x": 249,
+        "y": 487.25,
+        "width": 220,
+        "height": 203.46875,
+        "right": 469,
+        "bottom": 690.71875
+      },
+      "surface": {
+        "x": 258,
+        "y": 496.25,
+        "width": 202,
+        "height": 137.46875,
+        "right": 460,
+        "bottom": 633.71875
+      },
+      "heading": {
+        "x": 294,
+        "y": 496.25,
+        "width": 166,
+        "height": 51.90625,
+        "right": 460,
+        "bottom": 548.15625
+      },
+      "image": {
+        "x": 258,
+        "y": 496.25,
+        "width": 32,
+        "height": 32,
+        "right": 290,
+        "bottom": 528.25
+      },
+      "img": {
+        "box": {
+          "x": 258,
+          "y": 496.25,
+          "width": 32,
+          "height": 32,
+          "right": 290,
+          "bottom": 528.25
+        },
+        "naturalWidth": 640,
+        "naturalHeight": 480
+      },
+      "table": {
+        "x": 258,
+        "y": 552.15625,
+        "width": 202,
+        "height": 81.5625,
+        "right": 460,
+        "bottom": 633.71875
+      },
+      "button": {
+        "x": 258,
+        "y": 637.71875,
+        "width": 202,
+        "height": 44,
+        "right": 460,
+        "bottom": 681.71875
+      },
+      "buttonText": "Detalles",
+      "nameFont": "18px",
+      "valueFont": "14px",
+      "rows": [
+        {
+          "box": {
+            "x": 258,
+            "y": 552.15625,
+            "width": 202,
+            "height": 26.6875,
+            "right": 460,
+            "bottom": 578.84375
+          },
+          "text": "● Poder◆40",
+          "border": "1px"
+        },
+        {
+          "box": {
+            "x": 258,
+            "y": 578.84375,
+            "width": 202,
+            "height": 27.1875,
+            "right": 460,
+            "bottom": 606.03125
+          },
+          "text": "▲ Astucia27",
+          "border": "1px"
+        },
+        {
+          "box": {
+            "x": 258,
+            "y": 606.03125,
+            "width": 202,
+            "height": 27.1875,
+            "right": 460,
+            "bottom": 633.21875
+          },
+          "text": "■ Resistencia43",
+          "border": "1px"
+        }
+      ],
+      "topGap": 23.90625,
+      "bottomGap": 57
+    },
+    {
+      "cardId": "carta-006",
+      "name": "Dragón de hielo",
+      "card": {
+        "x": 479,
+        "y": 487.25,
+        "width": 220,
+        "height": 188,
+        "right": 699,
+        "bottom": 675.25
+      },
+      "surface": {
+        "x": 488,
+        "y": 496.25,
+        "width": 202,
+        "height": 119.5625,
+        "right": 690,
+        "bottom": 615.8125
+      },
+      "heading": {
+        "x": 524,
+        "y": 496.25,
+        "width": 166,
+        "height": 34,
+        "right": 690,
+        "bottom": 530.25
+      },
+      "image": {
+        "x": 488,
+        "y": 496.25,
+        "width": 32,
+        "height": 32,
+        "right": 520,
+        "bottom": 528.25
+      },
+      "img": {
+        "box": {
+          "x": 488,
+          "y": 496.25,
+          "width": 32,
+          "height": 32,
+          "right": 520,
+          "bottom": 528.25
+        },
+        "naturalWidth": 640,
+        "naturalHeight": 480
+      },
+      "table": {
+        "x": 488,
+        "y": 534.25,
+        "width": 202,
+        "height": 81.5625,
+        "right": 690,
+        "bottom": 615.8125
+      },
+      "button": {
+        "x": 488,
+        "y": 619.8125,
+        "width": 202,
+        "height": 44,
+        "right": 690,
+        "bottom": 663.8125
+      },
+      "buttonText": "Detalles",
+      "nameFont": "18px",
+      "valueFont": "14px",
+      "rows": [
+        {
+          "box": {
+            "x": 488,
+            "y": 534.25,
+            "width": 202,
+            "height": 26.6875,
+            "right": 690,
+            "bottom": 560.9375
+          },
+          "text": "● Poder◆52",
+          "border": "1px"
+        },
+        {
+          "box": {
+            "x": 488,
+            "y": 560.9375,
+            "width": 202,
+            "height": 27.1875,
+            "right": 690,
+            "bottom": 588.125
+          },
+          "text": "▲ Astucia18",
+          "border": "1px"
+        },
+        {
+          "box": {
+            "x": 488,
+            "y": 588.125,
+            "width": 202,
+            "height": 27.1875,
+            "right": 690,
+            "bottom": 615.3125
+          },
+          "text": "■ Resistencia46",
+          "border": "1px"
+        }
+      ],
+      "topGap": 6,
+      "bottomGap": 59.4375
+    }
+  ],
+  "details": null,
+  "fonts": {
+    "fonts": [
+      {
+        "familyName": "Segoe UI",
+        "postScriptName": "SegoeUI-Bold",
+        "isCustomFont": false,
+        "glyphCount": 16
+      }
+    ]
+  },
+  "date": "2026-10-16T18:53:25.240Z",
+  "browser": "155.0.8059.80"
+}

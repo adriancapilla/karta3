@@ -1,0 +1,445 @@
+{
+  "viewport": {
+    "width": 1320,
+    "height": 850,
+    "dpr": 1,
+    "scale": 1
+  },
+  "useful": "1273",
+  "layout": "normal",
+  "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+  "pageHeight": 1169,
+  "cards": [
+    {
+      "cardId": "carta-001",
+      "name": "Dragón de fuego",
+      "card": {
+        "x": 33,
+        "y": 645.109375,
+        "width": 230,
+        "height": 321,
+        "right": 263,
+        "bottom": 966.109375
+      },
+      "surface": {
+        "x": 46,
+        "y": 658.109375,
+        "width": 204,
+        "height": 236,
+        "right": 250,
+        "bottom": 894.109375
+      },
+      "heading": {
+        "x": 46,
+        "y": 658.109375,
+        "width": 204,
+        "height": 24,
+        "right": 250,
+        "bottom": 682.109375
+      },
+      "image": {
+        "x": 46,
+        "y": 686.109375,
+        "width": 204,
+        "height": 82,
+        "right": 250,
+        "bottom": 768.109375
+      },
+      "img": {
+        "box": {
+          "x": 96,
+          "y": 686.109375,
+          "width": 104,
+          "height": 78,
+          "right": 200,
+          "bottom": 764.109375
+        },
+        "naturalWidth": 640,
+        "naturalHeight": 480
+      },
+      "table": {
+        "x": 46,
+        "y": 768.109375,
+        "width": 204,
+        "height": 126,
+        "right": 250,
+        "bottom": 894.109375
+      },
+      "button": {
+        "x": 46,
+        "y": 897.109375,
+        "width": 204,
+        "height": 56,
+        "right": 250,
+        "bottom": 953.109375
+      },
+      "buttonText": "Detalles",
+      "nameFont": "16px",
+      "valueFont": "14px",
+      "rows": [
+        {
+          "box": {
+            "x": 46,
+            "y": 797.609375,
+            "width": 204,
+            "height": 32,
+            "right": 250,
+            "bottom": 829.609375
+          },
+          "text": "● Poder◆57",
+          "border": "1px"
+        },
+        {
+          "box": {
+            "x": 46,
+            "y": 829.609375,
+            "width": 204,
+            "height": 32,
+            "right": 250,
+            "bottom": 861.609375
+          },
+          "text": "▲ Astucia7",
+          "border": "1px"
+        },
+        {
+          "box": {
+            "x": 46,
+            "y": 861.609375,
+            "width": 204,
+            "height": 32,
+            "right": 250,
+            "bottom": 893.609375
+          },
+          "text": "■ Resistencia49",
+          "border": "1px"
+        }
+      ],
+      "topGap": 0,
+      "bottomGap": 72
+    },
+    {
+      "cardId": "carta-038",
+      "name": "Espíritu del arcoíris",
+      "card": {
+        "x": 309,
+        "y": 645.109375,
+        "width": 230,
+        "height": 321,
+        "right": 539,
+        "bottom": 966.109375
+      },
+      "surface": {
+        "x": 322,
+        "y": 658.109375,
+        "width": 204,
+        "height": 236,
+        "right": 526,
+        "bottom": 894.109375
+      },
+      "heading": {
+        "x": 322,
+        "y": 658.109375,
+        "width": 204,
+        "height": 24,
+        "right": 526,
+        "bottom": 682.109375
+      },
+      "image": {
+        "x": 322,
+        "y": 686.109375,
+        "width": 204,
+        "height": 82,
+        "right": 526,
+        "bottom": 768.109375
+      },
+      "img": {
+        "box": {
+          "x": 372,
+          "y": 686.109375,
+          "width": 104,
+          "height": 78,
+          "right": 476,
+          "bottom": 764.109375
+        },
+        "naturalWidth": 640,
+        "naturalHeight": 480
+      },
+      "table": {
+        "x": 322,
+        "y": 768.109375,
+        "width": 204,
+        "height": 126,
+        "right": 526,
+        "bottom": 894.109375
+      },
+      "button": {
+        "x": 322,
+        "y": 897.109375,
+        "width": 204,
+        "height": 56,
+        "right": 526,
+        "bottom": 953.109375
+      },
+      "buttonText": "Detalles",
+      "nameFont": "16px",
+      "valueFont": "14px",
+      "rows": [
+        {
+          "box": {
+            "x": 322,
+            "y": 797.609375,
+            "width": 204,
+            "height": 32,
+            "right": 526,
+            "bottom": 829.609375
+          },
+          "text": "● Poder◆47",
+          "border": "1px"
+        },
+        {
+          "box": {
+            "x": 322,
+            "y": 829.609375,
+            "width": 204,
+            "height": 32,
+            "right": 526,
+            "bottom": 861.609375
+          },
+          "text": "▲ Astucia42",
+          "border": "1px"
+        },
+        {
+          "box": {
+            "x": 322,
+            "y": 861.609375,
+            "width": 204,
+            "height": 32,
+            "right": 526,
+            "bottom": 893.609375
+          },
+          "text": "■ Resistencia15",
+          "border": "1px"
+        }
+      ],
+      "topGap": 0,
+      "bottomGap": 72
+    },
+    {
+      "cardId": "carta-044",
+      "name": "Tritón de las profundidades",
+      "card": {
+        "x": 551,
+        "y": 645.109375,
+        "width": 230,
+        "height": 339,
+        "right": 781,
+        "bottom": 984.109375
+      },
+      "surface": {
+        "x": 564,
+        "y": 658.109375,
+        "width": 204,
+        "height": 254,
+        "right": 768,
+        "bottom": 912.109375
+      },
+      "heading": {
+        "x": 564,
+        "y": 658.109375,
+        "width": 204,
+        "height": 42,
+        "right": 768,
+        "bottom": 700.109375
+      },
+      "image": {
+        "x": 564,
+        "y": 704.109375,
+        "width": 204,
+        "height": 82,
+        "right": 768,
+        "bottom": 786.109375
+      },
+      "img": {
+        "box": {
+          "x": 614,
+          "y": 704.109375,
+          "width": 104,
+          "height": 78,
+          "right": 718,
+          "bottom": 782.109375
+        },
+        "naturalWidth": 640,
+        "naturalHeight": 480
+      },
+      "table": {
+        "x": 564,
+        "y": 786.109375,
+        "width": 204,
+        "height": 126,
+        "right": 768,
+        "bottom": 912.109375
+      },
+      "button": {
+        "x": 564,
+        "y": 915.109375,
+        "width": 204,
+        "height": 56,
+        "right": 768,
+        "bottom": 971.109375
+      },
+      "buttonText": "Detalles",
+      "nameFont": "16px",
+      "valueFont": "14px",
+      "rows": [
+        {
+          "box": {
+            "x": 564,
+            "y": 815.609375,
+            "width": 204,
+            "height": 32,
+            "right": 768,
+            "bottom": 847.609375
+          },
+          "text": "● Poder◆30",
+          "border": "1px"
+        },
+        {
+          "box": {
+            "x": 564,
+            "y": 847.609375,
+            "width": 204,
+            "height": 32,
+            "right": 768,
+            "bottom": 879.609375
+          },
+          "text": "▲ Astucia23",
+          "border": "1px"
+        },
+        {
+          "box": {
+            "x": 564,
+            "y": 879.609375,
+            "width": 204,
+            "height": 32,
+            "right": 768,
+            "bottom": 911.609375
+          },
+          "text": "■ Resistencia41",
+          "border": "1px"
+        }
+      ],
+      "topGap": 0,
+      "bottomGap": 72
+    },
+    {
+      "cardId": "carta-032",
+      "name": "Grifo de plumas de hierro",
+      "card": {
+        "x": 793,
+        "y": 645.109375,
+        "width": 230,
+        "height": 339,
+        "right": 1023,
+        "bottom": 984.109375
+      },
+      "surface": {
+        "x": 806,
+        "y": 658.109375,
+        "width": 204,
+        "height": 254,
+        "right": 1010,
+        "bottom": 912.109375
+      },
+      "heading": {
+        "x": 806,
+        "y": 658.109375,
+        "width": 204,
+        "height": 42,
+        "right": 1010,
+        "bottom": 700.109375
+      },
+      "image": {
+        "x": 806,
+        "y": 704.109375,
+        "width": 204,
+        "height": 82,
+        "right": 1010,
+        "bottom": 786.109375
+      },
+      "img": {
+        "box": {
+          "x": 856,
+          "y": 704.109375,
+          "width": 104,
+          "height": 78,
+          "right": 960,
+          "bottom": 782.109375
+        },
+        "naturalWidth": 640,
+        "naturalHeight": 480
+      },
+      "table": {
+        "x": 806,
+        "y": 786.109375,
+        "width": 204,
+        "height": 126,
+        "right": 1010,
+        "bottom": 912.109375
+      },
+      "button": {
+        "x": 806,
+        "y": 915.109375,
+        "width": 204,
+        "height": 56,
+        "right": 1010,
+        "bottom": 971.109375
+      },
+      "buttonText": "Detalles",
+      "nameFont": "16px",
+      "valueFont": "14px",
+      "rows": [
+        {
+          "box": {
+            "x": 806,
+            "y": 815.609375,
+            "width": 204,
+            "height": 32,
+            "right": 1010,
+            "bottom": 847.609375
+          },
+          "text": "● Poder◆41",
+          "border": "1px"
+        },
+        {
+          "box": {
+            "x": 806,
+            "y": 847.609375,
+            "width": 204,
+            "height": 32,
+            "right": 1010,
+            "bottom": 879.609375
+          },
+          "text": "▲ Astucia19",
+          "border": "1px"
+        },
+        {
+          "box": {
+            "x": 806,
+            "y": 879.609375,
+            "width": 204,
+            "height": 32,
+            "right": 1010,
+            "bottom": 911.609375
+          },
+          "text": "■ Resistencia54",
+          "border": "1px"
+        }
+      ],
+      "topGap": 0,
+      "bottomGap": 72
+    }
+  ],
+  "details": null,
+  "date": "2026-10-16T18:20:02.614Z",
+  "browser": "155.0.8059.80"
+}

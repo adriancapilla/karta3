@@ -88,7 +88,9 @@ for (const id of ['generica', 'sistema-solar', 'criaturas-magicas']) for (const 
         expect(Math.abs(g.gaps[0] - g.gaps[1])).toBeLessThan(0.05); expect(g.borders).toEqual(['1px', '1px', '0px']);
         expect([g.circle!.width, g.circle!.height]).toEqual([12, 12]); expect(g.header.width).toBe(1); expect(g.clip).toBe('inset(50%)');
         expect(g.intact).toBe(true); expect(g.nameFont).toBe('16px'); expect(g.valueFont).toBe('14px');
-        expect(g.padding).toBe(/67P|Tritón|Grifo/.test(card.name) ? 4.9 : 6);
+        // El ajuste es condicional al encaje, también con otras métricas de fuente del sistema.
+        if (/67P|Tritón|Grifo/.test(card.name)) expect([6, 4.9]).toContain(g.padding);
+        else expect(g.padding).toBe(6);
         if (id !== 'generica') { expect(g.imageFit).toBe('contain'); expect(g.natural).toEqual([640, 480]); }
         await expect(slot.locator('.active-mark')).toHaveCount(0);
         await expect(slot.locator('tbody td')).toHaveText(view.game.attributes.map(a => mode === 'PLAY_VALUE' ? String(card.values[a.id].playValue) : literal(card.values[a.id])));

@@ -1,6 +1,6 @@
 # B17 — Imagen protagonista y símbolos de la carta normal
 
-**Estado:** alcance confirmado por el autor el 16/10/2026; listo para Implementación mediante el [prompt B17](PROMPT_IMPLEMENTACION_BLOQUE_17.md). Implementación y pruebas de producto pendientes; el encaje de casos representativos se comprobará durante el trabajo.
+**Estado:** implementación del alcance confirmado el 16/10/2026; cierre y evidencia nueva en §8. La aprobación visual humana permanece separada de la verificación técnica local.
 
 **Aclaración del autor:** «Optimizar para móvil» conserva íntegra la visualización compacta actual. Cambia la carta normal según la cuarta referencia, con D sobre la imagen. Al abrir Detalles, tanto desde normal como desde compacta, la imagen será mayor y proporcionada como en la demo; el resto de su contenido/funcionamiento se conserva. No se solicita otra maqueta, rama experimental ni devolución previa a Diseño. Esta aclaración autoriza preparar el encargo de implementación directa del alcance definido, con sus pruebas.
 
@@ -76,6 +76,8 @@ Casos indispensables: **67P / Churyumov-Gerasimenko**, **Tritón de las profundi
 
 **Puerta de incompatibilidad:** si nombre/filas/imagen/aviso indispensables exceden el espacio y no pueden coexistir con la referencia, no resolver con overflow oculto, elipsis, menor letra, recorte, cambio de datos, desplazamiento sobre imagen/D o crecimiento silencioso de la carta. Registrar alto de encabezado/imagen/filas/huecos/total y déficit, fuente/ancho/zoom/contexto; presentar al autor una alternativa mínima con el efecto medido **antes** de sustituir la geometría. Se puede verificar el resto, pero el criterio afectado queda abierto. La especificación no aprueba de antemano alturas mayores o nombres abreviados.
 
+**Resolución del autor durante Implementación — 16/10/2026:** medidos 42 px de encabezado, 172,5 de imagen y 95 de filas, faltaban 6,5 px en los tres nombres largos indicados. Respuesta expresa: «Mantener 230×321 y reducir solo el relleno vertical de las filas de 6 a unos 4,9 px cuando sea necesario, conservando fuentes, imagen y contenido». Se autoriza únicamente ese ajuste condicional; no otra geometría, fuente, recorte o cambio editorial. Diagnóstico y resultado medido en §8/evidencias.
+
 ## 5. Responsabilidades y límites
 
 | Trabajo | Responsable / dependencias | Comprobación |
@@ -89,7 +91,7 @@ Autonomía del implementador: estructura local de componentes, nombres de clases
 
 ## 6. Criterios y plan de verificación previstos
 
-Todos pendientes de ejecución:
+Plan acordado al preparar B17. Los resultados realmente ejecutados se registran por criterio en §8; esta tabla conserva lo exigido y no sustituye esa evidencia:
 
 | Criterio | Resultado esperado |
 |---|---|
@@ -132,3 +134,85 @@ El cierre posterior actualizará README, descripción APP y B17 con archivos/com
 La aclaración posterior del autor confirma este alcance y resuelve la sustitución de presentación descrita; no hace falta otra confirmación de Diseño para empezar a implementarlo. El traslado descriptivo a los responsables de las fuentes generales permanece identificado, sin convertirlo en una nueva aprobación funcional o una tarea de edición TFM de este hilo. No hay cambio de reglas ni dependencia de Gestor. Los casos largos/null son verificaciones de implementación, no una petición de prototipo previo: consultar al autor solo si la medición descubre una incompatibilidad real que obligue a cambiar una decisión aprobada.
 
 **Evidencia de preparación:** lectura de Git/código/fuentes/HTML y visualización del PNG existente; comparación de estilos y hashes de referencia. No se abrió/modificó el producto para experimentar, ni se generaron maquetas nuevas o ejecutaron pruebas de producto. SDD prepara especificación, prompt y enlace del proceso; B17-01–10, implementación y aceptación quedan pendientes.
+
+## 8. Implementación y cierre técnico local — 16/10/2026
+
+### 8.1 Base, alcance y revisión
+
+Base efectiva **main `e0de970c75abbc43ecba09ed00a1daac44a663fe`**, con B16 conservado. Cambios previos: solo proceso/prompt/especificación B17; inventario inicial en [base.json](evidencias/B17/base.json). Se conservaron en el commit documental separado **`0b9bf7a`**. Sin rama/checkout nuevo, restauraciones o cambios de paquetes. Código/pruebas revisados: **`9cea034c1698c1b4d515991c8d693c83a97bfa86`**; este cierre documental sucede a ese cambio.
+
+Archivos de producto: `src/GameCard.tsx`, `src/GameScreen.tsx`, `src/style.css`. Prueba nueva: `tests/browser/cardFace.spec.ts`, **11 recorridos**, sin modificar ni suprimir aserciones anteriores. El cierre ajusta su aserción de relleno para permitir 6 o 4,9 en nombres largos según las métricas de la fuente, conservando las comprobaciones de encaje, huecos, fuentes y contenido: no fuerza condensación si otra fuente cabe con 6. Esto no acredita Linux, que no se ha ejecutado. README y organización describen el alcance vigente; prompt/preparación y cierres B04–B16 conservados. No se cambia servidor, contratos, reglas, catálogo, bots, tiempos o contenido.
+
+Revisión semántica: `CardInformation` solo representa CardView autorizado; símbolo propio y activo proceden de campos distintos, modo solo determina el valor visible. D detiene propagación/arrastre local y no llama a acciones. Jugar permanece exterior. CSS separa cara completa, minicarta y diálogo. ResizeObserver local aplica únicamente el relleno autorizado cuando no caben las filas; reconstruye el relleno original al medir para evitar oscilación. GameScreen conserva carta/contexto del invocador; el ref de D transfiere foco durante sustitución únicamente si el botón anterior tenía foco y sigue siendo la misma carta. Carta desaparecida no devuelve foco a una jugada distinta. No hay acceso a paquetes ni lógica de servidor en React.
+
+### 8.2 Entorno y comandos ejecutados
+
+Windows x64, Chrome **155.0.8059.80**, Playwright **1.63.0**, Node **24.19.0**, npm **11.6.2**, ICU **78.3**/Unicode **17.0**. Ejecutable real: `C:\Users\Adrian\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\bin\node.exe`. Se antepuso al PATH de esta terminal junto al wrapper npm T03; ninguna instalación global cambiada. CSS px, DPR/visualViewport.scale=1; zoom del navegador sin modificar. Fuentes efectivas y encuadres en medidas/capturas. Sin dispositivo físico o ensayo humano.
+
+- Antes de editar producto: captura auxiliar del build B16 vigente, **8/8** escenas comparables. Después: **8/8** escenas del build final. Son capturas dirigidas, no sustituyen la batería de aserciones.
+- **`npm run check`: PASS**, 538/538 pruebas en 43 archivos; typecheck/lint/build y arquitectura, **70 módulos**, sin imports prohibidos/ciclos. [Registro final](evidencias/B17/check.txt).
+- **`npm run test:browser -- --workers=2` con selección explícita: PASS, 31/31**, 11 nuevas +20 regresiones, dos trabajadores, cero reintentos. [Registro final y comando expandido](evidencias/B17/browser-final.txt). Selección exacta:
+
+```powershell
+npm run test:browser -- --workers=2 `
+  tests/browser/cardFace.spec.ts `
+  tests/browser/format2Presentation.spec.ts:148 `
+  tests/browser/format2Presentation.spec.ts:66 `
+  tests/browser/format2Presentation.spec.ts:31 `
+  tests/browser/creatures.spec.ts:134 `
+  tests/browser/creatures.spec.ts:158 `
+  tests/browser/pcTable02.spec.ts:92 `
+  tests/browser/centeredTable03.spec.ts:78 `
+  tests/browser/cancelGame.spec.ts:38 `
+  tests/browser/cancelGame.spec.ts:82 `
+  tests/browser/cancelGame.spec.ts:159 `
+  tests/browser/resultNotice.spec.ts `
+  tests/browser/manualGame.spec.ts:12 `
+  tests/browser/manualGame.spec.ts:64
+```
+
+La selección usó `KARTA3_BASE_URL` de una instalación compilada temporal propia, copiada desde APP. [Instancia](evidencias/B17/normal-instance.json): bytes SHA de JS/CSS servidos iguales a dist final, catálogo tres/versiones correctas, SystemClock/TimerScheduler/CryptoCardPermutation normales, sin acceso a ASSETS/PRODUCTO bajo guard. Se cerró exclusivamente ese proceso al acabar. Los casos dirigidos crean otras instancias efímeras del servidor compilado con HTTP/Socket.IO reales, reloj/permutación sustituidos y paquetes aprobados o fixtures separados. No se detuvieron servicios del autor.
+
+El recorrido B16 seleccionado completó otra partida real Criaturas/humano/EASY/HARD con adaptadores/entropía normales hasta resultado, F5 y otra sala. Los plazos dirigidos, revisión/retención y carreras se comprobaron con tiempo controlado; no constituyen nuevos 15 segundos desconectados o 30 minutos reales. No se repitió Linux, todo el corpus de navegador o matriz completa de bots por rutina.
+
+### 8.3 Medidas, comparación y reparaciones
+
+[Índice visual](evidencias/B17/README.md), [medidas comparadas](evidencias/B17/medidas-comparadas.json): producto antes/referencia/después separados, mismos paquetes, cartas, modos, estado legal y viewport. Escena carta-038 en mano y pública/revisión: activo Poder, propio Astucia, con otra carta indicadora válida; no se reasignan puntos ni atributos.
+
+| Muestra final normal PC | Medida CSS px |
+|---|---|
+| Exterior / imagen 4:3 | 230×321 / 230×172,5, x inicial de imagen igual a borde exterior |
+| D / separación derecha-inferior | 44×44 / 5 y 5 |
+| Carta-038: encabezado / filas / huecos interiores | 24 / 95 / 5,75 arriba y abajo |
+| Tres nombres largos: encabezado / filas / huecos | 42 / 88,34375 / 0,078125 arriba y abajo |
+| Relleno vertical normal / ajuste autorizado | 6 / 4,9; fuentes PC nombre 16 y valores 14, sin reducirlas |
+| Círculo / bordes inferiores de tres filas | 12×12 / 1, 1, 0 |
+
+La medición previa del ajuste mostró déficit **6,5 px** (encabezado 42 + separación 4 + imagen 172,5 + filas 95 frente al interior disponible), no resuelto ocultando overflow. El autor autorizó §4; se aplicó solo reducción condicional del relleno. El redondeo subpíxel de Chrome deja 0,078125 de hueco equivalente en los tres casos, sin cambiar imagen/fuente/contenido. Se conserva [diagnóstico previo](evidencias/B17/diagnostico-previo-relleno.json).
+
+Fallo nuevo durante regresiones: el thead absoluto visualmente oculto no tenía contenedor propio y escapaba del carrusel; página móvil de fixture B13 de 515 px frente a 390. También interfería con coordenadas táctiles/frontera útil. Corrección mínima: posición relativa de cara completa. Otra carrera real: cierre de consulta mientras resize sustituía el botón enfocado; se conserva el foco mediante ref local y comparación de cardId, también evitando transferirlo a una nueva indicadora. La prueba espera desmontaje React después del cierre nativo, sin sleeps/reintentos de producto. Registros conservados: primera selección 26 PASS/5 FAIL, segunda 30 PASS/1 FAIL; reparaciones focalizadas, después las puertas finales indicadas. No se atribuyen los fallos a pruebas pasadas ni se rebajan sus aserciones.
+
+Compacta a 360/390 mantiene miniatura de 32 px, botón inferior de 44 px, glifos/rombo, cartas de 220 px y métricas de todas las caras iguales a las capturas anteriores; no se exige igualdad píxel a píxel. Detalles final se mide al ancho interior proporcional, incluidos móvil/ancestro compacto; tabla/característica/nota/Información conservadas. Scroll vertical residual por escena registrado, permitido; no se oculta ni se altera composición para eliminarlo.
+
+### 8.4 Evidencia nueva por criterio
+
+| Criterio | Resultado técnico y evidencia ejecutada |
+|---|---|
+| B17-01 | PASS: producto carta-038, 1320×850 y 1920×1080; referencia PNG/HTML con SHA aprobados, encuadre normal y medidas anteriores. Cara de ancho adaptado móvil comprobada sin imponerle 230. |
+| B17-02 | PASS: 3 filas/2 columnas, centrado y 2 separadores, círculo vectorial, sin ◆; propio Astucia frente a activo Poder y activo Resistencia en consulta completa, recibidos del servidor. |
+| B17-03 | PASS: tres barajas ×1-58/Dato, literales confrontados con CardView; tabla/encabezados accesibles, sin valor adicional en Dato. Detalles conserva Dato/unidad/Información. No ensayo con lector de pantalla humano. |
+| B17-04 | PASS: clic/Enter/Space, parcial ALTO, arrastre desde D/dentro y fuera, Información anidada/Escape, único envío posterior desde superficie. Foco normal↔compacta, cierre/resize rápido y cambio de carta no dirigido a otra. |
+| B17-05 | PASS: mano/indicadora/Mesa durante turno/revisión, consulta completa desde resumen compacto; quinta por teclado, observador sin mano, autores y ranking B12/B16 conservados. |
+| B17-06 | PASS: métricas antes/después de miniaturas iguales en 360/390; frontera real 1367/1368 y normal on/off desde 1368 mediante regresión B15; scrolls independientes B16. |
+| B17-07 | PASS: ancho interior/proporción en PC/390/360, ambas entradas; consulta padre/Información/cierre/alt y tabla original conservados. Capturas producto en índice. |
+| B17-08 | PASS con decisión §4: 67P/Tritón/Grifo completos y encajados, Resistencia activa/no activa, unidades Solar/MKm y null genérica. Interceptación exclusiva de medio para fallo/pendiente, aviso accesible sin colisión, D usable y recurso original al recuperar. |
+| B17-09 | PASS: dos sesiones/pestañas, HTTP y Socket reales; plazos/parcial sin reset, timeout/revisión avanzan con Detalles abierto y carta desaparecida retorna a región. Regresiones B07, B13 y cuatro T04: finales ordinario/inactividad, recuperación/caducidad legítima, respuesta antigua y nueva sala. |
+| B17-10 | PASS: [integridad](evidencias/B17/integridad.json), **124/124** archivos APP/Git iguales a referencias aprobadas; criaturas2/genérica4/Solar4, esquemas2. Puertas finales actuales y revisión semántica, sin alterar cierres históricos ni fuentes externas. |
+
+**Conclusión:** B17 implementado y verificado técnicamente en local dentro del alcance anterior. **Pendiente aprobación visual del autor**, uso físico/humano y cobertura completa C09–C10. Capturas, pruebas automatizadas, maqueta y aprobación humana son evidencias distintas. No se acredita toda resolución/recurso/editorial futuros, zooms no ensayados, CI nueva, accesibilidad completa con usuarios, equilibrio, publicación o despliegue.
+
+### 8.5 Entrega para el autor y coordinación
+
+Recorrido manual: [README, Revisar B17](../../README.md#revisar-b17-carta-normal-d-y-detalles), con dos sesiones, tres paquetes, modos/on-off, PC/móvil, D/teclado/arrastre, consultas anidadas, resize/avance, F5/cancelación/otra sala. Instrucciones listas; no presentadas como recorrido de una persona.
+
+Para Coordinación: presentar este cambio acotado y la decisión condicional de relleno, capturas equivalentes y fallos reparados, conservando B14–B16 y genérica/Solar/Criaturas íntegros. Para responsables de Aplicación/Diseño: traslado descriptivo de §7 (Aplicación §§7.2/7.5–7.7, separación minicarta/carta completa/Detalles y foco); infraestructura/contrato no requieren campos o reglas nuevos. Sin editar fuentes TFM/Diseño/ASSETS o enviar mensajes a otros hilos. Commits locales, sin push/PR/GHCR/VPS.

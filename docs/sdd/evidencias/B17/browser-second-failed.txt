@@ -1,0 +1,101 @@
+{"date":"2026-10-16T18:43:47.672Z","node":"v24.19.0","nodePath":"C:\\Users\\Adrian\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe","icu":"78.3","unicode":"17.0","pid":2816,"base":"http://127.0.0.1:63722","adapters":"SystemClock/TimerScheduler/CryptoCardPermutation","decks":{"decks":[{"id":"criaturas-magicas","schemaVersion":2,"contentVersion":2,"name":"Criaturas Mágicas","subtitle":"","description":"Dragones, unicornios, fénix y gólems te esperan entre bosques encantados, cumbres heladas y arrecifes luminosos. Descubre 58 criaturas con personalidad propia y compara su Poder, Astucia y Resistencia. En este mundo de fantasía, hasta el ser más pequeño puede sorprenderte.","imageUrl":"/media/decks/criaturas-magicas/v2/imagenes/portada.webp","imageAlt":"Un dragón rojo, un unicornio blanco de crines azules y un gólem de piedra cubierto de hiedra se reúnen en un claro; sobre ellos vuela un fénix dorado y rojo ante un paisaje de montañas, bosque y cascadas."},{"id":"generica","schemaVersion":2,"contentVersion":4,"name":"KARTA3 — Baraja genérica","subtitle":"","description":"Baraja abstracta de 58 cartas para aprender a jugar a KARTA3 y apoyar el desarrollo inicial. Cada carta tiene tres atributos, Círculo, Triángulo y Cuadrado, con valores jugables únicos del 1 al 58 por atributo y un indicador del atributo activo cuando aparece como carta central.","imageUrl":null,"imageAlt":""},{"id":"sistema-solar","schemaVersion":2,"contentVersion":4,"name":"Sistema Solar","subtitle":"","description":"Baraja educativa de KARTA3 con 58 cuerpos del Sistema Solar y tres atributos: velocidad orbital máxima, distancia orbital media y diámetro medio o efectivo. Los valores jugables de 1 a 58 se presentan separados de los datos científicos informativos.","imageUrl":"/media/decks/sistema-solar/v4/imagenes/portada.webp","imageAlt":"Composición del Sistema Solar con el Sol, varios planetas, una luna, un asteroide y un cometa sobre un fondo estrellado."}]},"selection":["tests/browser/cardFace.spec.ts","tests/browser/format2Presentation.spec.ts:148","tests/browser/format2Presentation.spec.ts:66","tests/browser/format2Presentation.spec.ts:31","tests/browser/creatures.spec.ts:134","tests/browser/creatures.spec.ts:158","tests/browser/pcTable02.spec.ts:92","tests/browser/centeredTable03.spec.ts:78","tests/browser/cancelGame.spec.ts:38","tests/browser/cancelGame.spec.ts:82","tests/browser/cancelGame.spec.ts:159","tests/browser/resultNotice.spec.ts","tests/browser/manualGame.spec.ts:12","tests/browser/manualGame.spec.ts:64"],"assets":[{"url":"/assets/index-CMU3rEgi.js","sha256":"53869489f6fc7e811aa0b0decba14e883c25eeb96458091f1d95360ec9552f13","matchesCurrentBuild":true},{"url":"/assets/index-CJEkwuHI.css","sha256":"22e3fa37835c583c8f7da5fbda1a25be8235a4cdb939e76363ec1f14eecf34b2","matchesCurrentBuild":true}]}
+
+> karta3@0.1.0 test:browser
+> npm run build && playwright test --workers=2 tests/browser/cardFace.spec.ts tests/browser/format2Presentation.spec.ts:148 tests/browser/format2Presentation.spec.ts:66 tests/browser/format2Presentation.spec.ts:31 tests/browser/creatures.spec.ts:134 tests/browser/creatures.spec.ts:158 tests/browser/pcTable02.spec.ts:92 tests/browser/centeredTable03.spec.ts:78 tests/browser/cancelGame.spec.ts:38 tests/browser/cancelGame.spec.ts:82 tests/browser/cancelGame.spec.ts:159 tests/browser/resultNotice.spec.ts tests/browser/manualGame.spec.ts:12 tests/browser/manualGame.spec.ts:64
+
+
+> karta3@0.1.0 build
+> npm run decks:prepare && tsc -b && vite build
+
+
+> karta3@0.1.0 decks:prepare
+> tsx tools/decks.ts prepare
+
+criaturas-magicas: válida; disponibilidad true
+generica: válida; disponibilidad true
+sistema-solar: válida; disponibilidad true
+Catálogo preparado: 3 barajas disponibles.
+vite v8.3.1 building client environment for production...
+transforming...
+✓ 70 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.45 kB │ gzip:   0.29 kB
+dist/assets/index-CJEkwuHI.css   24.36 kB │ gzip:   5.59 kB
+dist/assets/index-CMU3rEgi.js   333.78 kB │ gzip: 100.84 kB
+
+✓ built in 147ms
+
+Running 31 tests using 2 workers
+
+(node:16452) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:17432) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  1 tests\browser\cancelGame.spec.ts:38:34 › B13 botón/diálogo/resumen 390px: foco, no pausa, cero puntos y retorno en dos pestañas (2.7s)
+  ok  3 tests\browser\cancelGame.spec.ts:38:34 › B13 botón/diálogo/resumen 1800px: foco, no pausa, cero puntos y retorno en dos pestañas (1.7s)
+  ok  4 tests\browser\cancelGame.spec.ts:82:56 › B13/T04 A cancelada → B automatic, F5, avisos/estados antiguos y límites propios (1.8s)
+  ok  2 tests\browser\cardFace.spec.ts:75:3 › B17 generica PLAY_VALUE: cara completa, encaje autorizado, datos, públicos y normal adaptada (8.3s)
+  ok  5 tests\browser\cancelGame.spec.ts:82:56 › B13/T04 A cancelada → B ordinary, F5, avisos/estados antiguos y límites propios (5.6s)
+  ok  6 tests\browser\cardFace.spec.ts:75:3 › B17 generica DISPLAY_VALUE: cara completa, encaje autorizado, datos, públicos y normal adaptada (6.1s)
+  ok  8 tests\browser\cardFace.spec.ts:75:3 › B17 sistema-solar PLAY_VALUE: cara completa, encaje autorizado, datos, públicos y normal adaptada (5.4s)
+  ok  7 tests\browser\cancelGame.spec.ts:159:1 › B13/T04 HTTP de recuperación A cancelada atrasado no sustituye B recuperada (9.2s)
+B12_MEASURE high-keyboard-fifth {"viewport":{"width":1920,"height":950,"dpr":1,"scale":1},"availableWidth":1905,"pageWidth":1905,"pageHeight":1329,"residual":379,"shell":{"x":252.5,"y":0,"width":1400,"height":1328.546875,"right":1652.5,"bottom":1328.546875},"grid":{"x":268.5,"y":190.109375,"width":1368,"height":1034.4375,"right":1636.5,"bottom":1224.546875},"columns":"264px 816px 264px","panels":{"people":{"x":268.5,"y":190.109375,"width":264,"height":278,"right":532.5,"bottom":468.109375},"plays":{"x":544.5,"y":190.109375,"width":1092,"height":413,"right":1636.5,"bottom":603.109375},"indicator":{"x":268.5,"y":615.109375,"width":264,"height":390,"right":532.5,"bottom":1005.109375},"hand":{"x":544.5,"y":615.109375,"width":816,"height":454,"right":1360.5,"bottom":1069.109375},"initial-state":{"x":1372.5,"y":615.109375,"width":264,"height":609.4375,"right":1636.5,"bottom":1224.546875}},"cards":[{"x":285.5,"y":207.109375,"width":230,"height":321,"right":515.5,"bottom":528.109375,"area":"plays","name":"Carta 18","values":[" Círculo56","▲ Triángulo13","■ Cuadrado15"],"titleFont":"16px","valueFont":"14px"},{"x":561.5,"y":207.109375,"width":230,"height":321,"right":791.5,"bottom":528.109375,"area":"plays","name":"Carta 17","values":[" Círculo54","▲ Triángulo45","■ Cuadrado37"],"titleFont":"16px","valueFont":"14px"},{"x":837.5,"y":207.109375,"width":230,"height":321,"right":1067.5,"bottom":528.109375,"area":"plays","name":"Carta 33","values":[" Círculo50","▲ Triángulo56","■ Cuadrado2"],"titleFont":"16px","valueFont":"14px"},{"x":1113.5,"y":207.109375,"width":230,"height":321,"right":1343.5,"bottom":528.109375,"area":"plays","name":"Carta 31","values":[" Círculo35","▲ Triángulo25","■ Cuadrado30"],"titleFont":"16px","valueFont":"14px"},{"x":1389.5,"y":207.109375,"width":230,"height":321,"right":1619.5,"bottom":528.109375,"area":"plays","name":"Carta 20","values":[" Círculo31","▲ Triángulo35","■ Cuadrado47"],"titleFont":"16px","valueFont":"14px"},{"x":285.5,"y":667.109375,"width":230,"height":321,"right":515.5,"bottom":988.109375,"area":"indicator","name":"Carta 01","values":[" Círculo25","▲ Triángulo51","■ Cuadrado11"],"titleFont":"16px","valueFont":"14px"},{"x":561.5,"y":667.109375,"width":230,"height":321,"right":791.5,"bottom":988.109375,"area":"hand","name":"Carta 06","values":[" Círculo13","▲ Triángulo20","■ Cuadrado8"],"titleFont":"16px","valueFont":"14px"},{"x":837.5,"y":667.109375,"width":230,"height":321,"right":1067.5,"bottom":988.109375,"area":"hand","name":"Carta 11","values":[" Círculo16","▲ Triángulo33","■ Cuadrado52"],"titleFont":"16px","valueFont":"14px"}],"heads":[{"area":"indicator","x":281.5,"y":628.109375,"width":238,"height":27,"right":519.5,"bottom":655.109375,"title":{"x":281.5,"y":628.109375,"width":238,"height":27,"right":519.5,"bottom":655.109375},"minHeight":"0px","cardOffset":52,"titleToCard":12},{"area":"hand","x":557.5,"y":628.109375,"width":790,"height":27,"right":1347.5,"bottom":655.109375,"title":{"x":557.5,"y":628.109375,"width":790,"height":27,"right":1347.5,"bottom":655.109375},"minHeight":"0px","cardOffset":52,"titleToCard":12}],"mesa":{"x":557.5,"y":203.109375,"width":1066,"height":354,"right":1623.5,"bottom":557.109375,"client":1066,"scroll":1342,"left":276},"mesaTitle":{"x":557.5,"y":563.109375,"width":1066,"height":27,"right":1623.5,"bottom":590.109375},"hand":{"x":557.5,"y":663.109375,"width":790,"height":393,"right":1347.5,"bottom":1056.109375,"client":790,"scroll":790,"left":0},"actions":[{"x":561.5,"y":996.109375,"width":230,"height":48,"right":791.5,"bottom":1044.109375},{"x":837.5,"y":996.109375,"width":230,"height":48,"right":1067.5,"bottom":1044.109375}],"legend":{"x":268.5,"y":1295.546875,"width":1368,"height":17,"right":1636.5,"bottom":1312.546875}}
+  ok 10 tests\browser\centeredTable03.spec.ts:78:53 › B12 E1–E6 HIGH: private partial, new plays, focus/Details, keyboard fifth, tabs and reload (3.5s)
+  ok  9 tests\browser\cardFace.spec.ts:75:3 › B17 sistema-solar DISPLAY_VALUE: cara completa, encaje autorizado, datos, públicos y normal adaptada (7.6s)
+B12_MEASURE low-keyboard-fifth {"viewport":{"width":1920,"height":950,"dpr":1,"scale":1},"availableWidth":1905,"pageWidth":1905,"pageHeight":1308,"residual":358,"shell":{"x":252.5,"y":0,"width":1400,"height":1307.546875,"right":1652.5,"bottom":1307.546875},"grid":{"x":268.5,"y":190.109375,"width":1368,"height":1013.4375,"right":1636.5,"bottom":1203.546875},"columns":"264px 816px 264px","panels":{"people":{"x":268.5,"y":190.109375,"width":264,"height":278,"right":532.5,"bottom":468.109375},"plays":{"x":544.5,"y":190.109375,"width":1092,"height":413,"right":1636.5,"bottom":603.109375},"indicator":{"x":268.5,"y":615.109375,"width":264,"height":390,"right":532.5,"bottom":1005.109375},"hand":{"x":544.5,"y":615.109375,"width":816,"height":454,"right":1360.5,"bottom":1069.109375},"initial-state":{"x":1372.5,"y":615.109375,"width":264,"height":588.4375,"right":1636.5,"bottom":1203.546875}},"cards":[{"x":285.5,"y":207.109375,"width":230,"height":321,"right":515.5,"bottom":528.109375,"area":"plays","name":"Carta 20","values":[" Círculo31","▲ Triángulo35","■ Cuadrado47"],"titleFont":"16px","valueFont":"14px"},{"x":561.5,"y":207.109375,"width":230,"height":321,"right":791.5,"bottom":528.109375,"area":"plays","name":"Carta 31","values":[" Círculo35","▲ Triángulo25","■ Cuadrado30"],"titleFont":"16px","valueFont":"14px"},{"x":837.5,"y":207.109375,"width":230,"height":321,"right":1067.5,"bottom":528.109375,"area":"plays","name":"Carta 33","values":[" Círculo50","▲ Triángulo56","■ Cuadrado2"],"titleFont":"16px","valueFont":"14px"},{"x":1113.5,"y":207.109375,"width":230,"height":321,"right":1343.5,"bottom":528.109375,"area":"plays","name":"Carta 17","values":[" Círculo54","▲ Triángulo45","■ Cuadrado37"],"titleFont":"16px","valueFont":"14px"},{"x":1389.5,"y":207.109375,"width":230,"height":321,"right":1619.5,"bottom":528.109375,"area":"plays","name":"Carta 18","values":[" Círculo56","▲ Triángulo13","■ Cuadrado15"],"titleFont":"16px","valueFont":"14px"},{"x":285.5,"y":667.109375,"width":230,"height":321,"right":515.5,"bottom":988.109375,"area":"indicator","name":"Carta 01","values":[" Círculo25","▲ Triángulo51","■ Cuadrado11"],"titleFont":"16px","valueFont":"14px"},{"x":561.5,"y":667.109375,"width":230,"height":321,"right":791.5,"bottom":988.109375,"area":"hand","name":"Carta 06","values":[" Círculo13","▲ Triángulo20","■ Cuadrado8"],"titleFont":"16px","valueFont":"14px"},{"x":837.5,"y":667.109375,"width":230,"height":321,"right":1067.5,"bottom":988.109375,"area":"hand","name":"Carta 11","values":[" Círculo16","▲ Triángulo33","■ Cuadrado52"],"titleFont":"16px","valueFont":"14px"}],"heads":[{"area":"indicator","x":281.5,"y":628.109375,"width":238,"height":27,"right":519.5,"bottom":655.109375,"title":{"x":281.5,"y":628.109375,"width":238,"height":27,"right":519.5,"bottom":655.109375},"minHeight":"0px","cardOffset":52,"titleToCard":12},{"area":"hand","x":557.5,"y":628.109375,"width":790,"height":27,"right":1347.5,"bottom":655.109375,"title":{"x":557.5,"y":628.109375,"width":790,"height":27,"right":1347.5,"bottom":655.109375},"minHeight":"0px","cardOffset":52,"titleToCard":12}],"mesa":{"x":557.5,"y":203.109375,"width":1066,"height":354,"right":1623.5,"bottom":557.109375,"client":1066,"scroll":1342,"left":276},"mesaTitle":{"x":557.5,"y":563.109375,"width":1066,"height":27,"right":1623.5,"bottom":590.109375},"hand":{"x":557.5,"y":663.109375,"width":790,"height":393,"right":1347.5,"bottom":1056.109375,"client":790,"scroll":790,"left":0},"actions":[{"x":561.5,"y":996.109375,"width":230,"height":48,"right":791.5,"bottom":1044.109375},{"x":837.5,"y":996.109375,"width":230,"height":48,"right":1067.5,"bottom":1044.109375}],"legend":{"x":268.5,"y":1274.546875,"width":1368,"height":17,"right":1636.5,"bottom":1291.546875}}
+  ok 11 tests\browser\centeredTable03.spec.ts:78:53 › B12 E1–E6 LOW: private partial, new plays, focus/Details, keyboard fifth, tabs and reload (3.8s)
+  ok 12 tests\browser\cardFace.spec.ts:75:3 › B17 criaturas-magicas PLAY_VALUE: cara completa, encaje autorizado, datos, públicos y normal adaptada (6.8s)
+  ok 13 tests\browser\creatures.spec.ts:134:1 › B16 observador/cinco, quinta por teclado, revisión, scrolls independientes y resize conservan foco y plazo (6.9s)
+  ok 14 tests\browser\cardFace.spec.ts:75:3 › B17 criaturas-magicas DISPLAY_VALUE: cara completa, encaje autorizado, datos, públicos y normal adaptada (5.6s)
+  x  16 tests\browser\cardFace.spec.ts:117:1 › B17 D: clic/Enter/Space/arrastre no juegan; parcial/plazo, Información, resize y foco equivalentes (10.4s)
+(node:11084) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 17 tests\browser\cardFace.spec.ts:148:1 › B17 consulta abierta: timeout retira la carta, revisión avanza y foco vuelve a región, sin pausas (5.4s)
+  ok 18 tests\browser\cardFace.spec.ts:163:33 › B17 compacta 360: cara intacta, consulta completa e imagen Detalles ampliada, anidación y foco (4.8s)
+  ok 19 tests\browser\cardFace.spec.ts:163:33 › B17 compacta 390: cara intacta, consulta completa e imagen Detalles ampliada, anidación y foco (4.8s)
+  ok 20 tests\browser\cardFace.spec.ts:183:1 › B17 fallo/pendiente de medio: placeholder y aviso sin colisión con D, recurso original y recuperación (5.1s)
+  ok 21 tests\browser\format2Presentation.spec.ts:31:1 › B15 compacta: primer aviso propio, desconexión/recuperación y automático sin control (3.2s)
+  ok 15 tests\browser\creatures.spec.ts:158:1 › B16 partida completa normal: humano y EASY/HARD, tres rondas finales, resultados/F5/otra sala (40.5s)
+  ok 22 tests\browser\format2Presentation.spec.ts:66:1 › B15 E7: consulta de A cancelada no sobrevive ni contamina B ante eventos antiguos (3.4s)
+  ok 23 tests\browser\manualGame.spec.ts:12:40 › B07 M1 apertura ALTO → carta privada, Detalles y recuperación (3.2s)
+  ok 25 tests\browser\manualGame.spec.ts:12:40 › B07 M1 apertura carta → BAJO privada, Detalles y recuperación (3.1s)
+  ok 26 tests\browser\manualGame.spec.ts:64:1 › B07 Detalles conserva foco si otra pestaña juega la carta mostrada (1.5s)
+  ok 27 tests\browser\pcTable02.spec.ts:92:3 › B11 card data and gestures: own triangle/active circle, Dato/J, outside action, drag, Details and one complete send (1.4s)
+  ok 28 tests\browser\resultNotice.spec.ts:38:56 › INC-01 expired A → B automatic: accepted result, reload, controlled expiry and old reads (1.6s)
+  ok 24 tests\browser\format2Presentation.spec.ts:148:1 › B15 frontera medida 1367/1368, equivalencia normal on/off, foco, parciales, resize y quinta (13.2s)
+  ok 29 tests\browser\resultNotice.spec.ts:38:56 › INC-01 expired A → B ordinary: accepted result, reload, controlled expiry and old reads (5.6s)
+  ok 30 tests\browser\resultNotice.spec.ts:88:1 › INC-01 late A return failure/ack/home cannot change available B or trigger obsolete recovery (6.8s)
+  ok 31 tests\browser\resultNotice.spec.ts:134:1 › INC-01 delayed HTTP recovery of expired A does not clear B after authorized socket recovery (2.9s)
+
+
+  1) tests\browser\cardFace.spec.ts:117:1 › B17 D: clic/Enter/Space/arrastre no juegan; parcial/plazo, Información, resize y foco equivalentes
+
+    Error: expect(locator).toBeFocused() failed
+
+    Locator:  locator('.game-hand [data-card-id="carta-002"]').locator('.card-details-button')
+    Expected: focused
+    Received: inactive
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeFocused" locator('.game-hand [data-card-id="carta-002"]').locator('.card-details-button') with timeout 5000ms
+      - waiting for locator('.game-hand [data-card-id="carta-002"]').locator('.card-details-button')
+        14 × locator resolved to <button title="Detalles" aria-label="Detalles de Dragón de cristal" class="secondary card-details-button card-details-overlay">…</button>
+           - unexpected value "inactive"
+
+
+      138 |     await opener.setViewportSize({ width: 390, height: 844 }); await expect(opener.locator('.game-composition')).toHaveAttribute('data-layout', 'compact');
+      139 |     await expandedImage(opener); await closeDetails(opener); await expect(d).toBeFocused(); await expect(d).toHaveText('Detalles');
+    > 140 |     await d.press('Space'); await opener.setViewportSize({ width: 1920, height: 1080 }); await closeDetails(opener); await expect(d).toBeFocused(); await expect(d).toHaveText('D');
+          |                                                                                                                                      ^
+      141 |     const after = await readGame(opener); expect(after.game.interaction.turn).toEqual(before.game.interaction.turn); expect(after.game.interaction.openingSelection).toEqual({ direction: 'HIGH' });
+      142 |     expect(s.gameRequests).toHaveLength(1); await expect(slot.locator('.card-play-button')).toHaveAttribute('aria-pressed', 'false');
+      143 |     await slot.locator('.card-play-surface .card-heading').click(); await expect.poll(() => s.gameRequests.filter(r => r.event === 'game:play').length).toBe(1);
+        at E:\KARTA3\KARTA3_IA\APP\karta3\tests\browser\cardFace.spec.ts:140:134
+
+    Error Context: test-results\cardFace-B17-D-clic-Enter--059e6--resize-y-foco-equivalentes\error-context.md
+
+  1 failed
+    tests\browser\cardFace.spec.ts:117:1 › B17 D: clic/Enter/Space/arrastre no juegan; parcial/plazo, Información, resize y foco equivalentes
+  30 passed (1.7m)

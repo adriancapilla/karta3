@@ -231,6 +231,16 @@ El corpus oficial Unicode 17 y su licencia viven solo en `tests/fixtures/unicode
 
 La primera etapa independiente quedó en 2b5ff9f mientras faltaba la entrega. La preparación ajena (90 archivos iguales a sus huellas iniciales) se registra separada en f534ffe. TFM, Diseño, maestras/candidatas y cierres B14 se conservan; la evidencia nueva y replanificación R01–R04 pertenecen a B15. La revisión semántica complementa imports/ciclos: dominio y políticas permanecen sin dependencias de presentación/archivos; servidor es autoridad; UI solo presenta contratos seguros y orden público por rangos.
 
+### B17 — carta completa, minicarta y consulta informativa
+
+`GameScreen` pasa explícitamente la representación compacta a mano y Mesa, conservando la medición útil/umbral B15. Indicadora y su consulta son caras completas. El retorno de Detalles conserva carta y contexto del invocador; si un resize sustituye el botón usa su equivalente en el mismo slot. Si la carta desaparece, vuelve a la región existente, sin enfocar una carta distinta o un botón oculto.
+
+`GameCard` mantiene la superficie de selección y Jugar exterior. En cara completa aloja D dentro de `CardImage`, con propagación y arrastre locales separados de la selección. `CardInformation` conserva encabezados accesibles, valores recibidos, activo por ronda y símbolo propio; el círculo vectorial de 12 px y retirada del rombo se limitan a esa cara. La minicarta conserva miniatura, glifos, rombo y botón inferior. `CardDetails` reutiliza el diálogo informativo: solo su imagen aumenta al ancho interior; no hereda la geometría de carta ni la miniatura.
+
+Las clases `full-card`/`compact-card` delimitan CSS. La cabecera visualmente oculta se contiene en la propia carta para que no escape del carrusel. Un `ResizeObserver` local compara encabezado/imagen/filas con el espacio real de 321 px; solo si no caben aplica el relleno vertical de 4,9 px autorizado en B17, sin reducir fuente o imagen. La comparación reconstruye el relleno original para evitar oscilación. No usa el carrusel para decidir el perfil B15 ni incorpora reglas de cartas/servidor.
+
+No cambian contratos, dominio, aplicación, transporte, catálogo, recursos o datos editoriales. Pruebas B17 y regresiones seleccionadas comprueban geometría, gestos, foco, avance bajo diálogo y privacidad recibida; el control de imports/ciclos se complementa con esta revisión semántica. La aceptación visual humana y C09–C10 conservan sus límites. Traslado descriptivo a Aplicación/Diseño mediante el autor, sin editar sus fuentes desde APP.
+
 ### Cancelación por anfitrión — B13
 
 | Pieza | Responsabilidad concreta y límite |

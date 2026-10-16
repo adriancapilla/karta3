@@ -1,0 +1,15 @@
+
+Running 8 tests using 1 worker
+
+(node:27636) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 playwright-report\b17\capture.spec.ts:14:96 › B17 after generica 1320 (6.5s)
+  ok 2 playwright-report\b17\capture.spec.ts:14:96 › B17 after generica 1920 (5.7s)
+  ok 3 playwright-report\b17\capture.spec.ts:14:96 › B17 after sistema-solar 1320 (5.8s)
+  ok 4 playwright-report\b17\capture.spec.ts:14:96 › B17 after sistema-solar 1920 (6.0s)
+  ok 5 playwright-report\b17\capture.spec.ts:14:96 › B17 after criaturas-magicas 1320 (5.9s)
+  ok 6 playwright-report\b17\capture.spec.ts:14:96 › B17 after criaturas-magicas 1920 (5.8s)
+  ok 7 playwright-report\b17\capture.spec.ts:22:29 › B17 after compacta 390 (3.6s)
+  ok 8 playwright-report\b17\capture.spec.ts:22:29 › B17 after compacta 360 (3.6s)
+
+  8 passed (44.3s)

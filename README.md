@@ -6,6 +6,8 @@ La aplicación se construye de forma incremental, con especificaciones, pruebas 
 
 ## Estado actual
 
+[B17](docs/sdd/BLOQUE_17_CARTA_IMAGEN_Y_SIMBOLOS.md) refina la carta normal: imagen íntegra hasta los bordes, botón **D** superpuesto para Detalles, tres filas centradas sin cabecera visible, sombreado activo sin rombo y círculo vectorial. Conserva cartas de referencia de 230×321 y las fuentes; los nombres de dos líneas que lo necesitan usan únicamente el relleno vertical de filas de 4,9 px autorizado por el autor. La minicarta compacta conserva su cara y «Detalles» inferior. Detalles amplía la imagen al ancho interior del diálogo desde ambas representaciones, sin cambiar datos, unidades, Información ni acciones de juego.
+
 [B16](docs/sdd/BLOQUE_16_INCORPORACION_CRIATURAS_MAGICAS.md) incorpora **Criaturas Mágicas, formato 2/contenido 2**, aprobada y activada por Gestor. Reutiliza el consumidor y la presentación B15. Catálogo normal: Criaturas Mágicas v2, genérica v4 y Sistema Solar v4, en ese orden; las salas siguen sin selección inicial. Las tres versiones son independientes. Sus habilidades son narrativas y no añaden acciones o reglas. [Copia y certificados B16](docs/sdd/evidencias/B16/incorporacion.json).
 
 [B15](docs/sdd/BLOQUE_15_FORMATO_2_Y_PRESENTACION.md) incorpora conjuntamente el consumidor formato 2 y las copias aprobadas/activadas de genérica y Sistema Solar **formato 2/contenido 4**. La herramienta valida V1 históricamente y V2 con Unicode/NFC, grafemas, topes y recursos; el catálogo normal exige disponibles V2 válidas y falla ante una disponible V1, sin conversión ni catálogo parcial. La copia y sus 63 huellas están en [evidencia B15](docs/sdd/evidencias/B15/copia-2-4.json).
@@ -331,6 +333,19 @@ npm run test:browser -- --workers=2 tests/browser/centeredTable03.spec.ts tests/
 ```
 
 E1/E2 de orden y los estados comparables se reproducen con genérica 2 copiada a una instalación temporal y una permutación legal sustituida; no se modifica contenido editorial ni se publica esa instalación. Las conexiones son reales y los plazos controlados. Otras regresiones usan adaptadores/entropía normales. Prueba humana, equipo físico y aprobación visual se registran solo cuando se realicen. C09–C10 continúan parciales.
+
+## Revisar B17: carta normal, D y Detalles
+
+Usa el runtime de Requisitos y la compilación actual (`npm run build`, después `npm run start`). Si usas Node portable, su carpeta debe estar al principio del PATH de esa misma terminal: la versión de `node` usada por npm y sus procesos hijos debe ser 24.19.0, ICU 78.3/Unicode 17. No basta con ejecutar únicamente npm con una ruta a Node y dejar otro Node primero en PATH.
+
+1. Crea una espera y entra desde un segundo navegador/perfil independiente; una segunda pestaña del mismo perfil es la misma persona. Selecciona explícitamente Criaturas Mágicas v2, genérica v4 o Sistema Solar v4. Repite con «1-58»/«Dato» y con optimización desactivada/activada. Las salas empiezan sin baraja.
+2. En PC (1320×850 o 1920×1080 CSS px, zoom 100 %), revisa indicadora, mano y Mesa durante turno/revisión. La carta completa mantiene imagen proporcional, nombre íntegro, tres filas, activo sombreado y símbolo propio independiente. D es la consulta; «Jugar carta» sigue fuera. Comprueba nombres largos como Tritón, Grifo y 67P cuando salgan, y genérica sin imagen.
+3. Abre D por clic, Enter y Space, también después de aceptar ALTO/BAJO sin carta. Debe abrir Detalles sin seleccionar ni jugar ni renovar el plazo. Arrastra sobre la carta/D para desplazarte: no debe jugar ni abrir consulta accidentalmente. Prueba el envío habitual desde la superficie/Jugar.
+4. En Detalles, comprueba imagen grande íntegra, dato/unidad sin J, característica/nota e Información anidada. Escape cierra un nivel; el foco vuelve a su control. Redimensiona con Detalles abierto: vuelve al control equivalente de esa carta. Si otra pestaña juega esa carta o el servidor avanza, vuelve a la región de mano, sin enfocar otra carta.
+5. En 390×844 y 360×800, activa optimización para ver la minicarta conservada (miniatura de 32 px y «Detalles» inferior). La consulta de indicadora desde el resumen usa carta completa/D; su Detalles vuelve a la consulta padre. Desactiva optimización para revisar la cara normal adaptada, con desplazamiento vertical permitido. Mesa y mano mantienen carruseles independientes; con cinco jugadas la quinta se consulta también por teclado.
+6. Recarga ambos navegadores y comprueba identidad/mesa/plazo. Cancela mediante el anfitrión y crea otra sala: ninguna consulta o respuesta de A debe contaminar B. No reinicies servicios ajenos para limpiar este recorrido.
+
+Las [capturas y medidas B17](docs/sdd/evidencias/B17/README.md) son de producto automatizado local, con escenas legales y tiempo/permutación controlados salvo el recorrido normal identificado. No sustituyen tu aprobación visual, dispositivos físicos ni pruebas con usuarios. El fallo de descarga de imagen se provoca solo en la prueba de navegador, sin tocar paquetes.
 
 ## Prueba manual B13: cancelación y otra sala
 
