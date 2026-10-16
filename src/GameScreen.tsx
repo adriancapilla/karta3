@@ -38,7 +38,7 @@ export function GameScreen({ room, connected, activity, onRoom, onCurrent }: { r
   }, []);
   const [overflows, setOverflows] = useState(false);
   const [mesaOverflows, setMesaOverflows] = useState(false);
-  const [details, setDetails] = useState<{ card: CardView; trigger: HTMLButtonElement } | null>(null);
+  const [details, setDetails] = useState<{ card: CardView; trigger: HTMLButtonElement; slot: HTMLElement | null; indicator: boolean } | null>(null);
   useEffect(() => {
     const focused = document.activeElement;
     if (compact && focused?.closest('.game-indicator')) document.querySelector<HTMLButtonElement>('.summary-indicator')?.focus();
@@ -77,7 +77,7 @@ export function GameScreen({ room, connected, activity, onRoom, onCurrent }: { r
   const { round, attributes } = room.game;
   const active = attributes.find((attribute) => attribute.id === round.activeAttributeId)!;
   const mesaHint = round.plays.length === 5 && mesaOverflows;
-  const showDetails = (card: CardView, trigger: HTMLButtonElement) => setDetails({ card, trigger });
+  const showDetails = (card: CardView, trigger: HTMLButtonElement) => setDetails({ card, trigger, slot: trigger.closest<HTMLElement>('[data-card-id]'), indicator: !!trigger.closest('.game-indicator') });
   const identityText = (id: string) => {
     const person = room.participants.find(person => person.id === id)!;
     return `${label(id)} · ${person.isPlayer ? `${person.score} puntos` : 'Observador'} · ${person.role === 'HOST' ? 'Anfitrión' : person.kind === 'BOT' ? `Bot · ${person.botDifficulty === 'EASY' ? 'Fácil' : 'Difícil'}` : 'Invitado'}${id === round.openerPlayerId ? ' · Abridor' : ''}${id === room.game.interaction.turn?.playerId ? ' · Juega' : ''}${person.playStatus === 'AUTOMATIC' ? ' · Automático' : ''}${person.presence === 'DISCONNECTED' ? ' · Sin conexión' : ''}`;
@@ -90,8 +90,11 @@ export function GameScreen({ room, connected, activity, onRoom, onCurrent }: { r
     setConsultation(null);
   };
   const closeDetails = () => {
-    if (details?.trigger.isConnected && details.trigger.getClientRects().length) details.trigger.focus();
-    else if (details?.trigger.closest('.game-indicator')) focusIndicator();
+    const equivalent = details?.slot?.dataset.cardId === details?.card.id ? details?.slot?.querySelector<HTMLButtonElement>('.card-details-button') : null;
+    const sameContext = details?.slot?.dataset.cardId === details?.card.id || (details?.indicator && details.card.id === round.indicator.id);
+    if (sameContext && details?.trigger.isConnected && details.trigger.getClientRects().length) details.trigger.focus();
+    else if (equivalent?.isConnected && equivalent.getClientRects().length) equivalent.focus();
+    else if (details?.indicator && details.card.id === round.indicator.id) focusIndicator();
     else (hand.current ?? title.current)?.focus();
     setDetails(null);
   };
@@ -144,7 +147,7 @@ export function GameScreen({ room, connected, activity, onRoom, onCurrent }: { r
       {gameState}
       <section className="game-panel game-plays" aria-labelledby="game-plays-title">
         {!round.plays.length && <p className="empty-mesa">Aún no hay cartas jugadas</p>}
-        <div ref={mesa} className="played-row" tabIndex={0} role="region" aria-label="Cartas públicas de Mesa" aria-describedby={mesaHint ? 'mesa-scroll-hint' : undefined}>{publicPlays(room.game).map((play) => <div key={play.playerId} role="group" aria-label={`Jugada de ${label(play.playerId)}`}><GameCard card={play.card} attributes={attributes} activeAttributeId={round.activeAttributeId} valueMode={room.settings.attributeValueMode} onDetails={showDetails} /><p className="play-author"><span className="play-number">{play.order}. </span>{personButton(play.playerId)}</p></div>)}</div>
+        <div ref={mesa} className="played-row" tabIndex={0} role="region" aria-label="Cartas públicas de Mesa" aria-describedby={mesaHint ? 'mesa-scroll-hint' : undefined}>{publicPlays(room.game).map((play) => <div key={play.playerId} role="group" aria-label={`Jugada de ${label(play.playerId)}`}><GameCard card={play.card} attributes={attributes} activeAttributeId={round.activeAttributeId} valueMode={room.settings.attributeValueMode} compact={compact} onDetails={showDetails} /><p className="play-author"><span className="play-number">{play.order}. </span>{personButton(play.playerId)}</p></div>)}</div>
         <h2 id="game-plays-title"><span className="mesa-title">Mesa</span><span className="mobile-mesa-title">Cartas jugadas</span></h2>
         {mesaHint && <p className="mesa-overflow-hint" id="mesa-scroll-hint">5 cartas · desliza →</p>}
       </section>
@@ -157,7 +160,7 @@ export function GameScreen({ room, connected, activity, onRoom, onCurrent }: { r
       {room.participant.isPlayer && <section className="game-panel game-hand" aria-labelledby="game-hand-title">
         <div className="game-card-panel-heading"><h2 id="game-hand-title">Tu mano</h2>{overflows && <p className="swipe-hint" id="hand-scroll-hint">Desliza para ver tus cartas</p>}</div>
         <div ref={hand} className="hand-row" tabIndex={0} role="region" aria-label="Cartas de tu mano" aria-describedby={overflows ? 'hand-scroll-hint' : undefined}>
-          {room.game.hand.map((card) => <GameCard key={card.id} card={card} attributes={attributes} activeAttributeId={round.activeAttributeId} valueMode={room.settings.attributeValueMode} onDetails={showDetails}
+          {room.game.hand.map((card) => <GameCard key={card.id} card={card} attributes={attributes} activeAttributeId={round.activeAttributeId} valueMode={room.settings.attributeValueMode} compact={compact} onDetails={showDetails}
             onChoose={actions.chooseCard} disabled={!actions.enabled} selected={actions.selectedCard === card.id} />)}
         </div>
       </section>}
