@@ -54,7 +54,7 @@ for (const width of [390, 1280]) test(`B14 catálogo normal, cambio de baraja, p
       expect(JSON.stringify(view)).not.toMatch(/"playValue"\s*:|"cards"\s*:|"imageRef"\s*:|"sessionId"\s*:|"publication"\s*:/);
       expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
     }
-    for (const deckId of ['generica', 'sistema-solar']) for (const name of ['baraja.json', 'cartas.json']) {
+    for (const deckId of approvedInstalledDecks.map(deck => deck.id)) for (const name of ['baraja.json', 'cartas.json']) {
       const response = await contexts[0].request.get(`${baseURL}/barajas/${deckId}/${name}`);
       expect(response.status()).toBe(404); expect(await response.text()).not.toContain('<!doctype html>');
     }

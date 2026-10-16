@@ -5,3 +5,5 @@ barajas/** -text whitespace=cr-at-eol
 docs/sdd/evidencias/B15/MANIFIESTO_SHA256.json -text whitespace=cr-at-eol
 docs/sdd/evidencias/B15/DELTA_3_A_4.json -text whitespace=cr-at-eol
 docs/sdd/evidencias/B15/REGISTRO_ACTIVACION.md -text whitespace=cr-at-eol
+# Certificados originales de entrega B16: conservar bytes y finales de línea.
+docs/sdd/evidencias/B16/certificados/** -text whitespace=cr-at-eol

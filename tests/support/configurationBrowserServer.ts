@@ -11,7 +11,7 @@ import { botTrace } from './botTrace.js';
 import type { TurnExpiredEvent } from '../../shared/contracts/game.js';
 
 /** Conexiones y paquetes reales, compilación actual; solamente el reloj es sustituido. */
-export async function configurationBrowserServer(single = false, initialGame = false, manual?: { count: number; winners?: readonly number[]; botSeed?: number }, presentation: { longText?: boolean; generic?: boolean; distinct?: boolean; solar?: boolean; literal?: boolean } = {}) {
+export async function configurationBrowserServer(single = false, initialGame = false, manual?: { count: number; winners?: readonly number[]; botSeed?: number }, presentation: { longText?: boolean; generic?: boolean; distinct?: boolean; solar?: boolean; creatures?: boolean; literal?: boolean } = {}) {
   const { createRuntime } = await import('../../dist-server/server/composition/createApp.js');
   const { prepareDecks, loadPreparedDecks } = await import('../../dist-server/server/infrastructure/decks/catalog.js');
   const { attachPublicFiles } = await import('../../dist-server/server/infrastructure/http/publicFiles.js');
@@ -57,6 +57,7 @@ export async function configurationBrowserServer(single = false, initialGame = f
   await writeFixture(root, deckFixture('borrador', false, 2));
   if (presentation.generic) await fs.cp(path.resolve('barajas/generica'), path.join(root, 'generica'), { recursive: true });
   if (presentation.solar) await fs.cp(path.resolve('barajas/sistema-solar'), path.join(root, 'sistema-solar'), { recursive: true });
+  if (presentation.creatures) await fs.cp(path.resolve('barajas/criaturas-magicas'), path.join(root, 'criaturas-magicas'), { recursive: true });
   const loaded = await prepareDecks(root).then(() => loadPreparedDecks(root)).catch(async (error: unknown) => { await removeTestInstallation(root); throw error; });
   const time = new ControlledTime(); const repository = new MemoryRoomRepository(); const sessions = new MemorySessions();
   let permute: (ids: readonly string[]) => readonly string[] = (ids) => mixed && ids.length === 58 ? mixed.permutation : [...ids];

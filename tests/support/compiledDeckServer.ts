@@ -9,7 +9,7 @@ export async function removeTestInstallation(root: string) {
   await fs.rm(absolute, { recursive: true, force: true });
 }
 
-/** Árbol de ejecución independiente: solo APP y dependencias instaladas, sin ASSETS/TFM. */
+/** Árbol de ejecución independiente: solo APP y dependencias instaladas, sin ASSETS/PRODUCTO/TFM. */
 export async function compiledInstallation() {
   const root = await fs.mkdtemp(path.join(os.tmpdir(), 'karta3-b04-install-'));
   await fs.cp(path.resolve('dist-server'), path.join(root, 'dist-server'), { recursive: true });
@@ -17,7 +17,7 @@ export async function compiledInstallation() {
   await fs.mkdir(path.join(root, 'barajas'));
   await fs.writeFile(path.join(root, 'package.json'), '{"type":"module"}\n');
   await fs.symlink(path.resolve('node_modules'), path.join(root, 'node_modules'), process.platform === 'win32' ? 'junction' : 'dir');
-  // Guard real en procesos separados: cualquier acceso a ASSETS falla y queda registrado.
+  // Guard real en procesos separados: cualquier acceso a ASSETS/PRODUCTO falla y queda registrado.
   await fs.writeFile(path.join(root, 'guard.mjs'), `
 import fs from 'node:fs';
 import { syncBuiltinESMExports } from 'node:module';
@@ -25,8 +25,9 @@ const write = fs.appendFileSync.bind(fs);
 const log = new URL('./asset-access.txt', import.meta.url);
 function guarded(original) {
   return function (target, ...args) {
-    if (/(?:^|[/\\\\])ASSETS(?:[/\\\\]|$)/i.test(String(target))) {
-      write(log, String(target) + '\\n'); throw new Error('ASSETS no permitido en esta prueba');
+    const blocked = /(?:^|[/\\\\])(ASSETS|PRODUCTO)(?:[/\\\\]|$)/i.exec(String(target));
+    if (blocked) {
+      write(log, String(target) + '\\n'); throw new Error(blocked[1].toUpperCase() + ' no permitido en esta prueba');
     }
     return original.call(this, target, ...args);
   };
