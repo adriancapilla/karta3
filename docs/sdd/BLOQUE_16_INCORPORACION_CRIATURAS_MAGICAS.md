@@ -1,6 +1,6 @@
 # B16 — Incorporación de Criaturas Mágicas con el consumidor V2 existente
 
-**Estado:** especificación preparada; incorporación y comprobaciones integradas pendientes. **Fecha/acuerdo del autor:** 16/10/2026. **Tipo:** contenido y adaptación acotada de pruebas/verificadores.
+**Estado actual, 16/10/2026:** incorporado y verificado técnicamente en local; resultados nuevos B16-01–10 en §9. CI/imagen Linux y revisión humana/dispositivos físicos pendientes. **Fecha/acuerdo del autor:** 16/10/2026. **Tipo:** contenido y adaptación acotada de pruebas/verificadores. Se conservan las expectativas y la evidencia de preparación como antecedentes.
 
 **Base comprobada:** carpeta única `E:\KARTA3\KARTA3_IA\APP\karta3`, `main`, HEAD `f75c2f8be2e5f130296d0fab160df3dbeb8fa873`, árbol inicialmente limpio. B16 estaba libre. Verificar de nuevo antes de implementar y conservar cualquier cambio posterior; no crear ramas/checkouts ni reemplazar la línea de trabajo. Esta preparación solo añade especificación/prompt y enlace del proceso.
 
@@ -89,7 +89,7 @@ Revisión de imports/ciclos y semántica incluida en check/cierre; dominio/Game/
 
 ## 6. Criterios y ejemplos comprobables — previstos
 
-Todos pendientes de ejecución por Implementación:
+Estado al preparar: todos pendientes de ejecución por Implementación. Los resultados técnicos actuales y límites constan en §9:
 
 | Criterio | Comprobación/resultado exigido |
 |---|---|
@@ -128,3 +128,102 @@ No hay pregunta funcional pendiente ni dependencia de activación. Solo faltan i
 Devolver al autor para Coordinación/alineación documental: nueva copia V2/contenido 2, catálogo/huellas y versiones anteriores conservadas, verificaciones realmente hechas y pendientes, tratamiento observado de Resistencia y estado del verificador Linux. Implementación mantiene README/evidencia APP; no edita fuentes TFM/Diseño/ASSETS/PRODUCTO/cierres ni envía mensajes a otros hilos. Sin push, PR, GHCR o VPS.
 
 **Evidencia de esta preparación:** lecturas de estado Git, fuentes, contratos, cierre previo, entrega y verificadores; lectura de metadatos/manifiesto y SHA-256 documentales. No se ha copiado el paquete, ejecutado validador/build/navegador o modificado código. Los checks anteriores siguen siendo antecedentes; B16-01–10 están pendientes. [Prompt de Implementación](PROMPT_IMPLEMENTACION_BLOQUE_16.md).
+
+## 9. Incorporación y cierre técnico — 16/10/2026
+
+### 9.1 Base efectiva y revisión del cambio
+
+Carpeta única y rama `main` conservadas. Base efectiva **f75c2f8be2e5f130296d0fab160df3dbeb8fa873**; cambios iniciales: este documento, prompt B16 y enlace de PROCESO. Preparación registrada aparte en **4d0b9fb** sin mezclarla con el paquete. Contenido/pruebas/verificador revisados en **84eba0ba2aa6c5d5fe3ee2fb0b0b7fd4b256f3d0**; README y este cierre/capturas se registran después. No ramas/checkouts, cambios ajenos, restauraciones, publicación ni despliegue. [Archivos propios](evidencias/B16/archivos-modificados.txt).
+
+No cambios de producción en `src`, `shared`, dominio, aplicación, lector/consumidor, composición o adaptadores HTTP/Socket.IO. Se reutilizó el conjunto B15. Cambian solo la copia, atributos Git de certificados, expectativas/soportes/pruebas de instalación y el verificador de imagen. La revisión semántica confirma reglas/políticas y proyecciones vigentes, instrucciones literales y ninguna lógica de habilidades/temática. Los imports/ciclos siguen comprobándose junto a esa revisión; no se crearon puertos o servicios.
+
+### 9.2 Fuente, copia y certificados
+
+Entrega exacta recibida en la ruta de §2. Se comprobaron los tres SHA documentales aprobados de manifiesto/aprobación/delta, el registro y el manifiesto de candidata contenido 1 (`aec3a053c32a792aeb77b5b7f83c853c05b7b20e17399274665a61c03860bce0`). Comparación textual candidata→final: únicamente contentVersion 1→2 en ambos JSON y available false→true en metadatos; los otros bytes y los 59 recursos coinciden. No se activó ni convirtió nada desde Implementación.
+
+**61/61** rutas/tamaños/SHA-256 origen=APP=blobs Git, sin extras. **63/63** archivos previos de genérica/Solar permanecen iguales a su inventario anterior y a Git, V2/contenido 4 disponibles. Los cuatro certificados se conservan byte a byte también en Git mediante atributos específicos `-text`; ASSETS, candidata, PRODUCTO, Diseño y fuentes TFM solo en lectura/no modificados.
+
+| Archivo nuevo | SHA-256 origen = APP = Git |
+|---|---|
+| `criaturas-magicas/baraja.json` | `f1cd46de8433ff439ccfdf4a367f0c03b61e597278e43f949c7889d5c3e0bde5` |
+| `criaturas-magicas/cartas.json` | `9783f44cbba4092d1d23eacccbd8ff267714f10c94393569d3c900deabba5f10` |
+| Portada | `a0fba2f4b38a4cffb6bd3d73cd777ea5c4fce316937747541ccb4aecf7e37805` |
+
+El [inventario de incorporación](evidencias/B16/incorporacion.json) enumera las 61 huellas y la comprobación Git, versiones, procedencia, certificados y mapeo `paquetes/criaturas-magicas/`→raíz APP. [Inventario previo](evidencias/B16/anteriores.json) de las 63 anteriores. [Certificados originales](evidencias/B16/certificados/MANIFIESTO_SHA256.json), [aprobación](evidencias/B16/certificados/APROBACION_CONTENIDO.md), [delta](evidencias/B16/certificados/DELTA_ACTIVACION_1_A_2.json) y [registro de Gestor](evidencias/B16/certificados/REGISTRO_PREPARACION.md). No se copiaron galerías, candidata ni fuentes a `barajas`.
+
+### 9.3 Entorno y ejecuciones reales
+
+Windows/PowerShell; Node **24.19.0** en `C:\Users\Adrian\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\bin\node.exe`, npm **11.6.2** mediante wrapper local T03, sin cambios globales. ICU **78.3**, Unicode **17.0**, `Intl.Segmenter` existente. TypeScript 6.0.3/Vitest 5.0.2/Playwright 1.63.0; **Chrome 155.0.8059.80**, headless, DPR/escala visual 1. Fuentes efectivas por CDP en [registro](evidencias/B16/fuentes-y-normal-on-off.json); Segoe UI y SegoeUI-Bold. Emulación CSS, sin dispositivos físicos ni revisión humana.
+
+| Comando/ensayo nuevo | Resultado |
+|---|---|
+| `npm run test -- server/application/deckCatalog.test.ts` | 1/1; comprobación focal previa al ajuste de pruebas/verificador, ya incorporada la copia |
+| `npm run decks:validate -- --package barajas/criaturas-magicas` | 0, válida/disponibilidad true; una ejecución sobre APP, no repetida sobre origen idéntico |
+| `npm run decks:prepare` | 0, tres disponibles, orden criaturas 2 / genérica 4 / Solar 4 |
+| Tipos/lint focal | Tipos correctos; lint detectó tres globales nuevos en verificador, corregidos usando globalThis sin silenciar reglas |
+| Primer navegador B16 | 3/11 pasan; ocho fallan por listener instalado después del socket, no por contenido o geometría |
+| Reparación focal PLAY_VALUE 390 on/off | 2/2, dos estados activa/no activa por recorrido; reload posterior al listener permite capturar tráfico real |
+| **`npm run check`, 15:13 Europe/Madrid** | **538/538**, 43 archivos, tipos/lint/build correctos; **70 módulos** sin imports prohibidos/ciclos |
+| **Navegador final, dos trabajadores** | **38/38**, 2,4 min, cero reintentos: 11 B16 + 27 regresiones pertinentes |
+| Medición auxiliar de fuentes/normal on-off Criaturas | 1/1, 10,7 s; CDP y comparación geométrica a 1368 útiles |
+| `node --check tools/ci-image-runtime.mjs` | 0, sintaxis; contraste estático de las 61 expectativas con manifiesto y conservación de las cuatro huellas anteriores. **No ejecución Linux** |
+
+Selección final exacta:
+
+```powershell
+npm run test:browser -- --workers=2 creatures.spec.ts solar.spec.ts bots.spec.ts decks.spec.ts format2Presentation.spec.ts cancelGame.spec.ts resultNotice.spec.ts proxy.spec.ts --grep 'B16|B14|B09 P2 normal|AGV2-|B15 espera|B15 frontera|B15 E7|B13|INC-01|T05 origen'
+```
+
+Se eligieron catálogo/recuperación, las anteriores dos barajas, una partida normal de genérica, controles/incertidumbre/frontera/consultas B15, los nueve B13, los cuatro T04 y transporte de origen único. No se repitió toda la batería de navegador ni la matriz/corpus V2 como ensayo focal; el check conserva íntegra su batería existente. Los resultados anteriores B04–B15 no acreditan estas ejecuciones.
+
+[Resultados/selecciones estructurados](evidencias/B16/resultados.json), [instancia servida](evidencias/B16/normal-instance.json), [partida normal](evidencias/B16/partida-normal.json). Logs brutos ignorados en `playwright-report/b16/`. El primer montaje limitado por sandbox rechazó el enlace de dependencias (EPERM); se reejecutó con autorización. Hubo un arranque/limpieza temporal EBUSY no completado, seguido de montaje correcto; no se atribuye causa forense. Un intento de check no se ejecutó al agotar cuota de revisión automática; después del restablecimiento se ejecutó y pasó. Fallos registrados sin presentarlos como pruebas superadas.
+
+### 9.4 Instancia normal, privacidad e independencia
+
+El montaje creó su propia instalación compilada, copió solo APP/tres paquetes y arrancó `main` en puerto efímero **52388**, PID 14260 durante el ensayo, con SystemClock/TimerScheduler/CryptoCardPermutation. `/api/decks` sirvió las tres versiones correctas, no-store/sin cookie; JS servido `c8a92a4581a088ce2a9f27c2cc5672d207dccffb781249fdb95fa03beaf252f6` y CSS `d22c9bf25f290bfff011a77ab287229c879f5de0c13078660b722da6403204a0` coinciden con la compilación. Proceso vivo al medir, stderr vacío y marcador de acceso externo ausente. El montaje lo cerró después; **ese puerto ya no representa un servicio disponible**. No se cerraron/reiniciaron servidores del autor.
+
+El ensayo de construcción/arranque de `startup.test.ts` usa procesos compilados y guard efectivo: probes async/readFile y sync/realpath.native de **ASSETS y PRODUCTO** fallan y registran acceso; build/prepare/arranque/consultas legítimos no registran ninguno. La instantánea interna sigue igual aunque después se cambien archivos de la instalación temporal. No se movieron ni renombraron árboles fuente para acreditarlo.
+
+Dos sesiones y dos pestañas de HOST: catálogo de tres sin selección, ficha/instrucciones versión 2, cambio entre tres/quitar/F5 conservando identidad/opciones, invitado y HOST ajeno rechazados, criaturas 4 rechazada con DECK_VERSION_MISMATCH. Preparación sin cartas; HTTP, ack y eventos IN_GAME contrastados con forma exacta y propias/rivales, observador sin mano; resultados sin cartas/mazo. **59/59** respuestas WebP v2 con SHA del manifiesto; portada/manos cargadas/decodificadas. Seis JSON privados por ruta de paquete y medios, versión inexistente y escape de carpeta devuelven 404 sin fallback HTML.
+
+### 9.5 Resistencia, presentación e interacción
+
+46 escenas/mediciones de producto versionadas, incluidas ambas representaciones, activa/no activa, PC 1920×1080, 390×844, 360×800, normal adaptada con optimización off, quinta/revisión y observador. [Índice de capturas/revisión](evidencias/B16/capturas/README.md), [medidas resumidas](evidencias/B16/medidas.json). Condiciones comparables dentro de cada perfil: dos humanos, turno 60 s, primera jugada manual legal, baraja/versión iguales; solo cambia el indicador legal que hace activa/no activa Resistencia o el modo aceptado. Los avisos de recuperación visibles proceden de la recarga necesaria para inspeccionar tráfico, sin ocultarlos de las imágenes.
+
+| Perfil; medidas iguales en 1-58/Dato | Útil | Fila Resistencia no activa / activa | Altura página no activa / activa | Scroll residual |
+|---|---:|---:|---:|---:|
+| PC 1920×1080, on | 1368 | 32 / 32 px | 1173 / 1173 | 93 / 93 px |
+| 390×844, on/compacta | 358 | 27,19 / 45,38 px | 1133 / 1171 | 289 / 327 px |
+| 360×800, on/compacta | 328 | 27,19 / 45,38 px | 1211 / 1249 | 411 / 449 px |
+| 390×844, off/normal adaptada | 358 | 55 / 74 px | 1950 / 1964 | 1106 / 1120 px |
+
+PC: cartas 230×321. En compacta los casos de esta traza miden 220×203,47/203,75/221,66 según nombre/estado; normal adaptada estrecha presenta alturas mayores (363–387) y scroll. Se registran dimensiones efectivas del CSS existente, **sin imponer alturas universales ni reducir fuentes**. Nombre PC 16/compacto 18 y celdas 14 px. Resistencia se conserva completa; símbolo/nombre/marca pueden ocupar líneas distintas al activarse en compacta. Los fragmentos de texto de las 46 escenas quedan contenidos en sus celdas, sin elipsis/recorte/desbordamiento; Detalles/Jugar accesibles, sin solapamiento observado. El mayor scroll no se oculta ni se declara resuelto por este bloque.
+
+Comprobados Información exacta, Detalles informativo sin J/nombre alternativo/notas recortadas; números sin unidad ni espacio añadido y modos aceptados aunque coincidan. Teclado/Enter/Space/Escape/foco, selección parcial y envío único, arrastre sin jugar, quinta completa, revisión que impide jugar, mano/Mesa con scroll independiente, resize/frontera 1367/1368 sin nueva acción/reinicio, observador/Cancelar por permiso. Además, Criaturas normal on/off a 1368 útiles tiene geometría idéntica (montaje auxiliar); B15 conserva también su prueba de frontera/estabilidad.
+
+Estas capturas son producto compilado con conexiones reales y tiempo/permutación sustituidos para escenas legales; no galerías ni partidas normales completas. Se revisaron imágenes PC/móvil por Implementación, **sin atribuir aprobación humana del autor, equipo físico o zoom de usuario**. No hubo incompatibilidad concreta que exigiera cambiar contenido o diseño.
+
+### 9.6 Partida normal y verificador Linux
+
+Criaturas 2, jugador HUMAN contra EASY/HARD, adaptadores normales y sin fixtures que suplanten la instalación: **15 jugadas del humano a tiempo, mediante gestos automatizados de Chrome**, fases finales rondas 13/14/15, final DECK_COMPLETED, **45 puntos oficiales** entre tres jugadores. Resultado seleccionado correcto/privado, F5 en dos pestañas, retorno coordinado y sala nueva con defaults/sin selección. No asignaciones de puntos, saltos del motor o habilidades ejecutables; no prueba humana del autor. El recorrido normal de genérica y el de Solar también pasaron en la selección final.
+
+`tools/ci-image-runtime.mjs` conserva Node fijado, linux/x64, uid no root, sharp nativo, EROFS, exclusiones privadas, HTTP/no-store/sin cookie y hashes anteriores/URL Solar v4. Añade PRODUCTO a exclusiones, las tres identidades/versiones, seis JSON privados y **61 valores SHA esperados fijos** (dos JSON +59 recursos nuevos) trazables al manifiesto aprobado; coteja bytes locales y respuestas de los 59 medios v2. El esperado no se obtiene de los archivos/respuestas verificados. Sigue siendo script autocontenido aprovisionado por STDIN mediante el CI existente; no se empaquetan certificados/editoriales ni cambian workflows. **Solo sintaxis y revisión estática local: ejecución de imagen/CI Linux pendiente.** No se eliminaron asserts para ejecutarlo bajo Windows.
+
+### 9.7 Criterios y traslado al autor
+
+| Criterio | Resultado nuevo / límite |
+|---|---|
+| B16-01 | 61/61 origen/APP/Git y certificados; 63/63 anteriores intactos; verificado |
+| B16-02 | Validación APP/prepare/compilación/arranque, tres versiones/orden sin default, guard ASSETS/PRODUCTO; verificado |
+| B16-03 | Dos sesiones/varias pestañas, selección/cambio/quitar/F5, modos conservados, permisos y rechazo v4; verificado |
+| B16-04 | 59 medios v2 con MIME/SHA, carga real/alt/textos/instrucciones/notas y bytes íntegros; verificado |
+| B16-05 | Ambos modos/layouts/opciones/útiles, Resistencia activa/no activa completa y métricas; verificado técnicamente, revisión humana pendiente |
+| B16-06 | Quinta/revisión/observador, foco/teclado/resize/scrolls/arrastre y acción única, B15 frontera; verificado |
+| B16-07 | Seis JSON privados y HTTP/ack/eventos seguros por destinatario, instrucciones limitadas; verificado |
+| B16-08 | Partida normal legal Criaturas/humano/EASY/HARD hasta resultado/F5/otra sala; verificado |
+| B16-09 | Regresiones afectadas y verificador adaptado/revisado sin debilitar asserts; verificado localmente, Linux/CI pendiente |
+| B16-10 | Check/navegador finales, README/manual/evidencia/capturas/huellas/revisión semántica; cierre técnico local, límites separados |
+
+Para Coordinación/alineación documental: catálogo APP pasa a tres, esquema 2 en todas y contenidos independientes **2/4/4**, orden ASCII con Criaturas primero y sin selección inicial. Resistencia/narrativa/rangos/unidades/indicadores conservados, sin nuevas reglas o presentación. Consumidor/contratos B15 y B13/T04 intactos. Actualizar descripciones de disponibilidad/entrega en sus fuentes responsables después de recibir este cierre; no se editaron TFM/Diseño/ASSETS/PRODUCTO ni cierres históricos.
+
+[README: manual B16](../../README.md#prueba-manual-b16-criaturas-mágicas-y-dos-sesiones) preparado para dos sesiones, observador/varias pestañas, opciones/Información/recuperación/Resistencia, partida/resultados/cancelación/otra sala. **Pendiente como recorrido humano**, igual que dispositivos físicos/zoom real. La revisión editorial/activación/validación y galería del Gestor siguen siendo categorías distintas de estas comprobaciones de producto. Retención/revisión y carreras de regresión usan reloj controlado, no media hora real. C09–C10 mantienen cobertura parcial: comprensión educativa, equilibrio, revisión humana universal, publicación y despliegue no acreditados. Commits locales, sin push/PR/GHCR/VPS ni mensajes a otros hilos.

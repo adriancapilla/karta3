@@ -1,0 +1,237 @@
+{
+  "date": "2026-10-16T13:17:38.819Z",
+  "clock": "Controlado, conexiones reales; no revisión humana",
+  "samples": [
+    {
+      "profile": {
+        "width": 1920,
+        "optimize": false
+      },
+      "browser": "155.0.8059.80",
+      "date": "2026-10-16T13:17:32.832Z",
+      "fonts": [
+        {
+          "selector": ".game-hand h3",
+          "fonts": [
+            {
+              "familyName": "Segoe UI",
+              "postScriptName": "SegoeUI-Bold",
+              "isCustomFont": false,
+              "glyphCount": 17
+            }
+          ]
+        },
+        {
+          "selector": ".game-hand tbody td",
+          "fonts": [
+            {
+              "familyName": "Segoe UI",
+              "postScriptName": "SegoeUI",
+              "isCustomFont": false,
+              "glyphCount": 2
+            }
+          ]
+        },
+        {
+          "selector": ".game-hand tbody tr:last-child th",
+          "fonts": [
+            {
+              "familyName": "Segoe UI",
+              "postScriptName": "SegoeUI-Bold",
+              "isCustomFont": false,
+              "glyphCount": 13
+            }
+          ]
+        }
+      ],
+      "geometry": {
+        "useful": "1368",
+        "layout": "normal",
+        "cards": [
+          {
+            "name": "Dragón del desierto",
+            "x": 285.5,
+            "y": 574.109375,
+            "width": 230,
+            "height": 321
+          },
+          {
+            "name": "Dragón de cristal",
+            "x": 561.5,
+            "y": 574.109375,
+            "width": 230,
+            "height": 321
+          },
+          {
+            "name": "Dragón de los bosques",
+            "x": 837.5,
+            "y": 574.109375,
+            "width": 230,
+            "height": 321
+          },
+          {
+            "name": "Dragón de hielo",
+            "x": 1113.5,
+            "y": 574.109375,
+            "width": 230,
+            "height": 321
+          }
+        ]
+      }
+    },
+    {
+      "profile": {
+        "width": 1920,
+        "optimize": true
+      },
+      "browser": "155.0.8059.80",
+      "date": "2026-10-16T13:17:35.805Z",
+      "fonts": [
+        {
+          "selector": ".game-hand h3",
+          "fonts": [
+            {
+              "familyName": "Segoe UI",
+              "postScriptName": "SegoeUI-Bold",
+              "isCustomFont": false,
+              "glyphCount": 17
+            }
+          ]
+        },
+        {
+          "selector": ".game-hand tbody td",
+          "fonts": [
+            {
+              "familyName": "Segoe UI",
+              "postScriptName": "SegoeUI",
+              "isCustomFont": false,
+              "glyphCount": 2
+            }
+          ]
+        },
+        {
+          "selector": ".game-hand tbody tr:last-child th",
+          "fonts": [
+            {
+              "familyName": "Segoe UI",
+              "postScriptName": "SegoeUI-Bold",
+              "isCustomFont": false,
+              "glyphCount": 13
+            }
+          ]
+        }
+      ],
+      "geometry": {
+        "useful": "1368",
+        "layout": "normal",
+        "cards": [
+          {
+            "name": "Dragón del desierto",
+            "x": 285.5,
+            "y": 574.109375,
+            "width": 230,
+            "height": 321
+          },
+          {
+            "name": "Dragón de cristal",
+            "x": 561.5,
+            "y": 574.109375,
+            "width": 230,
+            "height": 321
+          },
+          {
+            "name": "Dragón de los bosques",
+            "x": 837.5,
+            "y": 574.109375,
+            "width": 230,
+            "height": 321
+          },
+          {
+            "name": "Dragón de hielo",
+            "x": 1113.5,
+            "y": 574.109375,
+            "width": 230,
+            "height": 321
+          }
+        ]
+      }
+    },
+    {
+      "profile": {
+        "width": 390,
+        "optimize": true
+      },
+      "browser": "155.0.8059.80",
+      "date": "2026-10-16T13:17:38.786Z",
+      "fonts": [
+        {
+          "selector": ".game-hand h3",
+          "fonts": [
+            {
+              "familyName": "Segoe UI",
+              "postScriptName": "SegoeUI-Bold",
+              "isCustomFont": false,
+              "glyphCount": 16
+            }
+          ]
+        },
+        {
+          "selector": ".game-hand tbody td",
+          "fonts": [
+            {
+              "familyName": "Segoe UI",
+              "postScriptName": "SegoeUI",
+              "isCustomFont": false,
+              "glyphCount": 2
+            }
+          ]
+        },
+        {
+          "selector": ".game-hand tbody tr:last-child th",
+          "fonts": [
+            {
+              "familyName": "Segoe UI",
+              "postScriptName": "SegoeUI-Bold",
+              "isCustomFont": false,
+              "glyphCount": 13
+            }
+          ]
+        }
+      ],
+      "geometry": {
+        "useful": "358",
+        "layout": "compact",
+        "cards": [
+          {
+            "name": "Dragón del desierto",
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0
+          },
+          {
+            "name": "Dragón de cristal",
+            "x": 19,
+            "y": 487.25,
+            "width": 220,
+            "height": 203.46875
+          },
+          {
+            "name": "Dragón de los bosques",
+            "x": 249,
+            "y": 487.25,
+            "width": 220,
+            "height": 203.46875
+          },
+          {
+            "name": "Dragón de hielo",
+            "x": 479,
+            "y": 487.25,
+            "width": 220,
+            "height": 188
+          }
+        ]
+      }
+    }
+  ]
+}

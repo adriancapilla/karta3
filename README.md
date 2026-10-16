@@ -6,6 +6,8 @@ La aplicación se construye de forma incremental, con especificaciones, pruebas 
 
 ## Estado actual
 
+[B16](docs/sdd/BLOQUE_16_INCORPORACION_CRIATURAS_MAGICAS.md) incorpora **Criaturas Mágicas, formato 2/contenido 2**, aprobada y activada por Gestor. Reutiliza el consumidor y la presentación B15. Catálogo normal: Criaturas Mágicas v2, genérica v4 y Sistema Solar v4, en ese orden; las salas siguen sin selección inicial. Las tres versiones son independientes. Sus habilidades son narrativas y no añaden acciones o reglas. [Copia y certificados B16](docs/sdd/evidencias/B16/incorporacion.json).
+
 [B15](docs/sdd/BLOQUE_15_FORMATO_2_Y_PRESENTACION.md) incorpora conjuntamente el consumidor formato 2 y las copias aprobadas/activadas de genérica y Sistema Solar **formato 2/contenido 4**. La herramienta valida V1 históricamente y V2 con Unicode/NFC, grafemas, topes y recursos; el catálogo normal exige disponibles V2 válidas y falla ante una disponible V1, sin conversión ni catálogo parcial. La copia y sus 63 huellas están en [evidencia B15](docs/sdd/evidencias/B15/copia-2-4.json).
 
 B15 añade «Valor del Atributo» (1-58/Dato, inicialmente 1-58) y «Optimizar para móvil» (inicialmente No), compartidos y fijados al iniciar. Cartas con tres atributos/dos columnas; Detalles siempre muestra el dato literal/unidad, sin J. Información de la baraja contiene descripción e instrucciones exactas de la selección autorizada. Con optimización y menos de 1368 px **útiles medidos**, la compacta ordena puntuaciones → resumen → Mesa → mano, con carruseles independientes. Desde 1368 mantiene la misma normal on/off. Los rangos siguen decidiendo orden, bots y resultado.
@@ -170,6 +172,17 @@ En PowerShell, desde `E:\KARTA3\KARTA3_IA\APP\karta3`, ejecutar `npm ci` si falt
 6. A elige «Sin baraja seleccionada»: B ve el cambio sin recargar. B prueba salida voluntaria y A cierre con confirmación. Repetir en móvil (390 px) y escritorio (1280 px).
 
 Registrar fecha, versión servida, navegadores/perfiles, acciones, resultados y límites. Estas instrucciones no acreditan ejecución manual. C09–C10 siguen parciales: B07 amplía uso de la baraja, cartas jugadas/manos variables/resultados y privacidad; comprensión con usuarios, equilibrio, móviles físicos y despliegue siguen pendientes. B09 incorpora bots Fácil/Difícil sin acreditar equilibrio.
+
+### Prueba manual B16: Criaturas Mágicas y dos sesiones
+
+1. Comprobar `node --version` (24.19.0) y `node -p "JSON.stringify({icu:process.versions.icu,unicode:process.versions.unicode})"` (78.3/17.0). Una terminal con otro Node en PATH no usa automáticamente `.node-version`. Compilar con `npm run check` y arrancar una instancia propia en puerto libre: `$env:PORT='3151'`, después `npm run start`. Preservar los servidores de otras personas. El reinicio de tu instancia pierde su memoria y carga la instantánea de barajas actual.
+2. Abrir `http://127.0.0.1:3151` en dos perfiles A/B independientes y otra pestaña de A. Crear/entrar: tres opciones, inicialmente ninguna seleccionada. A elige **Criaturas Mágicas · v2**. B consulta ficha/portada sin controles de configuración. Información contiene instrucciones de Poder/Astucia/Resistencia y aclara que las habilidades no añaden reglas.
+3. A alterna genérica v4/Solar v4/Criaturas v2 y quita selección. Modos 1-58/Dato y optimización persisten. Recargar A/B conserva identidad, versión y valores aceptados; no reenvía cambios. Criaturas v4 no existe y el servidor la rechaza.
+4. Iniciar con ambos humanos o una persona y bots Fácil/Difícil. Probar ambos modos en partidas separadas: los números coinciden deliberadamente con los rangos y no tienen unidades. Revisar Resistencia completa, activa y no activa, imágenes, indicadora, mano y Mesa. Símbolo/nombre pueden ocupar líneas distintas. Detalles conserva característica/nota y dato sin J; Información mantiene las instrucciones exactas.
+5. Con optimización Sí y menos de 1368 útiles, puntuaciones → resumen → Mesa → mano. Probar 390×844 y 360×800, scrolls laterales independientes/quinta, Detalles/teclado/foco y resize. Con optimización No se mantiene normal adaptada; desde 1368 útiles, normal equivalente on/off. Registrar área útil/zoom/fuentes y scroll real, no solo tamaño nominal.
+6. Ensayo observador: A observa, B juega y se añade un bot; A no recibe mano y conserva Cancelar. Completar una partida a tiempo hasta resultados, F5 y otra sala sin selección. Probar cancelación y recuperación/otra sala sin avisos anteriores. Reiniciar solo la instancia propia para limpiar un ensayo detenido.
+
+La evidencia del bloque distingue aprobación/activación y galería del Gestor de producto compilado local, reloj sustituido/adaptadores normales, CI Linux y revisión humana/dispositivos físicos. La sintaxis del verificador Linux no acredita ejecución de la imagen. Estos pasos manuales permanecen pendientes hasta que el autor los realice; C09–C10 conservan sus límites de comprensión/equilibrio y cobertura parcial.
 
 ### Prueba manual B15: modos, consultas y compacta
 

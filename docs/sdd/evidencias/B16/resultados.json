@@ -1,0 +1,208 @@
+{
+  "date": "2026-10-16T13:19:45.336Z",
+  "base": "f75c2f8be2e5f130296d0fab160df3dbeb8fa873",
+  "code": "84eba0ba2aa6c5d5fe3ee2fb0b0b7fd4b256f3d0",
+  "preparationCommit": "4d0b9fb8d5a3c81ef53bba9de8031630b7f0130d",
+  "branch": "main",
+  "environment": {
+    "node": "v24.19.0",
+    "nodePath": "C:\\Users\\Adrian\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+    "icu": "78.3",
+    "unicode": "17.0",
+    "npm": "11.6.2",
+    "typescript": "6.0.3",
+    "vitest": "5.0.2",
+    "playwright": "1.63.0",
+    "browser": "155.0.8059.80",
+    "platform": "win32",
+    "scale": 1,
+    "fonts": "fuentes-y-normal-on-off.json (CDP)"
+  },
+  "commands": [
+    {
+      "command": "npm run decks:validate -- --package barajas/criaturas-magicas",
+      "exit": 0,
+      "result": "Válida; disponibilidad true"
+    },
+    {
+      "command": "npm run decks:prepare",
+      "exit": 0,
+      "result": "3 disponibles; orden criaturas 2 / genérica 4 / Solar 4"
+    },
+    {
+      "command": "npm run check",
+      "exit": 0,
+      "tests": 538,
+      "files": 43,
+      "architecture": 70
+    },
+    {
+      "command": "npm run test:browser -- --workers=2 creatures.spec.ts solar.spec.ts bots.spec.ts decks.spec.ts format2Presentation.spec.ts cancelGame.spec.ts resultNotice.spec.ts proxy.spec.ts --grep B16|B14|B09 P2 normal|AGV2-|B15 espera|B15 frontera|B15 E7|B13|INC-01|T05 origen",
+      "exit": 0,
+      "tests": 38,
+      "newB16": 11,
+      "regressions": 27,
+      "duration": "2.4m"
+    },
+    {
+      "command": "node --check tools/ci-image-runtime.mjs",
+      "exit": 0,
+      "linuxExecution": false
+    },
+    {
+      "command": "npm exec -- playwright test --config=playwright-report/b16/fonts.config.ts --workers=1",
+      "exit": 0,
+      "tests": 1,
+      "purpose": "Lectura CDP de fuentes y equivalencia normal on/off, 1368 útiles de Criaturas"
+    }
+  ],
+  "runs": [
+    {
+      "log": "baseline.log",
+      "sha256": "49e091e872bee748eb4620f9444060a29b3215fc50fd5d0e0781fa3069577552",
+      "passed": 1,
+      "failed": 0,
+      "tests": []
+    },
+    {
+      "log": "browser-first-run.log",
+      "sha256": "2fe1b0c9dd5d14fb2917a0f0993b14bd95f8177921947768731acea3010ebd31",
+      "passed": 3,
+      "failed": 8,
+      "tests": [
+        "tests\\browser\\creatures.spec.ts:62:1 › B16 instalación normal: tres sin default, dos sesiones/pestañas, versión exacta, permisos, 59 recursos y seis JSON privados",
+        "tests\\browser\\creatures.spec.ts:131:1 › B16 observador/cinco, quinta por teclado, revisión, scrolls independientes y resize conservan foco y plazo",
+        "tests\\browser\\creatures.spec.ts:154:1 › B16 partida completa normal: humano y EASY/HARD, tres rondas finales, resultados/F5/otra sala"
+      ]
+    },
+    {
+      "log": "browser-repair-focused.log",
+      "sha256": "7ccee2b3d4884f2b6acf06e43ff144037d514222f6014647916894fcb43a9fa8",
+      "passed": 2,
+      "failed": 0,
+      "tests": [
+        "tests\\browser\\creatures.spec.ts:101:3 › B16 Resistencia completa PLAY_VALUE 390 optimizar=true: activa/no activa, indicadora/mano/Mesa/Detalles",
+        "tests\\browser\\creatures.spec.ts:101:3 › B16 Resistencia completa PLAY_VALUE 390 optimizar=false: activa/no activa, indicadora/mano/Mesa/Detalles"
+      ]
+    },
+    {
+      "log": "check-final.log",
+      "sha256": "486420884c91464898c919b37df3f826bdd105358b9bea14c4d76b785dc56471",
+      "passed": 538,
+      "failed": 0,
+      "tests": []
+    },
+    {
+      "log": "browser-final.log",
+      "sha256": "53a6ce370fd1e46578fef4f4975258c1628e31171e930414efde69bd04c06ca0",
+      "passed": 38,
+      "failed": 0,
+      "tests": [
+        "tests\\browser\\cancelGame.spec.ts:38:34 › B13 botón/diálogo/resumen 390px: foco, no pausa, cero puntos y retorno en dos pestañas",
+        "tests\\browser\\cancelGame.spec.ts:38:34 › B13 botón/diálogo/resumen 1800px: foco, no pausa, cero puntos y retorno en dos pestañas",
+        "tests\\browser\\cancelGame.spec.ts:82:56 › B13/T04 A cancelada → B automatic, F5, avisos/estados antiguos y límites propios",
+        "tests\\browser\\cancelGame.spec.ts:82:56 › B13/T04 A cancelada → B ordinary, F5, avisos/estados antiguos y límites propios",
+        "tests\\browser\\cancelGame.spec.ts:113:1 › B13 ack/evento perdidos: incertidumbre, recuperación por gameId y ack A atrasado frente a B",
+        "tests\\browser\\bots.spec.ts:101:1 › B09 P2 normal compilado genérica 2: persona contra fácil/difícil, entropía/plazos normales, resultado y otra sala",
+        "tests\\browser\\cancelGame.spec.ts:136:1 › B13 envío perdido antes de registrar: recuperar primero y solo reintento explícito con ID/payload originales",
+        "tests\\browser\\cancelGame.spec.ts:150:1 › B13 final por inactividad con reloj controlado mientras el diálogo está abierto lo cierra sin cancelar",
+        "tests\\browser\\creatures.spec.ts:62:1 › B16 instalación normal: tres sin default, dos sesiones/pestañas, versión exacta, permisos, 59 recursos y seis JSON privados",
+        "tests\\browser\\cancelGame.spec.ts:159:1 › B13/T04 HTTP de recuperación A cancelada atrasado no sustituye B recuperada",
+        "tests\\browser\\cancelGame.spec.ts:181:1 › B13 anfitrión observador, bot y desconectado: resumen/reconexión sin reactivar asociación",
+        "tests\\browser\\decks.spec.ts:11:5 › B04 catálogo 390px › AGV2-02/03/08 ejecución normal genérica 2; GET no crea cookie y sala inicialmente sin selección",
+        "tests\\browser\\creatures.spec.ts:101:3 › B16 Resistencia completa PLAY_VALUE 1920 optimizar=true: activa/no activa, indicadora/mano/Mesa/Detalles",
+        "tests\\browser\\decks.spec.ts:33:5 › B04 catálogo 390px › AGV2-09 instalación temporal vacía: servicio y presentación sin desactivar genérica normal",
+        "tests\\browser\\decks.spec.ts:11:5 › B04 catálogo 1280px › AGV2-02/03/08 ejecución normal genérica 2; GET no crea cookie y sala inicialmente sin selección",
+        "tests\\browser\\decks.spec.ts:33:5 › B04 catálogo 1280px › AGV2-09 instalación temporal vacía: servicio y presentación sin desactivar genérica normal",
+        "tests\\browser\\format2Presentation.spec.ts:66:1 › B15 E7: consulta de A cancelada no sobrevive ni contamina B ante eventos antiguos",
+        "tests\\browser\\creatures.spec.ts:101:3 › B16 Resistencia completa PLAY_VALUE 390 optimizar=true: activa/no activa, indicadora/mano/Mesa/Detalles",
+        "tests\\browser\\creatures.spec.ts:101:3 › B16 Resistencia completa PLAY_VALUE 360 optimizar=true: activa/no activa, indicadora/mano/Mesa/Detalles",
+        "tests\\browser\\format2Presentation.spec.ts:127:1 › B15 espera: dos sesiones y pestañas, info ligada a selección, cambios concurrentes y confirmación incierta",
+        "tests\\browser\\creatures.spec.ts:101:3 › B16 Resistencia completa PLAY_VALUE 390 optimizar=false: activa/no activa, indicadora/mano/Mesa/Detalles",
+        "tests\\browser\\format2Presentation.spec.ts:148:1 › B15 frontera medida 1367/1368, equivalencia normal on/off, foco, parciales, resize y quinta",
+        "tests\\browser\\proxy.spec.ts:5:1 › T05 origen único: dos sesiones, polling/WebSocket, permisos, privacidad y recuperación",
+        "tests\\browser\\resultNotice.spec.ts:38:56 › INC-01 expired A → B automatic: accepted result, reload, controlled expiry and old reads",
+        "tests\\browser\\creatures.spec.ts:101:3 › B16 Resistencia completa DISPLAY_VALUE 1920 optimizar=true: activa/no activa, indicadora/mano/Mesa/Detalles",
+        "tests\\browser\\resultNotice.spec.ts:38:56 › INC-01 expired A → B ordinary: accepted result, reload, controlled expiry and old reads",
+        "tests\\browser\\creatures.spec.ts:101:3 › B16 Resistencia completa DISPLAY_VALUE 390 optimizar=true: activa/no activa, indicadora/mano/Mesa/Detalles",
+        "tests\\browser\\resultNotice.spec.ts:88:1 › INC-01 late A return failure/ack/home cannot change available B or trigger obsolete recovery",
+        "tests\\browser\\resultNotice.spec.ts:134:1 › INC-01 delayed HTTP recovery of expired A does not clear B after authorized socket recovery",
+        "tests\\browser\\solar.spec.ts:24:34 › B14 catálogo normal, cambio de baraja, portada y recuperación en dos sesiones a 390px",
+        "tests\\browser\\creatures.spec.ts:101:3 › B16 Resistencia completa DISPLAY_VALUE 360 optimizar=true: activa/no activa, indicadora/mano/Mesa/Detalles",
+        "tests\\browser\\solar.spec.ts:24:34 › B14 catálogo normal, cambio de baraja, portada y recuperación en dos sesiones a 1280px",
+        "tests\\browser\\solar.spec.ts:76:51 › B14 Encke/Borrelly HIGH: Dato/J, datos largos, privacidad, B13 y nueva genérica",
+        "tests\\browser\\creatures.spec.ts:101:3 › B16 Resistencia completa DISPLAY_VALUE 390 optimizar=false: activa/no activa, indicadora/mano/Mesa/Detalles",
+        "tests\\browser\\solar.spec.ts:76:51 › B14 Encke/Borrelly LOW: Dato/J, datos largos, privacidad, B13 y nueva genérica",
+        "tests\\browser\\solar.spec.ts:179:1 › B14 ejecución normal: Sistema Solar con humano y Fácil/Difícil hasta resultado, recarga y otra sala",
+        "tests\\browser\\creatures.spec.ts:134:1 › B16 observador/cinco, quinta por teclado, revisión, scrolls independientes y resize conservan foco y plazo",
+        "tests\\browser\\creatures.spec.ts:158:1 › B16 partida completa normal: humano y EASY/HARD, tres rondas finales, resultados/F5/otra sala"
+      ]
+    },
+    {
+      "log": "fonts.log",
+      "sha256": "c3c1ec9a5e1493a30a11a555dec731d2fceffa105a474ffd7ad882223def516e",
+      "passed": 1,
+      "failed": 0,
+      "tests": [
+        "playwright-report\\b16\\fonts.spec.ts:5:1 › B16 fuentes efectivas y normal 1368 on/off con Criaturas"
+      ]
+    }
+  ],
+  "instance": {
+    "base": "http://127.0.0.1:52388",
+    "pid": 14260,
+    "servedBuildMatches": true,
+    "serverStillAliveAtCheck": true,
+    "closedByHarness": true,
+    "externalAccess": false
+  },
+  "files": {
+    "newPackage": 61,
+    "sourceAppGitMatch": true,
+    "previousUnchanged": 63,
+    "certificates": 4,
+    "candidateManifestSHA256": "aec3a053c32a792aeb77b5b7f83c853c05b7b20e17399274665a61c03860bce0"
+  },
+  "verifier": {
+    "sha256": "2bb602b962513a4713133af2bddc345cae3cf1e850ad7561bd1d0f3b2ffcafdd",
+    "expectedSource": "Manifiesto final aprobado, SHA-256 b9a7510aca03864606f18df4597b5ca3398e03f1f1b1cb95cc86804f6f226f75; constantes independientes de bytes runtime",
+    "newHashEntries": 61,
+    "newImageEntries": 59,
+    "previousJSONHashes": 4,
+    "privateJSONs": 6,
+    "kept": [
+      "Node 24.19.0",
+      "linux/x64",
+      "uid no root",
+      "sharp real",
+      "EROFS read-only",
+      "ASSETS/PRODUCTO/TFM/MASTER/git/src/tests/deploy/env ausentes",
+      "HTTP 200/no-store/sin cookie",
+      "Solar /v4/"
+    ],
+    "executed": "Solo sintaxis y revisión/contraste estático de expectativas; Linux/CI pendiente"
+  },
+  "repairs": [
+    "Primer montaje sandbox: EPERM al crear enlace de dependencias; reejecución autorizada",
+    "Primer arranque/limpieza temporal: EBUSY; montaje posterior propio arrancó correctamente. No diagnóstico forense del bloqueo",
+    "Lint: usar globalThis.fetch/Buffer, sin silenciar reglas",
+    "8 fallos iniciales: observador instalado tras abrir socket; reload después del listener captura ack/eventos reales, 2/2 focal y 11/11 finales",
+    "Un intento de check no se ejecutó por cuota de revisión automática; usuario restableció límites y reintento autorizado pasó"
+  ],
+  "categories": {
+    "editorial": "Aprobación/activación del Gestor; originales certificados conservados",
+    "gestor": "Validación/galería históricas de su entrega, no pruebas de Implementación",
+    "normal": "Partida Criaturas 2 humano + EASY/HARD, SystemClock/TimerScheduler/CryptoCardPermutation, tres finales/45 puntos/F5/otra sala",
+    "controlled": "Resistencia/quinta/observador/frontera, bordes de revisión/retención y B13/T04; HTTP/Socket.IO reales",
+    "runtime": "Build y arranque aislados: guard efectivo ASSETS y PRODUCTO, sin modificar fuentes externas",
+    "human": "Pendiente del autor",
+    "physical": "No dispositivos físicos ni comprensión/equilibrio probados",
+    "linux": "No imagen/CI ejecutados; verificador conservado y actualizado"
+  },
+  "limits": [
+    "C09–C10 parciales",
+    "Retención de 30 minutos solo con tiempo controlado en regresión; no media hora real",
+    "Sin cambio de consumidor, UI, contratos, reglas, bots, barajas anteriores o fuentes generales",
+    "Sin publicación/despliegue ni operación VPS; servidores del autor preservados"
+  ]
+}
