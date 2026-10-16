@@ -1,5 +1,7 @@
 # SDD ligero para KARTA3
 
+**Siguiente incremento especificado — 16/10/2026:** [B16, incorporación de Criaturas Mágicas](BLOQUE_16_INCORPORACION_CRIATURAS_MAGICAS.md), con [prompt de Implementación](PROMPT_IMPLEMENTACION_BLOQUE_16.md), desde main `f75c2f8` en la carpeta única. Paquete aprobado/activado V2/contenido 2, 61 archivos, sin activación pendiente; reutiliza B15 y conserva genérica/Solar V2/contenido 4. Define copia exacta/origen-APP-Git, catálogo generado de tres sin selección inicial, verificador Linux actualizado y comprobaciones focales de uso/presentación/privacidad, incluida Resistencia sin abreviar. Especificación solamente: incorporación, pruebas y criterios B16 pendientes; aprobación/galería previas no acreditan integración. Cierres históricos conservados.
+
 **Estado:** organización acordada el 27/09/2026; primer incremento digital elegido y verificado localmente el 28/09/2026.  
 **Revisión del proceso:** 29/09/2026 — responsabilidades por capa y comprobación de dependencias en cada bloque.
 
