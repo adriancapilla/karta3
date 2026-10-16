@@ -60,7 +60,7 @@ jobs:
             exit 1
           fi
           if [ -n "$CHROME_DIAGNOSTIC" ]; then
-            npx playwright test --grep "$CHROME_DIAGNOSTIC" --reporter=list,json
+            npx playwright test --grep "$CHROME_DIAGNOSTIC" --trace retain-on-failure --reporter=list,json
           else
             npx playwright test --reporter=list,json
           fi

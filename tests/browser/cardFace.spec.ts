@@ -72,7 +72,7 @@ async function record(page: Page, name: string) {
 }
 
 for (const id of ['generica', 'sistema-solar', 'criaturas-magicas']) for (const mode of ['PLAY_VALUE', 'DISPLAY_VALUE'] as const) {
-  test(`B17 ${id} ${mode}: cara completa, encaje autorizado, datos, públicos y normal adaptada`, async ({ browser }) => {
+  test(`B17 ${id} ${mode}: cara completa, encaje autorizado, datos, públicos y normal adaptada`, async ({ browser }, testInfo) => {
     const s = await scene(id); const p = await manualTable(browser, s.base, { deckId: id, version: id === 'criaturas-magicas' ? 2 : 4, valueMode: mode, width: 1920, height: 1080, turn: 60, review: 5 });
     try {
       const view = await readGame(p.host); const guest = await readGame(p.pages[1]);
@@ -81,7 +81,16 @@ for (const id of ['generica', 'sistema-solar', 'criaturas-magicas']) for (const 
       if (id !== 'generica') await expect.poll(() => p.host.locator('.game-card-image img').evaluateAll(es => es.every(e => (e as HTMLImageElement).naturalWidth === 640))).toBe(true);
       for (const card of [view.game.round.indicator, ...view.game.hand]) {
         const slot = p.host.locator(`[data-card-id="${card.id}"]`); const face = slot.locator('article');
-        await expect.poll(() => geometry(face).then(g => g.gaps.every(gap => gap >= -0.01))).toBe(true);
+        try {
+          await expect.poll(() => geometry(face).then(g => g.gaps.every(gap => gap >= -0.01))).toBe(true);
+        } catch (error) {
+          console.log('B17_GEOMETRY_FAILURE', JSON.stringify({ name: card.name, geometry: await geometry(face),
+            rows: await face.evaluate(e => ({ heading: e.querySelector('.card-heading')!.getBoundingClientRect().toJSON(),
+              font: getComputedStyle(e.querySelector('h3')!).fontFamily,
+              rows: [...e.querySelectorAll('tbody tr')].map(row => ({ text: row.textContent, box: row.getBoundingClientRect().toJSON() })) })) }));
+          await p.host.screenshot({ path: testInfo.outputPath('B17-encaje-linux.png'), fullPage: true });
+          throw error;
+        }
         const g = await geometry(face);
         expect([g.card.width, g.card.height, g.image.width, g.image.height]).toEqual([230, 321, 230, 172.5]);
         expect(g.image.x).toBe(g.card.x); expect([g.button.width, g.button.height, g.right, g.bottom]).toEqual([44, 44, 5, 5]);
