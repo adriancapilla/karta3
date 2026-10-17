@@ -4,6 +4,7 @@ import path from 'node:path';
 import { createHash } from 'node:crypto';
 import { configurationBrowserServer } from '../support/configurationBrowserServer.js';
 import { humanPlay, manualTable, readGame } from '../support/manualBrowserCases.js';
+import { publicationDiagnostics } from '../support/publicationDiagnostics.js';
 
 // Capture the compiled base before editing CSS; expected content/styles are never regenerated at verification.
 const captureBase = process.env.B10_CAPTURE_BASE === '1';
@@ -93,6 +94,7 @@ async function record(page: Page, name: string, width: number, height: number) {
     for (const selector of ['.game-panel h2', '.game-card-image', '.card-values td', '.card-details-button']) {
       for (const key of ['fontFamily', 'fontSize', 'fontWeight']) expect(sample.styles[selector]?.[key]).toBe(base.styles[selector]?.[key]);
     }
+    if (sample.styles['.game-card h3']!.fontSize !== (width <= 760 ? '18px' : '16px')) await publicationDiagnostics(page, `B10-${width}-${name}`);
     expect(sample.styles['.game-card h3']!.fontSize).toBe(width <= 760 ? '18px' : '16px');
     if (width <= 760) {
       expect(sample.content['.game-shell header'].replace(/\s*Cancelar partida\s*$/, '')).toBe(base.content['.game-shell header']);

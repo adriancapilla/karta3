@@ -7,6 +7,7 @@ import { approvedInstalledDecks, approvedSolar } from '../support/approvedSolar.
 import { configurationBrowserServer } from '../support/configurationBrowserServer.js';
 import { humanPlay, manualTable, readGame, readRoom } from '../support/manualBrowserCases.js';
 import { assertGamePrivacy } from '../support/gamePrivacy.js';
+import { publicationDiagnostics } from '../support/publicationDiagnostics.js';
 
 const cancelled = 'Partida cancelada por el anfitrión';
 async function cancel(page: Page) {
@@ -130,6 +131,7 @@ for (const direction of ['HIGH', 'LOW'] as const) test(`B14 Encke/Borrelly ${dir
       values: [...card.querySelectorAll('td')].map((cell) => ({ text: cell.textContent, client: cell.clientWidth, scroll: cell.scrollWidth,
         clipped: getComputedStyle(cell).textOverflow === 'ellipsis' || getComputedStyle(cell).overflow === 'hidden' })) }));
     console.log('SOLAR_TEXT_MEASUREMENT', JSON.stringify(measures));
+    if (measures.jugableLines.some(lines => lines !== 1)) await publicationDiagnostics(p.pages[1], `Solar-${direction}-${width}`);
     expect(measures.tableFits).toBe(true);
     expect(measures.jugableLines).toEqual([1, 1, 1]);
     for (const cell of measures.values) { expect(cell.clipped).toBe(false); expect(cell.scroll).toBeLessThanOrEqual(cell.client + 1); }
