@@ -154,9 +154,13 @@ html:has(.game-shell){scrollbar-gutter:stable}
 .game-compact .consultation .card-heading h3{font-size:16px;line-height:normal}
 .game-compact .consultation .full-card .card-values th,.game-compact .consultation .full-card .card-values td{padding:6px 3px}
 /* B17: únicamente la cara completa; la minicarta compacta conserva su CSS/DOM. */
-.game-card.full-card{position:relative;padding-bottom:0;display:flex;flex-direction:column}
-.game-card.full-card>.card-play-surface,.game-card.full-card>div.card-face{display:flex;flex-direction:column;flex:1;min-height:0}
+.game-card.full-card{--card-title-base-size:18px;position:relative;padding-bottom:0;display:flex;flex-direction:column}
+.game-card.full-card>.card-play-surface,.game-card.full-card>div.card-face{display:flex;flex-direction:column;align-items:stretch;gap:0;flex:1;min-height:0}
 .game-card.full-card .card-heading{flex:none;min-height:0;margin-bottom:4px}
+.game-card.full-card .card-heading h3{font-size:var(--card-title-base-size);flex:1 1 0px;white-space:nowrap}
+.game-card.full-card .card-heading h3.title-clipped{overflow:hidden;text-overflow:clip}
+@media(min-width:761px){.game-card.full-card{--card-title-base-size:16px}}
+.game-compact .consultation .game-card.full-card{--card-title-base-size:16px}
 .game-card.full-card .game-card-image{position:relative;flex:none;display:block;width:calc(100% + 26px);margin:0 -13px;min-height:76px;line-height:0}
 .game-card.full-card .game-card-image img{display:block;width:100%;height:auto;max-width:none;object-fit:contain}
 .game-card.full-card .placeholder-card-image{aspect-ratio:4/3;display:flex;flex-direction:column;align-items:center;justify-content:center}

@@ -3,6 +3,7 @@ import type { CardView, InitialGameView } from '../shared/contracts/game';
 import type { RoomSettings } from '../shared/contracts/room';
 import type { DeckInformationView, DeckSummary } from '../shared/contracts/deck';
 import { DeckInformation } from './DeckInformation';
+import { useCardTitle } from './useCardTitle';
 
 export const cardDisplayValue = (value: CardView['values'][string]) => value.displayValue + (value.unit === '' ? '' : ` ${value.unit}`);
 
@@ -16,13 +17,18 @@ export function CardImage({ card, control }: { card: CardView; control?: ReactNo
   </div>;
 }
 
+function CardHeading({ name, ownName, ownIndex, compact }: { name: string; ownName: string; ownIndex: number; compact: boolean }) {
+  const heading = useCardTitle(name, compact);
+  return <div ref={heading} className="card-heading"><h3>{name}</h3><span className="card-round-attribute" role="img" aria-label={`Atributo indicador: ${ownName}`}>{['●', '▲', '■'][ownIndex]}</span></div>;
+}
+
 export function CardInformation({ card, attributes, activeAttributeId, details = false, valueMode = 'PLAY_VALUE', compact = false, detailsControl }: {
   card: CardView; attributes: InitialGameView['attributes']; activeAttributeId: string; details?: boolean; valueMode?: RoomSettings['attributeValueMode']; compact?: boolean; detailsControl?: ReactNode;
 }) {
   if (!details) {
     const ownAttribute = attributes.find((attribute) => attribute.id === card.roundAttribute)!;
     return <>
-      <div className="card-heading"><h3>{card.name}</h3><span className="card-round-attribute" role="img" aria-label={`Atributo indicador: ${ownAttribute.name}`}>{['●', '▲', '■'][attributes.indexOf(ownAttribute)]}</span></div>
+      <CardHeading name={card.name} ownName={ownAttribute.name} ownIndex={attributes.indexOf(ownAttribute)} compact={compact} />
       <CardImage key={`${card.id}:${card.imageUrl}`} card={card} control={detailsControl} />
       <table className="card-values" aria-label={valueMode === 'PLAY_VALUE' ? 'Valores 1-58' : 'Datos informativos'}><thead><tr><th scope="col">Atributo</th><th scope="col">{valueMode === 'PLAY_VALUE' ? '1-58' : 'Dato'}</th></tr></thead>
         <tbody>{attributes.map((attribute, index) => <tr key={attribute.id} className={attribute.id === activeAttributeId ? 'active-attribute' : undefined}>
@@ -80,7 +86,7 @@ export function GameCard({ card, attributes, activeAttributeId, onDetails, onCho
       setTightRows(Math.abs(cardElement.getBoundingClientRect().height - 321) < 0.5 && padding <= 6
         && needed > content.getBoundingClientRect().height + 0.05);
     });
-    for (const element of [cardElement, heading, picture]) observer.observe(element);
+    for (const element of [cardElement, heading, picture, table]) observer.observe(element);
     return () => observer.disconnect();
   }, [compact, card.id]);
   const detailsButton = <button ref={attachDetails} className={`secondary card-details-button${compact ? '' : ' card-details-overlay'}`} aria-label={`Detalles de ${card.name}`} title={compact ? undefined : 'Detalles'}

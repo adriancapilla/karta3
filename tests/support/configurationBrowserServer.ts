@@ -11,7 +11,7 @@ import { botTrace } from './botTrace.js';
 import type { TurnExpiredEvent } from '../../shared/contracts/game.js';
 
 /** Conexiones y paquetes reales, compilación actual; solamente el reloj es sustituido. */
-export async function configurationBrowserServer(single = false, initialGame = false, manual?: { count: number; winners?: readonly number[]; botSeed?: number }, presentation: { longText?: boolean; generic?: boolean; distinct?: boolean; solar?: boolean; creatures?: boolean; literal?: boolean } = {}) {
+export async function configurationBrowserServer(single = false, initialGame = false, manual?: { count: number; winners?: readonly number[]; botSeed?: number }, presentation: { longText?: boolean; generic?: boolean; distinct?: boolean; solar?: boolean; creatures?: boolean; literal?: boolean; longTitle?: boolean } = {}) {
   const { createRuntime } = await import('../../dist-server/server/composition/createApp.js');
   const { prepareDecks, loadPreparedDecks } = await import('../../dist-server/server/infrastructure/decks/catalog.js');
   const { attachPublicFiles } = await import('../../dist-server/server/infrastructure/http/publicFiles.js');
@@ -52,6 +52,8 @@ export async function configurationBrowserServer(single = false, initialGame = f
       card.values.atributo3.displayValue = index % 2 ? '1\u202F234' : '1  234'; card.values.atributo3.unit = 'km';
     }
   }
+  // Fixture independiente dentro del contrato (100 puntos de código); nunca modifica los paquetes APP.
+  if (presentation.longTitle) image.collection.cards[1].name = 'W'.repeat(100);
   const dir = await writeFixture(root, image); await fs.mkdir(path.join(dir, 'imagenes')); await fs.writeFile(path.join(dir, image.metadata.imageRef), await realImage('png'));
   if (!single) await writeFixture(root, deckFixture('sin-imagen', true, 1));
   await writeFixture(root, deckFixture('borrador', false, 2));

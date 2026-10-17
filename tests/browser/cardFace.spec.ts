@@ -3,6 +3,7 @@ import fs from 'node:fs/promises';
 import { configurationBrowserServer } from '../support/configurationBrowserServer.js';
 import { manualTable, humanPlay, readGame } from '../support/manualBrowserCases.js';
 import { assertGamePrivacy } from '../support/gamePrivacy.js';
+import { assertFittedTitle } from '../support/cardTitleGeometry.js';
 
 const literal = (value: { displayValue: string; unit: string }) => value.displayValue + (value.unit ? ` ${value.unit}` : '');
 const fullDetails = (page: Page) => page.locator('dialog.card-details-dialog:not(.consultation)');
@@ -42,7 +43,7 @@ async function geometry(card: Locator) {
       header: box(element.querySelector('thead')!), clip: getComputedStyle(element.querySelector('thead')!).clipPath,
       circle: element.querySelector('.attribute-circle') ? box(element.querySelector('.attribute-circle')!) : null,
       imageFit: img ? getComputedStyle(img).objectFit : null, natural: img ? [img.naturalWidth, img.naturalHeight] : null,
-      intact: [...element.querySelectorAll('tbody th, tbody td, h3')].every(e => e.scrollWidth <= e.clientWidth + 1 && getComputedStyle(e).textOverflow !== 'ellipsis'),
+      intact: [...element.querySelectorAll('tbody th, tbody td')].every(e => e.scrollWidth <= e.clientWidth + 1 && getComputedStyle(e).textOverflow !== 'ellipsis'),
     };
   });
 }
@@ -96,7 +97,7 @@ for (const id of ['generica', 'sistema-solar', 'criaturas-magicas']) for (const 
         expect(g.image.x).toBe(g.card.x); expect([g.button.width, g.button.height, g.right, g.bottom]).toEqual([44, 44, 5, 5]);
         expect(Math.abs(g.gaps[0] - g.gaps[1])).toBeLessThan(0.05); expect(g.borders).toEqual(['1px', '1px', '0px']);
         expect([g.circle!.width, g.circle!.height]).toEqual([12, 12]); expect(g.header.width).toBe(1); expect(g.clip).toBe('inset(50%)');
-        expect(g.intact).toBe(true); expect(g.nameFont).toBe('16px'); expect(g.valueFont).toBe('14px');
+        expect(g.intact).toBe(true); await assertFittedTitle(face, card.name); expect(g.valueFont).toBe('14px');
         // El ajuste es condicional al encaje, también con otras métricas de fuente del sistema.
         if (/67P|Tritón|Grifo/.test(card.name)) expect([6, 4.9]).toContain(g.padding);
         else expect(g.padding).toBe(6);
