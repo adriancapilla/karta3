@@ -48,7 +48,8 @@ export function useCardTitle(name: string, compact: boolean) {
       probe.textContent = ''; // No dejar un segundo nombre oculto entre mediciones.
     };
     fit();
-    const observer = new ResizeObserver(fit); observer.observe(band);
+    // La altura natural del icono puede variar con zoom aunque la caja escrita de la banda no cambie.
+    const observer = new ResizeObserver(fit); observer.observe(band); observer.observe(icon);
     window.addEventListener('resize', fit); window.visualViewport?.addEventListener('resize', fit);
     document.fonts.addEventListener('loading', fit); document.fonts.addEventListener('loadingdone', fit); document.fonts.addEventListener('loadingerror', fit);
     void document.fonts.ready.then(fit);
