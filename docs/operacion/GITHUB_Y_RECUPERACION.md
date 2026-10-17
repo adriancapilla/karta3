@@ -1,9 +1,35 @@
 # GitHub, comprobaciones y recuperación
 
-Actualizado: 16/10/2026. Repositorio existente: `E:\KARTA3\KARTA3_IA\APP\karta3`.
+Actualizado: 17/10/2026. Repositorio existente: `E:\KARTA3\KARTA3_IA\APP\karta3`.
 Versión de paquete: 0.1.0. Remoto privado: `https://github.com/adriancapilla/karta3.git`.
 
 ## Publicación conjunta B16+B17 — 16/10/2026
+
+### Estado vigente tras la adenda — 17/10/2026
+
+[PR #13](https://github.com/adriancapilla/karta3/pull/13) abierta y **sin integrar**. Adenda recibida limpia en8635b6a, conservando03d1e93 (preparación),346a063 (producto/pruebas) y8635b6a (cierre). La decisión vigente es la [adenda de títulos y encaje](../sdd/ADENDA_B17_TITULOS_Y_ENCAJE.md): título normal de una línea, mayor tamaño entre12 y base, corte visual solo si no cabe a12, nombre íntegro accesible/en Detalles y banda estable. No se aplicaron relleno4,4, crecimiento adaptado ni otros cambios de presentación. Las propuestas y prohibiciones históricas que siguen debajo se leen en su fecha, no sustituyen esta autorización.
+
+Publicación añade6269b22 exclusivamente para conservar `playwright-report/b17-adenda/acceptance/` en el artefacto de Chrome. Fuente comprobada de ambas puertas: **6269b222c13f5d3b4a5d717f38f4b38b47beb7ef**. Un trabajador/cero reintentos; imagen omitida deliberadamente en diagnóstico; presupuestos25/35 y20/30 intactos.
+
+| Evidencia Linux nueva | Resultado real |
+| --- | --- |
+| [Puerta cinco39055569083](https://github.com/adriancapilla/karta3/actions/runs/39055569083) | **5/5**,35,672807s, cero omitidos/flaky; cinco casos exactos, ambos modos de Criaturas y B08/B13/T04/INC-01. Check538/538 en43 archivos,71 módulos. |
+| [Puerta ampliada39055753981](https://github.com/adriancapilla/karta3/actions/runs/39055753981) | **17/19**,174,056039s; dos fallos nuevos, cero omitidos/flaky. Los cinco antiguos siguen correctos; seis escenas de tres barajas/dos modos y seis regresiones afectadas correctas. No acredita puerta19 ni CI completa. |
+| [Recogida de los dos fallos39056325353](https://github.com/adriancapilla/karta3/actions/runs/39056325353) | **0/2**,17,074524s, fallos reproducidos. Fuente **f04ba23899e562d387644e99302d2e231b5d7c94**: solo observación adicional antes del cierre; mismas aserciones/acciones/datos/producto. Check538/43/71 correcto. |
+
+Linux usa Chrome155.0.8059.84/Playwright1.63.0/Node24.19.0. CDP confirma **DejaVu Sans Bold** en título/atributos, DejaVu Sans en símbolo. Tritón ambos modos y Grifo individual:230×321, imagen230×172,5, banda21 y gaps **+3,75/+3,75**. Tritón aplica12/corte autorizado (186,359375px necesarios frente184,15625 disponibles), Grifo12,7. No trasladarles el déficit histórico ni el de la fixture nueva.
+
+**Fallo nuevo G:** fixture válida temporal `portada` v7, carta-2 con100 W. Título12/corte correcto y banda21; tabla127,34375 por Magnitud1/2/3 en dos líneas, relleno4,9; gaps0/**−17,84375**. Carta230×321/imagen230×172,5 conservadas. Falla antes de ejecutar la jugada: tras scroll, los tres puntos sondeados reciben BUTTON Jugar, deshabilitado por no ser su turno. No se presenta como clic real bloqueado ni como interacción aprobada. El defecto de contención sigue siendo real.
+
+**Fallo nuevo T:** prueba de fuente tardía interceptada solo en ensayo, DejaVuSansMono (`c805f9436dbc268644c1d9584f01a601a653e028e08fd74b9b949f6cf8304d88`). Tras cargar y medir correctamente zoomCSS1,25 y2, al volver a1 queda banda **20,5 frente21px de referencia**; falla la estabilidad, no el margen de tabla (gaps+4/+4). CDP conserva fuente efectiva y geometría final. No equivale a zoom nativo ni autoriza ampliar tolerancias o cambiar banda para ocultarlo. Ambos fallos tienen traza, capturas y JSON de fuente/cajas/receptores descargados.
+
+Artefactos: [12108998221](https://github.com/adriancapilla/karta3/actions/runs/39055753981/artifacts/12108998221), caduca24/10/2026 17:59:03UTC; [12109791649](https://github.com/adriancapilla/karta3/actions/runs/39056325353/artifacts/12109791649), caduca24/10/2026 18:04:07UTC. Copias locales completas, incluidos `acceptance/` y trazas, en `APP/verificacion-b16-b17-20261016/adenda-linux-19-39055753981` y `adenda-diagnostico-2-39056325353`; puerta5 conservada aparte. Los diagnósticos anteriores permanecen intactos.
+
+**Puerta detenida conforme al encargo:** no CI completa, squash, CI main ni candidato OCI final. Inventario actual **182 recorridos/22 archivos**, enumerado sin ejecutarlo; Windows538/71 y19/19 sigue siendo evidencia local histórica separada. No se han cambiado producto, pruebas para hacerlas pasar, reglas, barajas o dependencias durante publicación. Las124 huellas/blobs y certificados se volvieron a contrastar correctamente. Falta resolver G y T dentro de su contrato antes de repetir puertas y publicar la batería completa del HEAD definitivo.
+
+Main local7644ea8/remotof75c2f8, rama de publicación y commits originales conservados. Etiqueta original `archivo/2026-10-16/b16-b17-fuente-original` publicada; reserva4516d23 intacta. No etiqueta final/retirada de rama/sincronización destructiva. Clon anterior85d0c46 es evidencia histórica: no se repite instalación/check/arranque mientras falle esta puerta. No GHCR, VPS, mezcla de `chore/ghcr-diagnostico`, nuevas ramas/checkouts, operaciones de servidores ni cambios en TFM/Diseño/ASSETS/PRODUCTO. Revisión humana, zoom nativo/dispositivos físicos, C09–C10 y métricas mantienen sus pendientes.
+
+### Histórico anterior a la adenda correctiva
 
 **Actualización de ejecución,17/10:** [PR #13](https://github.com/adriancapilla/karta3/pull/13) abierta, todavía sin squash. Primera [CI completa38966067421](https://github.com/adriancapilla/karta3/actions/runs/38966067421), HEAD85d0c46: check538/538,43 archivos/70 módulos e imagen Linux/HTTPS correctos; Chrome25min termina tras **166 correctos,5 fallidos y3 sin resultado final de174**. No produjo JSON final; recuento de líneas del log y contextos/artefacto conservados. Dos fallos B17 Criaturas y tres escenarios antiguos B13/T04/B08. No se presenta como batería completa ni se amplía el presupuesto para ocultarlos.
 
