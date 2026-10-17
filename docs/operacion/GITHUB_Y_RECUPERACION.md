@@ -5,6 +5,25 @@ Versión de paquete: 0.1.0. Remoto privado: `https://github.com/adriancapilla/ka
 
 ## Publicación conjunta B16+B17 — 16/10/2026
 
+### Continuación G/T: puertas Linux superadas — 17/10/2026
+
+Fuente recibida limpia y publicada **4c7a4662e80abaf692fa4526f030e9324f564917**, conservando4a8565a (preparación),0591c0f (G),f5c2c78 (T autorizado) y4c7a466 (cierre Windows). [Adenda §10](../sdd/ADENDA_B17_TITULOS_Y_ENCAJE.md#10-continuación-g-y-reparación-t-autorizada--17102026). G mide necesidades y aplica colgroup nativo, común para filas/cartas compatibles; T observa el icono natural con el ResizeObserver existente. Sin reducción de padding, tolerancias, contenido o cambios de reglas/servidor/contratos. Los bloqueos anteriores de esta sección son históricos de otras fuentes, no fallos vigentes demostrados en esta continuación.
+
+| Puerta Linux nueva | Resultado real |
+| --- | --- |
+| [Cinco39067199113](https://github.com/adriancapilla/karta3/actions/runs/39067199113) | **5/5**,47,193527s; un trabajador, cero reintentos/omitidos/flaky. |
+| [Ampliada39067453242](https://github.com/adriancapilla/karta3/actions/runs/39067453242) | **29/29**,233,912664s; los19 anteriores íntegros y10 nuevos de `cardColumns.spec.ts`, mismos parámetros. |
+
+Ambas sobre4c7a466; check **538/538 en43 archivos y71 módulos**, instalación331 paquetes Linux/auditoría0 en la segunda puerta. Imagen omitida deliberadamente por filtro, no acreditada por estas puertas. [Artefacto12114181161](https://github.com/adriancapilla/karta3/actions/runs/39067453242/artifacts/12114181161), caduca24/10/2026 20:42:42UTC, descargado con49 archivos de acceptance, incluidos `continuacion-20261017/final-G/`. Reportes/logs/metadatos y medidas en `APP/verificacion-b16-b17-20261016/continuacion-linux-5-39067199113/`, `continuacion-linux-29-39067453242/` y `medidas-continuacion-linux-G.json`.
+
+G Linux: tres cartas/tres filas con columnas comunes por escena, ambos modos; atributo genérica99,8125, Solar97,28125, Criaturas114,5625, fixture113,578125 y control monospace110,734375px sobre tabla204. Los corpus auxiliares de58 valores de cada baraja/modo conservan datos íntegros sin excepción de reparto; solo ensayo, no información añadida a vistas cliente. Los diez casos registran control habilitado, receptor correcto, clic isTrusted y avance/jugada única. Fuentes efectivas CDP DejaVuSans-Bold y DejaVuSansMono de control, no inferidas de familia CSS. T recupera **banda21/referencia21** tras CSSzoom2→1 en las tres cartas; no equivale a zoom nativo. Tritón ambos modos y Grifo individual conservan títulos/imagen/tabla contenidos.124 archivos/blobs/versiones/certificados de nuevo coincidentes;61 archivos nuevos revisados con búsqueda acotada de credenciales sin coincidencias, no auditoría universal.
+
+La preparación final de publicación solo actualiza README y este registro. **Las puertas focales no equivalen a CI completa.** El HEAD definitivo debe ejecutarla manualmente con entrada `chrome_diagnostic` vacía, batería actual **192 recorridos en23 archivos**, check e imagen Linux/Compose/Caddy. Mantener presupuestos25/35 y20/30 salvo evidencia nueva que justifique ajuste, un trabajador/cero reintentos. Cierre real de CI fuente/main, integración, clon y candidato OCI en [PR #13](https://github.com/adriancapilla/karta3/pull/13); no crear commits solo para registrar el SHA integrado.
+
+Tras revisión/CI correctas: etiqueta anotada final `archivo/2026-10-16/b16-b17-publicacion` publicada/verificada antes de retirar la rama temporal, squash sin marca skip-ci, CI completa del integrado y clon de verificación existente reproducido/sincronizado. Main local7644ea8 se actualizará al squash solo con árbol equivalente y ambas fuentes originales archivadas; sin reset ni paso a producto antiguo. Preservar reserva4516d23, rama de diagnóstico excluida, carpetas y servidores. No GHCR/VPS/métricas/TFM/Diseño/ASSETS/PRODUCTO. El OCI de la primera CI global fallida no es candidato final: conservar el de la CI final correcta de main con commit, digest, artefacto y caducidad. Revisión humana, zoom nativo/dispositivos y C09–C10 mantienen sus pendientes.
+
+### Históricos de la primera adenda y sus bloqueos
+
 ### Estado vigente tras la adenda — 17/10/2026
 
 [PR #13](https://github.com/adriancapilla/karta3/pull/13) abierta y **sin integrar**. Adenda recibida limpia en8635b6a, conservando03d1e93 (preparación),346a063 (producto/pruebas) y8635b6a (cierre). La decisión vigente es la [adenda de títulos y encaje](../sdd/ADENDA_B17_TITULOS_Y_ENCAJE.md): título normal de una línea, mayor tamaño entre12 y base, corte visual solo si no cabe a12, nombre íntegro accesible/en Detalles y banda estable. No se aplicaron relleno4,4, crecimiento adaptado ni otros cambios de presentación. Las propuestas y prohibiciones históricas que siguen debajo se leen en su fecha, no sustituyen esta autorización.
