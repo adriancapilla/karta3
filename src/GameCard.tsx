@@ -22,15 +22,65 @@ function CardHeading({ name, ownName, ownIndex, compact }: { name: string; ownNa
   return <div ref={heading} className="card-heading"><h3>{name}</h3><span className="card-round-attribute" role="img" aria-label={`Atributo indicador: ${ownName}`}>{['●', '▲', '■'][ownIndex]}</span></div>;
 }
 
+/** Reserva lo que necesitan los tres atributos; los datos reciben el resto. Sin corpus oculto. */
+function useCardColumns(content: string, disabled: boolean) {
+  const ref = useRef<HTMLTableElement>(null);
+  useLayoutEffect(() => {
+    const table = ref.current;
+    if (disabled || !content || !table) return;
+    let disposed = false;
+    const fit = () => {
+      if (disposed) return;
+      const width = parseFloat(getComputedStyle(table).width);
+      const scale = table.getBoundingClientRect().width / width;
+      if (!(width > 0) || !(scale > 0)) return; // El observer medirá la consulta al abrirse.
+      const need = (cell: HTMLTableCellElement) => {
+        const probe = cell.cloneNode(true) as HTMLTableCellElement;
+        probe.setAttribute('aria-hidden', 'true');
+        Object.assign(probe.style, { position: 'fixed', visibility: 'hidden', display: 'inline-block', whiteSpace: 'pre',
+          width: 'max-content', minWidth: '0', maxWidth: 'none', margin: '0' });
+        cell.append(probe); const result = probe.getBoundingClientRect().width / scale; probe.remove();
+        return result;
+      };
+      const rows = [...table.tBodies[0].rows];
+      const attribute = Math.max(...rows.map(row => need(row.cells[0])));
+      const value = Math.max(...rows.map(row => need(row.cells[1])));
+      // Si ambas anchuras íntegras son compatibles, la columna depende solo de los atributos comunes.
+      // En un extremo incompatible se reparte proporcionalmente, conservando el wrapping y el contenido.
+      const column = attribute + value <= width ? attribute : width * attribute / (attribute + value);
+      const size = `${Math.ceil(column * 64) / 64}px`;
+      if (table.style.getPropertyValue('--card-attribute-width') !== size) table.style.setProperty('--card-attribute-width', size);
+    };
+    fit(); let previousWidth = 0;
+    const observer = new ResizeObserver(entries => {
+      const width = entries[0].contentRect.width;
+      if (width !== previousWidth) { previousWidth = width; fit(); }
+    });
+    observer.observe(table);
+    window.addEventListener('resize', fit);
+    document.fonts.addEventListener('loadingdone', fit); document.fonts.addEventListener('loadingerror', fit);
+    void document.fonts.ready.then(fit);
+    return () => {
+      disposed = true; observer.disconnect(); window.removeEventListener('resize', fit);
+      document.fonts.removeEventListener('loadingdone', fit); document.fonts.removeEventListener('loadingerror', fit);
+      table.style.removeProperty('--card-attribute-width');
+    };
+  }, [content, disabled]);
+  return ref;
+}
+
 export function CardInformation({ card, attributes, activeAttributeId, details = false, valueMode = 'PLAY_VALUE', compact = false, detailsControl }: {
   card: CardView; attributes: InitialGameView['attributes']; activeAttributeId: string; details?: boolean; valueMode?: RoomSettings['attributeValueMode']; compact?: boolean; detailsControl?: ReactNode;
 }) {
+  const columns = useCardColumns(JSON.stringify(attributes.map(a => [a.name, valueMode === 'PLAY_VALUE' ? card.values[a.id].playValue : cardDisplayValue(card.values[a.id])])), details || compact);
   if (!details) {
     const ownAttribute = attributes.find((attribute) => attribute.id === card.roundAttribute)!;
     return <>
       <CardHeading name={card.name} ownName={ownAttribute.name} ownIndex={attributes.indexOf(ownAttribute)} compact={compact} />
       <CardImage key={`${card.id}:${card.imageUrl}`} card={card} control={detailsControl} />
-      <table className="card-values" aria-label={valueMode === 'PLAY_VALUE' ? 'Valores 1-58' : 'Datos informativos'}><thead><tr><th scope="col">Atributo</th><th scope="col">{valueMode === 'PLAY_VALUE' ? '1-58' : 'Dato'}</th></tr></thead>
+      <table ref={columns} className="card-values" aria-label={valueMode === 'PLAY_VALUE' ? 'Valores 1-58' : 'Datos informativos'}>
+        {!compact && <colgroup><col /><col /></colgroup>}
+        <thead><tr><th scope="col">Atributo</th><th scope="col">{valueMode === 'PLAY_VALUE' ? '1-58' : 'Dato'}</th></tr></thead>
         <tbody>{attributes.map((attribute, index) => <tr key={attribute.id} className={attribute.id === activeAttributeId ? 'active-attribute' : undefined}>
           <th scope="row" aria-label={attribute.id === activeAttributeId ? `${attribute.name}, atributo activo` : attribute.name}><span aria-hidden="true">{!compact && index === 0 ? <svg className="attribute-circle" viewBox="0 0 12 12"><circle cx="6" cy="6" r="6" /></svg> : ['●', '▲', '■'][index]} </span>{attribute.name}{compact && attribute.id === activeAttributeId && <span className="active-mark" aria-hidden="true">◆</span>}</th>
           <td>{valueMode === 'PLAY_VALUE' ? card.values[attribute.id].playValue : cardDisplayValue(card.values[attribute.id])}</td>
