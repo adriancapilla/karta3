@@ -1,5 +1,7 @@
 # Continuación G/T — evidencia nueva del 17/10/2026
 
+**Actualización posterior de publicación B10/Solar:** autorización y cierre en [adenda §11](../../../ADENDA_B17_TITULOS_Y_ENCAJE.md#11-corrección-acotada-b10-y-solardato390--17102026). Producto8878462: Linux cuatro4/4 (39072288553,36,295611s) y ampliada38/38 (39072554983,293,431301s), worker1/retries0, con los29 anteriores. [Medidas antes/después](correccion-B10-Solar-medidas.json). Solo margen horizontal compartido de datos y actualización del criterio B10 vigente; referencias históricas/compacta intactas. Presupuesto Chrome30/trabajo35 por71c2025 con tiempos reales documentados. CI completa definitiva, integrado y clon se registran en PR #13; estos focales no los sustituyen. El texto siguiente es el cierre original de Implementación, con su estado Windows/Linux de aquella fecha.
+
 **Windows correcto; Linux focal y CI completa pendientes.** No sustituye la primera adenda, sus cierres, Linux5/5, Linux17/19 o el diagnóstico externo39056325353.
 
 ## Continuidad y fuentes

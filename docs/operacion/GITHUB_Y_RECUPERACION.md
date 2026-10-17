@@ -5,6 +5,25 @@ Versión de paquete: 0.1.0. Remoto privado: `https://github.com/adriancapilla/ka
 
 ## Publicación conjunta B16+B17 — 16/10/2026
 
+### Corrección autorizada B10/Solar: puertas focales correctas — 17/10/2026
+
+Preparación9615c0e y producto/pruebas **8878462859f51ff607ca1b2204473503f6bf6d88**; [adenda §11](../sdd/ADENDA_B17_TITULOS_Y_ENCAJE.md#11-corrección-acotada-b10-y-solardato390--17102026). B10 reemplaza únicamente el literal18 por el contrato vigente12→base/máximo/banda/nombre accesible/corte condicionado, contra vista autorizada; fixture congelada y demás criterios intactos. Padding horizontal compartido del dato normal2→1,953125px por lado, recuperación0,09375 ante déficit0,078125, sin excepciones de carta/baraja/OS. Miniatura, imagen, fuentes, parámetros dimensionales y124 archivos aprobados conservados. Sin cambio de reglas, contratos, dependencias o contenido.
+
+| Puerta nueva Linux, misma fuente8878462 | Resultado real |
+|---|---|
+| [Cuatro39072288553](https://github.com/adriancapilla/karta3/actions/runs/39072288553) | **4/4**,36,295611s. |
+| [Ampliada39072554983](https://github.com/adriancapilla/karta3/actions/runs/39072554983) | **38/38**,293,431301s, nueve archivos:29 G/T, siete B10 y ambos Solar. |
+
+Ambas: check538/538,43 archivos/71 módulos; worker1/retries0 y cero omitidos/flaky. Imagen omitida deliberadamente, no acreditada por las puertas. Solar LOW390: tabla194, columnas97,28125/96,71875, Diámetro91,28125 necesarios/útiles y317859 MKm92,796875 frente92,81249; una línea, textos íntegros y encaje. Normal adaptada reduce altura natural342→310 al desaparecer dos saltos, sin cambiar dimensiones CSS o imagen. B10 muestra16,3 máximo admisible/base18, banda29/ref29; no constante16,3. Los diez G acreditan clic habilitado/isTrusted/avance único; T vuelve a21/ref21. Sondeos geométricos no equivalen a clic. [Medidas versionadas](../sdd/evidencias/B17/continuacion-20261017/correccion-B10-Solar-medidas.json).
+
+Reportes/metadatos/logs/acceptance descargados en APP/verificacion-b16-b17-20261016/correccion-linux4-39072288553 y correccion-linux38-39072554983, artefactos12115871108/12115658682, caducan24/10/2026 21:48:22/21:56:34UTC. Comparación completa local medidas-correccion-B10-Solar.json; históricos sin borrar. Windows nuevo check538/43/71 y4/4 en24,573418s; primer intento aislado ENOENT en temporales Vitest conservado, ejecución fuera del aislamiento correcta. No evidencia Linux por equivalencia.
+
+**71c2025 amplía Chrome25→30min**, mantiene trabajo35 e imagen20/30: global previa24min30, margen30s; los38 casos comunes suman ahora288,835s frente192,278 (+96,557s), proyección orientativa26min04,23. No modificar pruebas, sus plazos, criterios, worker1/retries0 o tiempos del juego. Esa proyección no acredita CI ejecutada. La CI completa del HEAD documental definitivo debe despacharse con filtro vacío, **192 recorridos/23 archivos**, check e imagen Linux/Compose/Caddy; verificar sus resultados antes del squash.
+
+**Cierre y recuperación de esta entrega:** la referencia única de desarrollo al completar revisión, CI, squash y reproducción será `main` local/remoto sincronizado. Conservar fuente original en `archivo/2026-10-16/b16-b17-fuente-original`→7644ea8 y fuente final mediante etiqueta anotada `archivo/2026-10-16/b16-b17-publicacion`, publicada/verificada antes de retirar únicamente la rama temporal. Reserva4516d23 intacta; no mezclar chore/ghcr-diagnostico ni limpiar otras carpetas/ramas. Reutilizar el clon de verificación existente para instalación/check/arranque propios sin fuentes externas. El **HEAD final, SHA integrado, CI fuente/main, reproducción y candidato OCI** se registran en [PR #13](https://github.com/adriancapilla/karta3/pull/13), sin commits solo para anotar el SHA del squash. No declarar integración antes de ese cierre.
+
+Conservar el OCI de la CI final correcta de main: fuente, ejecución, artefacto, digest y caducidad; las imágenes de CI fallidas anteriores no son candidatos finales aprobados. No GHCR/VPS ni métricas. Revisión humana/física, zoom nativo y C09–C10 mantienen sus pendientes. Las secciones siguientes son evidencia histórica de otras fuentes y no sustituyen el cierre de ejecución actual de la PR.
+
 ### CI completa de la continuación: detenida en cuatro regresiones — 17/10/2026
 
 La [CI completa39068017172](https://github.com/adriancapilla/karta3/actions/runs/39068017172), fuente **5441cc4aa08fb2ec0824bcb59106a666743baf39**, ejecutó los192 casos: **188 correctos/4 fallidos**,1467,672087s (24min27,67s), un trabajador/cero reintentos/omitidos/flaky. Terminó con informe JSON; **no fue corte por presupuesto**. Check538/43/71 e imagenLinux/Compose/Caddy correctos, trabajo de imagen3min17s/HTTPS1 en4,5s. Presupuestos intactos25/35 y20/30; Chrome dejó unos32,33s de margen en este intento fallido, a reevaluar al completar los recorridos reparados.

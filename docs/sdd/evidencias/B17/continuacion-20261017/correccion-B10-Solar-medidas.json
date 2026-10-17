@@ -1,0 +1,255 @@
+{
+  "source": "8878462859f51ff607ca1b2204473503f6bf6d88",
+  "beforeRun": "39070117221",
+  "afterRun": "39072288553",
+  "b10": [
+    {
+      "profile": "360x800",
+      "name": "Carta de prueba 4",
+      "size": 16.3,
+      "base": 18,
+      "available": 165.984375,
+      "nextWidth": 166.84375,
+      "referenceBand": 29,
+      "band": 29,
+      "criteria": "assertFittedTitle sin modificación de tolerancias; nombre contra vista autorizada"
+    },
+    {
+      "profile": "390x844",
+      "name": "Carta de prueba 4",
+      "size": 16.3,
+      "base": 18,
+      "available": 165.984375,
+      "nextWidth": 166.84375,
+      "referenceBand": 29,
+      "band": 29,
+      "criteria": "assertFittedTitle sin modificación de tolerancias; nombre contra vista autorizada"
+    },
+    {
+      "profile": "760x800",
+      "name": "Carta de prueba 4",
+      "size": 16.3,
+      "base": 18,
+      "available": 165.984375,
+      "nextWidth": 166.84375,
+      "referenceBand": 29,
+      "band": 29,
+      "criteria": "assertFittedTitle sin modificación de tolerancias; nombre contra vista autorizada"
+    }
+  ],
+  "solar": {
+    "before": {
+      "card": {
+        "x": 2,
+        "y": 314.84375,
+        "width": 220,
+        "height": 342,
+        "right": 222,
+        "bottom": 656.84375
+      },
+      "image": {
+        "x": 2,
+        "y": 360.84375,
+        "width": 220,
+        "height": 165,
+        "right": 222,
+        "bottom": 525.84375
+      },
+      "table": {
+        "x": 15,
+        "y": 525.84375,
+        "width": 194,
+        "height": 130,
+        "bottom": 655.84375
+      },
+      "rows": [
+        {
+          "attribute": " Vel",
+          "value": "87.79 km/s",
+          "widths": [
+            97.25,
+            96.75
+          ],
+          "attributeNeed": 41.25,
+          "attributeUseful": 91.25,
+          "valueNeed": 78.296875,
+          "valueUseful": 92.75,
+          "valuePadding": [
+            2,
+            2
+          ],
+          "valueLineTops": [
+            533.84375
+          ]
+        },
+        {
+          "attribute": "▲ Dist",
+          "value": "317859 MKm",
+          "widths": [
+            97.25,
+            96.75
+          ],
+          "attributeNeed": 47.109375,
+          "attributeUseful": 91.25,
+          "valueNeed": 92.796875,
+          "valueUseful": 92.75,
+          "valuePadding": [
+            2,
+            2
+          ],
+          "valueLineTops": [
+            566.84375,
+            582.84375
+          ]
+        },
+        {
+          "attribute": "■ Diámetro",
+          "value": "4.2 km",
+          "widths": [
+            97.25,
+            96.75
+          ],
+          "attributeNeed": 91.28125,
+          "attributeUseful": 91.25,
+          "valueNeed": 48.46875,
+          "valueUseful": 92.75,
+          "valuePadding": [
+            2,
+            2
+          ],
+          "valueLineTops": [
+            623.84375
+          ]
+        }
+      ]
+    },
+    "after": {
+      "card": {
+        "x": 2,
+        "y": 346.84375,
+        "width": 220,
+        "height": 310,
+        "right": 222,
+        "bottom": 656.84375
+      },
+      "image": {
+        "x": 2,
+        "y": 392.84375,
+        "width": 220,
+        "height": 165,
+        "right": 222,
+        "bottom": 557.84375
+      },
+      "table": {
+        "x": 15,
+        "y": 557.84375,
+        "width": 194,
+        "height": 98,
+        "bottom": 655.84375
+      },
+      "rows": [
+        {
+          "attribute": " Vel",
+          "value": "87.79 km/s",
+          "widths": [
+            97.28125,
+            96.71875
+          ],
+          "attributeNeed": 41.25,
+          "attributeUseful": 91.28125,
+          "valueNeed": 78.296875,
+          "valueUseful": 92.81249,
+          "valuePadding": [
+            1.95313,
+            1.95313
+          ],
+          "valueLineTops": [
+            565.84375
+          ]
+        },
+        {
+          "attribute": "▲ Dist",
+          "value": "317859 MKm",
+          "widths": [
+            97.28125,
+            96.71875
+          ],
+          "attributeNeed": 47.109375,
+          "attributeUseful": 91.28125,
+          "valueNeed": 92.796875,
+          "valueUseful": 92.81249,
+          "valuePadding": [
+            1.95313,
+            1.95313
+          ],
+          "valueLineTops": [
+            598.84375
+          ]
+        },
+        {
+          "attribute": "■ Diámetro",
+          "value": "4.2 km",
+          "widths": [
+            97.28125,
+            96.71875
+          ],
+          "attributeNeed": 91.28125,
+          "attributeUseful": 91.28125,
+          "valueNeed": 48.46875,
+          "valueUseful": 92.81249,
+          "valuePadding": [
+            1.95313,
+            1.95313
+          ],
+          "valueLineTops": [
+            631.84375
+          ]
+        }
+      ],
+      "fonts": {
+        "title": {
+          "fonts": [
+            {
+              "familyName": "DejaVu Sans",
+              "postScriptName": "DejaVuSans-Bold",
+              "isCustomFont": false,
+              "glyphCount": 9
+            }
+          ]
+        },
+        "lastAttribute": {
+          "fonts": [
+            {
+              "familyName": "DejaVu Sans",
+              "postScriptName": "DejaVuSans-Bold",
+              "isCustomFont": false,
+              "glyphCount": 10
+            }
+          ]
+        },
+        "ownSymbol": {
+          "fonts": [
+            {
+              "familyName": "DejaVu Sans",
+              "postScriptName": "DejaVuSans",
+              "isCustomFont": false,
+              "glyphCount": 1
+            }
+          ]
+        }
+      },
+      "valueFonts": {
+        "fonts": [
+          {
+            "familyName": "DejaVu Sans",
+            "postScriptName": "DejaVuSans",
+            "isCustomFont": false,
+            "glyphCount": 10
+          }
+        ]
+      }
+    }
+  },
+  "dimensions": "Reglas dimensionales e imagen intactas. En normal adaptada, altura natural342→310 al desaparecer dos saltos; no se aumenta o fija altura.",
+  "actions": "El sondeo Hyakutake no es un clic. El recorrido completo acredita jugadas humanas legales Encke/Borrelly y revisión; los clics específicos G se comprueban en la puerta38."
+}

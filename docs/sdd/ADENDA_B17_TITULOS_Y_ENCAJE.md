@@ -258,7 +258,7 @@ Reportes/trazas/medidas en `playwright-report/b17-adenda/acceptance/continuacion
 
 **Autorización expresa posterior del autor:** sustituir la exigencia histórica B10 de18px por las garantías vigentes de título normal12→base, máximo que cabe, banda estable y nombre completo accesible, con corte solo cuando no cabe a12; conservar miniatura y demás aserciones. Además, permite un ajuste mínimo y compartido de padding horizontal de la cara normal para recuperar el déficit conjunto Solar de0,078125px. No autoriza otra geometría, reducción de fuente, saltos aceptados, contenido nuevo o tolerancias mayores. Misma carpeta/rama y escritor único; sin nuevos checkouts.
 
-### Evidencia anterior y cambio propuesto
+### Evidencia anterior y cambio acotado
 
 Se conservan [CI39068017172](https://github.com/adriancapilla/karta3/actions/runs/39068017172),188/192, y [diagnóstico39070117221](https://github.com/adriancapilla/karta3/actions/runs/39070117221),0/4, con sus trazas/JSON. Son resultados de otro HEAD, no se reclasifican como aprobados. B10 falla por igualdad literal18 en tres perfiles; Carta de prueba4 mide16,3, disponible165,984375 y siguiente paso16,4 necesita166,84375: no convertir16,3 en constante universal.
 
@@ -273,3 +273,22 @@ B10 conserva la fixture congelada y sus hashes, geometría, cabecera, fuentes aj
 Primero los cuatro casos Linux fallidos exactos; si pasan, regresiones afectadas: los29 G/T, siete perfiles B10 base/comparison y ambos Solar HIGH/LOW, sin duplicar los cuatro ya incluidos. Un trabajador/cero reintentos. Recoger medidas antes/después, fuentes, textos, encaje y acciones genuinas; sondeos geométricos no equivalen a clic. Solo después CI completa del HEAD final sin filtro, imagen Linux y revisión/squash/CI main/clon del procedimiento operativo.
 
 Las medidas nuevas de B10 se conservan en `acceptance/correccion-B10-Solar/` y las de Solar en `acceptance/publicacion-192-20261017/`, dentro de artefactos separados por ejecución, preservando los anteriores. Los124 archivos/certificados/versiones y las referencias originales/reserva permanecen intactos. Si el margen requiere algo mayor, detener y comunicar antes de ampliar alcance. Resultados reales y cierre se añadirán al registro de ejecución/PR; ninguna publicación GHCR/VPS ni métricas.
+
+### Verificación nueva de la corrección
+
+Preparación **9615c0e**, producto/pruebas **8878462859f51ff607ca1b2204473503f6bf6d88**. [Medidas comparadas seguras](evidencias/B17/continuacion-20261017/correccion-B10-Solar-medidas.json); material bruto, reportes y metadatos descargados fuera deGit en APP/verificacion-b16-b17-20261016. No se necesitó ampliar el cambio visual autorizado.
+
+| Puerta nueva | Resultado real |
+|---|---|
+| Windows check | **538/538**,43 archivos/71 módulos. Primer intento aislado falló por lectura ENOENT de temporales Vitest; log conservado y ejecución fuera de ese aislamiento correcta. |
+| Windows cuatro pertinentes | **4/4**,24,573418s; no sustituye Linux. |
+| [Linux cuatro39072288553](https://github.com/adriancapilla/karta3/actions/runs/39072288553) | **4/4**,36,295611s, un trabajador/cero reintentos/omitidos/flaky; check538/43/71. |
+| [Linux ampliada39072554983](https://github.com/adriancapilla/karta3/actions/runs/39072554983) | **38/38**,293,431301s, nueve archivos, mismos controles; check538/43/71. Incluye los29 G/T, siete perfiles B10 y ambos Solar. Imagen omitida deliberadamente en ambas puertas. |
+
+Linux Solar LOW390: tabla194, columnas comunes97,28125/96,71875; atributoDiámetro91,28125 necesarios/útiles, dato317859 MKm92,796875 necesarios/92,81249 útiles (padding calculado redondeado a1,95313). Una línea para ambos, textos completos, imagen/ancho conservados y tabla contenida. La altura **natural adaptada** baja342→310 al desaparecer dos saltos; no se cambian parámetros dimensionales ni la referencia PC230×321. Fuentes CDP DejaVuSans-Bold/DejaVuSans. Las jugadas legales Encke/Borrelly completan revisión/privacidad/cancelación/nueva sala; el sondeo Hyakutake sigue identificado como sondeo, sin atribuirle clic. Los diez G de la puerta38 acreditan botón habilitado, clic genuino y avance/jugada únicos.
+
+B10 muestra Carta de prueba4 a16,3/base18 en los tres perfiles fallidos, siguiente16,4 necesita166,84375 frente165,984375 disponibles; banda29/referencia29 y nombre íntegro contra vista. Los siete perfiles conservan geometría y demás criterios. T, ambos modos, compacta, Tritón/Grifo y corpus comunes quedan cubiertos por los29 conservados. No fixtures, tolerancias o acciones forzadas para aprobar.
+
+Artefactos [12115871108](https://github.com/adriancapilla/karta3/actions/runs/39072288553/artifacts/12115871108), caduca24/10/2026 21:48:22UTC, y [12115658682](https://github.com/adriancapilla/karta3/actions/runs/39072554983/artifacts/12115658682), caduca24/10/2026 21:56:34UTC, descargados con acceptance. Los anteriores permanecen separados.
+
+Presupuesto de CI: la global previa duró24min30s en el paso Chrome con cuatro fallos, margen30s. En los38 casos comunes, tiempos individuales nuevos288,835s frente192,278s anteriores: +96,557s; proyección orientativa26min04,23s del conjunto, no prueba ejecutada ni atribución causal exclusiva al CSS. **71c2025** amplía únicamente el paso Chrome25→30min; trabajo35 e imagen20/30 conservados, worker1/retries0, mismos casos/criterios. No altera timeout de pruebas ni tiempos del juego. CI completa definitiva sin filtro, integración y reproducción del integrado se registran en la PR conforme al procedimiento; estas puertas no los sustituyen.
