@@ -1,0 +1,41 @@
+import {test,expect} from '@playwright/test';
+import {titleGeometry,glyphFonts,assertFittedTitle,assertWholeFace} from '../../tests/support/cardTitleGeometry.js';
+import fs from 'node:fs/promises';
+import {configurationBrowserServer} from '../../tests/support/configurationBrowserServer.js';
+import {manualTable,readGame,humanPlay} from '../../tests/support/manualBrowserCases.js';
+const phase=process.env.B17_PHASE??'before';
+const output='playwright-report/b17-adenda/'+phase;
+async function measure(page){return page.evaluate(()=>{
+ const rect=e=>{const r=e.getBoundingClientRect();return{x:r.x,y:r.y+scrollY,width:r.width,height:r.height,right:r.right,bottom:r.bottom+scrollY};};
+ const cards=[...document.querySelectorAll('.game-card')].filter(e=>e.getBoundingClientRect().width).map(e=>{const surface=e.querySelector('.card-play-surface')??e.querySelector(':scope>div');const heading=e.querySelector('.card-heading'),image=e.querySelector('.game-card-image'),table=e.querySelector('table'),button=e.querySelector('.card-details-button');return{cardId:e.closest('[data-card-id]').dataset.cardId,name:e.querySelector('h3').textContent,card:rect(e),surface:rect(surface),heading:rect(heading),image:rect(image),img:image.querySelector('img')?{box:rect(image.querySelector('img')),naturalWidth:image.querySelector('img').naturalWidth,naturalHeight:image.querySelector('img').naturalHeight}:null,table:rect(table),button:rect(button),buttonText:button.textContent,nameFont:getComputedStyle(e.querySelector('h3')).fontSize,valueFont:getComputedStyle(e.querySelector('td')).fontSize,rows:[...e.querySelectorAll('tbody tr')].map(r=>({box:rect(r),text:r.textContent,border:getComputedStyle(r.querySelector('th')).borderBottomWidth})),topGap:table.getBoundingClientRect().top-image.getBoundingClientRect().bottom,bottomGap:e.getBoundingClientRect().bottom-table.getBoundingClientRect().bottom};});
+ const comp=document.querySelector('.game-composition');const dialog=document.querySelector('dialog.card-details-dialog:not(.consultation)');
+ return{viewport:{width:innerWidth,height:innerHeight,dpr:devicePixelRatio,scale:visualViewport?.scale},useful:comp.dataset.usefulWidth,layout:comp.dataset.layout,font:getComputedStyle(comp).fontFamily,pageHeight:document.documentElement.scrollHeight,cards,details:dialog?{box:rect(dialog),image:dialog.querySelector('img')?rect(dialog.querySelector('img')):null,innerWidth:dialog.clientWidth-parseFloat(getComputedStyle(dialog).paddingLeft)-parseFloat(getComputedStyle(dialog).paddingRight)}:null};
+ });}
+async function save(page,name){await expect.poll(()=>page.locator('.game-card-image img').evaluateAll(es=>es.every(e=>e.complete&&e.naturalWidth>0))).toBe(true);const cdp=await page.context().newCDPSession(page);await cdp.send('DOM.enable');await cdp.send('CSS.enable');const doc=await cdp.send('DOM.getDocument');const node=await cdp.send('DOM.querySelector',{nodeId:doc.root.nodeId,selector:'.game-hand h3'});const fonts=await cdp.send('CSS.getPlatformFontsForNode',{nodeId:node.nodeId});await cdp.detach();await fs.mkdir(output,{recursive:true});await page.evaluate(()=>scrollTo(0,0));const extra=[];for(const slot of await page.locator('.game-hand [data-card-id]').all()){const id=await slot.getAttribute('data-card-id');extra.push({geometry:await titleGeometry(slot.locator('article')),fonts:await glyphFonts(page,'.game-hand [data-card-id='+JSON.stringify(id)+']')});}await fs.writeFile(output+'/'+name+'-titles.json',JSON.stringify(extra,null,2)+'\n');await fs.writeFile(output+'/'+name+'.json',JSON.stringify({...await measure(page),fonts,date:new Date().toISOString(),browser:page.context().browser().version()},null,2)+'\n');await page.screenshot({path:output+'/'+name+'-full.png',fullPage:true});for(const card of await page.locator('.game-hand .game-card').all()){const id=await card.locator('..').getAttribute('data-card-id');await card.screenshot({path:output+'/'+name+'-'+id+'.png'});}}
+for(const id of ['generica','sistema-solar','criaturas-magicas'])for(const width of[1320,1920])test(`B17 ${phase} ${id} ${width}`,async({browser})=>{
+ const s=await configurationBrowserServer(true,true,undefined,{generic:true,solar:true,creatures:true});const c=JSON.parse(await fs.readFile('barajas/'+id+'/cartas.json','utf8')).cards;
+ const desired=id==='criaturas-magicas'?['Espíritu del arcoíris','Tritón de las profundidades','Grifo de plumas de hierro']:id==='sistema-solar'?['67P / Churyumov-Gerasimenko','Hyakutake','Encke']:c.slice(0,3).map(x=>x.name);
+ const hand=desired.map(name=>c.find(x=>x.name===name)?.id);expect(hand.every(Boolean)).toBe(true);const indicator=c.find(x=>x.roundAttribute==='atributo1'&&!hand.includes(x.id)).id;
+ s.permutation(ids=>{const rest=ids.filter(x=>!hand.includes(x)&&x!==indicator);const prefix=[rest.shift(),hand[0],rest.shift(),hand[1],rest.shift(),hand[2],indicator];return[...prefix,...rest];});
+ const p=await manualTable(browser,s.base,{deckId:id,version:id==='criaturas-magicas'?2:4,width,height:width===1320?850:1080,turn:60,review:5});
+ try{await expect.poll(()=>p.host.locator('.game-composition').getAttribute('data-useful-width')).not.toBe('');await save(p.host,id+'-'+width);const first=p.host.locator('.game-hand .card-details-button').first();await first.click();await save(p.host,id+'-'+width+'-details');await p.host.getByRole('button',{name:'Cerrar detalles',exact:true}).press('Escape');await humanPlay(p,false,'HIGH');await humanPlay(p);await save(p.host,id+'-'+width+'-public');}finally{await p.close();await s.stop();}
+});
+for(const width of[390,360])test(`B17 ${phase} compacta ${width}`,async({browser})=>{
+ const s=await configurationBrowserServer(true,true,undefined,{creatures:true});const p=await manualTable(browser,s.base,{deckId:'criaturas-magicas',version:2,width,height:width===390?844:800,optimize:true,turn:60,review:5});
+ try{await expect.poll(()=>p.host.locator('.game-composition').getAttribute('data-layout')).toBe('compact');await save(p.host,'compacta-'+width);await p.host.locator('.game-hand .card-details-button').first().click();await save(p.host,'compacta-'+width+'-details');}finally{await p.close();await s.stop();}
+});
+
+test('ADENDA medida final consulta completa 390',async({browser})=>{
+ const s=await configurationBrowserServer(true,true,undefined,{creatures:true});
+ const c=JSON.parse(await fs.readFile('barajas/criaturas-magicas/cartas.json','utf8')).cards;const indicator=c.find(x=>x.name==='Tritón de las profundidades').id;
+ s.permutation(ids=>{const rest=ids.filter(x=>x!==indicator);return[...rest.splice(0,6),indicator,...rest];});
+ const p=await manualTable(browser,s.base,{deckId:'criaturas-magicas',version:2,width:390,height:844,optimize:true,valueMode:'DISPLAY_VALUE',turn:60});
+ try{
+  const before=await readGame(p.host);await p.host.locator('.summary-indicator').click();const face=p.host.locator('.consultation article');
+  const geometry=await assertFittedTitle(face,'Tritón de las profundidades');assertWholeFace(geometry);
+  const fonts=await glyphFonts(p.host,'.consultation article');const folder='playwright-report/b17-adenda/acceptance';
+  await fs.writeFile(folder+'/consulta-completa-390.json',JSON.stringify({geometry,fonts,browser:p.host.context().browser().version()},null,2)+'\n');
+  await p.host.screenshot({path:folder+'/consulta-completa-390.png',fullPage:true});
+  expect((await readGame(p.host)).game.interaction.turn).toEqual(before.game.interaction.turn);expect(s.gameRequests).toHaveLength(0);
+ }finally{await p.close();await s.stop();}
+});

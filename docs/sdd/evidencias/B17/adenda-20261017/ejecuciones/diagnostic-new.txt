@@ -1,0 +1,37 @@
+
+Running 2 tests using 1 worker
+
+(node:23444) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  1 tests\browser\cardTitleFit.spec.ts:29:131 › ADENDA B17 T/G/C generica PLAY_VALUE: máximo, banda, contenido y Resistencia (5.9s)
+(node:13988) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 2 tests\browser\cardTitleFit.spec.ts:88:1 › ADENDA B17 T/G fuentes tardías y zoom CSS125/200 declarado: recalcula sin pausar ni neutralizar fuente (7.6s)
+
+
+  1) tests\browser\cardTitleFit.spec.ts:29:131 › ADENDA B17 T/G/C generica PLAY_VALUE: máximo, banda, contenido y Resistencia
+
+    Error: {"name":"Carta 06","title":{"x":55,"y":260,"width":63.078125,"height":21,"right":118.078125,"bottom":281},"heading":{"x":55,"y":260,"width":84.59375,"height":29,"right":139.59375,"bottom":289},"icon":{"x":124.078125,"y":260,"width":15.515625,"height":24,"right":139.59375,"bottom":284},"size":16,"base":16,"min":12,"available":63.078125,"baseWidth":63.078125,"minWidth":47.3125,"nextWidth":63.078125,"referenceBand":29,"textRects":[{"x":55,"y":260,"width":63.078125,"height":21,"right":118.078125,"bottom":281}],"family":"Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif","weight":"700","lineHeight":"normal","letterSpacing":"normal","gap":6,"titleMargins":0,"iconMargins":0,"whiteSpace":"nowrap","overflow":"visible","textOverflow":"clip","card":{"x":42,"y":247,"width":230,"height":321,"right":272,"bottom":568},"image":{"x":42,"y":297,"width":230,"height":172.5,"right":272,"bottom":469.5},"table":{"x":55,"y":473.5,"width":204,"height":95,"right":259,"bottom":568.5},"gaps":[4,-1.5],"rows":[{"text":" Círculo13","box":{"x":55,"y":473.5,"width":204,"height":31.5,"right":259,"bottom":505},"content":[{"top":479.5,"bottom":498.5,"height":19},{"top":479.5,"bottom":498.5,"height":19},{"top":479.5,"bottom":498.5,"height":19},{"top":479.5,"bottom":498.5,"height":19}]},{"text":"▲ Triángulo20","box":{"x":55,"y":505,"width":204,"height":32,"right":259,"bottom":537},"content":[{"top":511.5,"bottom":530.5,"height":19},{"top":511.5,"bottom":530.5,"height":19},{"top":511.5,"bottom":530.5,"height":19},{"top":511.5,"bottom":530.5,"height":19},{"top":511.5,"bottom":530.5,"height":19},{"top":511.5,"bottom":530.5,"height":19}]},{"text":"■ Cuadrado8","box":{"x":55,"y":537,"width":204,"height":31.5,"right":259,"bottom":568.5},"content":[{"top":543.5,"bottom":562.5,"height":19},{"top":543.5,"bottom":562.5,"height":19},{"top":543.5,"bottom":562.5,"height":19},{"top":543.5,"bottom":562.5,"height":19},{"top":543.5,"bottom":562.5,"height":19},{"top":543.5,"bottom":562.5,"height":19}]}],"padding":"6px","d":{"box":{"x":223,"y":420.5,"width":44,"height":44,"right":267,"bottom":464.5},"received":true,"tag":"SPAN","className":null},"play":null,"useful":"343","viewport":{"width":390,"height":844,"dpr":1,"scale":1,"cssZoom":"1"}}
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+       at ..\support\cardTitleGeometry.ts:84
+
+      82 |
+      83 | export function assertWholeFace(g: Awaited<ReturnType<typeof titleGeometry>>) {
+    > 84 |   expect(g.gaps.every(gap => gap >= -0.02), JSON.stringify(g)).toBe(true);
+         |                                                                ^
+      85 |   expect(Math.abs(g.gaps[0] - g.gaps[1])).toBeLessThan(0.06);
+      86 |   for (const row of g.rows) {
+      87 |     expect(row.box.y).toBeGreaterThanOrEqual(g.card.y);
+        at assertWholeFace (E:\KARTA3\KARTA3_IA\APP\karta3\tests\support\cardTitleGeometry.ts:84:64)
+        at E:\KARTA3\KARTA3_IA\APP\karta3\tests\browser\cardTitleFit.spec.ts:54:160
+
+    Error Context: test-results\cardTitleFit-ADENDA-B17-T--448f3-nda-contenido-y-Resistencia\error-context.md
+
+  1 failed
+    tests\browser\cardTitleFit.spec.ts:29:131 › ADENDA B17 T/G/C generica PLAY_VALUE: máximo, banda, contenido y Resistencia
+  1 passed (15.7s)

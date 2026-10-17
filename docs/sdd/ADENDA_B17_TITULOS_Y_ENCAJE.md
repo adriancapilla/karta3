@@ -2,6 +2,8 @@
 
 **Fecha:** 17/10/2026. **Estado:** alcance correctivo de B17 acordado; pendiente de implementar/verificar. No abre un bloque funcional nuevo. El autor aprueba **12 px CSS como mínimo del título normal y corte visual si aún no cabe en una línea**, conservando el nombre íntegro para accesibilidad y en Detalles.
 
+**Actualización posterior del 17/10:** implementación y comprobación Windows registradas en [§8](#8-implementación-y-comprobación-local--17102026); Linux/CI completa y revisión humana pendientes. El estado y diagnóstico de preparación siguientes se conservan como históricos.
+
 **Continuidad comprobada:** carpeta única `E:\KARTA3\KARTA3_IA\APP\karta3`, rama `chore/publicacion-b16-b17`, HEAD `f1d8d2416168b88d9f1503efd9ccab54a516ebc5`, árbol inicialmente limpio. PR #13 abierta y sin integrar según el registro recibido. Conservar commits, etiquetas, reservas, diagnósticos y cierres anteriores; no crear rama/checkout ni volver a otra versión.
 
 ## 1. Fuentes, diagnóstico y alcance de la autorización
@@ -113,3 +115,49 @@ Preservar commits/cierres/datos Windows del 16/10 y diagnósticos Linux del 17/1
 Conclusiones para autor/Coordinación/Arquitectura: autorización excepcional **solo del título normal**, mínimo 12 y corte visual condicionado con nombre íntegro accesible/en Detalles; banda por perfil/fuentes, encaje/interacción realmente demostrados y variantes aún bloqueadas, hashes conservados y puerta focal→CI completa. Registrar por separado la intención futura de limitar editorialmente nombres, sin dar por modificado el contrato actual. Actualizar README/descripción APP/cierre de adenda según lo real; trasladar después la descripción a Aplicación §§7.2/7.5–7.7 por sus responsables, sin editarlas aquí. No tratar la familia CSS como fuente efectiva o la imagen de una carta como prueba de todas.
 
 **Estado de preparación:** fuentes, código/pruebas y trazas/medidas existentes consultados; mínimo y corte resueltos expresamente por el autor. No se ejecutó producto, no se aplicó el parche propuesto ni se modificaron paquetes/código/workflows. No queda una decisión funcional pendiente para esta política de título; implementación/verificación y coordinación de escritura de §7 siguen pendientes. [Prompt de Implementación](PROMPT_IMPLEMENTACION_ADENDA_B17.md).
+
+## 8. Implementación y comprobación local — 17/10/2026
+
+**Estado actual:** corrección implementada y comprobada técnicamente en Windows. **No verificada globalmente: Linux, CI completa del HEAD final y aprobación visual humana pendientes.** La preparación y las casillas de §6 describen su estado anterior, conservado; no se convierten en resultados por esta implementación.
+
+### Base y cambio revisado
+
+- Base efectiva `f1d8d2416168b88d9f1503efd9ccab54a516ebc5`, rama `chore/publicacion-b16-b17`. El autor confirmó «GitHub ya ha cesado las escrituras» antes de editar. Sin otras ramas/checkouts ni servidores ajenos detenidos.
+- Cuatro documentos previos, con sus huellas iniciales, separados en `03d1e93`: esta adenda, su prompt, enlace en proceso y preparación de B17. No se reescriben el cierre B17 del 16/10 o los diagnósticos Linux.
+- Código/pruebas revisados: `346a06325a8772157a0b6318f01c8d88857122fd` (commit local). [Integridad](evidencias/B17/adenda-20261017/integridad.json) identifica árbol probado, siete archivos y assets compilados. El commit documental posterior no cambia ese código. No push, PR, integración, GHCR, despliegue o coordinación directa con otros hilos.
+
+### Corrección y responsabilidades
+
+`useCardTitle`/encabezado local mide texto real, descuenta mediante flex el icono/gap/márgenes y busca a 0,1 px entre 12 y la base CSS del perfil. Mantiene una banda igual a la referencia de una línea al máximo, incluido icono y márgenes; verifica el Range DOM final. Solo corta el h3 si todavía excede el ancho a 12, sin elipsis; nombre recibido/DOM/accesibilidad/Detalles íntegros. Observa ancho estable, fuentes y resize; no cambia familia/peso, no neutraliza zoom ni envía acciones. La minicarta conserva sus estilos. No hay nombres especiales o reglas por longitud.
+
+Las pruebas nuevas encontraron además un defecto de herencia en la consulta de indicadora completa: la superficie flex heredaba `align-items:start` y `gap:4px` de la minicarta. El encabezado podía encogerse a 84,59 px y los gaps adicionales dejaban un hueco inferior de −1,5 px. La cara completa declara `stretch`/`gap:0`, de acuerdo con su composición vigente; no se cambia el margen original del título de la consulta. Ahora se observa también la tabla para el ajuste histórico 6/4,9. Sin crecimiento adaptado, relleno 4,4, cambio de imagen/atributos o máscara de puntero.
+
+Revisión semántica: tres archivos de producto, cuatro de pruebas; ninguna escritura/importación nueva en servidor, dominio, transporte, contratos, barajas o configuración. El helper/fuente/nombre largo de prueba solo se usan en instalaciones temporales validadas. [Mapa APP actualizado](../arquitectura/ORGANIZACION_Y_DEPENDENCIAS.md#b17--carta-completa-minicarta-y-consulta-informativa).
+
+### Ejecuciones reales y límites
+
+Windows/Chrome instalado 155.0.8059.80, Playwright 1.63.0, aplicación 0.1.0; Node **24.19.0**, ICU **78.3**, Unicode **17.0**, npm 11.6.2. Ejecutable y hashes en evidencia. Zoom base 100 %, DPR 1. Conexiones HTTP/Socket.IO reales a servidores compilados propios en puertos efímeros; reloj/permutación sustituidos para escenas/recorridos deterministas. No prueba humana o física, media hora real, nuevo timeout real de 15 s o partida normal completa en esta corrección.
+
+| Puerta | Resultado nuevo |
+|---|---|
+| Cinco diagnósticos antes del cambio, Windows | **5/5**, 35,2 s. El fallo Linux no se reprodujo aquí; se conserva como pendiente. |
+| Check final | **538/538**, 43 archivos; tipos/lint/build correctos, **71 módulos** sin imports prohibidos/ciclos. |
+| Chrome focal final, un trabajador/cero reintentos | **19/19**, 2,0 min: cinco exigidos + ocho nuevos + seis regresiones afectadas. |
+| Capturas comparables | Ocho escenas antes y ocho después, 1320×850/1920×1080 y compactas 360×800/390×844. Separadas de la batería focal. |
+| Integridad | **124/124** archivos APP/Git iguales a base; genérica/Solar 2/4 y Criaturas 2/2. Tres diagnósticos Linux originales intactos. |
+| Fuentes/zoom | Glifos reales identificados con CDP; fuente tardía solo de prueba y emulación **CSS** 125/200/100 % correctas. Zoom nativo no ejecutado. |
+| Linux | **No ejecutado**: motor Docker Linux no disponible; WSL solo anuncia docker-desktop. Se devuelve diagnóstico focal por el autor. |
+
+La [evidencia nueva](evidencias/B17/adenda-20261017/README.md) enumera selección/comandos exactos, capturas revisadas, medidas T/G/I, fuentes efectivas y fallos/reparaciones. Hubo fallos durante desarrollo: seis de consulta completa por la herencia descrita; observación demasiado temprana tras font/resize; y comprobación del clic sobre un botón ya retirado por la jugada correcta. Se repararon presentación y observación donde correspondía, sin retirar geometría/atributos/avance, alargar timeout ni usar clicks forzados/dispatch/z-index/pointer-events. La recepción final se prueba con clic genuino y avance único.
+
+### Aceptación separada al cierre local
+
+| Criterio | Estado demostrable |
+|---|---|
+| AC-T | **Windows correcto / Linux pendiente**: Tritón ambos modos, Grifo independiente, 67P/cortos/null, máximo y corte a 12, banda estable/nombre íntegro. |
+| AC-G | **Windows correcto / Linux pendiente**: referencia y normal adaptada/consulta, Resistencia activa/no activa completa, gaps con signo no negativos, sin otro relleno o crecimiento. |
+| AC-I | **Windows correcto / Linux pendiente**: cinco diagnósticos y nuevos/regresiones, clic auténtico/avance único, D/foco/arrastre/plazos/quinta. No declarar reparados los cinco Linux. |
+| AC-C | **Correcto localmente**: check, 19 focales finales, compacta/atributos/imagen y 124 huellas intactos. |
+| AC-GH | **Pendiente**: diagnóstico Linux focal y después CI completa del HEAD final, antes de integrar. Ninguna ejecución remota en este encargo. |
+
+El [traspaso al autor](evidencias/B17/adenda-20261017/README.md#diagnóstico-linux-y-puerta-posterior) proporciona las dos selecciones focales y medidas a devolver. No reanudar una batería completa mientras fallen cinco/nuevos pertinentes. El autor coordina el siguiente escritor; Implementación no envía mensajes a otros hilos. Mantener revisión humana/zoom nativo/dispositivos físicos y C09–C10 parciales. El futuro límite editorial de nombres y traslado descriptivo a Aplicación §§7.2/7.5–7.7 corresponden a sus responsables; no se cambió contrato/TFM/Diseño o contenido desde APP.

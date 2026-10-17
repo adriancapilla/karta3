@@ -1,0 +1,812 @@
+[
+  {
+    "geometry": {
+      "name": "Carta 01",
+      "title": {
+        "x": 322,
+        "y": 658.109375,
+        "width": 63.078125,
+        "height": 21,
+        "right": 385.078125,
+        "bottom": 679.109375
+      },
+      "heading": {
+        "x": 322,
+        "y": 658.109375,
+        "width": 204,
+        "height": 24,
+        "right": 526,
+        "bottom": 682.109375
+      },
+      "icon": {
+        "x": 515.125,
+        "y": 658.109375,
+        "width": 10.875,
+        "height": 24,
+        "right": 526,
+        "bottom": 682.109375
+      },
+      "size": 16,
+      "base": 16,
+      "min": 12,
+      "available": 63.078125,
+      "baseWidth": 63.078125,
+      "minWidth": 47.3125,
+      "nextWidth": 63.078125,
+      "textRects": [
+        {
+          "x": 322,
+          "y": 658.109375,
+          "width": 63.078125,
+          "height": 21,
+          "right": 385.078125,
+          "bottom": 679.109375
+        }
+      ],
+      "family": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+      "weight": "700",
+      "lineHeight": "normal",
+      "letterSpacing": "normal",
+      "gap": 6,
+      "titleMargins": 0,
+      "iconMargins": 0,
+      "whiteSpace": "normal",
+      "overflow": "visible",
+      "textOverflow": "clip",
+      "card": {
+        "x": 309,
+        "y": 645.109375,
+        "width": 230,
+        "height": 321,
+        "right": 539,
+        "bottom": 966.109375
+      },
+      "image": {
+        "x": 309,
+        "y": 686.109375,
+        "width": 230,
+        "height": 172.5,
+        "right": 539,
+        "bottom": 858.609375
+      },
+      "table": {
+        "x": 322,
+        "y": 864.359375,
+        "width": 204,
+        "height": 95,
+        "right": 526,
+        "bottom": 959.359375
+      },
+      "gaps": [
+        5.75,
+        5.75
+      ],
+      "rows": [
+        {
+          "text": " Círculo25",
+          "box": {
+            "x": 322,
+            "y": 864.359375,
+            "width": 204,
+            "height": 31.5,
+            "right": 526,
+            "bottom": 895.859375
+          },
+          "content": [
+            {
+              "top": 870.359375,
+              "bottom": 889.359375,
+              "height": 19
+            },
+            {
+              "top": 870.359375,
+              "bottom": 889.359375,
+              "height": 19
+            },
+            {
+              "top": 870.359375,
+              "bottom": 889.359375,
+              "height": 19
+            },
+            {
+              "top": 870.359375,
+              "bottom": 889.359375,
+              "height": 19
+            }
+          ]
+        },
+        {
+          "text": "▲ Triángulo51",
+          "box": {
+            "x": 322,
+            "y": 895.859375,
+            "width": 204,
+            "height": 32,
+            "right": 526,
+            "bottom": 927.859375
+          },
+          "content": [
+            {
+              "top": 902.359375,
+              "bottom": 921.359375,
+              "height": 19
+            },
+            {
+              "top": 902.359375,
+              "bottom": 921.359375,
+              "height": 19
+            },
+            {
+              "top": 902.359375,
+              "bottom": 921.359375,
+              "height": 19
+            },
+            {
+              "top": 902.359375,
+              "bottom": 921.359375,
+              "height": 19
+            },
+            {
+              "top": 902.359375,
+              "bottom": 921.359375,
+              "height": 19
+            },
+            {
+              "top": 902.359375,
+              "bottom": 921.359375,
+              "height": 19
+            }
+          ]
+        },
+        {
+          "text": "■ Cuadrado11",
+          "box": {
+            "x": 322,
+            "y": 927.859375,
+            "width": 204,
+            "height": 31.5,
+            "right": 526,
+            "bottom": 959.359375
+          },
+          "content": [
+            {
+              "top": 934.359375,
+              "bottom": 953.359375,
+              "height": 19
+            },
+            {
+              "top": 934.359375,
+              "bottom": 953.359375,
+              "height": 19
+            },
+            {
+              "top": 934.359375,
+              "bottom": 953.359375,
+              "height": 19
+            },
+            {
+              "top": 934.359375,
+              "bottom": 953.359375,
+              "height": 19
+            },
+            {
+              "top": 934.359375,
+              "bottom": 953.359375,
+              "height": 19
+            },
+            {
+              "top": 934.359375,
+              "bottom": 953.359375,
+              "height": 19
+            }
+          ]
+        }
+      ],
+      "padding": "6px",
+      "d": {
+        "box": {
+          "x": 490,
+          "y": 809.609375,
+          "width": 44,
+          "height": 44,
+          "right": 534,
+          "bottom": 853.609375
+        },
+        "received": true,
+        "tag": "SPAN",
+        "className": null
+      },
+      "play": {
+        "box": {
+          "x": 309,
+          "y": 974.109375,
+          "width": 230,
+          "height": 48,
+          "right": 539,
+          "bottom": 1022.109375
+        },
+        "received": false
+      },
+      "useful": "1273",
+      "viewport": {
+        "width": 1320,
+        "height": 850,
+        "dpr": 1,
+        "scale": 1,
+        "cssZoom": "1"
+      }
+    },
+    "fonts": {
+      "title": {
+        "fonts": [
+          {
+            "familyName": "Segoe UI",
+            "postScriptName": "SegoeUI-Bold",
+            "isCustomFont": false,
+            "glyphCount": 8
+          }
+        ]
+      },
+      "lastAttribute": {
+        "fonts": [
+          {
+            "familyName": "Segoe UI",
+            "postScriptName": "SegoeUI-Bold",
+            "isCustomFont": false,
+            "glyphCount": 10
+          }
+        ]
+      },
+      "ownSymbol": {
+        "fonts": [
+          {
+            "familyName": "Segoe UI",
+            "postScriptName": "SegoeUI",
+            "isCustomFont": false,
+            "glyphCount": 1
+          }
+        ]
+      }
+    }
+  },
+  {
+    "geometry": {
+      "name": "Carta 02",
+      "title": {
+        "x": 564,
+        "y": 658.109375,
+        "width": 63.078125,
+        "height": 21,
+        "right": 627.078125,
+        "bottom": 679.109375
+      },
+      "heading": {
+        "x": 564,
+        "y": 658.109375,
+        "width": 204,
+        "height": 24,
+        "right": 768,
+        "bottom": 682.109375
+      },
+      "icon": {
+        "x": 752.484375,
+        "y": 658.109375,
+        "width": 15.515625,
+        "height": 24,
+        "right": 768,
+        "bottom": 682.109375
+      },
+      "size": 16,
+      "base": 16,
+      "min": 12,
+      "available": 63.078125,
+      "baseWidth": 63.078125,
+      "minWidth": 47.3125,
+      "nextWidth": 63.078125,
+      "textRects": [
+        {
+          "x": 564,
+          "y": 658.109375,
+          "width": 63.078125,
+          "height": 21,
+          "right": 627.078125,
+          "bottom": 679.109375
+        }
+      ],
+      "family": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+      "weight": "700",
+      "lineHeight": "normal",
+      "letterSpacing": "normal",
+      "gap": 6,
+      "titleMargins": 0,
+      "iconMargins": 0,
+      "whiteSpace": "normal",
+      "overflow": "visible",
+      "textOverflow": "clip",
+      "card": {
+        "x": 551,
+        "y": 645.109375,
+        "width": 230,
+        "height": 321,
+        "right": 781,
+        "bottom": 966.109375
+      },
+      "image": {
+        "x": 551,
+        "y": 686.109375,
+        "width": 230,
+        "height": 172.5,
+        "right": 781,
+        "bottom": 858.609375
+      },
+      "table": {
+        "x": 564,
+        "y": 864.359375,
+        "width": 204,
+        "height": 95,
+        "right": 768,
+        "bottom": 959.359375
+      },
+      "gaps": [
+        5.75,
+        5.75
+      ],
+      "rows": [
+        {
+          "text": " Círculo37",
+          "box": {
+            "x": 564,
+            "y": 864.359375,
+            "width": 204,
+            "height": 31.5,
+            "right": 768,
+            "bottom": 895.859375
+          },
+          "content": [
+            {
+              "top": 870.359375,
+              "bottom": 889.359375,
+              "height": 19
+            },
+            {
+              "top": 870.359375,
+              "bottom": 889.359375,
+              "height": 19
+            },
+            {
+              "top": 870.359375,
+              "bottom": 889.359375,
+              "height": 19
+            },
+            {
+              "top": 870.359375,
+              "bottom": 889.359375,
+              "height": 19
+            }
+          ]
+        },
+        {
+          "text": "▲ Triángulo4",
+          "box": {
+            "x": 564,
+            "y": 895.859375,
+            "width": 204,
+            "height": 32,
+            "right": 768,
+            "bottom": 927.859375
+          },
+          "content": [
+            {
+              "top": 902.359375,
+              "bottom": 921.359375,
+              "height": 19
+            },
+            {
+              "top": 902.359375,
+              "bottom": 921.359375,
+              "height": 19
+            },
+            {
+              "top": 902.359375,
+              "bottom": 921.359375,
+              "height": 19
+            },
+            {
+              "top": 902.359375,
+              "bottom": 921.359375,
+              "height": 19
+            },
+            {
+              "top": 902.359375,
+              "bottom": 921.359375,
+              "height": 19
+            },
+            {
+              "top": 902.359375,
+              "bottom": 921.359375,
+              "height": 19
+            }
+          ]
+        },
+        {
+          "text": "■ Cuadrado31",
+          "box": {
+            "x": 564,
+            "y": 927.859375,
+            "width": 204,
+            "height": 31.5,
+            "right": 768,
+            "bottom": 959.359375
+          },
+          "content": [
+            {
+              "top": 934.359375,
+              "bottom": 953.359375,
+              "height": 19
+            },
+            {
+              "top": 934.359375,
+              "bottom": 953.359375,
+              "height": 19
+            },
+            {
+              "top": 934.359375,
+              "bottom": 953.359375,
+              "height": 19
+            },
+            {
+              "top": 934.359375,
+              "bottom": 953.359375,
+              "height": 19
+            },
+            {
+              "top": 934.359375,
+              "bottom": 953.359375,
+              "height": 19
+            },
+            {
+              "top": 934.359375,
+              "bottom": 953.359375,
+              "height": 19
+            }
+          ]
+        }
+      ],
+      "padding": "6px",
+      "d": {
+        "box": {
+          "x": 732,
+          "y": 809.609375,
+          "width": 44,
+          "height": 44,
+          "right": 776,
+          "bottom": 853.609375
+        },
+        "received": true,
+        "tag": "SPAN",
+        "className": null
+      },
+      "play": {
+        "box": {
+          "x": 551,
+          "y": 974.109375,
+          "width": 230,
+          "height": 48,
+          "right": 781,
+          "bottom": 1022.109375
+        },
+        "received": false
+      },
+      "useful": "1273",
+      "viewport": {
+        "width": 1320,
+        "height": 850,
+        "dpr": 1,
+        "scale": 1,
+        "cssZoom": "1"
+      }
+    },
+    "fonts": {
+      "title": {
+        "fonts": [
+          {
+            "familyName": "Segoe UI",
+            "postScriptName": "SegoeUI-Bold",
+            "isCustomFont": false,
+            "glyphCount": 8
+          }
+        ]
+      },
+      "lastAttribute": {
+        "fonts": [
+          {
+            "familyName": "Segoe UI",
+            "postScriptName": "SegoeUI-Bold",
+            "isCustomFont": false,
+            "glyphCount": 10
+          }
+        ]
+      },
+      "ownSymbol": {
+        "fonts": [
+          {
+            "familyName": "Segoe UI",
+            "postScriptName": "SegoeUI",
+            "isCustomFont": false,
+            "glyphCount": 1
+          }
+        ]
+      }
+    }
+  },
+  {
+    "geometry": {
+      "name": "Carta 03",
+      "title": {
+        "x": 806,
+        "y": 658.109375,
+        "width": 63.078125,
+        "height": 21,
+        "right": 869.078125,
+        "bottom": 679.109375
+      },
+      "heading": {
+        "x": 806,
+        "y": 658.109375,
+        "width": 204,
+        "height": 24,
+        "right": 1010,
+        "bottom": 682.109375
+      },
+      "icon": {
+        "x": 994.484375,
+        "y": 658.109375,
+        "width": 15.515625,
+        "height": 24,
+        "right": 1010,
+        "bottom": 682.109375
+      },
+      "size": 16,
+      "base": 16,
+      "min": 12,
+      "available": 63.078125,
+      "baseWidth": 63.078125,
+      "minWidth": 47.3125,
+      "nextWidth": 63.078125,
+      "textRects": [
+        {
+          "x": 806,
+          "y": 658.109375,
+          "width": 63.078125,
+          "height": 21,
+          "right": 869.078125,
+          "bottom": 679.109375
+        }
+      ],
+      "family": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+      "weight": "700",
+      "lineHeight": "normal",
+      "letterSpacing": "normal",
+      "gap": 6,
+      "titleMargins": 0,
+      "iconMargins": 0,
+      "whiteSpace": "normal",
+      "overflow": "visible",
+      "textOverflow": "clip",
+      "card": {
+        "x": 793,
+        "y": 645.109375,
+        "width": 230,
+        "height": 321,
+        "right": 1023,
+        "bottom": 966.109375
+      },
+      "image": {
+        "x": 793,
+        "y": 686.109375,
+        "width": 230,
+        "height": 172.5,
+        "right": 1023,
+        "bottom": 858.609375
+      },
+      "table": {
+        "x": 806,
+        "y": 864.359375,
+        "width": 204,
+        "height": 95,
+        "right": 1010,
+        "bottom": 959.359375
+      },
+      "gaps": [
+        5.75,
+        5.75
+      ],
+      "rows": [
+        {
+          "text": " Círculo43",
+          "box": {
+            "x": 806,
+            "y": 864.359375,
+            "width": 204,
+            "height": 31.5,
+            "right": 1010,
+            "bottom": 895.859375
+          },
+          "content": [
+            {
+              "top": 870.359375,
+              "bottom": 889.359375,
+              "height": 19
+            },
+            {
+              "top": 870.359375,
+              "bottom": 889.359375,
+              "height": 19
+            },
+            {
+              "top": 870.359375,
+              "bottom": 889.359375,
+              "height": 19
+            },
+            {
+              "top": 870.359375,
+              "bottom": 889.359375,
+              "height": 19
+            }
+          ]
+        },
+        {
+          "text": "▲ Triángulo46",
+          "box": {
+            "x": 806,
+            "y": 895.859375,
+            "width": 204,
+            "height": 32,
+            "right": 1010,
+            "bottom": 927.859375
+          },
+          "content": [
+            {
+              "top": 902.359375,
+              "bottom": 921.359375,
+              "height": 19
+            },
+            {
+              "top": 902.359375,
+              "bottom": 921.359375,
+              "height": 19
+            },
+            {
+              "top": 902.359375,
+              "bottom": 921.359375,
+              "height": 19
+            },
+            {
+              "top": 902.359375,
+              "bottom": 921.359375,
+              "height": 19
+            },
+            {
+              "top": 902.359375,
+              "bottom": 921.359375,
+              "height": 19
+            },
+            {
+              "top": 902.359375,
+              "bottom": 921.359375,
+              "height": 19
+            }
+          ]
+        },
+        {
+          "text": "■ Cuadrado16",
+          "box": {
+            "x": 806,
+            "y": 927.859375,
+            "width": 204,
+            "height": 31.5,
+            "right": 1010,
+            "bottom": 959.359375
+          },
+          "content": [
+            {
+              "top": 934.359375,
+              "bottom": 953.359375,
+              "height": 19
+            },
+            {
+              "top": 934.359375,
+              "bottom": 953.359375,
+              "height": 19
+            },
+            {
+              "top": 934.359375,
+              "bottom": 953.359375,
+              "height": 19
+            },
+            {
+              "top": 934.359375,
+              "bottom": 953.359375,
+              "height": 19
+            },
+            {
+              "top": 934.359375,
+              "bottom": 953.359375,
+              "height": 19
+            },
+            {
+              "top": 934.359375,
+              "bottom": 953.359375,
+              "height": 19
+            }
+          ]
+        }
+      ],
+      "padding": "6px",
+      "d": {
+        "box": {
+          "x": 974,
+          "y": 809.609375,
+          "width": 44,
+          "height": 44,
+          "right": 1018,
+          "bottom": 853.609375
+        },
+        "received": true,
+        "tag": "SPAN",
+        "className": null
+      },
+      "play": {
+        "box": {
+          "x": 793,
+          "y": 974.109375,
+          "width": 230,
+          "height": 48,
+          "right": 1023,
+          "bottom": 1022.109375
+        },
+        "received": false
+      },
+      "useful": "1273",
+      "viewport": {
+        "width": 1320,
+        "height": 850,
+        "dpr": 1,
+        "scale": 1,
+        "cssZoom": "1"
+      }
+    },
+    "fonts": {
+      "title": {
+        "fonts": [
+          {
+            "familyName": "Segoe UI",
+            "postScriptName": "SegoeUI-Bold",
+            "isCustomFont": false,
+            "glyphCount": 8
+          }
+        ]
+      },
+      "lastAttribute": {
+        "fonts": [
+          {
+            "familyName": "Segoe UI",
+            "postScriptName": "SegoeUI-Bold",
+            "isCustomFont": false,
+            "glyphCount": 10
+          }
+        ]
+      },
+      "ownSymbol": {
+        "fonts": [
+          {
+            "familyName": "Segoe UI",
+            "postScriptName": "SegoeUI",
+            "isCustomFont": false,
+            "glyphCount": 1
+          }
+        ]
+      }
+    }
+  }
+]

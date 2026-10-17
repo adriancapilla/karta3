@@ -1,0 +1,821 @@
+[
+  {
+    "geometry": {
+      "name": "67P / Churyumov-Gerasimenko",
+      "title": {
+        "x": 574.5,
+        "y": 625.109375,
+        "width": 187.125,
+        "height": 17,
+        "right": 761.625,
+        "bottom": 642.109375
+      },
+      "heading": {
+        "x": 574.5,
+        "y": 625.109375,
+        "width": 204,
+        "height": 24,
+        "right": 778.5,
+        "bottom": 649.109375
+      },
+      "icon": {
+        "x": 767.625,
+        "y": 625.109375,
+        "width": 10.875,
+        "height": 24,
+        "right": 778.5,
+        "bottom": 649.109375
+      },
+      "size": 12.6,
+      "base": 16,
+      "min": 12,
+      "available": 187.125,
+      "baseWidth": 236.421875,
+      "minWidth": 177.3125,
+      "nextWidth": 187.65625,
+      "referenceBand": 24,
+      "textRects": [
+        {
+          "x": 574.5,
+          "y": 625.109375,
+          "width": 186.1875,
+          "height": 17,
+          "right": 760.6875,
+          "bottom": 642.109375
+        }
+      ],
+      "family": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+      "weight": "700",
+      "lineHeight": "normal",
+      "letterSpacing": "normal",
+      "gap": 6,
+      "titleMargins": 0,
+      "iconMargins": 0,
+      "whiteSpace": "nowrap",
+      "overflow": "visible",
+      "textOverflow": "clip",
+      "card": {
+        "x": 561.5,
+        "y": 612.109375,
+        "width": 230,
+        "height": 321,
+        "right": 791.5,
+        "bottom": 933.109375
+      },
+      "image": {
+        "x": 561.5,
+        "y": 653.109375,
+        "width": 230,
+        "height": 172.5,
+        "right": 791.5,
+        "bottom": 825.609375
+      },
+      "table": {
+        "x": 574.5,
+        "y": 831.359375,
+        "width": 204,
+        "height": 95,
+        "right": 778.5,
+        "bottom": 926.359375
+      },
+      "gaps": [
+        5.75,
+        5.75
+      ],
+      "rows": [
+        {
+          "text": " Vel50",
+          "box": {
+            "x": 574.5,
+            "y": 831.359375,
+            "width": 204,
+            "height": 31.5,
+            "right": 778.5,
+            "bottom": 862.859375
+          },
+          "content": [
+            {
+              "top": 837.359375,
+              "bottom": 856.359375,
+              "height": 19
+            },
+            {
+              "top": 837.359375,
+              "bottom": 856.359375,
+              "height": 19
+            },
+            {
+              "top": 837.359375,
+              "bottom": 856.359375,
+              "height": 19
+            },
+            {
+              "top": 837.359375,
+              "bottom": 856.359375,
+              "height": 19
+            }
+          ]
+        },
+        {
+          "text": "▲ Dist45",
+          "box": {
+            "x": 574.5,
+            "y": 862.859375,
+            "width": 204,
+            "height": 32,
+            "right": 778.5,
+            "bottom": 894.859375
+          },
+          "content": [
+            {
+              "top": 869.359375,
+              "bottom": 888.359375,
+              "height": 19
+            },
+            {
+              "top": 869.359375,
+              "bottom": 888.359375,
+              "height": 19
+            },
+            {
+              "top": 869.359375,
+              "bottom": 888.359375,
+              "height": 19
+            },
+            {
+              "top": 869.359375,
+              "bottom": 888.359375,
+              "height": 19
+            },
+            {
+              "top": 869.359375,
+              "bottom": 888.359375,
+              "height": 19
+            },
+            {
+              "top": 869.359375,
+              "bottom": 888.359375,
+              "height": 19
+            }
+          ]
+        },
+        {
+          "text": "■ Diámetro4",
+          "box": {
+            "x": 574.5,
+            "y": 894.859375,
+            "width": 204,
+            "height": 31.5,
+            "right": 778.5,
+            "bottom": 926.359375
+          },
+          "content": [
+            {
+              "top": 901.359375,
+              "bottom": 920.359375,
+              "height": 19
+            },
+            {
+              "top": 901.359375,
+              "bottom": 920.359375,
+              "height": 19
+            },
+            {
+              "top": 901.359375,
+              "bottom": 920.359375,
+              "height": 19
+            },
+            {
+              "top": 901.359375,
+              "bottom": 920.359375,
+              "height": 19
+            },
+            {
+              "top": 901.359375,
+              "bottom": 920.359375,
+              "height": 19
+            },
+            {
+              "top": 901.359375,
+              "bottom": 920.359375,
+              "height": 19
+            }
+          ]
+        }
+      ],
+      "padding": "6px",
+      "d": {
+        "box": {
+          "x": 742.5,
+          "y": 776.609375,
+          "width": 44,
+          "height": 44,
+          "right": 786.5,
+          "bottom": 820.609375
+        },
+        "received": true,
+        "tag": "SPAN",
+        "className": null
+      },
+      "play": {
+        "box": {
+          "x": 561.5,
+          "y": 941.109375,
+          "width": 230,
+          "height": 48,
+          "right": 791.5,
+          "bottom": 989.109375
+        },
+        "received": true,
+        "tag": "BUTTON",
+        "className": "primary card-play-button"
+      },
+      "useful": "1368",
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "dpr": 1,
+        "scale": 1,
+        "cssZoom": "1"
+      }
+    },
+    "fonts": {
+      "title": {
+        "fonts": [
+          {
+            "familyName": "Segoe UI",
+            "postScriptName": "SegoeUI-Bold",
+            "isCustomFont": false,
+            "glyphCount": 27
+          }
+        ]
+      },
+      "lastAttribute": {
+        "fonts": [
+          {
+            "familyName": "Segoe UI",
+            "postScriptName": "SegoeUI-Bold",
+            "isCustomFont": false,
+            "glyphCount": 10
+          }
+        ]
+      },
+      "ownSymbol": {
+        "fonts": [
+          {
+            "familyName": "Segoe UI",
+            "postScriptName": "SegoeUI",
+            "isCustomFont": false,
+            "glyphCount": 1
+          }
+        ]
+      }
+    }
+  },
+  {
+    "geometry": {
+      "name": "Hyakutake",
+      "title": {
+        "x": 850.5,
+        "y": 625.109375,
+        "width": 182.484375,
+        "height": 21,
+        "right": 1032.984375,
+        "bottom": 646.109375
+      },
+      "heading": {
+        "x": 850.5,
+        "y": 625.109375,
+        "width": 204,
+        "height": 24,
+        "right": 1054.5,
+        "bottom": 649.109375
+      },
+      "icon": {
+        "x": 1038.984375,
+        "y": 625.109375,
+        "width": 15.515625,
+        "height": 24,
+        "right": 1054.5,
+        "bottom": 649.109375
+      },
+      "size": 16,
+      "base": 16,
+      "min": 12,
+      "available": 182.484375,
+      "baseWidth": 80.3125,
+      "minWidth": 60.234375,
+      "nextWidth": 80.3125,
+      "referenceBand": 24,
+      "textRects": [
+        {
+          "x": 850.5,
+          "y": 625.109375,
+          "width": 80.3125,
+          "height": 21,
+          "right": 930.8125,
+          "bottom": 646.109375
+        }
+      ],
+      "family": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+      "weight": "700",
+      "lineHeight": "normal",
+      "letterSpacing": "normal",
+      "gap": 6,
+      "titleMargins": 0,
+      "iconMargins": 0,
+      "whiteSpace": "nowrap",
+      "overflow": "visible",
+      "textOverflow": "clip",
+      "card": {
+        "x": 837.5,
+        "y": 612.109375,
+        "width": 230,
+        "height": 321,
+        "right": 1067.5,
+        "bottom": 933.109375
+      },
+      "image": {
+        "x": 837.5,
+        "y": 653.109375,
+        "width": 230,
+        "height": 172.5,
+        "right": 1067.5,
+        "bottom": 825.609375
+      },
+      "table": {
+        "x": 850.5,
+        "y": 831.359375,
+        "width": 204,
+        "height": 95,
+        "right": 1054.5,
+        "bottom": 926.359375
+      },
+      "gaps": [
+        5.75,
+        5.75
+      ],
+      "rows": [
+        {
+          "text": " Vel58",
+          "box": {
+            "x": 850.5,
+            "y": 831.359375,
+            "width": 204,
+            "height": 31.5,
+            "right": 1054.5,
+            "bottom": 862.859375
+          },
+          "content": [
+            {
+              "top": 837.359375,
+              "bottom": 856.359375,
+              "height": 19
+            },
+            {
+              "top": 837.359375,
+              "bottom": 856.359375,
+              "height": 19
+            },
+            {
+              "top": 837.359375,
+              "bottom": 856.359375,
+              "height": 19
+            },
+            {
+              "top": 837.359375,
+              "bottom": 856.359375,
+              "height": 19
+            }
+          ]
+        },
+        {
+          "text": "▲ Dist58",
+          "box": {
+            "x": 850.5,
+            "y": 862.859375,
+            "width": 204,
+            "height": 32,
+            "right": 1054.5,
+            "bottom": 894.859375
+          },
+          "content": [
+            {
+              "top": 869.359375,
+              "bottom": 888.359375,
+              "height": 19
+            },
+            {
+              "top": 869.359375,
+              "bottom": 888.359375,
+              "height": 19
+            },
+            {
+              "top": 869.359375,
+              "bottom": 888.359375,
+              "height": 19
+            },
+            {
+              "top": 869.359375,
+              "bottom": 888.359375,
+              "height": 19
+            },
+            {
+              "top": 869.359375,
+              "bottom": 888.359375,
+              "height": 19
+            },
+            {
+              "top": 869.359375,
+              "bottom": 888.359375,
+              "height": 19
+            }
+          ]
+        },
+        {
+          "text": "■ Diámetro6",
+          "box": {
+            "x": 850.5,
+            "y": 894.859375,
+            "width": 204,
+            "height": 31.5,
+            "right": 1054.5,
+            "bottom": 926.359375
+          },
+          "content": [
+            {
+              "top": 901.359375,
+              "bottom": 920.359375,
+              "height": 19
+            },
+            {
+              "top": 901.359375,
+              "bottom": 920.359375,
+              "height": 19
+            },
+            {
+              "top": 901.359375,
+              "bottom": 920.359375,
+              "height": 19
+            },
+            {
+              "top": 901.359375,
+              "bottom": 920.359375,
+              "height": 19
+            },
+            {
+              "top": 901.359375,
+              "bottom": 920.359375,
+              "height": 19
+            },
+            {
+              "top": 901.359375,
+              "bottom": 920.359375,
+              "height": 19
+            }
+          ]
+        }
+      ],
+      "padding": "6px",
+      "d": {
+        "box": {
+          "x": 1018.5,
+          "y": 776.609375,
+          "width": 44,
+          "height": 44,
+          "right": 1062.5,
+          "bottom": 820.609375
+        },
+        "received": true,
+        "tag": "SPAN",
+        "className": null
+      },
+      "play": {
+        "box": {
+          "x": 837.5,
+          "y": 941.109375,
+          "width": 230,
+          "height": 48,
+          "right": 1067.5,
+          "bottom": 989.109375
+        },
+        "received": true,
+        "tag": "BUTTON",
+        "className": "primary card-play-button"
+      },
+      "useful": "1368",
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "dpr": 1,
+        "scale": 1,
+        "cssZoom": "1"
+      }
+    },
+    "fonts": {
+      "title": {
+        "fonts": [
+          {
+            "familyName": "Segoe UI",
+            "postScriptName": "SegoeUI-Bold",
+            "isCustomFont": false,
+            "glyphCount": 9
+          }
+        ]
+      },
+      "lastAttribute": {
+        "fonts": [
+          {
+            "familyName": "Segoe UI",
+            "postScriptName": "SegoeUI-Bold",
+            "isCustomFont": false,
+            "glyphCount": 10
+          }
+        ]
+      },
+      "ownSymbol": {
+        "fonts": [
+          {
+            "familyName": "Segoe UI",
+            "postScriptName": "SegoeUI",
+            "isCustomFont": false,
+            "glyphCount": 1
+          }
+        ]
+      }
+    }
+  },
+  {
+    "geometry": {
+      "name": "Encke",
+      "title": {
+        "x": 1126.5,
+        "y": 625.109375,
+        "width": 187.125,
+        "height": 21,
+        "right": 1313.625,
+        "bottom": 646.109375
+      },
+      "heading": {
+        "x": 1126.5,
+        "y": 625.109375,
+        "width": 204,
+        "height": 24,
+        "right": 1330.5,
+        "bottom": 649.109375
+      },
+      "icon": {
+        "x": 1319.625,
+        "y": 625.109375,
+        "width": 10.875,
+        "height": 24,
+        "right": 1330.5,
+        "bottom": 649.109375
+      },
+      "size": 16,
+      "base": 16,
+      "min": 12,
+      "available": 187.125,
+      "baseWidth": 43.25,
+      "minWidth": 32.4375,
+      "nextWidth": 43.25,
+      "referenceBand": 24,
+      "textRects": [
+        {
+          "x": 1126.5,
+          "y": 625.109375,
+          "width": 43.25,
+          "height": 21,
+          "right": 1169.75,
+          "bottom": 646.109375
+        }
+      ],
+      "family": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+      "weight": "700",
+      "lineHeight": "normal",
+      "letterSpacing": "normal",
+      "gap": 6,
+      "titleMargins": 0,
+      "iconMargins": 0,
+      "whiteSpace": "nowrap",
+      "overflow": "visible",
+      "textOverflow": "clip",
+      "card": {
+        "x": 1113.5,
+        "y": 612.109375,
+        "width": 230,
+        "height": 321,
+        "right": 1343.5,
+        "bottom": 933.109375
+      },
+      "image": {
+        "x": 1113.5,
+        "y": 653.109375,
+        "width": 230,
+        "height": 172.5,
+        "right": 1343.5,
+        "bottom": 825.609375
+      },
+      "table": {
+        "x": 1126.5,
+        "y": 831.359375,
+        "width": 204,
+        "height": 95,
+        "right": 1330.5,
+        "bottom": 926.359375
+      },
+      "gaps": [
+        5.75,
+        5.75
+      ],
+      "rows": [
+        {
+          "text": " Vel57",
+          "box": {
+            "x": 1126.5,
+            "y": 831.359375,
+            "width": 204,
+            "height": 31.5,
+            "right": 1330.5,
+            "bottom": 862.859375
+          },
+          "content": [
+            {
+              "top": 837.359375,
+              "bottom": 856.359375,
+              "height": 19
+            },
+            {
+              "top": 837.359375,
+              "bottom": 856.359375,
+              "height": 19
+            },
+            {
+              "top": 837.359375,
+              "bottom": 856.359375,
+              "height": 19
+            },
+            {
+              "top": 837.359375,
+              "bottom": 856.359375,
+              "height": 19
+            }
+          ]
+        },
+        {
+          "text": "▲ Dist35",
+          "box": {
+            "x": 1126.5,
+            "y": 862.859375,
+            "width": 204,
+            "height": 32,
+            "right": 1330.5,
+            "bottom": 894.859375
+          },
+          "content": [
+            {
+              "top": 869.359375,
+              "bottom": 888.359375,
+              "height": 19
+            },
+            {
+              "top": 869.359375,
+              "bottom": 888.359375,
+              "height": 19
+            },
+            {
+              "top": 869.359375,
+              "bottom": 888.359375,
+              "height": 19
+            },
+            {
+              "top": 869.359375,
+              "bottom": 888.359375,
+              "height": 19
+            },
+            {
+              "top": 869.359375,
+              "bottom": 888.359375,
+              "height": 19
+            },
+            {
+              "top": 869.359375,
+              "bottom": 888.359375,
+              "height": 19
+            }
+          ]
+        },
+        {
+          "text": "■ Diámetro7",
+          "box": {
+            "x": 1126.5,
+            "y": 894.859375,
+            "width": 204,
+            "height": 31.5,
+            "right": 1330.5,
+            "bottom": 926.359375
+          },
+          "content": [
+            {
+              "top": 901.359375,
+              "bottom": 920.359375,
+              "height": 19
+            },
+            {
+              "top": 901.359375,
+              "bottom": 920.359375,
+              "height": 19
+            },
+            {
+              "top": 901.359375,
+              "bottom": 920.359375,
+              "height": 19
+            },
+            {
+              "top": 901.359375,
+              "bottom": 920.359375,
+              "height": 19
+            },
+            {
+              "top": 901.359375,
+              "bottom": 920.359375,
+              "height": 19
+            },
+            {
+              "top": 901.359375,
+              "bottom": 920.359375,
+              "height": 19
+            }
+          ]
+        }
+      ],
+      "padding": "6px",
+      "d": {
+        "box": {
+          "x": 1294.5,
+          "y": 776.609375,
+          "width": 44,
+          "height": 44,
+          "right": 1338.5,
+          "bottom": 820.609375
+        },
+        "received": true,
+        "tag": "SPAN",
+        "className": null
+      },
+      "play": {
+        "box": {
+          "x": 1113.5,
+          "y": 941.109375,
+          "width": 230,
+          "height": 48,
+          "right": 1343.5,
+          "bottom": 989.109375
+        },
+        "received": true,
+        "tag": "BUTTON",
+        "className": "primary card-play-button"
+      },
+      "useful": "1368",
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "dpr": 1,
+        "scale": 1,
+        "cssZoom": "1"
+      }
+    },
+    "fonts": {
+      "title": {
+        "fonts": [
+          {
+            "familyName": "Segoe UI",
+            "postScriptName": "SegoeUI-Bold",
+            "isCustomFont": false,
+            "glyphCount": 5
+          }
+        ]
+      },
+      "lastAttribute": {
+        "fonts": [
+          {
+            "familyName": "Segoe UI",
+            "postScriptName": "SegoeUI-Bold",
+            "isCustomFont": false,
+            "glyphCount": 10
+          }
+        ]
+      },
+      "ownSymbol": {
+        "fonts": [
+          {
+            "familyName": "Segoe UI",
+            "postScriptName": "SegoeUI",
+            "isCustomFont": false,
+            "glyphCount": 1
+          }
+        ]
+      }
+    }
+  }
+]
