@@ -1,0 +1,393 @@
+{
+  "workers": 1,
+  "retries": [
+    0
+  ],
+  "stats": {
+    "startTime": "2026-10-17T20:20:23.918Z",
+    "duration": 180333.812,
+    "expected": 29,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "cases": [
+    {
+      "title": "B13/T04 A cancelada → B ordinary, F5, avisos/estados antiguos y límites propios",
+      "file": "cancelGame.spec.ts",
+      "line": 82,
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 9248
+        }
+      ]
+    },
+    {
+      "title": "ADENDA B17 G columnas portada PLAY_VALUE: necesidades, uniformidad, contenido y clic habilitado",
+      "file": "cardColumns.spec.ts",
+      "line": 10,
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 5888
+        }
+      ]
+    },
+    {
+      "title": "ADENDA B17 G columnas portada DISPLAY_VALUE: necesidades, uniformidad, contenido y clic habilitado",
+      "file": "cardColumns.spec.ts",
+      "line": 10,
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 5869
+        }
+      ]
+    },
+    {
+      "title": "ADENDA B17 G columnas generica PLAY_VALUE: necesidades, uniformidad, contenido y clic habilitado",
+      "file": "cardColumns.spec.ts",
+      "line": 10,
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 5892
+        }
+      ]
+    },
+    {
+      "title": "ADENDA B17 G columnas generica DISPLAY_VALUE: necesidades, uniformidad, contenido y clic habilitado",
+      "file": "cardColumns.spec.ts",
+      "line": 10,
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 6165
+        }
+      ]
+    },
+    {
+      "title": "ADENDA B17 G columnas sistema-solar PLAY_VALUE: necesidades, uniformidad, contenido y clic habilitado",
+      "file": "cardColumns.spec.ts",
+      "line": 10,
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 6470
+        }
+      ]
+    },
+    {
+      "title": "ADENDA B17 G columnas sistema-solar DISPLAY_VALUE: necesidades, uniformidad, contenido y clic habilitado",
+      "file": "cardColumns.spec.ts",
+      "line": 10,
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 5966
+        }
+      ]
+    },
+    {
+      "title": "ADENDA B17 G columnas criaturas-magicas PLAY_VALUE: necesidades, uniformidad, contenido y clic habilitado",
+      "file": "cardColumns.spec.ts",
+      "line": 10,
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 5874
+        }
+      ]
+    },
+    {
+      "title": "ADENDA B17 G columnas criaturas-magicas DISPLAY_VALUE: necesidades, uniformidad, contenido y clic habilitado",
+      "file": "cardColumns.spec.ts",
+      "line": 10,
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 6121
+        }
+      ]
+    },
+    {
+      "title": "ADENDA B17 G columnas controlled-monospace PLAY_VALUE: necesidades, uniformidad, contenido y clic habilitado",
+      "file": "cardColumns.spec.ts",
+      "line": 10,
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 5957
+        }
+      ]
+    },
+    {
+      "title": "ADENDA B17 G columnas controlled-monospace DISPLAY_VALUE: necesidades, uniformidad, contenido y clic habilitado",
+      "file": "cardColumns.spec.ts",
+      "line": 10,
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 5824
+        }
+      ]
+    },
+    {
+      "title": "B17 criaturas-magicas PLAY_VALUE: cara completa, encaje autorizado, datos, públicos y normal adaptada",
+      "file": "cardFace.spec.ts",
+      "line": 76,
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 6458
+        }
+      ]
+    },
+    {
+      "title": "B17 criaturas-magicas DISPLAY_VALUE: cara completa, encaje autorizado, datos, públicos y normal adaptada",
+      "file": "cardFace.spec.ts",
+      "line": 76,
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 6472
+        }
+      ]
+    },
+    {
+      "title": "B17 D: clic/Enter/Space/arrastre no juegan; parcial/plazo, Información, resize y foco equivalentes",
+      "file": "cardFace.spec.ts",
+      "line": 129,
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 6181
+        }
+      ]
+    },
+    {
+      "title": "B17 consulta abierta: timeout retira la carta, revisión avanza y foco vuelve a región, sin pausas",
+      "file": "cardFace.spec.ts",
+      "line": 160,
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 5712
+        }
+      ]
+    },
+    {
+      "title": "B17 compacta 360: cara intacta, consulta completa e imagen Detalles ampliada, anidación y foco",
+      "file": "cardFace.spec.ts",
+      "line": 181,
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 5353
+        }
+      ]
+    },
+    {
+      "title": "B17 compacta 390: cara intacta, consulta completa e imagen Detalles ampliada, anidación y foco",
+      "file": "cardFace.spec.ts",
+      "line": 181,
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 5331
+        }
+      ]
+    },
+    {
+      "title": "B17 fallo/pendiente de medio: placeholder y aviso sin colisión con D, recurso original y recuperación",
+      "file": "cardFace.spec.ts",
+      "line": 201,
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 5849
+        }
+      ]
+    },
+    {
+      "title": "ADENDA B17 T/G/C generica PLAY_VALUE: máximo, banda, contenido y Resistencia",
+      "file": "cardTitleFit.spec.ts",
+      "line": 48,
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 5818
+        }
+      ]
+    },
+    {
+      "title": "ADENDA B17 T/G/C generica DISPLAY_VALUE: máximo, banda, contenido y Resistencia",
+      "file": "cardTitleFit.spec.ts",
+      "line": 48,
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 5765
+        }
+      ]
+    },
+    {
+      "title": "ADENDA B17 T/G/C sistema-solar PLAY_VALUE: máximo, banda, contenido y Resistencia",
+      "file": "cardTitleFit.spec.ts",
+      "line": 48,
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 5926
+        }
+      ]
+    },
+    {
+      "title": "ADENDA B17 T/G/C sistema-solar DISPLAY_VALUE: máximo, banda, contenido y Resistencia",
+      "file": "cardTitleFit.spec.ts",
+      "line": 48,
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 5880
+        }
+      ]
+    },
+    {
+      "title": "ADENDA B17 T/G/C criaturas-magicas PLAY_VALUE: máximo, banda, contenido y Resistencia",
+      "file": "cardTitleFit.spec.ts",
+      "line": 48,
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 5931
+        }
+      ]
+    },
+    {
+      "title": "ADENDA B17 T/G/C criaturas-magicas DISPLAY_VALUE: máximo, banda, contenido y Resistencia",
+      "file": "cardTitleFit.spec.ts",
+      "line": 48,
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 5908
+        }
+      ]
+    },
+    {
+      "title": "ADENDA B17 T/G/I fixture válida: corte solo a12, nombre íntegro, hit real y avance único",
+      "file": "cardTitleFit.spec.ts",
+      "line": 83,
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 2563
+        }
+      ]
+    },
+    {
+      "title": "ADENDA B17 T/G fuentes tardías y zoom CSS125/200 declarado: recalcula sin pausar ni neutralizar fuente",
+      "file": "cardTitleFit.spec.ts",
+      "line": 112,
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 6763
+        }
+      ]
+    },
+    {
+      "title": "B15 frontera medida 1367/1368, equivalencia normal on/off, foco, parciales, resize y quinta",
+      "file": "format2Presentation.spec.ts",
+      "line": 148,
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 13301
+        }
+      ]
+    },
+    {
+      "title": "INC-01 expired A → B ordinary: accepted result, reload, controlled expiry and old reads",
+      "file": "resultNotice.spec.ts",
+      "line": 38,
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 8137
+        }
+      ]
+    },
+    {
+      "title": "B08 T1 1280: deadline estable, carta local ignorada, aviso y recuperación",
+      "file": "timedGame.spec.ts",
+      "line": 6,
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 1615
+        }
+      ]
+    }
+  ]
+}

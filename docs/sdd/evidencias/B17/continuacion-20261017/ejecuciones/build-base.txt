@@ -1,0 +1,22 @@
+
+> karta3@0.1.0 build
+> npm run decks:prepare && tsc -b && vite build
+
+
+> karta3@0.1.0 decks:prepare
+> tsx tools/decks.ts prepare
+
+criaturas-magicas: válida; disponibilidad true
+generica: válida; disponibilidad true
+sistema-solar: válida; disponibilidad true
+Catálogo preparado: 3 barajas disponibles.
+vite v8.3.1 building client environment for production...
+transforming...
+✓ 71 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.45 kB │ gzip:   0.29 kB
+dist/assets/index-FVRSe50d.css   24.76 kB │ gzip:   5.65 kB
+dist/assets/index-cel3Bg4z.js   336.48 kB │ gzip: 101.79 kB
+
+✓ built in 774ms

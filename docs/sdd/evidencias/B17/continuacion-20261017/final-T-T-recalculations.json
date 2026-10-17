@@ -1,0 +1,4685 @@
+{
+  "fontPath": "playwright-report/b17-adenda/DejaVuSansMono.ttf",
+  "stages": [
+    {
+      "zoom": 1,
+      "geometry": {
+        "name": "Tritón de las profundidades",
+        "title": {
+          "x": 850.5,
+          "y": 625.109375,
+          "width": 184.15625,
+          "height": 14,
+          "right": 1034.65625,
+          "bottom": 639.109375
+        },
+        "heading": {
+          "x": 850.5,
+          "y": 625.109375,
+          "width": 204,
+          "height": 21,
+          "right": 1054.5,
+          "bottom": 646.109375
+        },
+        "icon": {
+          "x": 1040.65625,
+          "y": 625.109375,
+          "width": 13.84375,
+          "height": 21,
+          "right": 1054.5,
+          "bottom": 646.109375
+        },
+        "size": 12,
+        "base": 16,
+        "min": 12,
+        "available": 184.15625,
+        "baseWidth": 260.09375,
+        "minWidth": 195.078125,
+        "nextWidth": 196.703125,
+        "referenceBand": 21,
+        "textRects": [
+          {
+            "x": 850.5,
+            "y": 625.109375,
+            "width": 195.078125,
+            "height": 14,
+            "right": 1045.578125,
+            "bottom": 639.109375
+          }
+        ],
+        "family": "AdendaDelayed, sans-serif",
+        "weight": "700",
+        "lineHeight": "normal",
+        "letterSpacing": "normal",
+        "gap": 6,
+        "titleMargins": 0,
+        "iconMargins": 0,
+        "whiteSpace": "nowrap",
+        "overflow": "hidden",
+        "textOverflow": "clip",
+        "card": {
+          "x": 837.5,
+          "y": 612.109375,
+          "width": 230,
+          "height": 321,
+          "right": 1067.5,
+          "bottom": 933.109375
+        },
+        "image": {
+          "x": 837.5,
+          "y": 650.109375,
+          "width": 230,
+          "height": 172.5,
+          "right": 1067.5,
+          "bottom": 822.609375
+        },
+        "table": {
+          "x": 850.5,
+          "y": 834.359375,
+          "width": 204,
+          "height": 86,
+          "right": 1054.5,
+          "bottom": 920.359375
+        },
+        "gaps": [
+          11.75,
+          11.75
+        ],
+        "rows": [
+          {
+            "text": " Poder30",
+            "box": {
+              "x": 850.5,
+              "y": 834.359375,
+              "width": 204,
+              "height": 28.5,
+              "right": 1054.5,
+              "bottom": 862.859375
+            },
+            "content": [
+              {
+                "top": 840.359375,
+                "bottom": 856.359375,
+                "height": 16
+              },
+              {
+                "top": 840.359375,
+                "bottom": 856.359375,
+                "height": 16
+              },
+              {
+                "top": 840.359375,
+                "bottom": 856.359375,
+                "height": 16
+              },
+              {
+                "top": 840.359375,
+                "bottom": 856.359375,
+                "height": 16
+              }
+            ]
+          },
+          {
+            "text": "▲ Astucia23",
+            "box": {
+              "x": 850.5,
+              "y": 862.859375,
+              "width": 204,
+              "height": 29,
+              "right": 1054.5,
+              "bottom": 891.859375
+            },
+            "content": [
+              {
+                "top": 869.359375,
+                "bottom": 885.359375,
+                "height": 16
+              },
+              {
+                "top": 869.359375,
+                "bottom": 885.359375,
+                "height": 16
+              },
+              {
+                "top": 869.359375,
+                "bottom": 885.359375,
+                "height": 16
+              },
+              {
+                "top": 869.359375,
+                "bottom": 885.359375,
+                "height": 16
+              },
+              {
+                "top": 869.359375,
+                "bottom": 885.359375,
+                "height": 16
+              },
+              {
+                "top": 869.359375,
+                "bottom": 885.359375,
+                "height": 16
+              }
+            ]
+          },
+          {
+            "text": "■ Resistencia41",
+            "box": {
+              "x": 850.5,
+              "y": 891.859375,
+              "width": 204,
+              "height": 28.5,
+              "right": 1054.5,
+              "bottom": 920.359375
+            },
+            "content": [
+              {
+                "top": 898.359375,
+                "bottom": 914.359375,
+                "height": 16
+              },
+              {
+                "top": 898.359375,
+                "bottom": 914.359375,
+                "height": 16
+              },
+              {
+                "top": 898.359375,
+                "bottom": 914.359375,
+                "height": 16
+              },
+              {
+                "top": 898.359375,
+                "bottom": 914.359375,
+                "height": 16
+              },
+              {
+                "top": 898.359375,
+                "bottom": 914.359375,
+                "height": 16
+              },
+              {
+                "top": 898.359375,
+                "bottom": 914.359375,
+                "height": 16
+              }
+            ]
+          }
+        ],
+        "padding": "6px",
+        "d": {
+          "box": {
+            "x": 1018.5,
+            "y": 773.609375,
+            "width": 44,
+            "height": 44,
+            "right": 1062.5,
+            "bottom": 817.609375
+          },
+          "received": true,
+          "tag": "SPAN",
+          "className": null
+        },
+        "play": {
+          "box": {
+            "x": 837.5,
+            "y": 941.109375,
+            "width": 230,
+            "height": 48,
+            "right": 1067.5,
+            "bottom": 989.109375
+          },
+          "received": false
+        },
+        "useful": "1368",
+        "viewport": {
+          "width": 1920,
+          "height": 844,
+          "dpr": 1,
+          "scale": 1,
+          "cssZoom": "1"
+        }
+      },
+      "columns": {
+        "scale": 1,
+        "card": {
+          "x": 837.5,
+          "y": 612.109375,
+          "width": 230,
+          "height": 321,
+          "bottom": 933.109375
+        },
+        "table": {
+          "x": 850.5,
+          "y": 834.359375,
+          "width": 204,
+          "height": 86,
+          "bottom": 920.359375
+        },
+        "layout": "fixed",
+        "declaredAttributeWidth": "103.03125px",
+        "columns": [
+          {
+            "row": {
+              "x": 850.5,
+              "y": 834.359375,
+              "width": 204,
+              "height": 28.5,
+              "bottom": 862.859375
+            },
+            "attribute": {
+              "text": " Poder",
+              "box": {
+                "x": 850.5,
+                "y": 834.359375,
+                "width": 103.03125,
+                "height": 28.5,
+                "bottom": 862.859375
+              },
+              "cssWidth": "103.031px",
+              "clientWidth": 103,
+              "offsetWidth": 103,
+              "useful": 97.03125,
+              "padding": [
+                3,
+                3
+              ],
+              "borders": [
+                0,
+                0
+              ],
+              "wholeWidth": 56.21875,
+              "font": "700 14px AdendaBaseTest, sans-serif",
+              "align": "left",
+              "wrapping": "anywhere",
+              "ranges": [
+                {
+                  "x": 853.5,
+                  "width": 16.453125,
+                  "top": 840.359375,
+                  "bottom": 856.359375
+                },
+                {
+                  "x": 865.5,
+                  "width": 4.453125,
+                  "top": 840.359375,
+                  "bottom": 856.359375
+                },
+                {
+                  "x": 869.953125,
+                  "width": 39.765625,
+                  "top": 840.359375,
+                  "bottom": 856.359375
+                }
+              ]
+            },
+            "value": {
+              "text": "30",
+              "box": {
+                "x": 953.53125,
+                "y": 834.359375,
+                "width": 100.96875,
+                "height": 28.5,
+                "bottom": 862.859375
+              },
+              "cssWidth": "100.969px",
+              "clientWidth": 101,
+              "offsetWidth": 101,
+              "useful": 96.96875,
+              "padding": [
+                2,
+                2
+              ],
+              "borders": [
+                0,
+                0
+              ],
+              "wholeWidth": 17.828125,
+              "font": "14px AdendaBaseTest, sans-serif",
+              "align": "right",
+              "wrapping": "anywhere",
+              "ranges": [
+                {
+                  "x": 1034.671875,
+                  "width": 17.828125,
+                  "top": 840.359375,
+                  "bottom": 856.359375
+                }
+              ]
+            }
+          },
+          {
+            "row": {
+              "x": 850.5,
+              "y": 862.859375,
+              "width": 204,
+              "height": 29,
+              "bottom": 891.859375
+            },
+            "attribute": {
+              "text": "▲ Astucia",
+              "box": {
+                "x": 850.5,
+                "y": 862.859375,
+                "width": 103.03125,
+                "height": 29,
+                "bottom": 891.859375
+              },
+              "cssWidth": "103.031px",
+              "clientWidth": 103,
+              "offsetWidth": 103,
+              "useful": 97.03125,
+              "padding": [
+                3,
+                3
+              ],
+              "borders": [
+                0,
+                0
+              ],
+              "wholeWidth": 66.640625,
+              "font": "700 14px AdendaBaseTest, sans-serif",
+              "align": "left",
+              "wrapping": "anywhere",
+              "ranges": [
+                {
+                  "x": 853.5,
+                  "width": 10.78125,
+                  "top": 869.359375,
+                  "bottom": 885.359375
+                },
+                {
+                  "x": 864.28125,
+                  "width": 4.453125,
+                  "top": 869.359375,
+                  "bottom": 885.359375
+                },
+                {
+                  "x": 853.5,
+                  "width": 10.78125,
+                  "top": 869.359375,
+                  "bottom": 885.359375
+                },
+                {
+                  "x": 864.28125,
+                  "width": 4.453125,
+                  "top": 869.359375,
+                  "bottom": 885.359375
+                },
+                {
+                  "x": 868.734375,
+                  "width": 51.40625,
+                  "top": 869.359375,
+                  "bottom": 885.359375
+                }
+              ]
+            },
+            "value": {
+              "text": "23",
+              "box": {
+                "x": 953.53125,
+                "y": 862.859375,
+                "width": 100.96875,
+                "height": 29,
+                "bottom": 891.859375
+              },
+              "cssWidth": "100.969px",
+              "clientWidth": 101,
+              "offsetWidth": 101,
+              "useful": 96.96875,
+              "padding": [
+                2,
+                2
+              ],
+              "borders": [
+                0,
+                0
+              ],
+              "wholeWidth": 17.828125,
+              "font": "14px AdendaBaseTest, sans-serif",
+              "align": "right",
+              "wrapping": "anywhere",
+              "ranges": [
+                {
+                  "x": 1034.671875,
+                  "width": 17.828125,
+                  "top": 869.359375,
+                  "bottom": 885.359375
+                }
+              ]
+            }
+          },
+          {
+            "row": {
+              "x": 850.5,
+              "y": 891.859375,
+              "width": 204,
+              "height": 28.5,
+              "bottom": 920.359375
+            },
+            "attribute": {
+              "text": "■ Resistencia",
+              "box": {
+                "x": 850.5,
+                "y": 891.859375,
+                "width": 103.03125,
+                "height": 28.5,
+                "bottom": 920.359375
+              },
+              "cssWidth": "103.031px",
+              "clientWidth": 103,
+              "offsetWidth": 103,
+              "useful": 97.03125,
+              "padding": [
+                3,
+                3
+              ],
+              "borders": [
+                0,
+                0
+              ],
+              "wholeWidth": 97.03125,
+              "font": "700 14px AdendaBaseTest, sans-serif",
+              "align": "left",
+              "wrapping": "anywhere",
+              "ranges": [
+                {
+                  "x": 853.5,
+                  "width": 13.234375,
+                  "top": 898.359375,
+                  "bottom": 914.359375
+                },
+                {
+                  "x": 866.734375,
+                  "width": 4.453125,
+                  "top": 898.359375,
+                  "bottom": 914.359375
+                },
+                {
+                  "x": 853.5,
+                  "width": 13.234375,
+                  "top": 898.359375,
+                  "bottom": 914.359375
+                },
+                {
+                  "x": 866.734375,
+                  "width": 4.453125,
+                  "top": 898.359375,
+                  "bottom": 914.359375
+                },
+                {
+                  "x": 871.1875,
+                  "width": 79.34375,
+                  "top": 898.359375,
+                  "bottom": 914.359375
+                }
+              ]
+            },
+            "value": {
+              "text": "41",
+              "box": {
+                "x": 953.53125,
+                "y": 891.859375,
+                "width": 100.96875,
+                "height": 28.5,
+                "bottom": 920.359375
+              },
+              "cssWidth": "100.969px",
+              "clientWidth": 101,
+              "offsetWidth": 101,
+              "useful": 96.96875,
+              "padding": [
+                2,
+                2
+              ],
+              "borders": [
+                0,
+                0
+              ],
+              "wholeWidth": 17.828125,
+              "font": "14px AdendaBaseTest, sans-serif",
+              "align": "right",
+              "wrapping": "anywhere",
+              "ranges": [
+                {
+                  "x": 1034.671875,
+                  "width": 17.828125,
+                  "top": 898.359375,
+                  "bottom": 914.359375
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "fonts": {
+        "title": {
+          "fonts": [
+            {
+              "familyName": "DejaVu Sans Mono",
+              "postScriptName": "DejaVuSansMono",
+              "isCustomFont": true,
+              "glyphCount": 27
+            }
+          ]
+        },
+        "lastAttribute": {
+          "fonts": [
+            {
+              "familyName": "DejaVu Sans",
+              "postScriptName": "DejaVuSans",
+              "isCustomFont": true,
+              "glyphCount": 13
+            }
+          ]
+        },
+        "ownSymbol": {
+          "fonts": [
+            {
+              "familyName": "DejaVu Sans",
+              "postScriptName": "DejaVuSans",
+              "isCustomFont": true,
+              "glyphCount": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "zoom": 1.25,
+      "geometry": {
+        "name": "Tritón de las profundidades",
+        "title": {
+          "x": 824.5,
+          "y": 777.890625,
+          "width": 230.6875,
+          "height": 18,
+          "right": 1055.1875,
+          "bottom": 795.890625
+        },
+        "heading": {
+          "x": 824.5,
+          "y": 777.890625,
+          "width": 255.5,
+          "height": 26,
+          "right": 1080,
+          "bottom": 803.890625
+        },
+        "icon": {
+          "x": 1062.6875,
+          "y": 777.890625,
+          "width": 17.3125,
+          "height": 26,
+          "right": 1080,
+          "bottom": 803.890625
+        },
+        "size": 12,
+        "base": 16,
+        "min": 12,
+        "available": 230.6875,
+        "baseWidth": 325.109375,
+        "minWidth": 243.84375,
+        "nextWidth": 245.78125,
+        "referenceBand": 26,
+        "textRects": [
+          {
+            "x": 824.5,
+            "y": 777.890625,
+            "width": 243.84375,
+            "height": 18,
+            "right": 1068.34375,
+            "bottom": 795.890625
+          }
+        ],
+        "family": "AdendaDelayed, sans-serif",
+        "weight": "700",
+        "lineHeight": "normal",
+        "letterSpacing": "normal",
+        "gap": 7.5,
+        "titleMargins": 0,
+        "iconMargins": 0,
+        "whiteSpace": "nowrap",
+        "overflow": "hidden",
+        "textOverflow": "clip",
+        "card": {
+          "x": 808.5,
+          "y": 761.890625,
+          "width": 287.5,
+          "height": 401.25,
+          "right": 1096,
+          "bottom": 1163.140625
+        },
+        "image": {
+          "x": 808.25,
+          "y": 808.890625,
+          "width": 288,
+          "height": 216,
+          "right": 1096.25,
+          "bottom": 1024.890625
+        },
+        "table": {
+          "x": 824.5,
+          "y": 1040.015625,
+          "width": 255.5,
+          "height": 107,
+          "right": 1080,
+          "bottom": 1147.015625
+        },
+        "gaps": [
+          15.125,
+          15.125
+        ],
+        "rows": [
+          {
+            "text": " Poder30",
+            "box": {
+              "x": 824.5,
+              "y": 1040.015625,
+              "width": 255.5,
+              "height": 35.5,
+              "right": 1080,
+              "bottom": 1075.515625
+            },
+            "content": [
+              {
+                "top": 1047.515625,
+                "bottom": 1067.515625,
+                "height": 20
+              },
+              {
+                "top": 1047.515625,
+                "bottom": 1067.515625,
+                "height": 20
+              },
+              {
+                "top": 1047.515625,
+                "bottom": 1067.515625,
+                "height": 20
+              },
+              {
+                "top": 1047.515625,
+                "bottom": 1067.515625,
+                "height": 20
+              }
+            ]
+          },
+          {
+            "text": "▲ Astucia23",
+            "box": {
+              "x": 824.5,
+              "y": 1075.515625,
+              "width": 255.5,
+              "height": 36,
+              "right": 1080,
+              "bottom": 1111.515625
+            },
+            "content": [
+              {
+                "top": 1083.515625,
+                "bottom": 1103.515625,
+                "height": 20
+              },
+              {
+                "top": 1083.515625,
+                "bottom": 1103.515625,
+                "height": 20
+              },
+              {
+                "top": 1083.515625,
+                "bottom": 1103.515625,
+                "height": 20
+              },
+              {
+                "top": 1083.515625,
+                "bottom": 1103.515625,
+                "height": 20
+              },
+              {
+                "top": 1083.515625,
+                "bottom": 1103.515625,
+                "height": 20
+              },
+              {
+                "top": 1083.515625,
+                "bottom": 1103.515625,
+                "height": 20
+              }
+            ]
+          },
+          {
+            "text": "■ Resistencia41",
+            "box": {
+              "x": 824.5,
+              "y": 1111.515625,
+              "width": 255.5,
+              "height": 35.5,
+              "right": 1080,
+              "bottom": 1147.015625
+            },
+            "content": [
+              {
+                "top": 1119.515625,
+                "bottom": 1139.515625,
+                "height": 20
+              },
+              {
+                "top": 1119.515625,
+                "bottom": 1139.515625,
+                "height": 20
+              },
+              {
+                "top": 1119.515625,
+                "bottom": 1139.515625,
+                "height": 20
+              },
+              {
+                "top": 1119.515625,
+                "bottom": 1139.515625,
+                "height": 20
+              },
+              {
+                "top": 1119.515625,
+                "bottom": 1139.515625,
+                "height": 20
+              },
+              {
+                "top": 1119.515625,
+                "bottom": 1139.515625,
+                "height": 20
+              }
+            ]
+          }
+        ],
+        "padding": "6px",
+        "d": {
+          "box": {
+            "x": 1035,
+            "y": 963.640625,
+            "width": 55,
+            "height": 55,
+            "right": 1090,
+            "bottom": 1018.640625
+          },
+          "received": false
+        },
+        "play": {
+          "box": {
+            "x": 808.5,
+            "y": 1173.140625,
+            "width": 287.5,
+            "height": 60,
+            "right": 1096,
+            "bottom": 1233.140625
+          },
+          "received": false
+        },
+        "useful": "1368",
+        "viewport": {
+          "width": 1920,
+          "height": 844,
+          "dpr": 1,
+          "scale": 1,
+          "cssZoom": "1.25"
+        }
+      },
+      "columns": {
+        "scale": 1.25,
+        "card": {
+          "x": 808.5,
+          "y": 761.890625,
+          "width": 287.5,
+          "height": 401.25,
+          "bottom": 1163.140625
+        },
+        "table": {
+          "x": 824.5,
+          "y": 1040.015625,
+          "width": 255.5,
+          "height": 107,
+          "bottom": 1147.015625
+        },
+        "layout": "fixed",
+        "declaredAttributeWidth": "103.046875px",
+        "columns": [
+          {
+            "row": {
+              "x": 824.5,
+              "y": 1040.015625,
+              "width": 255.5,
+              "height": 35.5,
+              "bottom": 1075.515625
+            },
+            "attribute": {
+              "text": " Poder",
+              "box": {
+                "x": 824.5,
+                "y": 1040.015625,
+                "width": 128.796875,
+                "height": 35.5,
+                "bottom": 1075.515625
+              },
+              "cssWidth": "103.037px",
+              "clientWidth": 103,
+              "offsetWidth": 103,
+              "useful": 97.0375,
+              "padding": [
+                3,
+                3
+              ],
+              "borders": [
+                0,
+                0
+              ],
+              "wholeWidth": 56.2375,
+              "font": "700 14px AdendaBaseTest, sans-serif",
+              "align": "left",
+              "wrapping": "anywhere",
+              "ranges": [
+                {
+                  "x": 828.25,
+                  "width": 20.578125,
+                  "top": 1047.515625,
+                  "bottom": 1067.515625
+                },
+                {
+                  "x": 843.25,
+                  "width": 5.578125,
+                  "top": 1047.515625,
+                  "bottom": 1067.515625
+                },
+                {
+                  "x": 848.828125,
+                  "width": 49.71875,
+                  "top": 1047.515625,
+                  "bottom": 1067.515625
+                }
+              ]
+            },
+            "value": {
+              "text": "30",
+              "box": {
+                "x": 953.296875,
+                "y": 1040.015625,
+                "width": 126.703125,
+                "height": 35.5,
+                "bottom": 1075.515625
+              },
+              "cssWidth": "101.363px",
+              "clientWidth": 101,
+              "offsetWidth": 101,
+              "useful": 97.3625,
+              "padding": [
+                2,
+                2
+              ],
+              "borders": [
+                0,
+                0
+              ],
+              "wholeWidth": 17.825,
+              "font": "14px AdendaBaseTest, sans-serif",
+              "align": "right",
+              "wrapping": "anywhere",
+              "ranges": [
+                {
+                  "x": 1055.21875,
+                  "width": 22.28125,
+                  "top": 1047.515625,
+                  "bottom": 1067.515625
+                }
+              ]
+            }
+          },
+          {
+            "row": {
+              "x": 824.5,
+              "y": 1075.515625,
+              "width": 255.5,
+              "height": 36,
+              "bottom": 1111.515625
+            },
+            "attribute": {
+              "text": "▲ Astucia",
+              "box": {
+                "x": 824.5,
+                "y": 1075.515625,
+                "width": 128.796875,
+                "height": 36,
+                "bottom": 1111.515625
+              },
+              "cssWidth": "103.037px",
+              "clientWidth": 103,
+              "offsetWidth": 103,
+              "useful": 97.0375,
+              "padding": [
+                3,
+                3
+              ],
+              "borders": [
+                0,
+                0
+              ],
+              "wholeWidth": 66.6375,
+              "font": "700 14px AdendaBaseTest, sans-serif",
+              "align": "left",
+              "wrapping": "anywhere",
+              "ranges": [
+                {
+                  "x": 828.25,
+                  "width": 13.46875,
+                  "top": 1083.515625,
+                  "bottom": 1103.515625
+                },
+                {
+                  "x": 841.71875,
+                  "width": 5.578125,
+                  "top": 1083.515625,
+                  "bottom": 1103.515625
+                },
+                {
+                  "x": 828.25,
+                  "width": 13.46875,
+                  "top": 1083.515625,
+                  "bottom": 1103.515625
+                },
+                {
+                  "x": 841.71875,
+                  "width": 5.578125,
+                  "top": 1083.515625,
+                  "bottom": 1103.515625
+                },
+                {
+                  "x": 847.296875,
+                  "width": 64.25,
+                  "top": 1083.515625,
+                  "bottom": 1103.515625
+                }
+              ]
+            },
+            "value": {
+              "text": "23",
+              "box": {
+                "x": 953.296875,
+                "y": 1075.515625,
+                "width": 126.703125,
+                "height": 36,
+                "bottom": 1111.515625
+              },
+              "cssWidth": "101.363px",
+              "clientWidth": 101,
+              "offsetWidth": 101,
+              "useful": 97.3625,
+              "padding": [
+                2,
+                2
+              ],
+              "borders": [
+                0,
+                0
+              ],
+              "wholeWidth": 17.825,
+              "font": "14px AdendaBaseTest, sans-serif",
+              "align": "right",
+              "wrapping": "anywhere",
+              "ranges": [
+                {
+                  "x": 1055.21875,
+                  "width": 22.28125,
+                  "top": 1083.515625,
+                  "bottom": 1103.515625
+                }
+              ]
+            }
+          },
+          {
+            "row": {
+              "x": 824.5,
+              "y": 1111.515625,
+              "width": 255.5,
+              "height": 35.5,
+              "bottom": 1147.015625
+            },
+            "attribute": {
+              "text": "■ Resistencia",
+              "box": {
+                "x": 824.5,
+                "y": 1111.515625,
+                "width": 128.796875,
+                "height": 35.5,
+                "bottom": 1147.015625
+              },
+              "cssWidth": "103.037px",
+              "clientWidth": 103,
+              "offsetWidth": 103,
+              "useful": 97.0375,
+              "padding": [
+                3,
+                3
+              ],
+              "borders": [
+                0,
+                0
+              ],
+              "wholeWidth": 97.0375,
+              "font": "700 14px AdendaBaseTest, sans-serif",
+              "align": "left",
+              "wrapping": "anywhere",
+              "ranges": [
+                {
+                  "x": 828.25,
+                  "width": 16.546875,
+                  "top": 1119.515625,
+                  "bottom": 1139.515625
+                },
+                {
+                  "x": 844.796875,
+                  "width": 5.578125,
+                  "top": 1119.515625,
+                  "bottom": 1139.515625
+                },
+                {
+                  "x": 828.25,
+                  "width": 16.546875,
+                  "top": 1119.515625,
+                  "bottom": 1139.515625
+                },
+                {
+                  "x": 844.796875,
+                  "width": 5.578125,
+                  "top": 1119.515625,
+                  "bottom": 1139.515625
+                },
+                {
+                  "x": 850.375,
+                  "width": 99.171875,
+                  "top": 1119.515625,
+                  "bottom": 1139.515625
+                }
+              ]
+            },
+            "value": {
+              "text": "41",
+              "box": {
+                "x": 953.296875,
+                "y": 1111.515625,
+                "width": 126.703125,
+                "height": 35.5,
+                "bottom": 1147.015625
+              },
+              "cssWidth": "101.363px",
+              "clientWidth": 101,
+              "offsetWidth": 101,
+              "useful": 97.3625,
+              "padding": [
+                2,
+                2
+              ],
+              "borders": [
+                0,
+                0
+              ],
+              "wholeWidth": 17.825,
+              "font": "14px AdendaBaseTest, sans-serif",
+              "align": "right",
+              "wrapping": "anywhere",
+              "ranges": [
+                {
+                  "x": 1055.21875,
+                  "width": 22.28125,
+                  "top": 1119.515625,
+                  "bottom": 1139.515625
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "fonts": {
+        "title": {
+          "fonts": [
+            {
+              "familyName": "DejaVu Sans Mono",
+              "postScriptName": "DejaVuSansMono",
+              "isCustomFont": true,
+              "glyphCount": 27
+            }
+          ]
+        },
+        "lastAttribute": {
+          "fonts": [
+            {
+              "familyName": "DejaVu Sans",
+              "postScriptName": "DejaVuSans",
+              "isCustomFont": true,
+              "glyphCount": 13
+            }
+          ]
+        },
+        "ownSymbol": {
+          "fonts": [
+            {
+              "familyName": "DejaVu Sans",
+              "postScriptName": "DejaVuSans",
+              "isCustomFont": true,
+              "glyphCount": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "zoom": 2,
+      "geometry": {
+        "name": "Tritón de las profundidades",
+        "title": {
+          "x": 1128,
+          "y": 1315.234375,
+          "width": 368.3125,
+          "height": 28,
+          "right": 1496.3125,
+          "bottom": 1343.234375
+        },
+        "heading": {
+          "x": 1128,
+          "y": 1315.234375,
+          "width": 408,
+          "height": 41,
+          "right": 1536,
+          "bottom": 1356.234375
+        },
+        "icon": {
+          "x": 1508.3125,
+          "y": 1315.234375,
+          "width": 27.6875,
+          "height": 41,
+          "right": 1536,
+          "bottom": 1356.234375
+        },
+        "size": 12,
+        "base": 16,
+        "min": 12,
+        "available": 368.3125,
+        "baseWidth": 520.171875,
+        "minWidth": 390.140625,
+        "nextWidth": 393.390625,
+        "referenceBand": 41,
+        "textRects": [
+          {
+            "x": 1128,
+            "y": 1315.234375,
+            "width": 390.140625,
+            "height": 28,
+            "right": 1518.140625,
+            "bottom": 1343.234375
+          }
+        ],
+        "family": "AdendaDelayed, sans-serif",
+        "weight": "700",
+        "lineHeight": "normal",
+        "letterSpacing": "normal",
+        "gap": 12,
+        "titleMargins": 0,
+        "iconMargins": 0,
+        "whiteSpace": "nowrap",
+        "overflow": "hidden",
+        "textOverflow": "clip",
+        "card": {
+          "x": 1102,
+          "y": 1289.234375,
+          "width": 460,
+          "height": 642,
+          "right": 1562,
+          "bottom": 1931.234375
+        },
+        "image": {
+          "x": 1102,
+          "y": 1364.234375,
+          "width": 460,
+          "height": 345,
+          "right": 1562,
+          "bottom": 1709.234375
+        },
+        "table": {
+          "x": 1128,
+          "y": 1731.734375,
+          "width": 408,
+          "height": 175,
+          "right": 1536,
+          "bottom": 1906.734375
+        },
+        "gaps": [
+          22.5,
+          22.5
+        ],
+        "rows": [
+          {
+            "text": " Poder30",
+            "box": {
+              "x": 1128,
+              "y": 1731.734375,
+              "width": 408,
+              "height": 58,
+              "right": 1536,
+              "bottom": 1789.734375
+            },
+            "content": [
+              {
+                "top": 1743.734375,
+                "bottom": 1776.734375,
+                "height": 33
+              },
+              {
+                "top": 1743.734375,
+                "bottom": 1776.734375,
+                "height": 33
+              },
+              {
+                "top": 1743.734375,
+                "bottom": 1776.734375,
+                "height": 33
+              },
+              {
+                "top": 1743.734375,
+                "bottom": 1776.734375,
+                "height": 33
+              }
+            ]
+          },
+          {
+            "text": "▲ Astucia23",
+            "box": {
+              "x": 1128,
+              "y": 1789.734375,
+              "width": 408,
+              "height": 59,
+              "right": 1536,
+              "bottom": 1848.734375
+            },
+            "content": [
+              {
+                "top": 1802.734375,
+                "bottom": 1835.734375,
+                "height": 33
+              },
+              {
+                "top": 1802.734375,
+                "bottom": 1835.734375,
+                "height": 33
+              },
+              {
+                "top": 1802.734375,
+                "bottom": 1835.734375,
+                "height": 33
+              },
+              {
+                "top": 1802.734375,
+                "bottom": 1835.734375,
+                "height": 33
+              },
+              {
+                "top": 1802.734375,
+                "bottom": 1835.734375,
+                "height": 33
+              },
+              {
+                "top": 1802.734375,
+                "bottom": 1835.734375,
+                "height": 33
+              }
+            ]
+          },
+          {
+            "text": "■ Resistencia41",
+            "box": {
+              "x": 1128,
+              "y": 1848.734375,
+              "width": 408,
+              "height": 58,
+              "right": 1536,
+              "bottom": 1906.734375
+            },
+            "content": [
+              {
+                "top": 1861.734375,
+                "bottom": 1894.734375,
+                "height": 33
+              },
+              {
+                "top": 1861.734375,
+                "bottom": 1894.734375,
+                "height": 33
+              },
+              {
+                "top": 1861.734375,
+                "bottom": 1894.734375,
+                "height": 33
+              },
+              {
+                "top": 1861.734375,
+                "bottom": 1894.734375,
+                "height": 33
+              },
+              {
+                "top": 1861.734375,
+                "bottom": 1894.734375,
+                "height": 33
+              },
+              {
+                "top": 1861.734375,
+                "bottom": 1894.734375,
+                "height": 33
+              }
+            ]
+          }
+        ],
+        "padding": "6px",
+        "d": {
+          "box": {
+            "x": 1464,
+            "y": 1611.234375,
+            "width": 88,
+            "height": 88,
+            "right": 1552,
+            "bottom": 1699.234375
+          },
+          "received": false
+        },
+        "play": {
+          "box": {
+            "x": 1102,
+            "y": 1947.234375,
+            "width": 460,
+            "height": 96,
+            "right": 1562,
+            "bottom": 2043.234375
+          },
+          "received": false
+        },
+        "useful": "920.5",
+        "viewport": {
+          "width": 1920,
+          "height": 844,
+          "dpr": 1,
+          "scale": 1,
+          "cssZoom": "2"
+        }
+      },
+      "columns": {
+        "scale": 2,
+        "card": {
+          "x": 1102,
+          "y": 1289.234375,
+          "width": 460,
+          "height": 642,
+          "bottom": 1931.234375
+        },
+        "table": {
+          "x": 1128,
+          "y": 1731.734375,
+          "width": 408,
+          "height": 175,
+          "bottom": 1906.734375
+        },
+        "layout": "fixed",
+        "declaredAttributeWidth": "103.03125px",
+        "columns": [
+          {
+            "row": {
+              "x": 1128,
+              "y": 1731.734375,
+              "width": 408,
+              "height": 58,
+              "bottom": 1789.734375
+            },
+            "attribute": {
+              "text": " Poder",
+              "box": {
+                "x": 1128,
+                "y": 1731.734375,
+                "width": 206.0625,
+                "height": 58,
+                "bottom": 1789.734375
+              },
+              "cssWidth": "103.031px",
+              "clientWidth": 103,
+              "offsetWidth": 103,
+              "useful": 97.03125,
+              "padding": [
+                3,
+                3
+              ],
+              "borders": [
+                0,
+                0
+              ],
+              "wholeWidth": 56.21875,
+              "font": "700 14px AdendaBaseTest, sans-serif",
+              "align": "left",
+              "wrapping": "anywhere",
+              "ranges": [
+                {
+                  "x": 1134,
+                  "width": 32.90625,
+                  "top": 1743.734375,
+                  "bottom": 1776.734375
+                },
+                {
+                  "x": 1158,
+                  "width": 8.90625,
+                  "top": 1743.734375,
+                  "bottom": 1776.734375
+                },
+                {
+                  "x": 1166.90625,
+                  "width": 79.53125,
+                  "top": 1743.734375,
+                  "bottom": 1776.734375
+                }
+              ]
+            },
+            "value": {
+              "text": "30",
+              "box": {
+                "x": 1334.0625,
+                "y": 1731.734375,
+                "width": 201.9375,
+                "height": 58,
+                "bottom": 1789.734375
+              },
+              "cssWidth": "100.969px",
+              "clientWidth": 101,
+              "offsetWidth": 101,
+              "useful": 96.96875,
+              "padding": [
+                2,
+                2
+              ],
+              "borders": [
+                0,
+                0
+              ],
+              "wholeWidth": 17.8203125,
+              "font": "14px AdendaBaseTest, sans-serif",
+              "align": "right",
+              "wrapping": "anywhere",
+              "ranges": [
+                {
+                  "x": 1496.359375,
+                  "width": 35.640625,
+                  "top": 1743.734375,
+                  "bottom": 1776.734375
+                }
+              ]
+            }
+          },
+          {
+            "row": {
+              "x": 1128,
+              "y": 1789.734375,
+              "width": 408,
+              "height": 59,
+              "bottom": 1848.734375
+            },
+            "attribute": {
+              "text": "▲ Astucia",
+              "box": {
+                "x": 1128,
+                "y": 1789.734375,
+                "width": 206.0625,
+                "height": 59,
+                "bottom": 1848.734375
+              },
+              "cssWidth": "103.031px",
+              "clientWidth": 103,
+              "offsetWidth": 103,
+              "useful": 97.03125,
+              "padding": [
+                3,
+                3
+              ],
+              "borders": [
+                0,
+                0
+              ],
+              "wholeWidth": 66.6328125,
+              "font": "700 14px AdendaBaseTest, sans-serif",
+              "align": "left",
+              "wrapping": "anywhere",
+              "ranges": [
+                {
+                  "x": 1134,
+                  "width": 21.546875,
+                  "top": 1802.734375,
+                  "bottom": 1835.734375
+                },
+                {
+                  "x": 1155.546875,
+                  "width": 8.90625,
+                  "top": 1802.734375,
+                  "bottom": 1835.734375
+                },
+                {
+                  "x": 1134,
+                  "width": 21.546875,
+                  "top": 1802.734375,
+                  "bottom": 1835.734375
+                },
+                {
+                  "x": 1155.546875,
+                  "width": 8.90625,
+                  "top": 1802.734375,
+                  "bottom": 1835.734375
+                },
+                {
+                  "x": 1164.453125,
+                  "width": 102.8125,
+                  "top": 1802.734375,
+                  "bottom": 1835.734375
+                }
+              ]
+            },
+            "value": {
+              "text": "23",
+              "box": {
+                "x": 1334.0625,
+                "y": 1789.734375,
+                "width": 201.9375,
+                "height": 59,
+                "bottom": 1848.734375
+              },
+              "cssWidth": "100.969px",
+              "clientWidth": 101,
+              "offsetWidth": 101,
+              "useful": 96.96875,
+              "padding": [
+                2,
+                2
+              ],
+              "borders": [
+                0,
+                0
+              ],
+              "wholeWidth": 17.8203125,
+              "font": "14px AdendaBaseTest, sans-serif",
+              "align": "right",
+              "wrapping": "anywhere",
+              "ranges": [
+                {
+                  "x": 1496.359375,
+                  "width": 35.640625,
+                  "top": 1802.734375,
+                  "bottom": 1835.734375
+                }
+              ]
+            }
+          },
+          {
+            "row": {
+              "x": 1128,
+              "y": 1848.734375,
+              "width": 408,
+              "height": 58,
+              "bottom": 1906.734375
+            },
+            "attribute": {
+              "text": "■ Resistencia",
+              "box": {
+                "x": 1128,
+                "y": 1848.734375,
+                "width": 206.0625,
+                "height": 58,
+                "bottom": 1906.734375
+              },
+              "cssWidth": "103.031px",
+              "clientWidth": 103,
+              "offsetWidth": 103,
+              "useful": 97.03125,
+              "padding": [
+                3,
+                3
+              ],
+              "borders": [
+                0,
+                0
+              ],
+              "wholeWidth": 97.0234375,
+              "font": "700 14px AdendaBaseTest, sans-serif",
+              "align": "left",
+              "wrapping": "anywhere",
+              "ranges": [
+                {
+                  "x": 1134,
+                  "width": 26.46875,
+                  "top": 1861.734375,
+                  "bottom": 1894.734375
+                },
+                {
+                  "x": 1160.46875,
+                  "width": 8.90625,
+                  "top": 1861.734375,
+                  "bottom": 1894.734375
+                },
+                {
+                  "x": 1134,
+                  "width": 26.46875,
+                  "top": 1861.734375,
+                  "bottom": 1894.734375
+                },
+                {
+                  "x": 1160.46875,
+                  "width": 8.90625,
+                  "top": 1861.734375,
+                  "bottom": 1894.734375
+                },
+                {
+                  "x": 1169.375,
+                  "width": 158.671875,
+                  "top": 1861.734375,
+                  "bottom": 1894.734375
+                }
+              ]
+            },
+            "value": {
+              "text": "41",
+              "box": {
+                "x": 1334.0625,
+                "y": 1848.734375,
+                "width": 201.9375,
+                "height": 58,
+                "bottom": 1906.734375
+              },
+              "cssWidth": "100.969px",
+              "clientWidth": 101,
+              "offsetWidth": 101,
+              "useful": 96.96875,
+              "padding": [
+                2,
+                2
+              ],
+              "borders": [
+                0,
+                0
+              ],
+              "wholeWidth": 17.8203125,
+              "font": "14px AdendaBaseTest, sans-serif",
+              "align": "right",
+              "wrapping": "anywhere",
+              "ranges": [
+                {
+                  "x": 1496.359375,
+                  "width": 35.640625,
+                  "top": 1861.734375,
+                  "bottom": 1894.734375
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "fonts": {
+        "title": {
+          "fonts": [
+            {
+              "familyName": "DejaVu Sans Mono",
+              "postScriptName": "DejaVuSansMono",
+              "isCustomFont": true,
+              "glyphCount": 27
+            }
+          ]
+        },
+        "lastAttribute": {
+          "fonts": [
+            {
+              "familyName": "DejaVu Sans",
+              "postScriptName": "DejaVuSans",
+              "isCustomFont": true,
+              "glyphCount": 13
+            }
+          ]
+        },
+        "ownSymbol": {
+          "fonts": [
+            {
+              "familyName": "DejaVu Sans",
+              "postScriptName": "DejaVuSans",
+              "isCustomFont": true,
+              "glyphCount": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "zoom": 1,
+      "geometry": {
+        "name": "Tritón de las profundidades",
+        "title": {
+          "x": 850.5,
+          "y": 625.109375,
+          "width": 184.15625,
+          "height": 14,
+          "right": 1034.65625,
+          "bottom": 639.109375
+        },
+        "heading": {
+          "x": 850.5,
+          "y": 625.109375,
+          "width": 204,
+          "height": 21,
+          "right": 1054.5,
+          "bottom": 646.109375
+        },
+        "icon": {
+          "x": 1040.65625,
+          "y": 625.109375,
+          "width": 13.84375,
+          "height": 21,
+          "right": 1054.5,
+          "bottom": 646.109375
+        },
+        "size": 12,
+        "base": 16,
+        "min": 12,
+        "available": 184.15625,
+        "baseWidth": 260.09375,
+        "minWidth": 195.078125,
+        "nextWidth": 196.703125,
+        "referenceBand": 21,
+        "textRects": [
+          {
+            "x": 850.5,
+            "y": 625.109375,
+            "width": 195.078125,
+            "height": 14,
+            "right": 1045.578125,
+            "bottom": 639.109375
+          }
+        ],
+        "family": "AdendaDelayed, sans-serif",
+        "weight": "700",
+        "lineHeight": "normal",
+        "letterSpacing": "normal",
+        "gap": 6,
+        "titleMargins": 0,
+        "iconMargins": 0,
+        "whiteSpace": "nowrap",
+        "overflow": "hidden",
+        "textOverflow": "clip",
+        "card": {
+          "x": 837.5,
+          "y": 612.109375,
+          "width": 230,
+          "height": 321,
+          "right": 1067.5,
+          "bottom": 933.109375
+        },
+        "image": {
+          "x": 837.5,
+          "y": 650.109375,
+          "width": 230,
+          "height": 172.5,
+          "right": 1067.5,
+          "bottom": 822.609375
+        },
+        "table": {
+          "x": 850.5,
+          "y": 834.359375,
+          "width": 204,
+          "height": 86,
+          "right": 1054.5,
+          "bottom": 920.359375
+        },
+        "gaps": [
+          11.75,
+          11.75
+        ],
+        "rows": [
+          {
+            "text": " Poder30",
+            "box": {
+              "x": 850.5,
+              "y": 834.359375,
+              "width": 204,
+              "height": 28.5,
+              "right": 1054.5,
+              "bottom": 862.859375
+            },
+            "content": [
+              {
+                "top": 840.359375,
+                "bottom": 856.359375,
+                "height": 16
+              },
+              {
+                "top": 840.359375,
+                "bottom": 856.359375,
+                "height": 16
+              },
+              {
+                "top": 840.359375,
+                "bottom": 856.359375,
+                "height": 16
+              },
+              {
+                "top": 840.359375,
+                "bottom": 856.359375,
+                "height": 16
+              }
+            ]
+          },
+          {
+            "text": "▲ Astucia23",
+            "box": {
+              "x": 850.5,
+              "y": 862.859375,
+              "width": 204,
+              "height": 29,
+              "right": 1054.5,
+              "bottom": 891.859375
+            },
+            "content": [
+              {
+                "top": 869.359375,
+                "bottom": 885.359375,
+                "height": 16
+              },
+              {
+                "top": 869.359375,
+                "bottom": 885.359375,
+                "height": 16
+              },
+              {
+                "top": 869.359375,
+                "bottom": 885.359375,
+                "height": 16
+              },
+              {
+                "top": 869.359375,
+                "bottom": 885.359375,
+                "height": 16
+              },
+              {
+                "top": 869.359375,
+                "bottom": 885.359375,
+                "height": 16
+              },
+              {
+                "top": 869.359375,
+                "bottom": 885.359375,
+                "height": 16
+              }
+            ]
+          },
+          {
+            "text": "■ Resistencia41",
+            "box": {
+              "x": 850.5,
+              "y": 891.859375,
+              "width": 204,
+              "height": 28.5,
+              "right": 1054.5,
+              "bottom": 920.359375
+            },
+            "content": [
+              {
+                "top": 898.359375,
+                "bottom": 914.359375,
+                "height": 16
+              },
+              {
+                "top": 898.359375,
+                "bottom": 914.359375,
+                "height": 16
+              },
+              {
+                "top": 898.359375,
+                "bottom": 914.359375,
+                "height": 16
+              },
+              {
+                "top": 898.359375,
+                "bottom": 914.359375,
+                "height": 16
+              },
+              {
+                "top": 898.359375,
+                "bottom": 914.359375,
+                "height": 16
+              },
+              {
+                "top": 898.359375,
+                "bottom": 914.359375,
+                "height": 16
+              }
+            ]
+          }
+        ],
+        "padding": "6px",
+        "d": {
+          "box": {
+            "x": 1018.5,
+            "y": 773.609375,
+            "width": 44,
+            "height": 44,
+            "right": 1062.5,
+            "bottom": 817.609375
+          },
+          "received": true,
+          "tag": "SPAN",
+          "className": null
+        },
+        "play": {
+          "box": {
+            "x": 837.5,
+            "y": 941.109375,
+            "width": 230,
+            "height": 48,
+            "right": 1067.5,
+            "bottom": 989.109375
+          },
+          "received": false
+        },
+        "useful": "1368",
+        "viewport": {
+          "width": 1920,
+          "height": 844,
+          "dpr": 1,
+          "scale": 1,
+          "cssZoom": "1"
+        }
+      },
+      "columns": {
+        "scale": 1,
+        "card": {
+          "x": 837.5,
+          "y": 612.109375,
+          "width": 230,
+          "height": 321,
+          "bottom": 933.109375
+        },
+        "table": {
+          "x": 850.5,
+          "y": 834.359375,
+          "width": 204,
+          "height": 86,
+          "bottom": 920.359375
+        },
+        "layout": "fixed",
+        "declaredAttributeWidth": "103.03125px",
+        "columns": [
+          {
+            "row": {
+              "x": 850.5,
+              "y": 834.359375,
+              "width": 204,
+              "height": 28.5,
+              "bottom": 862.859375
+            },
+            "attribute": {
+              "text": " Poder",
+              "box": {
+                "x": 850.5,
+                "y": 834.359375,
+                "width": 103.03125,
+                "height": 28.5,
+                "bottom": 862.859375
+              },
+              "cssWidth": "103.031px",
+              "clientWidth": 103,
+              "offsetWidth": 103,
+              "useful": 97.03125,
+              "padding": [
+                3,
+                3
+              ],
+              "borders": [
+                0,
+                0
+              ],
+              "wholeWidth": 56.21875,
+              "font": "700 14px AdendaBaseTest, sans-serif",
+              "align": "left",
+              "wrapping": "anywhere",
+              "ranges": [
+                {
+                  "x": 853.5,
+                  "width": 16.453125,
+                  "top": 840.359375,
+                  "bottom": 856.359375
+                },
+                {
+                  "x": 865.5,
+                  "width": 4.453125,
+                  "top": 840.359375,
+                  "bottom": 856.359375
+                },
+                {
+                  "x": 869.953125,
+                  "width": 39.765625,
+                  "top": 840.359375,
+                  "bottom": 856.359375
+                }
+              ]
+            },
+            "value": {
+              "text": "30",
+              "box": {
+                "x": 953.53125,
+                "y": 834.359375,
+                "width": 100.96875,
+                "height": 28.5,
+                "bottom": 862.859375
+              },
+              "cssWidth": "100.969px",
+              "clientWidth": 101,
+              "offsetWidth": 101,
+              "useful": 96.96875,
+              "padding": [
+                2,
+                2
+              ],
+              "borders": [
+                0,
+                0
+              ],
+              "wholeWidth": 17.828125,
+              "font": "14px AdendaBaseTest, sans-serif",
+              "align": "right",
+              "wrapping": "anywhere",
+              "ranges": [
+                {
+                  "x": 1034.671875,
+                  "width": 17.828125,
+                  "top": 840.359375,
+                  "bottom": 856.359375
+                }
+              ]
+            }
+          },
+          {
+            "row": {
+              "x": 850.5,
+              "y": 862.859375,
+              "width": 204,
+              "height": 29,
+              "bottom": 891.859375
+            },
+            "attribute": {
+              "text": "▲ Astucia",
+              "box": {
+                "x": 850.5,
+                "y": 862.859375,
+                "width": 103.03125,
+                "height": 29,
+                "bottom": 891.859375
+              },
+              "cssWidth": "103.031px",
+              "clientWidth": 103,
+              "offsetWidth": 103,
+              "useful": 97.03125,
+              "padding": [
+                3,
+                3
+              ],
+              "borders": [
+                0,
+                0
+              ],
+              "wholeWidth": 66.640625,
+              "font": "700 14px AdendaBaseTest, sans-serif",
+              "align": "left",
+              "wrapping": "anywhere",
+              "ranges": [
+                {
+                  "x": 853.5,
+                  "width": 10.78125,
+                  "top": 869.359375,
+                  "bottom": 885.359375
+                },
+                {
+                  "x": 864.28125,
+                  "width": 4.453125,
+                  "top": 869.359375,
+                  "bottom": 885.359375
+                },
+                {
+                  "x": 853.5,
+                  "width": 10.78125,
+                  "top": 869.359375,
+                  "bottom": 885.359375
+                },
+                {
+                  "x": 864.28125,
+                  "width": 4.453125,
+                  "top": 869.359375,
+                  "bottom": 885.359375
+                },
+                {
+                  "x": 868.734375,
+                  "width": 51.40625,
+                  "top": 869.359375,
+                  "bottom": 885.359375
+                }
+              ]
+            },
+            "value": {
+              "text": "23",
+              "box": {
+                "x": 953.53125,
+                "y": 862.859375,
+                "width": 100.96875,
+                "height": 29,
+                "bottom": 891.859375
+              },
+              "cssWidth": "100.969px",
+              "clientWidth": 101,
+              "offsetWidth": 101,
+              "useful": 96.96875,
+              "padding": [
+                2,
+                2
+              ],
+              "borders": [
+                0,
+                0
+              ],
+              "wholeWidth": 17.828125,
+              "font": "14px AdendaBaseTest, sans-serif",
+              "align": "right",
+              "wrapping": "anywhere",
+              "ranges": [
+                {
+                  "x": 1034.671875,
+                  "width": 17.828125,
+                  "top": 869.359375,
+                  "bottom": 885.359375
+                }
+              ]
+            }
+          },
+          {
+            "row": {
+              "x": 850.5,
+              "y": 891.859375,
+              "width": 204,
+              "height": 28.5,
+              "bottom": 920.359375
+            },
+            "attribute": {
+              "text": "■ Resistencia",
+              "box": {
+                "x": 850.5,
+                "y": 891.859375,
+                "width": 103.03125,
+                "height": 28.5,
+                "bottom": 920.359375
+              },
+              "cssWidth": "103.031px",
+              "clientWidth": 103,
+              "offsetWidth": 103,
+              "useful": 97.03125,
+              "padding": [
+                3,
+                3
+              ],
+              "borders": [
+                0,
+                0
+              ],
+              "wholeWidth": 97.03125,
+              "font": "700 14px AdendaBaseTest, sans-serif",
+              "align": "left",
+              "wrapping": "anywhere",
+              "ranges": [
+                {
+                  "x": 853.5,
+                  "width": 13.234375,
+                  "top": 898.359375,
+                  "bottom": 914.359375
+                },
+                {
+                  "x": 866.734375,
+                  "width": 4.453125,
+                  "top": 898.359375,
+                  "bottom": 914.359375
+                },
+                {
+                  "x": 853.5,
+                  "width": 13.234375,
+                  "top": 898.359375,
+                  "bottom": 914.359375
+                },
+                {
+                  "x": 866.734375,
+                  "width": 4.453125,
+                  "top": 898.359375,
+                  "bottom": 914.359375
+                },
+                {
+                  "x": 871.1875,
+                  "width": 79.34375,
+                  "top": 898.359375,
+                  "bottom": 914.359375
+                }
+              ]
+            },
+            "value": {
+              "text": "41",
+              "box": {
+                "x": 953.53125,
+                "y": 891.859375,
+                "width": 100.96875,
+                "height": 28.5,
+                "bottom": 920.359375
+              },
+              "cssWidth": "100.969px",
+              "clientWidth": 101,
+              "offsetWidth": 101,
+              "useful": 96.96875,
+              "padding": [
+                2,
+                2
+              ],
+              "borders": [
+                0,
+                0
+              ],
+              "wholeWidth": 17.828125,
+              "font": "14px AdendaBaseTest, sans-serif",
+              "align": "right",
+              "wrapping": "anywhere",
+              "ranges": [
+                {
+                  "x": 1034.671875,
+                  "width": 17.828125,
+                  "top": 898.359375,
+                  "bottom": 914.359375
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "fonts": {
+        "title": {
+          "fonts": [
+            {
+              "familyName": "DejaVu Sans Mono",
+              "postScriptName": "DejaVuSansMono",
+              "isCustomFont": true,
+              "glyphCount": 27
+            }
+          ]
+        },
+        "lastAttribute": {
+          "fonts": [
+            {
+              "familyName": "DejaVu Sans",
+              "postScriptName": "DejaVuSans",
+              "isCustomFont": true,
+              "glyphCount": 13
+            }
+          ]
+        },
+        "ownSymbol": {
+          "fonts": [
+            {
+              "familyName": "DejaVu Sans",
+              "postScriptName": "DejaVuSans",
+              "isCustomFont": true,
+              "glyphCount": 1
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "trace": {
+    "phase": "zoom-1",
+    "reason": "initial",
+    "records": [
+      {
+        "time": 612.1999999880791,
+        "phase": "initial",
+        "reason": "initial",
+        "zoom": "1",
+        "kind": "computed-height-read",
+        "element": "SPAN",
+        "className": "",
+        "probeKind": "application",
+        "stack": "Error\n    at Object.get (<anonymous>:14:186)\n    at c (http://127.0.0.1:64631/assets/index-DYjw3oaV.js:9:134730)\n    at http://127.0.0.1:64631/assets/index-DYjw3oaV.js:9:135428\n    at Sl (http://127.0.0.1:64631/assets/index-DYjw3oaV.js:8:95080)\n    at gu (http://127.0.0.1:64631/assets/index-DYjw3oaV.js:8:104556)\n    at Fu (http://127.0.0.1:64631/assets/index-DYjw3oaV.js:8:115800)\n    at gu (http://127.0.0.1:64631/assets/index-DYjw3oaV.js:8:104543)\n    at Fu (http://127.0.0.1:64631/assets/index-DYjw3oaV.js:8:115800)\n    at gu (http://127.0.0.1:64631/assets/index-DYjw3oaV.js:8:105114)\n    at Fu (http://127.0.0.1:64631/assets/index-DYjw3oaV.js:8:115800)",
+        "text": "M",
+        "value": "21px",
+        "visual": {
+          "width": 15.3125,
+          "height": 21
+        },
+        "client": [
+          15,
+          21
+        ],
+        "offset": [
+          15,
+          21
+        ],
+        "dpr": 1,
+        "fontStatus": "loaded",
+        "fontSize": "16px",
+        "font": "700 16px Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "fontVariationSettings": "normal",
+        "inlineFont": "16px",
+        "band": ""
+      },
+      {
+        "time": 613,
+        "phase": "initial",
+        "reason": "initial",
+        "zoom": "1",
+        "kind": "computed-height-read",
+        "element": "SPAN",
+        "className": "card-round-attribute",
+        "probeKind": "reference/icon",
+        "stack": "Error\n    at Object.get (<anonymous>:14:186)\n    at c (http://127.0.0.1:64631/assets/index-DYjw3oaV.js:9:134803)\n    at http://127.0.0.1:64631/assets/index-DYjw3oaV.js:9:135428\n    at Sl (http://127.0.0.1:64631/assets/index-DYjw3oaV.js:8:95080)\n    at gu (http://127.0.0.1:64631/assets/index-DYjw3oaV.js:8:104556)\n    at Fu (http://127.0.0.1:64631/assets/index-DYjw3oaV.js:8:115800)\n    at gu (http://127.0.0.1:64631/assets/index-DYjw3oaV.js:8:104543)\n    at Fu (http://127.0.0.1:64631/assets/index-DYjw3oaV.js:8:115800)\n    at gu (http://127.0.0.1:64631/assets/index-DYjw3oaV.js:8:105114)\n    at Fu (http://127.0.0.1:64631/assets/index-DYjw3oaV.js:8:115800)",
+        "text": "▲",
+        "value": "24px",
+        "visual": {
+          "width": 15.515625,
+          "height": 24
+        },
+        "client": [
+          16,
+          24
+        ],
+        "offset": [
+          16,
+          24
+        ],
+        "dpr": 1,
+        "fontStatus": "loaded",
+        "fontSize": "18px",
+        "font": "18px Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "fontVariationSettings": "normal",
+        "inlineFont": "",
+        "band": ""
+      },
+      {
+        "time": 625.1999999880791,
+        "phase": "initial",
+        "reason": "initial",
+        "zoom": "1",
+        "kind": "band-written",
+        "old": null,
+        "height": "24px"
+      },
+      {
+        "time": 631.5,
+        "phase": "initial",
+        "reason": "fonts.ready",
+        "zoom": "1",
+        "kind": "computed-height-read",
+        "element": "SPAN",
+        "className": "",
+        "probeKind": "application",
+        "stack": "Error\n    at Object.get (<anonymous>:14:186)\n    at c (http://127.0.0.1:64631/assets/index-DYjw3oaV.js:9:134730)\n    at <anonymous>:39:102\n    at within (<anonymous>:17:16)\n    at <anonymous>:39:70",
+        "text": "M",
+        "value": "21px",
+        "visual": {
+          "width": 15.3125,
+          "height": 21
+        },
+        "client": [
+          15,
+          21
+        ],
+        "offset": [
+          15,
+          21
+        ],
+        "dpr": 1,
+        "fontStatus": "loaded",
+        "fontSize": "16px",
+        "font": "700 16px Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "fontVariationSettings": "normal",
+        "inlineFont": "16px",
+        "band": "24px"
+      },
+      {
+        "time": 631.5,
+        "phase": "initial",
+        "reason": "fonts.ready",
+        "zoom": "1",
+        "kind": "computed-height-read",
+        "element": "SPAN",
+        "className": "card-round-attribute",
+        "probeKind": "reference/icon",
+        "stack": "Error\n    at Object.get (<anonymous>:14:186)\n    at c (http://127.0.0.1:64631/assets/index-DYjw3oaV.js:9:134803)\n    at <anonymous>:39:102\n    at within (<anonymous>:17:16)\n    at <anonymous>:39:70",
+        "text": "▲",
+        "value": "24px",
+        "visual": {
+          "width": 15.515625,
+          "height": 24
+        },
+        "client": [
+          16,
+          24
+        ],
+        "offset": [
+          16,
+          24
+        ],
+        "dpr": 1,
+        "fontStatus": "loaded",
+        "fontSize": "18px",
+        "font": "18px Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "fontVariationSettings": "normal",
+        "inlineFont": "",
+        "band": "24px"
+      },
+      {
+        "time": 638.6999999880791,
+        "phase": "initial",
+        "reason": "ResizeObserver",
+        "zoom": "1",
+        "kind": "RO",
+        "entries": []
+      },
+      {
+        "time": 639.1000000238419,
+        "phase": "initial",
+        "reason": "ResizeObserver",
+        "zoom": "1",
+        "kind": "RO",
+        "entries": []
+      },
+      {
+        "time": 641.5,
+        "phase": "initial",
+        "reason": "ResizeObserver",
+        "zoom": "1",
+        "kind": "RO",
+        "entries": []
+      },
+      {
+        "time": 641.6999999880791,
+        "phase": "initial",
+        "reason": "ResizeObserver",
+        "zoom": "1",
+        "kind": "RO",
+        "entries": []
+      },
+      {
+        "time": 642.1000000238419,
+        "phase": "initial",
+        "reason": "ResizeObserver",
+        "zoom": "1",
+        "kind": "RO",
+        "entries": []
+      },
+      {
+        "time": 643.4000000357628,
+        "phase": "initial",
+        "reason": "ResizeObserver",
+        "zoom": "1",
+        "kind": "RO",
+        "entries": []
+      },
+      {
+        "time": 643.6000000238419,
+        "phase": "initial",
+        "reason": "ResizeObserver",
+        "zoom": "1",
+        "kind": "RO",
+        "entries": [
+          {
+            "className": "card-heading",
+            "width": 204,
+            "height": 24
+          },
+          {
+            "className": "card-round-attribute",
+            "width": 15.515625,
+            "height": 24
+          }
+        ]
+      },
+      {
+        "time": 644,
+        "phase": "initial",
+        "reason": "ResizeObserver",
+        "zoom": "1",
+        "kind": "computed-height-read",
+        "element": "SPAN",
+        "className": "",
+        "probeKind": "application",
+        "stack": "Error\n    at Object.get (<anonymous>:14:186)\n    at c (http://127.0.0.1:64631/assets/index-DYjw3oaV.js:9:134730)\n    at <anonymous>:24:264\n    at within (<anonymous>:17:16)\n    at window.ResizeObserver.<anonymous> (<anonymous>:24:62)",
+        "text": "M",
+        "value": "21px",
+        "visual": {
+          "width": 15.3125,
+          "height": 21
+        },
+        "client": [
+          15,
+          21
+        ],
+        "offset": [
+          15,
+          21
+        ],
+        "dpr": 1,
+        "fontStatus": "loaded",
+        "fontSize": "16px",
+        "font": "700 16px Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "fontVariationSettings": "normal",
+        "inlineFont": "16px",
+        "band": "24px"
+      },
+      {
+        "time": 644,
+        "phase": "initial",
+        "reason": "ResizeObserver",
+        "zoom": "1",
+        "kind": "computed-height-read",
+        "element": "SPAN",
+        "className": "card-round-attribute",
+        "probeKind": "reference/icon",
+        "stack": "Error\n    at Object.get (<anonymous>:14:186)\n    at c (http://127.0.0.1:64631/assets/index-DYjw3oaV.js:9:134803)\n    at <anonymous>:24:264\n    at within (<anonymous>:17:16)\n    at window.ResizeObserver.<anonymous> (<anonymous>:24:62)",
+        "text": "▲",
+        "value": "24px",
+        "visual": {
+          "width": 15.515625,
+          "height": 24
+        },
+        "client": [
+          16,
+          24
+        ],
+        "offset": [
+          16,
+          24
+        ],
+        "dpr": 1,
+        "fontStatus": "loaded",
+        "fontSize": "18px",
+        "font": "18px Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "fontVariationSettings": "normal",
+        "inlineFont": "",
+        "band": "24px"
+      },
+      {
+        "time": 644.6999999880791,
+        "phase": "initial",
+        "reason": "ResizeObserver",
+        "zoom": "1",
+        "kind": "RO",
+        "entries": [
+          {
+            "className": "card-values",
+            "width": 204,
+            "height": 95
+          }
+        ]
+      },
+      {
+        "time": 646.4000000357628,
+        "phase": "initial",
+        "reason": "ResizeObserver",
+        "zoom": "1",
+        "kind": "RO",
+        "entries": [
+          {
+            "className": "game-card full-card",
+            "width": 204,
+            "height": 307
+          },
+          {
+            "className": "card-heading",
+            "width": 204,
+            "height": 24
+          },
+          {
+            "className": "game-card-image",
+            "width": 230,
+            "height": 76
+          },
+          {
+            "className": "card-values",
+            "width": 204,
+            "height": 95
+          }
+        ]
+      },
+      {
+        "time": 646.5,
+        "phase": "initial",
+        "reason": "ResizeObserver",
+        "zoom": "1",
+        "kind": "RO",
+        "entries": []
+      },
+      {
+        "time": 647.3000000119209,
+        "phase": "initial",
+        "reason": "ResizeObserver",
+        "zoom": "1",
+        "kind": "RO",
+        "entries": []
+      },
+      {
+        "time": 648.6000000238419,
+        "phase": "initial",
+        "reason": "ResizeObserver",
+        "zoom": "1",
+        "kind": "RO",
+        "entries": []
+      },
+      {
+        "time": 660.6000000238419,
+        "phase": "initial",
+        "reason": "ResizeObserver",
+        "zoom": "1",
+        "kind": "RO",
+        "entries": []
+      },
+      {
+        "time": 660.6999999880791,
+        "phase": "initial",
+        "reason": "ResizeObserver",
+        "zoom": "1",
+        "kind": "RO",
+        "entries": []
+      },
+      {
+        "time": 660.8000000119209,
+        "phase": "initial",
+        "reason": "ResizeObserver",
+        "zoom": "1",
+        "kind": "RO",
+        "entries": [
+          {
+            "className": "game-card-image",
+            "width": 230,
+            "height": 172.5
+          }
+        ]
+      },
+      {
+        "time": 660.8000000119209,
+        "phase": "initial",
+        "reason": "ResizeObserver",
+        "zoom": "1",
+        "kind": "RO",
+        "entries": []
+      },
+      {
+        "time": 660.8000000119209,
+        "phase": "initial",
+        "reason": "ResizeObserver",
+        "zoom": "1",
+        "kind": "RO",
+        "entries": []
+      },
+      {
+        "time": 660.9000000357628,
+        "phase": "initial",
+        "reason": "ResizeObserver",
+        "zoom": "1",
+        "kind": "RO",
+        "entries": []
+      },
+      {
+        "time": 661,
+        "phase": "initial",
+        "reason": "ResizeObserver",
+        "zoom": "1",
+        "kind": "RO",
+        "entries": []
+      },
+      {
+        "time": 716.3000000119209,
+        "phase": "initial",
+        "reason": "ResizeObserver",
+        "zoom": "1",
+        "kind": "RO",
+        "entries": []
+      },
+      {
+        "time": 716.9000000357628,
+        "phase": "initial",
+        "reason": "ResizeObserver",
+        "zoom": "1",
+        "kind": "RO",
+        "entries": []
+      },
+      {
+        "time": 717,
+        "phase": "initial",
+        "reason": "ResizeObserver",
+        "zoom": "1",
+        "kind": "RO",
+        "entries": []
+      },
+      {
+        "time": 717.1000000238419,
+        "phase": "initial",
+        "reason": "ResizeObserver",
+        "zoom": "1",
+        "kind": "RO",
+        "entries": []
+      },
+      {
+        "time": 717.4000000357628,
+        "phase": "initial",
+        "reason": "ResizeObserver",
+        "zoom": "1",
+        "kind": "RO",
+        "entries": []
+      },
+      {
+        "time": 717.4000000357628,
+        "phase": "initial",
+        "reason": "ResizeObserver",
+        "zoom": "1",
+        "kind": "RO",
+        "entries": []
+      },
+      {
+        "time": 717.5,
+        "phase": "initial",
+        "reason": "ResizeObserver",
+        "zoom": "1",
+        "kind": "RO",
+        "entries": [
+          {
+            "className": "card-round-attribute",
+            "width": 17.828125,
+            "height": 21
+          }
+        ]
+      },
+      {
+        "time": 718,
+        "phase": "initial",
+        "reason": "ResizeObserver",
+        "zoom": "1",
+        "kind": "computed-height-read",
+        "element": "SPAN",
+        "className": "",
+        "probeKind": "application",
+        "stack": "Error\n    at Object.get (<anonymous>:14:186)\n    at c (http://127.0.0.1:64631/assets/index-DYjw3oaV.js:9:134730)\n    at <anonymous>:24:264\n    at within (<anonymous>:17:16)\n    at window.ResizeObserver.<anonymous> (<anonymous>:24:62)",
+        "text": "M",
+        "value": "18px",
+        "visual": {
+          "width": 13.328125,
+          "height": 18
+        },
+        "client": [
+          13,
+          18
+        ],
+        "offset": [
+          13,
+          18
+        ],
+        "dpr": 1,
+        "fontStatus": "loading",
+        "fontSize": "16px",
+        "font": "700 16px AdendaBaseTest, sans-serif",
+        "fontVariationSettings": "normal",
+        "inlineFont": "16px",
+        "band": "24px"
+      },
+      {
+        "time": 718,
+        "phase": "initial",
+        "reason": "ResizeObserver",
+        "zoom": "1",
+        "kind": "computed-height-read",
+        "element": "SPAN",
+        "className": "card-round-attribute",
+        "probeKind": "reference/icon",
+        "stack": "Error\n    at Object.get (<anonymous>:14:186)\n    at c (http://127.0.0.1:64631/assets/index-DYjw3oaV.js:9:134803)\n    at <anonymous>:24:264\n    at within (<anonymous>:17:16)\n    at window.ResizeObserver.<anonymous> (<anonymous>:24:62)",
+        "text": "▲",
+        "value": "21px",
+        "visual": {
+          "width": 17.828125,
+          "height": 21
+        },
+        "client": [
+          18,
+          21
+        ],
+        "offset": [
+          18,
+          21
+        ],
+        "dpr": 1,
+        "fontStatus": "loading",
+        "fontSize": "18px",
+        "font": "18px AdendaBaseTest, sans-serif",
+        "fontVariationSettings": "normal",
+        "inlineFont": "",
+        "band": "24px"
+      },
+      {
+        "time": 720.5,
+        "phase": "initial",
+        "reason": "initial",
+        "zoom": "1",
+        "kind": "band-written",
+        "old": "height: 24px;",
+        "height": "21px"
+      },
+      {
+        "time": 720.6000000238419,
+        "phase": "initial",
+        "reason": "ResizeObserver",
+        "zoom": "1",
+        "kind": "RO",
+        "entries": [
+          {
+            "className": "card-values",
+            "width": 204,
+            "height": 102
+          }
+        ]
+      },
+      {
+        "time": 720.6000000238419,
+        "phase": "initial",
+        "reason": "ResizeObserver",
+        "zoom": "1",
+        "kind": "RO",
+        "entries": [
+          {
+            "className": "card-values",
+            "width": 204,
+            "height": 102
+          }
+        ]
+      },
+      {
+        "time": 720.6999999880791,
+        "phase": "initial",
+        "reason": "ResizeObserver",
+        "zoom": "1",
+        "kind": "RO",
+        "entries": []
+      },
+      {
+        "time": 722.3000000119209,
+        "phase": "initial",
+        "reason": "ResizeObserver",
+        "zoom": "1",
+        "kind": "RO",
+        "entries": []
+      },
+      {
+        "time": 722.3000000119209,
+        "phase": "initial",
+        "reason": "ResizeObserver",
+        "zoom": "1",
+        "kind": "RO",
+        "entries": []
+      },
+      {
+        "time": 734,
+        "phase": "initial",
+        "reason": "event:loading",
+        "zoom": "1",
+        "kind": "computed-height-read",
+        "element": "SPAN",
+        "className": "",
+        "probeKind": "application",
+        "stack": "Error\n    at Object.get (<anonymous>:14:186)\n    at FontFaceSet.c (http://127.0.0.1:64631/assets/index-DYjw3oaV.js:9:134730)\n    at <anonymous>:32:108\n    at within (<anonymous>:17:16)\n    at FontFaceSet.wrapped (<anonymous>:32:36)",
+        "text": "M",
+        "value": "19px",
+        "visual": {
+          "width": 13.8125,
+          "height": 19
+        },
+        "client": [
+          14,
+          19
+        ],
+        "offset": [
+          14,
+          19
+        ],
+        "dpr": 1,
+        "fontStatus": "loading",
+        "fontSize": "16px",
+        "font": "700 16px AdendaBaseTest, sans-serif",
+        "fontVariationSettings": "normal",
+        "inlineFont": "16px",
+        "band": "21px"
+      },
+      {
+        "time": 734,
+        "phase": "initial",
+        "reason": "event:loading",
+        "zoom": "1",
+        "kind": "computed-height-read",
+        "element": "SPAN",
+        "className": "card-round-attribute",
+        "probeKind": "reference/icon",
+        "stack": "Error\n    at Object.get (<anonymous>:14:186)\n    at FontFaceSet.c (http://127.0.0.1:64631/assets/index-DYjw3oaV.js:9:134803)\n    at <anonymous>:32:108\n    at within (<anonymous>:17:16)\n    at FontFaceSet.wrapped (<anonymous>:32:36)",
+        "text": "▲",
+        "value": "21px",
+        "visual": {
+          "width": 13.84375,
+          "height": 21
+        },
+        "client": [
+          14,
+          21
+        ],
+        "offset": [
+          14,
+          21
+        ],
+        "dpr": 1,
+        "fontStatus": "loading",
+        "fontSize": "18px",
+        "font": "18px AdendaBaseTest, sans-serif",
+        "fontVariationSettings": "normal",
+        "inlineFont": "",
+        "band": "21px"
+      },
+      {
+        "time": 736.9000000357628,
+        "phase": "initial",
+        "reason": "ResizeObserver",
+        "zoom": "1",
+        "kind": "RO",
+        "entries": []
+      },
+      {
+        "time": 737.6999999880791,
+        "phase": "initial",
+        "reason": "ResizeObserver",
+        "zoom": "1",
+        "kind": "RO",
+        "entries": []
+      },
+      {
+        "time": 737.8000000119209,
+        "phase": "initial",
+        "reason": "ResizeObserver",
+        "zoom": "1",
+        "kind": "RO",
+        "entries": []
+      },
+      {
+        "time": 737.9000000357628,
+        "phase": "initial",
+        "reason": "ResizeObserver",
+        "zoom": "1",
+        "kind": "RO",
+        "entries": []
+      },
+      {
+        "time": 738,
+        "phase": "initial",
+        "reason": "ResizeObserver",
+        "zoom": "1",
+        "kind": "RO",
+        "entries": [
+          {
+            "className": "card-heading",
+            "width": 204,
+            "height": 21
+          },
+          {
+            "className": "card-round-attribute",
+            "width": 13.84375,
+            "height": 21
+          }
+        ]
+      },
+      {
+        "time": 738.1999999880791,
+        "phase": "initial",
+        "reason": "ResizeObserver",
+        "zoom": "1",
+        "kind": "computed-height-read",
+        "element": "SPAN",
+        "className": "",
+        "probeKind": "application",
+        "stack": "Error\n    at Object.get (<anonymous>:14:186)\n    at c (http://127.0.0.1:64631/assets/index-DYjw3oaV.js:9:134730)\n    at <anonymous>:24:264\n    at within (<anonymous>:17:16)\n    at window.ResizeObserver.<anonymous> (<anonymous>:24:62)",
+        "text": "M",
+        "value": "19px",
+        "visual": {
+          "width": 13.8125,
+          "height": 19
+        },
+        "client": [
+          14,
+          19
+        ],
+        "offset": [
+          14,
+          19
+        ],
+        "dpr": 1,
+        "fontStatus": "loading",
+        "fontSize": "16px",
+        "font": "700 16px AdendaBaseTest, sans-serif",
+        "fontVariationSettings": "normal",
+        "inlineFont": "16px",
+        "band": "21px"
+      },
+      {
+        "time": 738.3000000119209,
+        "phase": "initial",
+        "reason": "ResizeObserver",
+        "zoom": "1",
+        "kind": "computed-height-read",
+        "element": "SPAN",
+        "className": "card-round-attribute",
+        "probeKind": "reference/icon",
+        "stack": "Error\n    at Object.get (<anonymous>:14:186)\n    at c (http://127.0.0.1:64631/assets/index-DYjw3oaV.js:9:134803)\n    at <anonymous>:24:264\n    at within (<anonymous>:17:16)\n    at window.ResizeObserver.<anonymous> (<anonymous>:24:62)",
+        "text": "▲",
+        "value": "21px",
+        "visual": {
+          "width": 13.84375,
+          "height": 21
+        },
+        "client": [
+          14,
+          21
+        ],
+        "offset": [
+          14,
+          21
+        ],
+        "dpr": 1,
+        "fontStatus": "loading",
+        "fontSize": "18px",
+        "font": "18px AdendaBaseTest, sans-serif",
+        "fontVariationSettings": "normal",
+        "inlineFont": "",
+        "band": "21px"
+      },
+      {
+        "time": 738.8000000119209,
+        "phase": "initial",
+        "reason": "ResizeObserver",
+        "zoom": "1",
+        "kind": "RO",
+        "entries": [
+          {
+            "className": "card-heading",
+            "width": 204,
+            "height": 21
+          }
+        ]
+      },
+      {
+        "time": 738.9000000357628,
+        "phase": "initial",
+        "reason": "ResizeObserver",
+        "zoom": "1",
+        "kind": "RO",
+        "entries": []
+      },
+      {
+        "time": 740,
+        "phase": "initial",
+        "reason": "ResizeObserver",
+        "zoom": "1",
+        "kind": "RO",
+        "entries": []
+      },
+      {
+        "time": 746.6999999880791,
+        "phase": "initial",
+        "reason": "event:loadingdone",
+        "zoom": "1",
+        "kind": "computed-height-read",
+        "element": "SPAN",
+        "className": "",
+        "probeKind": "application",
+        "stack": "Error\n    at Object.get (<anonymous>:14:186)\n    at FontFaceSet.c (http://127.0.0.1:64631/assets/index-DYjw3oaV.js:9:134730)\n    at <anonymous>:32:108\n    at within (<anonymous>:17:16)\n    at FontFaceSet.wrapped (<anonymous>:32:36)",
+        "text": "M",
+        "value": "19px",
+        "visual": {
+          "width": 13.8125,
+          "height": 19
+        },
+        "client": [
+          14,
+          19
+        ],
+        "offset": [
+          14,
+          19
+        ],
+        "dpr": 1,
+        "fontStatus": "loaded",
+        "fontSize": "16px",
+        "font": "700 16px AdendaBaseTest, sans-serif",
+        "fontVariationSettings": "normal",
+        "inlineFont": "16px",
+        "band": "21px"
+      },
+      {
+        "time": 746.8000000119209,
+        "phase": "initial",
+        "reason": "event:loadingdone",
+        "zoom": "1",
+        "kind": "computed-height-read",
+        "element": "SPAN",
+        "className": "card-round-attribute",
+        "probeKind": "reference/icon",
+        "stack": "Error\n    at Object.get (<anonymous>:14:186)\n    at FontFaceSet.c (http://127.0.0.1:64631/assets/index-DYjw3oaV.js:9:134803)\n    at <anonymous>:32:108\n    at within (<anonymous>:17:16)\n    at FontFaceSet.wrapped (<anonymous>:32:36)",
+        "text": "▲",
+        "value": "21px",
+        "visual": {
+          "width": 13.84375,
+          "height": 21
+        },
+        "client": [
+          14,
+          21
+        ],
+        "offset": [
+          14,
+          21
+        ],
+        "dpr": 1,
+        "fontStatus": "loaded",
+        "fontSize": "18px",
+        "font": "18px AdendaBaseTest, sans-serif",
+        "fontVariationSettings": "normal",
+        "inlineFont": "",
+        "band": "21px"
+      },
+      {
+        "time": 751.1000000238419,
+        "phase": "initial",
+        "reason": "ResizeObserver",
+        "zoom": "1",
+        "kind": "RO",
+        "entries": []
+      },
+      {
+        "time": 751.1000000238419,
+        "phase": "initial",
+        "reason": "ResizeObserver",
+        "zoom": "1",
+        "kind": "RO",
+        "entries": []
+      },
+      {
+        "time": 751.1000000238419,
+        "phase": "initial",
+        "reason": "ResizeObserver",
+        "zoom": "1",
+        "kind": "RO",
+        "entries": []
+      },
+      {
+        "time": 751.1000000238419,
+        "phase": "initial",
+        "reason": "ResizeObserver",
+        "zoom": "1",
+        "kind": "RO",
+        "entries": []
+      },
+      {
+        "time": 751.1000000238419,
+        "phase": "initial",
+        "reason": "ResizeObserver",
+        "zoom": "1",
+        "kind": "RO",
+        "entries": [
+          {
+            "className": "card-values",
+            "width": 204,
+            "height": 86
+          }
+        ]
+      },
+      {
+        "time": 751.1000000238419,
+        "phase": "initial",
+        "reason": "ResizeObserver",
+        "zoom": "1",
+        "kind": "RO",
+        "entries": [
+          {
+            "className": "card-values",
+            "width": 204,
+            "height": 86
+          }
+        ]
+      },
+      {
+        "time": 751.1999999880791,
+        "phase": "initial",
+        "reason": "ResizeObserver",
+        "zoom": "1",
+        "kind": "RO",
+        "entries": []
+      },
+      {
+        "time": 751.1999999880791,
+        "phase": "initial",
+        "reason": "ResizeObserver",
+        "zoom": "1",
+        "kind": "RO",
+        "entries": []
+      },
+      {
+        "time": 759.4000000357628,
+        "phase": "initial",
+        "reason": "event:loading",
+        "zoom": "1",
+        "kind": "computed-height-read",
+        "element": "SPAN",
+        "className": "",
+        "probeKind": "application",
+        "stack": "Error\n    at Object.get (<anonymous>:14:186)\n    at FontFaceSet.c (http://127.0.0.1:64631/assets/index-DYjw3oaV.js:9:134730)\n    at <anonymous>:32:108\n    at within (<anonymous>:17:16)\n    at FontFaceSet.wrapped (<anonymous>:32:36)",
+        "text": "M",
+        "value": "18px",
+        "visual": {
+          "width": 13.328125,
+          "height": 18
+        },
+        "client": [
+          13,
+          18
+        ],
+        "offset": [
+          13,
+          18
+        ],
+        "dpr": 1,
+        "fontStatus": "loading",
+        "fontSize": "16px",
+        "font": "700 16px AdendaDelayed, sans-serif",
+        "fontVariationSettings": "normal",
+        "inlineFont": "16px",
+        "band": "21px"
+      },
+      {
+        "time": 759.4000000357628,
+        "phase": "initial",
+        "reason": "event:loading",
+        "zoom": "1",
+        "kind": "computed-height-read",
+        "element": "SPAN",
+        "className": "card-round-attribute",
+        "probeKind": "reference/icon",
+        "stack": "Error\n    at Object.get (<anonymous>:14:186)\n    at FontFaceSet.c (http://127.0.0.1:64631/assets/index-DYjw3oaV.js:9:134803)\n    at <anonymous>:32:108\n    at within (<anonymous>:17:16)\n    at FontFaceSet.wrapped (<anonymous>:32:36)",
+        "text": "▲",
+        "value": "21px",
+        "visual": {
+          "width": 13.84375,
+          "height": 21
+        },
+        "client": [
+          14,
+          21
+        ],
+        "offset": [
+          14,
+          21
+        ],
+        "dpr": 1,
+        "fontStatus": "loading",
+        "fontSize": "18px",
+        "font": "18px AdendaBaseTest, sans-serif",
+        "fontVariationSettings": "normal",
+        "inlineFont": "",
+        "band": "21px"
+      },
+      {
+        "time": 774.6000000238419,
+        "phase": "initial",
+        "reason": "event:loadingdone",
+        "zoom": "1",
+        "kind": "computed-height-read",
+        "element": "SPAN",
+        "className": "",
+        "probeKind": "application",
+        "stack": "Error\n    at Object.get (<anonymous>:14:186)\n    at FontFaceSet.c (http://127.0.0.1:64631/assets/index-DYjw3oaV.js:9:134730)\n    at <anonymous>:32:108\n    at within (<anonymous>:17:16)\n    at FontFaceSet.wrapped (<anonymous>:32:36)",
+        "text": "M",
+        "value": "19px",
+        "visual": {
+          "width": 9.640625,
+          "height": 19
+        },
+        "client": [
+          10,
+          19
+        ],
+        "offset": [
+          10,
+          19
+        ],
+        "dpr": 1,
+        "fontStatus": "loaded",
+        "fontSize": "16px",
+        "font": "700 16px AdendaDelayed, sans-serif",
+        "fontVariationSettings": "normal",
+        "inlineFont": "16px",
+        "band": "21px"
+      },
+      {
+        "time": 774.6000000238419,
+        "phase": "initial",
+        "reason": "event:loadingdone",
+        "zoom": "1",
+        "kind": "computed-height-read",
+        "element": "SPAN",
+        "className": "card-round-attribute",
+        "probeKind": "reference/icon",
+        "stack": "Error\n    at Object.get (<anonymous>:14:186)\n    at FontFaceSet.c (http://127.0.0.1:64631/assets/index-DYjw3oaV.js:9:134803)\n    at <anonymous>:32:108\n    at within (<anonymous>:17:16)\n    at FontFaceSet.wrapped (<anonymous>:32:36)",
+        "text": "▲",
+        "value": "21px",
+        "visual": {
+          "width": 13.84375,
+          "height": 21
+        },
+        "client": [
+          14,
+          21
+        ],
+        "offset": [
+          14,
+          21
+        ],
+        "dpr": 1,
+        "fontStatus": "loaded",
+        "fontSize": "18px",
+        "font": "18px AdendaBaseTest, sans-serif",
+        "fontVariationSettings": "normal",
+        "inlineFont": "",
+        "band": "21px"
+      },
+      {
+        "time": 919.1999999880791,
+        "phase": "zoom-1",
+        "reason": "initial",
+        "zoom": "1",
+        "kind": "computed-height-read",
+        "element": "SPAN",
+        "className": "",
+        "probeKind": "reference/icon",
+        "stack": "Error\n    at Object.get (<anonymous>:14:186)\n    at eval (eval at evaluate (:311:30), <anonymous>:51:70)\n    at UtilityScript.evaluate (<anonymous>:313:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)",
+        "text": "M",
+        "value": "19px",
+        "visual": {
+          "width": 9.640625,
+          "height": 19
+        },
+        "client": [
+          10,
+          19
+        ],
+        "offset": [
+          10,
+          19
+        ],
+        "dpr": 1,
+        "fontStatus": "loaded",
+        "fontSize": "16px",
+        "font": "700 16px AdendaDelayed, sans-serif",
+        "fontVariationSettings": "normal",
+        "inlineFont": "16px",
+        "band": "21px"
+      },
+      {
+        "time": 919.3000000119209,
+        "phase": "zoom-1",
+        "reason": "initial",
+        "zoom": "1",
+        "kind": "computed-height-read",
+        "element": "SPAN",
+        "className": "card-round-attribute",
+        "probeKind": "reference/icon",
+        "stack": "Error\n    at Object.get (<anonymous>:14:186)\n    at eval (eval at evaluate (:311:30), <anonymous>:51:157)\n    at UtilityScript.evaluate (<anonymous>:313:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)",
+        "text": "▲",
+        "value": "21px",
+        "visual": {
+          "width": 13.84375,
+          "height": 21
+        },
+        "client": [
+          14,
+          21
+        ],
+        "offset": [
+          14,
+          21
+        ],
+        "dpr": 1,
+        "fontStatus": "loaded",
+        "fontSize": "18px",
+        "font": "18px AdendaBaseTest, sans-serif",
+        "fontVariationSettings": "normal",
+        "inlineFont": "",
+        "band": "21px"
+      },
+      {
+        "time": 991,
+        "phase": "zoom-1.25",
+        "reason": "ResizeObserver",
+        "zoom": "1.25",
+        "kind": "RO",
+        "entries": []
+      },
+      {
+        "time": 995.8000000119209,
+        "phase": "zoom-1.25",
+        "reason": "ResizeObserver",
+        "zoom": "1.25",
+        "kind": "RO",
+        "entries": []
+      },
+      {
+        "time": 997.1999999880791,
+        "phase": "zoom-1.25",
+        "reason": "ResizeObserver",
+        "zoom": "1.25",
+        "kind": "RO",
+        "entries": []
+      },
+      {
+        "time": 997.5,
+        "phase": "zoom-1.25",
+        "reason": "ResizeObserver",
+        "zoom": "1.25",
+        "kind": "RO",
+        "entries": []
+      },
+      {
+        "time": 999.1999999880791,
+        "phase": "zoom-1.25",
+        "reason": "ResizeObserver",
+        "zoom": "1.25",
+        "kind": "RO",
+        "entries": []
+      },
+      {
+        "time": 1000.4000000357628,
+        "phase": "zoom-1.25",
+        "reason": "ResizeObserver",
+        "zoom": "1.25",
+        "kind": "RO",
+        "entries": []
+      },
+      {
+        "time": 1000.6999999880791,
+        "phase": "zoom-1.25",
+        "reason": "ResizeObserver",
+        "zoom": "1.25",
+        "kind": "RO",
+        "entries": [
+          {
+            "className": "card-heading",
+            "width": 204.390625,
+            "height": 21
+          },
+          {
+            "className": "card-round-attribute",
+            "width": 13.84375,
+            "height": 20.796875
+          }
+        ]
+      },
+      {
+        "time": 1001.1000000238419,
+        "phase": "zoom-1.25",
+        "reason": "ResizeObserver",
+        "zoom": "1.25",
+        "kind": "computed-height-read",
+        "element": "SPAN",
+        "className": "",
+        "probeKind": "application",
+        "stack": "Error\n    at Object.get (<anonymous>:14:186)\n    at c (http://127.0.0.1:64631/assets/index-DYjw3oaV.js:9:134730)\n    at <anonymous>:24:264\n    at within (<anonymous>:17:16)\n    at window.ResizeObserver.<anonymous> (<anonymous>:24:62)",
+        "text": "M",
+        "value": "19.2px",
+        "visual": {
+          "width": 12.046875,
+          "height": 24
+        },
+        "client": [
+          10,
+          19
+        ],
+        "offset": [
+          10,
+          19
+        ],
+        "dpr": 1,
+        "fontStatus": "loaded",
+        "fontSize": "16px",
+        "font": "700 16px AdendaDelayed, sans-serif",
+        "fontVariationSettings": "normal",
+        "inlineFont": "16px",
+        "band": "21px"
+      },
+      {
+        "time": 1001.1000000238419,
+        "phase": "zoom-1.25",
+        "reason": "ResizeObserver",
+        "zoom": "1.25",
+        "kind": "computed-height-read",
+        "element": "SPAN",
+        "className": "card-round-attribute",
+        "probeKind": "reference/icon",
+        "stack": "Error\n    at Object.get (<anonymous>:14:186)\n    at c (http://127.0.0.1:64631/assets/index-DYjw3oaV.js:9:134803)\n    at <anonymous>:24:264\n    at within (<anonymous>:17:16)\n    at window.ResizeObserver.<anonymous> (<anonymous>:24:62)",
+        "text": "▲",
+        "value": "20.8px",
+        "visual": {
+          "width": 17.3125,
+          "height": 26
+        },
+        "client": [
+          14,
+          21
+        ],
+        "offset": [
+          14,
+          21
+        ],
+        "dpr": 1,
+        "fontStatus": "loaded",
+        "fontSize": "18px",
+        "font": "18px AdendaBaseTest, sans-serif",
+        "fontVariationSettings": "normal",
+        "inlineFont": "",
+        "band": "21px"
+      },
+      {
+        "time": 1001.9000000357628,
+        "phase": "zoom-1.25",
+        "reason": "initial",
+        "zoom": "1.25",
+        "kind": "band-written",
+        "old": "height: 21px;",
+        "height": "20.8px"
+      },
+      {
+        "time": 1001.9000000357628,
+        "phase": "zoom-1.25",
+        "reason": "ResizeObserver",
+        "zoom": "1.25",
+        "kind": "RO",
+        "entries": [
+          {
+            "className": "card-values",
+            "width": 204.390625,
+            "height": 85.59375
+          }
+        ]
+      },
+      {
+        "time": 1003.3000000119209,
+        "phase": "zoom-1.25",
+        "reason": "ResizeObserver",
+        "zoom": "1.25",
+        "kind": "RO",
+        "entries": [
+          {
+            "className": "game-card full-card",
+            "width": 204.390625,
+            "height": 307.390625
+          },
+          {
+            "className": "card-heading",
+            "width": 204.390625,
+            "height": 20.796875
+          },
+          {
+            "className": "game-card-image",
+            "width": 230.390625,
+            "height": 172.796875
+          },
+          {
+            "className": "card-values",
+            "width": 204.390625,
+            "height": 85.59375
+          }
+        ]
+      },
+      {
+        "time": 1003.6000000238419,
+        "phase": "zoom-1.25",
+        "reason": "ResizeObserver",
+        "zoom": "1.25",
+        "kind": "RO",
+        "entries": []
+      },
+      {
+        "time": 1005.4000000357628,
+        "phase": "zoom-1.25",
+        "reason": "ResizeObserver",
+        "zoom": "1.25",
+        "kind": "RO",
+        "entries": []
+      },
+      {
+        "time": 1007.4000000357628,
+        "phase": "zoom-1.25",
+        "reason": "ResizeObserver",
+        "zoom": "1.25",
+        "kind": "RO",
+        "entries": []
+      },
+      {
+        "time": 1007.9000000357628,
+        "phase": "zoom-1.25",
+        "reason": "ResizeObserver",
+        "zoom": "1.25",
+        "kind": "RO",
+        "entries": []
+      },
+      {
+        "time": 1007.9000000357628,
+        "phase": "zoom-1.25",
+        "reason": "ResizeObserver",
+        "zoom": "1.25",
+        "kind": "RO",
+        "entries": []
+      },
+      {
+        "time": 1007.9000000357628,
+        "phase": "zoom-1.25",
+        "reason": "ResizeObserver",
+        "zoom": "1.25",
+        "kind": "RO",
+        "entries": []
+      },
+      {
+        "time": 1008.1999999880791,
+        "phase": "zoom-1.25",
+        "reason": "ResizeObserver",
+        "zoom": "1.25",
+        "kind": "RO",
+        "entries": []
+      },
+      {
+        "time": 1009.1000000238419,
+        "phase": "zoom-1.25",
+        "reason": "ResizeObserver",
+        "zoom": "1.25",
+        "kind": "RO",
+        "entries": []
+      },
+      {
+        "time": 1009.8000000119209,
+        "phase": "zoom-1.25",
+        "reason": "ResizeObserver",
+        "zoom": "1.25",
+        "kind": "RO",
+        "entries": [
+          {
+            "className": "card-heading",
+            "width": 204.390625,
+            "height": 20.796875
+          }
+        ]
+      },
+      {
+        "time": 1010.1999999880791,
+        "phase": "zoom-1.25",
+        "reason": "ResizeObserver",
+        "zoom": "1.25",
+        "kind": "computed-height-read",
+        "element": "SPAN",
+        "className": "",
+        "probeKind": "application",
+        "stack": "Error\n    at Object.get (<anonymous>:14:186)\n    at c (http://127.0.0.1:64631/assets/index-DYjw3oaV.js:9:134730)\n    at <anonymous>:24:264\n    at within (<anonymous>:17:16)\n    at window.ResizeObserver.<anonymous> (<anonymous>:24:62)",
+        "text": "M",
+        "value": "19.2px",
+        "visual": {
+          "width": 12.046875,
+          "height": 24
+        },
+        "client": [
+          10,
+          19
+        ],
+        "offset": [
+          10,
+          19
+        ],
+        "dpr": 1,
+        "fontStatus": "loaded",
+        "fontSize": "16px",
+        "font": "700 16px AdendaDelayed, sans-serif",
+        "fontVariationSettings": "normal",
+        "inlineFont": "16px",
+        "band": "20.8px"
+      },
+      {
+        "time": 1010.1999999880791,
+        "phase": "zoom-1.25",
+        "reason": "ResizeObserver",
+        "zoom": "1.25",
+        "kind": "computed-height-read",
+        "element": "SPAN",
+        "className": "card-round-attribute",
+        "probeKind": "reference/icon",
+        "stack": "Error\n    at Object.get (<anonymous>:14:186)\n    at c (http://127.0.0.1:64631/assets/index-DYjw3oaV.js:9:134803)\n    at <anonymous>:24:264\n    at within (<anonymous>:17:16)\n    at window.ResizeObserver.<anonymous> (<anonymous>:24:62)",
+        "text": "▲",
+        "value": "20.8px",
+        "visual": {
+          "width": 17.3125,
+          "height": 26
+        },
+        "client": [
+          14,
+          21
+        ],
+        "offset": [
+          14,
+          21
+        ],
+        "dpr": 1,
+        "fontStatus": "loaded",
+        "fontSize": "18px",
+        "font": "18px AdendaBaseTest, sans-serif",
+        "fontVariationSettings": "normal",
+        "inlineFont": "",
+        "band": "20.8px"
+      },
+      {
+        "time": 1010.6999999880791,
+        "phase": "zoom-1.25",
+        "reason": "ResizeObserver",
+        "zoom": "1.25",
+        "kind": "RO",
+        "entries": []
+      },
+      {
+        "time": 1114.5,
+        "phase": "zoom-1.25",
+        "reason": "initial",
+        "zoom": "1.25",
+        "kind": "computed-height-read",
+        "element": "SPAN",
+        "className": "",
+        "probeKind": "reference/icon",
+        "stack": "Error\n    at Object.get (<anonymous>:14:186)\n    at eval (eval at evaluate (:311:30), <anonymous>:51:70)\n    at UtilityScript.evaluate (<anonymous>:313:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)",
+        "text": "M",
+        "value": "19.2px",
+        "visual": {
+          "width": 12.046875,
+          "height": 24
+        },
+        "client": [
+          10,
+          19
+        ],
+        "offset": [
+          10,
+          19
+        ],
+        "dpr": 1,
+        "fontStatus": "loaded",
+        "fontSize": "16px",
+        "font": "700 16px AdendaDelayed, sans-serif",
+        "fontVariationSettings": "normal",
+        "inlineFont": "16px",
+        "band": "20.8px"
+      },
+      {
+        "time": 1114.6000000238419,
+        "phase": "zoom-1.25",
+        "reason": "initial",
+        "zoom": "1.25",
+        "kind": "computed-height-read",
+        "element": "SPAN",
+        "className": "card-round-attribute",
+        "probeKind": "reference/icon",
+        "stack": "Error\n    at Object.get (<anonymous>:14:186)\n    at eval (eval at evaluate (:311:30), <anonymous>:51:157)\n    at UtilityScript.evaluate (<anonymous>:313:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)",
+        "text": "▲",
+        "value": "20.8px",
+        "visual": {
+          "width": 17.3125,
+          "height": 26
+        },
+        "client": [
+          14,
+          21
+        ],
+        "offset": [
+          14,
+          21
+        ],
+        "dpr": 1,
+        "fontStatus": "loaded",
+        "fontSize": "18px",
+        "font": "18px AdendaBaseTest, sans-serif",
+        "fontVariationSettings": "normal",
+        "inlineFont": "",
+        "band": "20.8px"
+      },
+      {
+        "time": 1180.300000011921,
+        "phase": "zoom-2",
+        "reason": "ResizeObserver",
+        "zoom": "2",
+        "kind": "RO",
+        "entries": []
+      },
+      {
+        "time": 1185.199999988079,
+        "phase": "zoom-2",
+        "reason": "ResizeObserver",
+        "zoom": "2",
+        "kind": "RO",
+        "entries": []
+      },
+      {
+        "time": 1186.5,
+        "phase": "zoom-2",
+        "reason": "ResizeObserver",
+        "zoom": "2",
+        "kind": "RO",
+        "entries": []
+      },
+      {
+        "time": 1186.699999988079,
+        "phase": "zoom-2",
+        "reason": "ResizeObserver",
+        "zoom": "2",
+        "kind": "RO",
+        "entries": []
+      },
+      {
+        "time": 1188.4000000357628,
+        "phase": "zoom-2",
+        "reason": "ResizeObserver",
+        "zoom": "2",
+        "kind": "RO",
+        "entries": []
+      },
+      {
+        "time": 1190,
+        "phase": "zoom-2",
+        "reason": "ResizeObserver",
+        "zoom": "2",
+        "kind": "RO",
+        "entries": []
+      },
+      {
+        "time": 1190.6000000238419,
+        "phase": "zoom-2",
+        "reason": "ResizeObserver",
+        "zoom": "2",
+        "kind": "RO",
+        "entries": [
+          {
+            "className": "card-heading",
+            "width": 204,
+            "height": 20.796875
+          },
+          {
+            "className": "card-round-attribute",
+            "width": 13.84375,
+            "height": 20.5
+          }
+        ]
+      },
+      {
+        "time": 1191.4000000357628,
+        "phase": "zoom-2",
+        "reason": "ResizeObserver",
+        "zoom": "2",
+        "kind": "computed-height-read",
+        "element": "SPAN",
+        "className": "",
+        "probeKind": "application",
+        "stack": "Error\n    at Object.get (<anonymous>:14:186)\n    at c (http://127.0.0.1:64631/assets/index-DYjw3oaV.js:9:134730)\n    at <anonymous>:24:264\n    at within (<anonymous>:17:16)\n    at window.ResizeObserver.<anonymous> (<anonymous>:24:62)",
+        "text": "M",
+        "value": "19px",
+        "visual": {
+          "width": 19.265625,
+          "height": 38
+        },
+        "client": [
+          10,
+          19
+        ],
+        "offset": [
+          10,
+          19
+        ],
+        "dpr": 1,
+        "fontStatus": "loaded",
+        "fontSize": "16px",
+        "font": "700 16px AdendaDelayed, sans-serif",
+        "fontVariationSettings": "normal",
+        "inlineFont": "16px",
+        "band": "20.8px"
+      },
+      {
+        "time": 1191.4000000357628,
+        "phase": "zoom-2",
+        "reason": "ResizeObserver",
+        "zoom": "2",
+        "kind": "computed-height-read",
+        "element": "SPAN",
+        "className": "card-round-attribute",
+        "probeKind": "reference/icon",
+        "stack": "Error\n    at Object.get (<anonymous>:14:186)\n    at c (http://127.0.0.1:64631/assets/index-DYjw3oaV.js:9:134803)\n    at <anonymous>:24:264\n    at within (<anonymous>:17:16)\n    at window.ResizeObserver.<anonymous> (<anonymous>:24:62)",
+        "text": "▲",
+        "value": "20.5px",
+        "visual": {
+          "width": 27.6875,
+          "height": 41
+        },
+        "client": [
+          14,
+          21
+        ],
+        "offset": [
+          14,
+          21
+        ],
+        "dpr": 1,
+        "fontStatus": "loaded",
+        "fontSize": "18px",
+        "font": "18px AdendaBaseTest, sans-serif",
+        "fontVariationSettings": "normal",
+        "inlineFont": "",
+        "band": "20.8px"
+      },
+      {
+        "time": 1194.800000011921,
+        "phase": "zoom-2",
+        "reason": "initial",
+        "zoom": "2",
+        "kind": "band-written",
+        "old": "height: 20.8px;",
+        "height": "20.5px"
+      },
+      {
+        "time": 1194.800000011921,
+        "phase": "zoom-2",
+        "reason": "ResizeObserver",
+        "zoom": "2",
+        "kind": "RO",
+        "entries": [
+          {
+            "className": "card-values",
+            "width": 204,
+            "height": 87.5
+          }
+        ]
+      },
+      {
+        "time": 1196.1000000238419,
+        "phase": "zoom-2",
+        "reason": "ResizeObserver",
+        "zoom": "2",
+        "kind": "RO",
+        "entries": [
+          {
+            "className": "game-card full-card",
+            "width": 204,
+            "height": 307
+          },
+          {
+            "className": "card-heading",
+            "width": 204,
+            "height": 20.5
+          },
+          {
+            "className": "game-card-image",
+            "width": 230,
+            "height": 172.5
+          },
+          {
+            "className": "card-values",
+            "width": 204,
+            "height": 87.5
+          }
+        ]
+      },
+      {
+        "time": 1196.4000000357628,
+        "phase": "zoom-2",
+        "reason": "ResizeObserver",
+        "zoom": "2",
+        "kind": "RO",
+        "entries": []
+      },
+      {
+        "time": 1199.4000000357628,
+        "phase": "zoom-2",
+        "reason": "ResizeObserver",
+        "zoom": "2",
+        "kind": "RO",
+        "entries": []
+      },
+      {
+        "time": 1200.6000000238419,
+        "phase": "zoom-2",
+        "reason": "ResizeObserver",
+        "zoom": "2",
+        "kind": "RO",
+        "entries": []
+      },
+      {
+        "time": 1201,
+        "phase": "zoom-2",
+        "reason": "ResizeObserver",
+        "zoom": "2",
+        "kind": "RO",
+        "entries": []
+      },
+      {
+        "time": 1201,
+        "phase": "zoom-2",
+        "reason": "ResizeObserver",
+        "zoom": "2",
+        "kind": "RO",
+        "entries": []
+      },
+      {
+        "time": 1201,
+        "phase": "zoom-2",
+        "reason": "ResizeObserver",
+        "zoom": "2",
+        "kind": "RO",
+        "entries": []
+      },
+      {
+        "time": 1201.199999988079,
+        "phase": "zoom-2",
+        "reason": "ResizeObserver",
+        "zoom": "2",
+        "kind": "RO",
+        "entries": []
+      },
+      {
+        "time": 1202.1000000238419,
+        "phase": "zoom-2",
+        "reason": "ResizeObserver",
+        "zoom": "2",
+        "kind": "RO",
+        "entries": []
+      },
+      {
+        "time": 1203,
+        "phase": "zoom-2",
+        "reason": "ResizeObserver",
+        "zoom": "2",
+        "kind": "RO",
+        "entries": [
+          {
+            "className": "card-heading",
+            "width": 204,
+            "height": 20.5
+          }
+        ]
+      },
+      {
+        "time": 1203.4000000357628,
+        "phase": "zoom-2",
+        "reason": "ResizeObserver",
+        "zoom": "2",
+        "kind": "computed-height-read",
+        "element": "SPAN",
+        "className": "",
+        "probeKind": "application",
+        "stack": "Error\n    at Object.get (<anonymous>:14:186)\n    at c (http://127.0.0.1:64631/assets/index-DYjw3oaV.js:9:134730)\n    at <anonymous>:24:264\n    at within (<anonymous>:17:16)\n    at window.ResizeObserver.<anonymous> (<anonymous>:24:62)",
+        "text": "M",
+        "value": "19px",
+        "visual": {
+          "width": 19.265625,
+          "height": 38
+        },
+        "client": [
+          10,
+          19
+        ],
+        "offset": [
+          10,
+          19
+        ],
+        "dpr": 1,
+        "fontStatus": "loaded",
+        "fontSize": "16px",
+        "font": "700 16px AdendaDelayed, sans-serif",
+        "fontVariationSettings": "normal",
+        "inlineFont": "16px",
+        "band": "20.5px"
+      },
+      {
+        "time": 1203.4000000357628,
+        "phase": "zoom-2",
+        "reason": "ResizeObserver",
+        "zoom": "2",
+        "kind": "computed-height-read",
+        "element": "SPAN",
+        "className": "card-round-attribute",
+        "probeKind": "reference/icon",
+        "stack": "Error\n    at Object.get (<anonymous>:14:186)\n    at c (http://127.0.0.1:64631/assets/index-DYjw3oaV.js:9:134803)\n    at <anonymous>:24:264\n    at within (<anonymous>:17:16)\n    at window.ResizeObserver.<anonymous> (<anonymous>:24:62)",
+        "text": "▲",
+        "value": "20.5px",
+        "visual": {
+          "width": 27.6875,
+          "height": 41
+        },
+        "client": [
+          14,
+          21
+        ],
+        "offset": [
+          14,
+          21
+        ],
+        "dpr": 1,
+        "fontStatus": "loaded",
+        "fontSize": "18px",
+        "font": "18px AdendaBaseTest, sans-serif",
+        "fontVariationSettings": "normal",
+        "inlineFont": "",
+        "band": "20.5px"
+      },
+      {
+        "time": 1203.9000000357628,
+        "phase": "zoom-2",
+        "reason": "ResizeObserver",
+        "zoom": "2",
+        "kind": "RO",
+        "entries": []
+      },
+      {
+        "time": 1313.9000000357628,
+        "phase": "zoom-2",
+        "reason": "initial",
+        "zoom": "2",
+        "kind": "computed-height-read",
+        "element": "SPAN",
+        "className": "",
+        "probeKind": "reference/icon",
+        "stack": "Error\n    at Object.get (<anonymous>:14:186)\n    at eval (eval at evaluate (:311:30), <anonymous>:51:70)\n    at UtilityScript.evaluate (<anonymous>:313:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)",
+        "text": "M",
+        "value": "19px",
+        "visual": {
+          "width": 19.265625,
+          "height": 38
+        },
+        "client": [
+          10,
+          19
+        ],
+        "offset": [
+          10,
+          19
+        ],
+        "dpr": 1,
+        "fontStatus": "loaded",
+        "fontSize": "16px",
+        "font": "700 16px AdendaDelayed, sans-serif",
+        "fontVariationSettings": "normal",
+        "inlineFont": "16px",
+        "band": "20.5px"
+      },
+      {
+        "time": 1314,
+        "phase": "zoom-2",
+        "reason": "initial",
+        "zoom": "2",
+        "kind": "computed-height-read",
+        "element": "SPAN",
+        "className": "card-round-attribute",
+        "probeKind": "reference/icon",
+        "stack": "Error\n    at Object.get (<anonymous>:14:186)\n    at eval (eval at evaluate (:311:30), <anonymous>:51:157)\n    at UtilityScript.evaluate (<anonymous>:313:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)",
+        "text": "▲",
+        "value": "20.5px",
+        "visual": {
+          "width": 27.6875,
+          "height": 41
+        },
+        "client": [
+          14,
+          21
+        ],
+        "offset": [
+          14,
+          21
+        ],
+        "dpr": 1,
+        "fontStatus": "loaded",
+        "fontSize": "18px",
+        "font": "18px AdendaBaseTest, sans-serif",
+        "fontVariationSettings": "normal",
+        "inlineFont": "",
+        "band": "20.5px"
+      },
+      {
+        "time": 1351.199999988079,
+        "phase": "zoom-1",
+        "reason": "ResizeObserver",
+        "zoom": "1",
+        "kind": "RO",
+        "entries": []
+      },
+      {
+        "time": 1352.199999988079,
+        "phase": "zoom-1",
+        "reason": "ResizeObserver",
+        "zoom": "1",
+        "kind": "RO",
+        "entries": []
+      },
+      {
+        "time": 1352.199999988079,
+        "phase": "zoom-1",
+        "reason": "ResizeObserver",
+        "zoom": "1",
+        "kind": "RO",
+        "entries": []
+      },
+      {
+        "time": 1352.300000011921,
+        "phase": "zoom-1",
+        "reason": "ResizeObserver",
+        "zoom": "1",
+        "kind": "RO",
+        "entries": []
+      },
+      {
+        "time": 1352.9000000357628,
+        "phase": "zoom-1",
+        "reason": "ResizeObserver",
+        "zoom": "1",
+        "kind": "RO",
+        "entries": []
+      },
+      {
+        "time": 1353,
+        "phase": "zoom-1",
+        "reason": "ResizeObserver",
+        "zoom": "1",
+        "kind": "RO",
+        "entries": []
+      },
+      {
+        "time": 1353.1000000238419,
+        "phase": "zoom-1",
+        "reason": "ResizeObserver",
+        "zoom": "1",
+        "kind": "RO",
+        "entries": [
+          {
+            "className": "card-round-attribute",
+            "width": 13.84375,
+            "height": 21
+          }
+        ]
+      },
+      {
+        "time": 1353.4000000357628,
+        "phase": "zoom-1",
+        "reason": "ResizeObserver",
+        "zoom": "1",
+        "kind": "computed-height-read",
+        "element": "SPAN",
+        "className": "",
+        "probeKind": "application",
+        "stack": "Error\n    at Object.get (<anonymous>:14:186)\n    at c (http://127.0.0.1:64631/assets/index-DYjw3oaV.js:9:134730)\n    at <anonymous>:24:264\n    at within (<anonymous>:17:16)\n    at window.ResizeObserver.<anonymous> (<anonymous>:24:62)",
+        "text": "M",
+        "value": "19px",
+        "visual": {
+          "width": 9.640625,
+          "height": 19
+        },
+        "client": [
+          10,
+          19
+        ],
+        "offset": [
+          10,
+          19
+        ],
+        "dpr": 1,
+        "fontStatus": "loaded",
+        "fontSize": "16px",
+        "font": "700 16px AdendaDelayed, sans-serif",
+        "fontVariationSettings": "normal",
+        "inlineFont": "16px",
+        "band": "20.5px"
+      },
+      {
+        "time": 1353.4000000357628,
+        "phase": "zoom-1",
+        "reason": "ResizeObserver",
+        "zoom": "1",
+        "kind": "computed-height-read",
+        "element": "SPAN",
+        "className": "card-round-attribute",
+        "probeKind": "reference/icon",
+        "stack": "Error\n    at Object.get (<anonymous>:14:186)\n    at c (http://127.0.0.1:64631/assets/index-DYjw3oaV.js:9:134803)\n    at <anonymous>:24:264\n    at within (<anonymous>:17:16)\n    at window.ResizeObserver.<anonymous> (<anonymous>:24:62)",
+        "text": "▲",
+        "value": "21px",
+        "visual": {
+          "width": 13.84375,
+          "height": 21
+        },
+        "client": [
+          14,
+          21
+        ],
+        "offset": [
+          14,
+          21
+        ],
+        "dpr": 1,
+        "fontStatus": "loaded",
+        "fontSize": "18px",
+        "font": "18px AdendaBaseTest, sans-serif",
+        "fontVariationSettings": "normal",
+        "inlineFont": "",
+        "band": "20.5px"
+      },
+      {
+        "time": 1354,
+        "phase": "zoom-1",
+        "reason": "initial",
+        "zoom": "1",
+        "kind": "band-written",
+        "old": "height: 20.5px;",
+        "height": "21px"
+      },
+      {
+        "time": 1354,
+        "phase": "zoom-1",
+        "reason": "ResizeObserver",
+        "zoom": "1",
+        "kind": "RO",
+        "entries": [
+          {
+            "className": "card-values",
+            "width": 204,
+            "height": 86
+          }
+        ]
+      },
+      {
+        "time": 1354,
+        "phase": "zoom-1",
+        "reason": "ResizeObserver",
+        "zoom": "1",
+        "kind": "RO",
+        "entries": [
+          {
+            "className": "card-values",
+            "width": 204,
+            "height": 86
+          }
+        ]
+      },
+      {
+        "time": 1354.1000000238419,
+        "phase": "zoom-1",
+        "reason": "ResizeObserver",
+        "zoom": "1",
+        "kind": "RO",
+        "entries": []
+      },
+      {
+        "time": 1355.199999988079,
+        "phase": "zoom-1",
+        "reason": "ResizeObserver",
+        "zoom": "1",
+        "kind": "RO",
+        "entries": []
+      },
+      {
+        "time": 1355.199999988079,
+        "phase": "zoom-1",
+        "reason": "ResizeObserver",
+        "zoom": "1",
+        "kind": "RO",
+        "entries": []
+      },
+      {
+        "time": 1355.300000011921,
+        "phase": "zoom-1",
+        "reason": "ResizeObserver",
+        "zoom": "1",
+        "kind": "RO",
+        "entries": []
+      },
+      {
+        "time": 1355.4000000357628,
+        "phase": "zoom-1",
+        "reason": "ResizeObserver",
+        "zoom": "1",
+        "kind": "RO",
+        "entries": []
+      },
+      {
+        "time": 1355.4000000357628,
+        "phase": "zoom-1",
+        "reason": "ResizeObserver",
+        "zoom": "1",
+        "kind": "RO",
+        "entries": []
+      },
+      {
+        "time": 1355.6000000238419,
+        "phase": "zoom-1",
+        "reason": "ResizeObserver",
+        "zoom": "1",
+        "kind": "RO",
+        "entries": []
+      },
+      {
+        "time": 1356.9000000357628,
+        "phase": "zoom-1",
+        "reason": "ResizeObserver",
+        "zoom": "1",
+        "kind": "RO",
+        "entries": []
+      },
+      {
+        "time": 1357,
+        "phase": "zoom-1",
+        "reason": "ResizeObserver",
+        "zoom": "1",
+        "kind": "RO",
+        "entries": []
+      },
+      {
+        "time": 1357.9000000357628,
+        "phase": "zoom-1",
+        "reason": "ResizeObserver",
+        "zoom": "1",
+        "kind": "RO",
+        "entries": []
+      },
+      {
+        "time": 1358.1000000238419,
+        "phase": "zoom-1",
+        "reason": "ResizeObserver",
+        "zoom": "1",
+        "kind": "RO",
+        "entries": [
+          {
+            "className": "card-heading",
+            "width": 204,
+            "height": 21
+          }
+        ]
+      },
+      {
+        "time": 1358.4000000357628,
+        "phase": "zoom-1",
+        "reason": "ResizeObserver",
+        "zoom": "1",
+        "kind": "computed-height-read",
+        "element": "SPAN",
+        "className": "",
+        "probeKind": "application",
+        "stack": "Error\n    at Object.get (<anonymous>:14:186)\n    at c (http://127.0.0.1:64631/assets/index-DYjw3oaV.js:9:134730)\n    at <anonymous>:24:264\n    at within (<anonymous>:17:16)\n    at window.ResizeObserver.<anonymous> (<anonymous>:24:62)",
+        "text": "M",
+        "value": "19px",
+        "visual": {
+          "width": 9.640625,
+          "height": 19
+        },
+        "client": [
+          10,
+          19
+        ],
+        "offset": [
+          10,
+          19
+        ],
+        "dpr": 1,
+        "fontStatus": "loaded",
+        "fontSize": "16px",
+        "font": "700 16px AdendaDelayed, sans-serif",
+        "fontVariationSettings": "normal",
+        "inlineFont": "16px",
+        "band": "21px"
+      },
+      {
+        "time": 1358.4000000357628,
+        "phase": "zoom-1",
+        "reason": "ResizeObserver",
+        "zoom": "1",
+        "kind": "computed-height-read",
+        "element": "SPAN",
+        "className": "card-round-attribute",
+        "probeKind": "reference/icon",
+        "stack": "Error\n    at Object.get (<anonymous>:14:186)\n    at c (http://127.0.0.1:64631/assets/index-DYjw3oaV.js:9:134803)\n    at <anonymous>:24:264\n    at within (<anonymous>:17:16)\n    at window.ResizeObserver.<anonymous> (<anonymous>:24:62)",
+        "text": "▲",
+        "value": "21px",
+        "visual": {
+          "width": 13.84375,
+          "height": 21
+        },
+        "client": [
+          14,
+          21
+        ],
+        "offset": [
+          14,
+          21
+        ],
+        "dpr": 1,
+        "fontStatus": "loaded",
+        "fontSize": "18px",
+        "font": "18px AdendaBaseTest, sans-serif",
+        "fontVariationSettings": "normal",
+        "inlineFont": "",
+        "band": "21px"
+      },
+      {
+        "time": 1358.800000011921,
+        "phase": "zoom-1",
+        "reason": "ResizeObserver",
+        "zoom": "1",
+        "kind": "RO",
+        "entries": [
+          {
+            "className": "card-heading",
+            "width": 204,
+            "height": 21
+          }
+        ]
+      },
+      {
+        "time": 1359,
+        "phase": "zoom-1",
+        "reason": "ResizeObserver",
+        "zoom": "1",
+        "kind": "RO",
+        "entries": []
+      },
+      {
+        "time": 1359.9000000357628,
+        "phase": "zoom-1",
+        "reason": "ResizeObserver",
+        "zoom": "1",
+        "kind": "RO",
+        "entries": []
+      },
+      {
+        "time": 1363.1000000238419,
+        "phase": "zoom-1",
+        "reason": "ResizeObserver",
+        "zoom": "1",
+        "kind": "RO",
+        "entries": []
+      },
+      {
+        "time": 1479.9000000357628,
+        "phase": "zoom-1",
+        "reason": "initial",
+        "zoom": "1",
+        "kind": "computed-height-read",
+        "element": "SPAN",
+        "className": "",
+        "probeKind": "reference/icon",
+        "stack": "Error\n    at Object.get (<anonymous>:14:186)\n    at eval (eval at evaluate (:311:30), <anonymous>:51:70)\n    at UtilityScript.evaluate (<anonymous>:313:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)",
+        "text": "M",
+        "value": "19px",
+        "visual": {
+          "width": 9.640625,
+          "height": 19
+        },
+        "client": [
+          10,
+          19
+        ],
+        "offset": [
+          10,
+          19
+        ],
+        "dpr": 1,
+        "fontStatus": "loaded",
+        "fontSize": "16px",
+        "font": "700 16px AdendaDelayed, sans-serif",
+        "fontVariationSettings": "normal",
+        "inlineFont": "16px",
+        "band": "21px"
+      },
+      {
+        "time": 1480,
+        "phase": "zoom-1",
+        "reason": "initial",
+        "zoom": "1",
+        "kind": "computed-height-read",
+        "element": "SPAN",
+        "className": "card-round-attribute",
+        "probeKind": "reference/icon",
+        "stack": "Error\n    at Object.get (<anonymous>:14:186)\n    at eval (eval at evaluate (:311:30), <anonymous>:51:157)\n    at UtilityScript.evaluate (<anonymous>:313:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)",
+        "text": "▲",
+        "value": "21px",
+        "visual": {
+          "width": 13.84375,
+          "height": 21
+        },
+        "client": [
+          14,
+          21
+        ],
+        "offset": [
+          14,
+          21
+        ],
+        "dpr": 1,
+        "fontStatus": "loaded",
+        "fontSize": "18px",
+        "font": "18px AdendaBaseTest, sans-serif",
+        "fontVariationSettings": "normal",
+        "inlineFont": "",
+        "band": "21px"
+      }
+    ]
+  }
+}

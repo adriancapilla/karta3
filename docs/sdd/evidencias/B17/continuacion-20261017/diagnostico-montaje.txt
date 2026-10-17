@@ -1,0 +1,73 @@
+import { test } from '@playwright/test';
+import fs from 'node:fs/promises';
+import { configurationBrowserServer } from '../../tests/support/configurationBrowserServer.js';
+import { manualTable, readGame } from '../../tests/support/manualBrowserCases.js';
+import { cardColumnsGeometry } from '../../tests/support/cardColumnsGeometry.js';
+import { titleGeometry, glyphFonts } from '../../tests/support/cardTitleGeometry.js';
+const out = 'playwright-report/b17-adenda/acceptance/continuacion-20261017' + (process.env.B17_DIAG_LABEL ? `/${process.env.B17_DIAG_LABEL}` : '');
+async function baseFont(page:any){if(process.env.B17_BASE_FONT){const bytes=await fs.readFile(process.env.B17_BASE_FONT);await page.route('**/adenda-base.ttf',route=>route.fulfill({body:bytes,contentType:'font/ttf'}));await page.addStyleTag({content:"@font-face{font-family:AdendaBaseTest;src:url('/adenda-base.ttf')} .game-card{font-family:AdendaBaseTest,sans-serif}"});await page.evaluate(()=>document.fonts.load('18px AdendaBaseTest'))}}
+test('estudio CSS auto: uniformidad del corpus aprobado fuera de Game',async({browser})=>{
+ const s=await configurationBrowserServer(true,true,undefined,{generic:true});const p=await manualTable(browser,s.base,{width:1280,turn:60});
+ try{await baseFont(p.host);const data=[];for(const id of ['generica','sistema-solar','criaturas-magicas'])data.push({id,metadata:JSON.parse(await fs.readFile(`barajas/${id}/baraja.json`,'utf8')),collection:JSON.parse(await fs.readFile(`barajas/${id}/cartas.json`,'utf8'))});
+ await p.host.addStyleTag({content:'.game-card.full-card .card-values{table-layout:auto}.game-card.full-card .card-values tbody th,.game-card.full-card .card-values tbody td{width:auto}'});
+ const result=await p.host.evaluate(decks=>{const slot=document.querySelector('.game-hand .game-card-slot')!.cloneNode(true) as HTMLElement;Object.assign(slot.style,{position:'fixed',visibility:'hidden',top:'0px',left:'0px'});slot.setAttribute('aria-hidden','true');document.body.append(slot);const th=[...slot.querySelectorAll('tbody th')],td=[...slot.querySelectorAll('tbody td')];const results=[];for(const d of decks)for(const mode of ['PLAY_VALUE','DISPLAY_VALUE']){const widths=[];for(const c of d.collection.cards){d.metadata.attributes.forEach((a,i)=>{const symbol=th[i].querySelector('span')!.cloneNode(true);th[i].replaceChildren(symbol,document.createTextNode(a.name));const v=c.values[a.id];td[i].textContent=mode==='PLAY_VALUE'?String(v.playValue):v.displayValue+(v.unit?' '+v.unit:'')});widths.push({id:c.id,attribute:th[0].getBoundingClientRect().width,value:td[0].getBoundingClientRect().width})}results.push({id:d.id,mode,unique:[...new Set(widths.map(w=>w.attribute))],widths})}slot.remove();return results},data);
+ await fs.mkdir(out,{recursive:true});await fs.writeFile(`${out}/auto-corpus-layout-only.json`,JSON.stringify(result,null,2)+'\n');
+ }finally{await p.close();await s.stop()}
+});
+test('diagnóstico G antes: columnas efectivas y experimento CSS aislado', async ({browser}) => {
+ const s = await configurationBrowserServer(true,true,undefined,{longTitle:true,solar:true,creatures:true,generic:true});
+ try {
+  await fs.mkdir(out,{recursive:true});const rows=[];
+  for(const id of ['portada','generica','sistema-solar','criaturas-magicas'])for(const mode of ['PLAY_VALUE','DISPLAY_VALUE'] as const){
+   const p = await manualTable(browser,s.base,{deckId:id,version:id==='portada'?7:id==='criaturas-magicas'?2:4,valueMode:mode,width:1280,turn:60});
+   try{await baseFont(p.host);
+    for(const style of ['before','auto-experiment']){
+     if(style==='auto-experiment')await p.host.addStyleTag({content:'.game-card.full-card .card-values{table-layout:auto}.game-card.full-card .card-values tbody th,.game-card.full-card .card-values tbody td{width:auto}'});
+     const cards=[];for(const slot of await p.host.locator('.game-hand [data-card-id]').all())cards.push({id:await slot.getAttribute('data-card-id'),columns:await cardColumnsGeometry(slot.locator('article')),title:await titleGeometry(slot.locator('article')),fonts:await glyphFonts(p.host,`.game-hand [data-card-id="${await slot.getAttribute('data-card-id')}"]`)});
+     rows.push({id,mode,style,cards});await p.host.screenshot({path:`${out}/G-${id}-${mode}-${style}.png`,fullPage:true});
+    }
+   }finally{await p.close()}
+  }
+  await fs.writeFile(`${out}/G-before.json`,JSON.stringify(rows,null,2)+'\n');
+ }finally{await s.stop()}
+});
+
+test('diagnóstico T sin alterar solución: recálculos durante zoom1-125-2-1', async({browser})=>{
+ const s=await configurationBrowserServer(true,true,undefined,{creatures:true});
+ s.permutation(ids=>{const hand=['carta-038','carta-044','carta-032'];const rest=ids.filter(id=>!hand.includes(id));return[rest.shift()!,hand[0],rest.shift()!,hand[1],rest.shift()!,hand[2],...rest]});
+ const context=await browser.newContext({viewport:{width:1920,height:844}});
+ await context.addInitScript(()=>{
+  const state=(window as any).__titleTrace={phase:'initial',reason:'initial',records:[]};
+  const relevant=(e:Element)=>e.closest('[data-card-id]')?.getAttribute('data-card-id')==='carta-044';
+  const log=(kind:string,data:any)=>{if(state.records.length<8000)state.records.push({time:performance.now(),phase:state.phase,reason:state.reason,zoom:document.documentElement.style.zoom||'1',kind,...data})};
+  const native=getComputedStyle;window.getComputedStyle=((e:Element,pseudo?:string)=>{
+   const style=native(e,pseudo);if(!relevant(e))return style;
+   return new Proxy(style,{get(target,key){const v=Reflect.get(target,key,target);if(key==='height')log('computed-height-read',{element:e.tagName,className:e.className,probeKind:e.getAttribute('aria-hidden')==='true'?'application':'reference/icon',stack:new Error().stack,text:e.textContent?.slice(0,50),value:v,visual:{width:e.getBoundingClientRect().width,height:e.getBoundingClientRect().height},client:[(e as HTMLElement).clientWidth,(e as HTMLElement).clientHeight],offset:[(e as HTMLElement).offsetWidth,(e as HTMLElement).offsetHeight],dpr:devicePixelRatio,fontStatus:document.fonts.status,fontSize:target.fontSize,font:target.font,fontVariationSettings:target.fontVariationSettings,inlineFont:(e as HTMLElement).style.fontSize,band:(e.closest('.card-heading') as HTMLElement)?.style.height});return typeof v==='function'?v.bind(target):v}});
+  }) as typeof getComputedStyle;
+  const within=(reason:string,fn:()=>any)=>{const old=state.reason;state.reason=reason;try{return fn()}finally{state.reason=old}};
+  const RO=ResizeObserver;window.ResizeObserver=class extends RO{constructor(callback:ResizeObserverCallback){super((entries,observer)=>within('ResizeObserver',()=>{log('RO',{entries:entries.filter(e=>relevant(e.target)).map(e=>({className:e.target.className,width:e.contentRect.width,height:e.contentRect.height}))});callback(entries,observer)}))}};
+  const add=EventTarget.prototype.addEventListener,remove=EventTarget.prototype.removeEventListener;const listeners=new WeakMap();
+  EventTarget.prototype.addEventListener=function(type:any,listener:any,options:any){if(listener&&['resize','loading','loadingdone','loadingerror'].includes(type)){let byType=listeners.get(listener);if(!byType)listeners.set(listener,byType=new Map());const wrapped=(event:Event)=>within(`event:${type}`,()=>typeof listener==='function'?listener.call(this,event):listener.handleEvent(event));byType.set(type,wrapped);return add.call(this,type,wrapped,options)}return add.call(this,type,listener,options)};
+  EventTarget.prototype.removeEventListener=function(type:any,listener:any,options:any){return remove.call(this,type,listeners.get(listener)?.get(type)??listener,options)};
+  const ready=document.fonts.ready;const then=ready.then;ready.then=function(ok:any,fail:any){return then.call(this,(v:any)=>within('fonts.ready',()=>ok?.(v)),fail)} as any;
+  new MutationObserver(records=>{for(const r of records)if((r.target as Element).matches?.('.card-heading')&&relevant(r.target as Element))log('band-written',{old:r.oldValue,height:(r.target as HTMLElement).style.height})}).observe(document,{subtree:true,attributes:true,attributeFilter:['style'],attributeOldValue:true});
+ });
+ // manualTable creates its contexts: install the same instrumentation there via browser.newContext only for this diagnostic.
+ const init=await context.storageState();await context.close();void init;
+ const originalNewContext=browser.newContext.bind(browser);const initCode=(await fs.readFile('playwright-report/b17-adenda/t-init.js','utf8'));
+ browser.newContext=async(...args)=>{const c=await originalNewContext(...args);await c.addInitScript({content:initCode});return c};
+ const p=await manualTable(browser,s.base,{deckId:'criaturas-magicas',version:2,width:1920,turn:60});
+ try{await fs.mkdir(out,{recursive:true});await baseFont(p.host);
+  const fontPath=process.env.B17_DIAG_FONT??'C:/Windows/Fonts/cour.ttf';const bytes=await fs.readFile(fontPath);
+  await p.host.route('**/adenda-diag-font.ttf',route=>route.fulfill({body:bytes,contentType:'font/ttf'}));
+  await p.host.addStyleTag({content:"@font-face{font-family:AdendaDelayed;src:url('/adenda-diag-font.ttf')} .full-card .card-heading h3{font-family:AdendaDelayed,sans-serif}"});
+  await p.host.evaluate(()=>document.fonts.load('16px AdendaDelayed'));
+  const stages=[];for(const zoom of [1,1.25,2,1]){
+   await p.host.evaluate(value=>{(window as any).__titleTrace.phase=`zoom-${value}`;document.documentElement.style.zoom=String(value)},zoom);
+   await p.host.evaluate(()=>new Promise<void>(resolve=>{let n=0;const frame=()=>++n===8?resolve():requestAnimationFrame(frame);requestAnimationFrame(frame)}));
+   const slot=p.host.locator('.game-hand [data-card-id="carta-044"]');
+   stages.push({zoom,geometry:await titleGeometry(slot.locator('article')),columns:await cardColumnsGeometry(slot.locator('article')),fonts:await glyphFonts(p.host,'.game-hand [data-card-id="carta-044"]')});
+  }
+  await fs.writeFile(`${out}/T-recalculations.json`,JSON.stringify({fontPath,stages,trace:await p.host.evaluate(()=>(window as any).__titleTrace)},null,2)+'\n');
+ }finally{browser.newContext=originalNewContext;await p.close();await s.stop()}
+});

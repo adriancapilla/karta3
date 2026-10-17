@@ -1,0 +1,10 @@
+
+Running 3 tests using 1 worker
+
+(node:7060) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 tests\browser\cardColumns.spec.ts:10:3 › ADENDA B17 G columnas controlled-monospace PLAY_VALUE: necesidades, uniformidad, contenido y clic habilitado (7.5s)
+  ok 2 tests\browser\cardColumns.spec.ts:10:3 › ADENDA B17 G columnas controlled-monospace DISPLAY_VALUE: necesidades, uniformidad, contenido y clic habilitado (6.7s)
+  ok 3 tests\browser\cardTitleFit.spec.ts:112:1 › ADENDA B17 T/G fuentes tardías y zoom CSS125/200 declarado: recalcula sin pausar ni neutralizar fuente (7.1s)
+
+  3 passed (22.7s)

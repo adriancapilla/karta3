@@ -1,0 +1,12 @@
+
+Running 5 tests using 1 worker
+
+(node:19288) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 tests\browser\cancelGame.spec.ts:82:56 › B13/T04 A cancelada → B ordinary, F5, avisos/estados antiguos y límites propios (9.2s)
+  ok 2 tests\browser\cardFace.spec.ts:76:3 › B17 criaturas-magicas PLAY_VALUE: cara completa, encaje autorizado, datos, públicos y normal adaptada (6.6s)
+  ok 3 tests\browser\cardFace.spec.ts:76:3 › B17 criaturas-magicas DISPLAY_VALUE: cara completa, encaje autorizado, datos, públicos y normal adaptada (6.4s)
+  ok 4 tests\browser\resultNotice.spec.ts:38:56 › INC-01 expired A → B ordinary: accepted result, reload, controlled expiry and old reads (8.4s)
+  ok 5 tests\browser\timedGame.spec.ts:6:34 › B08 T1 1280: deadline estable, carta local ignorada, aviso y recuperación (1.6s)
+
+  5 passed (33.9s)

@@ -1,0 +1,81 @@
+{
+  "workers": 1,
+  "retries": [
+    0
+  ],
+  "stats": {
+    "startTime": "2026-10-17T20:19:43.949Z",
+    "duration": 33936.317,
+    "expected": 5,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "cases": [
+    {
+      "title": "B13/T04 A cancelada → B ordinary, F5, avisos/estados antiguos y límites propios",
+      "file": "cancelGame.spec.ts",
+      "line": 82,
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 9183
+        }
+      ]
+    },
+    {
+      "title": "B17 criaturas-magicas PLAY_VALUE: cara completa, encaje autorizado, datos, públicos y normal adaptada",
+      "file": "cardFace.spec.ts",
+      "line": 76,
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 6575
+        }
+      ]
+    },
+    {
+      "title": "B17 criaturas-magicas DISPLAY_VALUE: cara completa, encaje autorizado, datos, públicos y normal adaptada",
+      "file": "cardFace.spec.ts",
+      "line": 76,
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 6408
+        }
+      ]
+    },
+    {
+      "title": "INC-01 expired A → B ordinary: accepted result, reload, controlled expiry and old reads",
+      "file": "resultNotice.spec.ts",
+      "line": 38,
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 8418
+        }
+      ]
+    },
+    {
+      "title": "B08 T1 1280: deadline estable, carta local ignorada, aviso y recuperación",
+      "file": "timedGame.spec.ts",
+      "line": 6,
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 1633
+        }
+      ]
+    }
+  ]
+}

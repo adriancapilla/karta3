@@ -6,6 +6,8 @@
 
 **Acuerdo posterior sobre G, 17/10:** el autor elige estudiar e implementar el reparto de columnas según el espacio real de atributo y dato si resuelve el encaje. La reducción de padding queda aceptada en principio como recurso posterior, no con un valor mínimo ya acordado. [§9](#9-continuación-acordada-columnas-y-diagnóstico-del-retorno-de-zoom--17102026) delimita uniformidad, medición previa y el caso T todavía independiente. No acredita corrección nueva ni cierra una solución para T.
 
+**Actualización posterior:** [§10](#10-continuación-g-y-reparación-t-autorizada--17102026) registra G y la reparación T autorizada después del diagnóstico. Comprobación Windows correcta; Linux/CI completa del HEAD final pendientes. Se conserva §9 como preparación histórica.
+
 **Continuidad comprobada:** carpeta única `E:\KARTA3\KARTA3_IA\APP\karta3`, rama `chore/publicacion-b16-b17`, HEAD `f1d8d2416168b88d9f1503efd9ccab54a516ebc5`, árbol inicialmente limpio. PR #13 abierta y sin integrar según el registro recibido. Conservar commits, etiquetas, reservas, diagnósticos y cierres anteriores; no crear rama/checkout ni volver a otra versión.
 
 ## 1. Fuentes, diagnóstico y alcance de la autorización
@@ -211,3 +213,43 @@ Si confirma estado antiguo o cálculo incorrecto de aplicación, proponer la rep
 - Puertas posteriores: check y recorridos focales pertinentes en Windows/Linux, cinco exactos y selección19 sobre fuente identificada, un trabajador/cero reintentos, reportes/trazas/acceptance explícitamente recogidos. Solo después CI completa del HEAD definitivo; el inventario actual182/22 no es ejecución. No reducir cobertura ni trasladar un resultado entre HEAD/entornos.
 
 Preparación/implementación se mantiene en APP/karta3 y su rama existente mediante escritor único coordinado por el autor. Sin nueva rama/checkout, publicaciones, GHCR, VPS, métricas, fuentes TFM/Diseño/ASSETS/PRODUCTO o mensajes a otros hilos. [Continuación para Implementación y diagnóstico](PROMPT_IMPLEMENTACION_ADENDA_B17.md) distingue el G aprobado de T todavía abierto; el encargo original se conserva como histórico.
+
+## 10. Continuación G y reparación T autorizada — 17/10/2026
+
+**Estado:** G/T implementados y comprobados en Windows. **Linux focal y CI completa del HEAD final pendientes; no se declara el conjunto listo para CI completa.** La [evidencia nueva](evidencias/B17/continuacion-20261017/README.md) conserva comandos, fuentes, capturas, cajas, fallos y límites, sin sustituir cierres/diagnósticos previos.
+
+### Base, código y conservación
+
+Base efectiva `27eb1fa8e65c90cfaca251f3a676c66d51b276bf`, carpeta/rama existentes; dos documentos locales conservados en **4a8565a**. Escritor único, sin otra rama/checkout o servidor ajeno detenido. Commits locales separados **0591c0f G** y **f5c2c78 T**. Código final probado `f5c2c78776ec75964572664a52d32591f6b59b4b`; cierre documental posterior sin cambios de producto. [Integridad de fuentes/assets y 124 archivos APP/Git](evidencias/B17/continuacion-20261017/integridad.json).
+
+### G: causa, corrección y uniformidad
+
+Medición inicial: tabla204, reparto efectivo **102/102**, padding horizontal3+3 en th/2+2 en td y bordes laterales0. El52/48 declarado no describe ese layout fijo/cabecera absoluta. El primer intento de fijar solo th/td tampoco gobierna las columnas: quedó fallido y conservado. CSS automático cabe en muestras, pero Solar/Dato varía innecesariamente100,6875–108,390625 en el estudio auxiliar del corpus.
+
+Solución general en cliente: medir copias efímeras de las seis celdas con fuente/símbolo/espacio/padding/bordes reales y gobernar las tres filas con un `colgroup` exclusivo de cara normal. Si caben ambas necesidades, reservar el máximo de los tres atributos públicos y dar el resto al dato. En extremos incompatibles, reparto proporcional con wrapping/contenido conservados. Observación acotada a contenido, ancho y fuentes; no acciones de juego, corpus oculto, dependencia o bucle permanente. Minicarta y Detalles sin ese reparto.
+
+Windows1280, ambos modos: genérica85,6875/118,3125; Solar83,703125/120,296875; Criaturas94,28125/109,71875; fixture98,5/105,5. Tres cartas/tres filas con iguales columnas por escena. Probeta auxiliar fuera de Game contrasta58 cartas de cada baraja/modo, sin cambios de vistas: **no se necesitó excepción de uniformidad para el corpus actual**. Ninguna columna salta por selección, jugada o revisión.
+
+La nueva regresión con monospace de ensayo falla en la compilación base con fixture100W intacta: atributo104,421875 frente96 útiles y tabla127,34375. Pasa en ambos modos después: columna110,421875/93,578125, tabla86, gaps+10,25/+10,25. **Sin reducir padding:** se conservan6/4,9 históricos y padding horizontal. No se presenta la fuente sustituida de Windows como Linux.
+
+### T: diagnóstico, decisión y reparación
+
+Con DejaVu de ensayo, CSSzoom1→1,25→2→1: aplicación lee altura natural del icono21/20,8/20,5 CSS (cajas21/26/41 visuales) y escribe esas alturas. Al retornar a1 el icono recupera21, pero la banda observada permanece204×20,5 CSS y no dispara recálculo. La referencia independiente21 es correcta. No es doble escala ni descarga fallida; la TTF no variable no explica el estado antiguo.
+
+Se entregó diagnóstico/propuesta **antes de modificar T**; respuesta expresa del autor: **«Autorizar la reparación propuesta»**. Se observa también el icono natural con el mismo ResizeObserver. No se cambia cálculo, criterio, tolerancia o mínimo ni se provoca resize. La [traza final](evidencias/B17/continuacion-20261017/final-T-T-recalculations.json) registra callbacks, unidades, probeta/icono/banda/carta, alturas escritas, fuentes/carga/DPR: al volver se dispara callback y la banda recupera21. Secuencia visual21→26→41→21. CSSzoom no equivale a zoom nativo.
+
+### Resultados nuevos y límites
+
+Windows/Chrome155.0.8059.80/Playwright1.63; Node24.19.0/npm11.6.2/ICU78.3/Unicode17. Conexiones HTTP/Socket.IO reales a compilación propia/puertos efímeros, reloj y permutación controlados. Fuentes sustituidas solo de ensayo, sin instalación global ni fuentes nuevas de producto.
+
+| Puerta final | Resultado real |
+|---|---|
+| `npm run check` | **538/538,43 archivos/71 módulos**, tipos/lint/build e imports/ciclos correctos. |
+| Cinco diagnósticos exactos Windows | **5/5**,33,9s, un trabajador/cero reintentos. |
+| `npm run test:browser` focal ampliado | **29/29**,180,334s:19 conservados+10 G; un trabajador/cero reintentos/omitidos/flaky. |
+| T con DejaVu sustituida/compilación final | **1/1** diagnóstico adicional,5,9s; recálculos registrados. |
+| Conservación | **124/124** archivos/blobs iguales; históricos y diagnósticos externos preservados. |
+
+G comprueba botón habilitado antes del sondeo, clic normal `isTrusted` y avance/jugada única; conserva criterios/datos y geometría, D/foco/arrastre/recuperación/INC-01/plazos/revisión/frontera1367–1368/quinta. Sin timeouts ampliados o aserciones retiradas. Revisión semántica: producto solo mide DOM autorizado; servidor, contratos, reglas y paquetes sin cambios.
+
+Reportes/trazas/medidas en `playwright-report/b17-adenda/acceptance/continuacion-20261017/`; copia documental segura enlazada, sin credenciales de trazas en Git. Linux local no disponible (motor Docker ausente): devolver mediante el autor HEAD final y selecciones5/29 al responsable GitHub; **solo tras las puertas focales procede CI completa**. No se reutilizan Linux5/5 o17/19 históricos como prueba de este código. Pendientes zoom nativo, revisión humana/física y C09–C10 completos. Sin fuentes TFM/Diseño/ASSETS/PRODUCTO, publicación, despliegue o mensajes a otros hilos.
