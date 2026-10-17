@@ -253,3 +253,23 @@ Windows/Chrome155.0.8059.80/Playwright1.63; Node24.19.0/npm11.6.2/ICU78.3/Unicod
 G comprueba botón habilitado antes del sondeo, clic normal `isTrusted` y avance/jugada única; conserva criterios/datos y geometría, D/foco/arrastre/recuperación/INC-01/plazos/revisión/frontera1367–1368/quinta. Sin timeouts ampliados o aserciones retiradas. Revisión semántica: producto solo mide DOM autorizado; servidor, contratos, reglas y paquetes sin cambios.
 
 Reportes/trazas/medidas en `playwright-report/b17-adenda/acceptance/continuacion-20261017/`; copia documental segura enlazada, sin credenciales de trazas en Git. Linux local no disponible (motor Docker ausente): devolver mediante el autor HEAD final y selecciones5/29 al responsable GitHub; **solo tras las puertas focales procede CI completa**. No se reutilizan Linux5/5 o17/19 históricos como prueba de este código. Pendientes zoom nativo, revisión humana/física y C09–C10 completos. Sin fuentes TFM/Diseño/ASSETS/PRODUCTO, publicación, despliegue o mensajes a otros hilos.
+
+## 11. Corrección acotada B10 y Solar/Dato390 — 17/10/2026
+
+**Autorización expresa posterior del autor:** sustituir la exigencia histórica B10 de18px por las garantías vigentes de título normal12→base, máximo que cabe, banda estable y nombre completo accesible, con corte solo cuando no cabe a12; conservar miniatura y demás aserciones. Además, permite un ajuste mínimo y compartido de padding horizontal de la cara normal para recuperar el déficit conjunto Solar de0,078125px. No autoriza otra geometría, reducción de fuente, saltos aceptados, contenido nuevo o tolerancias mayores. Misma carpeta/rama y escritor único; sin nuevos checkouts.
+
+### Evidencia anterior y cambio propuesto
+
+Se conservan [CI39068017172](https://github.com/adriancapilla/karta3/actions/runs/39068017172),188/192, y [diagnóstico39070117221](https://github.com/adriancapilla/karta3/actions/runs/39070117221),0/4, con sus trazas/JSON. Son resultados de otro HEAD, no se reclasifican como aprobados. B10 falla por igualdad literal18 en tres perfiles; Carta de prueba4 mide16,3, disponible165,984375 y siguiente paso16,4 necesita166,84375: no convertir16,3 en constante universal.
+
+Solar LOW390/Hyakutake: tabla194, columnas97,25/96,75; Diámetro necesita91,28125 frente91,25 útiles y317859 MKm necesita92,796875 frente92,75. Fuentes efectivas DejaVuSans-Bold/DejaVuSans. Suma completa194,078125>194; existe salto real. Solo cambiar las columnas no crea ese espacio ausente.
+
+Ajuste CSS compartido de los datos en cara normal: padding horizontal2→**1,953125px por lado** (3/64px menos por lado, recuperación total6/64=0,09375px). Es el primer decremento simétrico en unidades1/64 suficiente para el déficit medido; margen calculado0,015625px. Se mantienen atributos3+3, relleno vertical, dimensiones, imagen, fuentes y contenido; las reglas específicas preexistentes de miniatura/consulta permanecen. Sin excepciones por identidad, baraja u OS y sin modificar el algoritmo de columnas. Este cálculo **no acredita aún el resultado Linux**.
+
+B10 conserva la fixture congelada y sus hashes, geometría, cabecera, fuentes ajenas al título y acciones. Las caras normales visibles se contrastan con los nombres de la vista autorizada y el comprobador independiente ya vigente de título (rango, siguiente incremento, banda, nowrap y corte condicional). La miniatura conserva18px. Solar añade contraste estricto de anchura íntegra≤espacio útil, nombres/valores completos contra la vista y columnas iguales entre filas, manteniendo las expectativas originales de una línea, privacidad y juego real. No se cambian tolerancias ni fixtures.
+
+### Puertas y evidencia pendiente
+
+Primero los cuatro casos Linux fallidos exactos; si pasan, regresiones afectadas: los29 G/T, siete perfiles B10 base/comparison y ambos Solar HIGH/LOW, sin duplicar los cuatro ya incluidos. Un trabajador/cero reintentos. Recoger medidas antes/después, fuentes, textos, encaje y acciones genuinas; sondeos geométricos no equivalen a clic. Solo después CI completa del HEAD final sin filtro, imagen Linux y revisión/squash/CI main/clon del procedimiento operativo.
+
+Las medidas nuevas de B10 se conservan en `acceptance/correccion-B10-Solar/` y las de Solar en `acceptance/publicacion-192-20261017/`, dentro de artefactos separados por ejecución, preservando los anteriores. Los124 archivos/certificados/versiones y las referencias originales/reserva permanecen intactos. Si el margen requiere algo mayor, detener y comunicar antes de ampliar alcance. Resultados reales y cierre se añadirán al registro de ejecución/PR; ninguna publicación GHCR/VPS ni métricas.
