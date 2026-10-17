@@ -1,4 +1,22 @@
-# Encargo correctivo de B17 — títulos, encaje e interacción
+# Continuación de la adenda B17 — columnas G y diagnóstico T
+
+**Preparación del17/10/2026; no implementación ni comprobación nueva.** Lee primero [adenda §9](ADENDA_B17_TITULOS_Y_ENCAJE.md#9-continuación-acordada-columnas-y-diagnóstico-del-retorno-de-zoom--17102026). Base observada **27eb1fa8e65c90cfaca251f3a676c66d51b276bf**, carpeta única APP/karta3, rama existente `chore/publicacion-b16-b17`, PR #13 abierta. Verifica estado real y conserva esta preparación documental por separado del producto. El autor coordina el escritor único; sin nuevas ramas/checkouts ni mensajes a otros hilos.
+
+**G está acordado en su dirección, sujeto a medición:** el autor elige reparto general de columnas según el espacio de atributo y dato si resuelve el encaje. Le preocupa complejidad y uniformidad. No aplicar una excepción por nombre/id o activar un parche solo en la carta100W. Medir primero ancho efectivo de columnas/celdas, texto/símbolo/unidad y espacio vertical: el reparto CSS52/48 no es todavía medición. Si hay una discrepancia de estilos, distinguirla del nuevo reparto.
+
+Implementar la alternativa más pequeña compatible con §9.2 que permita el encaje: mismas columnas para las tres filas, uniformidad entre cartas de las barajas actuales cuando cabe, sin saltos por acciones de juego. No compartir cartas ocultas para calcular máximos; no nuevos contratos/dependencias/infraestructura. Si precisa medición local, acotada y convergente, sin bucles permanentes. Comparar fixture100W/Magnitud1–3, Resistencia y datos largos de Solar, ambos modos/perfiles afectados, sin abreviarlos. Mantener carta/imagen/tipografías/título12→base/corte autorizado, accesibilidad/Detalles y compacta. Los124 archivos quedan intactos.
+
+**Padding es segunda vía aceptada en principio**, no un valor ya elegido: si repartir no basta, devolver medidas, eje y reducción mínima propuesta con comparación visual, antes de cerrar su uso. No reutilizar automáticamente4,4 ni aumentar carta, ocultar tabla, reducir letra o modificar imagen/contenido. No descartar la fixture por futura política editorial.
+
+**T no tiene solución elegida:** realizar solo el contraste diagnóstico de §9.3 antes de proponer su corrección. Registrar recálculos y fuente/estilos/cajas/escala en1→1,25→2→1, comparando cálculo cliente y prueba en unidades equivalentes. Los datos muestran al regreso banda20,5 frente referencia/icono21 y tabla contenida; no prueban causa. Devolver qué cálculo/instante explica la diferencia y la reparación mínima propuesta, o la medición que falte. Sin alterar criterio, tolerancia o producto T para cerrar el fallo antes de consultarlo con el autor. No provocar resize para hacerlo pasar ni equiparar CSSzoom a zoom nativo.
+
+G debe acreditar tabla/textos contenidos y uniformidad, más turno habilitado/clic real/avance único, sin force-click o aserciones retiradas. Capturar geometría, fuentes efectivas y receptores/trazas. Linux5 anterior5/5 y Linux19 anterior17/19 son históricos, no evidencia de esta continuación. Check local según AGENTS y pruebas pertinentes; GitHub recibe por el autor la fuente para las puertas Linux5/19 y solo posteriormente CI completa del HEAD definitivo. Un trabajador/cero reintentos, presupuestos/cobertura conservados y acceptance recogida. No repetir a ciegas o declarar una puerta cerrada mientras T siga abierto.
+
+Conservar evidencia/cierres previos, fuente original7644ea8, etiqueta remota y reserva4516d23. No push/merge/GHCR/VPS/métricas ni fuentes TFM/Diseño/ASSETS/PRODUCTO en esta continuación de Implementación. Devolver diagnóstico y propuesta T al autor; no constituye un encargo cerrado de reparación T ni aprobación de padding nuevo.
+
+## Encargo original de título — histórico, implementado en346a063
+
+Las instrucciones siguientes conservan el encargo de la primera fase. Su basef1d8d24 y su estado previo no sustituyen la continuidad y los resultados nuevos de §9.
 
 Lee `docs/sdd/ADENDA_B17_TITULOS_Y_ENCAJE.md` y sigue sus decisiones/puertas. **El autor ha aprobado el mínimo de 12 px CSS y, si aún no cabe, el corte visual del título normal en una línea.** Conservar el nombre íntegro en DOM/accesibilidad y Detalles. Esta corrección no es un bloque funcional nuevo.
 

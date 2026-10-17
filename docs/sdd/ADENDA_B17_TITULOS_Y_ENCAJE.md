@@ -4,6 +4,8 @@
 
 **Actualización posterior del 17/10:** implementación y comprobación Windows registradas en [§8](#8-implementación-y-comprobación-local--17102026); Linux/CI completa y revisión humana pendientes. El estado y diagnóstico de preparación siguientes se conservan como históricos.
 
+**Acuerdo posterior sobre G, 17/10:** el autor elige estudiar e implementar el reparto de columnas según el espacio real de atributo y dato si resuelve el encaje. La reducción de padding queda aceptada en principio como recurso posterior, no con un valor mínimo ya acordado. [§9](#9-continuación-acordada-columnas-y-diagnóstico-del-retorno-de-zoom--17102026) delimita uniformidad, medición previa y el caso T todavía independiente. No acredita corrección nueva ni cierra una solución para T.
+
 **Continuidad comprobada:** carpeta única `E:\KARTA3\KARTA3_IA\APP\karta3`, rama `chore/publicacion-b16-b17`, HEAD `f1d8d2416168b88d9f1503efd9ccab54a516ebc5`, árbol inicialmente limpio. PR #13 abierta y sin integrar según el registro recibido. Conservar commits, etiquetas, reservas, diagnósticos y cierres anteriores; no crear rama/checkout ni volver a otra versión.
 
 ## 1. Fuentes, diagnóstico y alcance de la autorización
@@ -161,3 +163,51 @@ La [evidencia nueva](evidencias/B17/adenda-20261017/README.md) enumera selecció
 | AC-GH | **Pendiente**: diagnóstico Linux focal y después CI completa del HEAD final, antes de integrar. Ninguna ejecución remota en este encargo. |
 
 El [traspaso al autor](evidencias/B17/adenda-20261017/README.md#diagnóstico-linux-y-puerta-posterior) proporciona las dos selecciones focales y medidas a devolver. No reanudar una batería completa mientras fallen cinco/nuevos pertinentes. El autor coordina el siguiente escritor; Implementación no envía mensajes a otros hilos. Mantener revisión humana/zoom nativo/dispositivos físicos y C09–C10 parciales. El futuro límite editorial de nombres y traslado descriptivo a Aplicación §§7.2/7.5–7.7 corresponden a sus responsables; no se cambió contrato/TFM/Diseño o contenido desde APP.
+
+## 9. Continuación acordada: columnas y diagnóstico del retorno de zoom — 17/10/2026
+
+**Estado:** decisión de G recibida; pendiente de medición e implementación. T requiere contraste de cálculo/recálculo antes de acordar su corrección. Base observada limpia **27eb1fa8e65c90cfaca251f3a676c66d51b276bf**, misma carpeta/rama y PR #13. Esta actualización es documental; no ejecuta pruebas, cambia producto o amplía el bloque funcional.
+
+### 9.1 Evidencia y alcance de la decisión G
+
+Fuentes nuevas conservadas: [estado de publicación](../../../verificacion-b16-b17-20261016/estado-publicacion.md), [diagnóstico con cajas/fuentes/receptores](../../../verificacion-b16-b17-20261016/diagnostico-adenda-39056325353.json). Linux5 pasó5/5 en35,672807s sobre6269b22; Linux19 terminó17/19 en174,056039s y los dos fallos nuevos se reprodujeron sobref04ba23. Check538/43/71 correcto, no CI completa ni integración. Windows19/19 sigue siendo otra categoría de evidencia.
+
+G afecta a la fixture válida portada v7/carta-2 con100 W. `longTitle` solo cambia el nombre; mantiene Magnitud1/2/3, fuentes, valores e imagen/placeholder. El título cumple12/corte/banda21. La tabla mide127,34375 frente109,5px de espacio disponible, con déficit17,84375 y tres atributos en dos líneas; DejaVuSans-Bold efectivo. No se resuelve mediante otra reducción del título.
+
+El CSS declara tabla204, reparto52/48 en PC, padding horizontal3px por lado en atributos y2 en valores, con layout fijo/cabecera accesible fuera del flujo. Faltan anchos efectivos de celdas, espacio útil y texto completo por columna: los porcentajes declarados no se presentan como medida real. Contrastar también cascada/representación antes de diseñar una solución a una distribución supuesta.
+
+**Decisión expresa del autor:** priorizar reparto según necesidades de atributo y dato mediante una regla general. Reconoce que los extremos simultáneos pueden no caber y acepta reducir padding como alternativa posterior, sacrificando parte del espacio visual. Le preocupan la complejidad y que una excepción por carta rompa la uniformidad. Las futuras restricciones editoriales del constructor se mantienen como intención, sin nuevos límites de contrato o edición de las124 fuentes actuales.
+
+### 9.2 Contrato de la corrección de columnas
+
+1. Medir primero columnas/celdas/textos y verificar si el reparto declarado se aplica. Después, implementar la regla general de distribución si demuestra resolver G con las dimensiones, fuentes y contenido vigentes. No acortar fixture/atributos ni especializar por id, nombre de carta, baraja o una cadena de ejemplo.
+2. La regla pertenece al consumidor de cara normal, no se activa por una lista de cartas fallidas. Las tres filas de una carta comparten columnas. Favorecer un reparto común entre cartas de la misma baraja, modo y perfil cuando sus necesidades son compatibles; comprobar la uniformidad de las tres barajas actuales. No dar por aprobados saltos de columnas por hover, selección, turno, revisión o llegada de otra carta. Mostrar cualquier excepción necesaria antes del cierre.
+3. Medir símbolo/separación/atributo íntegros y dato/unidad literales, con padding/bordes efectivos y fuentes finales. No gastar en el atributo espacio que necesitan los datos largos de Solar; no exigir una sola línea a Resistencia si dos líneas quedan contenidas. Mantener carta/imagen/D/título/atributos y nombre accesible/Detalles según las decisiones aprobadas; minicarta sin nuevo reparto por esta corrección.
+4. Uniformidad no permite trasladar las58 cartas, manos rivales, orden oculto o nuevos datos privados al cliente. Puede comprobarse el corpus aprobado completo fuera de la aplicación mediante pruebas; la política cliente solo utiliza información legítimamente disponible. No añadir metadatos/contratos/servicios para sostener el reparto sin otra decisión.
+5. Preferir la solución más pequeña que acredite el encaje. No añadir infraestructura de layout, dependencias, bucles de ajuste permanentes o remonte de componentes/controles. Si hace falta medición cliente, acotarla a cambios pertinentes de contenido, ancho/representación y fuentes, con convergencia y limpieza; conservar foco y no enviar acciones o alterar el reloj. Elegir CSS o medición local es detalle técnico, no una aprobación anticipada de un algoritmo concreto.
+6. **Padding como recurso posterior:** demostrar primero el límite del reparto y presentar qué padding horizontal/vertical actual produce el déficit, qué reducción mínima lo resolvería y su comparación visual. El autor acepta esta vía en principio, pero no se ha fijado aquí eje, mínimo ni nuevo umbral. No aplicar automáticamente el antiguo4,4, reducir todos los márgenes o declarar aprobado un valor arbitrario. Concretar ese dato con el autor antes de cerrar una modificación que lo necesite.
+7. Si no caben simultáneamente ambas columnas dentro de esos acuerdos, devolver cajas, anchuras necesarias, altura resultante y alternativas. Sin overflow oculto de tabla, fuente de atributos menor, imagen distinta, carta más alta, contenido cambiado o control superpuesto. La política editorial futura no se utiliza para excluir la fixture válida actual.
+
+**Medición previa pedida:** fixture100W/Magnitud1–3, Resistencia y datos largos de Solar, ambos modos; registrar cajas de th/td, contenido útil, padding/bordes/anchos calculados, rangos completos de símbolo/etiqueta/dato-unidad, filas y presupuesto vertical. Separar lo medido de una estimación de reparto factible. Comparar cartas cortas/largas de cada baraja para detectar cambios de columnas. No experimentar desde SDD cambiando CSS de producto.
+
+### 9.3 T permanece independiente: diagnóstico antes de decidir
+
+Repartir columnas no corrige por sí mismo el cálculo de la banda. Con la fuente tardía de ensayo DejaVuSansMono ya cargada, las tres cartas conservan al volver de CSSzoom2 a1 una banda20,5 frente referencia/icono21; imagen a37,5px del borde superior frente38 inicial. Tabla contenida, gaps+4/+4. A125/200% se midieron banda/icono26/26 y41/41. No se declara problema visual grave ni falso positivo.
+
+Aplicación obtiene el máximo entre línea de prueba al tamaño base e icono mediante estilos calculados, y escribe altura CSS. La prueba obtiene una referencia similar y la multiplica por escala geométrica para compararla con cajas visuales. No hay evidencia suficiente de doble escala; revisar unidades, bordes/redondeo y momento de medición. Aplicación copia `fontVariationSettings` y prueba no: diferencia a contrastar, no causa demostrada con esta TTF. CDP confirma fuente cargada; no atribuirlo a descarga fallida.
+
+Hipótesis compatible con20,5=41/2: medida tomada bajo200% que no se actualiza tras volver. El ensayo cambia `style.zoom`; falta saber qué callbacks de resize/ResizeObserver/fuentes se ejecutaron y qué valores leyeron/escribieron. No adoptar esa hipótesis como reparación cerrada.
+
+**Petición diagnóstica concreta, no solución elegida:** sobre el mismo montaje1→1,25→2→1, registrar motivo/instante de cada recálculo, font-size base/aplicado, fuente efectiva/estado de carga, estilos calculados y cajas visuales de probeta/icono/banda/carta, offsetWidth/clientWidth, escala/DPR y altura escrita, con observación tras estabilizar layout. Comparar cálculo cliente y referencia independiente en unidades equivalentes. No provocar un resize adicional para hacer pasar el caso ni modificar producto desde SDD.
+
+Si confirma estado antiguo o cálculo incorrecto de aplicación, proponer la reparación técnica que cumpla la banda vigente. Si confirma referencia incorrecta de prueba, explicar la discrepancia y la propiedad independiente que verificará: banda que contiene línea/icono, alineación y recuperación de geometría al volver al mismo zoom/fuente/ancho, con título y tabla íntegros. No basta ampliar tolerancia, copiar el resultado cliente como oráculo o retirar la condición. La solución T se consulta con el autor antes de cerrar otro cambio.
+
+### 9.4 Aceptación y continuidad
+
+- G: medida de columnas antes/después, misma fixture/contenido, tabla y textos contenidos, efecto sobre Resistencia/Solar y uniformidad documentado; reducción de padding solo si se concreta conforme a9.2.6. Un algoritmo propuesto no cuenta como encaje comprobado.
+- I: llegar al turno habilitado, sondeo del punto del control y clic real mediante Playwright normal, recepción isTrusted y avance/jugada única; no usar los botones deshabilitados de los diagnósticos como prueba de interacción. D/consulta/foco/arrastre/resize y plazos conservados.
+- T: separar diagnóstico, propuesta técnica y cambio de criterio; sin darlo por resuelto por las columnas o una tolerancia nueva.
+- Conservación:124 archivos/hashes, reglas/permisos/privacidad, versiones de tres barajas, compacta y dependencias sin cambios; históricos y ramas/etiqueta original/reserva intactos.
+- Puertas posteriores: check y recorridos focales pertinentes en Windows/Linux, cinco exactos y selección19 sobre fuente identificada, un trabajador/cero reintentos, reportes/trazas/acceptance explícitamente recogidos. Solo después CI completa del HEAD definitivo; el inventario actual182/22 no es ejecución. No reducir cobertura ni trasladar un resultado entre HEAD/entornos.
+
+Preparación/implementación se mantiene en APP/karta3 y su rama existente mediante escritor único coordinado por el autor. Sin nueva rama/checkout, publicaciones, GHCR, VPS, métricas, fuentes TFM/Diseño/ASSETS/PRODUCTO o mensajes a otros hilos. [Continuación para Implementación y diagnóstico](PROMPT_IMPLEMENTACION_ADENDA_B17.md) distingue el G aprobado de T todavía abierto; el encargo original se conserva como histórico.
