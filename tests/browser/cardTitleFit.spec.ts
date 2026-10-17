@@ -16,6 +16,25 @@ async function record(page: Page, name: string) {
   await fs.writeFile(`${evidence}/${name}.json`, JSON.stringify({ date: new Date().toISOString(), browser: page.context().browser()!.version(), cards }, null, 2) + '\n');
   await page.screenshot({ path: `${evidence}/${name}.png`, fullPage: true });
 }
+// Evidencia de un fallo real, sin cambiar sus aserciones, datos ni acciones de juego.
+async function recordFailure(page: Page, name: string) {
+  try {
+    await record(page, name);
+    const button = page.locator('.game-hand .card-play-button').first();
+    await button.scrollIntoViewIfNeeded();
+    const receiver = await button.evaluate(e => {
+      const r = e.getBoundingClientRect();
+      return { disabled: (e as HTMLButtonElement).disabled, label: e.getAttribute('aria-label'),
+        points: [2, r.height / 2, r.height - 2].map(dy => {
+          const x = r.x + r.width / 2; const y = r.y + dy; const hit = document.elementFromPoint(x, y);
+          return { x, y, received: hit === e || !!hit && e.contains(hit), tag: hit?.tagName,
+            className: hit?.getAttribute('class'), text: hit?.textContent, cardId: hit?.closest('[data-card-id]')?.getAttribute('data-card-id') };
+        }) };
+    });
+    await fs.writeFile(`${evidence}/${name}-receiver.json`, JSON.stringify({ category: 'hit test tras scroll; no clic ni avance ejecutado', receiver }, null, 2));
+    await record(page, `${name}-scrolled`);
+  } catch (diagnosticError) { console.warn('No se pudo completar evidencia adicional:', diagnosticError); }
+}
 async function scene(id: string) {
   const s = await configurationBrowserServer(true, true, undefined, { generic: true, solar: true, creatures: true });
   const cards = (JSON.parse(await fs.readFile(`barajas/${id}/cartas.json`, 'utf8')) as { cards: { id: string; name: string; roundAttribute: string }[] }).cards;
@@ -86,7 +105,8 @@ test('ADENDA B17 T/G/I fixture válida: corte solo a12, nombre íntegro, hit rea
     await expect.poll(async () => (await readGame(p.host)).game.interaction.turn?.id).not.toBe(before.game.interaction.turn!.id);
     const after = await readGame(p.host); expect(after.game.round.plays.filter(play => play.card.id === card.id)).toHaveLength(1);
     expect(s.gameRequests.filter(r => r.event === 'game:play')).toHaveLength(2);
-  } finally { await p.close(); await s.stop(); }
+  } catch (error) { await recordFailure(p.host, 'fallo-fixture-corte-12'); throw error; }
+  finally { await p.close(); await s.stop(); }
 });
 
 test('ADENDA B17 T/G fuentes tardías y zoom CSS125/200 declarado: recalcula sin pausar ni neutralizar fuente', async ({ browser }) => {
@@ -111,5 +131,6 @@ test('ADENDA B17 T/G fuentes tardías y zoom CSS125/200 declarado: recalcula sin
       await record(p.host, `zoom-css-${zoom}`);
     }
     expect((await readGame(p.host)).game.interaction.turn).toEqual(original.game.interaction.turn); expect(s.gameRequests).toHaveLength(0);
-  } finally { await p.close(); await s.stop(); }
+  } catch (error) { await recordFailure(p.host, 'fallo-fuente-zoom'); throw error; }
+  finally { await p.close(); await s.stop(); }
 });
