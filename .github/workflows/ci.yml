@@ -25,7 +25,9 @@ jobs:
     name: ${{ github.event_name == 'workflow_dispatch' && inputs.chrome_diagnostic != '' && 'Diagnóstico focal Chrome (no batería completa)' || 'Tipos, análisis, pruebas, arquitectura y compilación' }}
     runs-on: ubuntu-24.04
     # B15: CI 38592289027 agotó 20 min tras 144/152 resultados, con un fallo Solar pendiente.
-    # Margen 25 min Chrome / 35 min trabajo; misma batería, un trabajador y cero reintentos.
+    # B17: global39068017172 duró24m30s con4 fallos; Linux38/39072554983 emplea96,557s
+    # más en los38 casos comunes (proyección orientativa26m04s). Chrome30/trabajo35;
+    # misma batería y criterios, un trabajador/cero reintentos. No modifica plazos del producto.
     timeout-minutes: 35
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
@@ -41,7 +43,7 @@ jobs:
       - name: Instalar Chrome y dependencias de navegador
         run: npx playwright install --with-deps chrome
       - name: Recorridos de Chrome
-        timeout-minutes: 25
+        timeout-minutes: 30
         shell: bash
         run: |
           node dist-server/server/main.js > "$RUNNER_TEMP/karta3-server.log" 2>&1 &
