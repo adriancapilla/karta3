@@ -8,6 +8,7 @@ import { configurationBrowserServer } from '../support/configurationBrowserServe
 import { humanPlay, manualTable, readGame, readRoom } from '../support/manualBrowserCases.js';
 import { assertGamePrivacy } from '../support/gamePrivacy.js';
 import { publicationDiagnostics } from '../support/publicationDiagnostics.js';
+import { cardColumnsGeometry } from '../support/cardColumnsGeometry.js';
 
 const cancelled = 'Partida cancelada por el anfitrión';
 async function cancel(page: Page) {
@@ -131,10 +132,21 @@ for (const direction of ['HIGH', 'LOW'] as const) test(`B14 Encke/Borrelly ${dir
       values: [...card.querySelectorAll('td')].map((cell) => ({ text: cell.textContent, client: cell.clientWidth, scroll: cell.scrollWidth,
         clipped: getComputedStyle(cell).textOverflow === 'ellipsis' || getComputedStyle(cell).overflow === 'hidden' })) }));
     console.log('SOLAR_TEXT_MEASUREMENT', JSON.stringify(measures));
-    if (measures.jugableLines.some(lines => lines !== 1)) await publicationDiagnostics(p.pages[1], `Solar-${direction}-${width}`);
+    await publicationDiagnostics(p.pages[1], `Solar-${direction}-${width}`);
     expect(measures.tableFits).toBe(true);
     expect(measures.jugableLines).toEqual([1, 1, 1]);
     for (const cell of measures.values) { expect(cell.clipped).toBe(false); expect(cell.scroll).toBeLessThanOrEqual(cell.client + 1); }
+    const columns = await cardColumnsGeometry(long.locator('.game-card'));
+    const hyakutake = own[1].game.hand.find(card => card.id === 'hyakutake')!;
+    for (const [index, attribute] of own[1].game.attributes.entries()) {
+      const row = long.locator('tbody tr').nth(index); const value = hyakutake.values[attribute.id];
+      await expect(row.locator('th')).toContainText(attribute.name);
+      await expect(row.locator('td')).toHaveText(value.displayValue + (value.unit ? ` ${value.unit}` : ''));
+      // Anchura íntegra frente a espacio útil: sin tolerancia para aceptar el déficit anterior.
+      for (const cell of [columns.columns[index].attribute, columns.columns[index].value]) expect(cell.wholeWidth).toBeLessThanOrEqual(cell.useful);
+      expect(columns.columns[index].attribute.box.width).toBe(columns.columns[0].attribute.box.width);
+      expect(columns.columns[index].value.box.width).toBe(columns.columns[0].value.box.width);
+    }
     await p.pages[1].screenshot({ path: info.outputPath(`B14-cartas-${width}.png`), fullPage: true });
     server.time.elapse(1); await humanPlay(p, true, direction); server.time.elapse(1); await humanPlay(p);
     const review = await readGame(p.host); const resolution = review.game.interaction.review!.result;

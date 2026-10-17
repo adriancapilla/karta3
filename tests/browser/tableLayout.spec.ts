@@ -5,6 +5,7 @@ import { createHash } from 'node:crypto';
 import { configurationBrowserServer } from '../support/configurationBrowserServer.js';
 import { humanPlay, manualTable, readGame } from '../support/manualBrowserCases.js';
 import { publicationDiagnostics } from '../support/publicationDiagnostics.js';
+import { assertFittedTitle } from '../support/cardTitleGeometry.js';
 
 // Capture the compiled base before editing CSS; expected content/styles are never regenerated at verification.
 const captureBase = process.env.B10_CAPTURE_BASE === '1';
@@ -81,6 +82,7 @@ async function record(page: Page, name: string, width: number, height: number) {
   const overflowing = await page.locator('.hand-row').evaluate((element) => element.scrollWidth > element.clientWidth + 1);
   await expect(page.locator('.swipe-hint')).toHaveCount(overflowing ? 1 : 0);
   const sample = await measure(page); const file = `${width}x${height}-${name}`;
+  const titles = [];
   await fs.mkdir(evidence, { recursive: true });
   if (!captureBase) {
     const bytes = (await fs.readFile(path.resolve('tests/fixtures/table-layout-f2d84fb.json'), 'utf8')).replace(/\r\n/g, '\n');
@@ -94,8 +96,22 @@ async function record(page: Page, name: string, width: number, height: number) {
     for (const selector of ['.game-panel h2', '.game-card-image', '.card-values td', '.card-details-button']) {
       for (const key of ['fontFamily', 'fontSize', 'fontWeight']) expect(sample.styles[selector]?.[key]).toBe(base.styles[selector]?.[key]);
     }
-    if (sample.styles['.game-card h3']!.fontSize !== (width <= 760 ? '18px' : '16px')) await publicationDiagnostics(page, `B10-${width}-${name}`);
-    expect(sample.styles['.game-card h3']!.fontSize).toBe(width <= 760 ? '18px' : '16px');
+    // La referencia B10 permanece congelada; la adenda sustituye solo el título fijo de la cara normal.
+    // Contrastar el nombre contra la vista autorizada, no contra el propio texto del DOM.
+    const view = await readGame(page);
+    const cards = new Map([view.game.round.indicator, ...view.game.round.plays.map(play => play.card), ...view.game.hand].map(card => [card.id, card]));
+    try {
+      for (const face of await page.locator('.game-layout .game-card.full-card:visible').all()) {
+        const id = await face.evaluate(element => element.closest<HTMLElement>('[data-card-id]')!.dataset.cardId!);
+        const card = cards.get(id); expect(card, `carta pública/propia ${id}`).toBeDefined();
+        titles.push({ id, ...await assertFittedTitle(face, card!.name) });
+      }
+      expect(titles.length).toBeGreaterThan(0);
+      // La miniatura compacta conserva su tipografía independiente, sin ajuste de la cara normal.
+      for (const heading of await page.locator('.game-card.compact-card:visible h3').all()) {
+        expect(await heading.evaluate(element => getComputedStyle(element).fontSize)).toBe('18px');
+      }
+    } catch (error) { await publicationDiagnostics(page, `B10-${width}-${name}`); throw error; }
     if (width <= 760) {
       expect(sample.content['.game-shell header'].replace(/\s*Cancelar partida\s*$/, '')).toBe(base.content['.game-shell header']);
       const hostAction = sample.content['.game-shell header'].includes('Cancelar partida');
@@ -105,7 +121,12 @@ async function record(page: Page, name: string, width: number, height: number) {
     }
     geometry(sample, width <= 760);
   }
-  await fs.writeFile(path.join(evidence, `${file}.json`), `${JSON.stringify(sample, null, 2)}\n`);
+  await fs.writeFile(path.join(evidence, `${file}.json`), `${JSON.stringify({ ...sample, titles }, null, 2)}\n`);
+  if (!captureBase) {
+    const directory = 'playwright-report/b17-adenda/acceptance/correccion-B10-Solar';
+    await fs.mkdir(directory, { recursive: true });
+    await fs.writeFile(path.join(directory, `${file}.json`), `${JSON.stringify({ viewport: sample.viewport, titles }, null, 2)}\n`);
+  }
   await page.screenshot({ path: path.join(evidence, `${file}-viewport.png`) });
   await page.screenshot({ path: path.join(evidence, `${file}-full.png`), fullPage: true });
   console.log(`B10_GEOMETRY ${file} ${JSON.stringify(sample.boxes)} pageHeight=${sample.pageHeight}`);

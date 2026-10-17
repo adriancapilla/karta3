@@ -3,7 +3,7 @@ import fs from 'node:fs/promises';
 import { titleGeometry, glyphFonts } from './cardTitleGeometry.js';
 import { cardColumnsGeometry } from './cardColumnsGeometry.js';
 
-/** Solo observa una condición ya fallida; no modifica datos, acciones o criterios. */
+/** Observación antes/después; no modifica datos, acciones o criterios de aceptación. */
 export async function publicationDiagnostics(page: Page, name: string) {
   try {
     const directory = 'playwright-report/b17-adenda/acceptance/publicacion-192-20261017';
