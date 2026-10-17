@@ -149,12 +149,35 @@ html:has(.game-shell){scrollbar-gutter:stable}
 .game-compact .played-row .game-card-slot{flex:none}
 .game-compact .mesa-overflow-hint{position:static;margin:4px 0}
 .game-compact .game-legend{display:none}
-.game-compact .consultation .game-card-slot,.game-compact .consultation .game-card{width:230px}
-.game-compact .consultation .game-card{min-height:321px;padding:12px;display:flex;flex-direction:column}
-.game-compact .consultation .game-card>div:first-child{display:block}
+.game-compact .consultation .game-card-slot,.game-compact .consultation .full-card{width:230px}
+.game-compact .consultation .full-card{height:321px;min-height:321px;padding:12px 12px 0;display:flex;flex-direction:column}
 .game-compact .consultation .card-heading h3{font-size:16px;line-height:normal}
-.game-compact .consultation .game-card-image{min-height:78px}
-.game-compact .consultation .game-card-image img{width:auto;height:78px;max-width:100%}
-.game-compact .consultation .game-card-image svg{width:85px;height:76px}
-.game-compact .consultation .game-card .card-values thead{position:static;width:auto;height:auto;overflow:visible;clip-path:none}
-.game-compact .consultation .card-details-button{min-height:56px}
+.game-compact .consultation .full-card .card-values th,.game-compact .consultation .full-card .card-values td{padding:6px 3px}
+/* B17: únicamente la cara completa; la minicarta compacta conserva su CSS/DOM. */
+.game-card.full-card{--card-title-base-size:18px;position:relative;padding-bottom:0;display:flex;flex-direction:column}
+.game-card.full-card>.card-play-surface,.game-card.full-card>div.card-face{display:flex;flex-direction:column;align-items:stretch;gap:0;flex:1;min-height:0}
+.game-card.full-card .card-heading{flex:none;min-height:0;margin-bottom:4px}
+.game-card.full-card .card-heading h3{font-size:var(--card-title-base-size);flex:1 1 0px;white-space:nowrap}
+.game-card.full-card .card-heading h3.title-clipped{overflow:hidden;text-overflow:clip}
+@media(min-width:761px){.game-card.full-card{--card-title-base-size:16px}}
+.game-compact .consultation .game-card.full-card{--card-title-base-size:16px}
+.game-card.full-card .game-card-image{position:relative;flex:none;display:block;width:calc(100% + 26px);margin:0 -13px;min-height:76px;line-height:0}
+.game-card.full-card .game-card-image img{display:block;width:100%;height:auto;max-width:none;object-fit:contain}
+.game-card.full-card .placeholder-card-image{aspect-ratio:4/3;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.game-card.full-card .placeholder-card-image>svg{width:85px;height:76px;flex:none}
+.game-card.full-card .placeholder-card-image>p{line-height:1.35;margin:6px 64px 0 12px}
+.game-card.full-card .card-values{flex-shrink:0;margin-block:auto;line-height:normal}
+.game-card.full-card .card-values col:first-child{width:var(--card-attribute-width,52%)}
+.game-card.full-card .card-values th,.game-card.full-card .card-values td{width:auto}
+/* Margen horizontal compartido: recupera 6/64 px sin alterar cara, fuente o miniatura. */
+.game-card.full-card .card-values td{padding-left:1.953125px;padding-right:1.953125px}
+.game-card.full-card .card-values thead{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+.game-card.full-card .card-values tbody tr:last-child th,.game-card.full-card .card-values tbody tr:last-child td{border-bottom:0}
+.game-card.full-card.tight-card-rows .card-values th,.game-card.full-card.tight-card-rows .card-values td{padding-top:4.9px;padding-bottom:4.9px}
+.game-card.full-card .attribute-circle{width:12px;height:12px;vertical-align:-1px;fill:currentColor}
+.game-card.full-card .card-details-overlay{position:absolute;right:5px;bottom:5px;width:44px;height:44px;min-height:44px;flex:none;margin:0;padding:0;display:grid;place-items:center;font:inherit;font-weight:750;line-height:1}
+@container game-table (min-width:761px){.game-card.full-card{height:321px}}
+/* La consulta informativa no hereda ni la miniatura ni la cara completa. */
+.card-details-dialog:not(.consultation)>.game-card-image{min-height:0;display:block}
+.card-details-dialog:not(.consultation)>.game-card-image img{width:100%;height:auto;max-width:100%;display:block;object-fit:contain}
+.card-details-dialog:not(.consultation)>.game-card-image>svg{width:85px;height:76px}

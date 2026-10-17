@@ -1,0 +1,183 @@
+
+Running 8 tests using 1 worker
+
+(node:28480) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  1 tests\browser\cardTitleFit.spec.ts:29:131 › ADENDA B17 T/G/C generica PLAY_VALUE: máximo, banda, contenido y Resistencia (6.5s)
+(node:23304) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  2 tests\browser\cardTitleFit.spec.ts:29:131 › ADENDA B17 T/G/C generica DISPLAY_VALUE: máximo, banda, contenido y Resistencia (6.4s)
+(node:7264) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  3 tests\browser\cardTitleFit.spec.ts:29:131 › ADENDA B17 T/G/C sistema-solar PLAY_VALUE: máximo, banda, contenido y Resistencia (6.4s)
+(node:10296) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  4 tests\browser\cardTitleFit.spec.ts:29:131 › ADENDA B17 T/G/C sistema-solar DISPLAY_VALUE: máximo, banda, contenido y Resistencia (6.0s)
+(node:1532) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  5 tests\browser\cardTitleFit.spec.ts:29:131 › ADENDA B17 T/G/C criaturas-magicas PLAY_VALUE: máximo, banda, contenido y Resistencia (6.0s)
+(node:11048) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  6 tests\browser\cardTitleFit.spec.ts:29:131 › ADENDA B17 T/G/C criaturas-magicas DISPLAY_VALUE: máximo, banda, contenido y Resistencia (6.0s)
+(node:26204) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 7 tests\browser\cardTitleFit.spec.ts:63:1 › ADENDA B17 T/G/I fixture válida: corte solo a12, nombre íntegro, hit real y avance único (2.5s)
+  x  8 tests\browser\cardTitleFit.spec.ts:88:1 › ADENDA B17 T/G fuentes tardías y zoom CSS125/200 declarado: recalcula sin pausar ni neutralizar fuente (4.6s)
+
+
+  1) tests\browser\cardTitleFit.spec.ts:29:131 › ADENDA B17 T/G/C generica PLAY_VALUE: máximo, banda, contenido y Resistencia
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+       at ..\support\cardTitleGeometry.ts:84
+
+      82 |
+      83 | export function assertWholeFace(g: Awaited<ReturnType<typeof titleGeometry>>) {
+    > 84 |   expect(g.gaps.every(gap => gap >= -0.02)).toBe(true);
+         |                                             ^
+      85 |   expect(Math.abs(g.gaps[0] - g.gaps[1])).toBeLessThan(0.06);
+      86 |   for (const row of g.rows) {
+      87 |     expect(row.box.y).toBeGreaterThanOrEqual(g.card.y);
+        at assertWholeFace (E:\KARTA3\KARTA3_IA\APP\karta3\tests\support\cardTitleGeometry.ts:84:45)
+        at E:\KARTA3\KARTA3_IA\APP\karta3\tests\browser\cardTitleFit.spec.ts:54:160
+
+    Error Context: test-results\cardTitleFit-ADENDA-B17-T--448f3-nda-contenido-y-Resistencia\error-context.md
+
+  2) tests\browser\cardTitleFit.spec.ts:29:131 › ADENDA B17 T/G/C generica DISPLAY_VALUE: máximo, banda, contenido y Resistencia
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+       at ..\support\cardTitleGeometry.ts:84
+
+      82 |
+      83 | export function assertWholeFace(g: Awaited<ReturnType<typeof titleGeometry>>) {
+    > 84 |   expect(g.gaps.every(gap => gap >= -0.02)).toBe(true);
+         |                                             ^
+      85 |   expect(Math.abs(g.gaps[0] - g.gaps[1])).toBeLessThan(0.06);
+      86 |   for (const row of g.rows) {
+      87 |     expect(row.box.y).toBeGreaterThanOrEqual(g.card.y);
+        at assertWholeFace (E:\KARTA3\KARTA3_IA\APP\karta3\tests\support\cardTitleGeometry.ts:84:45)
+        at E:\KARTA3\KARTA3_IA\APP\karta3\tests\browser\cardTitleFit.spec.ts:54:160
+
+    Error Context: test-results\cardTitleFit-ADENDA-B17-T--af49f-nda-contenido-y-Resistencia\error-context.md
+
+  3) tests\browser\cardTitleFit.spec.ts:29:131 › ADENDA B17 T/G/C sistema-solar PLAY_VALUE: máximo, banda, contenido y Resistencia
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+       at ..\support\cardTitleGeometry.ts:84
+
+      82 |
+      83 | export function assertWholeFace(g: Awaited<ReturnType<typeof titleGeometry>>) {
+    > 84 |   expect(g.gaps.every(gap => gap >= -0.02)).toBe(true);
+         |                                             ^
+      85 |   expect(Math.abs(g.gaps[0] - g.gaps[1])).toBeLessThan(0.06);
+      86 |   for (const row of g.rows) {
+      87 |     expect(row.box.y).toBeGreaterThanOrEqual(g.card.y);
+        at assertWholeFace (E:\KARTA3\KARTA3_IA\APP\karta3\tests\support\cardTitleGeometry.ts:84:45)
+        at E:\KARTA3\KARTA3_IA\APP\karta3\tests\browser\cardTitleFit.spec.ts:54:160
+
+    Error Context: test-results\cardTitleFit-ADENDA-B17-T--00df1-nda-contenido-y-Resistencia\error-context.md
+
+  4) tests\browser\cardTitleFit.spec.ts:29:131 › ADENDA B17 T/G/C sistema-solar DISPLAY_VALUE: máximo, banda, contenido y Resistencia
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+       at ..\support\cardTitleGeometry.ts:84
+
+      82 |
+      83 | export function assertWholeFace(g: Awaited<ReturnType<typeof titleGeometry>>) {
+    > 84 |   expect(g.gaps.every(gap => gap >= -0.02)).toBe(true);
+         |                                             ^
+      85 |   expect(Math.abs(g.gaps[0] - g.gaps[1])).toBeLessThan(0.06);
+      86 |   for (const row of g.rows) {
+      87 |     expect(row.box.y).toBeGreaterThanOrEqual(g.card.y);
+        at assertWholeFace (E:\KARTA3\KARTA3_IA\APP\karta3\tests\support\cardTitleGeometry.ts:84:45)
+        at E:\KARTA3\KARTA3_IA\APP\karta3\tests\browser\cardTitleFit.spec.ts:54:160
+
+    Error Context: test-results\cardTitleFit-ADENDA-B17-T--669be-nda-contenido-y-Resistencia\error-context.md
+
+  5) tests\browser\cardTitleFit.spec.ts:29:131 › ADENDA B17 T/G/C criaturas-magicas PLAY_VALUE: máximo, banda, contenido y Resistencia
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+       at ..\support\cardTitleGeometry.ts:84
+
+      82 |
+      83 | export function assertWholeFace(g: Awaited<ReturnType<typeof titleGeometry>>) {
+    > 84 |   expect(g.gaps.every(gap => gap >= -0.02)).toBe(true);
+         |                                             ^
+      85 |   expect(Math.abs(g.gaps[0] - g.gaps[1])).toBeLessThan(0.06);
+      86 |   for (const row of g.rows) {
+      87 |     expect(row.box.y).toBeGreaterThanOrEqual(g.card.y);
+        at assertWholeFace (E:\KARTA3\KARTA3_IA\APP\karta3\tests\support\cardTitleGeometry.ts:84:45)
+        at E:\KARTA3\KARTA3_IA\APP\karta3\tests\browser\cardTitleFit.spec.ts:54:160
+
+    Error Context: test-results\cardTitleFit-ADENDA-B17-T--d7460-nda-contenido-y-Resistencia\error-context.md
+
+  6) tests\browser\cardTitleFit.spec.ts:29:131 › ADENDA B17 T/G/C criaturas-magicas DISPLAY_VALUE: máximo, banda, contenido y Resistencia
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+       at ..\support\cardTitleGeometry.ts:84
+
+      82 |
+      83 | export function assertWholeFace(g: Awaited<ReturnType<typeof titleGeometry>>) {
+    > 84 |   expect(g.gaps.every(gap => gap >= -0.02)).toBe(true);
+         |                                             ^
+      85 |   expect(Math.abs(g.gaps[0] - g.gaps[1])).toBeLessThan(0.06);
+      86 |   for (const row of g.rows) {
+      87 |     expect(row.box.y).toBeGreaterThanOrEqual(g.card.y);
+        at assertWholeFace (E:\KARTA3\KARTA3_IA\APP\karta3\tests\support\cardTitleGeometry.ts:84:45)
+        at E:\KARTA3\KARTA3_IA\APP\karta3\tests\browser\cardTitleFit.spec.ts:54:160
+
+    Error Context: test-results\cardTitleFit-ADENDA-B17-T--5ccd3-nda-contenido-y-Resistencia\error-context.md
+
+  7) tests\browser\cardTitleFit.spec.ts:88:1 › ADENDA B17 T/G fuentes tardías y zoom CSS125/200 declarado: recalcula sin pausar ni neutralizar fuente
+
+    Error: expect(received).toBeLessThanOrEqual(expected)
+
+    Expected: <= 1033.034375
+    Received:    1035.390625
+
+       at ..\support\cardTitleGeometry.ts:75
+
+      73 |     expect(g.size).toBe(12); expect(g.overflow).toBe('hidden'); expect(g.textOverflow).toBe('clip');
+      74 |   } else {
+    > 75 |     expect(g.textRects[0].right).toBeLessThanOrEqual(g.title.right + 0.05);
+         |                                  ^
+      76 |     expect(g.textRects[0].x).toBeGreaterThanOrEqual(g.title.x - 0.05);
+      77 |     if (g.size < g.base) expect(g.nextWidth).toBeGreaterThan(g.available - 0.02);
+      78 |     else expect(g.baseWidth).toBeLessThanOrEqual(g.available + 0.02);
+        at assertFittedTitle (E:\KARTA3\KARTA3_IA\APP\karta3\tests\support\cardTitleGeometry.ts:75:34)
+        at E:\KARTA3\KARTA3_IA\APP\karta3\tests\browser\cardTitleFit.spec.ts:96:5
+
+    Error Context: test-results\cardTitleFit-ADENDA-B17-T--a326b-ausar-ni-neutralizar-fuente\error-context.md
+
+  7 failed
+    tests\browser\cardTitleFit.spec.ts:29:131 › ADENDA B17 T/G/C generica PLAY_VALUE: máximo, banda, contenido y Resistencia
+    tests\browser\cardTitleFit.spec.ts:29:131 › ADENDA B17 T/G/C generica DISPLAY_VALUE: máximo, banda, contenido y Resistencia
+    tests\browser\cardTitleFit.spec.ts:29:131 › ADENDA B17 T/G/C sistema-solar PLAY_VALUE: máximo, banda, contenido y Resistencia
+    tests\browser\cardTitleFit.spec.ts:29:131 › ADENDA B17 T/G/C sistema-solar DISPLAY_VALUE: máximo, banda, contenido y Resistencia
+    tests\browser\cardTitleFit.spec.ts:29:131 › ADENDA B17 T/G/C criaturas-magicas PLAY_VALUE: máximo, banda, contenido y Resistencia
+    tests\browser\cardTitleFit.spec.ts:29:131 › ADENDA B17 T/G/C criaturas-magicas DISPLAY_VALUE: máximo, banda, contenido y Resistencia
+    tests\browser\cardTitleFit.spec.ts:88:1 › ADENDA B17 T/G fuentes tardías y zoom CSS125/200 declarado: recalcula sin pausar ni neutralizar fuente
+  1 passed (51.2s)

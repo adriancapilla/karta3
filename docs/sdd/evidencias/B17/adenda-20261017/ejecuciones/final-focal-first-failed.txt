@@ -1,0 +1,90 @@
+
+> karta3@0.1.0 test:browser
+> npm run build && playwright test --workers=1 --retries=0 tests/browser/cardFace.spec.ts tests/browser/cardTitleFit.spec.ts tests/browser/timedGame.spec.ts tests/browser/cancelGame.spec.ts tests/browser/resultNotice.spec.ts tests/browser/format2Presentation.spec.ts --grep B17 criaturas-magicas.*cara completa|B13/T04 A cancelada.*B ordinary|INC-01 expired A.*B ordinary|B08 T1 1280|ADENDA B17|B17 D:|B17 consulta abierta|B17 compacta|B17 fallo/pendiente|B15 frontera --reporter=list,json --trace=retain-on-failure
+
+
+> karta3@0.1.0 build
+> npm run decks:prepare && tsc -b && vite build
+
+
+> karta3@0.1.0 decks:prepare
+> tsx tools/decks.ts prepare
+
+criaturas-magicas: válida; disponibilidad true
+generica: válida; disponibilidad true
+sistema-solar: válida; disponibilidad true
+Catálogo preparado: 3 barajas disponibles.
+vite v8.3.1 building client environment for production...
+transforming...
+✓ 71 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.45 kB │ gzip:   0.30 kB
+dist/assets/index-FVRSe50d.css   24.76 kB │ gzip:   5.65 kB
+dist/assets/index-D3LMiJCH.js   336.47 kB │ gzip: 101.79 kB
+
+✓ built in 156ms
+
+Running 19 tests using 1 worker
+
+(node:4616) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  1 tests\browser\cancelGame.spec.ts:82:56 › B13/T04 A cancelada → B ordinary, F5, avisos/estados antiguos y límites propios (8.8s)
+  ok  2 tests\browser\cardFace.spec.ts:76:3 › B17 criaturas-magicas PLAY_VALUE: cara completa, encaje autorizado, datos, públicos y normal adaptada (6.1s)
+  ok  3 tests\browser\cardFace.spec.ts:76:3 › B17 criaturas-magicas DISPLAY_VALUE: cara completa, encaje autorizado, datos, públicos y normal adaptada (6.2s)
+  ok  4 tests\browser\cardFace.spec.ts:129:1 › B17 D: clic/Enter/Space/arrastre no juegan; parcial/plazo, Información, resize y foco equivalentes (6.1s)
+  ok  5 tests\browser\cardFace.spec.ts:160:1 › B17 consulta abierta: timeout retira la carta, revisión avanza y foco vuelve a región, sin pausas (5.5s)
+  ok  6 tests\browser\cardFace.spec.ts:181:33 › B17 compacta 360: cara intacta, consulta completa e imagen Detalles ampliada, anidación y foco (5.3s)
+  ok  7 tests\browser\cardFace.spec.ts:181:33 › B17 compacta 390: cara intacta, consulta completa e imagen Detalles ampliada, anidación y foco (5.3s)
+  ok  8 tests\browser\cardFace.spec.ts:201:1 › B17 fallo/pendiente de medio: placeholder y aviso sin colisión con D, recurso original y recuperación (5.7s)
+  ok  9 tests\browser\cardTitleFit.spec.ts:29:131 › ADENDA B17 T/G/C generica PLAY_VALUE: máximo, banda, contenido y Resistencia (5.5s)
+  ok 10 tests\browser\cardTitleFit.spec.ts:29:131 › ADENDA B17 T/G/C generica DISPLAY_VALUE: máximo, banda, contenido y Resistencia (5.6s)
+  ok 11 tests\browser\cardTitleFit.spec.ts:29:131 › ADENDA B17 T/G/C sistema-solar PLAY_VALUE: máximo, banda, contenido y Resistencia (5.7s)
+  ok 12 tests\browser\cardTitleFit.spec.ts:29:131 › ADENDA B17 T/G/C sistema-solar DISPLAY_VALUE: máximo, banda, contenido y Resistencia (5.7s)
+  ok 13 tests\browser\cardTitleFit.spec.ts:29:131 › ADENDA B17 T/G/C criaturas-magicas PLAY_VALUE: máximo, banda, contenido y Resistencia (5.7s)
+  ok 14 tests\browser\cardTitleFit.spec.ts:29:131 › ADENDA B17 T/G/C criaturas-magicas DISPLAY_VALUE: máximo, banda, contenido y Resistencia (5.7s)
+  x  15 tests\browser\cardTitleFit.spec.ts:63:1 › ADENDA B17 T/G/I fixture válida: corte solo a12, nombre íntegro, hit real y avance único (7.3s)
+(node:7756) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 16 tests\browser\cardTitleFit.spec.ts:88:1 › ADENDA B17 T/G fuentes tardías y zoom CSS125/200 declarado: recalcula sin pausar ni neutralizar fuente (7.3s)
+  ok 17 tests\browser\format2Presentation.spec.ts:148:1 › B15 frontera medida 1367/1368, equivalencia normal on/off, foco, parciales, resize y quinta (13.2s)
+  ok 18 tests\browser\resultNotice.spec.ts:38:56 › INC-01 expired A → B ordinary: accepted result, reload, controlled expiry and old reads (7.5s)
+  ok 19 tests\browser\timedGame.spec.ts:6:34 › B08 T1 1280: deadline estable, carta local ignorada, aviso y recuperación (1.5s)
+
+
+  1) tests\browser\cardTitleFit.spec.ts:63:1 › ADENDA B17 T/G/I fixture válida: corte solo a12, nombre íntegro, hit real y avance único
+
+    Error: expect(locator).toHaveAttribute(expected) failed
+
+    Locator: locator('.game-hand [data-card-id="carta-2"]').locator('.card-play-button')
+    Expected: "true"
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toHaveAttribute" locator('.game-hand [data-card-id="carta-2"]').locator('.card-play-button') with timeout 5000ms
+      - waiting for locator('.game-hand [data-card-id="carta-2"]').locator('.card-play-button')
+
+
+      79 |     const hit = await titleGeometry(face); expect(hit.play!.received).toBe(true); assertWholeFace(hit);
+      80 |     await button.evaluate(e => e.addEventListener('click', event => e.setAttribute('data-real-click', String(event.isTrusted)), { once: true }));
+    > 81 |     await button.click(); await expect(button).toHaveAttribute('data-real-click', 'true');
+         |                                                ^
+      82 |     await expect.poll(async () => (await readGame(p.host)).game.interaction.turn?.id).not.toBe(before.game.interaction.turn!.id);
+      83 |     const after = await readGame(p.host); expect(after.game.round.plays.filter(play => play.card.id === card.id)).toHaveLength(1);
+      84 |     expect(s.gameRequests.filter(r => r.event === 'game:play')).toHaveLength(2);
+        at E:\KARTA3\KARTA3_IA\APP\karta3\tests\browser\cardTitleFit.spec.ts:81:48
+
+    Error Context: test-results\cardTitleFit-ADENDA-B17-T--eca8a-gro-hit-real-y-avance-único\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\cardTitleFit-ADENDA-B17-T--eca8a-gro-hit-real-y-avance-único\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\cardTitleFit-ADENDA-B17-T--eca8a-gro-hit-real-y-avance-único\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests\browser\cardTitleFit.spec.ts:63:1 › ADENDA B17 T/G/I fixture válida: corte solo a12, nombre íntegro, hit real y avance único
+  18 passed (2.1m)

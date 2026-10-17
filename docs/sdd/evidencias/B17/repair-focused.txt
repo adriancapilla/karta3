@@ -1,0 +1,46 @@
+
+Running 7 tests using 2 workers
+
+(node:12512) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:8960) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 tests\browser\cancelGame.spec.ts:38:34 › B13 botón/diálogo/resumen 390px: foco, no pausa, cero puntos y retorno en dos pestañas (2.7s)
+  ok 3 tests\browser\cancelGame.spec.ts:38:34 › B13 botón/diálogo/resumen 1800px: foco, no pausa, cero puntos y retorno en dos pestañas (1.7s)
+  ok 4 tests\browser\creatures.spec.ts:134:1 › B16 observador/cinco, quinta por teclado, revisión, scrolls independientes y resize conservan foco y plazo (7.2s)
+  x  2 tests\browser\cardFace.spec.ts:114:1 › B17 D: clic/Enter/Space/arrastre no juegan; parcial/plazo, Información, resize y foco equivalentes (12.0s)
+  ok 5 tests\browser\manualGame.spec.ts:12:40 › B07 M1 apertura ALTO → carta privada, Detalles y recuperación (1.3s)
+  ok 6 tests\browser\manualGame.spec.ts:12:40 › B07 M1 apertura carta → BAJO privada, Detalles y recuperación (1.1s)
+  ok 7 tests\browser\manualGame.spec.ts:64:1 › B07 Detalles conserva foco si otra pestaña juega la carta mostrada (1.2s)
+
+
+  1) tests\browser\cardFace.spec.ts:114:1 › B17 D: clic/Enter/Space/arrastre no juegan; parcial/plazo, Información, resize y foco equivalentes
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  locator('dialog.card-details-dialog:not(.consultation)')
+    Expected: 1
+    Received: 0
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveCount" locator('dialog.card-details-dialog:not(.consultation)') with timeout 5000ms
+      - waiting for locator('dialog.card-details-dialog:not(.consultation)')
+        14 × locator resolved to 0 elements
+           - unexpected value "0"
+
+
+      120 |     for (const gesture of ['click', 'Enter', 'Space']) {
+      121 |       if (gesture === 'click') await d.click(); else { await d.focus(); await d.press(gesture); }
+    > 122 |       await expect(fullDetails(opener)).toHaveCount(1); await expandedImage(opener);
+          |                                         ^
+      123 |       await closeDetails(opener); await expect(d).toBeFocused();
+      124 |     }
+      125 |     await d.scrollIntoViewIfNeeded(); const b = (await d.boundingBox())!;
+        at E:\KARTA3\KARTA3_IA\APP\karta3\tests\browser\cardFace.spec.ts:122:41
+
+    Error Context: test-results\cardFace-B17-D-clic-Enter--059e6--resize-y-foco-equivalentes\error-context.md
+
+  1 failed
+    tests\browser\cardFace.spec.ts:114:1 › B17 D: clic/Enter/Space/arrastre no juegan; parcial/plazo, Información, resize y foco equivalentes
+  6 passed (16.6s)

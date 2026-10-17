@@ -1,0 +1,816 @@
+{
+  "date": "2026-10-17T17:27:22.866Z",
+  "browser": "155.0.8059.80",
+  "cards": [
+    {
+      "id": "carta-038",
+      "geometry": {
+        "name": "Espíritu del arcoíris",
+        "title": {
+          "x": 479.5,
+          "y": 777.890625,
+          "width": 228.609375,
+          "height": 20,
+          "right": 708.109375,
+          "bottom": 797.890625
+        },
+        "heading": {
+          "x": 479.5,
+          "y": 777.890625,
+          "width": 255.5,
+          "height": 30,
+          "right": 735,
+          "bottom": 807.890625
+        },
+        "icon": {
+          "x": 715.609375,
+          "y": 777.890625,
+          "width": 19.390625,
+          "height": 30,
+          "right": 735,
+          "bottom": 807.890625
+        },
+        "size": 14.5,
+        "base": 16,
+        "min": 12,
+        "available": 228.609375,
+        "baseWidth": 252.046875,
+        "minWidth": 189.03125,
+        "nextWidth": 230,
+        "referenceBand": 30,
+        "textRects": [
+          {
+            "x": 479.5,
+            "y": 777.890625,
+            "width": 228.359375,
+            "height": 20,
+            "right": 707.859375,
+            "bottom": 797.890625
+          }
+        ],
+        "family": "AdendaDelayed, sans-serif",
+        "weight": "700",
+        "lineHeight": "normal",
+        "letterSpacing": "normal",
+        "gap": 7.5,
+        "titleMargins": 0,
+        "iconMargins": 0,
+        "whiteSpace": "nowrap",
+        "overflow": "visible",
+        "textOverflow": "clip",
+        "card": {
+          "x": 463.5,
+          "y": 761.890625,
+          "width": 287.5,
+          "height": 401.25,
+          "right": 751,
+          "bottom": 1163.140625
+        },
+        "image": {
+          "x": 463.25,
+          "y": 812.890625,
+          "width": 288,
+          "height": 216,
+          "right": 751.25,
+          "bottom": 1028.890625
+        },
+        "table": {
+          "x": 479.5,
+          "y": 1037.515625,
+          "width": 255.5,
+          "height": 116,
+          "right": 735,
+          "bottom": 1153.515625
+        },
+        "gaps": [
+          8.625,
+          8.625
+        ],
+        "rows": [
+          {
+            "text": " Poder47",
+            "box": {
+              "x": 479.5,
+              "y": 1037.515625,
+              "width": 255.5,
+              "height": 38.5,
+              "right": 735,
+              "bottom": 1076.015625
+            },
+            "content": [
+              {
+                "top": 1045.015625,
+                "bottom": 1068.015625,
+                "height": 23
+              },
+              {
+                "top": 1045.015625,
+                "bottom": 1068.015625,
+                "height": 23
+              },
+              {
+                "top": 1045.015625,
+                "bottom": 1068.015625,
+                "height": 23
+              },
+              {
+                "top": 1045.015625,
+                "bottom": 1068.015625,
+                "height": 23
+              }
+            ]
+          },
+          {
+            "text": "▲ Astucia42",
+            "box": {
+              "x": 479.5,
+              "y": 1076.015625,
+              "width": 255.5,
+              "height": 39,
+              "right": 735,
+              "bottom": 1115.015625
+            },
+            "content": [
+              {
+                "top": 1084.015625,
+                "bottom": 1107.015625,
+                "height": 23
+              },
+              {
+                "top": 1084.015625,
+                "bottom": 1107.015625,
+                "height": 23
+              },
+              {
+                "top": 1084.015625,
+                "bottom": 1107.015625,
+                "height": 23
+              },
+              {
+                "top": 1084.015625,
+                "bottom": 1107.015625,
+                "height": 23
+              },
+              {
+                "top": 1084.015625,
+                "bottom": 1107.015625,
+                "height": 23
+              },
+              {
+                "top": 1084.015625,
+                "bottom": 1107.015625,
+                "height": 23
+              }
+            ]
+          },
+          {
+            "text": "■ Resistencia15",
+            "box": {
+              "x": 479.5,
+              "y": 1115.015625,
+              "width": 255.5,
+              "height": 38.5,
+              "right": 735,
+              "bottom": 1153.515625
+            },
+            "content": [
+              {
+                "top": 1123.015625,
+                "bottom": 1146.015625,
+                "height": 23
+              },
+              {
+                "top": 1123.015625,
+                "bottom": 1146.015625,
+                "height": 23
+              },
+              {
+                "top": 1123.015625,
+                "bottom": 1146.015625,
+                "height": 23
+              },
+              {
+                "top": 1123.015625,
+                "bottom": 1146.015625,
+                "height": 23
+              },
+              {
+                "top": 1123.015625,
+                "bottom": 1146.015625,
+                "height": 23
+              },
+              {
+                "top": 1123.015625,
+                "bottom": 1146.015625,
+                "height": 23
+              }
+            ]
+          }
+        ],
+        "padding": "6px",
+        "d": {
+          "box": {
+            "x": 690,
+            "y": 967.640625,
+            "width": 55,
+            "height": 55,
+            "right": 745,
+            "bottom": 1022.640625
+          },
+          "received": false
+        },
+        "play": {
+          "box": {
+            "x": 463.5,
+            "y": 1173.140625,
+            "width": 287.5,
+            "height": 60,
+            "right": 751,
+            "bottom": 1233.140625
+          },
+          "received": false
+        },
+        "useful": "1368",
+        "viewport": {
+          "width": 1920,
+          "height": 844,
+          "dpr": 1,
+          "scale": 1,
+          "cssZoom": "1.25"
+        }
+      },
+      "fonts": {
+        "title": {
+          "fonts": [
+            {
+              "familyName": "Courier New",
+              "postScriptName": "CourierNewPSMT",
+              "isCustomFont": true,
+              "glyphCount": 21
+            }
+          ]
+        },
+        "lastAttribute": {
+          "fonts": [
+            {
+              "familyName": "Segoe UI",
+              "postScriptName": "SegoeUI-Bold",
+              "isCustomFont": false,
+              "glyphCount": 13
+            }
+          ]
+        },
+        "ownSymbol": {
+          "fonts": [
+            {
+              "familyName": "Segoe UI",
+              "postScriptName": "SegoeUI",
+              "isCustomFont": false,
+              "glyphCount": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "carta-044",
+      "geometry": {
+        "name": "Tritón de las profundidades",
+        "title": {
+          "x": 824.5,
+          "y": 777.890625,
+          "width": 228.609375,
+          "height": 17,
+          "right": 1053.109375,
+          "bottom": 794.890625
+        },
+        "heading": {
+          "x": 824.5,
+          "y": 777.890625,
+          "width": 255.5,
+          "height": 30,
+          "right": 1080,
+          "bottom": 807.890625
+        },
+        "icon": {
+          "x": 1060.609375,
+          "y": 777.890625,
+          "width": 19.390625,
+          "height": 30,
+          "right": 1080,
+          "bottom": 807.890625
+        },
+        "size": 12,
+        "base": 16,
+        "min": 12,
+        "available": 228.609375,
+        "baseWidth": 324.0625,
+        "minWidth": 243.046875,
+        "nextWidth": 244.984375,
+        "referenceBand": 30,
+        "textRects": [
+          {
+            "x": 824.5,
+            "y": 777.890625,
+            "width": 243.046875,
+            "height": 17,
+            "right": 1067.546875,
+            "bottom": 794.890625
+          }
+        ],
+        "family": "AdendaDelayed, sans-serif",
+        "weight": "700",
+        "lineHeight": "normal",
+        "letterSpacing": "normal",
+        "gap": 7.5,
+        "titleMargins": 0,
+        "iconMargins": 0,
+        "whiteSpace": "nowrap",
+        "overflow": "hidden",
+        "textOverflow": "clip",
+        "card": {
+          "x": 808.5,
+          "y": 761.890625,
+          "width": 287.5,
+          "height": 401.25,
+          "right": 1096,
+          "bottom": 1163.140625
+        },
+        "image": {
+          "x": 808.25,
+          "y": 812.890625,
+          "width": 288,
+          "height": 216,
+          "right": 1096.25,
+          "bottom": 1028.890625
+        },
+        "table": {
+          "x": 824.5,
+          "y": 1037.515625,
+          "width": 255.5,
+          "height": 116,
+          "right": 1080,
+          "bottom": 1153.515625
+        },
+        "gaps": [
+          8.625,
+          8.625
+        ],
+        "rows": [
+          {
+            "text": " Poder30",
+            "box": {
+              "x": 824.5,
+              "y": 1037.515625,
+              "width": 255.5,
+              "height": 38.5,
+              "right": 1080,
+              "bottom": 1076.015625
+            },
+            "content": [
+              {
+                "top": 1045.015625,
+                "bottom": 1068.015625,
+                "height": 23
+              },
+              {
+                "top": 1045.015625,
+                "bottom": 1068.015625,
+                "height": 23
+              },
+              {
+                "top": 1045.015625,
+                "bottom": 1068.015625,
+                "height": 23
+              },
+              {
+                "top": 1045.015625,
+                "bottom": 1068.015625,
+                "height": 23
+              }
+            ]
+          },
+          {
+            "text": "▲ Astucia23",
+            "box": {
+              "x": 824.5,
+              "y": 1076.015625,
+              "width": 255.5,
+              "height": 39,
+              "right": 1080,
+              "bottom": 1115.015625
+            },
+            "content": [
+              {
+                "top": 1084.015625,
+                "bottom": 1107.015625,
+                "height": 23
+              },
+              {
+                "top": 1084.015625,
+                "bottom": 1107.015625,
+                "height": 23
+              },
+              {
+                "top": 1084.015625,
+                "bottom": 1107.015625,
+                "height": 23
+              },
+              {
+                "top": 1084.015625,
+                "bottom": 1107.015625,
+                "height": 23
+              },
+              {
+                "top": 1084.015625,
+                "bottom": 1107.015625,
+                "height": 23
+              },
+              {
+                "top": 1084.015625,
+                "bottom": 1107.015625,
+                "height": 23
+              }
+            ]
+          },
+          {
+            "text": "■ Resistencia41",
+            "box": {
+              "x": 824.5,
+              "y": 1115.015625,
+              "width": 255.5,
+              "height": 38.5,
+              "right": 1080,
+              "bottom": 1153.515625
+            },
+            "content": [
+              {
+                "top": 1123.015625,
+                "bottom": 1146.015625,
+                "height": 23
+              },
+              {
+                "top": 1123.015625,
+                "bottom": 1146.015625,
+                "height": 23
+              },
+              {
+                "top": 1123.015625,
+                "bottom": 1146.015625,
+                "height": 23
+              },
+              {
+                "top": 1123.015625,
+                "bottom": 1146.015625,
+                "height": 23
+              },
+              {
+                "top": 1123.015625,
+                "bottom": 1146.015625,
+                "height": 23
+              },
+              {
+                "top": 1123.015625,
+                "bottom": 1146.015625,
+                "height": 23
+              }
+            ]
+          }
+        ],
+        "padding": "6px",
+        "d": {
+          "box": {
+            "x": 1035,
+            "y": 967.640625,
+            "width": 55,
+            "height": 55,
+            "right": 1090,
+            "bottom": 1022.640625
+          },
+          "received": false
+        },
+        "play": {
+          "box": {
+            "x": 808.5,
+            "y": 1173.140625,
+            "width": 287.5,
+            "height": 60,
+            "right": 1096,
+            "bottom": 1233.140625
+          },
+          "received": false
+        },
+        "useful": "1368",
+        "viewport": {
+          "width": 1920,
+          "height": 844,
+          "dpr": 1,
+          "scale": 1,
+          "cssZoom": "1.25"
+        }
+      },
+      "fonts": {
+        "title": {
+          "fonts": [
+            {
+              "familyName": "Courier New",
+              "postScriptName": "CourierNewPSMT",
+              "isCustomFont": true,
+              "glyphCount": 27
+            }
+          ]
+        },
+        "lastAttribute": {
+          "fonts": [
+            {
+              "familyName": "Segoe UI",
+              "postScriptName": "SegoeUI-Bold",
+              "isCustomFont": false,
+              "glyphCount": 13
+            }
+          ]
+        },
+        "ownSymbol": {
+          "fonts": [
+            {
+              "familyName": "Segoe UI",
+              "postScriptName": "SegoeUI",
+              "isCustomFont": false,
+              "glyphCount": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "carta-032",
+      "geometry": {
+        "name": "Grifo de plumas de hierro",
+        "title": {
+          "x": 1169.5,
+          "y": 777.890625,
+          "width": 228.609375,
+          "height": 18,
+          "right": 1398.109375,
+          "bottom": 795.890625
+        },
+        "heading": {
+          "x": 1169.5,
+          "y": 777.890625,
+          "width": 255.5,
+          "height": 30,
+          "right": 1425,
+          "bottom": 807.890625
+        },
+        "icon": {
+          "x": 1405.609375,
+          "y": 777.890625,
+          "width": 19.390625,
+          "height": 30,
+          "right": 1425,
+          "bottom": 807.890625
+        },
+        "size": 12.1,
+        "base": 16,
+        "min": 12,
+        "available": 228.609375,
+        "baseWidth": 300.0625,
+        "minWidth": 225.046875,
+        "nextWidth": 228.796875,
+        "referenceBand": 30,
+        "textRects": [
+          {
+            "x": 1169.5,
+            "y": 777.890625,
+            "width": 226.84375,
+            "height": 18,
+            "right": 1396.34375,
+            "bottom": 795.890625
+          }
+        ],
+        "family": "AdendaDelayed, sans-serif",
+        "weight": "700",
+        "lineHeight": "normal",
+        "letterSpacing": "normal",
+        "gap": 7.5,
+        "titleMargins": 0,
+        "iconMargins": 0,
+        "whiteSpace": "nowrap",
+        "overflow": "visible",
+        "textOverflow": "clip",
+        "card": {
+          "x": 1153.5,
+          "y": 761.890625,
+          "width": 287.5,
+          "height": 401.25,
+          "right": 1441,
+          "bottom": 1163.140625
+        },
+        "image": {
+          "x": 1153.25,
+          "y": 812.890625,
+          "width": 288,
+          "height": 216,
+          "right": 1441.25,
+          "bottom": 1028.890625
+        },
+        "table": {
+          "x": 1169.5,
+          "y": 1037.515625,
+          "width": 255.5,
+          "height": 116,
+          "right": 1425,
+          "bottom": 1153.515625
+        },
+        "gaps": [
+          8.625,
+          8.625
+        ],
+        "rows": [
+          {
+            "text": " Poder41",
+            "box": {
+              "x": 1169.5,
+              "y": 1037.515625,
+              "width": 255.5,
+              "height": 38.5,
+              "right": 1425,
+              "bottom": 1076.015625
+            },
+            "content": [
+              {
+                "top": 1045.015625,
+                "bottom": 1068.015625,
+                "height": 23
+              },
+              {
+                "top": 1045.015625,
+                "bottom": 1068.015625,
+                "height": 23
+              },
+              {
+                "top": 1045.015625,
+                "bottom": 1068.015625,
+                "height": 23
+              },
+              {
+                "top": 1045.015625,
+                "bottom": 1068.015625,
+                "height": 23
+              }
+            ]
+          },
+          {
+            "text": "▲ Astucia19",
+            "box": {
+              "x": 1169.5,
+              "y": 1076.015625,
+              "width": 255.5,
+              "height": 39,
+              "right": 1425,
+              "bottom": 1115.015625
+            },
+            "content": [
+              {
+                "top": 1084.015625,
+                "bottom": 1107.015625,
+                "height": 23
+              },
+              {
+                "top": 1084.015625,
+                "bottom": 1107.015625,
+                "height": 23
+              },
+              {
+                "top": 1084.015625,
+                "bottom": 1107.015625,
+                "height": 23
+              },
+              {
+                "top": 1084.015625,
+                "bottom": 1107.015625,
+                "height": 23
+              },
+              {
+                "top": 1084.015625,
+                "bottom": 1107.015625,
+                "height": 23
+              },
+              {
+                "top": 1084.015625,
+                "bottom": 1107.015625,
+                "height": 23
+              }
+            ]
+          },
+          {
+            "text": "■ Resistencia54",
+            "box": {
+              "x": 1169.5,
+              "y": 1115.015625,
+              "width": 255.5,
+              "height": 38.5,
+              "right": 1425,
+              "bottom": 1153.515625
+            },
+            "content": [
+              {
+                "top": 1123.015625,
+                "bottom": 1146.015625,
+                "height": 23
+              },
+              {
+                "top": 1123.015625,
+                "bottom": 1146.015625,
+                "height": 23
+              },
+              {
+                "top": 1123.015625,
+                "bottom": 1146.015625,
+                "height": 23
+              },
+              {
+                "top": 1123.015625,
+                "bottom": 1146.015625,
+                "height": 23
+              },
+              {
+                "top": 1123.015625,
+                "bottom": 1146.015625,
+                "height": 23
+              },
+              {
+                "top": 1123.015625,
+                "bottom": 1146.015625,
+                "height": 23
+              }
+            ]
+          }
+        ],
+        "padding": "6px",
+        "d": {
+          "box": {
+            "x": 1380,
+            "y": 967.640625,
+            "width": 55,
+            "height": 55,
+            "right": 1435,
+            "bottom": 1022.640625
+          },
+          "received": false
+        },
+        "play": {
+          "box": {
+            "x": 1153.5,
+            "y": 1173.140625,
+            "width": 287.5,
+            "height": 60,
+            "right": 1441,
+            "bottom": 1233.140625
+          },
+          "received": false
+        },
+        "useful": "1368",
+        "viewport": {
+          "width": 1920,
+          "height": 844,
+          "dpr": 1,
+          "scale": 1,
+          "cssZoom": "1.25"
+        }
+      },
+      "fonts": {
+        "title": {
+          "fonts": [
+            {
+              "familyName": "Courier New",
+              "postScriptName": "CourierNewPSMT",
+              "isCustomFont": true,
+              "glyphCount": 25
+            }
+          ]
+        },
+        "lastAttribute": {
+          "fonts": [
+            {
+              "familyName": "Segoe UI",
+              "postScriptName": "SegoeUI-Bold",
+              "isCustomFont": false,
+              "glyphCount": 13
+            }
+          ]
+        },
+        "ownSymbol": {
+          "fonts": [
+            {
+              "familyName": "Segoe UI",
+              "postScriptName": "SegoeUI",
+              "isCustomFont": false,
+              "glyphCount": 1
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

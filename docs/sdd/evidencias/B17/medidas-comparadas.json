@@ -1,0 +1,3262 @@
+[
+  {
+    "file": "compacta-360-details.json",
+    "viewport": {
+      "width": 360,
+      "height": 800,
+      "dpr": 1,
+      "scale": 1
+    },
+    "useful": "328",
+    "layout": "compact",
+    "browser": "155.0.8059.80",
+    "fonts": {
+      "fonts": [
+        {
+          "familyName": "Segoe UI",
+          "postScriptName": "SegoeUI-Bold",
+          "isCustomFont": false,
+          "glyphCount": 16
+        }
+      ]
+    },
+    "beforeHeight": 949,
+    "afterHeight": 949,
+    "residual": 149,
+    "detailsBefore": {
+      "box": {
+        "x": 19,
+        "y": 72.46875,
+        "width": 322,
+        "height": 655.046875,
+        "right": 341,
+        "bottom": 727.515625
+      },
+      "image": {
+        "x": 164,
+        "y": 167.46875,
+        "width": 32,
+        "height": 32,
+        "right": 196,
+        "bottom": 199.46875
+      },
+      "innerWidth": 276
+    },
+    "detailsAfter": {
+      "box": {
+        "x": 19,
+        "y": 18,
+        "width": 322,
+        "height": 764,
+        "right": 341,
+        "bottom": 782
+      },
+      "image": {
+        "x": 42,
+        "y": 69,
+        "width": 276,
+        "height": 207,
+        "right": 318,
+        "bottom": 276
+      },
+      "innerWidth": 276
+    },
+    "compactCardMetricsEqual": true,
+    "cards": [
+      {
+        "id": "carta-002",
+        "name": "Dragón de cristal",
+        "size": [
+          220,
+          203.46875
+        ],
+        "heading": 51.90625,
+        "image": [
+          32,
+          32
+        ],
+        "table": 81.5625,
+        "topGap": 23.90625,
+        "bottomInnerGap": 56,
+        "D": [
+          202,
+          44,
+          -170,
+          -153.46875
+        ],
+        "fonts": [
+          "18px",
+          "14px"
+        ]
+      },
+      {
+        "id": "carta-004",
+        "name": "Dragón de los bosques",
+        "size": [
+          220,
+          203.46875
+        ],
+        "heading": 51.90625,
+        "image": [
+          32,
+          32
+        ],
+        "table": 81.5625,
+        "topGap": 23.90625,
+        "bottomInnerGap": 56,
+        "D": [
+          202,
+          44,
+          -170,
+          -153.46875
+        ],
+        "fonts": [
+          "18px",
+          "14px"
+        ]
+      },
+      {
+        "id": "carta-006",
+        "name": "Dragón de hielo",
+        "size": [
+          220,
+          188
+        ],
+        "heading": 34,
+        "image": [
+          32,
+          32
+        ],
+        "table": 81.5625,
+        "topGap": 6,
+        "bottomInnerGap": 58.4375,
+        "D": [
+          202,
+          44,
+          -170,
+          -135.5625
+        ],
+        "fonts": [
+          "18px",
+          "14px"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "compacta-360.json",
+    "viewport": {
+      "width": 360,
+      "height": 800,
+      "dpr": 1,
+      "scale": 1
+    },
+    "useful": "328",
+    "layout": "compact",
+    "browser": "155.0.8059.80",
+    "fonts": {
+      "fonts": [
+        {
+          "familyName": "Segoe UI",
+          "postScriptName": "SegoeUI-Bold",
+          "isCustomFont": false,
+          "glyphCount": 16
+        }
+      ]
+    },
+    "beforeHeight": 949,
+    "afterHeight": 949,
+    "residual": 149,
+    "detailsBefore": null,
+    "detailsAfter": null,
+    "compactCardMetricsEqual": true,
+    "cards": [
+      {
+        "id": "carta-002",
+        "name": "Dragón de cristal",
+        "size": [
+          220,
+          203.46875
+        ],
+        "heading": 51.90625,
+        "image": [
+          32,
+          32
+        ],
+        "table": 81.5625,
+        "topGap": 23.90625,
+        "bottomInnerGap": 56,
+        "D": [
+          202,
+          44,
+          -170,
+          -153.46875
+        ],
+        "fonts": [
+          "18px",
+          "14px"
+        ]
+      },
+      {
+        "id": "carta-004",
+        "name": "Dragón de los bosques",
+        "size": [
+          220,
+          203.46875
+        ],
+        "heading": 51.90625,
+        "image": [
+          32,
+          32
+        ],
+        "table": 81.5625,
+        "topGap": 23.90625,
+        "bottomInnerGap": 56,
+        "D": [
+          202,
+          44,
+          -170,
+          -153.46875
+        ],
+        "fonts": [
+          "18px",
+          "14px"
+        ]
+      },
+      {
+        "id": "carta-006",
+        "name": "Dragón de hielo",
+        "size": [
+          220,
+          188
+        ],
+        "heading": 34,
+        "image": [
+          32,
+          32
+        ],
+        "table": 81.5625,
+        "topGap": 6,
+        "bottomInnerGap": 58.4375,
+        "D": [
+          202,
+          44,
+          -170,
+          -135.5625
+        ],
+        "fonts": [
+          "18px",
+          "14px"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "compacta-390-details.json",
+    "viewport": {
+      "width": 390,
+      "height": 844,
+      "dpr": 1,
+      "scale": 1
+    },
+    "useful": "358",
+    "layout": "compact",
+    "browser": "155.0.8059.80",
+    "fonts": {
+      "fonts": [
+        {
+          "familyName": "Segoe UI",
+          "postScriptName": "SegoeUI-Bold",
+          "isCustomFont": false,
+          "glyphCount": 16
+        }
+      ]
+    },
+    "beforeHeight": 852,
+    "afterHeight": 852,
+    "residual": 8,
+    "detailsBefore": {
+      "box": {
+        "x": 19,
+        "y": 121.46875,
+        "width": 352,
+        "height": 601.046875,
+        "right": 371,
+        "bottom": 722.515625
+      },
+      "image": {
+        "x": 179,
+        "y": 186.46875,
+        "width": 32,
+        "height": 32,
+        "right": 211,
+        "bottom": 218.46875
+      },
+      "innerWidth": 306
+    },
+    "detailsAfter": {
+      "box": {
+        "x": 19,
+        "y": 22.71875,
+        "width": 352,
+        "height": 798.546875,
+        "right": 371,
+        "bottom": 821.265625
+      },
+      "image": {
+        "x": 42,
+        "y": 87.71875,
+        "width": 306,
+        "height": 229.5,
+        "right": 348,
+        "bottom": 317.21875
+      },
+      "innerWidth": 306
+    },
+    "compactCardMetricsEqual": true,
+    "cards": [
+      {
+        "id": "carta-002",
+        "name": "Dragón de cristal",
+        "size": [
+          220,
+          203.46875
+        ],
+        "heading": 51.90625,
+        "image": [
+          32,
+          32
+        ],
+        "table": 81.5625,
+        "topGap": 23.90625,
+        "bottomInnerGap": 56,
+        "D": [
+          202,
+          44,
+          -170,
+          -153.46875
+        ],
+        "fonts": [
+          "18px",
+          "14px"
+        ]
+      },
+      {
+        "id": "carta-004",
+        "name": "Dragón de los bosques",
+        "size": [
+          220,
+          203.46875
+        ],
+        "heading": 51.90625,
+        "image": [
+          32,
+          32
+        ],
+        "table": 81.5625,
+        "topGap": 23.90625,
+        "bottomInnerGap": 56,
+        "D": [
+          202,
+          44,
+          -170,
+          -153.46875
+        ],
+        "fonts": [
+          "18px",
+          "14px"
+        ]
+      },
+      {
+        "id": "carta-006",
+        "name": "Dragón de hielo",
+        "size": [
+          220,
+          188
+        ],
+        "heading": 34,
+        "image": [
+          32,
+          32
+        ],
+        "table": 81.5625,
+        "topGap": 6,
+        "bottomInnerGap": 58.4375,
+        "D": [
+          202,
+          44,
+          -170,
+          -135.5625
+        ],
+        "fonts": [
+          "18px",
+          "14px"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "compacta-390.json",
+    "viewport": {
+      "width": 390,
+      "height": 844,
+      "dpr": 1,
+      "scale": 1
+    },
+    "useful": "358",
+    "layout": "compact",
+    "browser": "155.0.8059.80",
+    "fonts": {
+      "fonts": [
+        {
+          "familyName": "Segoe UI",
+          "postScriptName": "SegoeUI-Bold",
+          "isCustomFont": false,
+          "glyphCount": 16
+        }
+      ]
+    },
+    "beforeHeight": 852,
+    "afterHeight": 852,
+    "residual": 8,
+    "detailsBefore": null,
+    "detailsAfter": null,
+    "compactCardMetricsEqual": true,
+    "cards": [
+      {
+        "id": "carta-002",
+        "name": "Dragón de cristal",
+        "size": [
+          220,
+          203.46875
+        ],
+        "heading": 51.90625,
+        "image": [
+          32,
+          32
+        ],
+        "table": 81.5625,
+        "topGap": 23.90625,
+        "bottomInnerGap": 56,
+        "D": [
+          202,
+          44,
+          -170,
+          -153.46875
+        ],
+        "fonts": [
+          "18px",
+          "14px"
+        ]
+      },
+      {
+        "id": "carta-004",
+        "name": "Dragón de los bosques",
+        "size": [
+          220,
+          203.46875
+        ],
+        "heading": 51.90625,
+        "image": [
+          32,
+          32
+        ],
+        "table": 81.5625,
+        "topGap": 23.90625,
+        "bottomInnerGap": 56,
+        "D": [
+          202,
+          44,
+          -170,
+          -153.46875
+        ],
+        "fonts": [
+          "18px",
+          "14px"
+        ]
+      },
+      {
+        "id": "carta-006",
+        "name": "Dragón de hielo",
+        "size": [
+          220,
+          188
+        ],
+        "heading": 34,
+        "image": [
+          32,
+          32
+        ],
+        "table": 81.5625,
+        "topGap": 6,
+        "bottomInnerGap": 58.4375,
+        "D": [
+          202,
+          44,
+          -170,
+          -135.5625
+        ],
+        "fonts": [
+          "18px",
+          "14px"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "criaturas-magicas-1320-details.json",
+    "viewport": {
+      "width": 1320,
+      "height": 850,
+      "dpr": 1,
+      "scale": 1
+    },
+    "useful": "1273",
+    "layout": "normal",
+    "browser": "155.0.8059.80",
+    "fonts": {
+      "fonts": [
+        {
+          "familyName": "Segoe UI",
+          "postScriptName": "SegoeUI-Bold",
+          "isCustomFont": false,
+          "glyphCount": 21
+        }
+      ]
+    },
+    "beforeHeight": 1169,
+    "afterHeight": 1151,
+    "residual": 301,
+    "detailsBefore": {
+      "box": {
+        "x": 412.5,
+        "y": 145.5,
+        "width": 480,
+        "height": 559,
+        "right": 892.5,
+        "bottom": 704.5
+      },
+      "image": {
+        "x": 600.5,
+        "y": 210.5,
+        "width": 104,
+        "height": 78,
+        "right": 704.5,
+        "bottom": 288.5
+      },
+      "innerWidth": 434
+    },
+    "detailsAfter": {
+      "box": {
+        "x": 412.5,
+        "y": 23.75,
+        "width": 480,
+        "height": 802.5,
+        "right": 892.5,
+        "bottom": 826.25
+      },
+      "image": {
+        "x": 435.5,
+        "y": 88.75,
+        "width": 434,
+        "height": 325.5,
+        "right": 869.5,
+        "bottom": 414.25
+      },
+      "innerWidth": 434
+    },
+    "compactCardMetricsEqual": null,
+    "cards": [
+      {
+        "id": "carta-001",
+        "name": "Dragón de fuego",
+        "size": [
+          230,
+          321
+        ],
+        "heading": 24,
+        "image": [
+          230,
+          172.5
+        ],
+        "table": 95,
+        "topGap": 5.75,
+        "bottomInnerGap": 5.75,
+        "D": [
+          44,
+          44,
+          5,
+          5
+        ],
+        "fonts": [
+          "16px",
+          "14px"
+        ]
+      },
+      {
+        "id": "carta-038",
+        "name": "Espíritu del arcoíris",
+        "size": [
+          230,
+          321
+        ],
+        "heading": 24,
+        "image": [
+          230,
+          172.5
+        ],
+        "table": 95,
+        "topGap": 5.75,
+        "bottomInnerGap": 5.75,
+        "D": [
+          44,
+          44,
+          5,
+          5
+        ],
+        "fonts": [
+          "16px",
+          "14px"
+        ]
+      },
+      {
+        "id": "carta-044",
+        "name": "Tritón de las profundidades",
+        "size": [
+          230,
+          321
+        ],
+        "heading": 42,
+        "image": [
+          230,
+          172.5
+        ],
+        "table": 88.34375,
+        "topGap": 0.078125,
+        "bottomInnerGap": 0.078125,
+        "D": [
+          44,
+          44,
+          5,
+          5
+        ],
+        "fonts": [
+          "16px",
+          "14px"
+        ]
+      },
+      {
+        "id": "carta-032",
+        "name": "Grifo de plumas de hierro",
+        "size": [
+          230,
+          321
+        ],
+        "heading": 42,
+        "image": [
+          230,
+          172.5
+        ],
+        "table": 88.34375,
+        "topGap": 0.078125,
+        "bottomInnerGap": 0.078125,
+        "D": [
+          44,
+          44,
+          5,
+          5
+        ],
+        "fonts": [
+          "16px",
+          "14px"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "criaturas-magicas-1320-public.json",
+    "viewport": {
+      "width": 1320,
+      "height": 850,
+      "dpr": 1,
+      "scale": 1
+    },
+    "useful": "1273",
+    "layout": "normal",
+    "browser": "155.0.8059.80",
+    "fonts": {
+      "fonts": [
+        {
+          "familyName": "Segoe UI",
+          "postScriptName": "SegoeUI-Bold",
+          "isCustomFont": false,
+          "glyphCount": 26
+        }
+      ]
+    },
+    "beforeHeight": 1224,
+    "afterHeight": 1206,
+    "residual": 356,
+    "detailsBefore": null,
+    "detailsAfter": null,
+    "compactCardMetricsEqual": null,
+    "cards": [
+      {
+        "id": "carta-038",
+        "name": "Espíritu del arcoíris",
+        "size": [
+          230,
+          321
+        ],
+        "heading": 24,
+        "image": [
+          230,
+          172.5
+        ],
+        "table": 95,
+        "topGap": 5.75,
+        "bottomInnerGap": 5.75,
+        "D": [
+          44,
+          44,
+          5,
+          5
+        ],
+        "fonts": [
+          "16px",
+          "14px"
+        ]
+      },
+      {
+        "id": "carta-002",
+        "name": "Dragón de cristal",
+        "size": [
+          230,
+          321
+        ],
+        "heading": 24,
+        "image": [
+          230,
+          172.5
+        ],
+        "table": 95,
+        "topGap": 5.75,
+        "bottomInnerGap": 5.75,
+        "D": [
+          44,
+          44,
+          5,
+          5
+        ],
+        "fonts": [
+          "16px",
+          "14px"
+        ]
+      },
+      {
+        "id": "carta-001",
+        "name": "Dragón de fuego",
+        "size": [
+          230,
+          321
+        ],
+        "heading": 24,
+        "image": [
+          230,
+          172.5
+        ],
+        "table": 95,
+        "topGap": 5.75,
+        "bottomInnerGap": 5.75,
+        "D": [
+          44,
+          44,
+          5,
+          5
+        ],
+        "fonts": [
+          "16px",
+          "14px"
+        ]
+      },
+      {
+        "id": "carta-044",
+        "name": "Tritón de las profundidades",
+        "size": [
+          230,
+          321
+        ],
+        "heading": 42,
+        "image": [
+          230,
+          172.5
+        ],
+        "table": 88.34375,
+        "topGap": 0.078125,
+        "bottomInnerGap": 0.078125,
+        "D": [
+          44,
+          44,
+          5,
+          5
+        ],
+        "fonts": [
+          "16px",
+          "14px"
+        ]
+      },
+      {
+        "id": "carta-032",
+        "name": "Grifo de plumas de hierro",
+        "size": [
+          230,
+          321
+        ],
+        "heading": 42,
+        "image": [
+          230,
+          172.5
+        ],
+        "table": 88.34375,
+        "topGap": 0.078125,
+        "bottomInnerGap": 0.078125,
+        "D": [
+          44,
+          44,
+          5,
+          5
+        ],
+        "fonts": [
+          "16px",
+          "14px"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "criaturas-magicas-1320.json",
+    "viewport": {
+      "width": 1320,
+      "height": 850,
+      "dpr": 1,
+      "scale": 1
+    },
+    "useful": "1273",
+    "layout": "normal",
+    "browser": "155.0.8059.80",
+    "fonts": {
+      "fonts": [
+        {
+          "familyName": "Segoe UI",
+          "postScriptName": "SegoeUI-Bold",
+          "isCustomFont": false,
+          "glyphCount": 21
+        }
+      ]
+    },
+    "beforeHeight": 1169,
+    "afterHeight": 1151,
+    "residual": 301,
+    "detailsBefore": null,
+    "detailsAfter": null,
+    "compactCardMetricsEqual": null,
+    "cards": [
+      {
+        "id": "carta-001",
+        "name": "Dragón de fuego",
+        "size": [
+          230,
+          321
+        ],
+        "heading": 24,
+        "image": [
+          230,
+          172.5
+        ],
+        "table": 95,
+        "topGap": 5.75,
+        "bottomInnerGap": 5.75,
+        "D": [
+          44,
+          44,
+          5,
+          5
+        ],
+        "fonts": [
+          "16px",
+          "14px"
+        ]
+      },
+      {
+        "id": "carta-038",
+        "name": "Espíritu del arcoíris",
+        "size": [
+          230,
+          321
+        ],
+        "heading": 24,
+        "image": [
+          230,
+          172.5
+        ],
+        "table": 95,
+        "topGap": 5.75,
+        "bottomInnerGap": 5.75,
+        "D": [
+          44,
+          44,
+          5,
+          5
+        ],
+        "fonts": [
+          "16px",
+          "14px"
+        ]
+      },
+      {
+        "id": "carta-044",
+        "name": "Tritón de las profundidades",
+        "size": [
+          230,
+          321
+        ],
+        "heading": 42,
+        "image": [
+          230,
+          172.5
+        ],
+        "table": 88.34375,
+        "topGap": 0.078125,
+        "bottomInnerGap": 0.078125,
+        "D": [
+          44,
+          44,
+          5,
+          5
+        ],
+        "fonts": [
+          "16px",
+          "14px"
+        ]
+      },
+      {
+        "id": "carta-032",
+        "name": "Grifo de plumas de hierro",
+        "size": [
+          230,
+          321
+        ],
+        "heading": 42,
+        "image": [
+          230,
+          172.5
+        ],
+        "table": 88.34375,
+        "topGap": 0.078125,
+        "bottomInnerGap": 0.078125,
+        "D": [
+          44,
+          44,
+          5,
+          5
+        ],
+        "fonts": [
+          "16px",
+          "14px"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "criaturas-magicas-1920-details.json",
+    "viewport": {
+      "width": 1920,
+      "height": 1080,
+      "dpr": 1,
+      "scale": 1
+    },
+    "useful": "1368",
+    "layout": "normal",
+    "browser": "155.0.8059.80",
+    "fonts": {
+      "fonts": [
+        {
+          "familyName": "Segoe UI",
+          "postScriptName": "SegoeUI-Bold",
+          "isCustomFont": false,
+          "glyphCount": 21
+        }
+      ]
+    },
+    "beforeHeight": 1136,
+    "afterHeight": 1118,
+    "residual": 38,
+    "detailsBefore": {
+      "box": {
+        "x": 712.5,
+        "y": 260.5,
+        "width": 480,
+        "height": 559,
+        "right": 1192.5,
+        "bottom": 819.5
+      },
+      "image": {
+        "x": 900.5,
+        "y": 325.5,
+        "width": 104,
+        "height": 78,
+        "right": 1004.5,
+        "bottom": 403.5
+      },
+      "innerWidth": 434
+    },
+    "detailsAfter": {
+      "box": {
+        "x": 712.5,
+        "y": 138.75,
+        "width": 480,
+        "height": 802.5,
+        "right": 1192.5,
+        "bottom": 941.25
+      },
+      "image": {
+        "x": 735.5,
+        "y": 203.75,
+        "width": 434,
+        "height": 325.5,
+        "right": 1169.5,
+        "bottom": 529.25
+      },
+      "innerWidth": 434
+    },
+    "compactCardMetricsEqual": null,
+    "cards": [
+      {
+        "id": "carta-001",
+        "name": "Dragón de fuego",
+        "size": [
+          230,
+          321
+        ],
+        "heading": 24,
+        "image": [
+          230,
+          172.5
+        ],
+        "table": 95,
+        "topGap": 5.75,
+        "bottomInnerGap": 5.75,
+        "D": [
+          44,
+          44,
+          5,
+          5
+        ],
+        "fonts": [
+          "16px",
+          "14px"
+        ]
+      },
+      {
+        "id": "carta-038",
+        "name": "Espíritu del arcoíris",
+        "size": [
+          230,
+          321
+        ],
+        "heading": 24,
+        "image": [
+          230,
+          172.5
+        ],
+        "table": 95,
+        "topGap": 5.75,
+        "bottomInnerGap": 5.75,
+        "D": [
+          44,
+          44,
+          5,
+          5
+        ],
+        "fonts": [
+          "16px",
+          "14px"
+        ]
+      },
+      {
+        "id": "carta-044",
+        "name": "Tritón de las profundidades",
+        "size": [
+          230,
+          321
+        ],
+        "heading": 42,
+        "image": [
+          230,
+          172.5
+        ],
+        "table": 88.34375,
+        "topGap": 0.078125,
+        "bottomInnerGap": 0.078125,
+        "D": [
+          44,
+          44,
+          5,
+          5
+        ],
+        "fonts": [
+          "16px",
+          "14px"
+        ]
+      },
+      {
+        "id": "carta-032",
+        "name": "Grifo de plumas de hierro",
+        "size": [
+          230,
+          321
+        ],
+        "heading": 42,
+        "image": [
+          230,
+          172.5
+        ],
+        "table": 88.34375,
+        "topGap": 0.078125,
+        "bottomInnerGap": 0.078125,
+        "D": [
+          44,
+          44,
+          5,
+          5
+        ],
+        "fonts": [
+          "16px",
+          "14px"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "criaturas-magicas-1920-public.json",
+    "viewport": {
+      "width": 1920,
+      "height": 1080,
+      "dpr": 1,
+      "scale": 1
+    },
+    "useful": "1368",
+    "layout": "normal",
+    "browser": "155.0.8059.80",
+    "fonts": {
+      "fonts": [
+        {
+          "familyName": "Segoe UI",
+          "postScriptName": "SegoeUI-Bold",
+          "isCustomFont": false,
+          "glyphCount": 26
+        }
+      ]
+    },
+    "beforeHeight": 1203,
+    "afterHeight": 1203,
+    "residual": 123,
+    "detailsBefore": null,
+    "detailsAfter": null,
+    "compactCardMetricsEqual": null,
+    "cards": [
+      {
+        "id": "carta-038",
+        "name": "Espíritu del arcoíris",
+        "size": [
+          230,
+          321
+        ],
+        "heading": 24,
+        "image": [
+          230,
+          172.5
+        ],
+        "table": 95,
+        "topGap": 5.75,
+        "bottomInnerGap": 5.75,
+        "D": [
+          44,
+          44,
+          5,
+          5
+        ],
+        "fonts": [
+          "16px",
+          "14px"
+        ]
+      },
+      {
+        "id": "carta-002",
+        "name": "Dragón de cristal",
+        "size": [
+          230,
+          321
+        ],
+        "heading": 24,
+        "image": [
+          230,
+          172.5
+        ],
+        "table": 95,
+        "topGap": 5.75,
+        "bottomInnerGap": 5.75,
+        "D": [
+          44,
+          44,
+          5,
+          5
+        ],
+        "fonts": [
+          "16px",
+          "14px"
+        ]
+      },
+      {
+        "id": "carta-001",
+        "name": "Dragón de fuego",
+        "size": [
+          230,
+          321
+        ],
+        "heading": 24,
+        "image": [
+          230,
+          172.5
+        ],
+        "table": 95,
+        "topGap": 5.75,
+        "bottomInnerGap": 5.75,
+        "D": [
+          44,
+          44,
+          5,
+          5
+        ],
+        "fonts": [
+          "16px",
+          "14px"
+        ]
+      },
+      {
+        "id": "carta-044",
+        "name": "Tritón de las profundidades",
+        "size": [
+          230,
+          321
+        ],
+        "heading": 42,
+        "image": [
+          230,
+          172.5
+        ],
+        "table": 88.34375,
+        "topGap": 0.078125,
+        "bottomInnerGap": 0.078125,
+        "D": [
+          44,
+          44,
+          5,
+          5
+        ],
+        "fonts": [
+          "16px",
+          "14px"
+        ]
+      },
+      {
+        "id": "carta-032",
+        "name": "Grifo de plumas de hierro",
+        "size": [
+          230,
+          321
+        ],
+        "heading": 42,
+        "image": [
+          230,
+          172.5
+        ],
+        "table": 88.34375,
+        "topGap": 0.078125,
+        "bottomInnerGap": 0.078125,
+        "D": [
+          44,
+          44,
+          5,
+          5
+        ],
+        "fonts": [
+          "16px",
+          "14px"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "criaturas-magicas-1920.json",
+    "viewport": {
+      "width": 1920,
+      "height": 1080,
+      "dpr": 1,
+      "scale": 1
+    },
+    "useful": "1368",
+    "layout": "normal",
+    "browser": "155.0.8059.80",
+    "fonts": {
+      "fonts": [
+        {
+          "familyName": "Segoe UI",
+          "postScriptName": "SegoeUI-Bold",
+          "isCustomFont": false,
+          "glyphCount": 21
+        }
+      ]
+    },
+    "beforeHeight": 1136,
+    "afterHeight": 1118,
+    "residual": 38,
+    "detailsBefore": null,
+    "detailsAfter": null,
+    "compactCardMetricsEqual": null,
+    "cards": [
+      {
+        "id": "carta-001",
+        "name": "Dragón de fuego",
+        "size": [
+          230,
+          321
+        ],
+        "heading": 24,
+        "image": [
+          230,
+          172.5
+        ],
+        "table": 95,
+        "topGap": 5.75,
+        "bottomInnerGap": 5.75,
+        "D": [
+          44,
+          44,
+          5,
+          5
+        ],
+        "fonts": [
+          "16px",
+          "14px"
+        ]
+      },
+      {
+        "id": "carta-038",
+        "name": "Espíritu del arcoíris",
+        "size": [
+          230,
+          321
+        ],
+        "heading": 24,
+        "image": [
+          230,
+          172.5
+        ],
+        "table": 95,
+        "topGap": 5.75,
+        "bottomInnerGap": 5.75,
+        "D": [
+          44,
+          44,
+          5,
+          5
+        ],
+        "fonts": [
+          "16px",
+          "14px"
+        ]
+      },
+      {
+        "id": "carta-044",
+        "name": "Tritón de las profundidades",
+        "size": [
+          230,
+          321
+        ],
+        "heading": 42,
+        "image": [
+          230,
+          172.5
+        ],
+        "table": 88.34375,
+        "topGap": 0.078125,
+        "bottomInnerGap": 0.078125,
+        "D": [
+          44,
+          44,
+          5,
+          5
+        ],
+        "fonts": [
+          "16px",
+          "14px"
+        ]
+      },
+      {
+        "id": "carta-032",
+        "name": "Grifo de plumas de hierro",
+        "size": [
+          230,
+          321
+        ],
+        "heading": 42,
+        "image": [
+          230,
+          172.5
+        ],
+        "table": 88.34375,
+        "topGap": 0.078125,
+        "bottomInnerGap": 0.078125,
+        "D": [
+          44,
+          44,
+          5,
+          5
+        ],
+        "fonts": [
+          "16px",
+          "14px"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "generica-1320-details.json",
+    "viewport": {
+      "width": 1320,
+      "height": 850,
+      "dpr": 1,
+      "scale": 1
+    },
+    "useful": "1273",
+    "layout": "normal",
+    "browser": "155.0.8059.80",
+    "fonts": {
+      "fonts": [
+        {
+          "familyName": "Segoe UI",
+          "postScriptName": "SegoeUI-Bold",
+          "isCustomFont": false,
+          "glyphCount": 8
+        }
+      ]
+    },
+    "beforeHeight": 1151,
+    "afterHeight": 1151,
+    "residual": 301,
+    "detailsBefore": {
+      "box": {
+        "x": 412.5,
+        "y": 226.5,
+        "width": 480,
+        "height": 397,
+        "right": 892.5,
+        "bottom": 623.5
+      },
+      "image": null,
+      "innerWidth": 434
+    },
+    "detailsAfter": {
+      "box": {
+        "x": 412.5,
+        "y": 226.5,
+        "width": 480,
+        "height": 397,
+        "right": 892.5,
+        "bottom": 623.5
+      },
+      "image": null,
+      "innerWidth": 434
+    },
+    "compactCardMetricsEqual": null,
+    "cards": [
+      {
+        "id": "carta-004",
+        "name": "Carta 04",
+        "size": [
+          230,
+          321
+        ],
+        "heading": 24,
+        "image": [
+          230,
+          172.5
+        ],
+        "table": 95,
+        "topGap": 5.75,
+        "bottomInnerGap": 5.75,
+        "D": [
+          44,
+          44,
+          5,
+          5
+        ],
+        "fonts": [
+          "16px",
+          "14px"
+        ]
+      },
+      {
+        "id": "carta-001",
+        "name": "Carta 01",
+        "size": [
+          230,
+          321
+        ],
+        "heading": 24,
+        "image": [
+          230,
+          172.5
+        ],
+        "table": 95,
+        "topGap": 5.75,
+        "bottomInnerGap": 5.75,
+        "D": [
+          44,
+          44,
+          5,
+          5
+        ],
+        "fonts": [
+          "16px",
+          "14px"
+        ]
+      },
+      {
+        "id": "carta-002",
+        "name": "Carta 02",
+        "size": [
+          230,
+          321
+        ],
+        "heading": 24,
+        "image": [
+          230,
+          172.5
+        ],
+        "table": 95,
+        "topGap": 5.75,
+        "bottomInnerGap": 5.75,
+        "D": [
+          44,
+          44,
+          5,
+          5
+        ],
+        "fonts": [
+          "16px",
+          "14px"
+        ]
+      },
+      {
+        "id": "carta-003",
+        "name": "Carta 03",
+        "size": [
+          230,
+          321
+        ],
+        "heading": 24,
+        "image": [
+          230,
+          172.5
+        ],
+        "table": 95,
+        "topGap": 5.75,
+        "bottomInnerGap": 5.75,
+        "D": [
+          44,
+          44,
+          5,
+          5
+        ],
+        "fonts": [
+          "16px",
+          "14px"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "generica-1320-public.json",
+    "viewport": {
+      "width": 1320,
+      "height": 850,
+      "dpr": 1,
+      "scale": 1
+    },
+    "useful": "1273",
+    "layout": "normal",
+    "browser": "155.0.8059.80",
+    "fonts": {
+      "fonts": [
+        {
+          "familyName": "Segoe UI",
+          "postScriptName": "SegoeUI-Bold",
+          "isCustomFont": false,
+          "glyphCount": 8
+        }
+      ]
+    },
+    "beforeHeight": 1206,
+    "afterHeight": 1206,
+    "residual": 356,
+    "detailsBefore": null,
+    "detailsAfter": null,
+    "compactCardMetricsEqual": null,
+    "cards": [
+      {
+        "id": "carta-005",
+        "name": "Carta 05",
+        "size": [
+          230,
+          321
+        ],
+        "heading": 24,
+        "image": [
+          230,
+          172.5
+        ],
+        "table": 95,
+        "topGap": 5.75,
+        "bottomInnerGap": 5.75,
+        "D": [
+          44,
+          44,
+          5,
+          5
+        ],
+        "fonts": [
+          "16px",
+          "14px"
+        ]
+      },
+      {
+        "id": "carta-001",
+        "name": "Carta 01",
+        "size": [
+          230,
+          321
+        ],
+        "heading": 24,
+        "image": [
+          230,
+          172.5
+        ],
+        "table": 95,
+        "topGap": 5.75,
+        "bottomInnerGap": 5.75,
+        "D": [
+          44,
+          44,
+          5,
+          5
+        ],
+        "fonts": [
+          "16px",
+          "14px"
+        ]
+      },
+      {
+        "id": "carta-004",
+        "name": "Carta 04",
+        "size": [
+          230,
+          321
+        ],
+        "heading": 24,
+        "image": [
+          230,
+          172.5
+        ],
+        "table": 95,
+        "topGap": 5.75,
+        "bottomInnerGap": 5.75,
+        "D": [
+          44,
+          44,
+          5,
+          5
+        ],
+        "fonts": [
+          "16px",
+          "14px"
+        ]
+      },
+      {
+        "id": "carta-002",
+        "name": "Carta 02",
+        "size": [
+          230,
+          321
+        ],
+        "heading": 24,
+        "image": [
+          230,
+          172.5
+        ],
+        "table": 95,
+        "topGap": 5.75,
+        "bottomInnerGap": 5.75,
+        "D": [
+          44,
+          44,
+          5,
+          5
+        ],
+        "fonts": [
+          "16px",
+          "14px"
+        ]
+      },
+      {
+        "id": "carta-003",
+        "name": "Carta 03",
+        "size": [
+          230,
+          321
+        ],
+        "heading": 24,
+        "image": [
+          230,
+          172.5
+        ],
+        "table": 95,
+        "topGap": 5.75,
+        "bottomInnerGap": 5.75,
+        "D": [
+          44,
+          44,
+          5,
+          5
+        ],
+        "fonts": [
+          "16px",
+          "14px"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "generica-1320.json",
+    "viewport": {
+      "width": 1320,
+      "height": 850,
+      "dpr": 1,
+      "scale": 1
+    },
+    "useful": "1273",
+    "layout": "normal",
+    "browser": "155.0.8059.80",
+    "fonts": {
+      "fonts": [
+        {
+          "familyName": "Segoe UI",
+          "postScriptName": "SegoeUI-Bold",
+          "isCustomFont": false,
+          "glyphCount": 8
+        }
+      ]
+    },
+    "beforeHeight": 1151,
+    "afterHeight": 1151,
+    "residual": 301,
+    "detailsBefore": null,
+    "detailsAfter": null,
+    "compactCardMetricsEqual": null,
+    "cards": [
+      {
+        "id": "carta-004",
+        "name": "Carta 04",
+        "size": [
+          230,
+          321
+        ],
+        "heading": 24,
+        "image": [
+          230,
+          172.5
+        ],
+        "table": 95,
+        "topGap": 5.75,
+        "bottomInnerGap": 5.75,
+        "D": [
+          44,
+          44,
+          5,
+          5
+        ],
+        "fonts": [
+          "16px",
+          "14px"
+        ]
+      },
+      {
+        "id": "carta-001",
+        "name": "Carta 01",
+        "size": [
+          230,
+          321
+        ],
+        "heading": 24,
+        "image": [
+          230,
+          172.5
+        ],
+        "table": 95,
+        "topGap": 5.75,
+        "bottomInnerGap": 5.75,
+        "D": [
+          44,
+          44,
+          5,
+          5
+        ],
+        "fonts": [
+          "16px",
+          "14px"
+        ]
+      },
+      {
+        "id": "carta-002",
+        "name": "Carta 02",
+        "size": [
+          230,
+          321
+        ],
+        "heading": 24,
+        "image": [
+          230,
+          172.5
+        ],
+        "table": 95,
+        "topGap": 5.75,
+        "bottomInnerGap": 5.75,
+        "D": [
+          44,
+          44,
+          5,
+          5
+        ],
+        "fonts": [
+          "16px",
+          "14px"
+        ]
+      },
+      {
+        "id": "carta-003",
+        "name": "Carta 03",
+        "size": [
+          230,
+          321
+        ],
+        "heading": 24,
+        "image": [
+          230,
+          172.5
+        ],
+        "table": 95,
+        "topGap": 5.75,
+        "bottomInnerGap": 5.75,
+        "D": [
+          44,
+          44,
+          5,
+          5
+        ],
+        "fonts": [
+          "16px",
+          "14px"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "generica-1920-details.json",
+    "viewport": {
+      "width": 1920,
+      "height": 1080,
+      "dpr": 1,
+      "scale": 1
+    },
+    "useful": "1368",
+    "layout": "normal",
+    "browser": "155.0.8059.80",
+    "fonts": {
+      "fonts": [
+        {
+          "familyName": "Segoe UI",
+          "postScriptName": "SegoeUI-Bold",
+          "isCustomFont": false,
+          "glyphCount": 8
+        }
+      ]
+    },
+    "beforeHeight": 1118,
+    "afterHeight": 1118,
+    "residual": 38,
+    "detailsBefore": {
+      "box": {
+        "x": 712.5,
+        "y": 341.5,
+        "width": 480,
+        "height": 397,
+        "right": 1192.5,
+        "bottom": 738.5
+      },
+      "image": null,
+      "innerWidth": 434
+    },
+    "detailsAfter": {
+      "box": {
+        "x": 712.5,
+        "y": 341.5,
+        "width": 480,
+        "height": 397,
+        "right": 1192.5,
+        "bottom": 738.5
+      },
+      "image": null,
+      "innerWidth": 434
+    },
+    "compactCardMetricsEqual": null,
+    "cards": [
+      {
+        "id": "carta-004",
+        "name": "Carta 04",
+        "size": [
+          230,
+          321
+        ],
+        "heading": 24,
+        "image": [
+          230,
+          172.5
+        ],
+        "table": 95,
+        "topGap": 5.75,
+        "bottomInnerGap": 5.75,
+        "D": [
+          44,
+          44,
+          5,
+          5
+        ],
+        "fonts": [
+          "16px",
+          "14px"
+        ]
+      },
+      {
+        "id": "carta-001",
+        "name": "Carta 01",
+        "size": [
+          230,
+          321
+        ],
+        "heading": 24,
+        "image": [
+          230,
+          172.5
+        ],
+        "table": 95,
+        "topGap": 5.75,
+        "bottomInnerGap": 5.75,
+        "D": [
+          44,
+          44,
+          5,
+          5
+        ],
+        "fonts": [
+          "16px",
+          "14px"
+        ]
+      },
+      {
+        "id": "carta-002",
+        "name": "Carta 02",
+        "size": [
+          230,
+          321
+        ],
+        "heading": 24,
+        "image": [
+          230,
+          172.5
+        ],
+        "table": 95,
+        "topGap": 5.75,
+        "bottomInnerGap": 5.75,
+        "D": [
+          44,
+          44,
+          5,
+          5
+        ],
+        "fonts": [
+          "16px",
+          "14px"
+        ]
+      },
+      {
+        "id": "carta-003",
+        "name": "Carta 03",
+        "size": [
+          230,
+          321
+        ],
+        "heading": 24,
+        "image": [
+          230,
+          172.5
+        ],
+        "table": 95,
+        "topGap": 5.75,
+        "bottomInnerGap": 5.75,
+        "D": [
+          44,
+          44,
+          5,
+          5
+        ],
+        "fonts": [
+          "16px",
+          "14px"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "generica-1920-public.json",
+    "viewport": {
+      "width": 1920,
+      "height": 1080,
+      "dpr": 1,
+      "scale": 1
+    },
+    "useful": "1368",
+    "layout": "normal",
+    "browser": "155.0.8059.80",
+    "fonts": {
+      "fonts": [
+        {
+          "familyName": "Segoe UI",
+          "postScriptName": "SegoeUI-Bold",
+          "isCustomFont": false,
+          "glyphCount": 8
+        }
+      ]
+    },
+    "beforeHeight": 1182,
+    "afterHeight": 1182,
+    "residual": 102,
+    "detailsBefore": null,
+    "detailsAfter": null,
+    "compactCardMetricsEqual": null,
+    "cards": [
+      {
+        "id": "carta-005",
+        "name": "Carta 05",
+        "size": [
+          230,
+          321
+        ],
+        "heading": 24,
+        "image": [
+          230,
+          172.5
+        ],
+        "table": 95,
+        "topGap": 5.75,
+        "bottomInnerGap": 5.75,
+        "D": [
+          44,
+          44,
+          5,
+          5
+        ],
+        "fonts": [
+          "16px",
+          "14px"
+        ]
+      },
+      {
+        "id": "carta-001",
+        "name": "Carta 01",
+        "size": [
+          230,
+          321
+        ],
+        "heading": 24,
+        "image": [
+          230,
+          172.5
+        ],
+        "table": 95,
+        "topGap": 5.75,
+        "bottomInnerGap": 5.75,
+        "D": [
+          44,
+          44,
+          5,
+          5
+        ],
+        "fonts": [
+          "16px",
+          "14px"
+        ]
+      },
+      {
+        "id": "carta-004",
+        "name": "Carta 04",
+        "size": [
+          230,
+          321
+        ],
+        "heading": 24,
+        "image": [
+          230,
+          172.5
+        ],
+        "table": 95,
+        "topGap": 5.75,
+        "bottomInnerGap": 5.75,
+        "D": [
+          44,
+          44,
+          5,
+          5
+        ],
+        "fonts": [
+          "16px",
+          "14px"
+        ]
+      },
+      {
+        "id": "carta-002",
+        "name": "Carta 02",
+        "size": [
+          230,
+          321
+        ],
+        "heading": 24,
+        "image": [
+          230,
+          172.5
+        ],
+        "table": 95,
+        "topGap": 5.75,
+        "bottomInnerGap": 5.75,
+        "D": [
+          44,
+          44,
+          5,
+          5
+        ],
+        "fonts": [
+          "16px",
+          "14px"
+        ]
+      },
+      {
+        "id": "carta-003",
+        "name": "Carta 03",
+        "size": [
+          230,
+          321
+        ],
+        "heading": 24,
+        "image": [
+          230,
+          172.5
+        ],
+        "table": 95,
+        "topGap": 5.75,
+        "bottomInnerGap": 5.75,
+        "D": [
+          44,
+          44,
+          5,
+          5
+        ],
+        "fonts": [
+          "16px",
+          "14px"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "generica-1920.json",
+    "viewport": {
+      "width": 1920,
+      "height": 1080,
+      "dpr": 1,
+      "scale": 1
+    },
+    "useful": "1368",
+    "layout": "normal",
+    "browser": "155.0.8059.80",
+    "fonts": {
+      "fonts": [
+        {
+          "familyName": "Segoe UI",
+          "postScriptName": "SegoeUI-Bold",
+          "isCustomFont": false,
+          "glyphCount": 8
+        }
+      ]
+    },
+    "beforeHeight": 1118,
+    "afterHeight": 1118,
+    "residual": 38,
+    "detailsBefore": null,
+    "detailsAfter": null,
+    "compactCardMetricsEqual": null,
+    "cards": [
+      {
+        "id": "carta-004",
+        "name": "Carta 04",
+        "size": [
+          230,
+          321
+        ],
+        "heading": 24,
+        "image": [
+          230,
+          172.5
+        ],
+        "table": 95,
+        "topGap": 5.75,
+        "bottomInnerGap": 5.75,
+        "D": [
+          44,
+          44,
+          5,
+          5
+        ],
+        "fonts": [
+          "16px",
+          "14px"
+        ]
+      },
+      {
+        "id": "carta-001",
+        "name": "Carta 01",
+        "size": [
+          230,
+          321
+        ],
+        "heading": 24,
+        "image": [
+          230,
+          172.5
+        ],
+        "table": 95,
+        "topGap": 5.75,
+        "bottomInnerGap": 5.75,
+        "D": [
+          44,
+          44,
+          5,
+          5
+        ],
+        "fonts": [
+          "16px",
+          "14px"
+        ]
+      },
+      {
+        "id": "carta-002",
+        "name": "Carta 02",
+        "size": [
+          230,
+          321
+        ],
+        "heading": 24,
+        "image": [
+          230,
+          172.5
+        ],
+        "table": 95,
+        "topGap": 5.75,
+        "bottomInnerGap": 5.75,
+        "D": [
+          44,
+          44,
+          5,
+          5
+        ],
+        "fonts": [
+          "16px",
+          "14px"
+        ]
+      },
+      {
+        "id": "carta-003",
+        "name": "Carta 03",
+        "size": [
+          230,
+          321
+        ],
+        "heading": 24,
+        "image": [
+          230,
+          172.5
+        ],
+        "table": 95,
+        "topGap": 5.75,
+        "bottomInnerGap": 5.75,
+        "D": [
+          44,
+          44,
+          5,
+          5
+        ],
+        "fonts": [
+          "16px",
+          "14px"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "sistema-solar-1320-details.json",
+    "viewport": {
+      "width": 1320,
+      "height": 850,
+      "dpr": 1,
+      "scale": 1
+    },
+    "useful": "1273",
+    "layout": "normal",
+    "browser": "155.0.8059.80",
+    "fonts": {
+      "fonts": [
+        {
+          "familyName": "Segoe UI",
+          "postScriptName": "SegoeUI-Bold",
+          "isCustomFont": false,
+          "glyphCount": 27
+        }
+      ]
+    },
+    "beforeHeight": 1169,
+    "afterHeight": 1151,
+    "residual": 301,
+    "detailsBefore": {
+      "box": {
+        "x": 412.5,
+        "y": 154.5,
+        "width": 480,
+        "height": 541,
+        "right": 892.5,
+        "bottom": 695.5
+      },
+      "image": {
+        "x": 600.5,
+        "y": 249.5,
+        "width": 104,
+        "height": 78,
+        "right": 704.5,
+        "bottom": 327.5
+      },
+      "innerWidth": 434
+    },
+    "detailsAfter": {
+      "box": {
+        "x": 412.5,
+        "y": 32.75,
+        "width": 480,
+        "height": 784.5,
+        "right": 892.5,
+        "bottom": 817.25
+      },
+      "image": {
+        "x": 435.5,
+        "y": 127.75,
+        "width": 434,
+        "height": 325.5,
+        "right": 869.5,
+        "bottom": 453.25
+      },
+      "innerWidth": 434
+    },
+    "compactCardMetricsEqual": null,
+    "cards": [
+      {
+        "id": "itokawa",
+        "name": "Itokawa",
+        "size": [
+          230,
+          321
+        ],
+        "heading": 24,
+        "image": [
+          230,
+          172.5
+        ],
+        "table": 95,
+        "topGap": 5.75,
+        "bottomInnerGap": 5.75,
+        "D": [
+          44,
+          44,
+          5,
+          5
+        ],
+        "fonts": [
+          "16px",
+          "14px"
+        ]
+      },
+      {
+        "id": "67p-churyumov-gerasimenko",
+        "name": "67P / Churyumov-Gerasimenko",
+        "size": [
+          230,
+          321
+        ],
+        "heading": 42,
+        "image": [
+          230,
+          172.5
+        ],
+        "table": 88.34375,
+        "topGap": 0.078125,
+        "bottomInnerGap": 0.078125,
+        "D": [
+          44,
+          44,
+          5,
+          5
+        ],
+        "fonts": [
+          "16px",
+          "14px"
+        ]
+      },
+      {
+        "id": "hyakutake",
+        "name": "Hyakutake",
+        "size": [
+          230,
+          321
+        ],
+        "heading": 24,
+        "image": [
+          230,
+          172.5
+        ],
+        "table": 95,
+        "topGap": 5.75,
+        "bottomInnerGap": 5.75,
+        "D": [
+          44,
+          44,
+          5,
+          5
+        ],
+        "fonts": [
+          "16px",
+          "14px"
+        ]
+      },
+      {
+        "id": "encke",
+        "name": "Encke",
+        "size": [
+          230,
+          321
+        ],
+        "heading": 24,
+        "image": [
+          230,
+          172.5
+        ],
+        "table": 95,
+        "topGap": 5.75,
+        "bottomInnerGap": 5.75,
+        "D": [
+          44,
+          44,
+          5,
+          5
+        ],
+        "fonts": [
+          "16px",
+          "14px"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "sistema-solar-1320-public.json",
+    "viewport": {
+      "width": 1320,
+      "height": 850,
+      "dpr": 1,
+      "scale": 1
+    },
+    "useful": "1273",
+    "layout": "normal",
+    "browser": "155.0.8059.80",
+    "fonts": {
+      "fonts": [
+        {
+          "familyName": "Segoe UI",
+          "postScriptName": "SegoeUI-Bold",
+          "isCustomFont": false,
+          "glyphCount": 9
+        }
+      ]
+    },
+    "beforeHeight": 1240,
+    "afterHeight": 1224,
+    "residual": 374,
+    "detailsBefore": null,
+    "detailsAfter": null,
+    "compactCardMetricsEqual": null,
+    "cards": [
+      {
+        "id": "bennu",
+        "name": "Bennu",
+        "size": [
+          230,
+          321
+        ],
+        "heading": 24,
+        "image": [
+          230,
+          172.5
+        ],
+        "table": 95,
+        "topGap": 5.75,
+        "bottomInnerGap": 5.75,
+        "D": [
+          44,
+          44,
+          5,
+          5
+        ],
+        "fonts": [
+          "16px",
+          "14px"
+        ]
+      },
+      {
+        "id": "67p-churyumov-gerasimenko",
+        "name": "67P / Churyumov-Gerasimenko",
+        "size": [
+          230,
+          321
+        ],
+        "heading": 42,
+        "image": [
+          230,
+          172.5
+        ],
+        "table": 88.34375,
+        "topGap": 0.078125,
+        "bottomInnerGap": 0.078125,
+        "D": [
+          44,
+          44,
+          5,
+          5
+        ],
+        "fonts": [
+          "16px",
+          "14px"
+        ]
+      },
+      {
+        "id": "itokawa",
+        "name": "Itokawa",
+        "size": [
+          230,
+          321
+        ],
+        "heading": 24,
+        "image": [
+          230,
+          172.5
+        ],
+        "table": 95,
+        "topGap": 5.75,
+        "bottomInnerGap": 5.75,
+        "D": [
+          44,
+          44,
+          5,
+          5
+        ],
+        "fonts": [
+          "16px",
+          "14px"
+        ]
+      },
+      {
+        "id": "hyakutake",
+        "name": "Hyakutake",
+        "size": [
+          230,
+          321
+        ],
+        "heading": 24,
+        "image": [
+          230,
+          172.5
+        ],
+        "table": 95,
+        "topGap": 5.75,
+        "bottomInnerGap": 5.75,
+        "D": [
+          44,
+          44,
+          5,
+          5
+        ],
+        "fonts": [
+          "16px",
+          "14px"
+        ]
+      },
+      {
+        "id": "encke",
+        "name": "Encke",
+        "size": [
+          230,
+          321
+        ],
+        "heading": 24,
+        "image": [
+          230,
+          172.5
+        ],
+        "table": 95,
+        "topGap": 5.75,
+        "bottomInnerGap": 5.75,
+        "D": [
+          44,
+          44,
+          5,
+          5
+        ],
+        "fonts": [
+          "16px",
+          "14px"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "sistema-solar-1320.json",
+    "viewport": {
+      "width": 1320,
+      "height": 850,
+      "dpr": 1,
+      "scale": 1
+    },
+    "useful": "1273",
+    "layout": "normal",
+    "browser": "155.0.8059.80",
+    "fonts": {
+      "fonts": [
+        {
+          "familyName": "Segoe UI",
+          "postScriptName": "SegoeUI-Bold",
+          "isCustomFont": false,
+          "glyphCount": 27
+        }
+      ]
+    },
+    "beforeHeight": 1169,
+    "afterHeight": 1151,
+    "residual": 301,
+    "detailsBefore": null,
+    "detailsAfter": null,
+    "compactCardMetricsEqual": null,
+    "cards": [
+      {
+        "id": "itokawa",
+        "name": "Itokawa",
+        "size": [
+          230,
+          321
+        ],
+        "heading": 24,
+        "image": [
+          230,
+          172.5
+        ],
+        "table": 95,
+        "topGap": 5.75,
+        "bottomInnerGap": 5.75,
+        "D": [
+          44,
+          44,
+          5,
+          5
+        ],
+        "fonts": [
+          "16px",
+          "14px"
+        ]
+      },
+      {
+        "id": "67p-churyumov-gerasimenko",
+        "name": "67P / Churyumov-Gerasimenko",
+        "size": [
+          230,
+          321
+        ],
+        "heading": 42,
+        "image": [
+          230,
+          172.5
+        ],
+        "table": 88.34375,
+        "topGap": 0.078125,
+        "bottomInnerGap": 0.078125,
+        "D": [
+          44,
+          44,
+          5,
+          5
+        ],
+        "fonts": [
+          "16px",
+          "14px"
+        ]
+      },
+      {
+        "id": "hyakutake",
+        "name": "Hyakutake",
+        "size": [
+          230,
+          321
+        ],
+        "heading": 24,
+        "image": [
+          230,
+          172.5
+        ],
+        "table": 95,
+        "topGap": 5.75,
+        "bottomInnerGap": 5.75,
+        "D": [
+          44,
+          44,
+          5,
+          5
+        ],
+        "fonts": [
+          "16px",
+          "14px"
+        ]
+      },
+      {
+        "id": "encke",
+        "name": "Encke",
+        "size": [
+          230,
+          321
+        ],
+        "heading": 24,
+        "image": [
+          230,
+          172.5
+        ],
+        "table": 95,
+        "topGap": 5.75,
+        "bottomInnerGap": 5.75,
+        "D": [
+          44,
+          44,
+          5,
+          5
+        ],
+        "fonts": [
+          "16px",
+          "14px"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "sistema-solar-1920-details.json",
+    "viewport": {
+      "width": 1920,
+      "height": 1080,
+      "dpr": 1,
+      "scale": 1
+    },
+    "useful": "1368",
+    "layout": "normal",
+    "browser": "155.0.8059.80",
+    "fonts": {
+      "fonts": [
+        {
+          "familyName": "Segoe UI",
+          "postScriptName": "SegoeUI-Bold",
+          "isCustomFont": false,
+          "glyphCount": 27
+        }
+      ]
+    },
+    "beforeHeight": 1136,
+    "afterHeight": 1118,
+    "residual": 38,
+    "detailsBefore": {
+      "box": {
+        "x": 712.5,
+        "y": 269.5,
+        "width": 480,
+        "height": 541,
+        "right": 1192.5,
+        "bottom": 810.5
+      },
+      "image": {
+        "x": 900.5,
+        "y": 364.5,
+        "width": 104,
+        "height": 78,
+        "right": 1004.5,
+        "bottom": 442.5
+      },
+      "innerWidth": 434
+    },
+    "detailsAfter": {
+      "box": {
+        "x": 712.5,
+        "y": 147.75,
+        "width": 480,
+        "height": 784.5,
+        "right": 1192.5,
+        "bottom": 932.25
+      },
+      "image": {
+        "x": 735.5,
+        "y": 242.75,
+        "width": 434,
+        "height": 325.5,
+        "right": 1169.5,
+        "bottom": 568.25
+      },
+      "innerWidth": 434
+    },
+    "compactCardMetricsEqual": null,
+    "cards": [
+      {
+        "id": "itokawa",
+        "name": "Itokawa",
+        "size": [
+          230,
+          321
+        ],
+        "heading": 24,
+        "image": [
+          230,
+          172.5
+        ],
+        "table": 95,
+        "topGap": 5.75,
+        "bottomInnerGap": 5.75,
+        "D": [
+          44,
+          44,
+          5,
+          5
+        ],
+        "fonts": [
+          "16px",
+          "14px"
+        ]
+      },
+      {
+        "id": "67p-churyumov-gerasimenko",
+        "name": "67P / Churyumov-Gerasimenko",
+        "size": [
+          230,
+          321
+        ],
+        "heading": 42,
+        "image": [
+          230,
+          172.5
+        ],
+        "table": 88.34375,
+        "topGap": 0.078125,
+        "bottomInnerGap": 0.078125,
+        "D": [
+          44,
+          44,
+          5,
+          5
+        ],
+        "fonts": [
+          "16px",
+          "14px"
+        ]
+      },
+      {
+        "id": "hyakutake",
+        "name": "Hyakutake",
+        "size": [
+          230,
+          321
+        ],
+        "heading": 24,
+        "image": [
+          230,
+          172.5
+        ],
+        "table": 95,
+        "topGap": 5.75,
+        "bottomInnerGap": 5.75,
+        "D": [
+          44,
+          44,
+          5,
+          5
+        ],
+        "fonts": [
+          "16px",
+          "14px"
+        ]
+      },
+      {
+        "id": "encke",
+        "name": "Encke",
+        "size": [
+          230,
+          321
+        ],
+        "heading": 24,
+        "image": [
+          230,
+          172.5
+        ],
+        "table": 95,
+        "topGap": 5.75,
+        "bottomInnerGap": 5.75,
+        "D": [
+          44,
+          44,
+          5,
+          5
+        ],
+        "fonts": [
+          "16px",
+          "14px"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "sistema-solar-1920-public.json",
+    "viewport": {
+      "width": 1920,
+      "height": 1080,
+      "dpr": 1,
+      "scale": 1
+    },
+    "useful": "1368",
+    "layout": "normal",
+    "browser": "155.0.8059.80",
+    "fonts": {
+      "fonts": [
+        {
+          "familyName": "Segoe UI",
+          "postScriptName": "SegoeUI-Bold",
+          "isCustomFont": false,
+          "glyphCount": 9
+        }
+      ]
+    },
+    "beforeHeight": 1219,
+    "afterHeight": 1203,
+    "residual": 123,
+    "detailsBefore": null,
+    "detailsAfter": null,
+    "compactCardMetricsEqual": null,
+    "cards": [
+      {
+        "id": "bennu",
+        "name": "Bennu",
+        "size": [
+          230,
+          321
+        ],
+        "heading": 24,
+        "image": [
+          230,
+          172.5
+        ],
+        "table": 95,
+        "topGap": 5.75,
+        "bottomInnerGap": 5.75,
+        "D": [
+          44,
+          44,
+          5,
+          5
+        ],
+        "fonts": [
+          "16px",
+          "14px"
+        ]
+      },
+      {
+        "id": "67p-churyumov-gerasimenko",
+        "name": "67P / Churyumov-Gerasimenko",
+        "size": [
+          230,
+          321
+        ],
+        "heading": 42,
+        "image": [
+          230,
+          172.5
+        ],
+        "table": 88.34375,
+        "topGap": 0.078125,
+        "bottomInnerGap": 0.078125,
+        "D": [
+          44,
+          44,
+          5,
+          5
+        ],
+        "fonts": [
+          "16px",
+          "14px"
+        ]
+      },
+      {
+        "id": "itokawa",
+        "name": "Itokawa",
+        "size": [
+          230,
+          321
+        ],
+        "heading": 24,
+        "image": [
+          230,
+          172.5
+        ],
+        "table": 95,
+        "topGap": 5.75,
+        "bottomInnerGap": 5.75,
+        "D": [
+          44,
+          44,
+          5,
+          5
+        ],
+        "fonts": [
+          "16px",
+          "14px"
+        ]
+      },
+      {
+        "id": "hyakutake",
+        "name": "Hyakutake",
+        "size": [
+          230,
+          321
+        ],
+        "heading": 24,
+        "image": [
+          230,
+          172.5
+        ],
+        "table": 95,
+        "topGap": 5.75,
+        "bottomInnerGap": 5.75,
+        "D": [
+          44,
+          44,
+          5,
+          5
+        ],
+        "fonts": [
+          "16px",
+          "14px"
+        ]
+      },
+      {
+        "id": "encke",
+        "name": "Encke",
+        "size": [
+          230,
+          321
+        ],
+        "heading": 24,
+        "image": [
+          230,
+          172.5
+        ],
+        "table": 95,
+        "topGap": 5.75,
+        "bottomInnerGap": 5.75,
+        "D": [
+          44,
+          44,
+          5,
+          5
+        ],
+        "fonts": [
+          "16px",
+          "14px"
+        ]
+      }
+    ]
+  },
+  {
+    "file": "sistema-solar-1920.json",
+    "viewport": {
+      "width": 1920,
+      "height": 1080,
+      "dpr": 1,
+      "scale": 1
+    },
+    "useful": "1368",
+    "layout": "normal",
+    "browser": "155.0.8059.80",
+    "fonts": {
+      "fonts": [
+        {
+          "familyName": "Segoe UI",
+          "postScriptName": "SegoeUI-Bold",
+          "isCustomFont": false,
+          "glyphCount": 27
+        }
+      ]
+    },
+    "beforeHeight": 1136,
+    "afterHeight": 1118,
+    "residual": 38,
+    "detailsBefore": null,
+    "detailsAfter": null,
+    "compactCardMetricsEqual": null,
+    "cards": [
+      {
+        "id": "itokawa",
+        "name": "Itokawa",
+        "size": [
+          230,
+          321
+        ],
+        "heading": 24,
+        "image": [
+          230,
+          172.5
+        ],
+        "table": 95,
+        "topGap": 5.75,
+        "bottomInnerGap": 5.75,
+        "D": [
+          44,
+          44,
+          5,
+          5
+        ],
+        "fonts": [
+          "16px",
+          "14px"
+        ]
+      },
+      {
+        "id": "67p-churyumov-gerasimenko",
+        "name": "67P / Churyumov-Gerasimenko",
+        "size": [
+          230,
+          321
+        ],
+        "heading": 42,
+        "image": [
+          230,
+          172.5
+        ],
+        "table": 88.34375,
+        "topGap": 0.078125,
+        "bottomInnerGap": 0.078125,
+        "D": [
+          44,
+          44,
+          5,
+          5
+        ],
+        "fonts": [
+          "16px",
+          "14px"
+        ]
+      },
+      {
+        "id": "hyakutake",
+        "name": "Hyakutake",
+        "size": [
+          230,
+          321
+        ],
+        "heading": 24,
+        "image": [
+          230,
+          172.5
+        ],
+        "table": 95,
+        "topGap": 5.75,
+        "bottomInnerGap": 5.75,
+        "D": [
+          44,
+          44,
+          5,
+          5
+        ],
+        "fonts": [
+          "16px",
+          "14px"
+        ]
+      },
+      {
+        "id": "encke",
+        "name": "Encke",
+        "size": [
+          230,
+          321
+        ],
+        "heading": 24,
+        "image": [
+          230,
+          172.5
+        ],
+        "table": 95,
+        "topGap": 5.75,
+        "bottomInnerGap": 5.75,
+        "D": [
+          44,
+          44,
+          5,
+          5
+        ],
+        "fonts": [
+          "16px",
+          "14px"
+        ]
+      }
+    ]
+  }
+]

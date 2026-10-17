@@ -1,0 +1,1515 @@
+{
+  "schemaVersion": 2,
+  "deckId": "criaturas-magicas",
+  "contentVersion": 2,
+  "cards": [
+    {
+      "id": "carta-001",
+      "name": "Dragón de fuego",
+      "characteristic": "Dragón volcánico",
+      "imageRef": "imagenes/cartas/carta-001.webp",
+      "imageAlt": "Dragón rojo de vientre dorado empuja una roca de basalto con las garras, con las alas recogidas y un volcán luminoso al fondo.",
+      "values": {
+        "atributo1": {
+          "playValue": 57,
+          "displayValue": "57",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 7,
+          "displayValue": "7",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 49,
+          "displayValue": "49",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo1",
+      "note": "De escamas rojas y vientre dorado, concentra un fuego intenso que abre paso entre las rocas. Su cuerpo robusto soporta el calor y suele resolver los obstáculos de frente."
+    },
+    {
+      "id": "carta-002",
+      "name": "Dragón de cristal",
+      "characteristic": "Dragón de los prismas",
+      "imageRef": "imagenes/cartas/carta-002.webp",
+      "imageAlt": "Dragón de cristal translúcido se agacha y orienta una garra hacia un reflejo irisado en una grieta del suelo de una gruta.",
+      "values": {
+        "atributo1": {
+          "playValue": 38,
+          "displayValue": "38",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 30,
+          "displayValue": "30",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 6,
+          "displayValue": "6",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo2",
+      "note": "Sus escamas transparentes descomponen la luz en destellos de colores. Utiliza los reflejos para transformar lo que se ve, pero su cuerpo de cristal es frágil."
+    },
+    {
+      "id": "carta-003",
+      "name": "Dragón de tormenta",
+      "characteristic": "Dragón de las tormentas",
+      "imageRef": "imagenes/cartas/carta-003.webp",
+      "imageAlt": "Dragón azul oscuro vira entre nubes con las alas a distinta altura, mientras un relámpago dorado ilumina el ala superior.",
+      "values": {
+        "atributo1": {
+          "playValue": 55,
+          "displayValue": "55",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 24,
+          "displayValue": "24",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 24,
+          "displayValue": "24",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo3",
+      "note": "Sus alas azul oscuro reúnen relámpagos y empujan grandes ráfagas de viento. Domina una energía enorme que necesita liberar en impulsos breves."
+    },
+    {
+      "id": "carta-004",
+      "name": "Dragón de los bosques",
+      "characteristic": "Guardián del bosque",
+      "imageRef": "imagenes/cartas/carta-004.webp",
+      "imageAlt": "Dragón verde de cresta de ramas avanza de frente por un bosque y aparta una rama con una pata delantera.",
+      "values": {
+        "atributo1": {
+          "playValue": 40,
+          "displayValue": "40",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 27,
+          "displayValue": "27",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 43,
+          "displayValue": "43",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo1",
+      "note": "Sus escamas verdes y su cresta de ramas se confunden con la espesura. Abre senderos con su cuerpo fuerte y protege el bosque durante largas jornadas."
+    },
+    {
+      "id": "carta-005",
+      "name": "Dragón del arrecife",
+      "characteristic": "Dragón marino",
+      "imageRef": "imagenes/cartas/carta-005.webp",
+      "imageAlt": "Dragón turquesa de aletas coral nada junto a un tronco entre arrecifes iluminados por rayos de sol.",
+      "values": {
+        "atributo1": {
+          "playValue": 31,
+          "displayValue": "31",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 16,
+          "displayValue": "16",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 31,
+          "displayValue": "31",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo2",
+      "note": "De escamas turquesas y aletas de coral, se desliza entre arrecifes. Su cuerpo flexible aparta troncos sumergidos y le permite recorrer largas distancias bajo el agua."
+    },
+    {
+      "id": "carta-006",
+      "name": "Dragón de hielo",
+      "characteristic": "Dragón glacial",
+      "imageRef": "imagenes/cartas/carta-006.webp",
+      "imageAlt": "Dragón plateado de cresta azul cruza una grieta de un glaciar, apoyando una garra en hielo recién formado, con un ala abierta y la otra recogida.",
+      "values": {
+        "atributo1": {
+          "playValue": 52,
+          "displayValue": "52",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 18,
+          "displayValue": "18",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 46,
+          "displayValue": "46",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo3",
+      "note": "Sus escamas plateadas y sus alas de hielo brillan sobre los glaciares. Puede congelar corrientes y avanzar durante horas por terrenos helados, con una presencia serena y firme."
+    },
+    {
+      "id": "carta-007",
+      "name": "Dragón del desierto",
+      "characteristic": "Dragón de las dunas",
+      "imageRef": "imagenes/cartas/carta-007.webp",
+      "imageAlt": "Dragón dorado de cuerpo alargado descansa agazapado en una duna y observa un sendero de luz que serpentea por el desierto al atardecer.",
+      "values": {
+        "atributo1": {
+          "playValue": 28,
+          "displayValue": "28",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 37,
+          "displayValue": "37",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 23,
+          "displayValue": "23",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo1",
+      "note": "Sus escamas doradas se ocultan entre las dunas. Crea espejismos y elige rutas inesperadas para superar dificultades sin gastar toda su energía."
+    },
+    {
+      "id": "carta-008",
+      "name": "Dragón plateado",
+      "characteristic": "Dragón de los destellos",
+      "imageRef": "imagenes/cartas/carta-008.webp",
+      "imageAlt": "Pequeño dragón plateado señala un paso desde una repisa al atardecer; su cola elevada dibuja un arco de destellos dorados.",
+      "values": {
+        "atributo1": {
+          "playValue": 20,
+          "displayValue": "20",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 47,
+          "displayValue": "47",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 12,
+          "displayValue": "12",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo2",
+      "note": "Pequeño y de escamas plateadas, dibuja señales luminosas con la cola. Compensa su cuerpo delicado con reflejos engañosos y soluciones ingeniosas."
+    },
+    {
+      "id": "carta-009",
+      "name": "Dragón de las nubes",
+      "characteristic": "Dragón de la bruma",
+      "imageRef": "imagenes/cartas/carta-009.webp",
+      "imageAlt": "Dragón azul pálido de alas vaporosas se curva en vuelo entre nubes rosadas y vuelve la cabeza, con un valle lejano visible bajo la niebla.",
+      "values": {
+        "atributo1": {
+          "playValue": 26,
+          "displayValue": "26",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 33,
+          "displayValue": "33",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 17,
+          "displayValue": "17",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo3",
+      "note": "Su cuerpo azul pálido y sus alas vaporosas se mezclan con las nubes. Cambia su silueta con la niebla para encontrar caminos, aunque necesita descansar con frecuencia."
+    },
+    {
+      "id": "carta-010",
+      "name": "Dragón de cobre",
+      "characteristic": "Dragón de los mecanismos",
+      "imageRef": "imagenes/cartas/carta-010.webp",
+      "imageAlt": "Dragón de escamas cobrizas está sentado sobre una roca y ajusta con las patas delanteras un pequeño mecanismo de piedras y ramas.",
+      "values": {
+        "atributo1": {
+          "playValue": 25,
+          "displayValue": "25",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 50,
+          "displayValue": "50",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 35,
+          "displayValue": "35",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo1",
+      "note": "Sus escamas cobrizas protegen un cuerpo robusto. Abre cerraduras y construye mecanismos con piedras y ramas, usando más ingenio que magia."
+    },
+    {
+      "id": "carta-011",
+      "name": "Unicornio Aurora",
+      "characteristic": "Unicornio de la luz",
+      "imageRef": "imagenes/cartas/carta-011.webp",
+      "imageAlt": "Unicornio marfil de crines rosas y doradas se alza sobre las patas traseras al amanecer, rodeado por una cinta de luz que parte de su cuerno.",
+      "values": {
+        "atributo1": {
+          "playValue": 50,
+          "displayValue": "50",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 25,
+          "displayValue": "25",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 36,
+          "displayValue": "36",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo2",
+      "note": "Su cuerno y sus crines rosadas y doradas tejen grandes cintas de luz. Transforma el paisaje con resplandores y se protege con un velo luminoso."
+    },
+    {
+      "id": "carta-012",
+      "name": "Unicornio lunar",
+      "characteristic": "Guardián nocturno",
+      "imageRef": "imagenes/cartas/carta-012.webp",
+      "imageAlt": "Unicornio blanco plateado de crines azul oscuro gira el cuello y mira hacia la luna con un gesto de alegría muy leve, junto a un sendero luminoso.",
+      "values": {
+        "atributo1": {
+          "playValue": 44,
+          "displayValue": "44",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 45,
+          "displayValue": "45",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 28,
+          "displayValue": "28",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo3",
+      "note": "De pelaje blanco plateado y crines azul oscuro, traza ilusiones con su cuerno. Encuentra caminos que solo aparecen de noche y reconoce señales que otros pasan por alto."
+    },
+    {
+      "id": "carta-013",
+      "name": "Unicornio del bosque",
+      "characteristic": "Unicornio silvestre",
+      "imageRef": "imagenes/cartas/carta-013.webp",
+      "imageAlt": "Unicornio marfil de crines verdes se arrodilla en un claro e inclina su cuerno de madera hacia un pequeño brote iluminado.",
+      "values": {
+        "atributo1": {
+          "playValue": 22,
+          "displayValue": "22",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 31,
+          "displayValue": "31",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 29,
+          "displayValue": "29",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo1",
+      "note": "Su pelaje marfil y sus crines verdes acompañan un cuerno de madera clara. Despierta semillas dormidas y recorre los senderos del bosque con paso constante."
+    },
+    {
+      "id": "carta-014",
+      "name": "Unicornio de obsidiana",
+      "characteristic": "Unicornio de piedra negra",
+      "imageRef": "imagenes/cartas/carta-014.webp",
+      "imageAlt": "Unicornio negro de reflejos violetas avanza de frente entre rocas pálidas, con una pezuña apoyada sobre una piedra y el cuerno alzado.",
+      "values": {
+        "atributo1": {
+          "playValue": 42,
+          "displayValue": "42",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 20,
+          "displayValue": "20",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 55,
+          "displayValue": "55",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo2",
+      "note": "Su pelaje negro tiene el brillo de la obsidiana y su cuerno refleja tonos violetas. Sus pezuñas abren pasos entre rocas y su cuerpo soporta esfuerzos prolongados."
+    },
+    {
+      "id": "carta-015",
+      "name": "Pegaso del relámpago",
+      "characteristic": "Pegaso de las chispas",
+      "imageRef": "imagenes/cartas/carta-015.webp",
+      "imageAlt": "Pegaso de pelaje plateado y crines amarillo pálido vuela entre nubes de tormenta, rodeado de rayos y destellos eléctricos azulados.",
+      "values": {
+        "atributo1": {
+          "playValue": 9,
+          "displayValue": "9",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 14,
+          "displayValue": "14",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 13,
+          "displayValue": "13",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo3",
+      "note": "De pelaje claro y crines amarillas, deja pequeños destellos al volar. Su mayor virtud es la rapidez; su magia y su capacidad para mantener el esfuerzo son modestas."
+    },
+    {
+      "id": "carta-016",
+      "name": "Pegaso de las nieves",
+      "characteristic": "Pegaso de las cumbres nevadas",
+      "imageRef": "imagenes/cartas/carta-016.webp",
+      "imageAlt": "Pegaso de pelaje blanco y alas azuladas planea hacia la izquierda sobre una cordillera nevada, entre suaves ráfagas de nieve.",
+      "values": {
+        "atributo1": {
+          "playValue": 16,
+          "displayValue": "16",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 11,
+          "displayValue": "11",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 39,
+          "displayValue": "39",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo1",
+      "note": "Su pelaje blanco y sus alas azuladas lo abrigan durante las ventiscas. Mantiene un vuelo firme en largas travesías por las montañas heladas."
+    },
+    {
+      "id": "carta-017",
+      "name": "Pegaso dorado",
+      "characteristic": "Pegaso de la luz dorada",
+      "imageRef": "imagenes/cartas/carta-017.webp",
+      "imageAlt": "Pegaso de alas doradas desciende de frente hacia un paso de montaña, con las alas levantadas y las patas delanteras listas para aterrizar.",
+      "values": {
+        "atributo1": {
+          "playValue": 24,
+          "displayValue": "24",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 28,
+          "displayValue": "28",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 20,
+          "displayValue": "20",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo2",
+      "note": "Sus alas de color oro iluminan los pasos de montaña. Transporta pequeñas cargas y orienta a los viajeros con su brillo, aunque necesita pausas entre trayectos."
+    },
+    {
+      "id": "carta-018",
+      "name": "Pegaso de la bruma",
+      "characteristic": "Pegaso de las ilusiones",
+      "imageRef": "imagenes/cartas/carta-018.webp",
+      "imageAlt": "Pegaso gris perla gira sobre un barranco entre niebla, con las alas inclinadas a distinta altura y la cabeza vuelta hacia quien mira.",
+      "values": {
+        "atributo1": {
+          "playValue": 29,
+          "displayValue": "29",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 52,
+          "displayValue": "52",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 18,
+          "displayValue": "18",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo3",
+      "note": "Sus crines gris perla y sus alas azul grisáceo se disuelven en la niebla. Cambia de ruta y crea siluetas falsas para despistar sin recurrir a la fuerza."
+    },
+    {
+      "id": "carta-019",
+      "name": "Hada del rocío",
+      "characteristic": "Hada de las gotas",
+      "imageRef": "imagenes/cartas/carta-019.webp",
+      "imageAlt": "Hada de vestido de hojas y alas transparentes flota junto a una hoja húmeda y guía una gota de rocío hacia una flor blanca al amanecer.",
+      "values": {
+        "atributo1": {
+          "playValue": 17,
+          "displayValue": "17",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 41,
+          "displayValue": "41",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 9,
+          "displayValue": "9",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo1",
+      "note": "De alas transparentes y vestido de hojas, recoge el rocío en gotas brillantes. Las guía con precisión para despertar flores, pero se cansa pronto."
+    },
+    {
+      "id": "carta-020",
+      "name": "Hada de las luciérnagas",
+      "characteristic": "Hada de las luces",
+      "imageRef": "imagenes/cartas/carta-020.webp",
+      "imageAlt": "Hada de alas recogidas descansa sentada en una hoja de nenúfar sobre un estanque nocturno y contempla tres pequeñas luces verdes y doradas junto a sus manos.",
+      "values": {
+        "atributo1": {
+          "playValue": 5,
+          "displayValue": "5",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 36,
+          "displayValue": "36",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 4,
+          "displayValue": "4",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo2",
+      "note": "Sus alas diminutas y sus destellos verdes y dorados se confunden con las luciérnagas. Combina pequeñas luces para señalar caminos y esconderse cuando necesita descansar."
+    },
+    {
+      "id": "carta-021",
+      "name": "Duende de las raíces",
+      "characteristic": "Duende de los senderos ocultos",
+      "imageRef": "imagenes/cartas/carta-021.webp",
+      "imageAlt": "Pequeño duende de ropa marrón y verde se arrodilla junto a las raíces de un árbol, levanta una raicilla y examina dos entradas de túnel.",
+      "values": {
+        "atributo1": {
+          "playValue": 4,
+          "displayValue": "4",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 57,
+          "displayValue": "57",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 21,
+          "displayValue": "21",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo3",
+      "note": "Pequeño y vestido de tonos tierra, conoce los túneles entre las raíces. Tiene poca fuerza, pero recuerda cada recodo y resuelve los acertijos más difíciles del bosque."
+    },
+    {
+      "id": "carta-022",
+      "name": "Duende cambiasombras",
+      "characteristic": "Duende de las sombras",
+      "imageRef": "imagenes/cartas/carta-022.webp",
+      "imageAlt": "Duende de capa índigo se agacha sobre un suelo de piedra y toca una sombra curvada hacia una abertura entre rocas, con la otra mano junto a la barbilla.",
+      "values": {
+        "atributo1": {
+          "playValue": 15,
+          "displayValue": "15",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 58,
+          "displayValue": "58",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 7,
+          "displayValue": "7",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo1",
+      "note": "Su capa oscura cambia de contorno con la luz. Intercambia pequeñas sombras y encuentra soluciones inesperadas, aunque su cuerpo ligero no sostiene esfuerzos largos."
+    },
+    {
+      "id": "carta-023",
+      "name": "Zorro de las nieves",
+      "characteristic": "Zorro de las ilusiones",
+      "imageRef": "imagenes/cartas/carta-023.webp",
+      "imageAlt": "Zorro blanco de ojos azul hielo se aproxima de frente por un sendero nevado, con una pata levantada y la cola espesa curvada a un lado.",
+      "values": {
+        "atributo1": {
+          "playValue": 13,
+          "displayValue": "13",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 56,
+          "displayValue": "56",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 16,
+          "displayValue": "16",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo2",
+      "note": "Su pelaje blanco y sus ojos azul hielo casi desaparecen sobre la nieve. Borra huellas y crea rastros falsos para confundir, apoyándose en su extraordinaria astucia."
+    },
+    {
+      "id": "carta-024",
+      "name": "Ciervo de ramas",
+      "characteristic": "Ciervo guardián",
+      "imageRef": "imagenes/cartas/carta-024.webp",
+      "imageAlt": "Ciervo castaño de astas de ramas con hojas permanece de pie en un bosque otoñal y mira a cámara, separado de un tronco caído.",
+      "values": {
+        "atributo1": {
+          "playValue": 19,
+          "displayValue": "19",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 13,
+          "displayValue": "13",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 33,
+          "displayValue": "33",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo3",
+      "note": "Sus grandes astas parecen ramas vivas y su pelaje tiene tonos castaños y verdes. Aparta troncos y mantiene abiertos los senderos con esfuerzo paciente."
+    },
+    {
+      "id": "carta-025",
+      "name": "Lobo de la espesura",
+      "characteristic": "Lobo del camuflaje",
+      "imageRef": "imagenes/cartas/carta-025.webp",
+      "imageAlt": "Lobo de pelaje gris verdoso y pardo sigue un rastro con el hocico bajo y una pata trasera apoyada sobre una piedra cubierta de musgo.",
+      "values": {
+        "atributo1": {
+          "playValue": 11,
+          "displayValue": "11",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 44,
+          "displayValue": "44",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 22,
+          "displayValue": "22",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo1",
+      "note": "Su pelaje mezcla verdes, pardos y formas de hojas. Lee las huellas y se mueve en silencio por la espesura, eligiendo el momento adecuado para actuar."
+    },
+    {
+      "id": "carta-026",
+      "name": "Búho de los sueños",
+      "characteristic": "Guardián de los sueños",
+      "imageRef": "imagenes/cartas/carta-026.webp",
+      "imageAlt": "Búho azul y violeta de rostro claro y ojos dorados se inclina desde una rama y orienta una pequeña forma luminosa con un ala medio abierta.",
+      "values": {
+        "atributo1": {
+          "playValue": 48,
+          "displayValue": "48",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 53,
+          "displayValue": "53",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 14,
+          "displayValue": "14",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo2",
+      "note": "De plumaje azul y violeta, rostro claro y ojos dorados, encuentra respuestas en los sueños. Puede transformar sus paisajes, pero su delicado cuerpo necesita descansos frecuentes."
+    },
+    {
+      "id": "carta-027",
+      "name": "Erizo de las rosas",
+      "characteristic": "Erizo del rosal",
+      "imageRef": "imagenes/cartas/carta-027.webp",
+      "imageAlt": "Erizo de cuerpo alargado y púas pardas avanza desplegado bajo un rosal, con las cuatro patas apoyadas y las rosas en las ramas que lo rodean.",
+      "values": {
+        "atributo1": {
+          "playValue": 3,
+          "displayValue": "3",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 21,
+          "displayValue": "21",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 52,
+          "displayValue": "52",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo3",
+      "note": "Pequeño y de púas semejantes a espinas, se camufla entre las ramas de los rosales. Su espalda lo protege y le permite avanzar sin dañarse entre las zarzas."
+    },
+    {
+      "id": "carta-028",
+      "name": "Liebre de los portales",
+      "characteristic": "Liebre de los atajos",
+      "imageRef": "imagenes/cartas/carta-028.webp",
+      "imageAlt": "Liebre de pelaje claro y marcas turquesas salta hacia la izquierda con las orejas en ángulos distintos y un portal luminoso detrás de las patas.",
+      "values": {
+        "atributo1": {
+          "playValue": 33,
+          "displayValue": "33",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 48,
+          "displayValue": "48",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 10,
+          "displayValue": "10",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo1",
+      "note": "Sus largas orejas y sus marcas turquesas brillan al saltar. Abre portales breves entre lugares cercanos y elige atajos ingeniosos, aunque pronto necesita recuperar energía."
+    },
+    {
+      "id": "carta-029",
+      "name": "Fénix solar",
+      "characteristic": "Ave del renacer",
+      "imageRef": "imagenes/cartas/carta-029.webp",
+      "imageAlt": "Fénix de plumaje rojo y dorado denso se eleva con las alas abiertas ante el sol, con pecho rojo profundo y bordes encendidos dentro de un resplandor que envuelve el paisaje.",
+      "values": {
+        "atributo1": {
+          "playValue": 58,
+          "displayValue": "58",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 26,
+          "displayValue": "26",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 58,
+          "displayValue": "58",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo2",
+      "note": "Sus plumas rojas y doradas concentran la energía del sol. Cuando se agota, se envuelve en brasas y renace, recuperando una fuerza extraordinaria."
+    },
+    {
+      "id": "carta-030",
+      "name": "Fénix azul",
+      "characteristic": "Ave de las llamas frías",
+      "imageRef": "imagenes/cartas/carta-030.webp",
+      "imageAlt": "Fénix azul y plateado, de perfil y con una larga cola en cintas, dirige una llama cian hacia una piedra rota para recomponerla en una ruina al crepúsculo.",
+      "values": {
+        "atributo1": {
+          "playValue": 54,
+          "displayValue": "54",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 39,
+          "displayValue": "39",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 50,
+          "displayValue": "50",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo3",
+      "note": "Sus plumas azules y plateadas desprenden llamas frías. Con ellas repara objetos y recompone formas rotas, combinando gran poder con una resistencia elevada."
+    },
+    {
+      "id": "carta-031",
+      "name": "Grifo de las cumbres",
+      "characteristic": "Guardián de las alturas",
+      "imageRef": "imagenes/cartas/carta-031.webp",
+      "imageAlt": "Grifo de cuerpo leonino y cabeza de águila frena ante una cornisa con las garras adelantadas y las alas desplegadas a distinta altura.",
+      "values": {
+        "atributo1": {
+          "playValue": 35,
+          "displayValue": "35",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 38,
+          "displayValue": "38",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 38,
+          "displayValue": "38",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo1",
+      "note": "De cuerpo de león y cabeza y alas de águila, domina las rutas de las cumbres. Sus garras poderosas y su sentido de la orientación le ayudan a superar los pasos difíciles."
+    },
+    {
+      "id": "carta-032",
+      "name": "Grifo de plumas de hierro",
+      "characteristic": "Grifo acorazado",
+      "imageRef": "imagenes/cartas/carta-032.webp",
+      "imageAlt": "Grifo robusto de plumas metálicas grises se afirma en un paso de montaña, con las alas recogidas a los lados del pecho y las garras apoyadas en la roca.",
+      "values": {
+        "atributo1": {
+          "playValue": 41,
+          "displayValue": "41",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 19,
+          "displayValue": "19",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 54,
+          "displayValue": "54",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo2",
+      "note": "Sus plumas grises brillan como hierro sobre un cuerpo robusto. Su pesada armadura limita las maniobras, pero le permite mantener el esfuerzo y soportar grandes dificultades."
+    },
+    {
+      "id": "carta-033",
+      "name": "Hipogrifo del acantilado",
+      "characteristic": "Explorador costero",
+      "imageRef": "imagenes/cartas/carta-033.webp",
+      "imageAlt": "Hipogrifo de cabeza y alas de águila, patas traseras equinas y cola de caballo salta hacia la izquierda entre dos salientes sobre el mar.",
+      "values": {
+        "atributo1": {
+          "playValue": 23,
+          "displayValue": "23",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 34,
+          "displayValue": "34",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 27,
+          "displayValue": "27",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo3",
+      "note": "Su cabeza y alas de águila se unen a un cuerpo equino de tonos ocres. Calcula las corrientes del acantilado y planea entre salientes, buscando descansos seguros."
+    },
+    {
+      "id": "carta-034",
+      "name": "Serpiente del rayo",
+      "characteristic": "Serpiente de las descargas",
+      "imageRef": "imagenes/cartas/carta-034.webp",
+      "imageAlt": "Serpiente azul oscuro y dorada se yergue como una cobra desde una base enroscada en un charco, con pequeñas descargas sobre el agua bajo la lluvia.",
+      "values": {
+        "atributo1": {
+          "playValue": 32,
+          "displayValue": "32",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 32,
+          "displayValue": "32",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 8,
+          "displayValue": "8",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo1",
+      "note": "Su cuerpo alargado y azul oscuro está recorrido por líneas doradas. Reúne descargas luminosas y cambia de dirección con rapidez, pero su energía se agota pronto."
+    },
+    {
+      "id": "carta-035",
+      "name": "Colibrí fulgurante",
+      "characteristic": "Ave chispeante",
+      "imageRef": "imagenes/cartas/carta-035.webp",
+      "imageAlt": "Colibrí verde y turquesa de pecho coral descansa sobre un tallo entre flores, con las alas entreabiertas y dos pequeñas chispas doradas a los lados.",
+      "values": {
+        "atributo1": {
+          "playValue": 2,
+          "displayValue": "2",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 10,
+          "displayValue": "10",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 1,
+          "displayValue": "1",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo2",
+      "note": "Diminuto, de plumas verdes y pecho coral, desprende pequeñas chispas al batir las alas. Tiene muy poca fuerza y necesita descansar a menudo."
+    },
+    {
+      "id": "carta-036",
+      "name": "Mantarraya celestial",
+      "characteristic": "Ser del cielo",
+      "imageRef": "imagenes/cartas/carta-036.webp",
+      "imageAlt": "Mantarraya azul plateada de manchas luminosas planea inclinada hacia la izquierda entre nubes melocotón, con una larga cola curvada y un valle al fondo.",
+      "values": {
+        "atributo1": {
+          "playValue": 21,
+          "displayValue": "21",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 22,
+          "displayValue": "22",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 19,
+          "displayValue": "19",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo3",
+      "note": "Sus anchas aletas azul claro y sus manchas luminosas parecen un trozo de cielo. Flota sobre los valles y desvía pequeñas corrientes de aire con movimientos suaves."
+    },
+    {
+      "id": "carta-037",
+      "name": "Gólem estelar",
+      "characteristic": "Guardián de los meteoritos",
+      "imageRef": "imagenes/cartas/carta-037.webp",
+      "imageAlt": "Gólem alargado de bloques de meteorito unidos por luz dorada flota entre estrellas, alzando una roca con una mano y extendiendo la otra para equilibrarse.",
+      "values": {
+        "atributo1": {
+          "playValue": 43,
+          "displayValue": "43",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 2,
+          "displayValue": "2",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 34,
+          "displayValue": "34",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo1",
+      "note": "Su cuerpo reúne bloques oscuros y fragmentos de meteorito suspendidos por luz estelar. Mueve grandes rocas con facilidad, pero actúa por impulsos y repite movimientos sencillos."
+    },
+    {
+      "id": "carta-038",
+      "name": "Espíritu del arcoíris",
+      "characteristic": "Espíritu de la luz",
+      "imageRef": "imagenes/cartas/carta-038.webp",
+      "imageAlt": "Espíritu de bandas luminosas multicolores se curva sobre la bruma de una cascada y tiende una cinta de luz entre dos piedras.",
+      "values": {
+        "atributo1": {
+          "playValue": 47,
+          "displayValue": "47",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 42,
+          "displayValue": "42",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 15,
+          "displayValue": "15",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo2",
+      "note": "Su figura ligera está formada por bandas de colores que cambian con cada gesto. Transforma reflejos y dibuja pasos de luz, pero su forma se diluye al agotarse."
+    },
+    {
+      "id": "carta-039",
+      "name": "Lombriz del éter",
+      "characteristic": "Criatura de la bruma",
+      "imageRef": "imagenes/cartas/carta-039.webp",
+      "imageAlt": "Lombriz anillada de piel nacarada con reflejos malva y verde agua avanza hacia la izquierda sobre una raíz húmeda entre musgo, gotas y una tenue estela de bruma.",
+      "values": {
+        "atributo1": {
+          "playValue": 8,
+          "displayValue": "8",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 17,
+          "displayValue": "17",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 26,
+          "displayValue": "26",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo3",
+      "note": "Su cuerpo anillado y nacarado desprende una bruma tenue. Sigue la humedad entre las raíces y se comprime para cruzar grietas, recuperando después su forma."
+    },
+    {
+      "id": "carta-040",
+      "name": "Serpiente marina",
+      "characteristic": "Guardián de las corrientes",
+      "imageRef": "imagenes/cartas/carta-040.webp",
+      "imageAlt": "Serpiente marina esmeralda de aletas azules emerge sobre el mar con la cabeza y el cuello elevados y un arco del cuerpo detrás, rodeada de espuma en los puntos de entrada al agua.",
+      "values": {
+        "atributo1": {
+          "playValue": 45,
+          "displayValue": "45",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 35,
+          "displayValue": "35",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 45,
+          "displayValue": "45",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo1",
+      "note": "Su largo cuerpo de escamas verdes y aletas azuladas recorre las bahías. Mueve grandes corrientes y rodea las rocas para abrir pasos bajo el agua."
+    },
+    {
+      "id": "carta-041",
+      "name": "Tortuga isla",
+      "characteristic": "Isla viviente",
+      "imageRef": "imagenes/cartas/carta-041.webp",
+      "imageAlt": "Tortuga gigantesca de caparazón pétreo cubierto por un jardín avanza hacia la derecha en un bajío, con las cuatro aletas visibles bajo el agua y una pequeña salpicadura delante.",
+      "values": {
+        "atributo1": {
+          "playValue": 53,
+          "displayValue": "53",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 40,
+          "displayValue": "40",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 57,
+          "displayValue": "57",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo2",
+      "note": "Su enorme caparazón de piedra sostiene un pequeño jardín. Avanza lentamente, abre paso con su cuerpo gigantesco y puede viajar durante meses sin detenerse."
+    },
+    {
+      "id": "carta-042",
+      "name": "Kraken de perlas",
+      "characteristic": "Gigante de los arrecifes",
+      "imageRef": "imagenes/cartas/carta-042.webp",
+      "imageAlt": "Kraken púrpura de manto alargado y ojos dorados coloca una perla sobre un pedestal de roca coralina a su derecha con un tentáculo largo; el otro queda libre y los brazos cortos forman una barba.",
+      "values": {
+        "atributo1": {
+          "playValue": 56,
+          "displayValue": "56",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 51,
+          "displayValue": "51",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 48,
+          "displayValue": "48",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo3",
+      "note": "Seis brazos cortos forman una barba bajo su manto púrpura; dos tentáculos largos manipulan perlas y rocas. Resuelve rompecabezas con gran habilidad."
+    },
+    {
+      "id": "carta-043",
+      "name": "Sirena de las mareas",
+      "characteristic": "Guía de las mareas",
+      "imageRef": "imagenes/cartas/carta-043.webp",
+      "imageAlt": "Sirena de cabello azul y cola turquesa escucha la corriente con una mano junto a la oreja y señala hacia la izquierda entre corales iluminados.",
+      "values": {
+        "atributo1": {
+          "playValue": 37,
+          "displayValue": "37",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 54,
+          "displayValue": "54",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 25,
+          "displayValue": "25",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo1",
+      "note": "Su cola turquesa y sus cabellos azules brillan entre las corrientes. Su canto desvía el agua y le ayuda a descubrir atajos, aunque prefiere evitar los esfuerzos prolongados."
+    },
+    {
+      "id": "carta-044",
+      "name": "Tritón de las profundidades",
+      "characteristic": "Explorador de las profundidades",
+      "imageRef": "imagenes/cartas/carta-044.webp",
+      "imageAlt": "Tritón de escamas azul oscuro y cresta plateada se impulsa hacia la derecha desde un arco submarino, con una mano apoyada en la roca y la ancha cola extendida atrás.",
+      "values": {
+        "atributo1": {
+          "playValue": 30,
+          "displayValue": "30",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 23,
+          "displayValue": "23",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 41,
+          "displayValue": "41",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo2",
+      "note": "De cuerpo fuerte, escamas azul oscuro y cresta plateada, recorre el fondo marino. Está acostumbrado a largas travesías y soporta las condiciones difíciles de las profundidades."
+    },
+    {
+      "id": "carta-045",
+      "name": "Salamandra de cristal",
+      "characteristic": "Anfibio de cristal",
+      "imageRef": "imagenes/cartas/carta-045.webp",
+      "imageAlt": "Salamandra transparente de facetas azuladas y branquias rosadas se apoya en una piedra del estanque, mientras un destello recompone una faceta de su cola curvada.",
+      "values": {
+        "atributo1": {
+          "playValue": 18,
+          "displayValue": "18",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 29,
+          "displayValue": "29",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 40,
+          "displayValue": "40",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo3",
+      "note": "Pequeña y transparente, con branquias rosadas y una cola de reflejos azules, repara las grietas de su piel cristalina. Se mueve despacio, pero recupera energía con facilidad."
+    },
+    {
+      "id": "carta-046",
+      "name": "Nutria lunar",
+      "characteristic": "Nutria de los ingenios",
+      "imageRef": "imagenes/cartas/carta-046.webp",
+      "imageAlt": "Nutria de pelaje azul grisáceo y pecho plateado usa un guijarro luminoso para abrir una concha sobre una piedra, sentada junto al agua bajo la luna.",
+      "values": {
+        "atributo1": {
+          "playValue": 6,
+          "displayValue": "6",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 55,
+          "displayValue": "55",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 11,
+          "displayValue": "11",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo1",
+      "note": "Su pelaje azul grisáceo y su mancha plateada brillan a la luz lunar. Usa guijarros luminosos como herramientas y descubre cómo abrir las conchas más complicadas."
+    },
+    {
+      "id": "carta-047",
+      "name": "Medusa estelar",
+      "characteristic": "Luz del océano",
+      "imageRef": "imagenes/cartas/carta-047.webp",
+      "imageAlt": "Una medusa perlada luminosa y otras tres más pequeñas flotan en el aire sobre el océano nocturno, con filamentos completos y reflejos dorados en el agua.",
+      "values": {
+        "atributo1": {
+          "playValue": 14,
+          "displayValue": "14",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 3,
+          "displayValue": "3",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 2,
+          "displayValue": "2",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo2",
+      "note": "Su campana transparente y sus filamentos brillan sobre el océano. Viaja en grupos que siguen la brisa nocturna, con movimientos instintivos y muy poca resistencia."
+    },
+    {
+      "id": "carta-048",
+      "name": "Caballito de espuma",
+      "characteristic": "Caballito marino encantado",
+      "imageRef": "imagenes/cartas/carta-048.webp",
+      "imageAlt": "Caballito marino de espuma perlada y aletas coral nada en diagonal hacia la derecha dentro de un arrecife, con la cola extendida en una curva suave y pequeñas burbujas detrás.",
+      "values": {
+        "atributo1": {
+          "playValue": 1,
+          "displayValue": "1",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 12,
+          "displayValue": "12",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 3,
+          "displayValue": "3",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo3",
+      "note": "Su pequeño cuerpo blanco perlado parece hecho de espuma y sus aletas tienen reflejos coral. Flota entre burbujas con movimientos juguetones, pero se agota con facilidad."
+    },
+    {
+      "id": "carta-049",
+      "name": "Gólem de granito",
+      "characteristic": "Guardián de piedra",
+      "imageRef": "imagenes/cartas/carta-049.webp",
+      "imageAlt": "Gólem ancho de bloques de granito levanta una gran losa sobre la cabeza con ambas manos, afirmando las piernas en una cantera iluminada por luz cálida.",
+      "values": {
+        "atributo1": {
+          "playValue": 51,
+          "displayValue": "51",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 1,
+          "displayValue": "1",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 56,
+          "displayValue": "56",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo1",
+      "note": "Sus grandes bloques de granito forman un cuerpo ancho y un rostro sereno. Mueve enormes cargas y continúa durante horas, siguiendo caminos sencillos con paso firme."
+    },
+    {
+      "id": "carta-050",
+      "name": "Gólem de las hiedras",
+      "characteristic": "Guardián de las hiedras",
+      "imageRef": "imagenes/cartas/carta-050.webp",
+      "imageAlt": "Gólem de piedra enlazada por hiedras se arrodilla en el bosque, apoya una mano en tierra y aparta una rama con la otra para proteger un brote.",
+      "values": {
+        "atributo1": {
+          "playValue": 39,
+          "displayValue": "39",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 8,
+          "displayValue": "8",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 51,
+          "displayValue": "51",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo2",
+      "note": "Las hiedras enlazan sus bloques de piedra y cubren sus hombros con hojas verdes. Avanza con calma y recompone sus uniones para proteger el bosque durante largas jornadas."
+    },
+    {
+      "id": "carta-051",
+      "name": "Gólem de cristal",
+      "characteristic": "Constructor de los prismas",
+      "imageRef": "imagenes/cartas/carta-051.webp",
+      "imageAlt": "Gólem esbelto de cristal facetado trabaja sentado con una pierna recogida, orientando un prisma entre sus manos para dirigir un haz de luz entre dos piedras.",
+      "values": {
+        "atributo1": {
+          "playValue": 36,
+          "displayValue": "36",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 46,
+          "displayValue": "46",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 5,
+          "displayValue": "5",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo3",
+      "note": "Su cuerpo de cristales transparentes tiene manos de facetas finas. Calcula formas y dirige haces de luz con precisión, aunque sus articulaciones se quiebran con facilidad."
+    },
+    {
+      "id": "carta-052",
+      "name": "Gigante de las montañas",
+      "characteristic": "Constructor de las cumbres",
+      "imageRef": "imagenes/cartas/carta-052.webp",
+      "imageAlt": "Gigante de piel pétrea parda camina hacia la derecha por un paso de montaña cargando una gran losa sobre un hombro, con el brazo opuesto equilibrando el paso.",
+      "values": {
+        "atributo1": {
+          "playValue": 49,
+          "displayValue": "49",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 5,
+          "displayValue": "5",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 53,
+          "displayValue": "53",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo1",
+      "note": "De piel pétrea y hombros enormes, transporta grandes rocas entre las montañas. Resuelve las dificultades con fuerza y paciencia, manteniendo un esfuerzo que pocos pueden igualar."
+    },
+    {
+      "id": "carta-053",
+      "name": "Gigante de nieve",
+      "characteristic": "Gigante de las ventiscas",
+      "imageRef": "imagenes/cartas/carta-053.webp",
+      "imageAlt": "Gigante de nieve compacta y barba de escarcha se agacha para colocar un bloque en la parte alta de un refugio, bajo una luz azul y melocotón.",
+      "values": {
+        "atributo1": {
+          "playValue": 46,
+          "displayValue": "46",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 6,
+          "displayValue": "6",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 44,
+          "displayValue": "44",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo2",
+      "note": "Su cuerpo de nieve compacta y su barba de escarcha se recortan sobre los glaciares. Arrastra bloques helados y levanta refugios con movimientos fuertes y constantes."
+    },
+    {
+      "id": "carta-054",
+      "name": "Yeti de los abetos",
+      "characteristic": "Habitante de los abetos",
+      "imageRef": "imagenes/cartas/carta-054.webp",
+      "imageAlt": "Yeti de pelaje blanco crema trepa por un abeto inclinado, con una mano alta, otra más baja y un pie apoyado en una rama firme sobre la ladera nevada.",
+      "values": {
+        "atributo1": {
+          "playValue": 27,
+          "displayValue": "27",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 15,
+          "displayValue": "15",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 37,
+          "displayValue": "37",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo3",
+      "note": "Su espeso pelaje blanco crema y sus brazos robustos lo protegen en las laderas nevadas. Trepa entre abetos y transporta troncos durante largos recorridos."
+    },
+    {
+      "id": "carta-055",
+      "name": "Troll del puente",
+      "characteristic": "Constructor de puentes",
+      "imageRef": "imagenes/cartas/carta-055.webp",
+      "imageAlt": "Troll corpulento de piel verde grisácea examina una piedra del arco de un puente, señalando el encaje con una mano y tocándose la barbilla con la otra.",
+      "values": {
+        "atributo1": {
+          "playValue": 34,
+          "displayValue": "34",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 49,
+          "displayValue": "49",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 42,
+          "displayValue": "42",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo1",
+      "note": "Corpulento y de piel verde grisácea, examina cada piedra antes de construir. Tiene mucha fuerza y descubre fallos en cualquier puente, además de disfrutar con los acertijos."
+    },
+    {
+      "id": "carta-056",
+      "name": "Salamandra de brasas",
+      "characteristic": "Salamandra del calor",
+      "imageRef": "imagenes/cartas/carta-056.webp",
+      "imageAlt": "Pequeña salamandra oscura de manchas naranja brasa descansa sobre basalto caliente, con la cabeza elevada y la larga cola curvada ante un paisaje volcánico.",
+      "values": {
+        "atributo1": {
+          "playValue": 7,
+          "displayValue": "7",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 9,
+          "displayValue": "9",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 47,
+          "displayValue": "47",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo2",
+      "note": "Pequeña y oscura, con manchas naranjas que brillan como brasas, vive entre rocas calientes. Conserva su energía junto al fuego y soporta el calor mucho más tiempo que otras criaturas."
+    },
+    {
+      "id": "carta-057",
+      "name": "Escarabajo de hielo",
+      "characteristic": "Escarabajo acorazado",
+      "imageRef": "imagenes/cartas/carta-057.webp",
+      "imageAlt": "Escarabajo de coraza azul facetada y seis patas empuja un bloque de hielo hacia la izquierda por una pendiente nevada, bajo reflejos melocotón.",
+      "values": {
+        "atributo1": {
+          "playValue": 10,
+          "displayValue": "10",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 4,
+          "displayValue": "4",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 32,
+          "displayValue": "32",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo3",
+      "note": "Su coraza azul translúcida y sus patas cortas brillan sobre la nieve. Empuja pequeños bloques helados y se protege con una cubierta resistente, siguiendo rutas simples."
+    },
+    {
+      "id": "carta-058",
+      "name": "Rana piel de roca",
+      "characteristic": "Anfibio del camuflaje",
+      "imageRef": "imagenes/cartas/carta-058.webp",
+      "imageAlt": "Rana de piel rugosa gris con vetas verdes asoma entre piedras de un arroyo y adelanta una pata sobre los guijarros, manteniendo las patas traseras recogidas.",
+      "values": {
+        "atributo1": {
+          "playValue": 12,
+          "displayValue": "12",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 43,
+          "displayValue": "43",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 30,
+          "displayValue": "30",
+          "unit": ""
+        }
+      },
+      "roundAttribute": "atributo1",
+      "note": "Su piel rugosa y gris parece piedra, con pequeñas vetas verdes. Se camufla entre las rocas y descubre senderos que otros pasan por alto, usando más astucia que poder."
+    }
+  ]
+}

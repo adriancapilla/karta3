@@ -1,0 +1,45 @@
+
+Running 8 tests using 1 worker
+
+(node:28628) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 tests\browser\cardTitleFit.spec.ts:29:131 › ADENDA B17 T/G/C generica PLAY_VALUE: máximo, banda, contenido y Resistencia (6.9s)
+  ok 2 tests\browser\cardTitleFit.spec.ts:29:131 › ADENDA B17 T/G/C generica DISPLAY_VALUE: máximo, banda, contenido y Resistencia (5.2s)
+  ok 3 tests\browser\cardTitleFit.spec.ts:29:131 › ADENDA B17 T/G/C sistema-solar PLAY_VALUE: máximo, banda, contenido y Resistencia (5.2s)
+  ok 4 tests\browser\cardTitleFit.spec.ts:29:131 › ADENDA B17 T/G/C sistema-solar DISPLAY_VALUE: máximo, banda, contenido y Resistencia (5.2s)
+  ok 5 tests\browser\cardTitleFit.spec.ts:29:131 › ADENDA B17 T/G/C criaturas-magicas PLAY_VALUE: máximo, banda, contenido y Resistencia (5.1s)
+  ok 6 tests\browser\cardTitleFit.spec.ts:29:131 › ADENDA B17 T/G/C criaturas-magicas DISPLAY_VALUE: máximo, banda, contenido y Resistencia (5.1s)
+  x  7 tests\browser\cardTitleFit.spec.ts:63:1 › ADENDA B17 T/G/I fixture válida: corte solo a12, nombre íntegro, hit real y avance único (1.3s)
+(node:5312) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 8 tests\browser\cardTitleFit.spec.ts:88:1 › ADENDA B17 T/G fuentes tardías y zoom CSS125/200 declarado: recalcula sin pausar ni neutralizar fuente (6.6s)
+
+
+  1) tests\browser\cardTitleFit.spec.ts:63:1 › ADENDA B17 T/G/I fixture válida: corte solo a12, nombre íntegro, hit real y avance único
+
+    Error: expect(received).toBeCloseTo(expected, precision)
+
+    Expected: 24
+    Received: 32
+
+    Expected precision:    1
+    Expected difference: < 0.05
+    Received difference:   8
+
+       at ..\support\cardTitleGeometry.ts:70
+
+      68 |   expect(g.size).toBeGreaterThanOrEqual(12); expect(g.size).toBeLessThanOrEqual(g.base);
+      69 |   expect(g.whiteSpace).toBe('nowrap'); expect(g.textRects).toHaveLength(1);
+    > 70 |   expect(g.heading.height).toBeCloseTo(g.referenceBand, 1);
+         |                            ^
+      71 |   expect(g.available + g.icon.width + g.gap + g.titleMargins + g.iconMargins).toBeCloseTo(g.heading.width, 1);
+      72 |   if (g.minWidth > g.available + 0.02) {
+      73 |     expect(g.size).toBe(12); expect(g.overflow).toBe('hidden'); expect(g.textOverflow).toBe('clip');
+        at assertFittedTitle (E:\KARTA3\KARTA3_IA\APP\karta3\tests\support\cardTitleGeometry.ts:70:28)
+        at E:\KARTA3\KARTA3_IA\APP\karta3\tests\browser\cardTitleFit.spec.ts:75:22
+
+    Error Context: test-results\cardTitleFit-ADENDA-B17-T--eca8a-gro-hit-real-y-avance-único\error-context.md
+
+  1 failed
+    tests\browser\cardTitleFit.spec.ts:63:1 › ADENDA B17 T/G/I fixture válida: corte solo a12, nombre íntegro, hit real y avance único
+  7 passed (43.0s)

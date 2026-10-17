@@ -1,0 +1,1995 @@
+{
+  "measurements": [
+    {
+      "columns": {
+        "scale": 1,
+        "card": {
+          "x": 309,
+          "y": 645.109375,
+          "width": 230,
+          "height": 321,
+          "bottom": 966.109375
+        },
+        "table": {
+          "x": 322,
+          "y": 868.859375,
+          "width": 204,
+          "height": 86,
+          "bottom": 954.859375
+        },
+        "layout": "fixed",
+        "declaredAttributeWidth": "110.421875px",
+        "columns": [
+          {
+            "row": {
+              "x": 322,
+              "y": 868.859375,
+              "width": 204,
+              "height": 28.5,
+              "bottom": 897.359375
+            },
+            "attribute": {
+              "text": " Magnitud 1",
+              "box": {
+                "x": 322,
+                "y": 868.859375,
+                "width": 110.421875,
+                "height": 28.5,
+                "bottom": 897.359375
+              },
+              "cssWidth": "110.422px",
+              "clientWidth": 110,
+              "offsetWidth": 110,
+              "useful": 104.421875,
+              "padding": [
+                3,
+                3
+              ],
+              "borders": [
+                0,
+                0
+              ],
+              "wholeWidth": 104.421875,
+              "font": "700 14px B17ColumnsMono, monospace",
+              "align": "left",
+              "wrapping": "anywhere",
+              "ranges": [
+                {
+                  "x": 325,
+                  "width": 20.40625,
+                  "top": 874.859375,
+                  "bottom": 890.859375
+                },
+                {
+                  "x": 337,
+                  "width": 8.40625,
+                  "top": 874.859375,
+                  "bottom": 890.859375
+                },
+                {
+                  "x": 345.40625,
+                  "width": 84.015625,
+                  "top": 874.859375,
+                  "bottom": 890.859375
+                }
+              ]
+            },
+            "value": {
+              "text": "2",
+              "box": {
+                "x": 432.421875,
+                "y": 868.859375,
+                "width": 93.578125,
+                "height": 28.5,
+                "bottom": 897.359375
+              },
+              "cssWidth": "93.5781px",
+              "clientWidth": 94,
+              "offsetWidth": 94,
+              "useful": 89.578125,
+              "padding": [
+                2,
+                2
+              ],
+              "borders": [
+                0,
+                0
+              ],
+              "wholeWidth": 8.40625,
+              "font": "14px B17ColumnsMono, monospace",
+              "align": "right",
+              "wrapping": "anywhere",
+              "ranges": [
+                {
+                  "x": 515.59375,
+                  "width": 8.40625,
+                  "top": 874.859375,
+                  "bottom": 890.859375
+                }
+              ]
+            }
+          },
+          {
+            "row": {
+              "x": 322,
+              "y": 897.359375,
+              "width": 204,
+              "height": 29,
+              "bottom": 926.359375
+            },
+            "attribute": {
+              "text": "▲ Magnitud 2",
+              "box": {
+                "x": 322,
+                "y": 897.359375,
+                "width": 110.421875,
+                "height": 29,
+                "bottom": 926.359375
+              },
+              "cssWidth": "110.422px",
+              "clientWidth": 110,
+              "offsetWidth": 110,
+              "useful": 104.421875,
+              "padding": [
+                3,
+                3
+              ],
+              "borders": [
+                0,
+                0
+              ],
+              "wholeWidth": 100.828125,
+              "font": "700 14px B17ColumnsMono, monospace",
+              "align": "left",
+              "wrapping": "anywhere",
+              "ranges": [
+                {
+                  "x": 325,
+                  "width": 8.40625,
+                  "top": 903.859375,
+                  "bottom": 919.859375
+                },
+                {
+                  "x": 333.40625,
+                  "width": 8.40625,
+                  "top": 903.859375,
+                  "bottom": 919.859375
+                },
+                {
+                  "x": 325,
+                  "width": 8.40625,
+                  "top": 903.859375,
+                  "bottom": 919.859375
+                },
+                {
+                  "x": 333.40625,
+                  "width": 8.40625,
+                  "top": 903.859375,
+                  "bottom": 919.859375
+                },
+                {
+                  "x": 341.8125,
+                  "width": 84.015625,
+                  "top": 903.859375,
+                  "bottom": 919.859375
+                }
+              ]
+            },
+            "value": {
+              "text": "2",
+              "box": {
+                "x": 432.421875,
+                "y": 897.359375,
+                "width": 93.578125,
+                "height": 29,
+                "bottom": 926.359375
+              },
+              "cssWidth": "93.5781px",
+              "clientWidth": 94,
+              "offsetWidth": 94,
+              "useful": 89.578125,
+              "padding": [
+                2,
+                2
+              ],
+              "borders": [
+                0,
+                0
+              ],
+              "wholeWidth": 8.40625,
+              "font": "14px B17ColumnsMono, monospace",
+              "align": "right",
+              "wrapping": "anywhere",
+              "ranges": [
+                {
+                  "x": 515.59375,
+                  "width": 8.40625,
+                  "top": 903.859375,
+                  "bottom": 919.859375
+                }
+              ]
+            }
+          },
+          {
+            "row": {
+              "x": 322,
+              "y": 926.359375,
+              "width": 204,
+              "height": 28.5,
+              "bottom": 954.859375
+            },
+            "attribute": {
+              "text": "■ Magnitud 3",
+              "box": {
+                "x": 322,
+                "y": 926.359375,
+                "width": 110.421875,
+                "height": 28.5,
+                "bottom": 954.859375
+              },
+              "cssWidth": "110.422px",
+              "clientWidth": 110,
+              "offsetWidth": 110,
+              "useful": 104.421875,
+              "padding": [
+                3,
+                3
+              ],
+              "borders": [
+                0,
+                0
+              ],
+              "wholeWidth": 100.828125,
+              "font": "700 14px B17ColumnsMono, monospace",
+              "align": "left",
+              "wrapping": "anywhere",
+              "ranges": [
+                {
+                  "x": 325,
+                  "width": 8.40625,
+                  "top": 932.859375,
+                  "bottom": 948.859375
+                },
+                {
+                  "x": 333.40625,
+                  "width": 8.40625,
+                  "top": 932.859375,
+                  "bottom": 948.859375
+                },
+                {
+                  "x": 325,
+                  "width": 8.40625,
+                  "top": 932.859375,
+                  "bottom": 948.859375
+                },
+                {
+                  "x": 333.40625,
+                  "width": 8.40625,
+                  "top": 932.859375,
+                  "bottom": 948.859375
+                },
+                {
+                  "x": 341.8125,
+                  "width": 84.015625,
+                  "top": 932.859375,
+                  "bottom": 948.859375
+                }
+              ]
+            },
+            "value": {
+              "text": "2",
+              "box": {
+                "x": 432.421875,
+                "y": 926.359375,
+                "width": 93.578125,
+                "height": 28.5,
+                "bottom": 954.859375
+              },
+              "cssWidth": "93.5781px",
+              "clientWidth": 94,
+              "offsetWidth": 94,
+              "useful": 89.578125,
+              "padding": [
+                2,
+                2
+              ],
+              "borders": [
+                0,
+                0
+              ],
+              "wholeWidth": 8.40625,
+              "font": "14px B17ColumnsMono, monospace",
+              "align": "right",
+              "wrapping": "anywhere",
+              "ranges": [
+                {
+                  "x": 515.59375,
+                  "width": 8.40625,
+                  "top": 932.859375,
+                  "bottom": 948.859375
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "geometry": {
+        "name": "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+        "title": {
+          "x": 322,
+          "y": 658.109375,
+          "width": 182.484375,
+          "height": 16,
+          "right": 504.484375,
+          "bottom": 674.109375
+        },
+        "heading": {
+          "x": 322,
+          "y": 658.109375,
+          "width": 204,
+          "height": 24,
+          "right": 526,
+          "bottom": 682.109375
+        },
+        "icon": {
+          "x": 510.484375,
+          "y": 658.109375,
+          "width": 15.515625,
+          "height": 24,
+          "right": 526,
+          "bottom": 682.109375
+        },
+        "size": 12,
+        "base": 16,
+        "min": 12,
+        "available": 182.484375,
+        "baseWidth": 1607.8125,
+        "minWidth": 1205.859375,
+        "nextWidth": 1215.921875,
+        "referenceBand": 24,
+        "textRects": [
+          {
+            "x": 322,
+            "y": 658.109375,
+            "width": 1205.859375,
+            "height": 16,
+            "right": 1527.859375,
+            "bottom": 674.109375
+          }
+        ],
+        "family": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "weight": "700",
+        "lineHeight": "normal",
+        "letterSpacing": "normal",
+        "gap": 6,
+        "titleMargins": 0,
+        "iconMargins": 0,
+        "whiteSpace": "nowrap",
+        "overflow": "hidden",
+        "textOverflow": "clip",
+        "card": {
+          "x": 309,
+          "y": 645.109375,
+          "width": 230,
+          "height": 321,
+          "right": 539,
+          "bottom": 966.109375
+        },
+        "image": {
+          "x": 309,
+          "y": 686.109375,
+          "width": 230,
+          "height": 172.5,
+          "right": 539,
+          "bottom": 858.609375
+        },
+        "table": {
+          "x": 322,
+          "y": 868.859375,
+          "width": 204,
+          "height": 86,
+          "right": 526,
+          "bottom": 954.859375
+        },
+        "gaps": [
+          10.25,
+          10.25
+        ],
+        "rows": [
+          {
+            "text": " Magnitud 12",
+            "box": {
+              "x": 322,
+              "y": 868.859375,
+              "width": 204,
+              "height": 28.5,
+              "right": 526,
+              "bottom": 897.359375
+            },
+            "content": [
+              {
+                "top": 874.859375,
+                "bottom": 890.859375,
+                "height": 16
+              },
+              {
+                "top": 874.859375,
+                "bottom": 890.859375,
+                "height": 16
+              },
+              {
+                "top": 874.859375,
+                "bottom": 890.859375,
+                "height": 16
+              },
+              {
+                "top": 874.859375,
+                "bottom": 890.859375,
+                "height": 16
+              }
+            ]
+          },
+          {
+            "text": "▲ Magnitud 22",
+            "box": {
+              "x": 322,
+              "y": 897.359375,
+              "width": 204,
+              "height": 29,
+              "right": 526,
+              "bottom": 926.359375
+            },
+            "content": [
+              {
+                "top": 903.859375,
+                "bottom": 919.859375,
+                "height": 16
+              },
+              {
+                "top": 903.859375,
+                "bottom": 919.859375,
+                "height": 16
+              },
+              {
+                "top": 903.859375,
+                "bottom": 919.859375,
+                "height": 16
+              },
+              {
+                "top": 903.859375,
+                "bottom": 919.859375,
+                "height": 16
+              },
+              {
+                "top": 903.859375,
+                "bottom": 919.859375,
+                "height": 16
+              },
+              {
+                "top": 903.859375,
+                "bottom": 919.859375,
+                "height": 16
+              }
+            ]
+          },
+          {
+            "text": "■ Magnitud 32",
+            "box": {
+              "x": 322,
+              "y": 926.359375,
+              "width": 204,
+              "height": 28.5,
+              "right": 526,
+              "bottom": 954.859375
+            },
+            "content": [
+              {
+                "top": 932.859375,
+                "bottom": 948.859375,
+                "height": 16
+              },
+              {
+                "top": 932.859375,
+                "bottom": 948.859375,
+                "height": 16
+              },
+              {
+                "top": 932.859375,
+                "bottom": 948.859375,
+                "height": 16
+              },
+              {
+                "top": 932.859375,
+                "bottom": 948.859375,
+                "height": 16
+              },
+              {
+                "top": 932.859375,
+                "bottom": 948.859375,
+                "height": 16
+              },
+              {
+                "top": 932.859375,
+                "bottom": 948.859375,
+                "height": 16
+              }
+            ]
+          }
+        ],
+        "padding": "6px",
+        "d": {
+          "box": {
+            "x": 490,
+            "y": 809.609375,
+            "width": 44,
+            "height": 44,
+            "right": 534,
+            "bottom": 853.609375
+          },
+          "received": true,
+          "tag": "SPAN",
+          "className": null
+        },
+        "play": {
+          "box": {
+            "x": 309,
+            "y": 974.109375,
+            "width": 230,
+            "height": 48,
+            "right": 539,
+            "bottom": 1022.109375
+          },
+          "received": false
+        },
+        "useful": "1233",
+        "viewport": {
+          "width": 1280,
+          "height": 844,
+          "dpr": 1,
+          "scale": 1,
+          "cssZoom": "1"
+        }
+      },
+      "fonts": {
+        "title": {
+          "fonts": [
+            {
+              "familyName": "Segoe UI",
+              "postScriptName": "SegoeUI-Bold",
+              "isCustomFont": false,
+              "glyphCount": 100
+            }
+          ]
+        },
+        "lastAttribute": {
+          "fonts": [
+            {
+              "familyName": "Courier New",
+              "postScriptName": "CourierNewPSMT",
+              "isCustomFont": false,
+              "glyphCount": 12
+            }
+          ]
+        },
+        "ownSymbol": {
+          "fonts": [
+            {
+              "familyName": "Segoe UI",
+              "postScriptName": "SegoeUI",
+              "isCustomFont": false,
+              "glyphCount": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "columns": {
+        "scale": 1,
+        "card": {
+          "x": 551,
+          "y": 645.109375,
+          "width": 230,
+          "height": 321,
+          "bottom": 966.109375
+        },
+        "table": {
+          "x": 564,
+          "y": 868.859375,
+          "width": 204,
+          "height": 86,
+          "bottom": 954.859375
+        },
+        "layout": "fixed",
+        "declaredAttributeWidth": "110.421875px",
+        "columns": [
+          {
+            "row": {
+              "x": 564,
+              "y": 868.859375,
+              "width": 204,
+              "height": 28.5,
+              "bottom": 897.359375
+            },
+            "attribute": {
+              "text": " Magnitud 1",
+              "box": {
+                "x": 564,
+                "y": 868.859375,
+                "width": 110.421875,
+                "height": 28.5,
+                "bottom": 897.359375
+              },
+              "cssWidth": "110.422px",
+              "clientWidth": 110,
+              "offsetWidth": 110,
+              "useful": 104.421875,
+              "padding": [
+                3,
+                3
+              ],
+              "borders": [
+                0,
+                0
+              ],
+              "wholeWidth": 104.421875,
+              "font": "700 14px B17ColumnsMono, monospace",
+              "align": "left",
+              "wrapping": "anywhere",
+              "ranges": [
+                {
+                  "x": 567,
+                  "width": 20.40625,
+                  "top": 874.859375,
+                  "bottom": 890.859375
+                },
+                {
+                  "x": 579,
+                  "width": 8.40625,
+                  "top": 874.859375,
+                  "bottom": 890.859375
+                },
+                {
+                  "x": 587.40625,
+                  "width": 84.015625,
+                  "top": 874.859375,
+                  "bottom": 890.859375
+                }
+              ]
+            },
+            "value": {
+              "text": "4",
+              "box": {
+                "x": 674.421875,
+                "y": 868.859375,
+                "width": 93.578125,
+                "height": 28.5,
+                "bottom": 897.359375
+              },
+              "cssWidth": "93.5781px",
+              "clientWidth": 94,
+              "offsetWidth": 94,
+              "useful": 89.578125,
+              "padding": [
+                2,
+                2
+              ],
+              "borders": [
+                0,
+                0
+              ],
+              "wholeWidth": 8.40625,
+              "font": "14px B17ColumnsMono, monospace",
+              "align": "right",
+              "wrapping": "anywhere",
+              "ranges": [
+                {
+                  "x": 757.59375,
+                  "width": 8.40625,
+                  "top": 874.859375,
+                  "bottom": 890.859375
+                }
+              ]
+            }
+          },
+          {
+            "row": {
+              "x": 564,
+              "y": 897.359375,
+              "width": 204,
+              "height": 29,
+              "bottom": 926.359375
+            },
+            "attribute": {
+              "text": "▲ Magnitud 2",
+              "box": {
+                "x": 564,
+                "y": 897.359375,
+                "width": 110.421875,
+                "height": 29,
+                "bottom": 926.359375
+              },
+              "cssWidth": "110.422px",
+              "clientWidth": 110,
+              "offsetWidth": 110,
+              "useful": 104.421875,
+              "padding": [
+                3,
+                3
+              ],
+              "borders": [
+                0,
+                0
+              ],
+              "wholeWidth": 100.828125,
+              "font": "700 14px B17ColumnsMono, monospace",
+              "align": "left",
+              "wrapping": "anywhere",
+              "ranges": [
+                {
+                  "x": 567,
+                  "width": 8.40625,
+                  "top": 903.859375,
+                  "bottom": 919.859375
+                },
+                {
+                  "x": 575.40625,
+                  "width": 8.40625,
+                  "top": 903.859375,
+                  "bottom": 919.859375
+                },
+                {
+                  "x": 567,
+                  "width": 8.40625,
+                  "top": 903.859375,
+                  "bottom": 919.859375
+                },
+                {
+                  "x": 575.40625,
+                  "width": 8.40625,
+                  "top": 903.859375,
+                  "bottom": 919.859375
+                },
+                {
+                  "x": 583.8125,
+                  "width": 84.015625,
+                  "top": 903.859375,
+                  "bottom": 919.859375
+                }
+              ]
+            },
+            "value": {
+              "text": "4",
+              "box": {
+                "x": 674.421875,
+                "y": 897.359375,
+                "width": 93.578125,
+                "height": 29,
+                "bottom": 926.359375
+              },
+              "cssWidth": "93.5781px",
+              "clientWidth": 94,
+              "offsetWidth": 94,
+              "useful": 89.578125,
+              "padding": [
+                2,
+                2
+              ],
+              "borders": [
+                0,
+                0
+              ],
+              "wholeWidth": 8.40625,
+              "font": "14px B17ColumnsMono, monospace",
+              "align": "right",
+              "wrapping": "anywhere",
+              "ranges": [
+                {
+                  "x": 757.59375,
+                  "width": 8.40625,
+                  "top": 903.859375,
+                  "bottom": 919.859375
+                }
+              ]
+            }
+          },
+          {
+            "row": {
+              "x": 564,
+              "y": 926.359375,
+              "width": 204,
+              "height": 28.5,
+              "bottom": 954.859375
+            },
+            "attribute": {
+              "text": "■ Magnitud 3",
+              "box": {
+                "x": 564,
+                "y": 926.359375,
+                "width": 110.421875,
+                "height": 28.5,
+                "bottom": 954.859375
+              },
+              "cssWidth": "110.422px",
+              "clientWidth": 110,
+              "offsetWidth": 110,
+              "useful": 104.421875,
+              "padding": [
+                3,
+                3
+              ],
+              "borders": [
+                0,
+                0
+              ],
+              "wholeWidth": 100.828125,
+              "font": "700 14px B17ColumnsMono, monospace",
+              "align": "left",
+              "wrapping": "anywhere",
+              "ranges": [
+                {
+                  "x": 567,
+                  "width": 8.40625,
+                  "top": 932.859375,
+                  "bottom": 948.859375
+                },
+                {
+                  "x": 575.40625,
+                  "width": 8.40625,
+                  "top": 932.859375,
+                  "bottom": 948.859375
+                },
+                {
+                  "x": 567,
+                  "width": 8.40625,
+                  "top": 932.859375,
+                  "bottom": 948.859375
+                },
+                {
+                  "x": 575.40625,
+                  "width": 8.40625,
+                  "top": 932.859375,
+                  "bottom": 948.859375
+                },
+                {
+                  "x": 583.8125,
+                  "width": 84.015625,
+                  "top": 932.859375,
+                  "bottom": 948.859375
+                }
+              ]
+            },
+            "value": {
+              "text": "4",
+              "box": {
+                "x": 674.421875,
+                "y": 926.359375,
+                "width": 93.578125,
+                "height": 28.5,
+                "bottom": 954.859375
+              },
+              "cssWidth": "93.5781px",
+              "clientWidth": 94,
+              "offsetWidth": 94,
+              "useful": 89.578125,
+              "padding": [
+                2,
+                2
+              ],
+              "borders": [
+                0,
+                0
+              ],
+              "wholeWidth": 8.40625,
+              "font": "14px B17ColumnsMono, monospace",
+              "align": "right",
+              "wrapping": "anywhere",
+              "ranges": [
+                {
+                  "x": 757.59375,
+                  "width": 8.40625,
+                  "top": 932.859375,
+                  "bottom": 948.859375
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "geometry": {
+        "name": "Carta de prueba 4",
+        "title": {
+          "x": 564,
+          "y": 658.109375,
+          "width": 182.484375,
+          "height": 21,
+          "right": 746.484375,
+          "bottom": 679.109375
+        },
+        "heading": {
+          "x": 564,
+          "y": 658.109375,
+          "width": 204,
+          "height": 24,
+          "right": 768,
+          "bottom": 682.109375
+        },
+        "icon": {
+          "x": 752.484375,
+          "y": 658.109375,
+          "width": 15.515625,
+          "height": 24,
+          "right": 768,
+          "bottom": 682.109375
+        },
+        "size": 16,
+        "base": 16,
+        "min": 12,
+        "available": 182.484375,
+        "baseWidth": 134.3125,
+        "minWidth": 100.734375,
+        "nextWidth": 134.3125,
+        "referenceBand": 24,
+        "textRects": [
+          {
+            "x": 564,
+            "y": 658.109375,
+            "width": 134.3125,
+            "height": 21,
+            "right": 698.3125,
+            "bottom": 679.109375
+          }
+        ],
+        "family": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "weight": "700",
+        "lineHeight": "normal",
+        "letterSpacing": "normal",
+        "gap": 6,
+        "titleMargins": 0,
+        "iconMargins": 0,
+        "whiteSpace": "nowrap",
+        "overflow": "visible",
+        "textOverflow": "clip",
+        "card": {
+          "x": 551,
+          "y": 645.109375,
+          "width": 230,
+          "height": 321,
+          "right": 781,
+          "bottom": 966.109375
+        },
+        "image": {
+          "x": 551,
+          "y": 686.109375,
+          "width": 230,
+          "height": 172.5,
+          "right": 781,
+          "bottom": 858.609375
+        },
+        "table": {
+          "x": 564,
+          "y": 868.859375,
+          "width": 204,
+          "height": 86,
+          "right": 768,
+          "bottom": 954.859375
+        },
+        "gaps": [
+          10.25,
+          10.25
+        ],
+        "rows": [
+          {
+            "text": " Magnitud 14",
+            "box": {
+              "x": 564,
+              "y": 868.859375,
+              "width": 204,
+              "height": 28.5,
+              "right": 768,
+              "bottom": 897.359375
+            },
+            "content": [
+              {
+                "top": 874.859375,
+                "bottom": 890.859375,
+                "height": 16
+              },
+              {
+                "top": 874.859375,
+                "bottom": 890.859375,
+                "height": 16
+              },
+              {
+                "top": 874.859375,
+                "bottom": 890.859375,
+                "height": 16
+              },
+              {
+                "top": 874.859375,
+                "bottom": 890.859375,
+                "height": 16
+              }
+            ]
+          },
+          {
+            "text": "▲ Magnitud 24",
+            "box": {
+              "x": 564,
+              "y": 897.359375,
+              "width": 204,
+              "height": 29,
+              "right": 768,
+              "bottom": 926.359375
+            },
+            "content": [
+              {
+                "top": 903.859375,
+                "bottom": 919.859375,
+                "height": 16
+              },
+              {
+                "top": 903.859375,
+                "bottom": 919.859375,
+                "height": 16
+              },
+              {
+                "top": 903.859375,
+                "bottom": 919.859375,
+                "height": 16
+              },
+              {
+                "top": 903.859375,
+                "bottom": 919.859375,
+                "height": 16
+              },
+              {
+                "top": 903.859375,
+                "bottom": 919.859375,
+                "height": 16
+              },
+              {
+                "top": 903.859375,
+                "bottom": 919.859375,
+                "height": 16
+              }
+            ]
+          },
+          {
+            "text": "■ Magnitud 34",
+            "box": {
+              "x": 564,
+              "y": 926.359375,
+              "width": 204,
+              "height": 28.5,
+              "right": 768,
+              "bottom": 954.859375
+            },
+            "content": [
+              {
+                "top": 932.859375,
+                "bottom": 948.859375,
+                "height": 16
+              },
+              {
+                "top": 932.859375,
+                "bottom": 948.859375,
+                "height": 16
+              },
+              {
+                "top": 932.859375,
+                "bottom": 948.859375,
+                "height": 16
+              },
+              {
+                "top": 932.859375,
+                "bottom": 948.859375,
+                "height": 16
+              },
+              {
+                "top": 932.859375,
+                "bottom": 948.859375,
+                "height": 16
+              },
+              {
+                "top": 932.859375,
+                "bottom": 948.859375,
+                "height": 16
+              }
+            ]
+          }
+        ],
+        "padding": "6px",
+        "d": {
+          "box": {
+            "x": 732,
+            "y": 809.609375,
+            "width": 44,
+            "height": 44,
+            "right": 776,
+            "bottom": 853.609375
+          },
+          "received": true,
+          "tag": "SPAN",
+          "className": null
+        },
+        "play": {
+          "box": {
+            "x": 551,
+            "y": 974.109375,
+            "width": 230,
+            "height": 48,
+            "right": 781,
+            "bottom": 1022.109375
+          },
+          "received": false
+        },
+        "useful": "1233",
+        "viewport": {
+          "width": 1280,
+          "height": 844,
+          "dpr": 1,
+          "scale": 1,
+          "cssZoom": "1"
+        }
+      },
+      "fonts": {
+        "title": {
+          "fonts": [
+            {
+              "familyName": "Segoe UI",
+              "postScriptName": "SegoeUI-Bold",
+              "isCustomFont": false,
+              "glyphCount": 17
+            }
+          ]
+        },
+        "lastAttribute": {
+          "fonts": [
+            {
+              "familyName": "Courier New",
+              "postScriptName": "CourierNewPSMT",
+              "isCustomFont": false,
+              "glyphCount": 12
+            }
+          ]
+        },
+        "ownSymbol": {
+          "fonts": [
+            {
+              "familyName": "Segoe UI",
+              "postScriptName": "SegoeUI",
+              "isCustomFont": false,
+              "glyphCount": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "columns": {
+        "scale": 1,
+        "card": {
+          "x": 793,
+          "y": 645.109375,
+          "width": 230,
+          "height": 321,
+          "bottom": 966.109375
+        },
+        "table": {
+          "x": 806,
+          "y": 868.859375,
+          "width": 204,
+          "height": 86,
+          "bottom": 954.859375
+        },
+        "layout": "fixed",
+        "declaredAttributeWidth": "110.421875px",
+        "columns": [
+          {
+            "row": {
+              "x": 806,
+              "y": 868.859375,
+              "width": 204,
+              "height": 28.5,
+              "bottom": 897.359375
+            },
+            "attribute": {
+              "text": " Magnitud 1",
+              "box": {
+                "x": 806,
+                "y": 868.859375,
+                "width": 110.421875,
+                "height": 28.5,
+                "bottom": 897.359375
+              },
+              "cssWidth": "110.422px",
+              "clientWidth": 110,
+              "offsetWidth": 110,
+              "useful": 104.421875,
+              "padding": [
+                3,
+                3
+              ],
+              "borders": [
+                0,
+                0
+              ],
+              "wholeWidth": 104.421875,
+              "font": "700 14px B17ColumnsMono, monospace",
+              "align": "left",
+              "wrapping": "anywhere",
+              "ranges": [
+                {
+                  "x": 809,
+                  "width": 20.40625,
+                  "top": 874.859375,
+                  "bottom": 890.859375
+                },
+                {
+                  "x": 821,
+                  "width": 8.40625,
+                  "top": 874.859375,
+                  "bottom": 890.859375
+                },
+                {
+                  "x": 829.40625,
+                  "width": 84.015625,
+                  "top": 874.859375,
+                  "bottom": 890.859375
+                }
+              ]
+            },
+            "value": {
+              "text": "6",
+              "box": {
+                "x": 916.421875,
+                "y": 868.859375,
+                "width": 93.578125,
+                "height": 28.5,
+                "bottom": 897.359375
+              },
+              "cssWidth": "93.5781px",
+              "clientWidth": 94,
+              "offsetWidth": 94,
+              "useful": 89.578125,
+              "padding": [
+                2,
+                2
+              ],
+              "borders": [
+                0,
+                0
+              ],
+              "wholeWidth": 8.40625,
+              "font": "14px B17ColumnsMono, monospace",
+              "align": "right",
+              "wrapping": "anywhere",
+              "ranges": [
+                {
+                  "x": 999.59375,
+                  "width": 8.40625,
+                  "top": 874.859375,
+                  "bottom": 890.859375
+                }
+              ]
+            }
+          },
+          {
+            "row": {
+              "x": 806,
+              "y": 897.359375,
+              "width": 204,
+              "height": 29,
+              "bottom": 926.359375
+            },
+            "attribute": {
+              "text": "▲ Magnitud 2",
+              "box": {
+                "x": 806,
+                "y": 897.359375,
+                "width": 110.421875,
+                "height": 29,
+                "bottom": 926.359375
+              },
+              "cssWidth": "110.422px",
+              "clientWidth": 110,
+              "offsetWidth": 110,
+              "useful": 104.421875,
+              "padding": [
+                3,
+                3
+              ],
+              "borders": [
+                0,
+                0
+              ],
+              "wholeWidth": 100.828125,
+              "font": "700 14px B17ColumnsMono, monospace",
+              "align": "left",
+              "wrapping": "anywhere",
+              "ranges": [
+                {
+                  "x": 809,
+                  "width": 8.40625,
+                  "top": 903.859375,
+                  "bottom": 919.859375
+                },
+                {
+                  "x": 817.40625,
+                  "width": 8.40625,
+                  "top": 903.859375,
+                  "bottom": 919.859375
+                },
+                {
+                  "x": 809,
+                  "width": 8.40625,
+                  "top": 903.859375,
+                  "bottom": 919.859375
+                },
+                {
+                  "x": 817.40625,
+                  "width": 8.40625,
+                  "top": 903.859375,
+                  "bottom": 919.859375
+                },
+                {
+                  "x": 825.8125,
+                  "width": 84.015625,
+                  "top": 903.859375,
+                  "bottom": 919.859375
+                }
+              ]
+            },
+            "value": {
+              "text": "6",
+              "box": {
+                "x": 916.421875,
+                "y": 897.359375,
+                "width": 93.578125,
+                "height": 29,
+                "bottom": 926.359375
+              },
+              "cssWidth": "93.5781px",
+              "clientWidth": 94,
+              "offsetWidth": 94,
+              "useful": 89.578125,
+              "padding": [
+                2,
+                2
+              ],
+              "borders": [
+                0,
+                0
+              ],
+              "wholeWidth": 8.40625,
+              "font": "14px B17ColumnsMono, monospace",
+              "align": "right",
+              "wrapping": "anywhere",
+              "ranges": [
+                {
+                  "x": 999.59375,
+                  "width": 8.40625,
+                  "top": 903.859375,
+                  "bottom": 919.859375
+                }
+              ]
+            }
+          },
+          {
+            "row": {
+              "x": 806,
+              "y": 926.359375,
+              "width": 204,
+              "height": 28.5,
+              "bottom": 954.859375
+            },
+            "attribute": {
+              "text": "■ Magnitud 3",
+              "box": {
+                "x": 806,
+                "y": 926.359375,
+                "width": 110.421875,
+                "height": 28.5,
+                "bottom": 954.859375
+              },
+              "cssWidth": "110.422px",
+              "clientWidth": 110,
+              "offsetWidth": 110,
+              "useful": 104.421875,
+              "padding": [
+                3,
+                3
+              ],
+              "borders": [
+                0,
+                0
+              ],
+              "wholeWidth": 100.828125,
+              "font": "700 14px B17ColumnsMono, monospace",
+              "align": "left",
+              "wrapping": "anywhere",
+              "ranges": [
+                {
+                  "x": 809,
+                  "width": 8.40625,
+                  "top": 932.859375,
+                  "bottom": 948.859375
+                },
+                {
+                  "x": 817.40625,
+                  "width": 8.40625,
+                  "top": 932.859375,
+                  "bottom": 948.859375
+                },
+                {
+                  "x": 809,
+                  "width": 8.40625,
+                  "top": 932.859375,
+                  "bottom": 948.859375
+                },
+                {
+                  "x": 817.40625,
+                  "width": 8.40625,
+                  "top": 932.859375,
+                  "bottom": 948.859375
+                },
+                {
+                  "x": 825.8125,
+                  "width": 84.015625,
+                  "top": 932.859375,
+                  "bottom": 948.859375
+                }
+              ]
+            },
+            "value": {
+              "text": "6",
+              "box": {
+                "x": 916.421875,
+                "y": 926.359375,
+                "width": 93.578125,
+                "height": 28.5,
+                "bottom": 954.859375
+              },
+              "cssWidth": "93.5781px",
+              "clientWidth": 94,
+              "offsetWidth": 94,
+              "useful": 89.578125,
+              "padding": [
+                2,
+                2
+              ],
+              "borders": [
+                0,
+                0
+              ],
+              "wholeWidth": 8.40625,
+              "font": "14px B17ColumnsMono, monospace",
+              "align": "right",
+              "wrapping": "anywhere",
+              "ranges": [
+                {
+                  "x": 999.59375,
+                  "width": 8.40625,
+                  "top": 932.859375,
+                  "bottom": 948.859375
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "geometry": {
+        "name": "Carta de prueba 6",
+        "title": {
+          "x": 806,
+          "y": 658.109375,
+          "width": 182.484375,
+          "height": 21,
+          "right": 988.484375,
+          "bottom": 679.109375
+        },
+        "heading": {
+          "x": 806,
+          "y": 658.109375,
+          "width": 204,
+          "height": 24,
+          "right": 1010,
+          "bottom": 682.109375
+        },
+        "icon": {
+          "x": 994.484375,
+          "y": 658.109375,
+          "width": 15.515625,
+          "height": 24,
+          "right": 1010,
+          "bottom": 682.109375
+        },
+        "size": 16,
+        "base": 16,
+        "min": 12,
+        "available": 182.484375,
+        "baseWidth": 134.3125,
+        "minWidth": 100.734375,
+        "nextWidth": 134.3125,
+        "referenceBand": 24,
+        "textRects": [
+          {
+            "x": 806,
+            "y": 658.109375,
+            "width": 134.3125,
+            "height": 21,
+            "right": 940.3125,
+            "bottom": 679.109375
+          }
+        ],
+        "family": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "weight": "700",
+        "lineHeight": "normal",
+        "letterSpacing": "normal",
+        "gap": 6,
+        "titleMargins": 0,
+        "iconMargins": 0,
+        "whiteSpace": "nowrap",
+        "overflow": "visible",
+        "textOverflow": "clip",
+        "card": {
+          "x": 793,
+          "y": 645.109375,
+          "width": 230,
+          "height": 321,
+          "right": 1023,
+          "bottom": 966.109375
+        },
+        "image": {
+          "x": 793,
+          "y": 686.109375,
+          "width": 230,
+          "height": 172.5,
+          "right": 1023,
+          "bottom": 858.609375
+        },
+        "table": {
+          "x": 806,
+          "y": 868.859375,
+          "width": 204,
+          "height": 86,
+          "right": 1010,
+          "bottom": 954.859375
+        },
+        "gaps": [
+          10.25,
+          10.25
+        ],
+        "rows": [
+          {
+            "text": " Magnitud 16",
+            "box": {
+              "x": 806,
+              "y": 868.859375,
+              "width": 204,
+              "height": 28.5,
+              "right": 1010,
+              "bottom": 897.359375
+            },
+            "content": [
+              {
+                "top": 874.859375,
+                "bottom": 890.859375,
+                "height": 16
+              },
+              {
+                "top": 874.859375,
+                "bottom": 890.859375,
+                "height": 16
+              },
+              {
+                "top": 874.859375,
+                "bottom": 890.859375,
+                "height": 16
+              },
+              {
+                "top": 874.859375,
+                "bottom": 890.859375,
+                "height": 16
+              }
+            ]
+          },
+          {
+            "text": "▲ Magnitud 26",
+            "box": {
+              "x": 806,
+              "y": 897.359375,
+              "width": 204,
+              "height": 29,
+              "right": 1010,
+              "bottom": 926.359375
+            },
+            "content": [
+              {
+                "top": 903.859375,
+                "bottom": 919.859375,
+                "height": 16
+              },
+              {
+                "top": 903.859375,
+                "bottom": 919.859375,
+                "height": 16
+              },
+              {
+                "top": 903.859375,
+                "bottom": 919.859375,
+                "height": 16
+              },
+              {
+                "top": 903.859375,
+                "bottom": 919.859375,
+                "height": 16
+              },
+              {
+                "top": 903.859375,
+                "bottom": 919.859375,
+                "height": 16
+              },
+              {
+                "top": 903.859375,
+                "bottom": 919.859375,
+                "height": 16
+              }
+            ]
+          },
+          {
+            "text": "■ Magnitud 36",
+            "box": {
+              "x": 806,
+              "y": 926.359375,
+              "width": 204,
+              "height": 28.5,
+              "right": 1010,
+              "bottom": 954.859375
+            },
+            "content": [
+              {
+                "top": 932.859375,
+                "bottom": 948.859375,
+                "height": 16
+              },
+              {
+                "top": 932.859375,
+                "bottom": 948.859375,
+                "height": 16
+              },
+              {
+                "top": 932.859375,
+                "bottom": 948.859375,
+                "height": 16
+              },
+              {
+                "top": 932.859375,
+                "bottom": 948.859375,
+                "height": 16
+              },
+              {
+                "top": 932.859375,
+                "bottom": 948.859375,
+                "height": 16
+              },
+              {
+                "top": 932.859375,
+                "bottom": 948.859375,
+                "height": 16
+              }
+            ]
+          }
+        ],
+        "padding": "6px",
+        "d": {
+          "box": {
+            "x": 974,
+            "y": 809.609375,
+            "width": 44,
+            "height": 44,
+            "right": 1018,
+            "bottom": 853.609375
+          },
+          "received": false,
+          "tag": "SECTION",
+          "className": "game-panel game-hand"
+        },
+        "play": {
+          "box": {
+            "x": 793,
+            "y": 974.109375,
+            "width": 230,
+            "height": 48,
+            "right": 1023,
+            "bottom": 1022.109375
+          },
+          "received": false
+        },
+        "useful": "1233",
+        "viewport": {
+          "width": 1280,
+          "height": 844,
+          "dpr": 1,
+          "scale": 1,
+          "cssZoom": "1"
+        }
+      },
+      "fonts": {
+        "title": {
+          "fonts": [
+            {
+              "familyName": "Segoe UI",
+              "postScriptName": "SegoeUI-Bold",
+              "isCustomFont": false,
+              "glyphCount": 17
+            }
+          ]
+        },
+        "lastAttribute": {
+          "fonts": [
+            {
+              "familyName": "Courier New",
+              "postScriptName": "CourierNewPSMT",
+              "isCustomFont": false,
+              "glyphCount": 12
+            }
+          ]
+        },
+        "ownSymbol": {
+          "fonts": [
+            {
+              "familyName": "Segoe UI",
+              "postScriptName": "SegoeUI",
+              "isCustomFont": false,
+              "glyphCount": 1
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "actionable": {
+    "name": "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+    "title": {
+      "x": 322,
+      "y": 351.109375,
+      "width": 182.484375,
+      "height": 16,
+      "right": 504.484375,
+      "bottom": 367.109375
+    },
+    "heading": {
+      "x": 322,
+      "y": 351.109375,
+      "width": 204,
+      "height": 24,
+      "right": 526,
+      "bottom": 375.109375
+    },
+    "icon": {
+      "x": 510.484375,
+      "y": 351.109375,
+      "width": 15.515625,
+      "height": 24,
+      "right": 526,
+      "bottom": 375.109375
+    },
+    "size": 12,
+    "base": 16,
+    "min": 12,
+    "available": 182.484375,
+    "baseWidth": 1607.8125,
+    "minWidth": 1205.859375,
+    "nextWidth": 1215.921875,
+    "referenceBand": 24,
+    "textRects": [
+      {
+        "x": 322,
+        "y": 351.109375,
+        "width": 1205.859375,
+        "height": 16,
+        "right": 1527.859375,
+        "bottom": 367.109375
+      }
+    ],
+    "family": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+    "weight": "700",
+    "lineHeight": "normal",
+    "letterSpacing": "normal",
+    "gap": 6,
+    "titleMargins": 0,
+    "iconMargins": 0,
+    "whiteSpace": "nowrap",
+    "overflow": "hidden",
+    "textOverflow": "clip",
+    "card": {
+      "x": 309,
+      "y": 338.109375,
+      "width": 230,
+      "height": 321,
+      "right": 539,
+      "bottom": 659.109375
+    },
+    "image": {
+      "x": 309,
+      "y": 379.109375,
+      "width": 230,
+      "height": 172.5,
+      "right": 539,
+      "bottom": 551.609375
+    },
+    "table": {
+      "x": 322,
+      "y": 561.859375,
+      "width": 204,
+      "height": 86,
+      "right": 526,
+      "bottom": 647.859375
+    },
+    "gaps": [
+      10.25,
+      10.25
+    ],
+    "rows": [
+      {
+        "text": " Magnitud 12",
+        "box": {
+          "x": 322,
+          "y": 561.859375,
+          "width": 204,
+          "height": 28.5,
+          "right": 526,
+          "bottom": 590.359375
+        },
+        "content": [
+          {
+            "top": 567.859375,
+            "bottom": 583.859375,
+            "height": 16
+          },
+          {
+            "top": 567.859375,
+            "bottom": 583.859375,
+            "height": 16
+          },
+          {
+            "top": 567.859375,
+            "bottom": 583.859375,
+            "height": 16
+          },
+          {
+            "top": 567.859375,
+            "bottom": 583.859375,
+            "height": 16
+          }
+        ]
+      },
+      {
+        "text": "▲ Magnitud 22",
+        "box": {
+          "x": 322,
+          "y": 590.359375,
+          "width": 204,
+          "height": 29,
+          "right": 526,
+          "bottom": 619.359375
+        },
+        "content": [
+          {
+            "top": 596.859375,
+            "bottom": 612.859375,
+            "height": 16
+          },
+          {
+            "top": 596.859375,
+            "bottom": 612.859375,
+            "height": 16
+          },
+          {
+            "top": 596.859375,
+            "bottom": 612.859375,
+            "height": 16
+          },
+          {
+            "top": 596.859375,
+            "bottom": 612.859375,
+            "height": 16
+          },
+          {
+            "top": 596.859375,
+            "bottom": 612.859375,
+            "height": 16
+          },
+          {
+            "top": 596.859375,
+            "bottom": 612.859375,
+            "height": 16
+          }
+        ]
+      },
+      {
+        "text": "■ Magnitud 32",
+        "box": {
+          "x": 322,
+          "y": 619.359375,
+          "width": 204,
+          "height": 28.5,
+          "right": 526,
+          "bottom": 647.859375
+        },
+        "content": [
+          {
+            "top": 625.859375,
+            "bottom": 641.859375,
+            "height": 16
+          },
+          {
+            "top": 625.859375,
+            "bottom": 641.859375,
+            "height": 16
+          },
+          {
+            "top": 625.859375,
+            "bottom": 641.859375,
+            "height": 16
+          },
+          {
+            "top": 625.859375,
+            "bottom": 641.859375,
+            "height": 16
+          },
+          {
+            "top": 625.859375,
+            "bottom": 641.859375,
+            "height": 16
+          },
+          {
+            "top": 625.859375,
+            "bottom": 641.859375,
+            "height": 16
+          }
+        ]
+      }
+    ],
+    "padding": "6px",
+    "d": {
+      "box": {
+        "x": 490,
+        "y": 502.609375,
+        "width": 44,
+        "height": 44,
+        "right": 534,
+        "bottom": 546.609375
+      },
+      "received": true,
+      "tag": "SPAN",
+      "className": null
+    },
+    "play": {
+      "box": {
+        "x": 309,
+        "y": 667.109375,
+        "width": 230,
+        "height": 48,
+        "right": 539,
+        "bottom": 715.109375
+      },
+      "received": true,
+      "tag": "BUTTON",
+      "className": "primary card-play-button"
+    },
+    "useful": "1233",
+    "viewport": {
+      "width": 1280,
+      "height": 844,
+      "dpr": 1,
+      "scale": 1,
+      "cssZoom": "1"
+    }
+  },
+  "trustedClick": true,
+  "singlePlay": true,
+  "browser": "155.0.8059.80"
+}

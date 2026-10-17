@@ -1,0 +1,38 @@
+
+> karta3@0.1.0 test:browser
+> npm run build && playwright test --workers=1 --retries=0 tests/browser/cardFace.spec.ts tests/browser/timedGame.spec.ts tests/browser/cancelGame.spec.ts tests/browser/resultNotice.spec.ts --grep B17 criaturas-magicas.*cara completa|B13/T04 A cancelada.*B ordinary|INC-01 expired A.*B ordinary|B08 T1 1280
+
+
+> karta3@0.1.0 build
+> npm run decks:prepare && tsc -b && vite build
+
+
+> karta3@0.1.0 decks:prepare
+> tsx tools/decks.ts prepare
+
+criaturas-magicas: válida; disponibilidad true
+generica: válida; disponibilidad true
+sistema-solar: válida; disponibilidad true
+Catálogo preparado: 3 barajas disponibles.
+vite v8.3.1 building client environment for production...
+transforming...
+✓ 70 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.45 kB │ gzip:   0.30 kB
+dist/assets/index-CJEkwuHI.css   24.36 kB │ gzip:   5.59 kB
+dist/assets/index-DO2LAjKg.js   334.04 kB │ gzip: 100.92 kB
+
+✓ built in 1.39s
+
+Running 5 tests using 1 worker
+
+(node:20540) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 tests\browser\cancelGame.spec.ts:82:56 › B13/T04 A cancelada → B ordinary, F5, avisos/estados antiguos y límites propios (15.4s)
+  ok 2 tests\browser\cardFace.spec.ts:75:3 › B17 criaturas-magicas PLAY_VALUE: cara completa, encaje autorizado, datos, públicos y normal adaptada (5.9s)
+  ok 3 tests\browser\cardFace.spec.ts:75:3 › B17 criaturas-magicas DISPLAY_VALUE: cara completa, encaje autorizado, datos, públicos y normal adaptada (5.6s)
+  ok 4 tests\browser\resultNotice.spec.ts:38:56 › INC-01 expired A → B ordinary: accepted result, reload, controlled expiry and old reads (5.2s)
+  ok 5 tests\browser\timedGame.spec.ts:6:34 › B08 T1 1280: deadline estable, carta local ignorada, aviso y recuperación (1.2s)
+
+  5 passed (35.2s)

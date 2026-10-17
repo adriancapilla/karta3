@@ -1,0 +1,1799 @@
+[
+  {
+    "id": "generica",
+    "mode": "PLAY_VALUE",
+    "unique": [
+      166.8125
+    ],
+    "widths": [
+      {
+        "id": "carta-001",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-002",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-003",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-004",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-005",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-006",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-007",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-008",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-009",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-010",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-011",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-012",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-013",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-014",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-015",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-016",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-017",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-018",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-019",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-020",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-021",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-022",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-023",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-024",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-025",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-026",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-027",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-028",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-029",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-030",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-031",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-032",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-033",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-034",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-035",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-036",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-037",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-038",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-039",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-040",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-041",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-042",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-043",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-044",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-045",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-046",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-047",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-048",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-049",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-050",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-051",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-052",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-053",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-054",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-055",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-056",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-057",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-058",
+        "attribute": 166.8125,
+        "value": 37.1875
+      }
+    ]
+  },
+  {
+    "id": "generica",
+    "mode": "DISPLAY_VALUE",
+    "unique": [
+      166.8125
+    ],
+    "widths": [
+      {
+        "id": "carta-001",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-002",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-003",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-004",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-005",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-006",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-007",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-008",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-009",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-010",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-011",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-012",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-013",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-014",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-015",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-016",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-017",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-018",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-019",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-020",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-021",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-022",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-023",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-024",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-025",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-026",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-027",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-028",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-029",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-030",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-031",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-032",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-033",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-034",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-035",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-036",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-037",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-038",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-039",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-040",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-041",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-042",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-043",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-044",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-045",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-046",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-047",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-048",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-049",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-050",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-051",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-052",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-053",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-054",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-055",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-056",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-057",
+        "attribute": 166.8125,
+        "value": 37.1875
+      },
+      {
+        "id": "carta-058",
+        "attribute": 166.8125,
+        "value": 37.1875
+      }
+    ]
+  },
+  {
+    "id": "sistema-solar",
+    "mode": "PLAY_VALUE",
+    "unique": [
+      166.09375
+    ],
+    "widths": [
+      {
+        "id": "itokawa",
+        "attribute": 166.09375,
+        "value": 37.90625
+      },
+      {
+        "id": "bennu",
+        "attribute": 166.09375,
+        "value": 37.90625
+      },
+      {
+        "id": "ryugu",
+        "attribute": 166.09375,
+        "value": 37.90625
+      },
+      {
+        "id": "tempel-1",
+        "attribute": 166.09375,
+        "value": 37.90625
+      },
+      {
+        "id": "halley",
+        "attribute": 166.09375,
+        "value": 37.90625
+      },
+      {
+        "id": "deimos",
+        "attribute": 166.09375,
+        "value": 37.90625
+      },
+      {
+        "id": "eros",
+        "attribute": 166.09375,
+        "value": 37.90625
+      },
+      {
+        "id": "fobos",
+        "attribute": 166.09375,
+        "value": 37.90625
+      },
+      {
+        "id": "hale-bopp",
+        "attribute": 166.09375,
+        "value": 37.90625
+      },
+      {
+        "id": "psyche",
+        "attribute": 166.09375,
+        "value": 37.90625
+      },
+      {
+        "id": "mimas",
+        "attribute": 166.09375,
+        "value": 37.90625
+      },
+      {
+        "id": "higia",
+        "attribute": 166.09375,
+        "value": 37.90625
+      },
+      {
+        "id": "miranda",
+        "attribute": 166.09375,
+        "value": 37.90625
+      },
+      {
+        "id": "encelado",
+        "attribute": 166.09375,
+        "value": 37.90625
+      },
+      {
+        "id": "palas",
+        "attribute": 166.09375,
+        "value": 37.90625
+      },
+      {
+        "id": "vesta",
+        "attribute": 166.09375,
+        "value": 37.90625
+      },
+      {
+        "id": "ceres",
+        "attribute": 166.09375,
+        "value": 37.90625
+      },
+      {
+        "id": "sedna",
+        "attribute": 166.09375,
+        "value": 37.90625
+      },
+      {
+        "id": "tetis",
+        "attribute": 166.09375,
+        "value": 37.90625
+      },
+      {
+        "id": "dione",
+        "attribute": 166.09375,
+        "value": 37.90625
+      },
+      {
+        "id": "ariel",
+        "attribute": 166.09375,
+        "value": 37.90625
+      },
+      {
+        "id": "umbriel",
+        "attribute": 166.09375,
+        "value": 37.90625
+      },
+      {
+        "id": "caronte",
+        "attribute": 166.09375,
+        "value": 37.90625
+      },
+      {
+        "id": "makemake",
+        "attribute": 166.09375,
+        "value": 37.90625
+      },
+      {
+        "id": "japeto",
+        "attribute": 166.09375,
+        "value": 37.90625
+      },
+      {
+        "id": "oberon",
+        "attribute": 166.09375,
+        "value": 37.90625
+      },
+      {
+        "id": "rea",
+        "attribute": 166.09375,
+        "value": 37.90625
+      },
+      {
+        "id": "titania",
+        "attribute": 166.09375,
+        "value": 37.90625
+      },
+      {
+        "id": "haumea",
+        "attribute": 166.09375,
+        "value": 37.90625
+      },
+      {
+        "id": "eris",
+        "attribute": 166.09375,
+        "value": 37.90625
+      },
+      {
+        "id": "pluton",
+        "attribute": 166.09375,
+        "value": 37.90625
+      },
+      {
+        "id": "triton",
+        "attribute": 166.09375,
+        "value": 37.90625
+      },
+      {
+        "id": "europa",
+        "attribute": 166.09375,
+        "value": 37.90625
+      },
+      {
+        "id": "luna",
+        "attribute": 166.09375,
+        "value": 37.90625
+      },
+      {
+        "id": "io",
+        "attribute": 166.09375,
+        "value": 37.90625
+      },
+      {
+        "id": "calisto",
+        "attribute": 166.09375,
+        "value": 37.90625
+      },
+      {
+        "id": "mercurio",
+        "attribute": 166.09375,
+        "value": 37.90625
+      },
+      {
+        "id": "titan",
+        "attribute": 166.09375,
+        "value": 37.90625
+      },
+      {
+        "id": "ganimedes",
+        "attribute": 166.09375,
+        "value": 37.90625
+      },
+      {
+        "id": "marte",
+        "attribute": 166.09375,
+        "value": 37.90625
+      },
+      {
+        "id": "venus",
+        "attribute": 166.09375,
+        "value": 37.90625
+      },
+      {
+        "id": "tierra",
+        "attribute": 166.09375,
+        "value": 37.90625
+      },
+      {
+        "id": "67p-churyumov-gerasimenko",
+        "attribute": 166.09375,
+        "value": 37.90625
+      },
+      {
+        "id": "hyakutake",
+        "attribute": 166.09375,
+        "value": 37.90625
+      },
+      {
+        "id": "wild-2",
+        "attribute": 166.09375,
+        "value": 37.90625
+      },
+      {
+        "id": "encke",
+        "attribute": 166.09375,
+        "value": 37.90625
+      },
+      {
+        "id": "neptuno",
+        "attribute": 166.09375,
+        "value": 37.90625
+      },
+      {
+        "id": "urano",
+        "attribute": 166.09375,
+        "value": 37.90625
+      },
+      {
+        "id": "saturno",
+        "attribute": 166.09375,
+        "value": 37.90625
+      },
+      {
+        "id": "jupiter",
+        "attribute": 166.09375,
+        "value": 37.90625
+      },
+      {
+        "id": "amaltea",
+        "attribute": 166.09375,
+        "value": 37.90625
+      },
+      {
+        "id": "hiperion",
+        "attribute": 166.09375,
+        "value": 37.90625
+      },
+      {
+        "id": "proteo",
+        "attribute": 166.09375,
+        "value": 37.90625
+      },
+      {
+        "id": "febe",
+        "attribute": 166.09375,
+        "value": 37.90625
+      },
+      {
+        "id": "gaspra",
+        "attribute": 166.09375,
+        "value": 37.90625
+      },
+      {
+        "id": "ida",
+        "attribute": 166.09375,
+        "value": 37.90625
+      },
+      {
+        "id": "matilde",
+        "attribute": 166.09375,
+        "value": 37.90625
+      },
+      {
+        "id": "borrelly",
+        "attribute": 166.09375,
+        "value": 37.90625
+      }
+    ]
+  },
+  {
+    "id": "sistema-solar",
+    "mode": "DISPLAY_VALUE",
+    "unique": [
+      103.4375,
+      105.375,
+      108.390625,
+      100.6875
+    ],
+    "widths": [
+      {
+        "id": "itokawa",
+        "attribute": 103.4375,
+        "value": 100.5625
+      },
+      {
+        "id": "bennu",
+        "attribute": 103.4375,
+        "value": 100.5625
+      },
+      {
+        "id": "ryugu",
+        "attribute": 103.4375,
+        "value": 100.5625
+      },
+      {
+        "id": "tempel-1",
+        "attribute": 103.4375,
+        "value": 100.5625
+      },
+      {
+        "id": "halley",
+        "attribute": 103.4375,
+        "value": 100.5625
+      },
+      {
+        "id": "deimos",
+        "attribute": 103.4375,
+        "value": 100.5625
+      },
+      {
+        "id": "eros",
+        "attribute": 103.4375,
+        "value": 100.5625
+      },
+      {
+        "id": "fobos",
+        "attribute": 103.4375,
+        "value": 100.5625
+      },
+      {
+        "id": "hale-bopp",
+        "attribute": 105.375,
+        "value": 98.625
+      },
+      {
+        "id": "psyche",
+        "attribute": 103.4375,
+        "value": 100.5625
+      },
+      {
+        "id": "mimas",
+        "attribute": 108.390625,
+        "value": 95.609375
+      },
+      {
+        "id": "higia",
+        "attribute": 103.4375,
+        "value": 100.5625
+      },
+      {
+        "id": "miranda",
+        "attribute": 103.4375,
+        "value": 100.5625
+      },
+      {
+        "id": "encelado",
+        "attribute": 103.4375,
+        "value": 100.5625
+      },
+      {
+        "id": "palas",
+        "attribute": 103.4375,
+        "value": 100.5625
+      },
+      {
+        "id": "vesta",
+        "attribute": 103.4375,
+        "value": 100.5625
+      },
+      {
+        "id": "ceres",
+        "attribute": 103.4375,
+        "value": 100.5625
+      },
+      {
+        "id": "sedna",
+        "attribute": 105.375,
+        "value": 98.625
+      },
+      {
+        "id": "tetis",
+        "attribute": 108.390625,
+        "value": 95.609375
+      },
+      {
+        "id": "dione",
+        "attribute": 103.4375,
+        "value": 100.5625
+      },
+      {
+        "id": "ariel",
+        "attribute": 103.4375,
+        "value": 100.5625
+      },
+      {
+        "id": "umbriel",
+        "attribute": 108.390625,
+        "value": 95.609375
+      },
+      {
+        "id": "caronte",
+        "attribute": 103.4375,
+        "value": 100.5625
+      },
+      {
+        "id": "makemake",
+        "attribute": 103.4375,
+        "value": 100.5625
+      },
+      {
+        "id": "japeto",
+        "attribute": 103.4375,
+        "value": 100.5625
+      },
+      {
+        "id": "oberon",
+        "attribute": 103.4375,
+        "value": 100.5625
+      },
+      {
+        "id": "rea",
+        "attribute": 103.4375,
+        "value": 100.5625
+      },
+      {
+        "id": "titania",
+        "attribute": 103.4375,
+        "value": 100.5625
+      },
+      {
+        "id": "haumea",
+        "attribute": 103.4375,
+        "value": 100.5625
+      },
+      {
+        "id": "eris",
+        "attribute": 105.375,
+        "value": 98.625
+      },
+      {
+        "id": "pluton",
+        "attribute": 103.4375,
+        "value": 100.5625
+      },
+      {
+        "id": "triton",
+        "attribute": 103.4375,
+        "value": 100.5625
+      },
+      {
+        "id": "europa",
+        "attribute": 103.4375,
+        "value": 100.5625
+      },
+      {
+        "id": "luna",
+        "attribute": 103.4375,
+        "value": 100.5625
+      },
+      {
+        "id": "io",
+        "attribute": 103.4375,
+        "value": 100.5625
+      },
+      {
+        "id": "calisto",
+        "attribute": 103.4375,
+        "value": 100.5625
+      },
+      {
+        "id": "mercurio",
+        "attribute": 103.4375,
+        "value": 100.5625
+      },
+      {
+        "id": "titan",
+        "attribute": 103.4375,
+        "value": 100.5625
+      },
+      {
+        "id": "ganimedes",
+        "attribute": 103.4375,
+        "value": 100.5625
+      },
+      {
+        "id": "marte",
+        "attribute": 103.4375,
+        "value": 100.5625
+      },
+      {
+        "id": "venus",
+        "attribute": 103.4375,
+        "value": 100.5625
+      },
+      {
+        "id": "tierra",
+        "attribute": 108.390625,
+        "value": 95.609375
+      },
+      {
+        "id": "67p-churyumov-gerasimenko",
+        "attribute": 103.4375,
+        "value": 100.5625
+      },
+      {
+        "id": "hyakutake",
+        "attribute": 100.6875,
+        "value": 103.3125
+      },
+      {
+        "id": "wild-2",
+        "attribute": 103.4375,
+        "value": 100.5625
+      },
+      {
+        "id": "encke",
+        "attribute": 103.4375,
+        "value": 100.5625
+      },
+      {
+        "id": "neptuno",
+        "attribute": 103.4375,
+        "value": 100.5625
+      },
+      {
+        "id": "urano",
+        "attribute": 103.4375,
+        "value": 100.5625
+      },
+      {
+        "id": "saturno",
+        "attribute": 103.4375,
+        "value": 100.5625
+      },
+      {
+        "id": "jupiter",
+        "attribute": 103.4375,
+        "value": 100.5625
+      },
+      {
+        "id": "amaltea",
+        "attribute": 103.4375,
+        "value": 100.5625
+      },
+      {
+        "id": "hiperion",
+        "attribute": 103.4375,
+        "value": 100.5625
+      },
+      {
+        "id": "proteo",
+        "attribute": 103.4375,
+        "value": 100.5625
+      },
+      {
+        "id": "febe",
+        "attribute": 103.4375,
+        "value": 100.5625
+      },
+      {
+        "id": "gaspra",
+        "attribute": 103.4375,
+        "value": 100.5625
+      },
+      {
+        "id": "ida",
+        "attribute": 103.4375,
+        "value": 100.5625
+      },
+      {
+        "id": "matilde",
+        "attribute": 103.4375,
+        "value": 100.5625
+      },
+      {
+        "id": "borrelly",
+        "attribute": 103.4375,
+        "value": 100.5625
+      }
+    ]
+  },
+  {
+    "id": "criaturas-magicas",
+    "mode": "PLAY_VALUE",
+    "unique": [
+      169.640625
+    ],
+    "widths": [
+      {
+        "id": "carta-001",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-002",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-003",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-004",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-005",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-006",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-007",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-008",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-009",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-010",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-011",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-012",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-013",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-014",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-015",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-016",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-017",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-018",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-019",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-020",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-021",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-022",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-023",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-024",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-025",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-026",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-027",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-028",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-029",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-030",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-031",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-032",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-033",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-034",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-035",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-036",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-037",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-038",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-039",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-040",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-041",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-042",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-043",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-044",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-045",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-046",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-047",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-048",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-049",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-050",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-051",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-052",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-053",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-054",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-055",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-056",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-057",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-058",
+        "attribute": 169.640625,
+        "value": 34.359375
+      }
+    ]
+  },
+  {
+    "id": "criaturas-magicas",
+    "mode": "DISPLAY_VALUE",
+    "unique": [
+      169.640625
+    ],
+    "widths": [
+      {
+        "id": "carta-001",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-002",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-003",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-004",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-005",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-006",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-007",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-008",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-009",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-010",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-011",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-012",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-013",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-014",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-015",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-016",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-017",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-018",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-019",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-020",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-021",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-022",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-023",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-024",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-025",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-026",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-027",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-028",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-029",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-030",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-031",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-032",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-033",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-034",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-035",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-036",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-037",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-038",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-039",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-040",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-041",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-042",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-043",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-044",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-045",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-046",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-047",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-048",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-049",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-050",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-051",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-052",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-053",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-054",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-055",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-056",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-057",
+        "attribute": 169.640625,
+        "value": 34.359375
+      },
+      {
+        "id": "carta-058",
+        "attribute": 169.640625,
+        "value": 34.359375
+      }
+    ]
+  }
+]

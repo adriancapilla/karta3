@@ -1,0 +1,262 @@
+{
+  "geometry": {
+    "name": "Tritón de las profundidades",
+    "title": {
+      "x": 55,
+      "y": 260,
+      "width": 182.484375,
+      "height": 19,
+      "right": 237.484375,
+      "bottom": 279
+    },
+    "heading": {
+      "x": 55,
+      "y": 260,
+      "width": 204,
+      "height": 29,
+      "right": 259,
+      "bottom": 289
+    },
+    "icon": {
+      "x": 243.484375,
+      "y": 260,
+      "width": 15.515625,
+      "height": 24,
+      "right": 259,
+      "bottom": 284
+    },
+    "size": 14.1,
+    "base": 16,
+    "min": 12,
+    "available": 182.484375,
+    "baseWidth": 206.59375,
+    "minWidth": 154.953125,
+    "nextWidth": 183.359375,
+    "referenceBand": 29,
+    "textRects": [
+      {
+        "x": 55,
+        "y": 260,
+        "width": 182.0625,
+        "height": 19,
+        "right": 237.0625,
+        "bottom": 279
+      }
+    ],
+    "family": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+    "weight": "700",
+    "lineHeight": "normal",
+    "letterSpacing": "normal",
+    "gap": 6,
+    "titleMargins": 0,
+    "iconMargins": 0,
+    "whiteSpace": "nowrap",
+    "overflow": "visible",
+    "textOverflow": "clip",
+    "card": {
+      "x": 42,
+      "y": 247,
+      "width": 230,
+      "height": 321,
+      "right": 272,
+      "bottom": 568
+    },
+    "image": {
+      "x": 42,
+      "y": 293,
+      "width": 230,
+      "height": 172.5,
+      "right": 272,
+      "bottom": 465.5
+    },
+    "table": {
+      "x": 55,
+      "y": 468.75,
+      "width": 204,
+      "height": 95,
+      "right": 259,
+      "bottom": 563.75
+    },
+    "gaps": [
+      3.25,
+      3.25
+    ],
+    "rows": [
+      {
+        "text": " Poder30",
+        "box": {
+          "x": 55,
+          "y": 468.75,
+          "width": 204,
+          "height": 31.5,
+          "right": 259,
+          "bottom": 500.25
+        },
+        "content": [
+          {
+            "top": 474.75,
+            "bottom": 493.75,
+            "height": 19
+          },
+          {
+            "top": 474.75,
+            "bottom": 493.75,
+            "height": 19
+          },
+          {
+            "top": 474.75,
+            "bottom": 493.75,
+            "height": 19
+          },
+          {
+            "top": 474.75,
+            "bottom": 493.75,
+            "height": 19
+          }
+        ]
+      },
+      {
+        "text": "▲ Astucia23",
+        "box": {
+          "x": 55,
+          "y": 500.25,
+          "width": 204,
+          "height": 32,
+          "right": 259,
+          "bottom": 532.25
+        },
+        "content": [
+          {
+            "top": 506.75,
+            "bottom": 525.75,
+            "height": 19
+          },
+          {
+            "top": 506.75,
+            "bottom": 525.75,
+            "height": 19
+          },
+          {
+            "top": 506.75,
+            "bottom": 525.75,
+            "height": 19
+          },
+          {
+            "top": 506.75,
+            "bottom": 525.75,
+            "height": 19
+          },
+          {
+            "top": 506.75,
+            "bottom": 525.75,
+            "height": 19
+          },
+          {
+            "top": 506.75,
+            "bottom": 525.75,
+            "height": 19
+          }
+        ]
+      },
+      {
+        "text": "■ Resistencia41",
+        "box": {
+          "x": 55,
+          "y": 532.25,
+          "width": 204,
+          "height": 31.5,
+          "right": 259,
+          "bottom": 563.75
+        },
+        "content": [
+          {
+            "top": 538.75,
+            "bottom": 557.75,
+            "height": 19
+          },
+          {
+            "top": 538.75,
+            "bottom": 557.75,
+            "height": 19
+          },
+          {
+            "top": 538.75,
+            "bottom": 557.75,
+            "height": 19
+          },
+          {
+            "top": 538.75,
+            "bottom": 557.75,
+            "height": 19
+          },
+          {
+            "top": 538.75,
+            "bottom": 557.75,
+            "height": 19
+          },
+          {
+            "top": 538.75,
+            "bottom": 557.75,
+            "height": 19
+          }
+        ]
+      }
+    ],
+    "padding": "6px",
+    "d": {
+      "box": {
+        "x": 223,
+        "y": 416.5,
+        "width": 44,
+        "height": 44,
+        "right": 267,
+        "bottom": 460.5
+      },
+      "received": true,
+      "tag": "SPAN",
+      "className": null
+    },
+    "play": null,
+    "useful": "358",
+    "viewport": {
+      "width": 390,
+      "height": 844,
+      "dpr": 1,
+      "scale": 1,
+      "cssZoom": "1"
+    }
+  },
+  "fonts": {
+    "title": {
+      "fonts": [
+        {
+          "familyName": "Segoe UI",
+          "postScriptName": "SegoeUI-Bold",
+          "isCustomFont": false,
+          "glyphCount": 27
+        }
+      ]
+    },
+    "lastAttribute": {
+      "fonts": [
+        {
+          "familyName": "Segoe UI",
+          "postScriptName": "SegoeUI-Bold",
+          "isCustomFont": false,
+          "glyphCount": 13
+        }
+      ]
+    },
+    "ownSymbol": {
+      "fonts": [
+        {
+          "familyName": "Segoe UI",
+          "postScriptName": "SegoeUI",
+          "isCustomFont": false,
+          "glyphCount": 1
+        }
+      ]
+    }
+  },
+  "browser": "155.0.8059.80"
+}

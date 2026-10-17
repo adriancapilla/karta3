@@ -1,5 +1,6 @@
 import type { DeckSummary } from '../../shared/contracts/deck.js';
 import { approvedGeneric } from './approvedGeneric.js';
+import { approvedCreatures } from './approvedCreatures.js';
 
 /** Entrega existente activada por el autor en B14, independiente del lector probado. */
 export const approvedSolar: DeckSummary = {
@@ -9,4 +10,4 @@ export const approvedSolar: DeckSummary = {
   imageUrl: '/media/decks/sistema-solar/v4/imagenes/portada.webp',
   imageAlt: 'Composición del Sistema Solar con el Sol, varios planetas, una luna, un asteroide y un cometa sobre un fondo estrellado.'
 };
-export const approvedInstalledDecks = [approvedGeneric, approvedSolar];
+export const approvedInstalledDecks = [approvedCreatures, approvedGeneric, approvedSolar];

@@ -1,0 +1,411 @@
+{
+  "viewport": {
+    "width": 1920,
+    "height": 1080,
+    "dpr": 1,
+    "scale": 1
+  },
+  "useful": "1368",
+  "layout": "normal",
+  "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+  "pageHeight": 1118,
+  "cards": [
+    {
+      "cardId": "carta-004",
+      "name": "Carta 04",
+      "card": {
+        "x": 285.5,
+        "y": 612.109375,
+        "width": 230,
+        "height": 321,
+        "right": 515.5,
+        "bottom": 933.109375
+      },
+      "surface": {
+        "x": 298.5,
+        "y": 625.109375,
+        "width": 204,
+        "height": 307,
+        "right": 502.5,
+        "bottom": 932.109375
+      },
+      "heading": {
+        "x": 298.5,
+        "y": 625.109375,
+        "width": 204,
+        "height": 24,
+        "right": 502.5,
+        "bottom": 649.109375
+      },
+      "image": {
+        "x": 285.5,
+        "y": 653.109375,
+        "width": 230,
+        "height": 172.5,
+        "right": 515.5,
+        "bottom": 825.609375
+      },
+      "img": null,
+      "table": {
+        "x": 298.5,
+        "y": 831.359375,
+        "width": 204,
+        "height": 95,
+        "right": 502.5,
+        "bottom": 926.359375
+      },
+      "button": {
+        "x": 466.5,
+        "y": 776.609375,
+        "width": 44,
+        "height": 44,
+        "right": 510.5,
+        "bottom": 820.609375
+      },
+      "buttonText": "D",
+      "nameFont": "16px",
+      "valueFont": "14px",
+      "rows": [
+        {
+          "box": {
+            "x": 298.5,
+            "y": 831.359375,
+            "width": 204,
+            "height": 31.5,
+            "right": 502.5,
+            "bottom": 862.859375
+          },
+          "text": " Círculo26",
+          "border": "1px"
+        },
+        {
+          "box": {
+            "x": 298.5,
+            "y": 862.859375,
+            "width": 204,
+            "height": 32,
+            "right": 502.5,
+            "bottom": 894.859375
+          },
+          "text": "▲ Triángulo36",
+          "border": "1px"
+        },
+        {
+          "box": {
+            "x": 298.5,
+            "y": 894.859375,
+            "width": 204,
+            "height": 31.5,
+            "right": 502.5,
+            "bottom": 926.359375
+          },
+          "text": "■ Cuadrado27",
+          "border": "0px"
+        }
+      ],
+      "topGap": 5.75,
+      "bottomGap": 6.75
+    },
+    {
+      "cardId": "carta-001",
+      "name": "Carta 01",
+      "card": {
+        "x": 561.5,
+        "y": 612.109375,
+        "width": 230,
+        "height": 321,
+        "right": 791.5,
+        "bottom": 933.109375
+      },
+      "surface": {
+        "x": 574.5,
+        "y": 625.109375,
+        "width": 204,
+        "height": 307,
+        "right": 778.5,
+        "bottom": 932.109375
+      },
+      "heading": {
+        "x": 574.5,
+        "y": 625.109375,
+        "width": 204,
+        "height": 24,
+        "right": 778.5,
+        "bottom": 649.109375
+      },
+      "image": {
+        "x": 561.5,
+        "y": 653.109375,
+        "width": 230,
+        "height": 172.5,
+        "right": 791.5,
+        "bottom": 825.609375
+      },
+      "img": null,
+      "table": {
+        "x": 574.5,
+        "y": 831.359375,
+        "width": 204,
+        "height": 95,
+        "right": 778.5,
+        "bottom": 926.359375
+      },
+      "button": {
+        "x": 742.5,
+        "y": 776.609375,
+        "width": 44,
+        "height": 44,
+        "right": 786.5,
+        "bottom": 820.609375
+      },
+      "buttonText": "D",
+      "nameFont": "16px",
+      "valueFont": "14px",
+      "rows": [
+        {
+          "box": {
+            "x": 574.5,
+            "y": 831.359375,
+            "width": 204,
+            "height": 31.5,
+            "right": 778.5,
+            "bottom": 862.859375
+          },
+          "text": " Círculo25",
+          "border": "1px"
+        },
+        {
+          "box": {
+            "x": 574.5,
+            "y": 862.859375,
+            "width": 204,
+            "height": 32,
+            "right": 778.5,
+            "bottom": 894.859375
+          },
+          "text": "▲ Triángulo51",
+          "border": "1px"
+        },
+        {
+          "box": {
+            "x": 574.5,
+            "y": 894.859375,
+            "width": 204,
+            "height": 31.5,
+            "right": 778.5,
+            "bottom": 926.359375
+          },
+          "text": "■ Cuadrado11",
+          "border": "0px"
+        }
+      ],
+      "topGap": 5.75,
+      "bottomGap": 6.75
+    },
+    {
+      "cardId": "carta-002",
+      "name": "Carta 02",
+      "card": {
+        "x": 837.5,
+        "y": 612.109375,
+        "width": 230,
+        "height": 321,
+        "right": 1067.5,
+        "bottom": 933.109375
+      },
+      "surface": {
+        "x": 850.5,
+        "y": 625.109375,
+        "width": 204,
+        "height": 307,
+        "right": 1054.5,
+        "bottom": 932.109375
+      },
+      "heading": {
+        "x": 850.5,
+        "y": 625.109375,
+        "width": 204,
+        "height": 24,
+        "right": 1054.5,
+        "bottom": 649.109375
+      },
+      "image": {
+        "x": 837.5,
+        "y": 653.109375,
+        "width": 230,
+        "height": 172.5,
+        "right": 1067.5,
+        "bottom": 825.609375
+      },
+      "img": null,
+      "table": {
+        "x": 850.5,
+        "y": 831.359375,
+        "width": 204,
+        "height": 95,
+        "right": 1054.5,
+        "bottom": 926.359375
+      },
+      "button": {
+        "x": 1018.5,
+        "y": 776.609375,
+        "width": 44,
+        "height": 44,
+        "right": 1062.5,
+        "bottom": 820.609375
+      },
+      "buttonText": "D",
+      "nameFont": "16px",
+      "valueFont": "14px",
+      "rows": [
+        {
+          "box": {
+            "x": 850.5,
+            "y": 831.359375,
+            "width": 204,
+            "height": 31.5,
+            "right": 1054.5,
+            "bottom": 862.859375
+          },
+          "text": " Círculo37",
+          "border": "1px"
+        },
+        {
+          "box": {
+            "x": 850.5,
+            "y": 862.859375,
+            "width": 204,
+            "height": 32,
+            "right": 1054.5,
+            "bottom": 894.859375
+          },
+          "text": "▲ Triángulo4",
+          "border": "1px"
+        },
+        {
+          "box": {
+            "x": 850.5,
+            "y": 894.859375,
+            "width": 204,
+            "height": 31.5,
+            "right": 1054.5,
+            "bottom": 926.359375
+          },
+          "text": "■ Cuadrado31",
+          "border": "0px"
+        }
+      ],
+      "topGap": 5.75,
+      "bottomGap": 6.75
+    },
+    {
+      "cardId": "carta-003",
+      "name": "Carta 03",
+      "card": {
+        "x": 1113.5,
+        "y": 612.109375,
+        "width": 230,
+        "height": 321,
+        "right": 1343.5,
+        "bottom": 933.109375
+      },
+      "surface": {
+        "x": 1126.5,
+        "y": 625.109375,
+        "width": 204,
+        "height": 307,
+        "right": 1330.5,
+        "bottom": 932.109375
+      },
+      "heading": {
+        "x": 1126.5,
+        "y": 625.109375,
+        "width": 204,
+        "height": 24,
+        "right": 1330.5,
+        "bottom": 649.109375
+      },
+      "image": {
+        "x": 1113.5,
+        "y": 653.109375,
+        "width": 230,
+        "height": 172.5,
+        "right": 1343.5,
+        "bottom": 825.609375
+      },
+      "img": null,
+      "table": {
+        "x": 1126.5,
+        "y": 831.359375,
+        "width": 204,
+        "height": 95,
+        "right": 1330.5,
+        "bottom": 926.359375
+      },
+      "button": {
+        "x": 1294.5,
+        "y": 776.609375,
+        "width": 44,
+        "height": 44,
+        "right": 1338.5,
+        "bottom": 820.609375
+      },
+      "buttonText": "D",
+      "nameFont": "16px",
+      "valueFont": "14px",
+      "rows": [
+        {
+          "box": {
+            "x": 1126.5,
+            "y": 831.359375,
+            "width": 204,
+            "height": 31.5,
+            "right": 1330.5,
+            "bottom": 862.859375
+          },
+          "text": " Círculo43",
+          "border": "1px"
+        },
+        {
+          "box": {
+            "x": 1126.5,
+            "y": 862.859375,
+            "width": 204,
+            "height": 32,
+            "right": 1330.5,
+            "bottom": 894.859375
+          },
+          "text": "▲ Triángulo46",
+          "border": "1px"
+        },
+        {
+          "box": {
+            "x": 1126.5,
+            "y": 894.859375,
+            "width": 204,
+            "height": 31.5,
+            "right": 1330.5,
+            "bottom": 926.359375
+          },
+          "text": "■ Cuadrado16",
+          "border": "0px"
+        }
+      ],
+      "topGap": 5.75,
+      "bottomGap": 6.75
+    }
+  ],
+  "details": null,
+  "fonts": {
+    "fonts": [
+      {
+        "familyName": "Segoe UI",
+        "postScriptName": "SegoeUI-Bold",
+        "isCustomFont": false,
+        "glyphCount": 8
+      }
+    ]
+  },
+  "date": "2026-10-16T18:52:57.398Z",
+  "browser": "155.0.8059.80"
+}

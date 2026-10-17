@@ -1,0 +1,42 @@
+{
+  "date": "2026-10-16T19:01:22.036Z",
+  "base": "e0de970c75abbc43ecba09ed00a1daac44a663fe",
+  "preparationCommit": "0b9bf7a",
+  "productCommit": "9cea034c1698c1b4d515991c8d693c83a97bfa86",
+  "check": {
+    "tests": 538,
+    "files": 43,
+    "architectureModules": 70,
+    "pass": true
+  },
+  "browser": {
+    "tests": 31,
+    "newTests": 11,
+    "regressions": 20,
+    "workers": 2,
+    "retries": 0,
+    "pass": true
+  },
+  "files": [
+    {
+      "file": "src/GameCard.tsx",
+      "sha256": "f5a8415e1ac5767473ea0c378fe38a7da5dc7edddf679ee318185b995fab7682",
+      "equalsReviewedCommit": true
+    },
+    {
+      "file": "src/GameScreen.tsx",
+      "sha256": "348f4761b81b1c626782efe174bcd7b52c58443beba3bcf73931574303114693",
+      "equalsReviewedCommit": true
+    },
+    {
+      "file": "src/style.css",
+      "sha256": "be071eabb0f2129c07df76a545116c65a33a655e51d7eb2ee9e666ad841954a5",
+      "equalsReviewedCommit": true
+    },
+    {
+      "file": "tests/browser/cardFace.spec.ts",
+      "sha256": "f7d8dd46ff20fb81764a39cf2eda3738fd90d85c06f714980c1895a1cbc09cc8",
+      "revision": "El commit de cierre añade aserción de relleno condicional, sin cambios de producto."
+    }
+  ]
+}

@@ -1,0 +1,2054 @@
+{
+  "viewport": {
+    "width": 1400,
+    "height": 844,
+    "dpr": 1,
+    "scale": 1
+  },
+  "useful": 1368,
+  "layout": "normal",
+  "pageWidth": 1400,
+  "pageHeight": 1306,
+  "residual": 462,
+  "rows": [
+    {
+      "text": "● Poder◆",
+      "value": "57",
+      "active": true,
+      "box": {
+        "x": 322,
+        "y": 336.609375,
+        "width": 204,
+        "height": 32,
+        "right": 526,
+        "bottom": 368.609375
+      },
+      "label": {
+        "x": 322,
+        "y": 336.609375,
+        "width": 106.078125,
+        "height": 32,
+        "right": 428.078125,
+        "bottom": 368.609375
+      },
+      "data": {
+        "x": 428.078125,
+        "y": 336.609375,
+        "width": 97.921875,
+        "height": 32,
+        "right": 526,
+        "bottom": 368.609375
+      },
+      "fragments": [
+        {
+          "x": 325,
+          "right": 333.46875,
+          "top": 343.109375,
+          "bottom": 362.109375,
+          "height": 19
+        },
+        {
+          "x": 333.46875,
+          "right": 337.34375,
+          "top": 343.109375,
+          "bottom": 362.109375,
+          "height": 19
+        },
+        {
+          "x": 325,
+          "right": 333.46875,
+          "top": 343.109375,
+          "bottom": 362.109375,
+          "height": 19
+        },
+        {
+          "x": 333.46875,
+          "right": 337.34375,
+          "top": 343.109375,
+          "bottom": 362.109375,
+          "height": 19
+        },
+        {
+          "x": 337.34375,
+          "right": 375.90625,
+          "top": 343.109375,
+          "bottom": 362.109375,
+          "height": 19
+        },
+        {
+          "x": 378.90625,
+          "right": 385.75,
+          "top": 349.109375,
+          "bottom": 360.109375,
+          "height": 11
+        },
+        {
+          "x": 378.90625,
+          "right": 385.75,
+          "top": 349.109375,
+          "bottom": 360.109375,
+          "height": 11
+        }
+      ],
+      "font": "14px",
+      "family": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+      "overflow": "visible",
+      "textOverflow": "clip",
+      "client": 106,
+      "scroll": 106
+    },
+    {
+      "text": "▲ Astucia",
+      "value": "7",
+      "active": false,
+      "box": {
+        "x": 322,
+        "y": 368.609375,
+        "width": 204,
+        "height": 32,
+        "right": 526,
+        "bottom": 400.609375
+      },
+      "label": {
+        "x": 322,
+        "y": 368.609375,
+        "width": 106.078125,
+        "height": 32,
+        "right": 428.078125,
+        "bottom": 400.609375
+      },
+      "data": {
+        "x": 428.078125,
+        "y": 368.609375,
+        "width": 97.921875,
+        "height": 32,
+        "right": 526,
+        "bottom": 400.609375
+      },
+      "fragments": [
+        {
+          "x": 325,
+          "right": 337.0625,
+          "top": 375.109375,
+          "bottom": 394.109375,
+          "height": 19
+        },
+        {
+          "x": 337.0625,
+          "right": 340.9375,
+          "top": 375.109375,
+          "bottom": 394.109375,
+          "height": 19
+        },
+        {
+          "x": 325,
+          "right": 337.0625,
+          "top": 375.109375,
+          "bottom": 394.109375,
+          "height": 19
+        },
+        {
+          "x": 337.0625,
+          "right": 340.9375,
+          "top": 375.109375,
+          "bottom": 394.109375,
+          "height": 19
+        },
+        {
+          "x": 340.9375,
+          "right": 389.09375,
+          "top": 375.109375,
+          "bottom": 394.109375,
+          "height": 19
+        }
+      ],
+      "font": "14px",
+      "family": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+      "overflow": "visible",
+      "textOverflow": "clip",
+      "client": 106,
+      "scroll": 106
+    },
+    {
+      "text": "■ Resistencia",
+      "value": "49",
+      "active": false,
+      "box": {
+        "x": 322,
+        "y": 400.609375,
+        "width": 204,
+        "height": 32,
+        "right": 526,
+        "bottom": 432.609375
+      },
+      "label": {
+        "x": 322,
+        "y": 400.609375,
+        "width": 106.078125,
+        "height": 32,
+        "right": 428.078125,
+        "bottom": 432.609375
+      },
+      "data": {
+        "x": 428.078125,
+        "y": 400.609375,
+        "width": 97.921875,
+        "height": 32,
+        "right": 526,
+        "bottom": 432.609375
+      },
+      "fragments": [
+        {
+          "x": 325,
+          "right": 337.0625,
+          "top": 407.109375,
+          "bottom": 426.109375,
+          "height": 19
+        },
+        {
+          "x": 337.0625,
+          "right": 340.9375,
+          "top": 407.109375,
+          "bottom": 426.109375,
+          "height": 19
+        },
+        {
+          "x": 325,
+          "right": 337.0625,
+          "top": 407.109375,
+          "bottom": 426.109375,
+          "height": 19
+        },
+        {
+          "x": 337.0625,
+          "right": 340.9375,
+          "top": 407.109375,
+          "bottom": 426.109375,
+          "height": 19
+        },
+        {
+          "x": 340.9375,
+          "right": 413.28125,
+          "top": 407.109375,
+          "bottom": 426.109375,
+          "height": 19
+        }
+      ],
+      "font": "14px",
+      "family": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+      "overflow": "visible",
+      "textOverflow": "clip",
+      "client": 106,
+      "scroll": 106
+    },
+    {
+      "text": "● Poder◆",
+      "value": "55",
+      "active": true,
+      "box": {
+        "x": 598,
+        "y": 336.609375,
+        "width": 204,
+        "height": 32,
+        "right": 802,
+        "bottom": 368.609375
+      },
+      "label": {
+        "x": 598,
+        "y": 336.609375,
+        "width": 106.078125,
+        "height": 32,
+        "right": 704.078125,
+        "bottom": 368.609375
+      },
+      "data": {
+        "x": 704.078125,
+        "y": 336.609375,
+        "width": 97.921875,
+        "height": 32,
+        "right": 802,
+        "bottom": 368.609375
+      },
+      "fragments": [
+        {
+          "x": 601,
+          "right": 609.46875,
+          "top": 343.109375,
+          "bottom": 362.109375,
+          "height": 19
+        },
+        {
+          "x": 609.46875,
+          "right": 613.34375,
+          "top": 343.109375,
+          "bottom": 362.109375,
+          "height": 19
+        },
+        {
+          "x": 601,
+          "right": 609.46875,
+          "top": 343.109375,
+          "bottom": 362.109375,
+          "height": 19
+        },
+        {
+          "x": 609.46875,
+          "right": 613.34375,
+          "top": 343.109375,
+          "bottom": 362.109375,
+          "height": 19
+        },
+        {
+          "x": 613.34375,
+          "right": 651.90625,
+          "top": 343.109375,
+          "bottom": 362.109375,
+          "height": 19
+        },
+        {
+          "x": 654.90625,
+          "right": 661.75,
+          "top": 349.109375,
+          "bottom": 360.109375,
+          "height": 11
+        },
+        {
+          "x": 654.90625,
+          "right": 661.75,
+          "top": 349.109375,
+          "bottom": 360.109375,
+          "height": 11
+        }
+      ],
+      "font": "14px",
+      "family": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+      "overflow": "visible",
+      "textOverflow": "clip",
+      "client": 106,
+      "scroll": 106
+    },
+    {
+      "text": "▲ Astucia",
+      "value": "24",
+      "active": false,
+      "box": {
+        "x": 598,
+        "y": 368.609375,
+        "width": 204,
+        "height": 32,
+        "right": 802,
+        "bottom": 400.609375
+      },
+      "label": {
+        "x": 598,
+        "y": 368.609375,
+        "width": 106.078125,
+        "height": 32,
+        "right": 704.078125,
+        "bottom": 400.609375
+      },
+      "data": {
+        "x": 704.078125,
+        "y": 368.609375,
+        "width": 97.921875,
+        "height": 32,
+        "right": 802,
+        "bottom": 400.609375
+      },
+      "fragments": [
+        {
+          "x": 601,
+          "right": 613.0625,
+          "top": 375.109375,
+          "bottom": 394.109375,
+          "height": 19
+        },
+        {
+          "x": 613.0625,
+          "right": 616.9375,
+          "top": 375.109375,
+          "bottom": 394.109375,
+          "height": 19
+        },
+        {
+          "x": 601,
+          "right": 613.0625,
+          "top": 375.109375,
+          "bottom": 394.109375,
+          "height": 19
+        },
+        {
+          "x": 613.0625,
+          "right": 616.9375,
+          "top": 375.109375,
+          "bottom": 394.109375,
+          "height": 19
+        },
+        {
+          "x": 616.9375,
+          "right": 665.09375,
+          "top": 375.109375,
+          "bottom": 394.109375,
+          "height": 19
+        }
+      ],
+      "font": "14px",
+      "family": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+      "overflow": "visible",
+      "textOverflow": "clip",
+      "client": 106,
+      "scroll": 106
+    },
+    {
+      "text": "■ Resistencia",
+      "value": "24",
+      "active": false,
+      "box": {
+        "x": 598,
+        "y": 400.609375,
+        "width": 204,
+        "height": 32,
+        "right": 802,
+        "bottom": 432.609375
+      },
+      "label": {
+        "x": 598,
+        "y": 400.609375,
+        "width": 106.078125,
+        "height": 32,
+        "right": 704.078125,
+        "bottom": 432.609375
+      },
+      "data": {
+        "x": 704.078125,
+        "y": 400.609375,
+        "width": 97.921875,
+        "height": 32,
+        "right": 802,
+        "bottom": 432.609375
+      },
+      "fragments": [
+        {
+          "x": 601,
+          "right": 613.0625,
+          "top": 407.109375,
+          "bottom": 426.109375,
+          "height": 19
+        },
+        {
+          "x": 613.0625,
+          "right": 616.9375,
+          "top": 407.109375,
+          "bottom": 426.109375,
+          "height": 19
+        },
+        {
+          "x": 601,
+          "right": 613.0625,
+          "top": 407.109375,
+          "bottom": 426.109375,
+          "height": 19
+        },
+        {
+          "x": 613.0625,
+          "right": 616.9375,
+          "top": 407.109375,
+          "bottom": 426.109375,
+          "height": 19
+        },
+        {
+          "x": 616.9375,
+          "right": 689.28125,
+          "top": 407.109375,
+          "bottom": 426.109375,
+          "height": 19
+        }
+      ],
+      "font": "14px",
+      "family": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+      "overflow": "visible",
+      "textOverflow": "clip",
+      "client": 106,
+      "scroll": 106
+    },
+    {
+      "text": "● Poder◆",
+      "value": "40",
+      "active": true,
+      "box": {
+        "x": 874,
+        "y": 336.609375,
+        "width": 204,
+        "height": 32,
+        "right": 1078,
+        "bottom": 368.609375
+      },
+      "label": {
+        "x": 874,
+        "y": 336.609375,
+        "width": 106.078125,
+        "height": 32,
+        "right": 980.078125,
+        "bottom": 368.609375
+      },
+      "data": {
+        "x": 980.078125,
+        "y": 336.609375,
+        "width": 97.921875,
+        "height": 32,
+        "right": 1078,
+        "bottom": 368.609375
+      },
+      "fragments": [
+        {
+          "x": 877,
+          "right": 885.46875,
+          "top": 343.109375,
+          "bottom": 362.109375,
+          "height": 19
+        },
+        {
+          "x": 885.46875,
+          "right": 889.34375,
+          "top": 343.109375,
+          "bottom": 362.109375,
+          "height": 19
+        },
+        {
+          "x": 877,
+          "right": 885.46875,
+          "top": 343.109375,
+          "bottom": 362.109375,
+          "height": 19
+        },
+        {
+          "x": 885.46875,
+          "right": 889.34375,
+          "top": 343.109375,
+          "bottom": 362.109375,
+          "height": 19
+        },
+        {
+          "x": 889.34375,
+          "right": 927.90625,
+          "top": 343.109375,
+          "bottom": 362.109375,
+          "height": 19
+        },
+        {
+          "x": 930.90625,
+          "right": 937.75,
+          "top": 349.109375,
+          "bottom": 360.109375,
+          "height": 11
+        },
+        {
+          "x": 930.90625,
+          "right": 937.75,
+          "top": 349.109375,
+          "bottom": 360.109375,
+          "height": 11
+        }
+      ],
+      "font": "14px",
+      "family": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+      "overflow": "visible",
+      "textOverflow": "clip",
+      "client": 106,
+      "scroll": 106
+    },
+    {
+      "text": "▲ Astucia",
+      "value": "27",
+      "active": false,
+      "box": {
+        "x": 874,
+        "y": 368.609375,
+        "width": 204,
+        "height": 32,
+        "right": 1078,
+        "bottom": 400.609375
+      },
+      "label": {
+        "x": 874,
+        "y": 368.609375,
+        "width": 106.078125,
+        "height": 32,
+        "right": 980.078125,
+        "bottom": 400.609375
+      },
+      "data": {
+        "x": 980.078125,
+        "y": 368.609375,
+        "width": 97.921875,
+        "height": 32,
+        "right": 1078,
+        "bottom": 400.609375
+      },
+      "fragments": [
+        {
+          "x": 877,
+          "right": 889.0625,
+          "top": 375.109375,
+          "bottom": 394.109375,
+          "height": 19
+        },
+        {
+          "x": 889.0625,
+          "right": 892.9375,
+          "top": 375.109375,
+          "bottom": 394.109375,
+          "height": 19
+        },
+        {
+          "x": 877,
+          "right": 889.0625,
+          "top": 375.109375,
+          "bottom": 394.109375,
+          "height": 19
+        },
+        {
+          "x": 889.0625,
+          "right": 892.9375,
+          "top": 375.109375,
+          "bottom": 394.109375,
+          "height": 19
+        },
+        {
+          "x": 892.9375,
+          "right": 941.09375,
+          "top": 375.109375,
+          "bottom": 394.109375,
+          "height": 19
+        }
+      ],
+      "font": "14px",
+      "family": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+      "overflow": "visible",
+      "textOverflow": "clip",
+      "client": 106,
+      "scroll": 106
+    },
+    {
+      "text": "■ Resistencia",
+      "value": "43",
+      "active": false,
+      "box": {
+        "x": 874,
+        "y": 400.609375,
+        "width": 204,
+        "height": 32,
+        "right": 1078,
+        "bottom": 432.609375
+      },
+      "label": {
+        "x": 874,
+        "y": 400.609375,
+        "width": 106.078125,
+        "height": 32,
+        "right": 980.078125,
+        "bottom": 432.609375
+      },
+      "data": {
+        "x": 980.078125,
+        "y": 400.609375,
+        "width": 97.921875,
+        "height": 32,
+        "right": 1078,
+        "bottom": 432.609375
+      },
+      "fragments": [
+        {
+          "x": 877,
+          "right": 889.0625,
+          "top": 407.109375,
+          "bottom": 426.109375,
+          "height": 19
+        },
+        {
+          "x": 889.0625,
+          "right": 892.9375,
+          "top": 407.109375,
+          "bottom": 426.109375,
+          "height": 19
+        },
+        {
+          "x": 877,
+          "right": 889.0625,
+          "top": 407.109375,
+          "bottom": 426.109375,
+          "height": 19
+        },
+        {
+          "x": 889.0625,
+          "right": 892.9375,
+          "top": 407.109375,
+          "bottom": 426.109375,
+          "height": 19
+        },
+        {
+          "x": 892.9375,
+          "right": 965.28125,
+          "top": 407.109375,
+          "bottom": 426.109375,
+          "height": 19
+        }
+      ],
+      "font": "14px",
+      "family": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+      "overflow": "visible",
+      "textOverflow": "clip",
+      "client": 106,
+      "scroll": 106
+    },
+    {
+      "text": "● Poder◆",
+      "value": "38",
+      "active": true,
+      "box": {
+        "x": 1150,
+        "y": 336.609375,
+        "width": 204,
+        "height": 32,
+        "right": 1354,
+        "bottom": 368.609375
+      },
+      "label": {
+        "x": 1150,
+        "y": 336.609375,
+        "width": 106.078125,
+        "height": 32,
+        "right": 1256.078125,
+        "bottom": 368.609375
+      },
+      "data": {
+        "x": 1256.078125,
+        "y": 336.609375,
+        "width": 97.921875,
+        "height": 32,
+        "right": 1354,
+        "bottom": 368.609375
+      },
+      "fragments": [
+        {
+          "x": 1153,
+          "right": 1161.46875,
+          "top": 343.109375,
+          "bottom": 362.109375,
+          "height": 19
+        },
+        {
+          "x": 1161.46875,
+          "right": 1165.34375,
+          "top": 343.109375,
+          "bottom": 362.109375,
+          "height": 19
+        },
+        {
+          "x": 1153,
+          "right": 1161.46875,
+          "top": 343.109375,
+          "bottom": 362.109375,
+          "height": 19
+        },
+        {
+          "x": 1161.46875,
+          "right": 1165.34375,
+          "top": 343.109375,
+          "bottom": 362.109375,
+          "height": 19
+        },
+        {
+          "x": 1165.34375,
+          "right": 1203.90625,
+          "top": 343.109375,
+          "bottom": 362.109375,
+          "height": 19
+        },
+        {
+          "x": 1206.90625,
+          "right": 1213.75,
+          "top": 349.109375,
+          "bottom": 360.109375,
+          "height": 11
+        },
+        {
+          "x": 1206.90625,
+          "right": 1213.75,
+          "top": 349.109375,
+          "bottom": 360.109375,
+          "height": 11
+        }
+      ],
+      "font": "14px",
+      "family": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+      "overflow": "visible",
+      "textOverflow": "clip",
+      "client": 106,
+      "scroll": 106
+    },
+    {
+      "text": "▲ Astucia",
+      "value": "30",
+      "active": false,
+      "box": {
+        "x": 1150,
+        "y": 368.609375,
+        "width": 204,
+        "height": 32,
+        "right": 1354,
+        "bottom": 400.609375
+      },
+      "label": {
+        "x": 1150,
+        "y": 368.609375,
+        "width": 106.078125,
+        "height": 32,
+        "right": 1256.078125,
+        "bottom": 400.609375
+      },
+      "data": {
+        "x": 1256.078125,
+        "y": 368.609375,
+        "width": 97.921875,
+        "height": 32,
+        "right": 1354,
+        "bottom": 400.609375
+      },
+      "fragments": [
+        {
+          "x": 1153,
+          "right": 1165.0625,
+          "top": 375.109375,
+          "bottom": 394.109375,
+          "height": 19
+        },
+        {
+          "x": 1165.0625,
+          "right": 1168.9375,
+          "top": 375.109375,
+          "bottom": 394.109375,
+          "height": 19
+        },
+        {
+          "x": 1153,
+          "right": 1165.0625,
+          "top": 375.109375,
+          "bottom": 394.109375,
+          "height": 19
+        },
+        {
+          "x": 1165.0625,
+          "right": 1168.9375,
+          "top": 375.109375,
+          "bottom": 394.109375,
+          "height": 19
+        },
+        {
+          "x": 1168.9375,
+          "right": 1217.09375,
+          "top": 375.109375,
+          "bottom": 394.109375,
+          "height": 19
+        }
+      ],
+      "font": "14px",
+      "family": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+      "overflow": "visible",
+      "textOverflow": "clip",
+      "client": 106,
+      "scroll": 106
+    },
+    {
+      "text": "■ Resistencia",
+      "value": "6",
+      "active": false,
+      "box": {
+        "x": 1150,
+        "y": 400.609375,
+        "width": 204,
+        "height": 32,
+        "right": 1354,
+        "bottom": 432.609375
+      },
+      "label": {
+        "x": 1150,
+        "y": 400.609375,
+        "width": 106.078125,
+        "height": 32,
+        "right": 1256.078125,
+        "bottom": 432.609375
+      },
+      "data": {
+        "x": 1256.078125,
+        "y": 400.609375,
+        "width": 97.921875,
+        "height": 32,
+        "right": 1354,
+        "bottom": 432.609375
+      },
+      "fragments": [
+        {
+          "x": 1153,
+          "right": 1165.0625,
+          "top": 407.109375,
+          "bottom": 426.109375,
+          "height": 19
+        },
+        {
+          "x": 1165.0625,
+          "right": 1168.9375,
+          "top": 407.109375,
+          "bottom": 426.109375,
+          "height": 19
+        },
+        {
+          "x": 1153,
+          "right": 1165.0625,
+          "top": 407.109375,
+          "bottom": 426.109375,
+          "height": 19
+        },
+        {
+          "x": 1165.0625,
+          "right": 1168.9375,
+          "top": 407.109375,
+          "bottom": 426.109375,
+          "height": 19
+        },
+        {
+          "x": 1168.9375,
+          "right": 1241.28125,
+          "top": 407.109375,
+          "bottom": 426.109375,
+          "height": 19
+        }
+      ],
+      "font": "14px",
+      "family": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+      "overflow": "visible",
+      "textOverflow": "clip",
+      "client": 106,
+      "scroll": 106
+    },
+    {
+      "text": "● Poder◆",
+      "value": "31",
+      "active": true,
+      "box": {
+        "x": 1426,
+        "y": 336.609375,
+        "width": 204,
+        "height": 32,
+        "right": 1630,
+        "bottom": 368.609375
+      },
+      "label": {
+        "x": 1426,
+        "y": 336.609375,
+        "width": 106.078125,
+        "height": 32,
+        "right": 1532.078125,
+        "bottom": 368.609375
+      },
+      "data": {
+        "x": 1532.078125,
+        "y": 336.609375,
+        "width": 97.921875,
+        "height": 32,
+        "right": 1630,
+        "bottom": 368.609375
+      },
+      "fragments": [
+        {
+          "x": 1429,
+          "right": 1437.46875,
+          "top": 343.109375,
+          "bottom": 362.109375,
+          "height": 19
+        },
+        {
+          "x": 1437.46875,
+          "right": 1441.34375,
+          "top": 343.109375,
+          "bottom": 362.109375,
+          "height": 19
+        },
+        {
+          "x": 1429,
+          "right": 1437.46875,
+          "top": 343.109375,
+          "bottom": 362.109375,
+          "height": 19
+        },
+        {
+          "x": 1437.46875,
+          "right": 1441.34375,
+          "top": 343.109375,
+          "bottom": 362.109375,
+          "height": 19
+        },
+        {
+          "x": 1441.34375,
+          "right": 1479.90625,
+          "top": 343.109375,
+          "bottom": 362.109375,
+          "height": 19
+        },
+        {
+          "x": 1482.90625,
+          "right": 1489.75,
+          "top": 349.109375,
+          "bottom": 360.109375,
+          "height": 11
+        },
+        {
+          "x": 1482.90625,
+          "right": 1489.75,
+          "top": 349.109375,
+          "bottom": 360.109375,
+          "height": 11
+        }
+      ],
+      "font": "14px",
+      "family": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+      "overflow": "visible",
+      "textOverflow": "clip",
+      "client": 106,
+      "scroll": 106
+    },
+    {
+      "text": "▲ Astucia",
+      "value": "16",
+      "active": false,
+      "box": {
+        "x": 1426,
+        "y": 368.609375,
+        "width": 204,
+        "height": 32,
+        "right": 1630,
+        "bottom": 400.609375
+      },
+      "label": {
+        "x": 1426,
+        "y": 368.609375,
+        "width": 106.078125,
+        "height": 32,
+        "right": 1532.078125,
+        "bottom": 400.609375
+      },
+      "data": {
+        "x": 1532.078125,
+        "y": 368.609375,
+        "width": 97.921875,
+        "height": 32,
+        "right": 1630,
+        "bottom": 400.609375
+      },
+      "fragments": [
+        {
+          "x": 1429,
+          "right": 1441.0625,
+          "top": 375.109375,
+          "bottom": 394.109375,
+          "height": 19
+        },
+        {
+          "x": 1441.0625,
+          "right": 1444.9375,
+          "top": 375.109375,
+          "bottom": 394.109375,
+          "height": 19
+        },
+        {
+          "x": 1429,
+          "right": 1441.0625,
+          "top": 375.109375,
+          "bottom": 394.109375,
+          "height": 19
+        },
+        {
+          "x": 1441.0625,
+          "right": 1444.9375,
+          "top": 375.109375,
+          "bottom": 394.109375,
+          "height": 19
+        },
+        {
+          "x": 1444.9375,
+          "right": 1493.09375,
+          "top": 375.109375,
+          "bottom": 394.109375,
+          "height": 19
+        }
+      ],
+      "font": "14px",
+      "family": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+      "overflow": "visible",
+      "textOverflow": "clip",
+      "client": 106,
+      "scroll": 106
+    },
+    {
+      "text": "■ Resistencia",
+      "value": "31",
+      "active": false,
+      "box": {
+        "x": 1426,
+        "y": 400.609375,
+        "width": 204,
+        "height": 32,
+        "right": 1630,
+        "bottom": 432.609375
+      },
+      "label": {
+        "x": 1426,
+        "y": 400.609375,
+        "width": 106.078125,
+        "height": 32,
+        "right": 1532.078125,
+        "bottom": 432.609375
+      },
+      "data": {
+        "x": 1532.078125,
+        "y": 400.609375,
+        "width": 97.921875,
+        "height": 32,
+        "right": 1630,
+        "bottom": 432.609375
+      },
+      "fragments": [
+        {
+          "x": 1429,
+          "right": 1441.0625,
+          "top": 407.109375,
+          "bottom": 426.109375,
+          "height": 19
+        },
+        {
+          "x": 1441.0625,
+          "right": 1444.9375,
+          "top": 407.109375,
+          "bottom": 426.109375,
+          "height": 19
+        },
+        {
+          "x": 1429,
+          "right": 1441.0625,
+          "top": 407.109375,
+          "bottom": 426.109375,
+          "height": 19
+        },
+        {
+          "x": 1441.0625,
+          "right": 1444.9375,
+          "top": 407.109375,
+          "bottom": 426.109375,
+          "height": 19
+        },
+        {
+          "x": 1444.9375,
+          "right": 1517.28125,
+          "top": 407.109375,
+          "bottom": 426.109375,
+          "height": 19
+        }
+      ],
+      "font": "14px",
+      "family": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+      "overflow": "visible",
+      "textOverflow": "clip",
+      "client": 106,
+      "scroll": 106
+    },
+    {
+      "text": "● Poder◆",
+      "value": "16",
+      "active": true,
+      "box": {
+        "x": 46,
+        "y": 796.609375,
+        "width": 204,
+        "height": 32,
+        "right": 250,
+        "bottom": 828.609375
+      },
+      "label": {
+        "x": 46,
+        "y": 796.609375,
+        "width": 106.078125,
+        "height": 32,
+        "right": 152.078125,
+        "bottom": 828.609375
+      },
+      "data": {
+        "x": 152.078125,
+        "y": 796.609375,
+        "width": 97.921875,
+        "height": 32,
+        "right": 250,
+        "bottom": 828.609375
+      },
+      "fragments": [
+        {
+          "x": 49,
+          "right": 57.46875,
+          "top": 803.109375,
+          "bottom": 822.109375,
+          "height": 19
+        },
+        {
+          "x": 57.46875,
+          "right": 61.34375,
+          "top": 803.109375,
+          "bottom": 822.109375,
+          "height": 19
+        },
+        {
+          "x": 49,
+          "right": 57.46875,
+          "top": 803.109375,
+          "bottom": 822.109375,
+          "height": 19
+        },
+        {
+          "x": 57.46875,
+          "right": 61.34375,
+          "top": 803.109375,
+          "bottom": 822.109375,
+          "height": 19
+        },
+        {
+          "x": 61.34375,
+          "right": 99.90625,
+          "top": 803.109375,
+          "bottom": 822.109375,
+          "height": 19
+        },
+        {
+          "x": 102.90625,
+          "right": 109.75,
+          "top": 809.109375,
+          "bottom": 820.109375,
+          "height": 11
+        },
+        {
+          "x": 102.90625,
+          "right": 109.75,
+          "top": 809.109375,
+          "bottom": 820.109375,
+          "height": 11
+        }
+      ],
+      "font": "14px",
+      "family": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+      "overflow": "visible",
+      "textOverflow": "clip",
+      "client": 106,
+      "scroll": 106
+    },
+    {
+      "text": "▲ Astucia",
+      "value": "11",
+      "active": false,
+      "box": {
+        "x": 46,
+        "y": 828.609375,
+        "width": 204,
+        "height": 32,
+        "right": 250,
+        "bottom": 860.609375
+      },
+      "label": {
+        "x": 46,
+        "y": 828.609375,
+        "width": 106.078125,
+        "height": 32,
+        "right": 152.078125,
+        "bottom": 860.609375
+      },
+      "data": {
+        "x": 152.078125,
+        "y": 828.609375,
+        "width": 97.921875,
+        "height": 32,
+        "right": 250,
+        "bottom": 860.609375
+      },
+      "fragments": [
+        {
+          "x": 49,
+          "right": 61.0625,
+          "top": 835.109375,
+          "bottom": 854.109375,
+          "height": 19
+        },
+        {
+          "x": 61.0625,
+          "right": 64.9375,
+          "top": 835.109375,
+          "bottom": 854.109375,
+          "height": 19
+        },
+        {
+          "x": 49,
+          "right": 61.0625,
+          "top": 835.109375,
+          "bottom": 854.109375,
+          "height": 19
+        },
+        {
+          "x": 61.0625,
+          "right": 64.9375,
+          "top": 835.109375,
+          "bottom": 854.109375,
+          "height": 19
+        },
+        {
+          "x": 64.9375,
+          "right": 113.09375,
+          "top": 835.109375,
+          "bottom": 854.109375,
+          "height": 19
+        }
+      ],
+      "font": "14px",
+      "family": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+      "overflow": "visible",
+      "textOverflow": "clip",
+      "client": 106,
+      "scroll": 106
+    },
+    {
+      "text": "■ Resistencia",
+      "value": "39",
+      "active": false,
+      "box": {
+        "x": 46,
+        "y": 860.609375,
+        "width": 204,
+        "height": 32,
+        "right": 250,
+        "bottom": 892.609375
+      },
+      "label": {
+        "x": 46,
+        "y": 860.609375,
+        "width": 106.078125,
+        "height": 32,
+        "right": 152.078125,
+        "bottom": 892.609375
+      },
+      "data": {
+        "x": 152.078125,
+        "y": 860.609375,
+        "width": 97.921875,
+        "height": 32,
+        "right": 250,
+        "bottom": 892.609375
+      },
+      "fragments": [
+        {
+          "x": 49,
+          "right": 61.0625,
+          "top": 867.109375,
+          "bottom": 886.109375,
+          "height": 19
+        },
+        {
+          "x": 61.0625,
+          "right": 64.9375,
+          "top": 867.109375,
+          "bottom": 886.109375,
+          "height": 19
+        },
+        {
+          "x": 49,
+          "right": 61.0625,
+          "top": 867.109375,
+          "bottom": 886.109375,
+          "height": 19
+        },
+        {
+          "x": 61.0625,
+          "right": 64.9375,
+          "top": 867.109375,
+          "bottom": 886.109375,
+          "height": 19
+        },
+        {
+          "x": 64.9375,
+          "right": 137.28125,
+          "top": 867.109375,
+          "bottom": 886.109375,
+          "height": 19
+        }
+      ],
+      "font": "14px",
+      "family": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+      "overflow": "visible",
+      "textOverflow": "clip",
+      "client": 106,
+      "scroll": 106
+    },
+    {
+      "text": "● Poder◆",
+      "value": "52",
+      "active": true,
+      "box": {
+        "x": 322,
+        "y": 796.609375,
+        "width": 204,
+        "height": 32,
+        "right": 526,
+        "bottom": 828.609375
+      },
+      "label": {
+        "x": 322,
+        "y": 796.609375,
+        "width": 106.078125,
+        "height": 32,
+        "right": 428.078125,
+        "bottom": 828.609375
+      },
+      "data": {
+        "x": 428.078125,
+        "y": 796.609375,
+        "width": 97.921875,
+        "height": 32,
+        "right": 526,
+        "bottom": 828.609375
+      },
+      "fragments": [
+        {
+          "x": 325,
+          "right": 333.46875,
+          "top": 803.109375,
+          "bottom": 822.109375,
+          "height": 19
+        },
+        {
+          "x": 333.46875,
+          "right": 337.34375,
+          "top": 803.109375,
+          "bottom": 822.109375,
+          "height": 19
+        },
+        {
+          "x": 325,
+          "right": 333.46875,
+          "top": 803.109375,
+          "bottom": 822.109375,
+          "height": 19
+        },
+        {
+          "x": 333.46875,
+          "right": 337.34375,
+          "top": 803.109375,
+          "bottom": 822.109375,
+          "height": 19
+        },
+        {
+          "x": 337.34375,
+          "right": 375.90625,
+          "top": 803.109375,
+          "bottom": 822.109375,
+          "height": 19
+        },
+        {
+          "x": 378.90625,
+          "right": 385.75,
+          "top": 809.109375,
+          "bottom": 820.109375,
+          "height": 11
+        },
+        {
+          "x": 378.90625,
+          "right": 385.75,
+          "top": 809.109375,
+          "bottom": 820.109375,
+          "height": 11
+        }
+      ],
+      "font": "14px",
+      "family": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+      "overflow": "visible",
+      "textOverflow": "clip",
+      "client": 106,
+      "scroll": 106
+    },
+    {
+      "text": "▲ Astucia",
+      "value": "18",
+      "active": false,
+      "box": {
+        "x": 322,
+        "y": 828.609375,
+        "width": 204,
+        "height": 32,
+        "right": 526,
+        "bottom": 860.609375
+      },
+      "label": {
+        "x": 322,
+        "y": 828.609375,
+        "width": 106.078125,
+        "height": 32,
+        "right": 428.078125,
+        "bottom": 860.609375
+      },
+      "data": {
+        "x": 428.078125,
+        "y": 828.609375,
+        "width": 97.921875,
+        "height": 32,
+        "right": 526,
+        "bottom": 860.609375
+      },
+      "fragments": [
+        {
+          "x": 325,
+          "right": 337.0625,
+          "top": 835.109375,
+          "bottom": 854.109375,
+          "height": 19
+        },
+        {
+          "x": 337.0625,
+          "right": 340.9375,
+          "top": 835.109375,
+          "bottom": 854.109375,
+          "height": 19
+        },
+        {
+          "x": 325,
+          "right": 337.0625,
+          "top": 835.109375,
+          "bottom": 854.109375,
+          "height": 19
+        },
+        {
+          "x": 337.0625,
+          "right": 340.9375,
+          "top": 835.109375,
+          "bottom": 854.109375,
+          "height": 19
+        },
+        {
+          "x": 340.9375,
+          "right": 389.09375,
+          "top": 835.109375,
+          "bottom": 854.109375,
+          "height": 19
+        }
+      ],
+      "font": "14px",
+      "family": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+      "overflow": "visible",
+      "textOverflow": "clip",
+      "client": 106,
+      "scroll": 106
+    },
+    {
+      "text": "■ Resistencia",
+      "value": "46",
+      "active": false,
+      "box": {
+        "x": 322,
+        "y": 860.609375,
+        "width": 204,
+        "height": 32,
+        "right": 526,
+        "bottom": 892.609375
+      },
+      "label": {
+        "x": 322,
+        "y": 860.609375,
+        "width": 106.078125,
+        "height": 32,
+        "right": 428.078125,
+        "bottom": 892.609375
+      },
+      "data": {
+        "x": 428.078125,
+        "y": 860.609375,
+        "width": 97.921875,
+        "height": 32,
+        "right": 526,
+        "bottom": 892.609375
+      },
+      "fragments": [
+        {
+          "x": 325,
+          "right": 337.0625,
+          "top": 867.109375,
+          "bottom": 886.109375,
+          "height": 19
+        },
+        {
+          "x": 337.0625,
+          "right": 340.9375,
+          "top": 867.109375,
+          "bottom": 886.109375,
+          "height": 19
+        },
+        {
+          "x": 325,
+          "right": 337.0625,
+          "top": 867.109375,
+          "bottom": 886.109375,
+          "height": 19
+        },
+        {
+          "x": 337.0625,
+          "right": 340.9375,
+          "top": 867.109375,
+          "bottom": 886.109375,
+          "height": 19
+        },
+        {
+          "x": 340.9375,
+          "right": 413.28125,
+          "top": 867.109375,
+          "bottom": 886.109375,
+          "height": 19
+        }
+      ],
+      "font": "14px",
+      "family": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+      "overflow": "visible",
+      "textOverflow": "clip",
+      "client": 106,
+      "scroll": 106
+    },
+    {
+      "text": "● Poder◆",
+      "value": "50",
+      "active": true,
+      "box": {
+        "x": 598,
+        "y": 796.609375,
+        "width": 204,
+        "height": 32,
+        "right": 802,
+        "bottom": 828.609375
+      },
+      "label": {
+        "x": 598,
+        "y": 796.609375,
+        "width": 106.078125,
+        "height": 32,
+        "right": 704.078125,
+        "bottom": 828.609375
+      },
+      "data": {
+        "x": 704.078125,
+        "y": 796.609375,
+        "width": 97.921875,
+        "height": 32,
+        "right": 802,
+        "bottom": 828.609375
+      },
+      "fragments": [
+        {
+          "x": 601,
+          "right": 609.46875,
+          "top": 803.109375,
+          "bottom": 822.109375,
+          "height": 19
+        },
+        {
+          "x": 609.46875,
+          "right": 613.34375,
+          "top": 803.109375,
+          "bottom": 822.109375,
+          "height": 19
+        },
+        {
+          "x": 601,
+          "right": 609.46875,
+          "top": 803.109375,
+          "bottom": 822.109375,
+          "height": 19
+        },
+        {
+          "x": 609.46875,
+          "right": 613.34375,
+          "top": 803.109375,
+          "bottom": 822.109375,
+          "height": 19
+        },
+        {
+          "x": 613.34375,
+          "right": 651.90625,
+          "top": 803.109375,
+          "bottom": 822.109375,
+          "height": 19
+        },
+        {
+          "x": 654.90625,
+          "right": 661.75,
+          "top": 809.109375,
+          "bottom": 820.109375,
+          "height": 11
+        },
+        {
+          "x": 654.90625,
+          "right": 661.75,
+          "top": 809.109375,
+          "bottom": 820.109375,
+          "height": 11
+        }
+      ],
+      "font": "14px",
+      "family": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+      "overflow": "visible",
+      "textOverflow": "clip",
+      "client": 106,
+      "scroll": 106
+    },
+    {
+      "text": "▲ Astucia",
+      "value": "25",
+      "active": false,
+      "box": {
+        "x": 598,
+        "y": 828.609375,
+        "width": 204,
+        "height": 32,
+        "right": 802,
+        "bottom": 860.609375
+      },
+      "label": {
+        "x": 598,
+        "y": 828.609375,
+        "width": 106.078125,
+        "height": 32,
+        "right": 704.078125,
+        "bottom": 860.609375
+      },
+      "data": {
+        "x": 704.078125,
+        "y": 828.609375,
+        "width": 97.921875,
+        "height": 32,
+        "right": 802,
+        "bottom": 860.609375
+      },
+      "fragments": [
+        {
+          "x": 601,
+          "right": 613.0625,
+          "top": 835.109375,
+          "bottom": 854.109375,
+          "height": 19
+        },
+        {
+          "x": 613.0625,
+          "right": 616.9375,
+          "top": 835.109375,
+          "bottom": 854.109375,
+          "height": 19
+        },
+        {
+          "x": 601,
+          "right": 613.0625,
+          "top": 835.109375,
+          "bottom": 854.109375,
+          "height": 19
+        },
+        {
+          "x": 613.0625,
+          "right": 616.9375,
+          "top": 835.109375,
+          "bottom": 854.109375,
+          "height": 19
+        },
+        {
+          "x": 616.9375,
+          "right": 665.09375,
+          "top": 835.109375,
+          "bottom": 854.109375,
+          "height": 19
+        }
+      ],
+      "font": "14px",
+      "family": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+      "overflow": "visible",
+      "textOverflow": "clip",
+      "client": 106,
+      "scroll": 106
+    },
+    {
+      "text": "■ Resistencia",
+      "value": "36",
+      "active": false,
+      "box": {
+        "x": 598,
+        "y": 860.609375,
+        "width": 204,
+        "height": 32,
+        "right": 802,
+        "bottom": 892.609375
+      },
+      "label": {
+        "x": 598,
+        "y": 860.609375,
+        "width": 106.078125,
+        "height": 32,
+        "right": 704.078125,
+        "bottom": 892.609375
+      },
+      "data": {
+        "x": 704.078125,
+        "y": 860.609375,
+        "width": 97.921875,
+        "height": 32,
+        "right": 802,
+        "bottom": 892.609375
+      },
+      "fragments": [
+        {
+          "x": 601,
+          "right": 613.0625,
+          "top": 867.109375,
+          "bottom": 886.109375,
+          "height": 19
+        },
+        {
+          "x": 613.0625,
+          "right": 616.9375,
+          "top": 867.109375,
+          "bottom": 886.109375,
+          "height": 19
+        },
+        {
+          "x": 601,
+          "right": 613.0625,
+          "top": 867.109375,
+          "bottom": 886.109375,
+          "height": 19
+        },
+        {
+          "x": 613.0625,
+          "right": 616.9375,
+          "top": 867.109375,
+          "bottom": 886.109375,
+          "height": 19
+        },
+        {
+          "x": 616.9375,
+          "right": 689.28125,
+          "top": 867.109375,
+          "bottom": 886.109375,
+          "height": 19
+        }
+      ],
+      "font": "14px",
+      "family": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+      "overflow": "visible",
+      "textOverflow": "clip",
+      "client": 106,
+      "scroll": 106
+    }
+  ],
+  "cards": [
+    {
+      "box": {
+        "x": 309,
+        "y": 184.109375,
+        "width": 230,
+        "height": 321,
+        "right": 539,
+        "bottom": 505.109375
+      },
+      "name": "Dragón de fuego",
+      "nameFont": "16px",
+      "details": {
+        "x": 322,
+        "y": 436.109375,
+        "width": 204,
+        "height": 56,
+        "right": 526,
+        "bottom": 492.109375
+      }
+    },
+    {
+      "box": {
+        "x": 585,
+        "y": 184.109375,
+        "width": 230,
+        "height": 321,
+        "right": 815,
+        "bottom": 505.109375
+      },
+      "name": "Dragón de tormenta",
+      "nameFont": "16px",
+      "details": {
+        "x": 598,
+        "y": 436.109375,
+        "width": 204,
+        "height": 56,
+        "right": 802,
+        "bottom": 492.109375
+      }
+    },
+    {
+      "box": {
+        "x": 861,
+        "y": 184.109375,
+        "width": 230,
+        "height": 321,
+        "right": 1091,
+        "bottom": 505.109375
+      },
+      "name": "Dragón de los bosques",
+      "nameFont": "16px",
+      "details": {
+        "x": 874,
+        "y": 436.109375,
+        "width": 204,
+        "height": 56,
+        "right": 1078,
+        "bottom": 492.109375
+      }
+    },
+    {
+      "box": {
+        "x": 1137,
+        "y": 184.109375,
+        "width": 230,
+        "height": 321,
+        "right": 1367,
+        "bottom": 505.109375
+      },
+      "name": "Dragón de cristal",
+      "nameFont": "16px",
+      "details": {
+        "x": 1150,
+        "y": 436.109375,
+        "width": 204,
+        "height": 56,
+        "right": 1354,
+        "bottom": 492.109375
+      }
+    },
+    {
+      "box": {
+        "x": 1413,
+        "y": 184.109375,
+        "width": 230,
+        "height": 321,
+        "right": 1643,
+        "bottom": 505.109375
+      },
+      "name": "Dragón del arrecife",
+      "nameFont": "16px",
+      "details": {
+        "x": 1426,
+        "y": 436.109375,
+        "width": 204,
+        "height": 56,
+        "right": 1630,
+        "bottom": 492.109375
+      }
+    },
+    {
+      "box": {
+        "x": 33,
+        "y": 644.109375,
+        "width": 230,
+        "height": 321,
+        "right": 263,
+        "bottom": 965.109375
+      },
+      "name": "Pegaso de las nieves",
+      "nameFont": "16px",
+      "details": {
+        "x": 46,
+        "y": 896.109375,
+        "width": 204,
+        "height": 56,
+        "right": 250,
+        "bottom": 952.109375
+      }
+    },
+    {
+      "box": {
+        "x": 309,
+        "y": 644.109375,
+        "width": 230,
+        "height": 321,
+        "right": 539,
+        "bottom": 965.109375
+      },
+      "name": "Dragón de hielo",
+      "nameFont": "16px",
+      "details": {
+        "x": 322,
+        "y": 896.109375,
+        "width": 204,
+        "height": 56,
+        "right": 526,
+        "bottom": 952.109375
+      }
+    },
+    {
+      "box": {
+        "x": 585,
+        "y": 644.109375,
+        "width": 230,
+        "height": 321,
+        "right": 815,
+        "bottom": 965.109375
+      },
+      "name": "Unicornio Aurora",
+      "nameFont": "16px",
+      "details": {
+        "x": 598,
+        "y": 896.109375,
+        "width": 204,
+        "height": 56,
+        "right": 802,
+        "bottom": 952.109375
+      }
+    }
+  ],
+  "panels": {
+    "people": {
+      "x": 16,
+      "y": 167.109375,
+      "width": 264,
+      "height": 344,
+      "right": 280,
+      "bottom": 511.109375
+    },
+    "initial-state": {
+      "x": 1120,
+      "y": 592.109375,
+      "width": 264,
+      "height": 609.4375,
+      "right": 1384,
+      "bottom": 1201.546875
+    },
+    "plays": {
+      "x": 292,
+      "y": 167.109375,
+      "width": 1092,
+      "height": 413,
+      "right": 1384,
+      "bottom": 580.109375
+    },
+    "hand": {
+      "x": 292,
+      "y": 592.109375,
+      "width": 816,
+      "height": 454,
+      "right": 1108,
+      "bottom": 1046.109375
+    }
+  },
+  "date": "2026-10-16T13:16:27.653Z",
+  "browser": "155.0.8059.80",
+  "clock": "Controlado; HTTP/Socket.IO reales, permutación legal sustituida"
+}

@@ -1,0 +1,298 @@
+{
+  "date": "2026-10-16T18:51:32.795Z",
+  "viewport": [
+    390,
+    844
+  ],
+  "scale": 1,
+  "dpr": 1,
+  "layout": "normal",
+  "useful": "343",
+  "height": 2375,
+  "cards": [
+    {
+      "card": {
+        "x": 37,
+        "y": 1351.6875,
+        "width": 215,
+        "height": 318.25,
+        "right": 252,
+        "bottom": 1669.9375
+      },
+      "image": {
+        "x": 37,
+        "y": 1400.6875,
+        "width": 215,
+        "height": 161.25,
+        "right": 252,
+        "bottom": 1561.9375
+      },
+      "table": {
+        "x": 50,
+        "y": 1561.9375,
+        "width": 189,
+        "height": 107,
+        "right": 239,
+        "bottom": 1668.9375
+      },
+      "button": {
+        "x": 203,
+        "y": 1512.9375,
+        "width": 44,
+        "height": 44,
+        "right": 247,
+        "bottom": 1556.9375
+      },
+      "right": 5,
+      "bottom": 5,
+      "gaps": [
+        0,
+        0
+      ],
+      "padding": 8,
+      "nameFont": "18px",
+      "valueFont": "14px",
+      "borders": [
+        "1px",
+        "1px",
+        "0px"
+      ],
+      "header": {
+        "x": 50,
+        "y": 1561.9375,
+        "width": 1,
+        "height": 1,
+        "right": 51,
+        "bottom": 1562.9375
+      },
+      "clip": "inset(50%)",
+      "circle": {
+        "x": 53,
+        "y": 1573.9375,
+        "width": 12,
+        "height": 12,
+        "right": 65,
+        "bottom": 1585.9375
+      },
+      "imageFit": "contain",
+      "natural": [
+        640,
+        480
+      ],
+      "intact": true
+    },
+    {
+      "card": {
+        "x": 264,
+        "y": 1351.6875,
+        "width": 215,
+        "height": 342.25,
+        "right": 479,
+        "bottom": 1693.9375
+      },
+      "image": {
+        "x": 264,
+        "y": 1424.6875,
+        "width": 215,
+        "height": 161.25,
+        "right": 479,
+        "bottom": 1585.9375
+      },
+      "table": {
+        "x": 277,
+        "y": 1585.9375,
+        "width": 189,
+        "height": 107,
+        "right": 466,
+        "bottom": 1692.9375
+      },
+      "button": {
+        "x": 430,
+        "y": 1536.9375,
+        "width": 44,
+        "height": 44,
+        "right": 474,
+        "bottom": 1580.9375
+      },
+      "right": 5,
+      "bottom": 5,
+      "gaps": [
+        0,
+        0
+      ],
+      "padding": 8,
+      "nameFont": "18px",
+      "valueFont": "14px",
+      "borders": [
+        "1px",
+        "1px",
+        "0px"
+      ],
+      "header": {
+        "x": 277,
+        "y": 1585.9375,
+        "width": 1,
+        "height": 1,
+        "right": 278,
+        "bottom": 1586.9375
+      },
+      "clip": "inset(50%)",
+      "circle": {
+        "x": 280,
+        "y": 1597.9375,
+        "width": 12,
+        "height": 12,
+        "right": 292,
+        "bottom": 1609.9375
+      },
+      "imageFit": "contain",
+      "natural": [
+        640,
+        480
+      ],
+      "intact": true
+    },
+    {
+      "card": {
+        "x": 37,
+        "y": 1823.9375,
+        "width": 220,
+        "height": 322,
+        "right": 257,
+        "bottom": 2145.9375
+      },
+      "image": {
+        "x": 37,
+        "y": 1872.9375,
+        "width": 220,
+        "height": 165,
+        "right": 257,
+        "bottom": 2037.9375
+      },
+      "table": {
+        "x": 50,
+        "y": 2037.9375,
+        "width": 194,
+        "height": 107,
+        "right": 244,
+        "bottom": 2144.9375
+      },
+      "button": {
+        "x": 208,
+        "y": 1988.9375,
+        "width": 44,
+        "height": 44,
+        "right": 252,
+        "bottom": 2032.9375
+      },
+      "right": 5,
+      "bottom": 5,
+      "gaps": [
+        0,
+        0
+      ],
+      "padding": 8,
+      "nameFont": "18px",
+      "valueFont": "14px",
+      "borders": [
+        "1px",
+        "1px",
+        "0px"
+      ],
+      "header": {
+        "x": 50,
+        "y": 2037.9375,
+        "width": 1,
+        "height": 1,
+        "right": 51,
+        "bottom": 2038.9375
+      },
+      "clip": "inset(50%)",
+      "circle": {
+        "x": 53,
+        "y": 2049.9375,
+        "width": 12,
+        "height": 12,
+        "right": 65,
+        "bottom": 2061.9375
+      },
+      "imageFit": "contain",
+      "natural": [
+        640,
+        480
+      ],
+      "intact": true
+    },
+    {
+      "card": {
+        "x": 269,
+        "y": 1823.9375,
+        "width": 220,
+        "height": 322,
+        "right": 489,
+        "bottom": 2145.9375
+      },
+      "image": {
+        "x": 269,
+        "y": 1872.9375,
+        "width": 220,
+        "height": 165,
+        "right": 489,
+        "bottom": 2037.9375
+      },
+      "table": {
+        "x": 282,
+        "y": 2037.9375,
+        "width": 194,
+        "height": 107,
+        "right": 476,
+        "bottom": 2144.9375
+      },
+      "button": {
+        "x": 440,
+        "y": 1988.9375,
+        "width": 44,
+        "height": 44,
+        "right": 484,
+        "bottom": 2032.9375
+      },
+      "right": 5,
+      "bottom": 5,
+      "gaps": [
+        0,
+        0
+      ],
+      "padding": 8,
+      "nameFont": "18px",
+      "valueFont": "14px",
+      "borders": [
+        "1px",
+        "1px",
+        "0px"
+      ],
+      "header": {
+        "x": 282,
+        "y": 2037.9375,
+        "width": 1,
+        "height": 1,
+        "right": 283,
+        "bottom": 2038.9375
+      },
+      "clip": "inset(50%)",
+      "circle": {
+        "x": 285,
+        "y": 2049.9375,
+        "width": 12,
+        "height": 12,
+        "right": 297,
+        "bottom": 2061.9375
+      },
+      "imageFit": "contain",
+      "natural": [
+        640,
+        480
+      ],
+      "intact": true
+    }
+  ]
+}

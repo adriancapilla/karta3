@@ -1,0 +1,8 @@
+
+Running 1 test using 1 worker
+
+(node:5028) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 playwright-report\b17-adenda\continuation.spec.ts:17:1 › diagnóstico G antes: columnas efectivas y experimento CSS aislado (14.6s)
+
+  1 passed (15.6s)

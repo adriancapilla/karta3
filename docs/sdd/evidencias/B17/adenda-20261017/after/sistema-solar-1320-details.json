@@ -1,0 +1,473 @@
+{
+  "viewport": {
+    "width": 1320,
+    "height": 850,
+    "dpr": 1,
+    "scale": 1
+  },
+  "useful": "1273",
+  "layout": "normal",
+  "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+  "pageHeight": 1151,
+  "cards": [
+    {
+      "cardId": "itokawa",
+      "name": "Itokawa",
+      "card": {
+        "x": 33,
+        "y": 645.109375,
+        "width": 230,
+        "height": 321,
+        "right": 263,
+        "bottom": 966.109375
+      },
+      "surface": {
+        "x": 46,
+        "y": 658.109375,
+        "width": 204,
+        "height": 307,
+        "right": 250,
+        "bottom": 965.109375
+      },
+      "heading": {
+        "x": 46,
+        "y": 658.109375,
+        "width": 204,
+        "height": 24,
+        "right": 250,
+        "bottom": 682.109375
+      },
+      "image": {
+        "x": 33,
+        "y": 686.109375,
+        "width": 230,
+        "height": 172.5,
+        "right": 263,
+        "bottom": 858.609375
+      },
+      "img": {
+        "box": {
+          "x": 33,
+          "y": 686.109375,
+          "width": 230,
+          "height": 172.5,
+          "right": 263,
+          "bottom": 858.609375
+        },
+        "naturalWidth": 640,
+        "naturalHeight": 480
+      },
+      "table": {
+        "x": 46,
+        "y": 864.359375,
+        "width": 204,
+        "height": 95,
+        "right": 250,
+        "bottom": 959.359375
+      },
+      "button": {
+        "x": 214,
+        "y": 809.609375,
+        "width": 44,
+        "height": 44,
+        "right": 258,
+        "bottom": 853.609375
+      },
+      "buttonText": "D",
+      "nameFont": "16px",
+      "valueFont": "14px",
+      "rows": [
+        {
+          "box": {
+            "x": 46,
+            "y": 864.359375,
+            "width": 204,
+            "height": 31.5,
+            "right": 250,
+            "bottom": 895.859375
+          },
+          "text": " Vel52",
+          "border": "1px"
+        },
+        {
+          "box": {
+            "x": 46,
+            "y": 895.859375,
+            "width": 204,
+            "height": 32,
+            "right": 250,
+            "bottom": 927.859375
+          },
+          "text": "▲ Dist31",
+          "border": "1px"
+        },
+        {
+          "box": {
+            "x": 46,
+            "y": 927.859375,
+            "width": 204,
+            "height": 31.5,
+            "right": 250,
+            "bottom": 959.359375
+          },
+          "text": "■ Diámetro1",
+          "border": "0px"
+        }
+      ],
+      "topGap": 5.75,
+      "bottomGap": 6.75
+    },
+    {
+      "cardId": "67p-churyumov-gerasimenko",
+      "name": "67P / Churyumov-Gerasimenko",
+      "card": {
+        "x": 306,
+        "y": 645.109375,
+        "width": 230,
+        "height": 321,
+        "right": 536,
+        "bottom": 966.109375
+      },
+      "surface": {
+        "x": 319,
+        "y": 658.109375,
+        "width": 204,
+        "height": 307,
+        "right": 523,
+        "bottom": 965.109375
+      },
+      "heading": {
+        "x": 319,
+        "y": 658.109375,
+        "width": 204,
+        "height": 24,
+        "right": 523,
+        "bottom": 682.109375
+      },
+      "image": {
+        "x": 306,
+        "y": 686.109375,
+        "width": 230,
+        "height": 172.5,
+        "right": 536,
+        "bottom": 858.609375
+      },
+      "img": {
+        "box": {
+          "x": 306,
+          "y": 686.109375,
+          "width": 230,
+          "height": 172.5,
+          "right": 536,
+          "bottom": 858.609375
+        },
+        "naturalWidth": 640,
+        "naturalHeight": 480
+      },
+      "table": {
+        "x": 319,
+        "y": 864.359375,
+        "width": 204,
+        "height": 95,
+        "right": 523,
+        "bottom": 959.359375
+      },
+      "button": {
+        "x": 487,
+        "y": 809.609375,
+        "width": 44,
+        "height": 44,
+        "right": 531,
+        "bottom": 853.609375
+      },
+      "buttonText": "D",
+      "nameFont": "12.6px",
+      "valueFont": "14px",
+      "rows": [
+        {
+          "box": {
+            "x": 319,
+            "y": 864.359375,
+            "width": 204,
+            "height": 31.5,
+            "right": 523,
+            "bottom": 895.859375
+          },
+          "text": " Vel50",
+          "border": "1px"
+        },
+        {
+          "box": {
+            "x": 319,
+            "y": 895.859375,
+            "width": 204,
+            "height": 32,
+            "right": 523,
+            "bottom": 927.859375
+          },
+          "text": "▲ Dist45",
+          "border": "1px"
+        },
+        {
+          "box": {
+            "x": 319,
+            "y": 927.859375,
+            "width": 204,
+            "height": 31.5,
+            "right": 523,
+            "bottom": 959.359375
+          },
+          "text": "■ Diámetro4",
+          "border": "0px"
+        }
+      ],
+      "topGap": 5.75,
+      "bottomGap": 6.75
+    },
+    {
+      "cardId": "hyakutake",
+      "name": "Hyakutake",
+      "card": {
+        "x": 548,
+        "y": 645.109375,
+        "width": 230,
+        "height": 321,
+        "right": 778,
+        "bottom": 966.109375
+      },
+      "surface": {
+        "x": 561,
+        "y": 658.109375,
+        "width": 204,
+        "height": 307,
+        "right": 765,
+        "bottom": 965.109375
+      },
+      "heading": {
+        "x": 561,
+        "y": 658.109375,
+        "width": 204,
+        "height": 24,
+        "right": 765,
+        "bottom": 682.109375
+      },
+      "image": {
+        "x": 548,
+        "y": 686.109375,
+        "width": 230,
+        "height": 172.5,
+        "right": 778,
+        "bottom": 858.609375
+      },
+      "img": {
+        "box": {
+          "x": 548,
+          "y": 686.109375,
+          "width": 230,
+          "height": 172.5,
+          "right": 778,
+          "bottom": 858.609375
+        },
+        "naturalWidth": 640,
+        "naturalHeight": 480
+      },
+      "table": {
+        "x": 561,
+        "y": 864.359375,
+        "width": 204,
+        "height": 95,
+        "right": 765,
+        "bottom": 959.359375
+      },
+      "button": {
+        "x": 729,
+        "y": 809.609375,
+        "width": 44,
+        "height": 44,
+        "right": 773,
+        "bottom": 853.609375
+      },
+      "buttonText": "D",
+      "nameFont": "16px",
+      "valueFont": "14px",
+      "rows": [
+        {
+          "box": {
+            "x": 561,
+            "y": 864.359375,
+            "width": 204,
+            "height": 31.5,
+            "right": 765,
+            "bottom": 895.859375
+          },
+          "text": " Vel58",
+          "border": "1px"
+        },
+        {
+          "box": {
+            "x": 561,
+            "y": 895.859375,
+            "width": 204,
+            "height": 32,
+            "right": 765,
+            "bottom": 927.859375
+          },
+          "text": "▲ Dist58",
+          "border": "1px"
+        },
+        {
+          "box": {
+            "x": 561,
+            "y": 927.859375,
+            "width": 204,
+            "height": 31.5,
+            "right": 765,
+            "bottom": 959.359375
+          },
+          "text": "■ Diámetro6",
+          "border": "0px"
+        }
+      ],
+      "topGap": 5.75,
+      "bottomGap": 6.75
+    },
+    {
+      "cardId": "encke",
+      "name": "Encke",
+      "card": {
+        "x": 790,
+        "y": 645.109375,
+        "width": 230,
+        "height": 321,
+        "right": 1020,
+        "bottom": 966.109375
+      },
+      "surface": {
+        "x": 803,
+        "y": 658.109375,
+        "width": 204,
+        "height": 307,
+        "right": 1007,
+        "bottom": 965.109375
+      },
+      "heading": {
+        "x": 803,
+        "y": 658.109375,
+        "width": 204,
+        "height": 24,
+        "right": 1007,
+        "bottom": 682.109375
+      },
+      "image": {
+        "x": 790,
+        "y": 686.109375,
+        "width": 230,
+        "height": 172.5,
+        "right": 1020,
+        "bottom": 858.609375
+      },
+      "img": {
+        "box": {
+          "x": 790,
+          "y": 686.109375,
+          "width": 230,
+          "height": 172.5,
+          "right": 1020,
+          "bottom": 858.609375
+        },
+        "naturalWidth": 640,
+        "naturalHeight": 480
+      },
+      "table": {
+        "x": 803,
+        "y": 864.359375,
+        "width": 204,
+        "height": 95,
+        "right": 1007,
+        "bottom": 959.359375
+      },
+      "button": {
+        "x": 971,
+        "y": 809.609375,
+        "width": 44,
+        "height": 44,
+        "right": 1015,
+        "bottom": 853.609375
+      },
+      "buttonText": "D",
+      "nameFont": "16px",
+      "valueFont": "14px",
+      "rows": [
+        {
+          "box": {
+            "x": 803,
+            "y": 864.359375,
+            "width": 204,
+            "height": 31.5,
+            "right": 1007,
+            "bottom": 895.859375
+          },
+          "text": " Vel57",
+          "border": "1px"
+        },
+        {
+          "box": {
+            "x": 803,
+            "y": 895.859375,
+            "width": 204,
+            "height": 32,
+            "right": 1007,
+            "bottom": 927.859375
+          },
+          "text": "▲ Dist35",
+          "border": "1px"
+        },
+        {
+          "box": {
+            "x": 803,
+            "y": 927.859375,
+            "width": 204,
+            "height": 31.5,
+            "right": 1007,
+            "bottom": 959.359375
+          },
+          "text": "■ Diámetro7",
+          "border": "0px"
+        }
+      ],
+      "topGap": 5.75,
+      "bottomGap": 6.75
+    }
+  ],
+  "details": {
+    "box": {
+      "x": 412.5,
+      "y": 32.75,
+      "width": 480,
+      "height": 784.5,
+      "right": 892.5,
+      "bottom": 817.25
+    },
+    "image": {
+      "x": 435.5,
+      "y": 127.75,
+      "width": 434,
+      "height": 325.5,
+      "right": 869.5,
+      "bottom": 453.25
+    },
+    "innerWidth": 434
+  },
+  "fonts": {
+    "fonts": [
+      {
+        "familyName": "Segoe UI",
+        "postScriptName": "SegoeUI-Bold",
+        "isCustomFont": false,
+        "glyphCount": 27
+      }
+    ]
+  },
+  "date": "2026-10-17T17:28:07.682Z",
+  "browser": "155.0.8059.80"
+}

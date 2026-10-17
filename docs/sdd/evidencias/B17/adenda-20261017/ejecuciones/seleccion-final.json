@@ -1,0 +1,265 @@
+{
+  "config": {
+    "workers": 1,
+    "retries": [
+      0
+    ]
+  },
+  "stats": {
+    "startTime": "2026-10-17T17:25:49.152Z",
+    "duration": 117346.223,
+    "expected": 19,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "cases": [
+    {
+      "file": "cancelGame.spec.ts",
+      "line": 82,
+      "title": "B13/T04 A cancelada → B ordinary, F5, avisos/estados antiguos y límites propios",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 9481
+        }
+      ]
+    },
+    {
+      "file": "cardFace.spec.ts",
+      "line": 76,
+      "title": "B17 criaturas-magicas PLAY_VALUE: cara completa, encaje autorizado, datos, públicos y normal adaptada",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 6231
+        }
+      ]
+    },
+    {
+      "file": "cardFace.spec.ts",
+      "line": 76,
+      "title": "B17 criaturas-magicas DISPLAY_VALUE: cara completa, encaje autorizado, datos, públicos y normal adaptada",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 6537
+        }
+      ]
+    },
+    {
+      "file": "cardFace.spec.ts",
+      "line": 129,
+      "title": "B17 D: clic/Enter/Space/arrastre no juegan; parcial/plazo, Información, resize y foco equivalentes",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 5995
+        }
+      ]
+    },
+    {
+      "file": "cardFace.spec.ts",
+      "line": 160,
+      "title": "B17 consulta abierta: timeout retira la carta, revisión avanza y foco vuelve a región, sin pausas",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 5894
+        }
+      ]
+    },
+    {
+      "file": "cardFace.spec.ts",
+      "line": 181,
+      "title": "B17 compacta 360: cara intacta, consulta completa e imagen Detalles ampliada, anidación y foco",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 5223
+        }
+      ]
+    },
+    {
+      "file": "cardFace.spec.ts",
+      "line": 181,
+      "title": "B17 compacta 390: cara intacta, consulta completa e imagen Detalles ampliada, anidación y foco",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 5250
+        }
+      ]
+    },
+    {
+      "file": "cardFace.spec.ts",
+      "line": 201,
+      "title": "B17 fallo/pendiente de medio: placeholder y aviso sin colisión con D, recurso original y recuperación",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 5741
+        }
+      ]
+    },
+    {
+      "file": "cardTitleFit.spec.ts",
+      "line": 29,
+      "title": "ADENDA B17 T/G/C generica PLAY_VALUE: máximo, banda, contenido y Resistencia",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 5559
+        }
+      ]
+    },
+    {
+      "file": "cardTitleFit.spec.ts",
+      "line": 29,
+      "title": "ADENDA B17 T/G/C generica DISPLAY_VALUE: máximo, banda, contenido y Resistencia",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 5637
+        }
+      ]
+    },
+    {
+      "file": "cardTitleFit.spec.ts",
+      "line": 29,
+      "title": "ADENDA B17 T/G/C sistema-solar PLAY_VALUE: máximo, banda, contenido y Resistencia",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 5729
+        }
+      ]
+    },
+    {
+      "file": "cardTitleFit.spec.ts",
+      "line": 29,
+      "title": "ADENDA B17 T/G/C sistema-solar DISPLAY_VALUE: máximo, banda, contenido y Resistencia",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 5690
+        }
+      ]
+    },
+    {
+      "file": "cardTitleFit.spec.ts",
+      "line": 29,
+      "title": "ADENDA B17 T/G/C criaturas-magicas PLAY_VALUE: máximo, banda, contenido y Resistencia",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 5725
+        }
+      ]
+    },
+    {
+      "file": "cardTitleFit.spec.ts",
+      "line": 29,
+      "title": "ADENDA B17 T/G/C criaturas-magicas DISPLAY_VALUE: máximo, banda, contenido y Resistencia",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 5796
+        }
+      ]
+    },
+    {
+      "file": "cardTitleFit.spec.ts",
+      "line": 64,
+      "title": "ADENDA B17 T/G/I fixture válida: corte solo a12, nombre íntegro, hit real y avance único",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 2464
+        }
+      ]
+    },
+    {
+      "file": "cardTitleFit.spec.ts",
+      "line": 92,
+      "title": "ADENDA B17 T/G fuentes tardías y zoom CSS125/200 declarado: recalcula sin pausar ni neutralizar fuente",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 6477
+        }
+      ]
+    },
+    {
+      "file": "format2Presentation.spec.ts",
+      "line": 148,
+      "title": "B15 frontera medida 1367/1368, equivalencia normal on/off, foco, parciales, resize y quinta",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 13195
+        }
+      ]
+    },
+    {
+      "file": "resultNotice.spec.ts",
+      "line": 38,
+      "title": "INC-01 expired A → B ordinary: accepted result, reload, controlled expiry and old reads",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 7158
+        }
+      ]
+    },
+    {
+      "file": "timedGame.spec.ts",
+      "line": 6,
+      "title": "B08 T1 1280: deadline estable, carta local ignorada, aviso y recuperación",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "retry": 0,
+          "duration": 1524
+        }
+      ]
+    }
+  ]
+}

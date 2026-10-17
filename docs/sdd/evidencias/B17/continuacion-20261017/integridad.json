@@ -1,0 +1,939 @@
+{
+  "date": "2026-10-17T20:24:39.242Z",
+  "base": "27eb1fa8e65c90cfaca251f3a676c66d51b276bf",
+  "preparation": "4a8565a",
+  "testedCode": "f5c2c78776ec75964572664a52d32591f6b59b4b",
+  "tree": "d7fddd8b11b2f1cf0fc50858ea736b2b2e66ad8a",
+  "runtime": {
+    "node": "v24.19.0",
+    "path": "C:\\Users\\Adrian\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+    "icu": "78.3",
+    "unicode": "17.0",
+    "platform": "win32",
+    "arch": "x64"
+  },
+  "code": [
+    {
+      "file": "src/GameCard.tsx",
+      "sha256": "4da239061a8af15fc92bc3f34c1617517e3e31a7d58283df480bb2471d5fd310"
+    },
+    {
+      "file": "src/style.css",
+      "sha256": "62d536c076408fff3e12b904d64a067d6eb21f6dbfddee766753b21f7ea39086"
+    },
+    {
+      "file": "src/useCardTitle.ts",
+      "sha256": "2fc18b49bbadb64e646d4c93a2eb2ce41dc07e257891ac954be88146182d53e1"
+    },
+    {
+      "file": "tests/browser/cardColumns.spec.ts",
+      "sha256": "9a0a59b82a6af743a9123d47b27a47b488bb21500802a866a522f2bbda6fef02"
+    },
+    {
+      "file": "tests/support/cardColumnsGeometry.ts",
+      "sha256": "0ea1acfb2fa1b1fa0e30490406bd0c04c17ab1927f3224cf16fbe8509f6e93db"
+    }
+  ],
+  "assets": [
+    {
+      "file": "dist/assets/index-DYjw3oaV.js",
+      "sha256": "ac41a95a8301c70bb9ed1095cc79becf823acbe9ed9c230c2c06696a990ca596"
+    },
+    {
+      "file": "dist/assets/index-V4Vz36xo.css",
+      "sha256": "a0c57153a521b438de22fd7e68aa96cea525904559711656282e6b1e2dbbc856"
+    }
+  ],
+  "diagnostics": [
+    {
+      "file": "../verificacion-b16-b17-20261016/medidas-linux.json",
+      "sha256": "c7d4219981798a046364991af430c4a0b2347d0cd451ec0d1d808d1353653e0f"
+    },
+    {
+      "file": "../verificacion-b16-b17-20261016/trazas-resumen.txt",
+      "sha256": "d0a8cc6cb28f89cd4586e42245e9c6f7daa0f3228cd824a416dcac0a5c77b824"
+    },
+    {
+      "file": "../verificacion-b16-b17-20261016/diagnostico-39009233226.log",
+      "sha256": "3b2aa1e1460c6c4866669fea4b9cf438b3edd5094db61b7a568123a124daccc1"
+    },
+    {
+      "file": "../verificacion-b16-b17-20261016/estado-publicacion.md",
+      "sha256": "5cb35fdc871663257d8d8e5b46942414ef73e58c0125b20fcc2685d15fd13f77"
+    },
+    {
+      "file": "../verificacion-b16-b17-20261016/diagnostico-adenda-39056325353.json",
+      "sha256": "368f54887cc50a8561e923a0ae29fe4d26f66039e27cab24fee3cfc815c32e96"
+    }
+  ],
+  "files": [
+    {
+      "file": "generica/baraja.json",
+      "bytes": 4723,
+      "sha256": "b7855547acf56a728618f1e71be80cb19ca5c54a6ce0612cc3bee753270d2bd4",
+      "gitSha256": "b7855547acf56a728618f1e71be80cb19ca5c54a6ce0612cc3bee753270d2bd4",
+      "equal": true
+    },
+    {
+      "file": "generica/cartas.json",
+      "bytes": 34030,
+      "sha256": "c2896ccae66d0119b808db7adea72cca7b442a283bf576e0cfaa7de2628c5c9b",
+      "gitSha256": "c2896ccae66d0119b808db7adea72cca7b442a283bf576e0cfaa7de2628c5c9b",
+      "equal": true
+    },
+    {
+      "file": "sistema-solar/baraja.json",
+      "bytes": 35160,
+      "sha256": "3e31db300c706738e69d743703f2bd1d4d027b2b08743313fe54d15eb6943e44",
+      "gitSha256": "3e31db300c706738e69d743703f2bd1d4d027b2b08743313fe54d15eb6943e44",
+      "equal": true
+    },
+    {
+      "file": "sistema-solar/cartas.json",
+      "bytes": 44874,
+      "sha256": "bce5740a4ba3daf8da60ffad88a2cbc07271e95baae44bee078d0984973fa7fa",
+      "gitSha256": "bce5740a4ba3daf8da60ffad88a2cbc07271e95baae44bee078d0984973fa7fa",
+      "equal": true
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/67p-churyumov-gerasimenko.webp",
+      "bytes": 31666,
+      "sha256": "2ef88be9dd0f2184aa50a4706999e37e0d0ace4f8c8b25f452e4db4cccc0939a",
+      "gitSha256": "2ef88be9dd0f2184aa50a4706999e37e0d0ace4f8c8b25f452e4db4cccc0939a",
+      "equal": true
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/amaltea.webp",
+      "bytes": 35438,
+      "sha256": "4bb6ed025fb778136683165233e70c609e5094ba3150fd929acbdc114f00c3ad",
+      "gitSha256": "4bb6ed025fb778136683165233e70c609e5094ba3150fd929acbdc114f00c3ad",
+      "equal": true
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/ariel.webp",
+      "bytes": 34226,
+      "sha256": "3e4368410c2e794d1dded4b9959e5f5d79aec7ffb073bf6f8da2114d878590cc",
+      "gitSha256": "3e4368410c2e794d1dded4b9959e5f5d79aec7ffb073bf6f8da2114d878590cc",
+      "equal": true
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/bennu.webp",
+      "bytes": 32444,
+      "sha256": "e3b65dd7fafb34e7a7801a7a34b6784ee04c289102e1e1485a80d5ab0d750ede",
+      "gitSha256": "e3b65dd7fafb34e7a7801a7a34b6784ee04c289102e1e1485a80d5ab0d750ede",
+      "equal": true
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/borrelly.webp",
+      "bytes": 15466,
+      "sha256": "40e700f2aac1a7e4c5bb8be6db3d7f46c262f4dc1c3f815be87409d298e16686",
+      "gitSha256": "40e700f2aac1a7e4c5bb8be6db3d7f46c262f4dc1c3f815be87409d298e16686",
+      "equal": true
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/calisto.webp",
+      "bytes": 47102,
+      "sha256": "e773591a1b6374c03a4484084ec6e3c7170f5f37c43b525a22ecf89bdface071",
+      "gitSha256": "e773591a1b6374c03a4484084ec6e3c7170f5f37c43b525a22ecf89bdface071",
+      "equal": true
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/caronte.webp",
+      "bytes": 23076,
+      "sha256": "4fcdfde78f77cc9bf8c352c46e350eb2842adc8da64cc71d96779dde1d2ba71b",
+      "gitSha256": "4fcdfde78f77cc9bf8c352c46e350eb2842adc8da64cc71d96779dde1d2ba71b",
+      "equal": true
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/ceres.webp",
+      "bytes": 36136,
+      "sha256": "d0a24a577d8bf79ee964d4b814850000707bb2f704e99e028e2f0e9d6b3acd46",
+      "gitSha256": "d0a24a577d8bf79ee964d4b814850000707bb2f704e99e028e2f0e9d6b3acd46",
+      "equal": true
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/deimos.webp",
+      "bytes": 15158,
+      "sha256": "ce146aee9bdcf787c9454f6d48f248841b4ac49ed5036653e159b82f78823fad",
+      "gitSha256": "ce146aee9bdcf787c9454f6d48f248841b4ac49ed5036653e159b82f78823fad",
+      "equal": true
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/dione.webp",
+      "bytes": 32684,
+      "sha256": "2c9b37c86ff8532f3c8fc59bdfcbcd9fab83bf40328d91487d3964db0f945331",
+      "gitSha256": "2c9b37c86ff8532f3c8fc59bdfcbcd9fab83bf40328d91487d3964db0f945331",
+      "equal": true
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/encelado.webp",
+      "bytes": 23628,
+      "sha256": "730baf70e7f8ff42015bf1180b5cea1342705c6b9849363740453ad5abf2898c",
+      "gitSha256": "730baf70e7f8ff42015bf1180b5cea1342705c6b9849363740453ad5abf2898c",
+      "equal": true
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/encke.webp",
+      "bytes": 18334,
+      "sha256": "0f22d015612437d660551033da742a68b3d81edbe7694ebf7bb70de638fb5a6b",
+      "gitSha256": "0f22d015612437d660551033da742a68b3d81edbe7694ebf7bb70de638fb5a6b",
+      "equal": true
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/eris.webp",
+      "bytes": 23938,
+      "sha256": "9e033588b2072ac4915149cf6792fca0bec06a9012055eddb8903d3ce1d7ee8b",
+      "gitSha256": "9e033588b2072ac4915149cf6792fca0bec06a9012055eddb8903d3ce1d7ee8b",
+      "equal": true
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/eros.webp",
+      "bytes": 30156,
+      "sha256": "e9aab53bf0941c6dc02f45b00ed8c0ce54ce028237da783d0a211fd953c35220",
+      "gitSha256": "e9aab53bf0941c6dc02f45b00ed8c0ce54ce028237da783d0a211fd953c35220",
+      "equal": true
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/europa.webp",
+      "bytes": 32000,
+      "sha256": "8fe76cf8ac3f5c24a1c8db0bbdf5b3b8812e760abfe14ded4180803210f2ea4d",
+      "gitSha256": "8fe76cf8ac3f5c24a1c8db0bbdf5b3b8812e760abfe14ded4180803210f2ea4d",
+      "equal": true
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/febe.webp",
+      "bytes": 38764,
+      "sha256": "047d4d929468260ce55b2bed4f14831994a9def23460c78109ef517b58499aa1",
+      "gitSha256": "047d4d929468260ce55b2bed4f14831994a9def23460c78109ef517b58499aa1",
+      "equal": true
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/fobos.webp",
+      "bytes": 31056,
+      "sha256": "65d68d6406deefa57aa35b6063a72bf1a28c23e81792057651a7692c12d31fa0",
+      "gitSha256": "65d68d6406deefa57aa35b6063a72bf1a28c23e81792057651a7692c12d31fa0",
+      "equal": true
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/ganimedes.webp",
+      "bytes": 35668,
+      "sha256": "3f5bef0109dad0d914f5016be09655b5fbf56d899eb9fcc10aa3603825b1ac4a",
+      "gitSha256": "3f5bef0109dad0d914f5016be09655b5fbf56d899eb9fcc10aa3603825b1ac4a",
+      "equal": true
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/gaspra.webp",
+      "bytes": 25810,
+      "sha256": "aad637c9f9f14f4f6d11bc7afca77624486565d63cbd1092503b6b5af07cf5db",
+      "gitSha256": "aad637c9f9f14f4f6d11bc7afca77624486565d63cbd1092503b6b5af07cf5db",
+      "equal": true
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/hale-bopp.webp",
+      "bytes": 33522,
+      "sha256": "04777bec98af9227e08ed89a1b1ba927a42f958adf19f2dde0bd2b2223caca90",
+      "gitSha256": "04777bec98af9227e08ed89a1b1ba927a42f958adf19f2dde0bd2b2223caca90",
+      "equal": true
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/halley.webp",
+      "bytes": 9086,
+      "sha256": "794716cd6311050e749e00de4558a5243c95f6d63f69b6297ba933d12ba87ee3",
+      "gitSha256": "794716cd6311050e749e00de4558a5243c95f6d63f69b6297ba933d12ba87ee3",
+      "equal": true
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/haumea.webp",
+      "bytes": 18146,
+      "sha256": "3aadc7b169b97816c8d81044816816a4c88bf0cc0b97def73d420196c6614699",
+      "gitSha256": "3aadc7b169b97816c8d81044816816a4c88bf0cc0b97def73d420196c6614699",
+      "equal": true
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/higia.webp",
+      "bytes": 21594,
+      "sha256": "6c7b6f57468e1ebb5d363c72c36b2e753cfac62166794f0cedaca8954ed3752c",
+      "gitSha256": "6c7b6f57468e1ebb5d363c72c36b2e753cfac62166794f0cedaca8954ed3752c",
+      "equal": true
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/hiperion.webp",
+      "bytes": 53264,
+      "sha256": "cecb08bfda73e870c919952b3ddd5dd733b850b7893d84f0e072897dc22182fa",
+      "gitSha256": "cecb08bfda73e870c919952b3ddd5dd733b850b7893d84f0e072897dc22182fa",
+      "equal": true
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/hyakutake.webp",
+      "bytes": 15496,
+      "sha256": "25863460e25f99a6d0c3f85886819b6c289ebdbc4bf811660e7cd014aefaaac1",
+      "gitSha256": "25863460e25f99a6d0c3f85886819b6c289ebdbc4bf811660e7cd014aefaaac1",
+      "equal": true
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/ida.webp",
+      "bytes": 30624,
+      "sha256": "47e915e2b81c58a9ebb52c53f7f115a917cde8983c9c5411270a033ed1b08db7",
+      "gitSha256": "47e915e2b81c58a9ebb52c53f7f115a917cde8983c9c5411270a033ed1b08db7",
+      "equal": true
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/io.webp",
+      "bytes": 38964,
+      "sha256": "da1534a673b32b84dc8a26c5d49729a595920ccca69e14894961df3655df4eac",
+      "gitSha256": "da1534a673b32b84dc8a26c5d49729a595920ccca69e14894961df3655df4eac",
+      "equal": true
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/itokawa.webp",
+      "bytes": 34988,
+      "sha256": "cd4174e4091b1e11deed98e55a459c7ca56c722238fceb8fb68f630ac0b12935",
+      "gitSha256": "cd4174e4091b1e11deed98e55a459c7ca56c722238fceb8fb68f630ac0b12935",
+      "equal": true
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/japeto.webp",
+      "bytes": 26822,
+      "sha256": "cd5f32948cf1154e7714d5aeae531d7df0a215ff5eeb224d095b8162cd4b9e2b",
+      "gitSha256": "cd5f32948cf1154e7714d5aeae531d7df0a215ff5eeb224d095b8162cd4b9e2b",
+      "equal": true
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/jupiter.webp",
+      "bytes": 14894,
+      "sha256": "9756ff63cf0410cff04e95a6527b1eace13841aa0a8abca8e959cbdb7c067a98",
+      "gitSha256": "9756ff63cf0410cff04e95a6527b1eace13841aa0a8abca8e959cbdb7c067a98",
+      "equal": true
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/luna.webp",
+      "bytes": 31094,
+      "sha256": "8320620c47a36c338a7a26e88f3bf44c3c95ef8b472435a3a8ddaaf281ed359c",
+      "gitSha256": "8320620c47a36c338a7a26e88f3bf44c3c95ef8b472435a3a8ddaaf281ed359c",
+      "equal": true
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/makemake.webp",
+      "bytes": 26830,
+      "sha256": "f0fa818a1fcbb70b8052b6a0d11b1ca2fd1f265d12f8e3b7aedc62f556e48f28",
+      "gitSha256": "f0fa818a1fcbb70b8052b6a0d11b1ca2fd1f265d12f8e3b7aedc62f556e48f28",
+      "equal": true
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/marte.webp",
+      "bytes": 30112,
+      "sha256": "c052dea2f7ec91146d9db59d9ce76b0538ebcbece2656afec23934d56aded0c7",
+      "gitSha256": "c052dea2f7ec91146d9db59d9ce76b0538ebcbece2656afec23934d56aded0c7",
+      "equal": true
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/matilde.webp",
+      "bytes": 33260,
+      "sha256": "cae4fc6064d5e59ab7d7ffefd9eebdaebab25f0fc687d01953d656bc7d0919df",
+      "gitSha256": "cae4fc6064d5e59ab7d7ffefd9eebdaebab25f0fc687d01953d656bc7d0919df",
+      "equal": true
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/mercurio.webp",
+      "bytes": 36420,
+      "sha256": "ce847d0b7e5ec02923459b914c9ee7f4f5effa31a374b8d97fcf4da67e8592c8",
+      "gitSha256": "ce847d0b7e5ec02923459b914c9ee7f4f5effa31a374b8d97fcf4da67e8592c8",
+      "equal": true
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/mimas.webp",
+      "bytes": 23534,
+      "sha256": "8842061587c546c962040599787da4de38ac8faeaa1d09c6101caa1831bb7600",
+      "gitSha256": "8842061587c546c962040599787da4de38ac8faeaa1d09c6101caa1831bb7600",
+      "equal": true
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/miranda.webp",
+      "bytes": 32972,
+      "sha256": "5c9b32986d623583e7cea1ce8d2369792828df04aa89eb1c2b45e801c8a60902",
+      "gitSha256": "5c9b32986d623583e7cea1ce8d2369792828df04aa89eb1c2b45e801c8a60902",
+      "equal": true
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/neptuno.webp",
+      "bytes": 8696,
+      "sha256": "e6b83028e4d7101e87700c029b713199bbb61814ab70eba0e63c85f3e1143e50",
+      "gitSha256": "e6b83028e4d7101e87700c029b713199bbb61814ab70eba0e63c85f3e1143e50",
+      "equal": true
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/oberon.webp",
+      "bytes": 32638,
+      "sha256": "58cef7003752840ea7d030920cdf03e212a67c000e7c7922b581f562613e9dbe",
+      "gitSha256": "58cef7003752840ea7d030920cdf03e212a67c000e7c7922b581f562613e9dbe",
+      "equal": true
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/palas.webp",
+      "bytes": 26432,
+      "sha256": "cb037aaca95a19a1f44096c1f16b10fa73405b442d18f5081470d18a29c1b6ce",
+      "gitSha256": "cb037aaca95a19a1f44096c1f16b10fa73405b442d18f5081470d18a29c1b6ce",
+      "equal": true
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/pluton.webp",
+      "bytes": 31086,
+      "sha256": "055d3e1a08caf670d34c0a405fefd3abc9de9bda28f7219b417b7647033a231d",
+      "gitSha256": "055d3e1a08caf670d34c0a405fefd3abc9de9bda28f7219b417b7647033a231d",
+      "equal": true
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/proteo.webp",
+      "bytes": 31622,
+      "sha256": "c6a865fdad99eeef4794c237ef967800aeb98a74de4e7759dc3c11d41907fd1e",
+      "gitSha256": "c6a865fdad99eeef4794c237ef967800aeb98a74de4e7759dc3c11d41907fd1e",
+      "equal": true
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/psyche.webp",
+      "bytes": 35298,
+      "sha256": "0f2b7eb598c072e56cf5b6941d785f4a8df0abe76e9355e31c2f07366941d78c",
+      "gitSha256": "0f2b7eb598c072e56cf5b6941d785f4a8df0abe76e9355e31c2f07366941d78c",
+      "equal": true
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/rea.webp",
+      "bytes": 42226,
+      "sha256": "1e085abc15da7a955b23bf5c8aed326d01850285b0a9046f79e72c3b308aef40",
+      "gitSha256": "1e085abc15da7a955b23bf5c8aed326d01850285b0a9046f79e72c3b308aef40",
+      "equal": true
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/ryugu.webp",
+      "bytes": 29890,
+      "sha256": "5aabf47e8a2296306e0dfe05d892d91516ec219c8ffefc47a631a137dc87ac43",
+      "gitSha256": "5aabf47e8a2296306e0dfe05d892d91516ec219c8ffefc47a631a137dc87ac43",
+      "equal": true
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/saturno.webp",
+      "bytes": 16072,
+      "sha256": "459428fb497b2bada18d6364f12eae27ceedbc156645a5e7e2d4f4cae73ab14f",
+      "gitSha256": "459428fb497b2bada18d6364f12eae27ceedbc156645a5e7e2d4f4cae73ab14f",
+      "equal": true
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/sedna.webp",
+      "bytes": 24502,
+      "sha256": "059f2496f1882315450fcb3d67f7039f05cfcfcc41725e180b46e5ec580e84ec",
+      "gitSha256": "059f2496f1882315450fcb3d67f7039f05cfcfcc41725e180b46e5ec580e84ec",
+      "equal": true
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/tempel-1.webp",
+      "bytes": 16658,
+      "sha256": "6cbefdd8e756cb420e4ea93aac13b26b17e46de35fbaf2128a51f367bfa50b61",
+      "gitSha256": "6cbefdd8e756cb420e4ea93aac13b26b17e46de35fbaf2128a51f367bfa50b61",
+      "equal": true
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/tetis.webp",
+      "bytes": 33280,
+      "sha256": "4105c1f5bbb1e119dcfcfde06f1cbb755e21cba0eb115a07b72366da3ec48b2a",
+      "gitSha256": "4105c1f5bbb1e119dcfcfde06f1cbb755e21cba0eb115a07b72366da3ec48b2a",
+      "equal": true
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/tierra.webp",
+      "bytes": 33316,
+      "sha256": "bc10f09b417f718f2440556010622e0737cb519a2bed5bd53675d5dd631b8175",
+      "gitSha256": "bc10f09b417f718f2440556010622e0737cb519a2bed5bd53675d5dd631b8175",
+      "equal": true
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/titan.webp",
+      "bytes": 11212,
+      "sha256": "90f408391f0c45f1a1a2300e4a9c5a6049d39f9a485f3e4d288d8991ebe3f15a",
+      "gitSha256": "90f408391f0c45f1a1a2300e4a9c5a6049d39f9a485f3e4d288d8991ebe3f15a",
+      "equal": true
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/titania.webp",
+      "bytes": 36626,
+      "sha256": "2b6294cc550cfb43e76fb4c314e3331f2b3efc708561ff4e5aef45cd44509a23",
+      "gitSha256": "2b6294cc550cfb43e76fb4c314e3331f2b3efc708561ff4e5aef45cd44509a23",
+      "equal": true
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/triton.webp",
+      "bytes": 24432,
+      "sha256": "4c7cfd3dc935bb9a4a628b737a0f090ebb7351bd98491005fd92d7635aca0cc4",
+      "gitSha256": "4c7cfd3dc935bb9a4a628b737a0f090ebb7351bd98491005fd92d7635aca0cc4",
+      "equal": true
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/umbriel.webp",
+      "bytes": 27258,
+      "sha256": "9c7c3ae728e3685691843e154d03526b2e070a5d44cc970b0e49453f821e102d",
+      "gitSha256": "9c7c3ae728e3685691843e154d03526b2e070a5d44cc970b0e49453f821e102d",
+      "equal": true
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/urano.webp",
+      "bytes": 9192,
+      "sha256": "b01b3a66fbfd21995bbf0d9d3b84a1c3198fffbdd72f7bd26f79e42311240f42",
+      "gitSha256": "b01b3a66fbfd21995bbf0d9d3b84a1c3198fffbdd72f7bd26f79e42311240f42",
+      "equal": true
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/venus.webp",
+      "bytes": 12804,
+      "sha256": "ffc1347233043ec8a2123f77d9ed620007f3c666933675165beae3dd4281953a",
+      "gitSha256": "ffc1347233043ec8a2123f77d9ed620007f3c666933675165beae3dd4281953a",
+      "equal": true
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/vesta.webp",
+      "bytes": 43362,
+      "sha256": "3b4e4f6fcf0c9387be916a03545e10d54610795d46dbfb0ddf147567a4aadbfa",
+      "gitSha256": "3b4e4f6fcf0c9387be916a03545e10d54610795d46dbfb0ddf147567a4aadbfa",
+      "equal": true
+    },
+    {
+      "file": "sistema-solar/imagenes/cartas/wild-2.webp",
+      "bytes": 23438,
+      "sha256": "2e2717beba5596a5a565de961126918abff76a2a6541bb6c432052f3bff525bc",
+      "gitSha256": "2e2717beba5596a5a565de961126918abff76a2a6541bb6c432052f3bff525bc",
+      "equal": true
+    },
+    {
+      "file": "sistema-solar/imagenes/portada.webp",
+      "bytes": 39128,
+      "sha256": "7c253f180be58d8d7cc748e722c47aece951799143170dcd4f429575cac726fb",
+      "gitSha256": "7c253f180be58d8d7cc748e722c47aece951799143170dcd4f429575cac726fb",
+      "equal": true
+    },
+    {
+      "file": "criaturas-magicas/baraja.json",
+      "bytes": 3572,
+      "sha256": "f1cd46de8433ff439ccfdf4a367f0c03b61e597278e43f949c7889d5c3e0bde5",
+      "gitSha256": "f1cd46de8433ff439ccfdf4a367f0c03b61e597278e43f949c7889d5c3e0bde5",
+      "equal": true
+    },
+    {
+      "file": "criaturas-magicas/cartas.json",
+      "bytes": 55335,
+      "sha256": "9783f44cbba4092d1d23eacccbd8ff267714f10c94393569d3c900deabba5f10",
+      "gitSha256": "9783f44cbba4092d1d23eacccbd8ff267714f10c94393569d3c900deabba5f10",
+      "equal": true
+    },
+    {
+      "file": "criaturas-magicas/imagenes/cartas/carta-001.webp",
+      "bytes": 113680,
+      "sha256": "feac4869a3d57883d534bc48dbb6d0d59bd6537a19ae4fd38d4c4cd6c71b6767",
+      "gitSha256": "feac4869a3d57883d534bc48dbb6d0d59bd6537a19ae4fd38d4c4cd6c71b6767",
+      "equal": true
+    },
+    {
+      "file": "criaturas-magicas/imagenes/cartas/carta-002.webp",
+      "bytes": 100946,
+      "sha256": "d97ed0947b80a2b59003017c871c3d25ceb51917900452b0c8f34c8c6be5abd3",
+      "gitSha256": "d97ed0947b80a2b59003017c871c3d25ceb51917900452b0c8f34c8c6be5abd3",
+      "equal": true
+    },
+    {
+      "file": "criaturas-magicas/imagenes/cartas/carta-003.webp",
+      "bytes": 95874,
+      "sha256": "91999bcc6f007074ac7a8e58927d36e2f87cb65149e069f07b25b49224ea63bc",
+      "gitSha256": "91999bcc6f007074ac7a8e58927d36e2f87cb65149e069f07b25b49224ea63bc",
+      "equal": true
+    },
+    {
+      "file": "criaturas-magicas/imagenes/cartas/carta-004.webp",
+      "bytes": 157452,
+      "sha256": "69cfccd87301be28362c6fbb2a0791863540c4e31cda14ac2e41de14e9344b1c",
+      "gitSha256": "69cfccd87301be28362c6fbb2a0791863540c4e31cda14ac2e41de14e9344b1c",
+      "equal": true
+    },
+    {
+      "file": "criaturas-magicas/imagenes/cartas/carta-005.webp",
+      "bytes": 133650,
+      "sha256": "abb10a45c8309ef0b1498e3fe6d06967f7a3a3b67e43719afebd8afca9107875",
+      "gitSha256": "abb10a45c8309ef0b1498e3fe6d06967f7a3a3b67e43719afebd8afca9107875",
+      "equal": true
+    },
+    {
+      "file": "criaturas-magicas/imagenes/cartas/carta-006.webp",
+      "bytes": 113804,
+      "sha256": "8445bbc7afc88dc0192e762cf65e08a592e0bbffeb1a8e338f2cadd16393379a",
+      "gitSha256": "8445bbc7afc88dc0192e762cf65e08a592e0bbffeb1a8e338f2cadd16393379a",
+      "equal": true
+    },
+    {
+      "file": "criaturas-magicas/imagenes/cartas/carta-007.webp",
+      "bytes": 89660,
+      "sha256": "31891137da07a560cde6c30b47344dc9802348918a585bb06b0b31e5110e5c47",
+      "gitSha256": "31891137da07a560cde6c30b47344dc9802348918a585bb06b0b31e5110e5c47",
+      "equal": true
+    },
+    {
+      "file": "criaturas-magicas/imagenes/cartas/carta-008.webp",
+      "bytes": 103918,
+      "sha256": "092d661d12de2720393b0fd3e51063ad301f2f77734aff8fdd943b7fca8f60a1",
+      "gitSha256": "092d661d12de2720393b0fd3e51063ad301f2f77734aff8fdd943b7fca8f60a1",
+      "equal": true
+    },
+    {
+      "file": "criaturas-magicas/imagenes/cartas/carta-009.webp",
+      "bytes": 69114,
+      "sha256": "223fa8e9046e2569a71729b82eb53c34a3a39398b0ae5c6e648f14d96080a10b",
+      "gitSha256": "223fa8e9046e2569a71729b82eb53c34a3a39398b0ae5c6e648f14d96080a10b",
+      "equal": true
+    },
+    {
+      "file": "criaturas-magicas/imagenes/cartas/carta-010.webp",
+      "bytes": 103930,
+      "sha256": "fef2ed7568e218c70f76004b99f07e05d828875d48f6b4093f1f899d7457d776",
+      "gitSha256": "fef2ed7568e218c70f76004b99f07e05d828875d48f6b4093f1f899d7457d776",
+      "equal": true
+    },
+    {
+      "file": "criaturas-magicas/imagenes/cartas/carta-011.webp",
+      "bytes": 92572,
+      "sha256": "83ff4dbf9ed6435cfcfd6a75f6d1eda01e61eb30e03c92f53bf1f9e600bb5332",
+      "gitSha256": "83ff4dbf9ed6435cfcfd6a75f6d1eda01e61eb30e03c92f53bf1f9e600bb5332",
+      "equal": true
+    },
+    {
+      "file": "criaturas-magicas/imagenes/cartas/carta-012.webp",
+      "bytes": 105570,
+      "sha256": "9cb6dbc4d2b5f0c90355f463d34e862decfa60ce957a67d37d1214c6f63666f4",
+      "gitSha256": "9cb6dbc4d2b5f0c90355f463d34e862decfa60ce957a67d37d1214c6f63666f4",
+      "equal": true
+    },
+    {
+      "file": "criaturas-magicas/imagenes/cartas/carta-013.webp",
+      "bytes": 99340,
+      "sha256": "0967cc21668bd4b90556ea2f7106ac786dd6030f2bc54071d911651428fe4d04",
+      "gitSha256": "0967cc21668bd4b90556ea2f7106ac786dd6030f2bc54071d911651428fe4d04",
+      "equal": true
+    },
+    {
+      "file": "criaturas-magicas/imagenes/cartas/carta-014.webp",
+      "bytes": 109496,
+      "sha256": "521dcc4c488834477e8c4071fe0f05b65b18086c7a9604a4bc934f72cbd8212a",
+      "gitSha256": "521dcc4c488834477e8c4071fe0f05b65b18086c7a9604a4bc934f72cbd8212a",
+      "equal": true
+    },
+    {
+      "file": "criaturas-magicas/imagenes/cartas/carta-015.webp",
+      "bytes": 81688,
+      "sha256": "5c3b60548e29656b978c40349df1696fe8f120dace53f6db15be012683467f3c",
+      "gitSha256": "5c3b60548e29656b978c40349df1696fe8f120dace53f6db15be012683467f3c",
+      "equal": true
+    },
+    {
+      "file": "criaturas-magicas/imagenes/cartas/carta-016.webp",
+      "bytes": 109268,
+      "sha256": "96223ef909808c1e432741d661b481399a9412affa232a84574584eba1bff8cf",
+      "gitSha256": "96223ef909808c1e432741d661b481399a9412affa232a84574584eba1bff8cf",
+      "equal": true
+    },
+    {
+      "file": "criaturas-magicas/imagenes/cartas/carta-017.webp",
+      "bytes": 109734,
+      "sha256": "ab9f8593ec29fe0e3223c9fcb67669f48fb2e768114f1350e54d4880590896c7",
+      "gitSha256": "ab9f8593ec29fe0e3223c9fcb67669f48fb2e768114f1350e54d4880590896c7",
+      "equal": true
+    },
+    {
+      "file": "criaturas-magicas/imagenes/cartas/carta-018.webp",
+      "bytes": 87832,
+      "sha256": "e4d4c7337a33e47744e019fc89c056217995634f960bb022b64417684b4ba29f",
+      "gitSha256": "e4d4c7337a33e47744e019fc89c056217995634f960bb022b64417684b4ba29f",
+      "equal": true
+    },
+    {
+      "file": "criaturas-magicas/imagenes/cartas/carta-019.webp",
+      "bytes": 95296,
+      "sha256": "b1bbdcb0cb90634fa9a7bd94b9582abcafa25695b56df8da9465c309ecbe4352",
+      "gitSha256": "b1bbdcb0cb90634fa9a7bd94b9582abcafa25695b56df8da9465c309ecbe4352",
+      "equal": true
+    },
+    {
+      "file": "criaturas-magicas/imagenes/cartas/carta-020.webp",
+      "bytes": 84594,
+      "sha256": "e13e11f52556bc9f5b842f2def63efdee9d8c8dcd7618d95f7ce0437591666c3",
+      "gitSha256": "e13e11f52556bc9f5b842f2def63efdee9d8c8dcd7618d95f7ce0437591666c3",
+      "equal": true
+    },
+    {
+      "file": "criaturas-magicas/imagenes/cartas/carta-021.webp",
+      "bytes": 128818,
+      "sha256": "dc8689462de6ba17c2325441cdb7f38078d10115d6d4e4eb7c4799e14170aca3",
+      "gitSha256": "dc8689462de6ba17c2325441cdb7f38078d10115d6d4e4eb7c4799e14170aca3",
+      "equal": true
+    },
+    {
+      "file": "criaturas-magicas/imagenes/cartas/carta-022.webp",
+      "bytes": 115146,
+      "sha256": "4a9ee8833c739e4f6dcaa932513acc922e0eac507d42e94ee08e50da07779872",
+      "gitSha256": "4a9ee8833c739e4f6dcaa932513acc922e0eac507d42e94ee08e50da07779872",
+      "equal": true
+    },
+    {
+      "file": "criaturas-magicas/imagenes/cartas/carta-023.webp",
+      "bytes": 88516,
+      "sha256": "de47ec42e47f6fe1ee2d16a277b57d4932e3358d14414c35b15e47e629f66d4d",
+      "gitSha256": "de47ec42e47f6fe1ee2d16a277b57d4932e3358d14414c35b15e47e629f66d4d",
+      "equal": true
+    },
+    {
+      "file": "criaturas-magicas/imagenes/cartas/carta-024.webp",
+      "bytes": 130008,
+      "sha256": "944f1e2d9dc87f808333a993b0ca04862bce30b98b64739b08b0c6cc1a234344",
+      "gitSha256": "944f1e2d9dc87f808333a993b0ca04862bce30b98b64739b08b0c6cc1a234344",
+      "equal": true
+    },
+    {
+      "file": "criaturas-magicas/imagenes/cartas/carta-025.webp",
+      "bytes": 128442,
+      "sha256": "6ce6377f63df9253b505df64b28203536a95ed33dc37da4a3e71248f59466700",
+      "gitSha256": "6ce6377f63df9253b505df64b28203536a95ed33dc37da4a3e71248f59466700",
+      "equal": true
+    },
+    {
+      "file": "criaturas-magicas/imagenes/cartas/carta-026.webp",
+      "bytes": 92918,
+      "sha256": "4816a9030569afa5dc0143dee5ca5cafd7e35ecda4c098a95063de77f13cc347",
+      "gitSha256": "4816a9030569afa5dc0143dee5ca5cafd7e35ecda4c098a95063de77f13cc347",
+      "equal": true
+    },
+    {
+      "file": "criaturas-magicas/imagenes/cartas/carta-027.webp",
+      "bytes": 120186,
+      "sha256": "72c3f9771f6132e5e780bbb2e2292d7002b05d36400c5d8fbe5888827c3a43d1",
+      "gitSha256": "72c3f9771f6132e5e780bbb2e2292d7002b05d36400c5d8fbe5888827c3a43d1",
+      "equal": true
+    },
+    {
+      "file": "criaturas-magicas/imagenes/cartas/carta-028.webp",
+      "bytes": 109434,
+      "sha256": "5dfc167da9627e8065b6bd9b0241e1602318ca073f6aa43216da054ddd7b01da",
+      "gitSha256": "5dfc167da9627e8065b6bd9b0241e1602318ca073f6aa43216da054ddd7b01da",
+      "equal": true
+    },
+    {
+      "file": "criaturas-magicas/imagenes/cartas/carta-029.webp",
+      "bytes": 102856,
+      "sha256": "204acaafcdd3c7d4d6dca0377467c46c1a8146edef224632293fa08c02cf4434",
+      "gitSha256": "204acaafcdd3c7d4d6dca0377467c46c1a8146edef224632293fa08c02cf4434",
+      "equal": true
+    },
+    {
+      "file": "criaturas-magicas/imagenes/cartas/carta-030.webp",
+      "bytes": 106544,
+      "sha256": "87e749231c42cd28b340a78b36e8a13750f8944de3227a9c0432d5dc29ac5082",
+      "gitSha256": "87e749231c42cd28b340a78b36e8a13750f8944de3227a9c0432d5dc29ac5082",
+      "equal": true
+    },
+    {
+      "file": "criaturas-magicas/imagenes/cartas/carta-031.webp",
+      "bytes": 108020,
+      "sha256": "9272589910983ef0dbcd9fb0a6b9950560eb415b45f964adb225e09ce02785f4",
+      "gitSha256": "9272589910983ef0dbcd9fb0a6b9950560eb415b45f964adb225e09ce02785f4",
+      "equal": true
+    },
+    {
+      "file": "criaturas-magicas/imagenes/cartas/carta-032.webp",
+      "bytes": 112618,
+      "sha256": "ad057bb98c94bb9b13f4e982b9b91539d2a079707c1b84431af9ae63ca94016f",
+      "gitSha256": "ad057bb98c94bb9b13f4e982b9b91539d2a079707c1b84431af9ae63ca94016f",
+      "equal": true
+    },
+    {
+      "file": "criaturas-magicas/imagenes/cartas/carta-033.webp",
+      "bytes": 111406,
+      "sha256": "ba2a573352609b43378eab75489bf65587d6d8d74de51a6c5bf5aea3476253a1",
+      "gitSha256": "ba2a573352609b43378eab75489bf65587d6d8d74de51a6c5bf5aea3476253a1",
+      "equal": true
+    },
+    {
+      "file": "criaturas-magicas/imagenes/cartas/carta-034.webp",
+      "bytes": 127708,
+      "sha256": "520c71eb41e11002231399759f153a5fa011b5592fddead7f60f27882cb0b80e",
+      "gitSha256": "520c71eb41e11002231399759f153a5fa011b5592fddead7f60f27882cb0b80e",
+      "equal": true
+    },
+    {
+      "file": "criaturas-magicas/imagenes/cartas/carta-035.webp",
+      "bytes": 77868,
+      "sha256": "9a5c6c19fa8b2bdc13757b259b131c84b03efd3c63f506ba1f6d53ab97f3c993",
+      "gitSha256": "9a5c6c19fa8b2bdc13757b259b131c84b03efd3c63f506ba1f6d53ab97f3c993",
+      "equal": true
+    },
+    {
+      "file": "criaturas-magicas/imagenes/cartas/carta-036.webp",
+      "bytes": 75924,
+      "sha256": "2d8c162b3172b364480f706e3b058277bd5ff487ca63d85efd2159d7c679aa19",
+      "gitSha256": "2d8c162b3172b364480f706e3b058277bd5ff487ca63d85efd2159d7c679aa19",
+      "equal": true
+    },
+    {
+      "file": "criaturas-magicas/imagenes/cartas/carta-037.webp",
+      "bytes": 102846,
+      "sha256": "2f825fefce81759059dc0dd5cca6e4bba8a694e962ad9027662e035bd9bb07b9",
+      "gitSha256": "2f825fefce81759059dc0dd5cca6e4bba8a694e962ad9027662e035bd9bb07b9",
+      "equal": true
+    },
+    {
+      "file": "criaturas-magicas/imagenes/cartas/carta-038.webp",
+      "bytes": 101930,
+      "sha256": "fb2c3c984a9dccdcfbb80b66ec7747680c11767bf3b0b1bc0014b882b59bded8",
+      "gitSha256": "fb2c3c984a9dccdcfbb80b66ec7747680c11767bf3b0b1bc0014b882b59bded8",
+      "equal": true
+    },
+    {
+      "file": "criaturas-magicas/imagenes/cartas/carta-039.webp",
+      "bytes": 106422,
+      "sha256": "4c36a5d3a22a4e90ab17e6fcb05a8eb3f0833cca3b1789e19ecf89fd6ee10956",
+      "gitSha256": "4c36a5d3a22a4e90ab17e6fcb05a8eb3f0833cca3b1789e19ecf89fd6ee10956",
+      "equal": true
+    },
+    {
+      "file": "criaturas-magicas/imagenes/cartas/carta-040.webp",
+      "bytes": 124932,
+      "sha256": "bb02be896e4afed775b332199e6e1a10a91b25376ab1726dab8c12b17589de19",
+      "gitSha256": "bb02be896e4afed775b332199e6e1a10a91b25376ab1726dab8c12b17589de19",
+      "equal": true
+    },
+    {
+      "file": "criaturas-magicas/imagenes/cartas/carta-041.webp",
+      "bytes": 122422,
+      "sha256": "bf474e6229c71a1d5c63e3bb57dc84f9b79329d1a737739cb32767ec06e145f2",
+      "gitSha256": "bf474e6229c71a1d5c63e3bb57dc84f9b79329d1a737739cb32767ec06e145f2",
+      "equal": true
+    },
+    {
+      "file": "criaturas-magicas/imagenes/cartas/carta-042.webp",
+      "bytes": 116136,
+      "sha256": "6fd41b9856a908255864be7ec14e428e7e2bb35137710107b678de2bafb22cac",
+      "gitSha256": "6fd41b9856a908255864be7ec14e428e7e2bb35137710107b678de2bafb22cac",
+      "equal": true
+    },
+    {
+      "file": "criaturas-magicas/imagenes/cartas/carta-043.webp",
+      "bytes": 138072,
+      "sha256": "2652d32ac52c3839478d8235432f5c13774ee8d0bfc72e71bef05a5dded30fff",
+      "gitSha256": "2652d32ac52c3839478d8235432f5c13774ee8d0bfc72e71bef05a5dded30fff",
+      "equal": true
+    },
+    {
+      "file": "criaturas-magicas/imagenes/cartas/carta-044.webp",
+      "bytes": 116924,
+      "sha256": "e54a823c61ff4f935cc9797a83f9ad02ee4eb926ed161093a81d4f07242fa6c4",
+      "gitSha256": "e54a823c61ff4f935cc9797a83f9ad02ee4eb926ed161093a81d4f07242fa6c4",
+      "equal": true
+    },
+    {
+      "file": "criaturas-magicas/imagenes/cartas/carta-045.webp",
+      "bytes": 114652,
+      "sha256": "619a8888582e56190624012aeb687555f8f24d09c0c46e1338e98c77647618a7",
+      "gitSha256": "619a8888582e56190624012aeb687555f8f24d09c0c46e1338e98c77647618a7",
+      "equal": true
+    },
+    {
+      "file": "criaturas-magicas/imagenes/cartas/carta-046.webp",
+      "bytes": 105846,
+      "sha256": "c0b662b17efca448f190995cd6b82be4a7552b3b90fab612a1a88f3b3a1ea902",
+      "gitSha256": "c0b662b17efca448f190995cd6b82be4a7552b3b90fab612a1a88f3b3a1ea902",
+      "equal": true
+    },
+    {
+      "file": "criaturas-magicas/imagenes/cartas/carta-047.webp",
+      "bytes": 91468,
+      "sha256": "7629e12cd84a61f7570a803ddfb7b615a3592c720346c80f6e38952d04d2c837",
+      "gitSha256": "7629e12cd84a61f7570a803ddfb7b615a3592c720346c80f6e38952d04d2c837",
+      "equal": true
+    },
+    {
+      "file": "criaturas-magicas/imagenes/cartas/carta-048.webp",
+      "bytes": 105196,
+      "sha256": "bbe0aa430f243f53d9aef48666fed7bd37c04d7cad1df1697cb5abb1f7b808af",
+      "gitSha256": "bbe0aa430f243f53d9aef48666fed7bd37c04d7cad1df1697cb5abb1f7b808af",
+      "equal": true
+    },
+    {
+      "file": "criaturas-magicas/imagenes/cartas/carta-049.webp",
+      "bytes": 109606,
+      "sha256": "da7965f66796590605c1738015381ed57ecc319cef374656e734cce02ec29b30",
+      "gitSha256": "da7965f66796590605c1738015381ed57ecc319cef374656e734cce02ec29b30",
+      "equal": true
+    },
+    {
+      "file": "criaturas-magicas/imagenes/cartas/carta-050.webp",
+      "bytes": 143980,
+      "sha256": "886d56c9f87389fd96cc8f3a6234e429aec7247bab2facc853a1a4fc998c5358",
+      "gitSha256": "886d56c9f87389fd96cc8f3a6234e429aec7247bab2facc853a1a4fc998c5358",
+      "equal": true
+    },
+    {
+      "file": "criaturas-magicas/imagenes/cartas/carta-051.webp",
+      "bytes": 127540,
+      "sha256": "df164c384e5d56c5c4150bf80190f0c87b009db58ed8c9d36b5a4a4862bb4655",
+      "gitSha256": "df164c384e5d56c5c4150bf80190f0c87b009db58ed8c9d36b5a4a4862bb4655",
+      "equal": true
+    },
+    {
+      "file": "criaturas-magicas/imagenes/cartas/carta-052.webp",
+      "bytes": 115424,
+      "sha256": "1bcbc1e08821a08e89208827b5814179854d3bf81b9bb09fca4fb3ac5285fdd0",
+      "gitSha256": "1bcbc1e08821a08e89208827b5814179854d3bf81b9bb09fca4fb3ac5285fdd0",
+      "equal": true
+    },
+    {
+      "file": "criaturas-magicas/imagenes/cartas/carta-053.webp",
+      "bytes": 108840,
+      "sha256": "737920623529062b9063f3c9c10d894f443ca61bc454336819a3bb1971f0968a",
+      "gitSha256": "737920623529062b9063f3c9c10d894f443ca61bc454336819a3bb1971f0968a",
+      "equal": true
+    },
+    {
+      "file": "criaturas-magicas/imagenes/cartas/carta-054.webp",
+      "bytes": 135748,
+      "sha256": "6f50ddd927c59d9259dce8ccb1839744f540843772d6d58d188a44fc2569381f",
+      "gitSha256": "6f50ddd927c59d9259dce8ccb1839744f540843772d6d58d188a44fc2569381f",
+      "equal": true
+    },
+    {
+      "file": "criaturas-magicas/imagenes/cartas/carta-055.webp",
+      "bytes": 137208,
+      "sha256": "522dd2f11cee48ce73e4ec525067af3bce8592294eb424578297965763265983",
+      "gitSha256": "522dd2f11cee48ce73e4ec525067af3bce8592294eb424578297965763265983",
+      "equal": true
+    },
+    {
+      "file": "criaturas-magicas/imagenes/cartas/carta-056.webp",
+      "bytes": 96252,
+      "sha256": "aeb3b3cee4968f27fb7d518743a8417ac382b0eddb7e4410a85aeba7a00f74ea",
+      "gitSha256": "aeb3b3cee4968f27fb7d518743a8417ac382b0eddb7e4410a85aeba7a00f74ea",
+      "equal": true
+    },
+    {
+      "file": "criaturas-magicas/imagenes/cartas/carta-057.webp",
+      "bytes": 93376,
+      "sha256": "edee903e837bd23c7c51ef36b074533062e3245a8e8bdf17801ae808c0a68cc8",
+      "gitSha256": "edee903e837bd23c7c51ef36b074533062e3245a8e8bdf17801ae808c0a68cc8",
+      "equal": true
+    },
+    {
+      "file": "criaturas-magicas/imagenes/cartas/carta-058.webp",
+      "bytes": 128406,
+      "sha256": "85240325d84fce8b4ed0e80d1e0c576a7d2fea2ab6a30fdc8faa5dd8909d5e91",
+      "gitSha256": "85240325d84fce8b4ed0e80d1e0c576a7d2fea2ab6a30fdc8faa5dd8909d5e91",
+      "equal": true
+    },
+    {
+      "file": "criaturas-magicas/imagenes/portada.webp",
+      "bytes": 156500,
+      "sha256": "a0fba2f4b38a4cffb6bd3d73cd777ea5c4fce316937747541ccb4aecf7e37805",
+      "gitSha256": "a0fba2f4b38a4cffb6bd3d73cd777ea5c4fce316937747541ccb4aecf7e37805",
+      "equal": true
+    }
+  ]
+}

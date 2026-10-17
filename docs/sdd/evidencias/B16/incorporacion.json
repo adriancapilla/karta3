@@ -1,0 +1,478 @@
+{
+  "date": "2026-10-16T11:39:18.583Z",
+  "base": "f75c2f8be2e5f130296d0fab160df3dbeb8fa873",
+  "branch": "main",
+  "source": "E:\\KARTA3\\KARTA3_IA\\ASSETS\\Entregas\\2026-10-16-criaturas-magicas-formato-2\\paquetes\\criaturas-magicas",
+  "destination": "E:\\KARTA3\\KARTA3_IA\\APP\\karta3\\barajas\\criaturas-magicas",
+  "runtime": {
+    "node": "v24.19.0",
+    "path": "C:\\Users\\Adrian\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+    "icu": "78.3",
+    "unicode": "17.0"
+  },
+  "schemaVersion": 2,
+  "contentVersion": 2,
+  "available": true,
+  "manifestPrefix": "paquetes/criaturas-magicas/",
+  "certificates": [
+    {
+      "file": "MANIFIESTO_SHA256.json",
+      "bytes": 29750,
+      "sha256": "b9a7510aca03864606f18df4597b5ca3398e03f1f1b1cb95cc86804f6f226f75"
+    },
+    {
+      "file": "APROBACION_CONTENIDO.md",
+      "bytes": 3313,
+      "sha256": "5c925c5c84ca0ab7509ed208f921438de8c6b01cde027e7f99a260aef68439e2"
+    },
+    {
+      "file": "DELTA_ACTIVACION_1_A_2.json",
+      "bytes": 10550,
+      "sha256": "7b4db9b503c589df3856642af3efe2d6c88fab84ac5456ab5a8b2945ed7e7d0e"
+    },
+    {
+      "file": "REGISTRO_PREPARACION.md",
+      "bytes": 7157,
+      "sha256": "06b5751b98637072386ee7deca02f527ee59e112df8bf6f1eb870c41ed2ac3d0"
+    }
+  ],
+  "delta": "Solo tres literales autorizados de contenido 1→2; 59 imágenes idénticas a candidata",
+  "files": [
+    {
+      "file": "baraja.json",
+      "bytes": 3572,
+      "sourceSHA256": "f1cd46de8433ff439ccfdf4a367f0c03b61e597278e43f949c7889d5c3e0bde5",
+      "appSHA256": "f1cd46de8433ff439ccfdf4a367f0c03b61e597278e43f949c7889d5c3e0bde5",
+      "gitSHA256": "f1cd46de8433ff439ccfdf4a367f0c03b61e597278e43f949c7889d5c3e0bde5"
+    },
+    {
+      "file": "cartas.json",
+      "bytes": 55335,
+      "sourceSHA256": "9783f44cbba4092d1d23eacccbd8ff267714f10c94393569d3c900deabba5f10",
+      "appSHA256": "9783f44cbba4092d1d23eacccbd8ff267714f10c94393569d3c900deabba5f10",
+      "gitSHA256": "9783f44cbba4092d1d23eacccbd8ff267714f10c94393569d3c900deabba5f10"
+    },
+    {
+      "file": "imagenes/cartas/carta-001.webp",
+      "bytes": 113680,
+      "sourceSHA256": "feac4869a3d57883d534bc48dbb6d0d59bd6537a19ae4fd38d4c4cd6c71b6767",
+      "appSHA256": "feac4869a3d57883d534bc48dbb6d0d59bd6537a19ae4fd38d4c4cd6c71b6767",
+      "gitSHA256": "feac4869a3d57883d534bc48dbb6d0d59bd6537a19ae4fd38d4c4cd6c71b6767"
+    },
+    {
+      "file": "imagenes/cartas/carta-002.webp",
+      "bytes": 100946,
+      "sourceSHA256": "d97ed0947b80a2b59003017c871c3d25ceb51917900452b0c8f34c8c6be5abd3",
+      "appSHA256": "d97ed0947b80a2b59003017c871c3d25ceb51917900452b0c8f34c8c6be5abd3",
+      "gitSHA256": "d97ed0947b80a2b59003017c871c3d25ceb51917900452b0c8f34c8c6be5abd3"
+    },
+    {
+      "file": "imagenes/cartas/carta-003.webp",
+      "bytes": 95874,
+      "sourceSHA256": "91999bcc6f007074ac7a8e58927d36e2f87cb65149e069f07b25b49224ea63bc",
+      "appSHA256": "91999bcc6f007074ac7a8e58927d36e2f87cb65149e069f07b25b49224ea63bc",
+      "gitSHA256": "91999bcc6f007074ac7a8e58927d36e2f87cb65149e069f07b25b49224ea63bc"
+    },
+    {
+      "file": "imagenes/cartas/carta-004.webp",
+      "bytes": 157452,
+      "sourceSHA256": "69cfccd87301be28362c6fbb2a0791863540c4e31cda14ac2e41de14e9344b1c",
+      "appSHA256": "69cfccd87301be28362c6fbb2a0791863540c4e31cda14ac2e41de14e9344b1c",
+      "gitSHA256": "69cfccd87301be28362c6fbb2a0791863540c4e31cda14ac2e41de14e9344b1c"
+    },
+    {
+      "file": "imagenes/cartas/carta-005.webp",
+      "bytes": 133650,
+      "sourceSHA256": "abb10a45c8309ef0b1498e3fe6d06967f7a3a3b67e43719afebd8afca9107875",
+      "appSHA256": "abb10a45c8309ef0b1498e3fe6d06967f7a3a3b67e43719afebd8afca9107875",
+      "gitSHA256": "abb10a45c8309ef0b1498e3fe6d06967f7a3a3b67e43719afebd8afca9107875"
+    },
+    {
+      "file": "imagenes/cartas/carta-006.webp",
+      "bytes": 113804,
+      "sourceSHA256": "8445bbc7afc88dc0192e762cf65e08a592e0bbffeb1a8e338f2cadd16393379a",
+      "appSHA256": "8445bbc7afc88dc0192e762cf65e08a592e0bbffeb1a8e338f2cadd16393379a",
+      "gitSHA256": "8445bbc7afc88dc0192e762cf65e08a592e0bbffeb1a8e338f2cadd16393379a"
+    },
+    {
+      "file": "imagenes/cartas/carta-007.webp",
+      "bytes": 89660,
+      "sourceSHA256": "31891137da07a560cde6c30b47344dc9802348918a585bb06b0b31e5110e5c47",
+      "appSHA256": "31891137da07a560cde6c30b47344dc9802348918a585bb06b0b31e5110e5c47",
+      "gitSHA256": "31891137da07a560cde6c30b47344dc9802348918a585bb06b0b31e5110e5c47"
+    },
+    {
+      "file": "imagenes/cartas/carta-008.webp",
+      "bytes": 103918,
+      "sourceSHA256": "092d661d12de2720393b0fd3e51063ad301f2f77734aff8fdd943b7fca8f60a1",
+      "appSHA256": "092d661d12de2720393b0fd3e51063ad301f2f77734aff8fdd943b7fca8f60a1",
+      "gitSHA256": "092d661d12de2720393b0fd3e51063ad301f2f77734aff8fdd943b7fca8f60a1"
+    },
+    {
+      "file": "imagenes/cartas/carta-009.webp",
+      "bytes": 69114,
+      "sourceSHA256": "223fa8e9046e2569a71729b82eb53c34a3a39398b0ae5c6e648f14d96080a10b",
+      "appSHA256": "223fa8e9046e2569a71729b82eb53c34a3a39398b0ae5c6e648f14d96080a10b",
+      "gitSHA256": "223fa8e9046e2569a71729b82eb53c34a3a39398b0ae5c6e648f14d96080a10b"
+    },
+    {
+      "file": "imagenes/cartas/carta-010.webp",
+      "bytes": 103930,
+      "sourceSHA256": "fef2ed7568e218c70f76004b99f07e05d828875d48f6b4093f1f899d7457d776",
+      "appSHA256": "fef2ed7568e218c70f76004b99f07e05d828875d48f6b4093f1f899d7457d776",
+      "gitSHA256": "fef2ed7568e218c70f76004b99f07e05d828875d48f6b4093f1f899d7457d776"
+    },
+    {
+      "file": "imagenes/cartas/carta-011.webp",
+      "bytes": 92572,
+      "sourceSHA256": "83ff4dbf9ed6435cfcfd6a75f6d1eda01e61eb30e03c92f53bf1f9e600bb5332",
+      "appSHA256": "83ff4dbf9ed6435cfcfd6a75f6d1eda01e61eb30e03c92f53bf1f9e600bb5332",
+      "gitSHA256": "83ff4dbf9ed6435cfcfd6a75f6d1eda01e61eb30e03c92f53bf1f9e600bb5332"
+    },
+    {
+      "file": "imagenes/cartas/carta-012.webp",
+      "bytes": 105570,
+      "sourceSHA256": "9cb6dbc4d2b5f0c90355f463d34e862decfa60ce957a67d37d1214c6f63666f4",
+      "appSHA256": "9cb6dbc4d2b5f0c90355f463d34e862decfa60ce957a67d37d1214c6f63666f4",
+      "gitSHA256": "9cb6dbc4d2b5f0c90355f463d34e862decfa60ce957a67d37d1214c6f63666f4"
+    },
+    {
+      "file": "imagenes/cartas/carta-013.webp",
+      "bytes": 99340,
+      "sourceSHA256": "0967cc21668bd4b90556ea2f7106ac786dd6030f2bc54071d911651428fe4d04",
+      "appSHA256": "0967cc21668bd4b90556ea2f7106ac786dd6030f2bc54071d911651428fe4d04",
+      "gitSHA256": "0967cc21668bd4b90556ea2f7106ac786dd6030f2bc54071d911651428fe4d04"
+    },
+    {
+      "file": "imagenes/cartas/carta-014.webp",
+      "bytes": 109496,
+      "sourceSHA256": "521dcc4c488834477e8c4071fe0f05b65b18086c7a9604a4bc934f72cbd8212a",
+      "appSHA256": "521dcc4c488834477e8c4071fe0f05b65b18086c7a9604a4bc934f72cbd8212a",
+      "gitSHA256": "521dcc4c488834477e8c4071fe0f05b65b18086c7a9604a4bc934f72cbd8212a"
+    },
+    {
+      "file": "imagenes/cartas/carta-015.webp",
+      "bytes": 81688,
+      "sourceSHA256": "5c3b60548e29656b978c40349df1696fe8f120dace53f6db15be012683467f3c",
+      "appSHA256": "5c3b60548e29656b978c40349df1696fe8f120dace53f6db15be012683467f3c",
+      "gitSHA256": "5c3b60548e29656b978c40349df1696fe8f120dace53f6db15be012683467f3c"
+    },
+    {
+      "file": "imagenes/cartas/carta-016.webp",
+      "bytes": 109268,
+      "sourceSHA256": "96223ef909808c1e432741d661b481399a9412affa232a84574584eba1bff8cf",
+      "appSHA256": "96223ef909808c1e432741d661b481399a9412affa232a84574584eba1bff8cf",
+      "gitSHA256": "96223ef909808c1e432741d661b481399a9412affa232a84574584eba1bff8cf"
+    },
+    {
+      "file": "imagenes/cartas/carta-017.webp",
+      "bytes": 109734,
+      "sourceSHA256": "ab9f8593ec29fe0e3223c9fcb67669f48fb2e768114f1350e54d4880590896c7",
+      "appSHA256": "ab9f8593ec29fe0e3223c9fcb67669f48fb2e768114f1350e54d4880590896c7",
+      "gitSHA256": "ab9f8593ec29fe0e3223c9fcb67669f48fb2e768114f1350e54d4880590896c7"
+    },
+    {
+      "file": "imagenes/cartas/carta-018.webp",
+      "bytes": 87832,
+      "sourceSHA256": "e4d4c7337a33e47744e019fc89c056217995634f960bb022b64417684b4ba29f",
+      "appSHA256": "e4d4c7337a33e47744e019fc89c056217995634f960bb022b64417684b4ba29f",
+      "gitSHA256": "e4d4c7337a33e47744e019fc89c056217995634f960bb022b64417684b4ba29f"
+    },
+    {
+      "file": "imagenes/cartas/carta-019.webp",
+      "bytes": 95296,
+      "sourceSHA256": "b1bbdcb0cb90634fa9a7bd94b9582abcafa25695b56df8da9465c309ecbe4352",
+      "appSHA256": "b1bbdcb0cb90634fa9a7bd94b9582abcafa25695b56df8da9465c309ecbe4352",
+      "gitSHA256": "b1bbdcb0cb90634fa9a7bd94b9582abcafa25695b56df8da9465c309ecbe4352"
+    },
+    {
+      "file": "imagenes/cartas/carta-020.webp",
+      "bytes": 84594,
+      "sourceSHA256": "e13e11f52556bc9f5b842f2def63efdee9d8c8dcd7618d95f7ce0437591666c3",
+      "appSHA256": "e13e11f52556bc9f5b842f2def63efdee9d8c8dcd7618d95f7ce0437591666c3",
+      "gitSHA256": "e13e11f52556bc9f5b842f2def63efdee9d8c8dcd7618d95f7ce0437591666c3"
+    },
+    {
+      "file": "imagenes/cartas/carta-021.webp",
+      "bytes": 128818,
+      "sourceSHA256": "dc8689462de6ba17c2325441cdb7f38078d10115d6d4e4eb7c4799e14170aca3",
+      "appSHA256": "dc8689462de6ba17c2325441cdb7f38078d10115d6d4e4eb7c4799e14170aca3",
+      "gitSHA256": "dc8689462de6ba17c2325441cdb7f38078d10115d6d4e4eb7c4799e14170aca3"
+    },
+    {
+      "file": "imagenes/cartas/carta-022.webp",
+      "bytes": 115146,
+      "sourceSHA256": "4a9ee8833c739e4f6dcaa932513acc922e0eac507d42e94ee08e50da07779872",
+      "appSHA256": "4a9ee8833c739e4f6dcaa932513acc922e0eac507d42e94ee08e50da07779872",
+      "gitSHA256": "4a9ee8833c739e4f6dcaa932513acc922e0eac507d42e94ee08e50da07779872"
+    },
+    {
+      "file": "imagenes/cartas/carta-023.webp",
+      "bytes": 88516,
+      "sourceSHA256": "de47ec42e47f6fe1ee2d16a277b57d4932e3358d14414c35b15e47e629f66d4d",
+      "appSHA256": "de47ec42e47f6fe1ee2d16a277b57d4932e3358d14414c35b15e47e629f66d4d",
+      "gitSHA256": "de47ec42e47f6fe1ee2d16a277b57d4932e3358d14414c35b15e47e629f66d4d"
+    },
+    {
+      "file": "imagenes/cartas/carta-024.webp",
+      "bytes": 130008,
+      "sourceSHA256": "944f1e2d9dc87f808333a993b0ca04862bce30b98b64739b08b0c6cc1a234344",
+      "appSHA256": "944f1e2d9dc87f808333a993b0ca04862bce30b98b64739b08b0c6cc1a234344",
+      "gitSHA256": "944f1e2d9dc87f808333a993b0ca04862bce30b98b64739b08b0c6cc1a234344"
+    },
+    {
+      "file": "imagenes/cartas/carta-025.webp",
+      "bytes": 128442,
+      "sourceSHA256": "6ce6377f63df9253b505df64b28203536a95ed33dc37da4a3e71248f59466700",
+      "appSHA256": "6ce6377f63df9253b505df64b28203536a95ed33dc37da4a3e71248f59466700",
+      "gitSHA256": "6ce6377f63df9253b505df64b28203536a95ed33dc37da4a3e71248f59466700"
+    },
+    {
+      "file": "imagenes/cartas/carta-026.webp",
+      "bytes": 92918,
+      "sourceSHA256": "4816a9030569afa5dc0143dee5ca5cafd7e35ecda4c098a95063de77f13cc347",
+      "appSHA256": "4816a9030569afa5dc0143dee5ca5cafd7e35ecda4c098a95063de77f13cc347",
+      "gitSHA256": "4816a9030569afa5dc0143dee5ca5cafd7e35ecda4c098a95063de77f13cc347"
+    },
+    {
+      "file": "imagenes/cartas/carta-027.webp",
+      "bytes": 120186,
+      "sourceSHA256": "72c3f9771f6132e5e780bbb2e2292d7002b05d36400c5d8fbe5888827c3a43d1",
+      "appSHA256": "72c3f9771f6132e5e780bbb2e2292d7002b05d36400c5d8fbe5888827c3a43d1",
+      "gitSHA256": "72c3f9771f6132e5e780bbb2e2292d7002b05d36400c5d8fbe5888827c3a43d1"
+    },
+    {
+      "file": "imagenes/cartas/carta-028.webp",
+      "bytes": 109434,
+      "sourceSHA256": "5dfc167da9627e8065b6bd9b0241e1602318ca073f6aa43216da054ddd7b01da",
+      "appSHA256": "5dfc167da9627e8065b6bd9b0241e1602318ca073f6aa43216da054ddd7b01da",
+      "gitSHA256": "5dfc167da9627e8065b6bd9b0241e1602318ca073f6aa43216da054ddd7b01da"
+    },
+    {
+      "file": "imagenes/cartas/carta-029.webp",
+      "bytes": 102856,
+      "sourceSHA256": "204acaafcdd3c7d4d6dca0377467c46c1a8146edef224632293fa08c02cf4434",
+      "appSHA256": "204acaafcdd3c7d4d6dca0377467c46c1a8146edef224632293fa08c02cf4434",
+      "gitSHA256": "204acaafcdd3c7d4d6dca0377467c46c1a8146edef224632293fa08c02cf4434"
+    },
+    {
+      "file": "imagenes/cartas/carta-030.webp",
+      "bytes": 106544,
+      "sourceSHA256": "87e749231c42cd28b340a78b36e8a13750f8944de3227a9c0432d5dc29ac5082",
+      "appSHA256": "87e749231c42cd28b340a78b36e8a13750f8944de3227a9c0432d5dc29ac5082",
+      "gitSHA256": "87e749231c42cd28b340a78b36e8a13750f8944de3227a9c0432d5dc29ac5082"
+    },
+    {
+      "file": "imagenes/cartas/carta-031.webp",
+      "bytes": 108020,
+      "sourceSHA256": "9272589910983ef0dbcd9fb0a6b9950560eb415b45f964adb225e09ce02785f4",
+      "appSHA256": "9272589910983ef0dbcd9fb0a6b9950560eb415b45f964adb225e09ce02785f4",
+      "gitSHA256": "9272589910983ef0dbcd9fb0a6b9950560eb415b45f964adb225e09ce02785f4"
+    },
+    {
+      "file": "imagenes/cartas/carta-032.webp",
+      "bytes": 112618,
+      "sourceSHA256": "ad057bb98c94bb9b13f4e982b9b91539d2a079707c1b84431af9ae63ca94016f",
+      "appSHA256": "ad057bb98c94bb9b13f4e982b9b91539d2a079707c1b84431af9ae63ca94016f",
+      "gitSHA256": "ad057bb98c94bb9b13f4e982b9b91539d2a079707c1b84431af9ae63ca94016f"
+    },
+    {
+      "file": "imagenes/cartas/carta-033.webp",
+      "bytes": 111406,
+      "sourceSHA256": "ba2a573352609b43378eab75489bf65587d6d8d74de51a6c5bf5aea3476253a1",
+      "appSHA256": "ba2a573352609b43378eab75489bf65587d6d8d74de51a6c5bf5aea3476253a1",
+      "gitSHA256": "ba2a573352609b43378eab75489bf65587d6d8d74de51a6c5bf5aea3476253a1"
+    },
+    {
+      "file": "imagenes/cartas/carta-034.webp",
+      "bytes": 127708,
+      "sourceSHA256": "520c71eb41e11002231399759f153a5fa011b5592fddead7f60f27882cb0b80e",
+      "appSHA256": "520c71eb41e11002231399759f153a5fa011b5592fddead7f60f27882cb0b80e",
+      "gitSHA256": "520c71eb41e11002231399759f153a5fa011b5592fddead7f60f27882cb0b80e"
+    },
+    {
+      "file": "imagenes/cartas/carta-035.webp",
+      "bytes": 77868,
+      "sourceSHA256": "9a5c6c19fa8b2bdc13757b259b131c84b03efd3c63f506ba1f6d53ab97f3c993",
+      "appSHA256": "9a5c6c19fa8b2bdc13757b259b131c84b03efd3c63f506ba1f6d53ab97f3c993",
+      "gitSHA256": "9a5c6c19fa8b2bdc13757b259b131c84b03efd3c63f506ba1f6d53ab97f3c993"
+    },
+    {
+      "file": "imagenes/cartas/carta-036.webp",
+      "bytes": 75924,
+      "sourceSHA256": "2d8c162b3172b364480f706e3b058277bd5ff487ca63d85efd2159d7c679aa19",
+      "appSHA256": "2d8c162b3172b364480f706e3b058277bd5ff487ca63d85efd2159d7c679aa19",
+      "gitSHA256": "2d8c162b3172b364480f706e3b058277bd5ff487ca63d85efd2159d7c679aa19"
+    },
+    {
+      "file": "imagenes/cartas/carta-037.webp",
+      "bytes": 102846,
+      "sourceSHA256": "2f825fefce81759059dc0dd5cca6e4bba8a694e962ad9027662e035bd9bb07b9",
+      "appSHA256": "2f825fefce81759059dc0dd5cca6e4bba8a694e962ad9027662e035bd9bb07b9",
+      "gitSHA256": "2f825fefce81759059dc0dd5cca6e4bba8a694e962ad9027662e035bd9bb07b9"
+    },
+    {
+      "file": "imagenes/cartas/carta-038.webp",
+      "bytes": 101930,
+      "sourceSHA256": "fb2c3c984a9dccdcfbb80b66ec7747680c11767bf3b0b1bc0014b882b59bded8",
+      "appSHA256": "fb2c3c984a9dccdcfbb80b66ec7747680c11767bf3b0b1bc0014b882b59bded8",
+      "gitSHA256": "fb2c3c984a9dccdcfbb80b66ec7747680c11767bf3b0b1bc0014b882b59bded8"
+    },
+    {
+      "file": "imagenes/cartas/carta-039.webp",
+      "bytes": 106422,
+      "sourceSHA256": "4c36a5d3a22a4e90ab17e6fcb05a8eb3f0833cca3b1789e19ecf89fd6ee10956",
+      "appSHA256": "4c36a5d3a22a4e90ab17e6fcb05a8eb3f0833cca3b1789e19ecf89fd6ee10956",
+      "gitSHA256": "4c36a5d3a22a4e90ab17e6fcb05a8eb3f0833cca3b1789e19ecf89fd6ee10956"
+    },
+    {
+      "file": "imagenes/cartas/carta-040.webp",
+      "bytes": 124932,
+      "sourceSHA256": "bb02be896e4afed775b332199e6e1a10a91b25376ab1726dab8c12b17589de19",
+      "appSHA256": "bb02be896e4afed775b332199e6e1a10a91b25376ab1726dab8c12b17589de19",
+      "gitSHA256": "bb02be896e4afed775b332199e6e1a10a91b25376ab1726dab8c12b17589de19"
+    },
+    {
+      "file": "imagenes/cartas/carta-041.webp",
+      "bytes": 122422,
+      "sourceSHA256": "bf474e6229c71a1d5c63e3bb57dc84f9b79329d1a737739cb32767ec06e145f2",
+      "appSHA256": "bf474e6229c71a1d5c63e3bb57dc84f9b79329d1a737739cb32767ec06e145f2",
+      "gitSHA256": "bf474e6229c71a1d5c63e3bb57dc84f9b79329d1a737739cb32767ec06e145f2"
+    },
+    {
+      "file": "imagenes/cartas/carta-042.webp",
+      "bytes": 116136,
+      "sourceSHA256": "6fd41b9856a908255864be7ec14e428e7e2bb35137710107b678de2bafb22cac",
+      "appSHA256": "6fd41b9856a908255864be7ec14e428e7e2bb35137710107b678de2bafb22cac",
+      "gitSHA256": "6fd41b9856a908255864be7ec14e428e7e2bb35137710107b678de2bafb22cac"
+    },
+    {
+      "file": "imagenes/cartas/carta-043.webp",
+      "bytes": 138072,
+      "sourceSHA256": "2652d32ac52c3839478d8235432f5c13774ee8d0bfc72e71bef05a5dded30fff",
+      "appSHA256": "2652d32ac52c3839478d8235432f5c13774ee8d0bfc72e71bef05a5dded30fff",
+      "gitSHA256": "2652d32ac52c3839478d8235432f5c13774ee8d0bfc72e71bef05a5dded30fff"
+    },
+    {
+      "file": "imagenes/cartas/carta-044.webp",
+      "bytes": 116924,
+      "sourceSHA256": "e54a823c61ff4f935cc9797a83f9ad02ee4eb926ed161093a81d4f07242fa6c4",
+      "appSHA256": "e54a823c61ff4f935cc9797a83f9ad02ee4eb926ed161093a81d4f07242fa6c4",
+      "gitSHA256": "e54a823c61ff4f935cc9797a83f9ad02ee4eb926ed161093a81d4f07242fa6c4"
+    },
+    {
+      "file": "imagenes/cartas/carta-045.webp",
+      "bytes": 114652,
+      "sourceSHA256": "619a8888582e56190624012aeb687555f8f24d09c0c46e1338e98c77647618a7",
+      "appSHA256": "619a8888582e56190624012aeb687555f8f24d09c0c46e1338e98c77647618a7",
+      "gitSHA256": "619a8888582e56190624012aeb687555f8f24d09c0c46e1338e98c77647618a7"
+    },
+    {
+      "file": "imagenes/cartas/carta-046.webp",
+      "bytes": 105846,
+      "sourceSHA256": "c0b662b17efca448f190995cd6b82be4a7552b3b90fab612a1a88f3b3a1ea902",
+      "appSHA256": "c0b662b17efca448f190995cd6b82be4a7552b3b90fab612a1a88f3b3a1ea902",
+      "gitSHA256": "c0b662b17efca448f190995cd6b82be4a7552b3b90fab612a1a88f3b3a1ea902"
+    },
+    {
+      "file": "imagenes/cartas/carta-047.webp",
+      "bytes": 91468,
+      "sourceSHA256": "7629e12cd84a61f7570a803ddfb7b615a3592c720346c80f6e38952d04d2c837",
+      "appSHA256": "7629e12cd84a61f7570a803ddfb7b615a3592c720346c80f6e38952d04d2c837",
+      "gitSHA256": "7629e12cd84a61f7570a803ddfb7b615a3592c720346c80f6e38952d04d2c837"
+    },
+    {
+      "file": "imagenes/cartas/carta-048.webp",
+      "bytes": 105196,
+      "sourceSHA256": "bbe0aa430f243f53d9aef48666fed7bd37c04d7cad1df1697cb5abb1f7b808af",
+      "appSHA256": "bbe0aa430f243f53d9aef48666fed7bd37c04d7cad1df1697cb5abb1f7b808af",
+      "gitSHA256": "bbe0aa430f243f53d9aef48666fed7bd37c04d7cad1df1697cb5abb1f7b808af"
+    },
+    {
+      "file": "imagenes/cartas/carta-049.webp",
+      "bytes": 109606,
+      "sourceSHA256": "da7965f66796590605c1738015381ed57ecc319cef374656e734cce02ec29b30",
+      "appSHA256": "da7965f66796590605c1738015381ed57ecc319cef374656e734cce02ec29b30",
+      "gitSHA256": "da7965f66796590605c1738015381ed57ecc319cef374656e734cce02ec29b30"
+    },
+    {
+      "file": "imagenes/cartas/carta-050.webp",
+      "bytes": 143980,
+      "sourceSHA256": "886d56c9f87389fd96cc8f3a6234e429aec7247bab2facc853a1a4fc998c5358",
+      "appSHA256": "886d56c9f87389fd96cc8f3a6234e429aec7247bab2facc853a1a4fc998c5358",
+      "gitSHA256": "886d56c9f87389fd96cc8f3a6234e429aec7247bab2facc853a1a4fc998c5358"
+    },
+    {
+      "file": "imagenes/cartas/carta-051.webp",
+      "bytes": 127540,
+      "sourceSHA256": "df164c384e5d56c5c4150bf80190f0c87b009db58ed8c9d36b5a4a4862bb4655",
+      "appSHA256": "df164c384e5d56c5c4150bf80190f0c87b009db58ed8c9d36b5a4a4862bb4655",
+      "gitSHA256": "df164c384e5d56c5c4150bf80190f0c87b009db58ed8c9d36b5a4a4862bb4655"
+    },
+    {
+      "file": "imagenes/cartas/carta-052.webp",
+      "bytes": 115424,
+      "sourceSHA256": "1bcbc1e08821a08e89208827b5814179854d3bf81b9bb09fca4fb3ac5285fdd0",
+      "appSHA256": "1bcbc1e08821a08e89208827b5814179854d3bf81b9bb09fca4fb3ac5285fdd0",
+      "gitSHA256": "1bcbc1e08821a08e89208827b5814179854d3bf81b9bb09fca4fb3ac5285fdd0"
+    },
+    {
+      "file": "imagenes/cartas/carta-053.webp",
+      "bytes": 108840,
+      "sourceSHA256": "737920623529062b9063f3c9c10d894f443ca61bc454336819a3bb1971f0968a",
+      "appSHA256": "737920623529062b9063f3c9c10d894f443ca61bc454336819a3bb1971f0968a",
+      "gitSHA256": "737920623529062b9063f3c9c10d894f443ca61bc454336819a3bb1971f0968a"
+    },
+    {
+      "file": "imagenes/cartas/carta-054.webp",
+      "bytes": 135748,
+      "sourceSHA256": "6f50ddd927c59d9259dce8ccb1839744f540843772d6d58d188a44fc2569381f",
+      "appSHA256": "6f50ddd927c59d9259dce8ccb1839744f540843772d6d58d188a44fc2569381f",
+      "gitSHA256": "6f50ddd927c59d9259dce8ccb1839744f540843772d6d58d188a44fc2569381f"
+    },
+    {
+      "file": "imagenes/cartas/carta-055.webp",
+      "bytes": 137208,
+      "sourceSHA256": "522dd2f11cee48ce73e4ec525067af3bce8592294eb424578297965763265983",
+      "appSHA256": "522dd2f11cee48ce73e4ec525067af3bce8592294eb424578297965763265983",
+      "gitSHA256": "522dd2f11cee48ce73e4ec525067af3bce8592294eb424578297965763265983"
+    },
+    {
+      "file": "imagenes/cartas/carta-056.webp",
+      "bytes": 96252,
+      "sourceSHA256": "aeb3b3cee4968f27fb7d518743a8417ac382b0eddb7e4410a85aeba7a00f74ea",
+      "appSHA256": "aeb3b3cee4968f27fb7d518743a8417ac382b0eddb7e4410a85aeba7a00f74ea",
+      "gitSHA256": "aeb3b3cee4968f27fb7d518743a8417ac382b0eddb7e4410a85aeba7a00f74ea"
+    },
+    {
+      "file": "imagenes/cartas/carta-057.webp",
+      "bytes": 93376,
+      "sourceSHA256": "edee903e837bd23c7c51ef36b074533062e3245a8e8bdf17801ae808c0a68cc8",
+      "appSHA256": "edee903e837bd23c7c51ef36b074533062e3245a8e8bdf17801ae808c0a68cc8",
+      "gitSHA256": "edee903e837bd23c7c51ef36b074533062e3245a8e8bdf17801ae808c0a68cc8"
+    },
+    {
+      "file": "imagenes/cartas/carta-058.webp",
+      "bytes": 128406,
+      "sourceSHA256": "85240325d84fce8b4ed0e80d1e0c576a7d2fea2ab6a30fdc8faa5dd8909d5e91",
+      "appSHA256": "85240325d84fce8b4ed0e80d1e0c576a7d2fea2ab6a30fdc8faa5dd8909d5e91",
+      "gitSHA256": "85240325d84fce8b4ed0e80d1e0c576a7d2fea2ab6a30fdc8faa5dd8909d5e91"
+    },
+    {
+      "file": "imagenes/portada.webp",
+      "bytes": 156500,
+      "sourceSHA256": "a0fba2f4b38a4cffb6bd3d73cd777ea5c4fce316937747541ccb4aecf7e37805",
+      "appSHA256": "a0fba2f4b38a4cffb6bd3d73cd777ea5c4fce316937747541ccb4aecf7e37805",
+      "gitSHA256": "a0fba2f4b38a4cffb6bd3d73cd777ea5c4fce316937747541ccb4aecf7e37805"
+    }
+  ],
+  "gitVerification": {
+    "date": "2026-10-16T13:16:38.166Z",
+    "newFiles": 61,
+    "previousFiles": 63,
+    "certificates": 4,
+    "originAppGitIdentical": true,
+    "staticLinuxExpectationsMatchManifest": true,
+    "linuxExecution": "Pendiente; no ejecutar asserts de plataforma simulando Windows"
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "date": "2026-10-16T13:14:33.107Z",
+  "node": "v24.19.0",
+  "nodePath": "C:\\Users\\Adrian\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+  "icu": "78.3",
+  "unicode": "17.0",
+  "pid": 14260,
+  "base": "http://127.0.0.1:52388",
+  "adapters": "SystemClock/TimerScheduler/CryptoCardPermutation",
+  "decks": {
+    "decks": [
+      {
+        "id": "criaturas-magicas",
+        "schemaVersion": 2,
+        "contentVersion": 2,
+        "name": "Criaturas Mágicas",
+        "subtitle": "",
+        "description": "Dragones, unicornios, fénix y gólems te esperan entre bosques encantados, cumbres heladas y arrecifes luminosos. Descubre 58 criaturas con personalidad propia y compara su Poder, Astucia y Resistencia. En este mundo de fantasía, hasta el ser más pequeño puede sorprenderte.",
+        "imageUrl": "/media/decks/criaturas-magicas/v2/imagenes/portada.webp",
+        "imageAlt": "Un dragón rojo, un unicornio blanco de crines azules y un gólem de piedra cubierto de hiedra se reúnen en un claro; sobre ellos vuela un fénix dorado y rojo ante un paisaje de montañas, bosque y cascadas."
+      },
+      {
+        "id": "generica",
+        "schemaVersion": 2,
+        "contentVersion": 4,
+        "name": "KARTA3 — Baraja genérica",
+        "subtitle": "",
+        "description": "Baraja abstracta de 58 cartas para aprender a jugar a KARTA3 y apoyar el desarrollo inicial. Cada carta tiene tres atributos, Círculo, Triángulo y Cuadrado, con valores jugables únicos del 1 al 58 por atributo y un indicador del atributo activo cuando aparece como carta central.",
+        "imageUrl": null,
+        "imageAlt": ""
+      },
+      {
+        "id": "sistema-solar",
+        "schemaVersion": 2,
+        "contentVersion": 4,
+        "name": "Sistema Solar",
+        "subtitle": "",
+        "description": "Baraja educativa de KARTA3 con 58 cuerpos del Sistema Solar y tres atributos: velocidad orbital máxima, distancia orbital media y diámetro medio o efectivo. Los valores jugables de 1 a 58 se presentan separados de los datos científicos informativos.",
+        "imageUrl": "/media/decks/sistema-solar/v4/imagenes/portada.webp",
+        "imageAlt": "Composición del Sistema Solar con el Sol, varios planetas, una luna, un asteroide y un cometa sobre un fondo estrellado."
+      }
+    ]
+  },
+  "selection": [
+    "creatures.spec.ts",
+    "solar.spec.ts",
+    "bots.spec.ts",
+    "decks.spec.ts",
+    "format2Presentation.spec.ts",
+    "cancelGame.spec.ts",
+    "resultNotice.spec.ts",
+    "proxy.spec.ts",
+    "--grep",
+    "B16|B14|B09 P2 normal|AGV2-|B15 espera|B15 frontera|B15 E7|B13|INC-01|T05 origen"
+  ],
+  "assets": [
+    {
+      "url": "/assets/index-CnQriIFw.js",
+      "sha256": "c8a92a4581a088ce2a9f27c2cc5672d207dccffb781249fdb95fa03beaf252f6",
+      "matchesCurrentBuild": true
+    },
+    {
+      "url": "/assets/index-DocF-FaP.css",
+      "sha256": "d22c9bf25f290bfff011a77ab287229c879f5de0c13078660b722da6403204a0",
+      "matchesCurrentBuild": true
+    }
+  ],
+  "exitCode": 0,
+  "serverStillAlive": true,
+  "errors": "",
+  "externalAccess": false
+}

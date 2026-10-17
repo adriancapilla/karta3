@@ -1,0 +1,890 @@
+[
+  {
+    "geometry": {
+      "name": "Dragón de cristal",
+      "title": {
+        "x": 64,
+        "y": 496.25,
+        "width": 144.484375,
+        "height": 43.90625,
+        "right": 208.484375,
+        "bottom": 540.15625
+      },
+      "heading": {
+        "x": 64,
+        "y": 496.25,
+        "width": 166,
+        "height": 51.90625,
+        "right": 230,
+        "bottom": 548.15625
+      },
+      "icon": {
+        "x": 214.484375,
+        "y": 496.25,
+        "width": 15.515625,
+        "height": 24,
+        "right": 230,
+        "bottom": 520.25
+      },
+      "size": 18,
+      "base": 18,
+      "min": 12,
+      "available": 144.484375,
+      "baseWidth": 144.6875,
+      "minWidth": 96.453125,
+      "nextWidth": 144.6875,
+      "textRects": [
+        {
+          "x": 64,
+          "y": 494.25,
+          "width": 89,
+          "height": 24,
+          "right": 153,
+          "bottom": 518.25
+        },
+        {
+          "x": 64,
+          "y": 516.203125,
+          "width": 50.71875,
+          "height": 24,
+          "right": 114.71875,
+          "bottom": 540.203125
+        }
+      ],
+      "family": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+      "weight": "700",
+      "lineHeight": "21.96px",
+      "letterSpacing": "normal",
+      "gap": 6,
+      "titleMargins": 0,
+      "iconMargins": 0,
+      "whiteSpace": "normal",
+      "overflow": "visible",
+      "textOverflow": "clip",
+      "card": {
+        "x": 19,
+        "y": 487.25,
+        "width": 220,
+        "height": 203.46875,
+        "right": 239,
+        "bottom": 690.71875
+      },
+      "image": {
+        "x": 28,
+        "y": 496.25,
+        "width": 32,
+        "height": 32,
+        "right": 60,
+        "bottom": 528.25
+      },
+      "table": {
+        "x": 28,
+        "y": 552.15625,
+        "width": 202,
+        "height": 81.5625,
+        "right": 230,
+        "bottom": 633.71875
+      },
+      "gaps": [
+        23.90625,
+        56
+      ],
+      "rows": [
+        {
+          "text": "● Poder◆38",
+          "box": {
+            "x": 28,
+            "y": 552.15625,
+            "width": 202,
+            "height": 26.6875,
+            "right": 230,
+            "bottom": 578.84375
+          },
+          "content": [
+            {
+              "top": 555.15625,
+              "bottom": 574.15625,
+              "height": 19
+            },
+            {
+              "top": 555.15625,
+              "bottom": 574.15625,
+              "height": 19
+            },
+            {
+              "top": 555.15625,
+              "bottom": 574.15625,
+              "height": 19
+            },
+            {
+              "top": 555.15625,
+              "bottom": 574.15625,
+              "height": 19
+            },
+            {
+              "top": 555.15625,
+              "bottom": 574.15625,
+              "height": 19
+            },
+            {
+              "top": 561.15625,
+              "bottom": 572.15625,
+              "height": 11
+            },
+            {
+              "top": 561.15625,
+              "bottom": 572.15625,
+              "height": 11
+            },
+            {
+              "top": 555.15625,
+              "bottom": 574.15625,
+              "height": 19
+            }
+          ]
+        },
+        {
+          "text": "▲ Astucia30",
+          "box": {
+            "x": 28,
+            "y": 578.84375,
+            "width": 202,
+            "height": 27.1875,
+            "right": 230,
+            "bottom": 606.03125
+          },
+          "content": [
+            {
+              "top": 582.34375,
+              "bottom": 601.34375,
+              "height": 19
+            },
+            {
+              "top": 582.34375,
+              "bottom": 601.34375,
+              "height": 19
+            },
+            {
+              "top": 582.34375,
+              "bottom": 601.34375,
+              "height": 19
+            },
+            {
+              "top": 582.34375,
+              "bottom": 601.34375,
+              "height": 19
+            },
+            {
+              "top": 582.34375,
+              "bottom": 601.34375,
+              "height": 19
+            },
+            {
+              "top": 582.34375,
+              "bottom": 601.34375,
+              "height": 19
+            }
+          ]
+        },
+        {
+          "text": "■ Resistencia6",
+          "box": {
+            "x": 28,
+            "y": 606.03125,
+            "width": 202,
+            "height": 27.1875,
+            "right": 230,
+            "bottom": 633.21875
+          },
+          "content": [
+            {
+              "top": 609.53125,
+              "bottom": 628.53125,
+              "height": 19
+            },
+            {
+              "top": 609.53125,
+              "bottom": 628.53125,
+              "height": 19
+            },
+            {
+              "top": 609.53125,
+              "bottom": 628.53125,
+              "height": 19
+            },
+            {
+              "top": 609.53125,
+              "bottom": 628.53125,
+              "height": 19
+            },
+            {
+              "top": 609.53125,
+              "bottom": 628.53125,
+              "height": 19
+            },
+            {
+              "top": 609.53125,
+              "bottom": 628.53125,
+              "height": 19
+            }
+          ]
+        }
+      ],
+      "padding": "4px",
+      "d": {
+        "box": {
+          "x": 28,
+          "y": 637.71875,
+          "width": 202,
+          "height": 44,
+          "right": 230,
+          "bottom": 681.71875
+        },
+        "received": false,
+        "tag": "DIALOG",
+        "className": "card-details-dialog"
+      },
+      "play": {
+        "box": {
+          "x": 19,
+          "y": 696.71875,
+          "width": 220,
+          "height": 44,
+          "right": 239,
+          "bottom": 740.71875
+        },
+        "received": false,
+        "tag": "BUTTON",
+        "className": "secondary deck-information-button"
+      },
+      "useful": "358",
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "dpr": 1,
+        "scale": 1,
+        "cssZoom": "1"
+      }
+    },
+    "fonts": {
+      "title": {
+        "fonts": [
+          {
+            "familyName": "Segoe UI",
+            "postScriptName": "SegoeUI-Bold",
+            "isCustomFont": false,
+            "glyphCount": 16
+          }
+        ]
+      },
+      "lastAttribute": {
+        "fonts": [
+          {
+            "familyName": "Segoe UI",
+            "postScriptName": "SegoeUI-Bold",
+            "isCustomFont": false,
+            "glyphCount": 13
+          }
+        ]
+      },
+      "ownSymbol": {
+        "fonts": [
+          {
+            "familyName": "Segoe UI",
+            "postScriptName": "SegoeUI",
+            "isCustomFont": false,
+            "glyphCount": 1
+          }
+        ]
+      }
+    }
+  },
+  {
+    "geometry": {
+      "name": "Dragón de los bosques",
+      "title": {
+        "x": 294,
+        "y": 496.25,
+        "width": 149.125,
+        "height": 43.90625,
+        "right": 443.125,
+        "bottom": 540.15625
+      },
+      "heading": {
+        "x": 294,
+        "y": 496.25,
+        "width": 166,
+        "height": 51.90625,
+        "right": 460,
+        "bottom": 548.15625
+      },
+      "icon": {
+        "x": 449.125,
+        "y": 496.25,
+        "width": 10.875,
+        "height": 24,
+        "right": 460,
+        "bottom": 520.25
+      },
+      "size": 18,
+      "base": 18,
+      "min": 12,
+      "available": 149.125,
+      "baseWidth": 192.75,
+      "minWidth": 128.5,
+      "nextWidth": 192.75,
+      "textRects": [
+        {
+          "x": 294,
+          "y": 494.25,
+          "width": 118.015625,
+          "height": 24,
+          "right": 412.015625,
+          "bottom": 518.25
+        },
+        {
+          "x": 294,
+          "y": 516.203125,
+          "width": 69.78125,
+          "height": 24,
+          "right": 363.78125,
+          "bottom": 540.203125
+        }
+      ],
+      "family": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+      "weight": "700",
+      "lineHeight": "21.96px",
+      "letterSpacing": "normal",
+      "gap": 6,
+      "titleMargins": 0,
+      "iconMargins": 0,
+      "whiteSpace": "normal",
+      "overflow": "visible",
+      "textOverflow": "clip",
+      "card": {
+        "x": 249,
+        "y": 487.25,
+        "width": 220,
+        "height": 203.46875,
+        "right": 469,
+        "bottom": 690.71875
+      },
+      "image": {
+        "x": 258,
+        "y": 496.25,
+        "width": 32,
+        "height": 32,
+        "right": 290,
+        "bottom": 528.25
+      },
+      "table": {
+        "x": 258,
+        "y": 552.15625,
+        "width": 202,
+        "height": 81.5625,
+        "right": 460,
+        "bottom": 633.71875
+      },
+      "gaps": [
+        23.90625,
+        56
+      ],
+      "rows": [
+        {
+          "text": "● Poder◆40",
+          "box": {
+            "x": 258,
+            "y": 552.15625,
+            "width": 202,
+            "height": 26.6875,
+            "right": 460,
+            "bottom": 578.84375
+          },
+          "content": [
+            {
+              "top": 555.15625,
+              "bottom": 574.15625,
+              "height": 19
+            },
+            {
+              "top": 555.15625,
+              "bottom": 574.15625,
+              "height": 19
+            },
+            {
+              "top": 555.15625,
+              "bottom": 574.15625,
+              "height": 19
+            },
+            {
+              "top": 555.15625,
+              "bottom": 574.15625,
+              "height": 19
+            },
+            {
+              "top": 555.15625,
+              "bottom": 574.15625,
+              "height": 19
+            },
+            {
+              "top": 561.15625,
+              "bottom": 572.15625,
+              "height": 11
+            },
+            {
+              "top": 561.15625,
+              "bottom": 572.15625,
+              "height": 11
+            },
+            {
+              "top": 555.15625,
+              "bottom": 574.15625,
+              "height": 19
+            }
+          ]
+        },
+        {
+          "text": "▲ Astucia27",
+          "box": {
+            "x": 258,
+            "y": 578.84375,
+            "width": 202,
+            "height": 27.1875,
+            "right": 460,
+            "bottom": 606.03125
+          },
+          "content": [
+            {
+              "top": 582.34375,
+              "bottom": 601.34375,
+              "height": 19
+            },
+            {
+              "top": 582.34375,
+              "bottom": 601.34375,
+              "height": 19
+            },
+            {
+              "top": 582.34375,
+              "bottom": 601.34375,
+              "height": 19
+            },
+            {
+              "top": 582.34375,
+              "bottom": 601.34375,
+              "height": 19
+            },
+            {
+              "top": 582.34375,
+              "bottom": 601.34375,
+              "height": 19
+            },
+            {
+              "top": 582.34375,
+              "bottom": 601.34375,
+              "height": 19
+            }
+          ]
+        },
+        {
+          "text": "■ Resistencia43",
+          "box": {
+            "x": 258,
+            "y": 606.03125,
+            "width": 202,
+            "height": 27.1875,
+            "right": 460,
+            "bottom": 633.21875
+          },
+          "content": [
+            {
+              "top": 609.53125,
+              "bottom": 628.53125,
+              "height": 19
+            },
+            {
+              "top": 609.53125,
+              "bottom": 628.53125,
+              "height": 19
+            },
+            {
+              "top": 609.53125,
+              "bottom": 628.53125,
+              "height": 19
+            },
+            {
+              "top": 609.53125,
+              "bottom": 628.53125,
+              "height": 19
+            },
+            {
+              "top": 609.53125,
+              "bottom": 628.53125,
+              "height": 19
+            },
+            {
+              "top": 609.53125,
+              "bottom": 628.53125,
+              "height": 19
+            }
+          ]
+        }
+      ],
+      "padding": "4px",
+      "d": {
+        "box": {
+          "x": 258,
+          "y": 637.71875,
+          "width": 202,
+          "height": 44,
+          "right": 460,
+          "bottom": 681.71875
+        },
+        "received": false,
+        "tag": "DIALOG",
+        "className": "card-details-dialog"
+      },
+      "play": {
+        "box": {
+          "x": 249,
+          "y": 696.71875,
+          "width": 220,
+          "height": 44,
+          "right": 469,
+          "bottom": 740.71875
+        },
+        "received": false,
+        "tag": "DIALOG",
+        "className": "card-details-dialog"
+      },
+      "useful": "358",
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "dpr": 1,
+        "scale": 1,
+        "cssZoom": "1"
+      }
+    },
+    "fonts": {
+      "title": {
+        "fonts": [
+          {
+            "familyName": "Segoe UI",
+            "postScriptName": "SegoeUI-Bold",
+            "isCustomFont": false,
+            "glyphCount": 20
+          }
+        ]
+      },
+      "lastAttribute": {
+        "fonts": [
+          {
+            "familyName": "Segoe UI",
+            "postScriptName": "SegoeUI-Bold",
+            "isCustomFont": false,
+            "glyphCount": 13
+          }
+        ]
+      },
+      "ownSymbol": {
+        "fonts": [
+          {
+            "familyName": "Segoe UI",
+            "postScriptName": "SegoeUI",
+            "isCustomFont": false,
+            "glyphCount": 1
+          }
+        ]
+      }
+    }
+  },
+  {
+    "geometry": {
+      "name": "Dragón de hielo",
+      "title": {
+        "x": 524,
+        "y": 496.25,
+        "width": 135.78125,
+        "height": 21.953125,
+        "right": 659.78125,
+        "bottom": 518.203125
+      },
+      "heading": {
+        "x": 524,
+        "y": 496.25,
+        "width": 166,
+        "height": 34,
+        "right": 690,
+        "bottom": 530.25
+      },
+      "icon": {
+        "x": 674.484375,
+        "y": 496.25,
+        "width": 15.515625,
+        "height": 24,
+        "right": 690,
+        "bottom": 520.25
+      },
+      "size": 18,
+      "base": 18,
+      "min": 12,
+      "available": 135.78125,
+      "baseWidth": 135.78125,
+      "minWidth": 90.515625,
+      "nextWidth": 135.78125,
+      "textRects": [
+        {
+          "x": 524,
+          "y": 494.25,
+          "width": 135.78125,
+          "height": 24,
+          "right": 659.78125,
+          "bottom": 518.25
+        }
+      ],
+      "family": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+      "weight": "700",
+      "lineHeight": "21.96px",
+      "letterSpacing": "normal",
+      "gap": 6,
+      "titleMargins": 0,
+      "iconMargins": 0,
+      "whiteSpace": "normal",
+      "overflow": "visible",
+      "textOverflow": "clip",
+      "card": {
+        "x": 479,
+        "y": 487.25,
+        "width": 220,
+        "height": 188,
+        "right": 699,
+        "bottom": 675.25
+      },
+      "image": {
+        "x": 488,
+        "y": 496.25,
+        "width": 32,
+        "height": 32,
+        "right": 520,
+        "bottom": 528.25
+      },
+      "table": {
+        "x": 488,
+        "y": 534.25,
+        "width": 202,
+        "height": 81.5625,
+        "right": 690,
+        "bottom": 615.8125
+      },
+      "gaps": [
+        6,
+        58.4375
+      ],
+      "rows": [
+        {
+          "text": "● Poder◆52",
+          "box": {
+            "x": 488,
+            "y": 534.25,
+            "width": 202,
+            "height": 26.6875,
+            "right": 690,
+            "bottom": 560.9375
+          },
+          "content": [
+            {
+              "top": 537.25,
+              "bottom": 556.25,
+              "height": 19
+            },
+            {
+              "top": 537.25,
+              "bottom": 556.25,
+              "height": 19
+            },
+            {
+              "top": 537.25,
+              "bottom": 556.25,
+              "height": 19
+            },
+            {
+              "top": 537.25,
+              "bottom": 556.25,
+              "height": 19
+            },
+            {
+              "top": 537.25,
+              "bottom": 556.25,
+              "height": 19
+            },
+            {
+              "top": 543.25,
+              "bottom": 554.25,
+              "height": 11
+            },
+            {
+              "top": 543.25,
+              "bottom": 554.25,
+              "height": 11
+            },
+            {
+              "top": 537.25,
+              "bottom": 556.25,
+              "height": 19
+            }
+          ]
+        },
+        {
+          "text": "▲ Astucia18",
+          "box": {
+            "x": 488,
+            "y": 560.9375,
+            "width": 202,
+            "height": 27.1875,
+            "right": 690,
+            "bottom": 588.125
+          },
+          "content": [
+            {
+              "top": 564.4375,
+              "bottom": 583.4375,
+              "height": 19
+            },
+            {
+              "top": 564.4375,
+              "bottom": 583.4375,
+              "height": 19
+            },
+            {
+              "top": 564.4375,
+              "bottom": 583.4375,
+              "height": 19
+            },
+            {
+              "top": 564.4375,
+              "bottom": 583.4375,
+              "height": 19
+            },
+            {
+              "top": 564.4375,
+              "bottom": 583.4375,
+              "height": 19
+            },
+            {
+              "top": 564.4375,
+              "bottom": 583.4375,
+              "height": 19
+            }
+          ]
+        },
+        {
+          "text": "■ Resistencia46",
+          "box": {
+            "x": 488,
+            "y": 588.125,
+            "width": 202,
+            "height": 27.1875,
+            "right": 690,
+            "bottom": 615.3125
+          },
+          "content": [
+            {
+              "top": 591.625,
+              "bottom": 610.625,
+              "height": 19
+            },
+            {
+              "top": 591.625,
+              "bottom": 610.625,
+              "height": 19
+            },
+            {
+              "top": 591.625,
+              "bottom": 610.625,
+              "height": 19
+            },
+            {
+              "top": 591.625,
+              "bottom": 610.625,
+              "height": 19
+            },
+            {
+              "top": 591.625,
+              "bottom": 610.625,
+              "height": 19
+            },
+            {
+              "top": 591.625,
+              "bottom": 610.625,
+              "height": 19
+            }
+          ]
+        }
+      ],
+      "padding": "4px",
+      "d": {
+        "box": {
+          "x": 488,
+          "y": 619.8125,
+          "width": 202,
+          "height": 44,
+          "right": 690,
+          "bottom": 663.8125
+        },
+        "received": false
+      },
+      "play": {
+        "box": {
+          "x": 479,
+          "y": 681.25,
+          "width": 220,
+          "height": 44,
+          "right": 699,
+          "bottom": 725.25
+        },
+        "received": false
+      },
+      "useful": "358",
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "dpr": 1,
+        "scale": 1,
+        "cssZoom": "1"
+      }
+    },
+    "fonts": {
+      "title": {
+        "fonts": [
+          {
+            "familyName": "Segoe UI",
+            "postScriptName": "SegoeUI-Bold",
+            "isCustomFont": false,
+            "glyphCount": 15
+          }
+        ]
+      },
+      "lastAttribute": {
+        "fonts": [
+          {
+            "familyName": "Segoe UI",
+            "postScriptName": "SegoeUI-Bold",
+            "isCustomFont": false,
+            "glyphCount": 13
+          }
+        ]
+      },
+      "ownSymbol": {
+        "fonts": [
+          {
+            "familyName": "Segoe UI",
+            "postScriptName": "SegoeUI",
+            "isCustomFont": false,
+            "glyphCount": 1
+          }
+        ]
+      }
+    }
+  }
+]

@@ -1,0 +1,15 @@
+
+Running 8 tests using 1 worker
+
+(node:25884) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 tests\browser\cardTitleFit.spec.ts:29:131 › ADENDA B17 T/G/C generica PLAY_VALUE: máximo, banda, contenido y Resistencia (6.1s)
+  ok 2 tests\browser\cardTitleFit.spec.ts:29:131 › ADENDA B17 T/G/C generica DISPLAY_VALUE: máximo, banda, contenido y Resistencia (5.2s)
+  ok 3 tests\browser\cardTitleFit.spec.ts:29:131 › ADENDA B17 T/G/C sistema-solar PLAY_VALUE: máximo, banda, contenido y Resistencia (5.2s)
+  ok 4 tests\browser\cardTitleFit.spec.ts:29:131 › ADENDA B17 T/G/C sistema-solar DISPLAY_VALUE: máximo, banda, contenido y Resistencia (5.2s)
+  ok 5 tests\browser\cardTitleFit.spec.ts:29:131 › ADENDA B17 T/G/C criaturas-magicas PLAY_VALUE: máximo, banda, contenido y Resistencia (5.3s)
+  ok 6 tests\browser\cardTitleFit.spec.ts:29:131 › ADENDA B17 T/G/C criaturas-magicas DISPLAY_VALUE: máximo, banda, contenido y Resistencia (5.2s)
+  ok 7 tests\browser\cardTitleFit.spec.ts:63:1 › ADENDA B17 T/G/I fixture válida: corte solo a12, nombre íntegro, hit real y avance único (1.7s)
+  ok 8 tests\browser\cardTitleFit.spec.ts:88:1 › ADENDA B17 T/G fuentes tardías y zoom CSS125/200 declarado: recalcula sin pausar ni neutralizar fuente (5.8s)
+
+  8 passed (40.9s)

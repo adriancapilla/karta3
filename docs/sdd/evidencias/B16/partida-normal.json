@@ -1,0 +1,51 @@
+{
+  "date": "2026-10-16T13:16:59.415Z",
+  "adapters": "SystemClock/TimerScheduler/CryptoCardPermutation",
+  "selectedDeck": {
+    "id": "criaturas-magicas",
+    "schemaVersion": 2,
+    "contentVersion": 2,
+    "name": "Criaturas Mágicas",
+    "subtitle": "",
+    "description": "Dragones, unicornios, fénix y gólems te esperan entre bosques encantados, cumbres heladas y arrecifes luminosos. Descubre 58 criaturas con personalidad propia y compara su Poder, Astucia y Resistencia. En este mundo de fantasía, hasta el ser más pequeño puede sorprenderte.",
+    "imageUrl": "/media/decks/criaturas-magicas/v2/imagenes/portada.webp",
+    "imageAlt": "Un dragón rojo, un unicornio blanco de crines azules y un gólem de piedra cubierto de hiedra se reúnen en un claro; sobre ellos vuela un fénix dorado y rojo ante un paisaje de montañas, bosque y cascadas."
+  },
+  "moves": 15,
+  "finals": [
+    13,
+    14,
+    15
+  ],
+  "result": {
+    "gameId": "4f3582cd-efd5-4810-b67f-50ce0c5fd631",
+    "endReason": "DECK_COMPLETED",
+    "completedNormally": true,
+    "standings": [
+      {
+        "playerId": "5eca2998-b20f-4099-bbdf-e89042e8fee7",
+        "score": 30,
+        "position": 1
+      },
+      {
+        "playerId": "e38210bb-63f2-4271-a187-3d59e4bd4436",
+        "score": 12,
+        "position": 2
+      },
+      {
+        "playerId": "6edca420-9281-414a-9388-159a87d0e931",
+        "score": 3,
+        "position": 3
+      }
+    ],
+    "winnerIds": [
+      "5eca2998-b20f-4099-bbdf-e89042e8fee7"
+    ],
+    "tieBreakWinnerId": null,
+    "retention": {
+      "presentedAt": 1792156618381.5366,
+      "serverNow": 1792156618463.5872,
+      "expiresAt": 1792158418381.5366
+    }
+  }
+}

@@ -1,0 +1,76 @@
+
+Running 3 tests using 1 worker
+
+(node:21988) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  1 tests\browser\cardColumns.spec.ts:10:3 › ADENDA B17 G columnas controlled-monospace PLAY_VALUE: necesidades, uniformidad, contenido y clic habilitado (10.7s)
+(node:1208) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  2 tests\browser\cardColumns.spec.ts:10:3 › ADENDA B17 G columnas controlled-monospace DISPLAY_VALUE: necesidades, uniformidad, contenido y clic habilitado (10.1s)
+(node:26856) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 3 tests\browser\cardTitleFit.spec.ts:112:1 › ADENDA B17 T/G fuentes tardías y zoom CSS125/200 declarado: recalcula sin pausar ni neutralizar fuente (7.8s)
+
+
+  1) tests\browser\cardColumns.spec.ts:10:3 › ADENDA B17 G columnas controlled-monospace PLAY_VALUE: necesidades, uniformidad, contenido y clic habilitado
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+    Call Log:
+    - Timeout 5000ms exceeded while waiting on the predicate
+
+      25 |           const c = await cardColumnsGeometry(face);
+      26 |           return c.columns.every(row => row.attribute.wholeWidth <= row.attribute.useful + 0.02 && row.value.wholeWidth <= row.value.useful + 0.02);
+    > 27 |         }).toBe(true);
+         |            ^
+      28 |         const columns = await cardColumnsGeometry(face); const geometry = await titleGeometry(face); assertWholeFace(geometry);
+      29 |         expect(columns.columns.every(row => row.attribute.box.width === columns.columns[0].attribute.box.width)).toBe(true);
+      30 |         measurements.push({ columns, geometry, fonts: await glyphFonts(p.host, `.game-hand [data-card-id="${await slot.getAttribute('data-card-id')}"]`) });
+        at E:\KARTA3\KARTA3_IA\APP\karta3\tests\browser\cardColumns.spec.ts:27:12
+
+    Error Context: test-results\cardColumns-ADENDA-B17-G-c-f3cf2-contenido-y-clic-habilitado\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\cardColumns-ADENDA-B17-G-c-f3cf2-contenido-y-clic-habilitado\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\cardColumns-ADENDA-B17-G-c-f3cf2-contenido-y-clic-habilitado\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) tests\browser\cardColumns.spec.ts:10:3 › ADENDA B17 G columnas controlled-monospace DISPLAY_VALUE: necesidades, uniformidad, contenido y clic habilitado
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+    Call Log:
+    - Timeout 5000ms exceeded while waiting on the predicate
+
+      25 |           const c = await cardColumnsGeometry(face);
+      26 |           return c.columns.every(row => row.attribute.wholeWidth <= row.attribute.useful + 0.02 && row.value.wholeWidth <= row.value.useful + 0.02);
+    > 27 |         }).toBe(true);
+         |            ^
+      28 |         const columns = await cardColumnsGeometry(face); const geometry = await titleGeometry(face); assertWholeFace(geometry);
+      29 |         expect(columns.columns.every(row => row.attribute.box.width === columns.columns[0].attribute.box.width)).toBe(true);
+      30 |         measurements.push({ columns, geometry, fonts: await glyphFonts(p.host, `.game-hand [data-card-id="${await slot.getAttribute('data-card-id')}"]`) });
+        at E:\KARTA3\KARTA3_IA\APP\karta3\tests\browser\cardColumns.spec.ts:27:12
+
+    Error Context: test-results\cardColumns-ADENDA-B17-G-c-a24a2-contenido-y-clic-habilitado\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\cardColumns-ADENDA-B17-G-c-a24a2-contenido-y-clic-habilitado\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\cardColumns-ADENDA-B17-G-c-a24a2-contenido-y-clic-habilitado\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    tests\browser\cardColumns.spec.ts:10:3 › ADENDA B17 G columnas controlled-monospace PLAY_VALUE: necesidades, uniformidad, contenido y clic habilitado
+    tests\browser\cardColumns.spec.ts:10:3 › ADENDA B17 G columnas controlled-monospace DISPLAY_VALUE: necesidades, uniformidad, contenido y clic habilitado
+  1 passed (31.8s)

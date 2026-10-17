@@ -1,0 +1,1207 @@
+{
+  "date": "2026-10-16T13:19:45.320Z",
+  "code": "84eba0ba2aa6c5d5fe3ee2fb0b0b7fd4b256f3d0",
+  "comparison": "Mismos tamaños/contexto y dos humanos, primera jugada; activa/no activa en cada modo/perfil. Los avisos de recuperación son parte real del producto. Sin referencia de galería usada como sustituto.",
+  "frames": [
+    {
+      "file": "DISPLAY_VALUE-1920-on-activa-detalles.json",
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "dpr": 1,
+        "scale": 1
+      },
+      "useful": 1368,
+      "layout": "normal",
+      "pageHeight": 1173,
+      "residual": 93,
+      "cardSizes": [
+        "230x321"
+      ],
+      "rowHeights": [
+        32,
+        52
+      ],
+      "fonts": [
+        "14px"
+      ],
+      "rowsInsideCells": true,
+      "resistanceRows": 5,
+      "browser": "155.0.8059.80"
+    },
+    {
+      "file": "DISPLAY_VALUE-1920-on-activa-mesa.json",
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "dpr": 1,
+        "scale": 1
+      },
+      "useful": 1368,
+      "layout": "normal",
+      "pageHeight": 1173,
+      "residual": 93,
+      "cardSizes": [
+        "230x321"
+      ],
+      "rowHeights": [
+        32
+      ],
+      "fonts": [
+        "14px"
+      ],
+      "rowsInsideCells": true,
+      "resistanceRows": 5,
+      "browser": "155.0.8059.80"
+    },
+    {
+      "file": "DISPLAY_VALUE-1920-on-no-activa-detalles.json",
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "dpr": 1,
+        "scale": 1
+      },
+      "useful": 1368,
+      "layout": "normal",
+      "pageHeight": 1173,
+      "residual": 93,
+      "cardSizes": [
+        "230x321"
+      ],
+      "rowHeights": [
+        32,
+        36
+      ],
+      "fonts": [
+        "14px"
+      ],
+      "rowsInsideCells": true,
+      "resistanceRows": 5,
+      "browser": "155.0.8059.80"
+    },
+    {
+      "file": "DISPLAY_VALUE-1920-on-no-activa-mesa.json",
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "dpr": 1,
+        "scale": 1
+      },
+      "useful": 1368,
+      "layout": "normal",
+      "pageHeight": 1173,
+      "residual": 93,
+      "cardSizes": [
+        "230x321"
+      ],
+      "rowHeights": [
+        32
+      ],
+      "fonts": [
+        "14px"
+      ],
+      "rowsInsideCells": true,
+      "resistanceRows": 5,
+      "browser": "155.0.8059.80"
+    },
+    {
+      "file": "DISPLAY_VALUE-360-on-activa-detalles.json",
+      "viewport": {
+        "width": 360,
+        "height": 800,
+        "dpr": 1,
+        "scale": 1
+      },
+      "useful": 328,
+      "layout": "compact",
+      "pageHeight": 1022,
+      "residual": 222,
+      "cardSizes": [
+        "220x221.65625"
+      ],
+      "rowHeights": [
+        45.375,
+        50.78125
+      ],
+      "fonts": [
+        "14px"
+      ],
+      "rowsInsideCells": true,
+      "resistanceRows": 4,
+      "browser": "155.0.8059.80"
+    },
+    {
+      "file": "DISPLAY_VALUE-360-on-activa-indicadora.json",
+      "viewport": {
+        "width": 360,
+        "height": 800,
+        "dpr": 1,
+        "scale": 1
+      },
+      "useful": 328,
+      "layout": "compact",
+      "pageHeight": 1022,
+      "residual": 222,
+      "cardSizes": [
+        "220x221.65625",
+        "230x341.828125"
+      ],
+      "rowHeights": [
+        45.375,
+        63.5625
+      ],
+      "fonts": [
+        "14px"
+      ],
+      "rowsInsideCells": true,
+      "resistanceRows": 4,
+      "browser": "155.0.8059.80"
+    },
+    {
+      "file": "DISPLAY_VALUE-360-on-activa-mesa.json",
+      "viewport": {
+        "width": 360,
+        "height": 800,
+        "dpr": 1,
+        "scale": 1
+      },
+      "useful": 328,
+      "layout": "compact",
+      "pageHeight": 1249,
+      "residual": 449,
+      "cardSizes": [
+        "220x203.75",
+        "220x221.65625"
+      ],
+      "rowHeights": [
+        45.375
+      ],
+      "fonts": [
+        "14px"
+      ],
+      "rowsInsideCells": true,
+      "resistanceRows": 4,
+      "browser": "155.0.8059.80"
+    },
+    {
+      "file": "DISPLAY_VALUE-360-on-no-activa-detalles.json",
+      "viewport": {
+        "width": 360,
+        "height": 800,
+        "dpr": 1,
+        "scale": 1
+      },
+      "useful": 328,
+      "layout": "compact",
+      "pageHeight": 985,
+      "residual": 185,
+      "cardSizes": [
+        "220x203.46875"
+      ],
+      "rowHeights": [
+        27.1875,
+        35.1875
+      ],
+      "fonts": [
+        "14px"
+      ],
+      "rowsInsideCells": true,
+      "resistanceRows": 4,
+      "browser": "155.0.8059.80"
+    },
+    {
+      "file": "DISPLAY_VALUE-360-on-no-activa-indicadora.json",
+      "viewport": {
+        "width": 360,
+        "height": 800,
+        "dpr": 1,
+        "scale": 1
+      },
+      "useful": 328,
+      "layout": "compact",
+      "pageHeight": 985,
+      "residual": 185,
+      "cardSizes": [
+        "220x203.46875",
+        "230x323.640625"
+      ],
+      "rowHeights": [
+        27.1875,
+        45.375
+      ],
+      "fonts": [
+        "14px"
+      ],
+      "rowsInsideCells": true,
+      "resistanceRows": 4,
+      "browser": "155.0.8059.80"
+    },
+    {
+      "file": "DISPLAY_VALUE-360-on-no-activa-mesa.json",
+      "viewport": {
+        "width": 360,
+        "height": 800,
+        "dpr": 1,
+        "scale": 1
+      },
+      "useful": 328,
+      "layout": "compact",
+      "pageHeight": 1211,
+      "residual": 411,
+      "cardSizes": [
+        "220x203.46875"
+      ],
+      "rowHeights": [
+        27.1875
+      ],
+      "fonts": [
+        "14px"
+      ],
+      "rowsInsideCells": true,
+      "resistanceRows": 4,
+      "browser": "155.0.8059.80"
+    },
+    {
+      "file": "DISPLAY_VALUE-390-off-activa-detalles.json",
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "dpr": 1,
+        "scale": 1
+      },
+      "useful": 358,
+      "layout": "normal",
+      "pageHeight": 1582,
+      "residual": 738,
+      "cardSizes": [
+        "220x382"
+      ],
+      "rowHeights": [
+        74,
+        52
+      ],
+      "fonts": [
+        "14px"
+      ],
+      "rowsInsideCells": true,
+      "resistanceRows": 4,
+      "browser": "155.0.8059.80"
+    },
+    {
+      "file": "DISPLAY_VALUE-390-off-activa-mesa.json",
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "dpr": 1,
+        "scale": 1
+      },
+      "useful": 358,
+      "layout": "normal",
+      "pageHeight": 1964,
+      "residual": 1120,
+      "cardSizes": [
+        "215x382",
+        "220x382"
+      ],
+      "rowHeights": [
+        74
+      ],
+      "fonts": [
+        "14px"
+      ],
+      "rowsInsideCells": true,
+      "resistanceRows": 4,
+      "browser": "155.0.8059.80"
+    },
+    {
+      "file": "DISPLAY_VALUE-390-off-no-activa-detalles.json",
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "dpr": 1,
+        "scale": 1
+      },
+      "useful": 358,
+      "layout": "normal",
+      "pageHeight": 1587,
+      "residual": 743,
+      "cardSizes": [
+        "220x387",
+        "220x363"
+      ],
+      "rowHeights": [
+        55,
+        36
+      ],
+      "fonts": [
+        "14px"
+      ],
+      "rowsInsideCells": true,
+      "resistanceRows": 4,
+      "browser": "155.0.8059.80"
+    },
+    {
+      "file": "DISPLAY_VALUE-390-off-no-activa-mesa.json",
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "dpr": 1,
+        "scale": 1
+      },
+      "useful": 358,
+      "layout": "normal",
+      "pageHeight": 1950,
+      "residual": 1106,
+      "cardSizes": [
+        "215x363",
+        "220x387",
+        "220x363"
+      ],
+      "rowHeights": [
+        55
+      ],
+      "fonts": [
+        "14px"
+      ],
+      "rowsInsideCells": true,
+      "resistanceRows": 4,
+      "browser": "155.0.8059.80"
+    },
+    {
+      "file": "DISPLAY_VALUE-390-on-activa-detalles.json",
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "dpr": 1,
+        "scale": 1
+      },
+      "useful": 358,
+      "layout": "compact",
+      "pageHeight": 944,
+      "residual": 100,
+      "cardSizes": [
+        "220x221.65625"
+      ],
+      "rowHeights": [
+        45.375,
+        50.78125
+      ],
+      "fonts": [
+        "14px"
+      ],
+      "rowsInsideCells": true,
+      "resistanceRows": 4,
+      "browser": "155.0.8059.80"
+    },
+    {
+      "file": "DISPLAY_VALUE-390-on-activa-indicadora.json",
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "dpr": 1,
+        "scale": 1
+      },
+      "useful": 358,
+      "layout": "compact",
+      "pageHeight": 944,
+      "residual": 100,
+      "cardSizes": [
+        "220x221.65625",
+        "230x341.828125"
+      ],
+      "rowHeights": [
+        45.375,
+        63.5625
+      ],
+      "fonts": [
+        "14px"
+      ],
+      "rowsInsideCells": true,
+      "resistanceRows": 4,
+      "browser": "155.0.8059.80"
+    },
+    {
+      "file": "DISPLAY_VALUE-390-on-activa-mesa.json",
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "dpr": 1,
+        "scale": 1
+      },
+      "useful": 358,
+      "layout": "compact",
+      "pageHeight": 1171,
+      "residual": 327,
+      "cardSizes": [
+        "220x203.75",
+        "220x221.65625"
+      ],
+      "rowHeights": [
+        45.375
+      ],
+      "fonts": [
+        "14px"
+      ],
+      "rowsInsideCells": true,
+      "resistanceRows": 4,
+      "browser": "155.0.8059.80"
+    },
+    {
+      "file": "DISPLAY_VALUE-390-on-no-activa-detalles.json",
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "dpr": 1,
+        "scale": 1
+      },
+      "useful": 358,
+      "layout": "compact",
+      "pageHeight": 907,
+      "residual": 63,
+      "cardSizes": [
+        "220x203.46875"
+      ],
+      "rowHeights": [
+        27.1875,
+        35.1875
+      ],
+      "fonts": [
+        "14px"
+      ],
+      "rowsInsideCells": true,
+      "resistanceRows": 4,
+      "browser": "155.0.8059.80"
+    },
+    {
+      "file": "DISPLAY_VALUE-390-on-no-activa-indicadora.json",
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "dpr": 1,
+        "scale": 1
+      },
+      "useful": 358,
+      "layout": "compact",
+      "pageHeight": 907,
+      "residual": 63,
+      "cardSizes": [
+        "220x203.46875",
+        "230x323.640625"
+      ],
+      "rowHeights": [
+        27.1875,
+        45.375
+      ],
+      "fonts": [
+        "14px"
+      ],
+      "rowsInsideCells": true,
+      "resistanceRows": 4,
+      "browser": "155.0.8059.80"
+    },
+    {
+      "file": "DISPLAY_VALUE-390-on-no-activa-mesa.json",
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "dpr": 1,
+        "scale": 1
+      },
+      "useful": 358,
+      "layout": "compact",
+      "pageHeight": 1133,
+      "residual": 289,
+      "cardSizes": [
+        "220x203.46875"
+      ],
+      "rowHeights": [
+        27.1875
+      ],
+      "fonts": [
+        "14px"
+      ],
+      "rowsInsideCells": true,
+      "resistanceRows": 4,
+      "browser": "155.0.8059.80"
+    },
+    {
+      "file": "jugador-quinta-revision.json",
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "dpr": 1,
+        "scale": 1
+      },
+      "useful": 358,
+      "layout": "compact",
+      "pageHeight": 1509,
+      "residual": 665,
+      "cardSizes": [
+        "220x188",
+        "220x203.46875"
+      ],
+      "rowHeights": [
+        27.1875
+      ],
+      "fonts": [
+        "14px"
+      ],
+      "rowsInsideCells": true,
+      "resistanceRows": 7,
+      "browser": "155.0.8059.80"
+    },
+    {
+      "file": "observador-quinta-revision-detalles.json",
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "dpr": 1,
+        "scale": 1
+      },
+      "useful": 358,
+      "layout": "compact",
+      "pageHeight": 1169,
+      "residual": 325,
+      "cardSizes": [
+        "220x188",
+        "220x203.46875"
+      ],
+      "rowHeights": [
+        27.1875,
+        35.1875
+      ],
+      "fonts": [
+        "14px"
+      ],
+      "rowsInsideCells": true,
+      "resistanceRows": 6,
+      "browser": "155.0.8059.80"
+    },
+    {
+      "file": "observador-quinta-revision.json",
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "dpr": 1,
+        "scale": 1
+      },
+      "useful": 358,
+      "layout": "compact",
+      "pageHeight": 1169,
+      "residual": 325,
+      "cardSizes": [
+        "220x188",
+        "220x203.46875"
+      ],
+      "rowHeights": [
+        27.1875
+      ],
+      "fonts": [
+        "14px"
+      ],
+      "rowsInsideCells": true,
+      "resistanceRows": 5,
+      "browser": "155.0.8059.80"
+    },
+    {
+      "file": "PLAY_VALUE-1920-on-activa-detalles.json",
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "dpr": 1,
+        "scale": 1
+      },
+      "useful": 1368,
+      "layout": "normal",
+      "pageHeight": 1173,
+      "residual": 93,
+      "cardSizes": [
+        "230x321"
+      ],
+      "rowHeights": [
+        32,
+        52
+      ],
+      "fonts": [
+        "14px"
+      ],
+      "rowsInsideCells": true,
+      "resistanceRows": 5,
+      "browser": "155.0.8059.80"
+    },
+    {
+      "file": "PLAY_VALUE-1920-on-activa-mesa.json",
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "dpr": 1,
+        "scale": 1
+      },
+      "useful": 1368,
+      "layout": "normal",
+      "pageHeight": 1173,
+      "residual": 93,
+      "cardSizes": [
+        "230x321"
+      ],
+      "rowHeights": [
+        32
+      ],
+      "fonts": [
+        "14px"
+      ],
+      "rowsInsideCells": true,
+      "resistanceRows": 5,
+      "browser": "155.0.8059.80"
+    },
+    {
+      "file": "PLAY_VALUE-1920-on-no-activa-detalles.json",
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "dpr": 1,
+        "scale": 1
+      },
+      "useful": 1368,
+      "layout": "normal",
+      "pageHeight": 1173,
+      "residual": 93,
+      "cardSizes": [
+        "230x321"
+      ],
+      "rowHeights": [
+        32,
+        36
+      ],
+      "fonts": [
+        "14px"
+      ],
+      "rowsInsideCells": true,
+      "resistanceRows": 5,
+      "browser": "155.0.8059.80"
+    },
+    {
+      "file": "PLAY_VALUE-1920-on-no-activa-mesa.json",
+      "viewport": {
+        "width": 1920,
+        "height": 1080,
+        "dpr": 1,
+        "scale": 1
+      },
+      "useful": 1368,
+      "layout": "normal",
+      "pageHeight": 1173,
+      "residual": 93,
+      "cardSizes": [
+        "230x321"
+      ],
+      "rowHeights": [
+        32
+      ],
+      "fonts": [
+        "14px"
+      ],
+      "rowsInsideCells": true,
+      "resistanceRows": 5,
+      "browser": "155.0.8059.80"
+    },
+    {
+      "file": "PLAY_VALUE-360-on-activa-detalles.json",
+      "viewport": {
+        "width": 360,
+        "height": 800,
+        "dpr": 1,
+        "scale": 1
+      },
+      "useful": 328,
+      "layout": "compact",
+      "pageHeight": 1022,
+      "residual": 222,
+      "cardSizes": [
+        "220x221.65625"
+      ],
+      "rowHeights": [
+        45.375,
+        50.78125
+      ],
+      "fonts": [
+        "14px"
+      ],
+      "rowsInsideCells": true,
+      "resistanceRows": 4,
+      "browser": "155.0.8059.80"
+    },
+    {
+      "file": "PLAY_VALUE-360-on-activa-indicadora.json",
+      "viewport": {
+        "width": 360,
+        "height": 800,
+        "dpr": 1,
+        "scale": 1
+      },
+      "useful": 328,
+      "layout": "compact",
+      "pageHeight": 1022,
+      "residual": 222,
+      "cardSizes": [
+        "220x221.65625",
+        "230x341.828125"
+      ],
+      "rowHeights": [
+        45.375,
+        63.5625
+      ],
+      "fonts": [
+        "14px"
+      ],
+      "rowsInsideCells": true,
+      "resistanceRows": 4,
+      "browser": "155.0.8059.80"
+    },
+    {
+      "file": "PLAY_VALUE-360-on-activa-mesa.json",
+      "viewport": {
+        "width": 360,
+        "height": 800,
+        "dpr": 1,
+        "scale": 1
+      },
+      "useful": 328,
+      "layout": "compact",
+      "pageHeight": 1249,
+      "residual": 449,
+      "cardSizes": [
+        "220x203.75",
+        "220x221.65625"
+      ],
+      "rowHeights": [
+        45.375
+      ],
+      "fonts": [
+        "14px"
+      ],
+      "rowsInsideCells": true,
+      "resistanceRows": 4,
+      "browser": "155.0.8059.80"
+    },
+    {
+      "file": "PLAY_VALUE-360-on-no-activa-detalles.json",
+      "viewport": {
+        "width": 360,
+        "height": 800,
+        "dpr": 1,
+        "scale": 1
+      },
+      "useful": 328,
+      "layout": "compact",
+      "pageHeight": 985,
+      "residual": 185,
+      "cardSizes": [
+        "220x203.46875"
+      ],
+      "rowHeights": [
+        27.1875,
+        35.1875
+      ],
+      "fonts": [
+        "14px"
+      ],
+      "rowsInsideCells": true,
+      "resistanceRows": 4,
+      "browser": "155.0.8059.80"
+    },
+    {
+      "file": "PLAY_VALUE-360-on-no-activa-indicadora.json",
+      "viewport": {
+        "width": 360,
+        "height": 800,
+        "dpr": 1,
+        "scale": 1
+      },
+      "useful": 328,
+      "layout": "compact",
+      "pageHeight": 985,
+      "residual": 185,
+      "cardSizes": [
+        "220x203.46875",
+        "230x323.640625"
+      ],
+      "rowHeights": [
+        27.1875,
+        45.375
+      ],
+      "fonts": [
+        "14px"
+      ],
+      "rowsInsideCells": true,
+      "resistanceRows": 4,
+      "browser": "155.0.8059.80"
+    },
+    {
+      "file": "PLAY_VALUE-360-on-no-activa-mesa.json",
+      "viewport": {
+        "width": 360,
+        "height": 800,
+        "dpr": 1,
+        "scale": 1
+      },
+      "useful": 328,
+      "layout": "compact",
+      "pageHeight": 1211,
+      "residual": 411,
+      "cardSizes": [
+        "220x203.46875"
+      ],
+      "rowHeights": [
+        27.1875
+      ],
+      "fonts": [
+        "14px"
+      ],
+      "rowsInsideCells": true,
+      "resistanceRows": 4,
+      "browser": "155.0.8059.80"
+    },
+    {
+      "file": "PLAY_VALUE-390-off-activa-detalles.json",
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "dpr": 1,
+        "scale": 1
+      },
+      "useful": 358,
+      "layout": "normal",
+      "pageHeight": 1582,
+      "residual": 738,
+      "cardSizes": [
+        "220x382"
+      ],
+      "rowHeights": [
+        74,
+        52
+      ],
+      "fonts": [
+        "14px"
+      ],
+      "rowsInsideCells": true,
+      "resistanceRows": 4,
+      "browser": "155.0.8059.80"
+    },
+    {
+      "file": "PLAY_VALUE-390-off-activa-mesa.json",
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "dpr": 1,
+        "scale": 1
+      },
+      "useful": 358,
+      "layout": "normal",
+      "pageHeight": 1964,
+      "residual": 1120,
+      "cardSizes": [
+        "215x382",
+        "220x382"
+      ],
+      "rowHeights": [
+        74
+      ],
+      "fonts": [
+        "14px"
+      ],
+      "rowsInsideCells": true,
+      "resistanceRows": 4,
+      "browser": "155.0.8059.80"
+    },
+    {
+      "file": "PLAY_VALUE-390-off-no-activa-detalles.json",
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "dpr": 1,
+        "scale": 1
+      },
+      "useful": 358,
+      "layout": "normal",
+      "pageHeight": 1587,
+      "residual": 743,
+      "cardSizes": [
+        "220x387",
+        "220x363"
+      ],
+      "rowHeights": [
+        55,
+        36
+      ],
+      "fonts": [
+        "14px"
+      ],
+      "rowsInsideCells": true,
+      "resistanceRows": 4,
+      "browser": "155.0.8059.80"
+    },
+    {
+      "file": "PLAY_VALUE-390-off-no-activa-mesa.json",
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "dpr": 1,
+        "scale": 1
+      },
+      "useful": 358,
+      "layout": "normal",
+      "pageHeight": 1950,
+      "residual": 1106,
+      "cardSizes": [
+        "215x363",
+        "220x387",
+        "220x363"
+      ],
+      "rowHeights": [
+        55
+      ],
+      "fonts": [
+        "14px"
+      ],
+      "rowsInsideCells": true,
+      "resistanceRows": 4,
+      "browser": "155.0.8059.80"
+    },
+    {
+      "file": "PLAY_VALUE-390-on-activa-detalles.json",
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "dpr": 1,
+        "scale": 1
+      },
+      "useful": 358,
+      "layout": "compact",
+      "pageHeight": 944,
+      "residual": 100,
+      "cardSizes": [
+        "220x221.65625"
+      ],
+      "rowHeights": [
+        45.375,
+        50.78125
+      ],
+      "fonts": [
+        "14px"
+      ],
+      "rowsInsideCells": true,
+      "resistanceRows": 4,
+      "browser": "155.0.8059.80"
+    },
+    {
+      "file": "PLAY_VALUE-390-on-activa-indicadora.json",
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "dpr": 1,
+        "scale": 1
+      },
+      "useful": 358,
+      "layout": "compact",
+      "pageHeight": 944,
+      "residual": 100,
+      "cardSizes": [
+        "220x221.65625",
+        "230x341.828125"
+      ],
+      "rowHeights": [
+        45.375,
+        63.5625
+      ],
+      "fonts": [
+        "14px"
+      ],
+      "rowsInsideCells": true,
+      "resistanceRows": 4,
+      "browser": "155.0.8059.80"
+    },
+    {
+      "file": "PLAY_VALUE-390-on-activa-mesa.json",
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "dpr": 1,
+        "scale": 1
+      },
+      "useful": 358,
+      "layout": "compact",
+      "pageHeight": 1171,
+      "residual": 327,
+      "cardSizes": [
+        "220x203.75",
+        "220x221.65625"
+      ],
+      "rowHeights": [
+        45.375
+      ],
+      "fonts": [
+        "14px"
+      ],
+      "rowsInsideCells": true,
+      "resistanceRows": 4,
+      "browser": "155.0.8059.80"
+    },
+    {
+      "file": "PLAY_VALUE-390-on-no-activa-detalles.json",
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "dpr": 1,
+        "scale": 1
+      },
+      "useful": 358,
+      "layout": "compact",
+      "pageHeight": 907,
+      "residual": 63,
+      "cardSizes": [
+        "220x203.46875"
+      ],
+      "rowHeights": [
+        27.1875,
+        35.1875
+      ],
+      "fonts": [
+        "14px"
+      ],
+      "rowsInsideCells": true,
+      "resistanceRows": 4,
+      "browser": "155.0.8059.80"
+    },
+    {
+      "file": "PLAY_VALUE-390-on-no-activa-indicadora.json",
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "dpr": 1,
+        "scale": 1
+      },
+      "useful": 358,
+      "layout": "compact",
+      "pageHeight": 907,
+      "residual": 63,
+      "cardSizes": [
+        "220x203.46875",
+        "230x323.640625"
+      ],
+      "rowHeights": [
+        27.1875,
+        45.375
+      ],
+      "fonts": [
+        "14px"
+      ],
+      "rowsInsideCells": true,
+      "resistanceRows": 4,
+      "browser": "155.0.8059.80"
+    },
+    {
+      "file": "PLAY_VALUE-390-on-no-activa-mesa.json",
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "dpr": 1,
+        "scale": 1
+      },
+      "useful": 358,
+      "layout": "compact",
+      "pageHeight": 1133,
+      "residual": 289,
+      "cardSizes": [
+        "220x203.46875"
+      ],
+      "rowHeights": [
+        27.1875
+      ],
+      "fonts": [
+        "14px"
+      ],
+      "rowsInsideCells": true,
+      "resistanceRows": 4,
+      "browser": "155.0.8059.80"
+    },
+    {
+      "file": "quinta-frontera-1367.json",
+      "viewport": {
+        "width": 1399,
+        "height": 844,
+        "dpr": 1,
+        "scale": 1
+      },
+      "useful": 1367,
+      "layout": "compact",
+      "pageHeight": 1317,
+      "residual": 473,
+      "cardSizes": [
+        "220x188",
+        "220x195.46875"
+      ],
+      "rowHeights": [
+        27.1875
+      ],
+      "fonts": [
+        "14px"
+      ],
+      "rowsInsideCells": true,
+      "resistanceRows": 7,
+      "browser": "155.0.8059.80"
+    },
+    {
+      "file": "quinta-frontera-1368.json",
+      "viewport": {
+        "width": 1400,
+        "height": 844,
+        "dpr": 1,
+        "scale": 1
+      },
+      "useful": 1368,
+      "layout": "normal",
+      "pageHeight": 1306,
+      "residual": 462,
+      "cardSizes": [
+        "230x321"
+      ],
+      "rowHeights": [
+        32
+      ],
+      "fonts": [
+        "14px"
+      ],
+      "rowsInsideCells": true,
+      "resistanceRows": 8,
+      "browser": "155.0.8059.80"
+    },
+    {
+      "file": "quinta-frontera-358.json",
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "dpr": 1,
+        "scale": 1
+      },
+      "useful": 358,
+      "layout": "compact",
+      "pageHeight": 1509,
+      "residual": 665,
+      "cardSizes": [
+        "220x188",
+        "220x203.46875"
+      ],
+      "rowHeights": [
+        27.1875
+      ],
+      "fonts": [
+        "14px"
+      ],
+      "rowsInsideCells": true,
+      "resistanceRows": 7,
+      "browser": "155.0.8059.80"
+    }
+  ]
+}

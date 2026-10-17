@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 2,
+  "contentVersion": 2,
+  "id": "criaturas-magicas",
+  "name": "Criaturas Mágicas",
+  "subtitle": "",
+  "description": "Dragones, unicornios, fénix y gólems te esperan entre bosques encantados, cumbres heladas y arrecifes luminosos. Descubre 58 criaturas con personalidad propia y compara su Poder, Astucia y Resistencia. En este mundo de fantasía, hasta el ser más pequeño puede sorprenderte.",
+  "notes": "",
+  "instructions": "Poder expresa lo que una criatura puede hacer mediante fuerza física o magia. Astucia representa su habilidad para encontrar soluciones y utilizar trucos. Resistencia indica cuánto puede soportar y cómo se recupera para seguir activa.\n\nLos números son capacidades ficticias de esta colección. Van de 1 a 58, sin unidades: un número mayor representa más capacidad. El número mostrado coincide con el valor que se compara al jugar.\n\nCuando se declara alto gana el valor mayor; cuando se declara bajo gana el menor. El indicador de la carta central señala cuál de los tres atributos se compara.\n\nLas habilidades descritas forman parte de la ambientación. No permiten ejecutar poderes ni añaden acciones o reglas especiales a KARTA3.",
+  "attributes": [
+    {
+      "id": "atributo1",
+      "name": "Poder",
+      "unit": ""
+    },
+    {
+      "id": "atributo2",
+      "name": "Astucia",
+      "unit": ""
+    },
+    {
+      "id": "atributo3",
+      "name": "Resistencia",
+      "unit": ""
+    }
+  ],
+  "imageRef": "imagenes/portada.webp",
+  "imageAlt": "Un dragón rojo, un unicornio blanco de crines azules y un gólem de piedra cubierto de hiedra se reúnen en un claro; sobre ellos vuela un fénix dorado y rojo ante un paisaje de montañas, bosque y cascadas.",
+  "publication": {
+    "available": true,
+    "order": 0
+  },
+  "credits": [
+    {
+      "name": "Autor de KARTA3",
+      "role": "Concepto del juego, selección de la temática, decisiones sobre nombres y dirección editorial.",
+      "license": "",
+      "url": ""
+    },
+    {
+      "name": "Codex (OpenAI)",
+      "role": "Asistencia en la propuesta de criaturas, puntuaciones, redacción y preparación del borrador editorial.",
+      "license": "",
+      "url": ""
+    },
+    {
+      "name": "OpenAI, herramienta image_gen integrada",
+      "role": "Generación asistida de las ilustraciones de carta-001 a carta-058 y de la portada, con preparación y revisión visual por Codex según la dirección del autor.",
+      "license": "",
+      "url": ""
+    }
+  ],
+  "sources": [
+    {
+      "title": "Instrucciones de entrega de contenido para una nueva baraja digital de KARTA3",
+      "url": "",
+      "note": "Documento local E:/KARTA3/KARTA3_IA/ASSETS/Documentacion/INSTRUCCIONES_ENTREGA_CONTENIDO_BARAJA_DIGITAL.md, de 15/10/2026. Define estructura del CSV, plantilla de ficha, valores, textos, imágenes y preparación posterior por el Gestor. No es la fuente de mediciones de las criaturas."
+    },
+    {
+      "title": "Decisiones del autor en la conversación de desarrollo de Criaturas Mágicas",
+      "url": "",
+      "note": "Conversación de 15/10/2026. Origen de la temática, nombres revisados, elección de Poder, Astucia y Resistencia, tabla numérica de referencia y estética 3D con expresividad moderada. El autor ha dado por correcto el resto del listado al solicitar los nombres Dragón del arrecife y Dragón del desierto. La planificación de composiciones se presenta por separado para su validación previa a las imágenes."
+    }
+  ]
+}
