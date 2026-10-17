@@ -76,6 +76,7 @@ jobs:
           path: |
             ${{ runner.temp }}/karta3-browser.json
             test-results/
+            playwright-report/b17-adenda/acceptance/
           if-no-files-found: warn
           retention-days: 7
 
