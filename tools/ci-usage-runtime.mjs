@@ -84,7 +84,10 @@ if (stage === 'seed') {
     }
     await until(() => snapshot().events.some((e) => e.name === 'game_started' && !snapshot().events.some((end) => end.name === 'game_ended' && end.data.gameRef === e.data.gameRef)));
     const current = snapshot(); const start = current.events.filter((e) => e.name === 'game_started').at(-1);
-    await fs.writeFile(root + '/probe-context.json', JSON.stringify({ cookie, roomId, gameRef: start.data.gameRef, count: current.events.length }), { mode: 0o600 });
+    const lease = JSON.parse(await fs.readFile(directory + '/.writer.lock', 'utf8'));
+    assert.equal(typeof lease.identity, 'string');
+    await fs.writeFile(root + '/probe-context.json', JSON.stringify({ cookie, roomId, gameRef: start.data.gameRef, count: current.events.length,
+      createdCount: current.events.filter((e) => e.name === 'room_created').length, leasePid: lease.pid, leaseIdentity: lease.identity }), { mode: 0o600 });
     assert.equal((await fs.stat(directory)).mode & 0o777, 0o700);
     for (const suffix of ['', '-wal', '-shm']) { const stat = await fs.stat(file + suffix); assert.equal(stat.uid, 1000); assert.equal(stat.mode & 0o777, 0o600); }
     const before = snapshot(); const admin = await report(); const after = snapshot();
@@ -113,6 +116,8 @@ if (stage === 'seed') {
   const context = JSON.parse(await fs.readFile(root + '/probe-context.json', 'utf8'));
   const state = await (await globalThis.fetch(base + '/api/rooms/current', { headers: { Cookie: context.cookie } })).json(); assert.equal(state.room, null);
   const current = snapshot();
+  const lease = JSON.parse(await fs.readFile(directory + '/.writer.lock', 'utf8'));
+  assert.notEqual(lease.identity, context.leaseIdentity);
   const expected = stage === 'after-stop' ? 'TECHNICAL_INTERRUPTION' : 'UNRESOLVED_AFTER_RESTART';
   const game = current.subjects.find((s) => s.kind === 'game' && s.key === 'game:' + context.gameRef); assert.equal(game.state, expected);
   const ends = current.events.filter((e) => e.name === 'game_ended' && e.data.gameRef === context.gameRef);
@@ -121,7 +126,8 @@ if (stage === 'seed') {
   else { assert.ok(game.detectedAt > 0); assert.equal(game.durationMs, undefined); }
   const before = current.events.length; await postEvent(204); assert.equal(snapshot().events.length, before);
   const admin = await report('completion'); assert.equal(admin.quality.collection, 'disabled');
-  console.log(JSON.stringify({ stage, persistedEvents: before, ramEmpty: true, terminal: expected, off: true, privateRoutes: await privateRoutes() }));
+  console.log(JSON.stringify({ stage, persistedEvents: before, ramEmpty: true, terminal: expected, off: true, privateRoutes: await privateRoutes(),
+    pidReused: lease.pid === context.leasePid, writerIdentityChanged: true }));
 } else if (stage === 'restore') {
   const copies = (await fs.readdir('/source/test/synthetic/backups')).filter((name) => name.endsWith('.agg.enc')); assert.equal(copies.length, 1);
   const source = '/source/test/synthetic/backups/' + copies[0];
@@ -129,7 +135,8 @@ if (stage === 'seed') {
   await cli('usageMaintenanceCli', ['restore'], env);
   const restored = snapshot(); assert.equal(restored.events.length, 0); assert.equal(restored.subjects.length, 0);
   assert.equal(restored.metadata.restoredAggregatesOnly, true); assert.equal(restored.metadata.operational, undefined);
-  const admin = await report(); assert.ok(admin.rows.some((r) => r.metric === 'created' && r.count >= 1));
+  const expected = JSON.parse(await fs.readFile('/source/probe-context.json', 'utf8'));
+  const admin = await report(); assert.equal(admin.rows.find((r) => r.metric === 'created')?.count, expected.createdCount);
   assert.equal(admin.quality.restoredAggregatesOnly, true);
   await assert.rejects(cli('usageMaintenanceCli', ['restore'], env), (e) => e.code === 1);
   // Autenticación GCM negativa en un tercer destino nuevo de este volumen aislado.

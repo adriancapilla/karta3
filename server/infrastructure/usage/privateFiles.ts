@@ -30,19 +30,40 @@ export function privateOutput(file: string, text: string) {
   privateDirectory(path.dirname(file), false);
   fs.writeFileSync(file, text, { flag: 'wx', mode: 0o600 });
 }
+type LeaseOwner = { pid: number; token?: string; identity?: string };
+/** Un PID puede repetirse en otro contenedor. Identidad del proceso, no del visitante. */
+function linuxProcessIdentity(pid: number): string | undefined {
+  if (process.platform !== 'linux') return undefined;
+  const boot = fs.readFileSync('/proc/sys/kernel/random/boot_id', 'utf8').trim();
+  const namespace = fs.statSync(`/proc/${pid}/ns/pid`).ino;
+  const stat = fs.readFileSync(`/proc/${pid}/stat`, 'utf8');
+  const start = stat.slice(stat.lastIndexOf(')') + 2).split(' ')[19];
+  if (!/^[a-f0-9-]{36}$/.test(boot) || !Number.isSafeInteger(namespace) || !/^\d+$/.test(start)) throw new Error('LOCK_IDENTITY_UNAVAILABLE');
+  return `${boot}:${namespace}:${start}`;
+}
+function leaseOwnerAlive(owner: LeaseOwner) {
+  if (!Number.isSafeInteger(owner.pid) || owner.pid <= 0) throw new Error('LOCK_INVALID');
+  try { process.kill(owner.pid, 0); }
+  catch (error) { if (error && typeof error === 'object' && 'code' in error && error.code === 'ESRCH') return false; throw error; }
+  // Compatibilidad conservadora: un lock antiguo/incompleto con PID vivo no se roba.
+  if (owner.identity === undefined) return true;
+  if (typeof owner.identity !== 'string' || !/^[a-f0-9-]{36}:\d+:\d+$/.test(owner.identity)) throw new Error('LOCK_INVALID');
+  const current = linuxProcessIdentity(owner.pid);
+  if (!current) throw new Error('LOCK_IDENTITY_UNAVAILABLE');
+  return current === owner.identity;
+}
 export function acquirePrivateLease(lock: string, token: string = randomUUID()) {
+  const identity = linuxProcessIdentity(process.pid);
   let fd: number;
   try { fd = fs.openSync(lock, 'wx', 0o600); }
   catch {
     try {
-      const owner = Number((JSON.parse(fs.readFileSync(lock, 'utf8')) as { pid: number }).pid);
-      if (!Number.isSafeInteger(owner) || owner <= 0) throw new Error('LOCK_INVALID');
-      try { process.kill(owner, 0); throw new Error('LOCK_BUSY'); }
-      catch (error) { if (!error || typeof error !== 'object' || !('code' in error) || error.code !== 'ESRCH') throw error; }
+      const owner = JSON.parse(fs.readFileSync(lock, 'utf8')) as LeaseOwner;
+      if (leaseOwnerAlive(owner)) throw new Error('LOCK_BUSY');
       fs.unlinkSync(lock); fd = fs.openSync(lock, 'wx', 0o600);
     } catch { throw new UsageError('STORAGE_UNAVAILABLE'); }
   }
-  fs.writeFileSync(fd, JSON.stringify({ pid: process.pid, token }));
+  fs.writeFileSync(fd, JSON.stringify({ pid: process.pid, token, ...(identity ? { identity } : {}) }));
   return () => { fs.closeSync(fd); fs.unlinkSync(lock); };
 }
 export async function releaseOrphanWriter(file: string, token: string) {
@@ -53,8 +74,8 @@ export async function releaseOrphanWriter(file: string, token: string) {
   } catch { /* Otro propietario o ya liberado: nunca se elimina su lease. */ }
 }
 export function hasLiveUsageWriter(file: string) {
-  try { const owner = JSON.parse(fs.readFileSync(path.join(path.dirname(file), '.writer.lock'), 'utf8')) as { pid: number };
-    if (!Number.isSafeInteger(owner.pid) || owner.pid <= 0) return false; process.kill(owner.pid, 0); return true;
+  try { const owner = JSON.parse(fs.readFileSync(path.join(path.dirname(file), '.writer.lock'), 'utf8')) as LeaseOwner;
+    return leaseOwnerAlive(owner);
   } catch { return false; }
 }
 export async function withPrivateExport<T>(directory: string, action: () => Promise<T>) {

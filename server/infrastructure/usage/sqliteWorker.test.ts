@@ -6,7 +6,7 @@ import path from 'node:path';
 import { DatabaseSync } from 'node:sqlite';
 import { SqliteUsageWorker } from './sqliteWorker.js';
 import type { UsageEvent } from '../../application/usage/contracts.js';
-import { privateDirectory } from './privateFiles.js';
+import { acquirePrivateLease, privateDirectory, hasLiveUsageWriter } from './privateFiles.js';
 import type { Worker } from 'node:worker_threads';
 
 const roots: string[] = []; const writers: SqliteUsageWorker[] = [];
@@ -20,6 +20,32 @@ function event(source: 'BROWSER' | 'SERVER'): UsageEvent {
   return source === 'SERVER' ? { ...common, source, name: 'room_created', data: { roomRef: randomUUID() } }
     : { ...common, source, name: 'home_viewed', visitId: randomUUID(), data: { viewId: randomUUID(), navigation: 'DOCUMENT_INITIAL' } };
 }
+it('lease vivo conserva propietario y rechaza otro escritor, incluido formato histórico sin identidad', () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'karta3-usage-worker-')); roots.push(root);
+  const lock = path.join(root, '.writer.lock'); const file = path.join(root, 'usage.sqlite');
+  const release = acquirePrivateLease(lock, 'first');
+  try {
+    const before = fs.readFileSync(lock, 'utf8');
+    expect(hasLiveUsageWriter(file)).toBe(true);
+    expect(() => acquirePrivateLease(lock, 'second')).toThrow('STORAGE_UNAVAILABLE');
+    expect(fs.readFileSync(lock, 'utf8')).toBe(before);
+  } finally { release(); }
+  const legacy = JSON.stringify({ pid: process.pid, token: 'legacy' }); fs.writeFileSync(lock, legacy);
+  expect(() => acquirePrivateLease(lock)).toThrow('STORAGE_UNAVAILABLE'); expect(fs.readFileSync(lock, 'utf8')).toBe(legacy);
+});
+if (process.platform === 'linux') it('PID reutilizado con otro inicio/namespace permite recuperar solo el lease obsoleto', () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'karta3-usage-worker-')); roots.push(root);
+  const lock = path.join(root, '.writer.lock'); const file = path.join(root, 'usage.sqlite');
+  const first = acquirePrivateLease(lock); const owner = JSON.parse(fs.readFileSync(lock, 'utf8')) as { pid: number; token: string; identity: string }; first();
+  expect(owner.identity).toMatch(/^[a-f0-9-]{36}:\d+:\d+$/);
+  const identity = owner.identity.replace(/:\d+$/, (value) => ':' + (Number(value.slice(1)) + 1));
+  fs.writeFileSync(lock, JSON.stringify({ ...owner, identity }));
+  expect(hasLiveUsageWriter(file)).toBe(false);
+  const release = acquirePrivateLease(lock, 'new-process');
+  try { expect(JSON.parse(fs.readFileSync(lock, 'utf8'))).toMatchObject({ token: 'new-process', identity: owner.identity });
+    expect(hasLiveUsageWriter(file)).toBe(true);
+  } finally { release(); }
+});
 afterEach(async () => { vi.restoreAllMocks(); for (const writer of writers.splice(0)) await writer.close();
   for (const root of roots.splice(0)) { if (path.dirname(root) !== os.tmpdir() || !path.basename(root).startsWith('karta3-usage-worker-')) throw new Error('ruta'); fs.rmSync(root, { recursive: true, force: true }); } });
 it('worker real confirma solo un batch; reserva SERVER y contabilidad incluye vuelo', async () => {
