@@ -33,6 +33,10 @@ export class SqliteUsageWorker implements UsageEventSink, UsageEventStore, Usage
   private exportBusy = false;
   private drops: Record<string, number> = {};
   private warnings = new Map<string, number>();
+  private readyOk = false;
+  private healthFlight?: Promise<void>;
+  private lastHealth = '';
+  private healthRetryAt = 0;
   private readonly writerToken = randomUUID();
   private cleanup: Promise<void> = Promise.resolve();
   readonly ready: Promise<void>;
@@ -49,7 +53,7 @@ export class SqliteUsageWorker implements UsageEventSink, UsageEventStore, Usage
           for (const entry of this.queue.splice(0)) this.drop(entry, this.pauseCause);
         }
         if (message.resumed) this.paused = false;
-        if (message.ready) { clearTimeout(initial); resolve(); }
+        if (message.ready) { this.readyOk = true; clearTimeout(initial); resolve(); }
         if (message.failed) { clearTimeout(initial); this.fail(); reject(new UsageError(message.failed as UsageErrorCode)); }
         if (message.warning) this.warn(message.warning);
         if (message.id) {
@@ -64,17 +68,25 @@ export class SqliteUsageWorker implements UsageEventSink, UsageEventStore, Usage
     });
     // La promesa también es consultable por composición; nunca una rejection global sin consumidor.
     void this.ready.catch(() => {});
-    this.timer = setInterval(() => void this.flush(), this.limits.flushMs); this.timer.unref();
+    this.timer = setInterval(() => { void this.flush(); void this.publishHealth(); }, this.limits.flushMs); this.timer.unref();
   }
-  status() { return { enabled: true, degraded: this.failed || this.paused || Object.keys(this.drops).length > 0, paused: this.paused, queue: this.queue.length + this.flight.length,
+  status() { return { enabled: !this.stopped && (this.options.collecting ?? !!this.options.bootRef), degraded: this.failed || this.paused || Object.keys(this.drops).length > 0, paused: this.paused, queue: this.queue.length + this.flight.length,
     bytes: this.bytes, discarded: { ...this.drops } }; }
   private warn(code: string) {
     if (Date.now() - (this.warnings.get(code) ?? -Infinity) < 60_000) return;
-    this.warnings.set(code, Date.now()); this.options.warning?.(code);
+    this.warnings.set(code, Date.now());
+    queueMicrotask(() => { try { this.options.warning?.(code); } catch { /* Diagnóstico fuera de la decisión del juego. */ } });
   }
   private drop(entry: Entry, reason: string) { this.bytes -= entry.bytes; this.count(reason, entry.event.source); }
   private count(reason: string, source: string) { const key = `${source}:${reason}`; this.drops[key] = (this.drops[key] ?? 0) + 1; this.warn(reason); }
   noteLoss(reason: 'CORRELATION_LIMIT') { this.count(reason, 'SERVER'); }
+  private publishHealth(): Promise<void> | undefined {
+    if (!this.readyOk || this.options.readOnly || this.stopped || this.failed || this.paused || this.flight.length || this.healthFlight
+      || this.retryAt > Date.now() || this.healthRetryAt > Date.now()) return;
+    const status = this.status(); const signature = JSON.stringify(status); if (signature === this.lastHealth) return;
+    return this.healthFlight = this.rpc('health', { health: { ...status, at: Date.now() } }).then(() => { this.lastHealth = signature; })
+      .catch(() => { this.healthRetryAt = Date.now() + 1000; }).finally(() => { this.healthFlight = undefined; });
+  }
   tryRecord(event: UsageEvent): boolean {
     try {
       if (this.stopped || this.failed || this.paused) { this.count(this.paused ? this.pauseCause : 'WRITER_UNAVAILABLE', event.source); return false; }
@@ -149,8 +161,13 @@ export class SqliteUsageWorker implements UsageEventSink, UsageEventStore, Usage
   private async finishClose() {
     const deadline = Date.now() + this.limits.drainMs;
     clearInterval(this.timer); await this.drain(); this.stopped = true;
+    if (this.healthFlight) {
+      let healthTimer: NodeJS.Timeout | undefined;
+      await Promise.race([this.healthFlight, new Promise<void>((resolve) => { healthTimer = setTimeout(resolve, Math.max(0, deadline - Date.now())); })]);
+      if (healthTimer) clearTimeout(healthTimer);
+    }
     for (const entry of this.queue.splice(0)) this.drop(entry, 'SHUTDOWN_DEADLINE');
-    if (!this.failed && !this.flight.length && Date.now() < deadline) { try { await this.rpc('close', {}, Math.max(1, deadline - Date.now())); } catch { this.warn('SHUTDOWN_DEADLINE'); } }
+    if (!this.failed && !this.flight.length && Date.now() < deadline) { try { await this.rpc('close', { health: { ...this.status(), at: Date.now() } }, Math.max(1, deadline - Date.now())); } catch { this.warn('SHUTDOWN_DEADLINE'); } }
     for (const entry of this.flight) this.drop(entry, 'SHUTDOWN_DEADLINE'); this.flight = [];
     for (const pending of this.pending.values()) { clearTimeout(pending.timer); pending.reject(new UsageError('STORAGE_UNAVAILABLE')); } this.pending.clear();
     this.worker.unref();

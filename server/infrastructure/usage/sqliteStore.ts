@@ -1,10 +1,10 @@
 import { DatabaseSync } from 'node:sqlite';
 import fs from 'node:fs';
 import path from 'node:path';
-import { UsageError, type Aggregate, type UsageEnvironment, type UsageEvent, type UsageFilter, type UsageReport, type UsageTraffic } from '../../application/usage/contracts.js';
+import { UsageError, type Aggregate, type UsageEnvironment, type UsageEvent, type UsageFilter, type UsageReport, type UsageTraffic, type UsageHealth } from '../../application/usage/contracts.js';
 import { mergeAggregates } from '../../application/usage/reports.js';
 import { contributions, logicalKey, type Contribution, type Subject } from '../../application/usage/projections.js';
-import { canonicalUsage, validUsageEvent } from './eventValidation.js';
+import { canonicalUsage, validUsageEvent, validUsageHealth } from './eventValidation.js';
 import { DETAIL_MS, month, firstMonth, type Metadata } from './schema.js';
 import { readSqliteUsage } from './sqliteReader.js';
 export { DETAIL_MS, month, firstMonth } from './schema.js';
@@ -74,6 +74,10 @@ export class SqliteUsageStore {
   }
   noteLoss(at = Date.now()) { this.quality('loss', at); this.saveMetadata(); }
   copied(at: number) { this.metadata.lastBackupAt = at; this.saveMetadata(); }
+  health(value: UsageHealth) {
+    if (!validUsageHealth(value)) throw new UsageError('INVALID_FILTER');
+    this.metadata.operational = structuredClone(value); this.saveMetadata();
+  }
 
   append(events: readonly UsageEvent[], failBeforeCommit?: () => void): void {
     if (this.metadata.restoredAggregatesOnly) throw new UsageError('STORAGE_UNAVAILABLE');
@@ -201,7 +205,7 @@ export class SqliteUsageStore {
     }).map((row) => ({ ...row, month: month(row.at) }));
     const buckets = new Map<string, (Aggregate & { month: string; traffic: string })[]>();
     for (const row of [...rows, ...detailed]) { const key = JSON.stringify([row.month, row.traffic]); const bucket = buckets.get(key) ?? []; bucket.push(row); buckets.set(key, bucket); }
-    return { metadata: { ...this.metadata, aggregateAsOf: now, lastBackupAt: now, restoredAggregatesOnly: true, bootRef: null, clean: true, collectionEnabled: false },
+    return { metadata: { ...this.metadata, operational: undefined, aggregateAsOf: now, lastBackupAt: now, restoredAggregatesOnly: true, bootRef: null, clean: true, collectionEnabled: false },
       quality: this.db.prepare('SELECT * FROM quality').all(), rows: [...buckets].flatMap(([key, bucket]) => {
       const [month, traffic] = JSON.parse(key) as [string, string]; return mergeAggregates(bucket).map((row) => ({ ...row, month, traffic }));
     }) };

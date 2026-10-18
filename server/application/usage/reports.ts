@@ -45,10 +45,14 @@ export function usageReport(filter: UsageFilter, inputQuality: UsageQuality, inp
 export function usageCsv(report: UsageReport): string {
   const cell = (value: unknown) => '"' + String(value ?? '').replace(/^[=+@\-\t\r]/, "'$&").replaceAll('"', '""') + '"';
   const header = ['report', 'dimension', 'metric', 'count', 'sum', 'min', 'max', 'numerator', 'denominator', 'percentage', 'meanDurationMs',
-    'from', 'to', 'environment', 'traffic', 'asOf', 'coverageFrom', 'collection', 'possibleLoss', 'conflicts', 'unlinked', 'partialCoverage', 'aggregatesOnly'];
+    'from', 'to', 'environment', 'traffic', 'asOf', 'coverageFrom', 'collection', 'possibleLoss', 'conflicts', 'unlinked', 'partialCoverage', 'aggregatesOnly',
+    'writerSnapshotAt', 'writerQueue', 'writerBytes', 'writerDegraded', 'writerDiscarded'];
   const rows = report.rows.length ? report.rows : [{ report: report.filter.report, dimension: '', metric: 'no-observations', count: 0, sum: 0, min: null, max: null }];
   return [header, ...rows.map((row) => [row.report, row.dimension, row.metric, row.count, row.sum, row.min, row.max,
     report.numerator, report.denominator, report.percentage, report.meanDurationMs, report.filter.from, report.filter.to, report.filter.environment,
     report.traffic, report.quality.asOf, report.quality.coverageFrom, report.quality.collection, report.quality.possibleLoss, report.quality.conflicts,
-    report.quality.unlinked, report.quality.partialCoverage, report.quality.restoredAggregatesOnly])].map((row) => row.map(cell).join(',')).join('\r\n') + '\r\n';
+    report.quality.unlinked, report.quality.partialCoverage, report.quality.restoredAggregatesOnly,
+    report.quality.operational?.at, report.quality.operational?.queue, report.quality.operational?.bytes, report.quality.operational?.degraded,
+    report.quality.operational ? Object.values(report.quality.operational.discarded).reduce((sum, count) => sum + count, 0) : null])]
+    .map((row) => row.map(cell).join(',')).join('\r\n') + '\r\n';
 }

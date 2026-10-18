@@ -1,7 +1,7 @@
 import { parentPort, workerData } from 'node:worker_threads';
 import fs from 'node:fs';
 import path from 'node:path';
-import type { UsageEnvironment, UsageEvent, UsageFilter, UsageTraffic } from '../../application/usage/contracts.js';
+import type { UsageEnvironment, UsageEvent, UsageFilter, UsageTraffic, UsageHealth } from '../../application/usage/contracts.js';
 import { UsageError } from '../../application/usage/contracts.js';
 import { SqliteUsageStore } from './sqliteStore.js';
 import { SqliteUsageReader } from './sqliteReader.js';
@@ -82,7 +82,7 @@ try {
     budget(); await maintain(options.now); schedule();
   }
   parentPort!.postMessage({ ready: true });
-  parentPort!.on('message', async (message: { id: number; type: string; events?: UsageEvent[]; filter?: UsageFilter; at?: number; synthetic?: boolean; loss?: boolean }) => {
+  parentPort!.on('message', async (message: { id: number; type: string; events?: UsageEvent[]; filter?: UsageFilter; at?: number; synthetic?: boolean; loss?: boolean; health?: UsageHealth }) => {
     if (busy) { parentPort!.postMessage({ id: message.id, error: 'BUSY', transient: true }); return; }
     busy = true;
     try {
@@ -90,11 +90,12 @@ try {
       let result: unknown;
       if (message.type === 'append') { if (maintenancePaused) throw new Error('MAINTENANCE_FAILED'); budget(message.events!); requireWriter().append(message.events!); }
       else if (message.type === 'read') result = store.read(message.filter!, message.at ?? Date.now(), message.synthetic ? 'SYNTHETIC' : 'HUMAN');
+      else if (message.type === 'health') requireWriter().health(message.health!);
       else if (message.type === 'maintain') await maintain(message.at ?? Date.now());
       else if (message.type === 'backup') {
         if (!options.backupDirectory || !options.backupKey) throw new Error('BACKUP_NOT_CONFIGURED');
         result = await backupUsage(store, options.backupDirectory, Buffer.from(options.backupKey, 'hex'), message.at ?? Date.now());
-      } else if (message.type === 'close') close();
+      } else if (message.type === 'close') { if (message.health && store instanceof SqliteUsageStore) store.health(message.health); close(); }
       else throw new Error('INVALID_OPERATION');
       parentPort!.postMessage({ id: message.id, result });
     } catch (error) {

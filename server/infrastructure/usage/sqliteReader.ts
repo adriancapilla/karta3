@@ -4,6 +4,7 @@ import { usageReport, validateUsageFilter } from '../../application/usage/report
 import { contributions, type Subject } from '../../application/usage/projections.js';
 import { DETAIL_MS, firstMonth, month, type Metadata } from './schema.js';
 import { hasLiveUsageWriter } from './privateFiles.js';
+import { validUsageHealth } from './eventValidation.js';
 
 export function readSqliteUsage(db: DatabaseSync, environment: UsageEnvironment, filter: UsageFilter, now: number, traffic: UsageTraffic): UsageReport {
   validateUsageFilter(filter, environment);
@@ -28,7 +29,9 @@ export function readSqliteUsage(db: DatabaseSync, environment: UsageEnvironment,
   const quality: UsageQuality = { coverageFrom: earliest, asOf: metadata.aggregateAsOf ?? now, possibleLoss: issue('loss') > 0, conflicts: issue('conflict'),
     unlinked: issue('unlinked'), lastDurableAt: metadata.lastDurableAt, lastMaintenanceAt: metadata.lastMaintenanceAt,
     restoredAggregatesOnly: metadata.restoredAggregatesOnly, partialCoverage: filter.from < earliest || metadata.restoredAggregatesOnly,
-    lastBackupAt: metadata.lastBackupAt ?? null, collection: !metadata.collectionEnabled ? 'disabled' : metadata.possibleLoss ? 'degraded' : 'enabled' };
+    lastBackupAt: metadata.lastBackupAt ?? null, collection: !metadata.collectionEnabled ? 'disabled' : metadata.possibleLoss ? 'degraded' : 'enabled',
+    operational: validUsageHealth(metadata.operational) ? metadata.operational : null,
+    operationalStale: !validUsageHealth(metadata.operational) || now - metadata.operational.at > 60_000 };
   return usageReport(filter, quality, [...detailed, ...monthly], traffic);
 }
 /** Conexión administrativa SOLO LECTURA, sin migrar/reconciliar/purgar la DB viva. */

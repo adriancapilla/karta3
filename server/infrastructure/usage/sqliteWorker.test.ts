@@ -92,12 +92,30 @@ it('un escritor por fichero; informe/copia administrativos solo lectura no alter
   await expect(second.ready).rejects.toThrow('STORAGE_UNAVAILABLE');
   const fact = event('SERVER'); await writer.append([fact]);
   const snapshot = () => { const db = new DatabaseSync(file, { readOnly: true }); try { return String(db.prepare('SELECT value FROM metadata WHERE id=1').get()?.value); } finally { db.close(); } };
-  const before = snapshot();
+  const before = JSON.parse(snapshot());
   const copies = path.join(root, 'copies'); fs.mkdirSync(copies);
   const reader = new SqliteUsageWorker({ file, environment: 'test', readOnly: true, backupDirectory: copies, backupKey: '09'.repeat(32) }); writers.push(reader); await reader.ready;
   const report = await reader.read({ report: 'creation', environment: 'test', from: fact.occurredAt, to: Date.now() }, true);
   expect(report.rows.find((row) => row.metric === 'created')?.count).toBe(1);
-  await reader.backup(Date.now()); await reader.close(); expect(snapshot()).toBe(before);
+  await reader.backup(Date.now()); await reader.close(); const after = JSON.parse(snapshot());
+  // El propio escritor puede publicar su salud mientras se consulta/copia; arranque y datos no cambian.
+  expect({ ...after, operational: undefined }).toEqual({ ...before, operational: undefined });
+  if (after.operational) {
+    expect(after.operational).toMatchObject({ enabled: true, degraded: false, queue: 0, bytes: 0, discarded: {} });
+    expect(after.operational.at).toBeGreaterThanOrEqual(before.operational?.at ?? 0);
+  }
   expect(fs.readdirSync(copies).filter((name) => name.endsWith('.agg.enc'))).toHaveLength(1);
   expect(writer.tryRecord(event('SERVER'))).toBe(true); await writer.drain();
+});
+it('salud privada durable fechada: cola/bytes y descartes por causa/origen, sin IDs ni eventos nuevos', async () => {
+  const { writer } = setup(); await writer.ready; const fact = event('SERVER'); await writer.append([fact]);
+  const filter = { report: 'creation' as const, environment: 'test' as const, from: fact.occurredAt, to: Date.now() + 1000 };
+  const read = () => writer.read({ ...filter, to: Date.now() }, true);
+  await expect.poll(async () => (await read()).quality.operational?.queue).toBe(0);
+  writer.noteLoss('CORRELATION_LIMIT');
+  await expect.poll(async () => (await read()).quality.operational?.discarded['SERVER:CORRELATION_LIMIT']).toBe(1);
+  const report = await read(); expect(report.quality.operational).toMatchObject({ enabled: true, degraded: true, paused: false, queue: 0, bytes: 0 });
+  expect(report.quality.operationalStale).toBe(false); expect(report.quality.possibleLoss).toBe(true);
+  expect(report.rows.find((row) => row.metric === 'created')?.count).toBe(1);
+  expect(JSON.stringify(report.quality.operational)).not.toMatch(/eventId|bootRef|visitId|roomRef|session/);
 });

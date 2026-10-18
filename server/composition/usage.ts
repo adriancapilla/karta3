@@ -35,7 +35,7 @@ export async function createUsageRuntime() {
       privateDirectory(backupDirectory, true);
     }
     const bootRef = randomUUID();
-    const writer = new SqliteUsageWorker({ ...location, bootRef, collecting: enabled, warning: (code) => console.error(`USAGE_${code}`),
+    const writer = new SqliteUsageWorker({ ...location, bootRef, collecting: enabled, warning: (code) => console.error(`USAGE_${location.environment}_${code}`),
       backupDirectory, backupKey });
     await writer.ready;
     if (!enabled) return { ...disabled, close: () => writer.close() };

@@ -1,8 +1,16 @@
 import { browserUsage, usageKeys, usageUuid } from '../../../shared/contracts/usage.js';
-import { joinReasons, type UsageEvent } from '../../application/usage/contracts.js';
+import { discardReasons, joinReasons, type UsageEvent, type UsageHealth } from '../../application/usage/contracts.js';
 
 const number = (v: unknown) => Number.isSafeInteger(v) && Number(v) >= 0;
 const uuidFields = (v: Record<string, unknown>, fields: string[]) => fields.every((key) => usageUuid(v[key]));
+export function validUsageHealth(value: unknown): value is UsageHealth {
+  if (!usageKeys(value, ['at', 'enabled', 'degraded', 'paused', 'queue', 'bytes', 'discarded']) || !number(value.at)
+    || typeof value.enabled !== 'boolean' || typeof value.degraded !== 'boolean' || typeof value.paused !== 'boolean'
+    || !number(value.queue) || Number(value.queue) > 2048 || !number(value.bytes) || Number(value.bytes) > 2 * 1024 ** 2
+    || !value.discarded || typeof value.discarded !== 'object' || Array.isArray(value.discarded)) return false;
+  return Object.entries(value.discarded).every(([key, count]) => /^(?:BROWSER|SERVER):/.test(key)
+    && discardReasons.includes(key.slice(key.indexOf(':') + 1) as typeof discardReasons[number]) && number(count));
+}
 export function canonicalUsage(value: unknown): string {
   const canonical = (v: unknown): unknown => Array.isArray(v) ? v.map(canonical) : v && typeof v === 'object'
     ? Object.fromEntries(Object.entries(v).sort(([a], [b]) => a < b ? -1 : a > b ? 1 : 0).map(([key, item]) => [key, canonical(item)])) : v;

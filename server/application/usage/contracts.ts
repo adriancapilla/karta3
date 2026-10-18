@@ -29,9 +29,13 @@ export const reports = ['access', 'creation', 'joining', 'room-conversion', 'con
 export type UsageReportName = typeof reports[number];
 export type UsageFilter = { report: UsageReportName; from: number; to: number; environment: UsageEnvironment };
 export type Aggregate = { report: UsageReportName; dimension: string; metric: string; count: number; sum: number; min: number | null; max: number | null };
+export const discardReasons = ['WRITER_UNAVAILABLE', 'INVALID_EVENT', 'BROWSER_RESERVE', 'EVICTED_FOR_SERVER', 'QUEUE_FULL', 'TOO_OLD',
+  'WRITE_FAILED', 'SHUTDOWN_DEADLINE', 'DISK_LIMIT', 'MAINTENANCE_FAILED', 'CORRELATION_LIMIT'] as const;
+export type UsageHealth = { at: number; enabled: boolean; degraded: boolean; paused: boolean; queue: number; bytes: number;
+  discarded: Partial<Record<`${'BROWSER' | 'SERVER'}:${typeof discardReasons[number]}`, number>> };
 export type UsageQuality = { coverageFrom: number; asOf: number; possibleLoss: boolean; conflicts: number; unlinked: number;
   lastDurableAt: number | null; lastMaintenanceAt: number | null; restoredAggregatesOnly: boolean; partialCoverage: boolean;
-  lastBackupAt: number | null; collection: 'enabled' | 'disabled' | 'degraded' };
+  lastBackupAt: number | null; collection: 'enabled' | 'disabled' | 'degraded'; operational: UsageHealth | null; operationalStale: boolean };
 export type UsageReport = { version: 1; traffic: UsageTraffic; filter: UsageFilter; quality: UsageQuality; rows: Aggregate[];
   numerator: number; denominator: number; percentage: number | null; meanDurationMs: number | null; provisional: boolean };
 export type UsageErrorCode = 'INVALID_FILTER' | 'ENVIRONMENT_MISMATCH' | 'INSUFFICIENT_DETAIL' | 'COLLECTION_DISABLED'

@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test';
 import { usageInstallation } from '../support/usageCompiledServer.js';
-import { readRoom } from '../support/manualBrowserCases.js';
+import { readRoom, manualTable, humanPlay } from '../support/manualBrowserCases.js';
 
 for (const width of [390, 1280]) test(`B18 ${width}: portada/gestos/dos sesiones/pestañas/F5 y privacidad con compilado sintético`, async ({ browser }) => {
   const installation = await usageInstallation(); const server = await installation.start();
@@ -58,4 +58,40 @@ test('B18 documento/F5/SPA y ejecución normal apagada', async ({ browser }) => 
   try { const before = installation.events().length; await normalPage.goto(off.base); await normalPage.getByRole('button', { name: 'Crear sala', exact: true }).click();
     await expect(normalPage.getByRole('heading', { name: 'Tu sala está lista' })).toBeVisible(); expect(posts).toBe(0); expect(installation.events()).toHaveLength(before);
   } finally { await normal.close(); await off.stop(); await installation.cleanup(); }
+});
+
+test('B18 partida completa normal con dos humanos y bot: terminal durable único, F5 y otra sala', async ({ browser }) => {
+  test.setTimeout(120_000); // Partida completa por gestos; el turno conserva sus 60 s configurados.
+  const installation = await usageInstallation(); const server = await installation.start();
+  const table = await manualTable(browser, server.base, { count: 2, bots: ['HARD'], review: 0, turn: 60, width: 1280 });
+  const tab = await table.contexts[0].newPage(); let moves = 0;
+  try {
+    await tab.goto(server.base);
+    for (;;) {
+      await expect.poll(async () => { const room = await readRoom(table.host);
+        return room.status !== 'IN_GAME' || !!room.game.interaction.turn && table.actors.has(room.game.interaction.turn.playerId);
+      }).toBe(true);
+      const room = await readRoom(table.host); if (room.status !== 'IN_GAME') break;
+      await humanPlay(table, moves % 2 === 0, moves % 2 ? 'LOW' : 'HIGH'); moves++;
+      if (moves === 4) { await table.host.reload(); await tab.reload(); }
+    }
+    const result = await readRoom(table.host); expect(result.status).toBe('RESULTS');
+    if (result.status !== 'RESULTS') throw new Error('resultado esperado');
+    expect(result.result.endReason).toBe('DECK_COMPLETED'); expect(moves).toBe(30);
+    expect(result.result.standings.reduce((sum, person) => sum + person.score, 0)).toBe(45);
+    await expect.poll(() => installation.events().filter((e) => e.name === 'game_ended').length).toBe(1);
+    const facts = installation.events(); const starts = facts.filter((e) => e.name === 'game_started'); const ends = facts.filter((e) => e.name === 'game_ended');
+    expect(starts).toHaveLength(1); expect(ends).toHaveLength(1);
+    expect(starts[0].data.configuration).toMatchObject({ deckId: 'generica', deckSchemaVersion: 2, deckContentVersion: 4,
+      humanPlayerCount: 2, botCount: 1, botsByDifficulty: { EASY: 0, HARD: 1 }, reviewSeconds: 0, turnSeconds: 60 });
+    expect(ends[0].data).toMatchObject({ reason: 'DECK_COMPLETED', evidence: 'GAME_RESULT', gameRef: starts[0].data.gameRef });
+    expect(ends[0].data.durationMs).toBeGreaterThan(0); expect(facts.filter((e) => e.name === 'human_became_automatic')).toHaveLength(0);
+    for (const page of table.pages) { await page.reload(); await expect(page.getByRole('heading', { name: 'Partida terminada', exact: true })).toBeVisible(); }
+    await table.host.getByRole('button', { name: 'Volver al inicio', exact: true }).click();
+    await expect(tab.getByRole('button', { name: 'Crear sala', exact: true })).toBeVisible(); await tab.getByRole('button', { name: 'Crear sala', exact: true }).click();
+    await expect(table.host.getByLabel('Baraja', { exact: true })).toHaveValue('');
+    await expect.poll(() => installation.events().filter((e) => e.name === 'room_created').length).toBe(2);
+    expect(installation.events().filter((e) => e.name === 'game_ended')).toHaveLength(1);
+    for (const excluded of ['Persona 1', 'Jugador 1', result.result.gameId]) expect(JSON.stringify(installation.events())).not.toContain(excluded);
+  } finally { await table.close(); await server.stop(); await installation.cleanup(); }
 });
