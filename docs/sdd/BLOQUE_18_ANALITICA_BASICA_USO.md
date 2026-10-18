@@ -327,3 +327,5 @@ Causa técnica: la lease solo comprobaba PID; los namespaces Docker reutilizan n
 Verificación local focal inicial aislada:10/12, EPERM de ACL en temporales sandbox y lector STORAGE_UNAVAILABLE; se conserva log y se comprueba fuera de ese aislamiento sin modificar criterios. Resultado posterior se registra por separado. Linux pendiente de nueva puerta justificada por esta reparación; no relanzar el HEAD fallido sin cambio.
 
 La comprobación focal Windows fuera del aislamiento pasó **12/12 en3,65s** sobre el build reparado; el intento10/12 por ACL sandbox permanece histórico. Esta selección no acredita Linux ni batería completa.
+
+Ampliación de verificación dentro del contrato: la pila CI usará también compose.usage.yaml (test/off fijo), y otra recreación propia montará el volumen estadístico físicamente read-only. Se exige error administrativo seguro, DB inalterada, recogida deshabilitada y creación de sala válida; no cambia el comportamiento de producto para pasar. Se conserva el presupuesto vigente. Estas comprobaciones todavía no se acreditan hasta una ejecución Linux sobre su fuente.

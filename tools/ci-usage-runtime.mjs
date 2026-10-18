@@ -128,6 +128,19 @@ if (stage === 'seed') {
   const admin = await report('completion'); assert.equal(admin.quality.collection, 'disabled');
   console.log(JSON.stringify({ stage, persistedEvents: before, ramEmpty: true, terminal: expected, off: true, privateRoutes: await privateRoutes(),
     pidReused: lease.pid === context.leasePid, writerIdentityChanged: true }));
+} else if (stage === 'readonly-volume') {
+  const before = createHash('sha256').update(await fs.readFile(file)).digest('hex');
+  await assert.rejects(fs.writeFile(root + '/.readonly-volume-probe', 'x', { flag: 'wx' }), { code: 'EROFS' });
+  await postEvent(204);
+  const session = await globalThis.fetch(base + '/api/rooms/current');
+  assert.equal(session.headers.get('X-Karta3-Usage-Collection'), null);
+  const cookie = session.headers.get('set-cookie').split(';')[0];
+  const response = await globalThis.fetch(base + '/api/rooms', { method: 'POST', headers: { Cookie: cookie,
+    Origin: 'https://127.0.0.1:3000', 'Content-Type': 'application/json' }, body: '{}' });
+  assert.equal(response.status, 201); assert.ok((await response.json()).room?.id);
+  await assert.rejects(cli('usageSyntheticCli', ['--report', 'creation', ...dates()]), (e) => e.code === 1 && e.stderr.includes('STORAGE_UNAVAILABLE'));
+  assert.equal(createHash('sha256').update(await fs.readFile(file)).digest('hex'), before);
+  console.log(JSON.stringify({ stage, physicalReadOnlyVolume: true, safeStorageError: true, gameCreatesRoom: true, off: true, databaseUnchanged: true }));
 } else if (stage === 'restore') {
   const copies = (await fs.readdir('/source/test/synthetic/backups')).filter((name) => name.endsWith('.agg.enc')); assert.equal(copies.length, 1);
   const source = '/source/test/synthetic/backups/' + copies[0];

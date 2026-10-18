@@ -19,8 +19,9 @@ trap cleanup_usage EXIT
 docker volume create "$volume" >/dev/null
 docker volume create "$restored" >/dev/null
 start_usage() {
+  local readonly="${2:-}"
   docker run -d --name "$app" --init --read-only --tmpfs /tmp --network none \
-    --mount "source=$volume,target=/var/lib/karta3/usage" \
+    --mount "source=$volume,target=/var/lib/karta3/usage${readonly:+,readonly}" \
     -e KARTA3_ENV=test -e "KARTA3_USAGE_COLLECTION=$1" -e KARTA3_USAGE_DIRECTORY=/var/lib/karta3/usage karta3:ci >/dev/null
   for attempt in {1..60}; do
     if docker exec "$app" node -e "fetch('http://127.0.0.1:3000/api/decks').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))" >/dev/null 2>&1; then return; fi
@@ -49,6 +50,11 @@ docker kill --signal KILL "$app" >/dev/null
 docker rm "$app" >/dev/null
 start_usage off
 probe after-kill
+docker stop --time 10 "$app" >/dev/null
+docker rm "$app" >/dev/null
+# Fallo real de almacenamiento: volumen entero read-only, el juego sigue sin recogida.
+start_usage synthetic readonly
+probe readonly-volume
 docker stop --time 10 "$app" >/dev/null
 docker rm "$app" >/dev/null
 docker run --rm -i --read-only --tmpfs /tmp --network none \

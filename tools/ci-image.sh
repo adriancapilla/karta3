@@ -7,10 +7,10 @@ test ! -e deploy/.env.private
 proof="$RUNNER_TEMP/karta3-image"
 mkdir -p "$proof"
 export COMPOSE_PROJECT_NAME="karta3-ci-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT"
-export KARTA3_IMAGE=karta3:ci KARTA3_DOMAIN=localhost NODE_ENV=production KARTA3_ENV=ci
+export KARTA3_IMAGE=karta3:ci KARTA3_DOMAIN=localhost NODE_ENV=production KARTA3_ENV=test
 export CADDY_IMAGE
 CADDY_IMAGE=$(sed -n 's/^CADDY_IMAGE=//p' deploy/.env.example | tr -d '\r')
-compose() { docker compose -f deploy/compose.yaml "$@"; }
+compose() { docker compose -f deploy/compose.yaml -f deploy/compose.usage.yaml "$@"; }
 cleanup() {
   status=$?
   if [ "$status" -ne 0 ]; then compose logs --tail=100 app caddy || true; fi
