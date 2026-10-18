@@ -7,10 +7,17 @@ import { ControlledTime } from '../../../tests/support/controlledTime.js';
 import { manualApplication } from '../../../tests/support/manualApplicationCases.js';
 
 function setup(fail = false) {
-  const events: UsageEvent[] = []; const time = new ControlledTime();
-  const usage = new UsageRecording({ tryRecord: (e) => { if (fail) throw new Error('writer'); events.push(e); return true; } }, time, randomUUID, 'test', 'SYNTHETIC', randomUUID());
-  return { ...initialGameCases({ time, usage }), events, usage };
+  const events: UsageEvent[] = []; const discarded: string[] = []; const time = new ControlledTime();
+  const usage = new UsageRecording({ tryRecord: (e) => { if (fail) throw new Error('writer'); events.push(e); return true; }, noteLoss: (cause) => { discarded.push(cause); } }, time, randomUUID, 'test', 'SYNTHETIC', randomUUID());
+  return { ...initialGameCases({ time, usage }), events, usage, discarded };
 }
+it('mapa acotado de rechazos con ID no pierde calidad silenciosamente al saturar', () => {
+  const f = setup();
+  for (let index = 0; index <= 4096; index++) f.rooms.joinInputRejected('g0', `invalid-${index}`);
+  expect(f.events.filter((e) => e.name === 'room_join_resolved')).toHaveLength(4096);
+  expect(f.discarded).toEqual(['CORRELATION_LIMIT']);
+  f.rooms.joinInputRejected('g0', 'invalid-0'); expect(f.events.filter((e) => e.name === 'room_join_resolved')).toHaveLength(4096);
+});
 it('hechos nuevos después de dedupe; recuperación/replay/conflicto no crean otra sala/entrada', () => {
   const f = setup(); f.rooms.createOrGet('host'); f.join(); f.join();
   f.rooms.join('g0', 'another', f.room.code, 'Privado');

@@ -74,6 +74,7 @@ export class SqliteUsageWorker implements UsageEventSink, UsageEventStore, Usage
   }
   private drop(entry: Entry, reason: string) { this.bytes -= entry.bytes; this.count(reason, entry.event.source); }
   private count(reason: string, source: string) { const key = `${source}:${reason}`; this.drops[key] = (this.drops[key] ?? 0) + 1; this.warn(reason); }
+  noteLoss(reason: 'CORRELATION_LIMIT') { this.count(reason, 'SERVER'); }
   tryRecord(event: UsageEvent): boolean {
     try {
       if (this.stopped || this.failed || this.paused) { this.count(this.paused ? this.pauseCause : 'WRITER_UNAVAILABLE', event.source); return false; }

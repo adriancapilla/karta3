@@ -19,6 +19,7 @@ export class UsageRecording {
     try { return this.sink.tryRecord({ ...event, source: 'BROWSER', environment: this.environment, traffic: this.traffic,
       occurredAt: at, receivedAt: at, bootRef: this.bootRef }); } catch { return false; }
   }
+  lost() { try { this.sink.noteLoss?.('CORRELATION_LIMIT'); } catch { /* Diagnóstico tampoco afecta a la operación. */ } }
   created(room: Room, context?: UsageContext) {
     if (this.rooms.has(room)) return;
     const references: References = { roomRef: this.id(), people: new Map(), automatic: new Set() };
@@ -74,6 +75,6 @@ export class UsageRecording {
 }
 // Mismo recorrido con sink nulo; sin generar/persistir referencias en instalaciones desactivadas.
 export const disabledUsage = { browser: () => false, created: () => {}, joined: () => {}, joinRejected: () => {}, closed: () => {},
-  started: () => {}, automatic: () => {}, ended: () => {} } satisfies Pick<UsageRecording, 'browser' | 'created' | 'joined' | 'joinRejected' | 'closed' | 'started' | 'automatic' | 'ended'>;
+  started: () => {}, automatic: () => {}, ended: () => {}, lost: () => {} } satisfies Pick<UsageRecording, 'browser' | 'created' | 'joined' | 'joinRejected' | 'closed' | 'started' | 'automatic' | 'ended' | 'lost'>;
 export type UsageRecorder = typeof disabledUsage | UsageRecording;
 export { nullUsageSink };

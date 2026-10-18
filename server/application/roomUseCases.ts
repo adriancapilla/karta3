@@ -133,12 +133,16 @@ export class RoomUseCases implements RoomActions {
 
   joinInputRejected(sessionId: string, requestId: unknown): void {
     if (this.usage === disabledUsage) return;
-    if (typeof requestId !== 'string' || requestId.length > 100 || this.requests.get(sessionId, requestId)) return;
+    if (typeof requestId !== 'string' || !requestId.length || requestId.length > 100) {
+      // Sin ID válido no hay replay identificable; solo el rechazo observado, sin cuerpo/contexto.
+      this.usage.joinRejected('INVALID_INPUT'); return;
+    }
+    if (this.requests.get(sessionId, requestId)) return;
     const at = this.lifecycle.clock.now().monotonic;
     for (const [key, expiry] of this.invalidJoinRequests) if (expiry <= at) this.invalidJoinRequests.delete(key);
     const key = JSON.stringify([sessionId, requestId]); if (this.invalidJoinRequests.has(key)) return;
     // Solo dedupe estadístico RAM; nunca consume una solicitud de juego ni conserva su cuerpo.
-    if (this.invalidJoinRequests.size >= 4096) return;
+    if (this.invalidJoinRequests.size >= 4096) { this.usage.lost(); return; }
     this.invalidJoinRequests.set(key, at + 90 * 86_400_000); this.usage.joinRejected('INVALID_INPUT');
   }
 

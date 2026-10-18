@@ -130,3 +130,12 @@ it('ingesta cerrada: origen, 2 KiB, extras/SERVER/UUID y límites; normal apagad
   const off = await setup(false); expect((await off.post('/api/usage/events', fact())).status).toBe(204);
   const host = await off.player(); expect((await off.post('/api/rooms', {}, host.cookie)).status).toBe(201); expect(await off.facts()).toEqual([]);
 });
+it('decodificador sin requestId registra solo INVALID_INPUT, sin inventar identidad de intención cliente', async () => {
+  const f = await setup(); const person = await f.player();
+  const rejected = await send(person.socket, 'room:join', { name: 'Texto no retenido', code: '000123' });
+  expect(rejected).toMatchObject({ ok: false, error: { code: 'INVALID_INPUT' } });
+  const facts = await f.facts(); expect(facts).toHaveLength(1);
+  expect(facts[0]).toMatchObject({ name: 'room_join_resolved', data: { outcome: 'REJECTED', reason: 'INVALID_INPUT' } });
+  expect(Object.keys(facts[0].data).sort()).toEqual(['intentRef', 'outcome', 'reason']);
+  expect(JSON.stringify(facts)).not.toContain('Texto no retenido'); expect(JSON.stringify(facts)).not.toContain('000123');
+});
