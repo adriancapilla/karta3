@@ -229,3 +229,19 @@ Relación con el [índice del máster](../../../../TFM/Requisitos/MASTER_CONTENI
 **Encargo:** [prompt de Implementación por tres etapas](PROMPT_IMPLEMENTACION_BLOQUE_18.md). La activación de recogida pública, publicación y despliegue permanecen fuera de ese encargo.
 
 **Cierre actual:** solo lectura de documentación/código/estado y documentación de esta especificación; consulta de versiones del PATH y fuentes oficiales. No cambios de código, dependencias, barajas, operación o TFM; sin pruebas de producto, captura real de uso, commits, publicación o despliegue. Todos A01–A13 pendientes. Implementación documentará commit/build, pruebas reales/fallos/límites, README/ejemplos seguros y conclusiones para autor/Arquitectura; después se decidirá la activación/entrega operativa.
+
+## 15. Registro de implementación — 18/10/2026
+
+Base efectiva `main 555c50d4dc5146963805503442e08168b55a95b5`. Conservados sin reescritura los tres documentos preparados (este bloque, prompt y proceso), registrados separadamente en `d9262c9`. Implementación en rama local `feat/b18-analitica-basica`; ningún servidor del autor detenido. Inventario previo de los 124 archivos en `playwright-report/b18/barajas-antes.json` (artefacto local ignorado).
+
+Runtime comprobado: `C:\Users\Adrian\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\bin\node.exe`, Node **24.19.0**, ICU **78.3**, SQLite **3.53.3**, Windows. No se cambia PATH global ni instalaciones. `node:sqlite` es release candidate y síncrono según [documentación oficial de esta versión](https://nodejs.org/download/release/v24.19.0/docs/api/sqlite.html); las operaciones se aíslan en worker. Sin dependencia nueva.
+
+### Etapa 1 — puerta focal ejecutada
+
+Comandos: `npm run typecheck`; `npx vitest run server/infrastructure/usage/sqliteStore.test.ts server/infrastructure/usage/sqliteWorker.test.ts`; `npm run check:architecture`.
+
+Resultado nuevo: **13/13 pruebas, 2 archivos**, SQLite temporal real; tipos correctos y **88 módulos** sin imports prohibidos/ciclos en el árbol de trabajo de ese momento. Comprobado: conflicto sin sobrescritura, rollback inducido antes de commit, 2/4 y 1/2 y 1/3, consolidación repetida/corte exacto, desconocidos de reinicio/censura, doce meses UTC, copias nuevas sin detalle/ids y siete rotatorias cifradas, cola y reserva SERVER, bytes, bloqueo transitorio con reintento y ACL Windows de directorio propio. No acredita Linux, cierre/rearranque real ni todas las degradaciones A11.
+
+Fallos reparados: el filtro admitía detalle en igualdad con el corte de 90 días; se rechaza esa granularidad tras consolidación. La comprobación ACL invocaba `Get-Acl` en Windows PowerShell heredando módulos de PowerShell 7 incompatibles; se usa lectura ACL .NET sin autoload y sin relajar permisos. Dos avisos de lint localizados durante edición reparados; puerta final aún pendiente.
+
+Etapas 2/3 en desarrollo; **B18 no verificado ni recogida pública activada**. La alineación documental general y Linux permanecen pendientes, además de las comprobaciones integradas todavía no ejecutadas.
