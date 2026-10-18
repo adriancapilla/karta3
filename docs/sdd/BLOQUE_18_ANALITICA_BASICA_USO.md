@@ -1,4 +1,5 @@
 # B18 — Analítica básica de uso propia
+**Publicación técnica — 18/10/2026:** alineación general recibida y Linux focal correcto. [Puerta final39161953043](https://github.com/adriancapilla/karta3/actions/runs/39161953043), fuente d73097f: **589/589 en51 archivos,93 módulos;4/4 Chrome en32,3s; imagen/Compose/volumen/copia/restauración correctos**. Worker1/retries0. El aumento respecto a587/92 son dos regresiones de lease Linux y el verificador, sin otra función. Los cierres Windows y pendientes de recepción/Linux anteriores son históricos conservados. CI completa196 casos/24 archivos, revisión/squash/main y clon todavía pendientes de ejecución; su cierre real se registra en la PR/registro operativo. **No verificado globalmente ni operativo públicamente:** privacidad/información, habilitación real expresa, acceso VPS, copia externa y ensayo del responsable siguen pendientes. Sin HUMAN/GHCR/VPS.
 
 **Estado de preparación conservado:** especificación acordada por el autor el 18/10/2026; en ese momento no implementada, probada ni activada. Numeración B18 libre al preparar este documento. Alineación de fuentes por Arquitectura pendiente antes del cierre, sin requerir otra aprobación del alcance ya autorizado.
 
@@ -329,3 +330,17 @@ Verificación local focal inicial aislada:10/12, EPERM de ACL en temporales sand
 La comprobación focal Windows fuera del aislamiento pasó **12/12 en3,65s** sobre el build reparado; el intento10/12 por ACL sandbox permanece histórico. Esta selección no acredita Linux ni batería completa.
 
 Ampliación de verificación dentro del contrato: la pila CI usará también compose.usage.yaml (test/off fijo), y otra recreación propia montará el volumen estadístico físicamente read-only. Se exige error administrativo seguro, DB inalterada, recogida deshabilitada y creación de sala válida; no cambia el comportamiento de producto para pasar. Se conserva el presupuesto vigente. Estas comprobaciones todavía no se acreditan hasta una ejecución Linux sobre su fuente.
+
+## Cierre focal Linux previo a CI completa — 18/10/2026
+
+- Intento39161057170/3d043d8:587/51/93 y4/4 Chrome23,6s, pero imagen fallida tras KILL por lease PID; se conserva como diagnóstico, no candidato aprobado.
+- Reparación39161576279/e111df4:589/51/93 y4/4 Chrome27,662665s; imagen215s, paso157s; señales/volumen/backup/restore correctos.
+- Puerta final39161953043/d73097f:589/51/93 y4/4 Chrome32,3s; Compose con montaje usage y off fijo, todos los controles nuevos correctos. HTTPS Chrome1/1 en4,7s. Informes, resultados resumidos y logs descargados en APP/verificacion-b18-20261018 por ejecución.
+
+Linux real: Node24.19.0/SQLite3.53.3, UID1000, raíz read-only, red ninguna/sin puertos para las instancias sintéticas, volumen0700/archivos0600, acceso denegadoUID1001 y doce rutas privadas404. Consulta/copia de solo lectura sin cambiar hechos/arranque vivo; informe humano no abre sintéticos y entorno erróneo falla. SIGTERM y recreación conservan estadística/TECHNICAL_INTERRUPTION; KILL y recreación conservan histórico/UNKNOWN sin duración; juego/sesiones RAM vacíos. Reutilización de PID controlada observada y cubierta también por regresión Linux de identidad distinta.
+
+Copia K3AGG1/AES-GCM privada sin UUID/detalle, restauración en otro volumen con mismo contador, cero eventos/subjects y sin salud volátil. Rechazo de clave incorrecta y destino existente. Volumen físicamente read-only: error seguro, DB inalterada, recogida off y sala creada correctamente. No se prueba aquí disco físicamente lleno, capacidad VPS,90d reales,5s de SQL lento real o recuperación exactamente una vez. Límites/retención/rotación/fallos mediante SQLite y reloj/fixtures declarados en B18, reejecutados en el check Linux.
+
+e111df4 conserva contrato del bloqueo: propietario vivo/legacy dudoso no se roba; Linux identifica proceso con boot/namespace/inicio. Es portabilidad del adaptador, no identidad estadística nueva. Windows focal12/12 fuera sandbox; intento10/12 por permisos del sandbox conservado. Montaje y verificadores posteriores no alteran producto.124 huellas/versiones conservadas. Fuente recibida archivada en etiqueta publicada archivo/2026-10-18/b18-fuente-original→fedd873; reserva4516d23 intacta.
+
+La versión definitiva añade solo este cierre documental a d73097f. La CI completa sobre ese HEAD se solicita sin filtro y debe ejecutar196 recorridos/24 archivos,589 pruebas/51 archivos/93 módulos e imagen Linux. Sin presupuesto ampliado, tolerancias mayores, aserciones reducidas o reintentos nuevos. El cierre fuente/squash/main/clon/OCI se registra en la PR, sin commits solo para anotar el SHA integrado.

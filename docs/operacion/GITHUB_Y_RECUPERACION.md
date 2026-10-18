@@ -422,3 +422,17 @@ Antes de automatizar copias, acordar destino, acceso, retención y frecuencia. U
 ## Mantenimiento
 
 Actualizar Node, dependencias y commits de acciones mediante PR y repetir comprobaciones. Revisar fallos en Actions, conservar referencias a ejecuciones relevantes y mantener acceso y permisos mínimos. Al añadir pruebas o herramientas de barajas, incorporar su comando real y actualizar esta descripción. T05 comprueba Docker/Caddy en CI; la publicación posterior usa el OCI aprobado mediante invocación manual, conforme al registro superior. Despliegue y operaciones VPS requieren su encargo y ejecución por el autor.
+
+## Cierre focal Linux previo a CI completa — 18/10/2026
+
+- Intento39161057170/3d043d8:587/51/93 y4/4 Chrome23,6s, pero imagen fallida tras KILL por lease PID; se conserva como diagnóstico, no candidato aprobado.
+- Reparación39161576279/e111df4:589/51/93 y4/4 Chrome27,662665s; imagen215s, paso157s; señales/volumen/backup/restore correctos.
+- Puerta final39161953043/d73097f:589/51/93 y4/4 Chrome32,3s; Compose con montaje usage y off fijo, todos los controles nuevos correctos. HTTPS Chrome1/1 en4,7s. Informes, resultados resumidos y logs descargados en APP/verificacion-b18-20261018 por ejecución.
+
+Linux real: Node24.19.0/SQLite3.53.3, UID1000, raíz read-only, red ninguna/sin puertos para las instancias sintéticas, volumen0700/archivos0600, acceso denegadoUID1001 y doce rutas privadas404. Consulta/copia de solo lectura sin cambiar hechos/arranque vivo; informe humano no abre sintéticos y entorno erróneo falla. SIGTERM y recreación conservan estadística/TECHNICAL_INTERRUPTION; KILL y recreación conservan histórico/UNKNOWN sin duración; juego/sesiones RAM vacíos. Reutilización de PID controlada observada y cubierta también por regresión Linux de identidad distinta.
+
+Copia K3AGG1/AES-GCM privada sin UUID/detalle, restauración en otro volumen con mismo contador, cero eventos/subjects y sin salud volátil. Rechazo de clave incorrecta y destino existente. Volumen físicamente read-only: error seguro, DB inalterada, recogida off y sala creada correctamente. No se prueba aquí disco físicamente lleno, capacidad VPS,90d reales,5s de SQL lento real o recuperación exactamente una vez. Límites/retención/rotación/fallos mediante SQLite y reloj/fixtures declarados en B18, reejecutados en el check Linux.
+
+e111df4 conserva contrato del bloqueo: propietario vivo/legacy dudoso no se roba; Linux identifica proceso con boot/namespace/inicio. Es portabilidad del adaptador, no identidad estadística nueva. Windows focal12/12 fuera sandbox; intento10/12 por permisos del sandbox conservado. Montaje y verificadores posteriores no alteran producto.124 huellas/versiones conservadas. Fuente recibida archivada en etiqueta publicada archivo/2026-10-18/b18-fuente-original→fedd873; reserva4516d23 intacta.
+
+La versión definitiva añade solo este cierre documental a d73097f. La CI completa sobre ese HEAD se solicita sin filtro y debe ejecutar196 recorridos/24 archivos,589 pruebas/51 archivos/93 módulos e imagen Linux. Sin presupuesto ampliado, tolerancias mayores, aserciones reducidas o reintentos nuevos. El cierre fuente/squash/main/clon/OCI se registra en la PR, sin commits solo para anotar el SHA integrado.
