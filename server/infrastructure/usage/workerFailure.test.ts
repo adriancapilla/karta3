@@ -7,6 +7,7 @@ import type { SqliteUsageWorker } from './sqliteWorker.js';
 
 it('límite de consulta 5 s con worker sin respuesta y reloj controlado; no informe vacío', async () => {
   const root = await fs.mkdtemp(path.join(os.tmpdir(), 'karta3-usage-unresponsive-')); let writer: SqliteUsageWorker | undefined;
+  if (path.dirname(root) !== os.tmpdir() || !path.basename(root).startsWith('karta3-usage-unresponsive-')) throw new Error('ruta');
   try {
     const infrastructure = path.join(root, 'server/infrastructure/usage'); const application = path.join(root, 'server/application/usage');
     await fs.mkdir(infrastructure, { recursive: true }); await fs.mkdir(application, { recursive: true });
@@ -24,7 +25,6 @@ it('límite de consulta 5 s con worker sin respuesta y reloj controlado; no info
     await vi.advanceTimersByTimeAsync(1); await assertion; expect(writer.status().degraded).toBe(true);
   } finally {
     vi.useRealTimers(); await writer?.close();
-    if (path.dirname(root) !== os.tmpdir() || !path.basename(root).startsWith('karta3-usage-unresponsive-')) throw new Error('ruta');
     await fs.rm(root, { recursive: true, force: true });
   }
 });
