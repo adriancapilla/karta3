@@ -10,6 +10,27 @@
 **Implementación B08:** 04/10/2026 — política/contador/control en dominio; plazo y continuaciones acotadas en la coordinación existente, contrato seguro y presentación temporal. Sin cambiar límites de capas o fuentes TFM.
 **Ámbito:** repositorio digital `APP/karta3`. La evolución de estas reglas se decide en la conversación de arquitectura; cada conversación de implementación trabaja con una especificación SDD concreta.
 
+**B18, excepción estadística autorizada el 18/10/2026:** SQLite exclusivamente analítico, sin persistir Game/Room/sesiones ni cambiar las reglas de dependencia. Recogida pública apagada; la alineación general de Arquitectura se entrega al autor y debe recibirse antes del cierre como verificado.
+
+## B18 — responsabilidades concretas
+
+| Pieza | Responsabilidad y límite |
+|---|---|
+| `shared/contracts/usage.ts` | Tres declaraciones BROWSER y contexto opcional exactos; UUID/enums/claves cerrados. Sin referencias estadísticas internas o informes públicos. |
+| `application/usage/contracts.ts` | Nueve eventos internos, DTO de snapshot/informe/salud técnica fechada y puertos separados sink/store/reader/maintenance. El sink devuelve admisión inmediatamente. |
+| `application/usage/recording.ts` | Referencias independientes en RAM por objeto/incorporación; elección de hechos y snapshot aceptado. Nunca pasa Room/Game/sesión al adaptador. Emite después de estado/dedupe y antes de transporte. |
+| `RoomUseCases`, `WaitingLifecycle`, `GameCoordinator` | Puntos focales de creación/entrada/cierre/inicio, conversión ACTIVE→AUTOMATIC y RESULTS confirmado. Sin SQL/IO/await ni una llamada por receptor. Game puro permanece intacto. |
+| `application/usage/projections.ts`, `reports.ts`, `query.ts` | Claves lógicas, contribuciones/cohortes, fórmulas/denominadores, CSV seguro y caso fijo ReadUsageReport. Sin SQLite/Node. |
+| `infrastructure/usage/sqliteWorker.ts` | Admisión por cantidad/bytes incluidos en vuelo, reserva SERVER, un batch, reintentos/edad/cierre limitados y fallos aislados. Publica salud técnica al cambiar mediante una sola actualización pendiente; no decide reglas de juego ni hace IO en su sección síncrona. |
+| `infrastructure/usage/worker.ts`, `sqliteStore.ts`, `eventValidation.ts` | Único escritor estadístico por entorno/tráfico, frontera runtime, SQL preparado/transacciones, proyecciones mínimas, consolidación/purga y consultas fijas en worker. No reconstruyen Game. |
+| `infrastructure/usage/sqliteReader.ts`, `schema.ts` | Snapshot administrativo de solo lectura, cobertura/corte y formato persistido. No migran/reconcilian/purgan la DB viva ni abren otro escritor; estado sucio sin escritor o mantenimiento vencido produce error seguro. |
+| `backups.ts`, `privateFiles.ts` | Archivo agregado nuevo desde Online Backup temporal, AES-GCM, rotación/restauración y autorización/permisos/archivo privado del SO. Un bloqueo compartido por exportación; no UI SQL, credencial HOST o restauración de detalle. |
+| `infrastructure/usage/http.ts` | Ingesta exacta 2 KiB, origen estricto, límites y contexto 256 bytes descartable sin romper operaciones válidas. Sin IP/UA/referrer ni sesiones analíticas. |
+| `composition/usage*`, `main.ts` | Entorno/tráfico impuestos, separación de ficheros, conexión nula por defecto, mantenimiento con sink apagado y parada acotada. Comandos privados componen puerto/caso de uso; no exponen tablas. |
+| `src/usage.ts`, App/api/useRoomFlow | Memoria del documento, vistas/gestos y reintento único; nada en almacenamiento persistente. Cabecera de instancia sintética habilita envío; normal apagada. Intención incierta conserva su contexto independiente del requestId del juego. |
+
+La revisión semántica comprueba además del grafo: SQL solo en infraestructura; fórmulas en aplicación; domain sin importaciones nuevas; contexto opcional sin autoridad; estado/dedupe anteriores a hechos; terminal de aplicación después de revisión; sink sin espera y sin objetos completos; almacenamiento/consulta/mantenimiento separados; CSV/copia sin IDs; entorno y tráfico fuera de NODE_ENV; ningún fichero privado servido. Los límites y pruebas reales se registran en B18, con Linux/alineación/privacidad/operación pendientes explícitos. [Operación preparada](../operacion/ANALITICA_USO.md).
+
 ## 1. Qué resuelve este documento
 
 KARTA3 se implementa como una aplicación web en un único repositorio y un único proceso de juego por entorno durante el MVP. Las capas separan **quién decide una regla**, **quién coordina una acción** y **cómo se conecta con navegador, archivos y servicios**. La separación no exige dividir el sistema en microservicios ni comenzar otro proyecto.

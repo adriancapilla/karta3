@@ -1,6 +1,8 @@
 # B18 — Analítica básica de uso propia
 
-**Estado:** especificación acordada por el autor el 18/10/2026; no implementada, probada ni activada. Numeración B18 libre al preparar este documento. Alineación de fuentes por Arquitectura pendiente antes del cierre, sin requerir otra aprobación del alcance ya autorizado.
+**Estado de preparación conservado:** especificación acordada por el autor el 18/10/2026; en ese momento no implementada, probada ni activada. Numeración B18 libre al preparar este documento. Alineación de fuentes por Arquitectura pendiente antes del cierre, sin requerir otra aprobación del alcance ya autorizado.
+
+**Estado técnico actualizado — 18/10/2026:** tres etapas implementadas y comprobadas en Windows sobre `1ce58e2`; resultados por A01–A13 en §15. Check587/587 y47/47 Chrome seleccionados, recogida pública OFF. Linux, alineación documental recibida y preparación de privacidad/operación pendientes; **no marcado verificado globalmente**.
 
 **Base comprobada:** `APP/karta3`, rama `main`, HEAD `555c50d4dc5146963805503442e08168b55a95b5`, árbol inicialmente limpio. Incluye B16+B17/adendas integrados por PR #13. Conservar cambios posteriores y cierres históricos. Su CI anterior no acredita B18. No se crea otra rama/checkout desde esta preparación.
 
@@ -244,4 +246,64 @@ Resultado nuevo: **13/13 pruebas, 2 archivos**, SQLite temporal real; tipos corr
 
 Fallos reparados: el filtro admitía detalle en igualdad con el corte de 90 días; se rechaza esa granularidad tras consolidación. La comprobación ACL invocaba `Get-Acl` en Windows PowerShell heredando módulos de PowerShell 7 incompatibles; se usa lectura ACL .NET sin autoload y sin relajar permisos. Dos avisos de lint localizados durante edición reparados; puerta final aún pendiente.
 
-Etapas 2/3 en desarrollo; **B18 no verificado ni recogida pública activada**. La alineación documental general y Linux permanecen pendientes, además de las comprobaciones integradas todavía no ejecutadas.
+Estado al superar esta primera puerta: etapas 2/3 en desarrollo; **B18 no verificado ni recogida pública activada**. La alineación documental general, Linux y las comprobaciones integradas estaban pendientes. Los resultados posteriores se registran a continuación sin sustituir esta evidencia de etapa.
+
+### Etapas 2 y 3 — entrega técnica local
+
+Código inicial registrado en `341d04d`; reparación de lint de fixture `0eb16bd`; correcciones focales posteriores `167a069`, `08df5b1`, `d59f027`, calidad operativa/partida durable `4e326d6` y privacidad de rutas `1ce58e2`. Implementadas las tres etapas: instrumentación focal, proyecciones/consultas/CSV privados, mantenimiento y copias/restauración de agregados. La referencia general de alineación **no se ha recibido** y no existe runtime Linux disponible aquí. Estado: **implementado/comprobado técnicamente en Windows; alineación documental y verificación Linux pendientes; B18 no cerrado como verificado**. No se activa recogida pública.
+
+**Puerta final nueva, código `1ce58e22dcbb051cfe36e3724798101494b9273d`:** `npm run check`, salida0, **587/587 pruebas en51 archivos**, **92 módulos** sin imports prohibidos/ciclos. Incluye49 pruebas nuevas B18 y538 regresiones ejecutadas de nuevo; no se atribuye evidencia histórica a este bloque. Tipos/lint/build correctos; catálogo generado de tres, sin cambios de contenido. Registro final local ignorado `playwright-report/b18/check-final.log`; ejecuciones anteriores conservadas con su referencia de código.
+
+**Navegador final compilado, Windows/Chrome155.0.8059.80, Playwright1.63.0, dos trabajadores/cero reintentos:**
+
+```text
+npm run test:browser -- --workers=2 --retries=0 usage.spec.ts room.spec.ts join.spec.ts configuration.spec.ts cancelGame.spec.ts resultNotice.spec.ts timedRealGame.spec.ts
+# 39/39, 1,9 min
+npm exec -- playwright test --workers=2 --retries=0 bots.spec.ts format2Presentation.spec.ts timedGame.spec.ts --grep "B09 P2 normal compilado|B15 espera:|B15 frontera medida|B08 T1|B08 T2"
+# 8/8, 49.8s; mismo build, sin reconstrucción adicional
+```
+
+Instancia propia normal `http://127.0.0.1:60901`, PID18176, recogida off, detenida al finalizar. Las pruebas B18 usan además hijos propios con `environment=test/traffic=SYNTHETIC`; ningún servidor del autor se detuvo. Verificador del arnés compara rutas/SHA de dist-server, dist y catálogo antes/después: **idénticos en ambas selecciones**. No hubo cambios de producto durante estas puertas. `browser-summary.json`, `browser-1.log`, `browser-2.log` y capturas de regresiones permanecen locales/ignorados. No se ejecutó batería completa de navegador ni matriz completa V2 entre etapas.
+
+**Tiempo real separado:** integración HTTP/Socket.IO con SystemClock/TimerScheduler, SQLite bloqueado y activo desconectado: inicio14:36:43.769 UTC, límite14:36:58.769, observado14:36:58.784; movimiento TIMEOUT mientras cola estadística conservaba1 evento/386 bytes. No se avanzó reloj simulado. Regresión Chrome B08 compilada normal: inicio17:24:40.059 UTC, límite17:24:55.059, observación17:24:55.614, recuperación del mismo jugador y contador1. Los bordes de revisión/retención/90 días/meses, edades de cola y timeout de consulta se comprobaron con tiempo controlado; no90 días ni30 minutos reales.
+
+**Procesos reales:** `usageProcess.test.ts` arranca, termina y rearranca procesos compilados propios. Kill abrupto sin final durable → UNKNOWN sin duración inventada; parada controlada → TECHNICAL_INTERRUPTION estadístico. En Windows el arnés privado notifica SIGTERM al manejador dentro del hijo: prueba el cierre/reinicio real y su manejador, **no** una señal POSIX nativa. No incorpora IPC o endpoint de prueba al producto. No restaura partidas/sesiones.
+
+**Fallos y reparaciones registrados durante el desarrollo:**
+
+- Corte exacto90 días; correlación tardía y agregados/restauración del mes actual ajustados sin solapamiento. Diferenciar respuesta de entrada resuelta de NEW_JOIN; resultados faltantes permanecen incompletos.
+- ACL Windows: evitar autoload incompatible de módulos PowerShell heredados. Verificados directorio propio y rechazo de herencia abierta; Linux no acreditado por esta prueba.
+- Ensayos iniciales de navegador: nombre sintético mayor de16 grafemas y selector de confirmación incorrecto; reparados los datos/selectores **nuevos**, sin cambiar regla ni aserciones anteriores.
+- Orden del fixture con timestamps iguales: inspección usa orden de inserción, no UUID aleatorio. Edad de cola se controla en el borde real de60 s, evitando una carrera de1 ms del ensayo inicial.
+- Fixture de worker sin respuesta necesitaba copiar su nueva dependencia privada; control de ruta movido antes de finally para cumplir lint. Conserva test de5 s y no devuelve informe vacío.
+- Revisión semántica: contribuciones/fórmulas en aplicación; lector administrativo realmente solo lectura; lease de escritor; copia de lectura sin modificar arranque vivo; no pausar ingesta por contención de un informe/copia. Parámetros operativos de B18 sin cambios; margen previo de páginas/índices y heap128 MiB se documentan como detalles técnicos.
+- Contratos internos estrictos: números como cadenas no se convierten; rechazo seguro de entrada malformada sin requestId y pérdida diagnosticada al saturar el mapa acotado. Directorios estáticos prohibidos también con variantes de mayúsculas en Windows.
+- Una ejecución intermedia detectó EPERM al borrar la instalación temporal antes de terminar el cierre nativo del worker en Windows. La fixture espera la salida nativa y limpieza de su lease después del cierre acotado; no aumenta el drenaje de producto ni cambia aserciones del juego. Reparación `d59f027`; puerta final correcta.
+- Salud técnica privada con instantánea fechada de cola/bytes/descartes, validación cerrada y señal de antigüedad superior a60 s. Publicación al cambiar con una sola actualización pendiente, fuera de la decisión síncrona. No añade un evento de catálogo ni transmite identificadores. El informe no la presenta como estado en vivo ni garantía de ausencia de pérdidas.
+- Primera selección de38 pasó con NODE_ENV=test heredado por Vite, produciendo bundle de desarrollo distinto (577,62 kB frente339,53 kB). **No se acredita como puerta final**. Se corrigió únicamente el arnés ignorado, reconstruyó producción y repitió con huellas idénticas. Las ampliaciones focales posteriores concluyen en la selección final39+8 sobre1ce58e2; los registros intermedios conservan su SHA (0eb16bd/d59f027/4e326d6). Diagnóstico preservado en `browser-inicial-node-env-test.log` y `browser-summary-inicial-node-env-test.json`.
+
+### Resultado por criterio
+
+| Criterio | Evidencia nueva ejecutada / alcance y límite |
+|---|---|
+| A01 | Chrome B18: documento/F5/SPA, dos sesiones, pestaña directa a sala, recuperación sin nueva portada. Unidad StrictMode/rerender/rotación30 min/12 h y reintento único. Normal off no genera tráfico. |
+| A02 | HTTP/Socket.IO reales: crear/recuperar, entradas nuevas/existentes/rechazadas, contexto inválido descartado; replay de aceptación/rechazo y ack ignorado. Regresiones compiladas de capacidad/código/configuración. Intención sin resultado no se clasifica fallo. |
+| A03 | SQLite real: id/claves lógicas/conflicto sin sobrescritura, rollback inducido/repetición/purga repetida; inicio concurrente de dos sockets host, hechos únicos y emisiones fallidas dirigidas. No demuestra entrega exactamente una vez entre RAM y SQL. |
+| A04 | Snapshot de las tres copias aprobadas con esquemas/versiones actuales, host jugador/observador, modos/optimización; caso de aplicación EASY/HARD y configuración completa aceptada. Sin datos ocultos ni borradores. |
+| A05 | Dataset conocido2/4,1/2,1/3; sumas/media/min/max; entrada resuelta no equivale a éxito; cruce UTC de mes/medianoche, cobertura/denominador cero/null y censura. Tiempo controlado. |
+| A06 | Acciones legales hasta fin ordinario, inactividad/automático, cancelación en turno/revisión/final/desempate y límite−1/0/+1 ms con callbacks/emit perdidos; parada controlada. Además, Chrome sintético con dos humanos y bot HARD/adaptadores normales hasta fin: un único terminal durable, duración positiva,45 puntos/30 jugadas humanas, F5 y otra sala. Revisión forma parte de duración; lectura/retención no añaden final. |
+| A07 | Dos procesos propios compilados con corte/rearranque real, UNKNOWN sin duración y RAM vacía; regresiones T04/B13 ordinario/automático/retorno/F5/otra sala. No señal POSIX en Windows. |
+| A08 | DTO runtime cerrados, origen/tamaño/contexto/rate limits, falsificación SERVER rechazada; inspección DB/hechos/ack/vistas/CSV y fuente de logs sin datos excluidos. HTTP404 de privados sin fallback, cookies/LS/sessionStorage sin identificadores analíticos. No auditoría jurídica ni de toda la red del VPS. |
+| A09 | Archivo/metadatos separados por entorno y tráfico; mismatch no aceptado, sintéticos excluidos de lectura HUMAN. Sink nulo por defecto en automatizaciones; normal compilado sin env activa ni hechos. No detección universal de robots. |
+| A10 | SQLite real, reloj controlado:90 días exactos,12 meses/cambio de año, consolidación antes de borrar, rollback/repetición, cohorte abierta censurada, meses sin duplicación. SHA/UUID ausentes de bytes del archivo purgado y WAL truncado. Copias nuevas sin eventos/proyecciones/IDs. No borrado físico forense del soporte. |
+| A11 | Cola2048/2 MiB y reserva, edad60 s controlada, DB bloqueada con reintentos y juego/turno real15 s, corrupción intacta, caída de worker real, DB/WAL con presupuestos de64 KiB en fixture (defaults512/64 MiB intactos) que pausan antes de batch; consulta5 s con worker sustituto sin respuesta. Salud técnica fechada/descartes y antigüedad explícitos. Sonda SQLite real query_only rechaza escritura y conserva el evento anterior. No disco físico lleno ni capacidad512 MiB/VPS demostrados. |
+| A12 | Comando fijo/CSV real en proceso propio, autorización ACL Windows positiva/negativa, lector sin mutación, backup/restauración SQLite nueva/AES-GCM/7 rotatorias/caducidad mensual. Compose validado sintácticamente. **Pendientes Linux no root/volumen real, SSH/delegación/tarea/copias fuera de disco y supervisión operativa.** |
+| A13 | Check587 y92 módulos;47 Chrome seleccionados sobre build idéntico, partida completa humano/EASY/HARD normal y partida completa con SQLite sintético, normal/compacta/frontera1367–1368 y360/390/1280, privacidad/recuperación. Revisión semántica en mapa APP. Sin cambios en Game, presentación ni124 archivos aprobados. No aprobación humana/dispositivos físicos/C09–C10 completos. |
+
+### Cierre y traslado
+
+Integridad124/124 antes/APP/Git contra base: [inventario y huellas](evidencias/B18/integridad.json). [Resumen de evidencia](evidencias/B18/README.md). [Guía y recorrido manual sintético](../operacion/ANALITICA_USO.md). [Texto para el autor → Arquitectura/Coordinación](evidencias/B18/TRASLADO_ARQUITECTURA.md): excepción estadística, worker/lector/volumen, snapshot compartido, cohortes/unknown, privacidad, retención y copias exclusivamente agregadas. **Referencia de alineación recibida: pendiente.** No se han editado fuentes TFM.
+
+Linux no ejecutado: `docker info` no encuentra `dockerDesktopLinuxEngine`; WSL no proporciona aquí un entorno utilizable. No se instala ni arranca infraestructura ajena para sortearlo. Son pendientes reales que impiden el cierre global como verificado. El autor debe preparar/validar Linux y operación externa, revisión de privacidad e información, acceso administrativo real y devolución de alineación. Recorridos manuales humanos de B18 no realizados; instrucciones listas. Datos de pruebas exclusivamente sintéticos y temporales, sin DB/CSV/secreto en Git.
+
+**Entrega local sin push/PR/GHCR/despliegue; recogida pública OFF al terminar.** No hay panel ni modo HUMAN habilitable desde configuración actual. Salas/partidas/sesiones siguen en RAM; C09–C10 permanecen parciales.

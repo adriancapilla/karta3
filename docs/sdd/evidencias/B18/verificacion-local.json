@@ -1,0 +1,125 @@
+{
+  "date": "2026-10-18",
+  "platform": "Windows x64",
+  "base": "555c50d4dc5146963805503442e08168b55a95b5",
+  "reviewedCode": "1ce58e22dcbb051cfe36e3724798101494b9273d",
+  "node": "v24.19.0",
+  "nodeExecutable": "C:\\Users\\Adrian\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+  "npm": "11.6.2",
+  "sqlite": "3.53.3",
+  "icu": "78.3",
+  "unicode": "17.0",
+  "chrome": "155.0.8059.80",
+  "playwright": "1.63.0",
+  "publicCollection": "OFF",
+  "syntheticOnly": true,
+  "check": {
+    "command": "npm run check",
+    "exitCode": 0,
+    "tests": 587,
+    "testFiles": 51,
+    "productionModules": 92,
+    "previousRegressionTestsReexecuted": 538,
+    "newTests": 49,
+    "log": "playwright-report/b18/check-final.log"
+  },
+  "browser": {
+    "workers": 2,
+    "retries": 0,
+    "totalPassed": 47,
+    "selections": [
+      {
+        "args": [
+          "run",
+          "test:browser",
+          "--",
+          "--workers=2",
+          "--retries=0",
+          "usage.spec.ts",
+          "room.spec.ts",
+          "join.spec.ts",
+          "configuration.spec.ts",
+          "cancelGame.spec.ts",
+          "resultNotice.spec.ts",
+          "timedRealGame.spec.ts"
+        ],
+        "base": "http://127.0.0.1:60901",
+        "pid": 18176,
+        "startedAt": "2026-10-18T17:23:30.053Z",
+        "endedAt": "2026-10-18T17:25:29.547Z",
+        "exitCode": 0,
+        "servedBuildUnchanged": true,
+        "passed": 39,
+        "command": "npm run test:browser -- --workers=2 --retries=0 usage.spec.ts room.spec.ts join.spec.ts configuration.spec.ts cancelGame.spec.ts resultNotice.spec.ts timedRealGame.spec.ts"
+      },
+      {
+        "args": [
+          "exec",
+          "--",
+          "playwright",
+          "test",
+          "--workers=2",
+          "--retries=0",
+          "bots.spec.ts",
+          "format2Presentation.spec.ts",
+          "timedGame.spec.ts",
+          "--grep",
+          "B09 P2 normal compilado|B15 espera:|B15 frontera medida|B08 T1|B08 T2"
+        ],
+        "base": "http://127.0.0.1:60901",
+        "pid": 18176,
+        "startedAt": "2026-10-18T17:25:29.548Z",
+        "endedAt": "2026-10-18T17:26:20.687Z",
+        "exitCode": 0,
+        "servedBuildUnchanged": true,
+        "passed": 8,
+        "command": "npm exec -- playwright test --workers=2 --retries=0 bots.spec.ts format2Presentation.spec.ts timedGame.spec.ts --grep B09 P2 normal compilado|B15 espera:|B15 frontera medida|B08 T1|B08 T2"
+      }
+    ],
+    "ownServerStoppedByHarness": true,
+    "fullSuiteExecuted": false
+  },
+  "realWriterBlockedExpiry": {
+    "startedAt": "2026-10-18T14:36:43.769Z",
+    "deadline": "2026-10-18T14:36:58.769Z",
+    "observedAt": "2026-10-18T14:36:58.784Z",
+    "activeDisconnected": true,
+    "otherSessionObserving": true,
+    "queuedEvents": 1,
+    "queuedBytes": 386,
+    "clock": "SystemClock",
+    "scheduler": "TimerScheduler",
+    "fakeClock": false
+  },
+  "realChromeExpiry": {
+    "startedAt": "2026-10-18T17:24:40.059Z",
+    "deadline": "2026-10-18T17:24:55.059Z",
+    "transportClosedAt": "2026-10-18T17:24:40.131Z",
+    "observedAt": "2026-10-18T17:24:55.614Z",
+    "counter": 1,
+    "recoveredSamePlayer": true,
+    "fakeClock": false
+  },
+  "composeSyntax": {
+    "command": "docker compose -f deploy/compose.yaml -f deploy/compose.usage.yaml config --quiet",
+    "exitCode": 0,
+    "linuxRuntimeExecuted": false
+  },
+  "readonlyProbe": {
+    "node": "v24.19.0",
+    "sqlite": "3.53.3",
+    "mode": "SQLite query_only",
+    "writeRejected": true,
+    "priorEventsPreserved": 1,
+    "physicalReadOnlyDisk": false
+  },
+  "approvedDeckFilesUnchanged": 124,
+  "limits": [
+    "Linux/runtime/UID1000/volume pending",
+    "General architecture alignment reference pending",
+    "Public privacy/operation review pending; collection remains OFF",
+    "SSH/delegation, external encrypted backup and daily operation pending",
+    "No human acceptance, physical device, physical full disk or forensic erasure claim",
+    "C09-C10 remain partial"
+  ]
+}
