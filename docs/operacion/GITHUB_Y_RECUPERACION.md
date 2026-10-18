@@ -1,6 +1,6 @@
 # GitHub, comprobaciones y recuperación
 
-Actualizado: 17/10/2026. Repositorio existente: `E:\KARTA3\KARTA3_IA\APP\karta3`.
+Actualizado: 18/10/2026. Repositorio existente: `E:\KARTA3\KARTA3_IA\APP\karta3`.
 Versión de paquete: 0.1.0. Remoto privado: `https://github.com/adriancapilla/karta3.git`.
 
 ## Publicación B18 — preparación del 18/10/2026
@@ -12,6 +12,17 @@ Alineación general recibida18/10 y contrastada de lectura: Aplicación16.1/17.1
 Puertas: despacho manual focal B18 con imagen/volumen sintético, después CI completa sin filtro del HEAD final, revisión/squash y CI completa de main, clon limpio con catálogo3/124 huellas. Mantener presupuestos Chrome30/trabajo35 e imagen20/30, worker1/retries0; cualquier insuficiencia requiere tiempos y diagnóstico. Los verificadores usan solo datos propios/volúmenes efímeros y publican resultados resumidos, nunca DB, WAL/SHM, informes privados, claves o contexto de sesión.
 
 Cierre de ejecución en la PR de esta rama: fuente final/squash, ejecuciones/resultados/duración, clon, etiqueta de recuperación y OCI de main con artefacto/digest/caducidad; sin commits solo para anotar el SHA integrado. Preservar originales e históricos. Preparación operativa pendiente: privacidad/información, habilitación real expresa, administración VPS y copias externas/ensayo del responsable. No HUMAN/GHCR/VPS/dashboard/métricas adicionales.
+
+### Recuperación tras reinicio: reparación autorizada y puerta correcta
+
+[PR #14](https://github.com/adriancapilla/karta3/pull/14). Primera CI completa [39162421739](https://github.com/adriancapilla/karta3/actions/runs/39162421739), fuente65efd1a: check589/51/93 e imagen correctos, Chrome195/196 en1490,078997s; trabajo27min25, dentro de30/35. No vencimiento de presupuesto. B06-17/E7 falló porque disconnectSockets(true) enviaba DISCONNECT de namespace, desactivando la reconexión de Socket.IO. Tras diagnóstico y autorización expresa del autor,29083ff cierra únicamente el transporte Engine.IO y conserva parada controlada, disposición y drenaje estadístico2s. Sin modificación del cliente, prueba B06, plazos, reglas o retención.
+
+Puerta [39165051205](https://github.com/adriancapilla/karta3/actions/runs/39165051205) sobre29083ff: **589 pruebas/51 archivos/93 módulos;5/5 Chrome en39,614512s**, B06 y los cuatro B18, worker1/retries0/omitidos0/flaky0. Imagen correcta en263s, paso192s, HTTPS1/1 en4,6s. SIGTERM conserva TECHNICAL_INTERRUPTION; KILL conserva UNKNOWN sin duración, incluso con PID reutilizado observado en esta ejecución; RAM vacía y recogida off en ambos. Volumen físicamente read-only no altera DB ni impide crear sala; restauración aislada mantiene agregados, sin eventos/subjects, rechaza clave incorrecta/sobrescritura. Reportes y OCI de diagnóstico preservados; no candidato final de main.
+
+Comprobación Windows estable3/3 en15,38s sobre build terminado y huellas dist/dist-server invariables. El3/3 previo en22,32s solapó compilación y se conserva solo como intermedio, no como evidencia final. Main remoto555c50d; main locald9262c9, preparación original ya conservada por la fuente archivada. La sincronización posterior se hará sin visitar un producto antiguo ni perder ese commit. Reserva4516d23 intacta.
+
+La siguiente CI será completa del HEAD documental definitivo, sin filtro:196 Chrome/24 archivos, check e imagen, con los presupuestos y criterios anteriores. Resultados reales de esa CI, squash, CI main, clon y OCI final se registrarán en la PR; no se anticipa su aprobación. Siguen pendientes privacidad/información, autorización real futura, operación/copias externas/ensayo del responsable y controles físicos declarados. Sin HUMAN/GHCR/VPS.
+
 ## Publicación conjunta B16+B17 — 16/10/2026
 
 ### Corrección autorizada B10/Solar: puertas focales correctas — 17/10/2026
