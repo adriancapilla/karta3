@@ -3,6 +3,15 @@
 Actualizado: 17/10/2026. Repositorio existente: `E:\KARTA3\KARTA3_IA\APP\karta3`.
 Versión de paquete: 0.1.0. Remoto privado: `https://github.com/adriancapilla/karta3.git`.
 
+## Publicación B18 — preparación del 18/10/2026
+
+Base main555c50d, rama existente feat/b18-analitica-basica, preparación d9262c9, código1ce58e2 y cierre fedd873; árbol limpio verificado antes de intervenir, remoto privado y sin PR B18 al comenzar. No otras ramas/checkouts de desarrollo creados, reserva4516d23 no aplicada, sin histórico manual del autor ni servidores usados.
+
+Alineación general recibida18/10 y contrastada de lectura: Aplicación16.1/17.12; Infraestructura1–4/12.1/14.1/15.1–15.2/16.9. Recepción registrada en B18, evidencia/traslado, mapa APP y guía de operación, sin modificar fuentes TFM/contexto. Windows587/51/92 y selecciones39+8 son evidencia local histórica; partidas/informes manuales comunicados son sintéticos. No acreditan Linux o batería completa.
+
+Puertas: despacho manual focal B18 con imagen/volumen sintético, después CI completa sin filtro del HEAD final, revisión/squash y CI completa de main, clon limpio con catálogo3/124 huellas. Mantener presupuestos Chrome30/trabajo35 e imagen20/30, worker1/retries0; cualquier insuficiencia requiere tiempos y diagnóstico. Los verificadores usan solo datos propios/volúmenes efímeros y publican resultados resumidos, nunca DB, WAL/SHM, informes privados, claves o contexto de sesión.
+
+Cierre de ejecución en la PR de esta rama: fuente final/squash, ejecuciones/resultados/duración, clon, etiqueta de recuperación y OCI de main con artefacto/digest/caducidad; sin commits solo para anotar el SHA integrado. Preservar originales e históricos. Preparación operativa pendiente: privacidad/información, habilitación real expresa, administración VPS y copias externas/ensayo del responsable. No HUMAN/GHCR/VPS/dashboard/métricas adicionales.
 ## Publicación conjunta B16+B17 — 16/10/2026
 
 ### Corrección autorizada B10/Solar: puertas focales correctas — 17/10/2026

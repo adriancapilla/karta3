@@ -307,3 +307,13 @@ Integridad124/124 antes/APP/Git contra base: [inventario y huellas](evidencias/B
 Linux no ejecutado: `docker info` no encuentra `dockerDesktopLinuxEngine`; WSL no proporciona aquí un entorno utilizable. No se instala ni arranca infraestructura ajena para sortearlo. Son pendientes reales que impiden el cierre global como verificado. El autor debe preparar/validar Linux y operación externa, revisión de privacidad e información, acceso administrativo real y devolución de alineación. Recorridos manuales humanos de B18 no realizados; instrucciones listas. Datos de pruebas exclusivamente sintéticos y temporales, sin DB/CSV/secreto en Git.
 
 **Entrega local sin push/PR/GHCR/despliegue; recogida pública OFF al terminar.** No hay panel ni modo HUMAN habilitable desde configuración actual. Salas/partidas/sesiones siguen en RAM; C09–C10 permanecen parciales.
+
+## Recepción de Arquitectura y preparación de publicación — 18/10/2026
+
+Referencia general recibida del autor y contrastada en lectura: **18/10/2026**, Aplicación §16.1 y evidencia §17.12; Infraestructura §§1–4, 12.1, 14.1, 15.1–15.2 y evidencia §16.9. Alineación recibida, sin modificar TFM ni el contexto de coordinación. Los textos de cierre anteriores que indican recepción pendiente son históricos de su fecha.
+
+Windows conserva 587/587,51 archivos/92 módulos y39/39+8/8 seleccionados con dos trabajadores, no batería completa ni Linux. El autor comunica partidas manuales en instancia sintética; coordinación confirmó dos salas/inicios/finales, configuración y duraciones en informes privados. Es evidencia recibida local/sintética, no consulta nueva de este hilo al histórico del autor ni operación pública.
+
+La publicación verificará primero Linux focal B18 y la misma imagen con UID1000, raíz read-only, volumen privado, permisos, administración solo lectura, parada POSIX/recreación, persistencia estadística sin RAM jugable, copia cifrada y restauración aislada. Después CI completa de fuente y squash/main, con un trabajador/cero reintentos. No se declara superada una puerta por describirla; resultados y fallos reales se enlazarán desde el registro operativo y la PR.
+
+Siguen pendientes privacidad/información, habilitación expresa futura de recogida real, acceso administrativo en VPS, copia externa/supervisión y ensayo del responsable. Sin modo HUMAN habilitado, GHCR, VPS, dashboard, métricas nuevas o cambios editoriales. B18 no se declara verificado globalmente ni operativo públicamente.

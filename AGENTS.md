@@ -36,7 +36,7 @@ Evitar dependencias circulares. No crear una clase, paquete o interfaz por cada 
 - Una solicitud repetida, tardía o concurrente no puede duplicar jugadas, timeouts, inicios ni desempates. Toda acción se valida en el servidor respecto a sala, identidad y fase.
 - La dirección parcial del abridor cuenta para un timeout solo si el servidor la aceptó antes del vencimiento. Recargar no reinicia el reloj. Bots y humanos automáticos juegan en el servidor.
 - Un final base sin humanos activos no inicia desempate. Si el último humano pasa a automático durante un desempate ya iniciado, se completa esa ronda y se reconoce al vencedor.
-- Estado vivo en memoria de **un único proceso** por entorno para el MVP. No asumir persistencia, varias réplicas, cuentas de usuario ni base de datos sin una decisión de arquitectura posterior.
+- Estado vivo en memoria de **un único proceso** por entorno para el MVP. B18 autoriza SQLite exclusivamente estadístico, separado del juego; no restaura Game, salas, sesiones o resultados jugables. No asumir varias réplicas, cuentas de usuario ni otra persistencia sin decisión de arquitectura.
 - Una baraja se valida antes de jugar. Sus fuentes y sus JSON de ejecución se mantienen diferenciados; el catálogo público no entrega las 58 cartas ni información oculta de una partida.
 
 ## Cómo añadir código

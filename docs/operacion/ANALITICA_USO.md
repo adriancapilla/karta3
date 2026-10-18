@@ -76,3 +76,13 @@ Límites iniciales conservados de B18: ingesta 2 KiB/contexto 256 bytes; cubos 6
 `npm run check`; `npm run test:browser -- --workers=2 usage.spec.ts` y selección de regresiones registrada en B18. Pruebas usan exclusivamente datos sintéticos temporales y servidores propios. Hay pruebas de SQLite real, reloj controlado, conexiones reales y procesos compilados; no equivalen a revisión humana, dispositivos físicos o activación pública.
 
 Pendientes antes de verificado global/operación: alineación de fuentes de Arquitectura por el autor, ejecución Linux de runtime/volumen/permisos/backup, revisión de privacidad e información, autorización SSH/delegación real, tarea/supervisión de copia cifrada externa y ensayo operativo del responsable. C09–C10 permanecen parciales.
+
+## Recepción de Arquitectura y preparación de publicación — 18/10/2026
+
+Referencia general recibida del autor y contrastada en lectura: **18/10/2026**, Aplicación §16.1 y evidencia §17.12; Infraestructura §§1–4, 12.1, 14.1, 15.1–15.2 y evidencia §16.9. Alineación recibida, sin modificar TFM ni el contexto de coordinación. Los textos de cierre anteriores que indican recepción pendiente son históricos de su fecha.
+
+Windows conserva 587/587,51 archivos/92 módulos y39/39+8/8 seleccionados con dos trabajadores, no batería completa ni Linux. El autor comunica partidas manuales en instancia sintética; coordinación confirmó dos salas/inicios/finales, configuración y duraciones en informes privados. Es evidencia recibida local/sintética, no consulta nueva de este hilo al histórico del autor ni operación pública.
+
+La publicación verificará primero Linux focal B18 y la misma imagen con UID1000, raíz read-only, volumen privado, permisos, administración solo lectura, parada POSIX/recreación, persistencia estadística sin RAM jugable, copia cifrada y restauración aislada. Después CI completa de fuente y squash/main, con un trabajador/cero reintentos. No se declara superada una puerta por describirla; resultados y fallos reales se enlazarán desde el registro operativo y la PR.
+
+Siguen pendientes privacidad/información, habilitación expresa futura de recogida real, acceso administrativo en VPS, copia externa/supervisión y ensayo del responsable. Sin modo HUMAN habilitado, GHCR, VPS, dashboard, métricas nuevas o cambios editoriales. B18 no se declara verificado globalmente ni operativo públicamente.
