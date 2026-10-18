@@ -5,6 +5,7 @@ import type { RoomActions } from '../../application/roomUseCases.js';
 import { RoomError, type RoomErrorCode } from '../../application/roomError.js';
 import type { MemorySessions } from '../memorySessions.js';
 import type { ListDecks } from '../../application/deckCatalog.js';
+import { attachUsageHttp, safeUsageContext, type UsageHttp } from '../usage/http.js';
 
 const COOKIE_NAME = 'karta3_session';
 
@@ -32,10 +33,12 @@ const roomErrorStatus: Record<RoomErrorCode, number> = {
   INTERNAL_ERROR: 500
 };
 
-export function createHttpApp(dependencies: { rooms: RoomActions; sessions: MemorySessions; production: boolean; decks: ListDecks }) {
+export function createHttpApp(dependencies: { rooms: RoomActions; sessions: MemorySessions; production: boolean; decks: ListDecks; usage?: UsageHttp }) {
   const { rooms, sessions, production, decks } = dependencies;
   const app = express();
   app.disable('x-powered-by');
+  if (dependencies.usage?.enabled) app.use((_req, res, next) => { res.set('X-Karta3-Usage-Collection', 'synthetic'); next(); });
+  attachUsageHttp(app, dependencies.usage, production);
   app.use(express.json({ limit: '4kb' }));
 
   app.get('/api/decks', (_req, res) => {
@@ -84,7 +87,7 @@ export function createHttpApp(dependencies: { rooms: RoomActions; sessions: Memo
     if (!req.body || typeof req.body !== 'object' || Array.isArray(req.body) || Object.keys(req.body).length !== 0) {
       throw new TransportError('INVALID_INPUT', 400, 'La creación no necesita datos adicionales.');
     }
-    res.status(201).json({ room: rooms.createOrGet(session(req)) } satisfies RoomResponse);
+    res.status(201).json({ room: rooms.createOrGet(session(req), safeUsageContext(req.get('X-Karta3-Usage-Context'))) } satisfies RoomResponse);
   });
 
   app.get('/api/rooms/:id', (req, res) => {

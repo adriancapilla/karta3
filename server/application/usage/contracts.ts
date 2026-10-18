@@ -30,8 +30,9 @@ export type UsageReportName = typeof reports[number];
 export type UsageFilter = { report: UsageReportName; from: number; to: number; environment: UsageEnvironment };
 export type Aggregate = { report: UsageReportName; dimension: string; metric: string; count: number; sum: number; min: number | null; max: number | null };
 export type UsageQuality = { coverageFrom: number; asOf: number; possibleLoss: boolean; conflicts: number; unlinked: number;
-  lastDurableAt: number | null; lastMaintenanceAt: number | null; restoredAggregatesOnly: boolean };
-export type UsageReport = { version: 1; filter: UsageFilter; quality: UsageQuality; rows: Aggregate[];
+  lastDurableAt: number | null; lastMaintenanceAt: number | null; restoredAggregatesOnly: boolean; partialCoverage: boolean;
+  lastBackupAt: number | null; collection: 'enabled' | 'disabled' | 'degraded' };
+export type UsageReport = { version: 1; traffic: UsageTraffic; filter: UsageFilter; quality: UsageQuality; rows: Aggregate[];
   numerator: number; denominator: number; percentage: number | null; meanDurationMs: number | null; provisional: boolean };
 export type UsageErrorCode = 'INVALID_FILTER' | 'ENVIRONMENT_MISMATCH' | 'INSUFFICIENT_DETAIL' | 'COLLECTION_DISABLED'
   | 'STORAGE_UNAVAILABLE' | 'REPORT_TIMEOUT' | 'NOT_AUTHORIZED';

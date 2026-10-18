@@ -35,3 +35,8 @@ barajas/.catalogo-*.tmp
 **/*.key
 **/node_modules/
 **/.git/
+**/*.sqlite
+**/*.sqlite-wal
+**/*.sqlite-shm
+**/*.sqlite-journal
+**/*.agg.enc

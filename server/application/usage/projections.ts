@@ -1,8 +1,8 @@
-import type { Aggregate, UsageConfiguration, UsageEvent, UsageReportName } from '../../application/usage/contracts.js';
+import type { Aggregate, UsageConfiguration, UsageEvent, UsageReportName } from './contracts.js';
 
-export type Subject = { key: string; at: number; traffic: string; boot: string } & (
+export type Subject = { key: string; at: number; traffic: string; boot: string; detectedAt?: number } & (
   | { kind: 'view' }
-  | { kind: 'create-intent' | 'join-intent'; matched: boolean }
+  | { kind: 'create-intent' | 'join-intent'; matched: boolean; outcome?: 'NEW_JOIN' | 'EXISTING_PARTICIPATION' | 'REJECTED' }
   | { kind: 'room'; state: string; linked: boolean }
   | { kind: 'join'; outcome: string; reason: string | null; linked: boolean }
   | { kind: 'game'; state: string; configuration: UsageConfiguration; people: string[]; automatic: string[] }
@@ -15,10 +15,9 @@ export function contributions(subject: Subject): Contribution[] {
     rows.push({ report, metric, count, dimension, sum, min, max, at: subject.at, traffic: subject.traffic });
   switch (subject.kind) {
     case 'view': add('access', 'views'); break;
-    case 'create-intent': case 'join-intent': {
-      const report = subject.kind === 'create-intent' ? 'creation' : 'joining';
-      add(report, 'intentions'); add(report, subject.matched ? 'confirmed-intentions' : 'unconfirmed-intentions'); break;
-    }
+    case 'create-intent': add('creation', 'intentions'); add('creation', subject.matched ? 'confirmed-intentions' : 'unconfirmed-intentions'); break;
+    case 'join-intent': add('joining', 'intentions'); add('joining', subject.matched ? 'resolved-intentions' : 'unresolved-intentions');
+      if (subject.outcome === 'NEW_JOIN') add('joining', 'confirmed-intentions'); break;
     case 'room': add('creation', 'created'); add('creation', subject.linked ? 'linked-creations' : 'unlinked-creations');
       add('room-conversion', 'rooms'); add('room-conversion', subject.state); break;
     case 'join': add('joining', subject.outcome, 1, subject.reason ?? ''); add('joining', subject.linked ? 'linked-results' : 'unlinked-results'); break;

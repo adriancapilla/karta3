@@ -48,6 +48,7 @@ describe('B18 SQLite temporal real, reloj controlado', () => {
     expect(read(store, 'completion', cutoff)).toMatchObject({ numerator: before.numerator, denominator: before.denominator });
     expect(store.db.prepare('SELECT count(*) n FROM events').get()?.n).toBe(0);
     const contents = JSON.stringify(store.db.prepare('SELECT * FROM monthly').all()); for (const id of [...rooms, ...games, ...people]) expect(contents).not.toContain(id);
+    const bytes = fs.readFileSync(store.file); for (const id of [...rooms, ...games, ...people, boot]) expect(bytes.includes(Buffer.from(id))).toBe(false);
     expect(() => store.read({ report: 'completion', environment: 'test', from: start + 1, to: cutoff }, cutoff, 'SYNTHETIC')).toThrow('INSUFFICIENT_DETAIL');
   });
   it('censura/reinicio desconocido y entorno no se convierten en resultados', () => {
@@ -67,6 +68,8 @@ describe('B18 SQLite temporal real, reloj controlado', () => {
     expect(restored.db.prepare('SELECT count(*) n FROM events').get()?.n).toBe(0);
     expect(restored.db.prepare('SELECT count(*) n FROM subjects').get()?.n).toBe(0);
     expect(read(restored, 'creation', Date.UTC(2026, 1, 1)).rows.find((r) => r.metric === 'created')?.count).toBe(1);
+    expect(read(restored, 'creation', start + 2000).quality).toMatchObject({ asOf: start + 1000, restoredAggregatesOnly: true, partialCoverage: true });
+    expect(() => restored.append([event({ name: 'room_created', data: { roomRef: randomUUID() } })])).toThrow('STORAGE_UNAVAILABLE');
   });
   it('rechaza datos ampliados y fuentes falsificadas', () => {
     const fact = event({ name: 'room_created', data: { roomRef: randomUUID() } });
@@ -104,5 +107,27 @@ describe('B18 SQLite temporal real, reloj controlado', () => {
     for (let day = 1; day <= 8; day++) await backupUsage(store, directory, key, start + day * 86_400_000);
     expect(fs.readdirSync(directory)).toHaveLength(7);
     await backupUsage(store, directory, key, Date.UTC(2026, 1, 1)); expect(fs.readdirSync(directory)).toHaveLength(1);
+  });
+  it('cruza medianoche/mes: conversión por creación, configuración por inicio y duración por fin', () => {
+    const { store } = setup(); const roomRef = randomUUID(); const gameRef = randomUUID();
+    const january = Date.UTC(2026, 0, 31, 23, 59, 59); const february = Date.UTC(2026, 1, 1);
+    store.append([event({ name: 'room_created', data: { roomRef } }, january), event({ name: 'game_started', data: { roomRef, gameRef, configuration,
+      humanParticipations: [1, 2].map(() => ({ participationRef: randomUUID(), isHost: false })) } }, february),
+      event({ name: 'game_ended', data: { roomRef, gameRef, reason: 'DECK_COMPLETED', durationMs: 5000, evidence: 'GAME_RESULT' } }, february + 5000)]);
+    const januaryReport = store.read({ report: 'room-conversion', environment: 'test', from: start, to: february }, february + 5001, 'SYNTHETIC');
+    expect(januaryReport).toMatchObject({ numerator: 1, denominator: 1 });
+    const januaryConfig = store.read({ report: 'configuration', environment: 'test', from: start, to: february }, february + 5001, 'SYNTHETIC'); expect(januaryConfig.numerator).toBe(0);
+    const februaryDuration = store.read({ report: 'duration', environment: 'test', from: february, to: february + 5001 }, february + 5001, 'SYNTHETIC');
+    expect(februaryDuration).toMatchObject({ denominator: 1, meanDurationMs: 5000 });
+  });
+  it('entrada rechazada es resultado resuelto, no nueva incorporación; sin resultado deja tasa incompleta', () => {
+    const { store } = setup(); const visitId = randomUUID(); const ids = [randomUUID(), randomUUID()]; const roomRef = randomUUID();
+    store.append([event({ name: 'room_created', data: { roomRef } }), ...ids.map((intentId): UsageEvent => ({ eventId: randomUUID(), version: 1, source: 'BROWSER',
+      environment: 'test', traffic: 'SYNTHETIC', bootRef: boot, occurredAt: start + 1, receivedAt: start + 1, visitId, name: 'room_join_attempted', data: { intentId } }))]);
+    expect(read(store, 'joining').percentage).toBeNull();
+    store.append([event({ name: 'room_join_resolved', data: { intentRef: randomUUID(), outcome: 'REJECTED', reason: 'ROOM_FULL', visitId, intentId: ids[0] } }),
+      event({ name: 'room_join_resolved', data: { intentRef: randomUUID(), outcome: 'NEW_JOIN', reason: null, roomRef, participationRef: randomUUID(), visitId, intentId: ids[1] } })]);
+    expect(read(store, 'joining')).toMatchObject({ numerator: 1, denominator: 2, percentage: 50 });
+    expect(read(store, 'joining').rows.find((r) => r.metric === 'resolved-intentions')?.count).toBe(2);
   });
 });

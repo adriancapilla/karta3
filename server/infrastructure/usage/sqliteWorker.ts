@@ -1,6 +1,8 @@
 import { Worker } from 'node:worker_threads';
-import type { UsageEnvironment, UsageEvent, UsageEventSink, UsageEventStore, UsageFilter, UsageMaintenance, UsageReport, UsageReportReader } from '../../application/usage/contracts.js';
+import { randomUUID } from 'node:crypto';
+import type { UsageEnvironment, UsageEvent, UsageEventSink, UsageEventStore, UsageFilter, UsageMaintenance, UsageReport, UsageReportReader, UsageTraffic } from '../../application/usage/contracts.js';
 import { UsageError, type UsageErrorCode } from '../../application/usage/contracts.js';
+import { releaseOrphanWriter } from './privateFiles.js';
 
 export type UsageLimits = { events: number; bytes: number; serverReserve: number; batch: number; flushMs: number;
   retriesMs: number[]; maxAgeMs: number; drainMs: number; databaseBytes: number; walBytes: number; reserveBytes: number };
@@ -8,8 +10,8 @@ export const usageLimits: UsageLimits = { events: 2048, bytes: 2 * 1024 ** 2, se
   retriesMs: [1000, 5000, 30_000], maxAgeMs: 60_000, drainMs: 2000, databaseBytes: 512 * 1024 ** 2, walBytes: 64 * 1024 ** 2, reserveBytes: 128 * 1024 ** 2 };
 type Entry = { event: UsageEvent; bytes: number; born: number };
 type Pending = { resolve: (value: unknown) => void; reject: (error: Error) => void; timer: NodeJS.Timeout };
-type WriterOptions = { file: string; environment: UsageEnvironment; bootRef?: string; now?: number; backupDirectory?: string; backupKey?: string;
-  limits?: Partial<UsageLimits>; warning?: (code: string) => void };
+type WriterOptions = { file: string; environment: UsageEnvironment; traffic?: UsageTraffic; bootRef?: string; now?: number; backupDirectory?: string; backupKey?: string;
+  limits?: Partial<UsageLimits>; warning?: (code: string) => void; existingOnly?: boolean; readOnly?: boolean; collecting?: boolean };
 
 /** Un batch en vuelo; el puerto nunca admite espera/IO o excepciones hacia el juego. */
 export class SqliteUsageWorker implements UsageEventSink, UsageEventStore, UsageReportReader, UsageMaintenance {
@@ -24,18 +26,29 @@ export class SqliteUsageWorker implements UsageEventSink, UsageEventStore, Usage
   private retryAt = 0;
   private readonly timer: NodeJS.Timeout;
   private stopped = false;
+  private closing?: Promise<void>;
   private failed = false;
+  private paused = false;
+  private pauseCause = 'DISK_LIMIT';
   private exportBusy = false;
   private drops: Record<string, number> = {};
   private warnings = new Map<string, number>();
+  private readonly writerToken = randomUUID();
+  private cleanup: Promise<void> = Promise.resolve();
   readonly ready: Promise<void>;
   constructor(private readonly options: WriterOptions) {
     this.limits = { ...usageLimits, ...options.limits };
     const workerUrl = import.meta.url.endsWith('.ts') ? new URL('../../../dist-server/server/infrastructure/usage/worker.js', import.meta.url) : new URL('./worker.js', import.meta.url);
-    this.worker = new Worker(workerUrl, { workerData: { ...options, warning: undefined, now: options.now ?? Date.now(), limits: this.limits } });
+    this.worker = new Worker(workerUrl, { resourceLimits: { maxOldGenerationSizeMb: 128 },
+      workerData: { ...options, collecting: options.collecting ?? !!options.bootRef, writerToken: this.writerToken, traffic: options.traffic ?? 'SYNTHETIC', warning: undefined, now: options.now ?? Date.now(), limits: this.limits } });
     this.ready = new Promise((resolve, reject) => {
       const initial = setTimeout(() => { this.fail(); reject(new UsageError('STORAGE_UNAVAILABLE')); }, 5000);
-      this.worker.on('message', (message: { ready?: boolean; failed?: string; warning?: string; id?: number; result?: unknown; error?: string; transient?: boolean }) => {
+      this.worker.on('message', (message: { ready?: boolean; failed?: string; warning?: string; id?: number; result?: unknown; error?: string; transient?: boolean; paused?: boolean; resumed?: boolean }) => {
+        if (message.paused || message.warning === 'MAINTENANCE_FAILED') {
+          this.paused = true; this.pauseCause = message.warning === 'MAINTENANCE_FAILED' ? 'MAINTENANCE_FAILED' : 'DISK_LIMIT'; this.warn(this.pauseCause);
+          for (const entry of this.queue.splice(0)) this.drop(entry, this.pauseCause);
+        }
+        if (message.resumed) this.paused = false;
         if (message.ready) { clearTimeout(initial); resolve(); }
         if (message.failed) { clearTimeout(initial); this.fail(); reject(new UsageError(message.failed as UsageErrorCode)); }
         if (message.warning) this.warn(message.warning);
@@ -47,13 +60,13 @@ export class SqliteUsageWorker implements UsageEventSink, UsageEventStore, Usage
         }
       });
       this.worker.on('error', () => { clearTimeout(initial); this.fail(); reject(new UsageError('STORAGE_UNAVAILABLE')); });
-      this.worker.on('exit', () => { if (!this.stopped) this.fail(); });
+      this.worker.on('exit', () => { this.cleanup = releaseOrphanWriter(this.options.file, this.writerToken); if (!this.stopped) this.fail(); });
     });
     // La promesa también es consultable por composición; nunca una rejection global sin consumidor.
     void this.ready.catch(() => {});
     this.timer = setInterval(() => void this.flush(), this.limits.flushMs); this.timer.unref();
   }
-  status() { return { enabled: true, degraded: this.failed || Object.keys(this.drops).length > 0, queue: this.queue.length + this.flight.length,
+  status() { return { enabled: true, degraded: this.failed || this.paused || Object.keys(this.drops).length > 0, paused: this.paused, queue: this.queue.length + this.flight.length,
     bytes: this.bytes, discarded: { ...this.drops } }; }
   private warn(code: string) {
     if (Date.now() - (this.warnings.get(code) ?? -Infinity) < 60_000) return;
@@ -63,7 +76,7 @@ export class SqliteUsageWorker implements UsageEventSink, UsageEventStore, Usage
   private count(reason: string, source: string) { const key = `${source}:${reason}`; this.drops[key] = (this.drops[key] ?? 0) + 1; this.warn(reason); }
   tryRecord(event: UsageEvent): boolean {
     try {
-      if (this.stopped || this.failed) { this.count('WRITER_UNAVAILABLE', event.source); return false; }
+      if (this.stopped || this.failed || this.paused) { this.count(this.paused ? this.pauseCause : 'WRITER_UNAVAILABLE', event.source); return false; }
       const entry = { event: structuredClone(event), bytes: Buffer.byteLength(JSON.stringify(event)), born: Date.now() };
       const full = () => this.queue.length + this.flight.length >= this.limits.events || this.bytes + entry.bytes > this.limits.bytes;
       if (event.source === 'BROWSER' && this.queue.length + this.flight.length >= this.limits.events - this.limits.serverReserve) { this.count('BROWSER_RESERVE', event.source); return false; }
@@ -93,7 +106,7 @@ export class SqliteUsageWorker implements UsageEventSink, UsageEventStore, Usage
     this.pending.clear(); void this.worker.terminate();
   }
   private async flush() {
-    if (this.stopped || this.failed || this.flight.length || !this.queue.length || this.retryAt > Date.now()) return;
+    if (this.stopped || this.failed || this.paused || this.flight.length || !this.queue.length || this.retryAt > Date.now()) return;
     while (this.queue[0] && Date.now() - this.queue[0].born >= this.limits.maxAgeMs) this.drop(this.queue.shift()!, 'TOO_OLD');
     if (!this.queue.length) return;
     this.flight = this.queue.splice(0, this.limits.batch);
@@ -108,13 +121,19 @@ export class SqliteUsageWorker implements UsageEventSink, UsageEventStore, Usage
       } else { for (const entry of this.flight) this.drop(entry, 'WRITE_FAILED'); this.flight = []; }
     }
   }
-  async append(events: readonly UsageEvent[]) { for (const event of events) this.tryRecord(event); await this.drain(); }
+  async append(events: readonly UsageEvent[]) {
+    const dropped = () => Object.values(this.drops).reduce((sum, count) => sum + count, 0); const before = dropped();
+    for (const event of events) if (!this.tryRecord(event)) throw new UsageError('STORAGE_UNAVAILABLE');
+    await this.drain();
+    if (this.failed || this.queue.length || this.flight.length || dropped() !== before) throw new UsageError('STORAGE_UNAVAILABLE');
+  }
   async drain(maxMs = this.limits.drainMs) {
     const until = Date.now() + maxMs;
-    while (!this.failed && (this.queue.length || this.flight.length) && Date.now() < until) { await this.flush(); await new Promise((resolve) => setTimeout(resolve, 5)); }
+    while (!this.failed && (this.queue.length || this.flight.length) && Date.now() < until) { void this.flush(); await new Promise((resolve) => setTimeout(resolve, 5)); }
   }
   async read(filter: UsageFilter, synthetic = false): Promise<UsageReport> {
     await this.ready; await this.drain();
+    if (this.queue.length || this.flight.length) throw new UsageError('STORAGE_UNAVAILABLE');
     const report = await this.rpc('read', { filter, synthetic }) as UsageReport;
     if (Object.keys(this.drops).length) { report.quality.possibleLoss = true; report.percentage = null; }
     return report;
@@ -125,10 +144,22 @@ export class SqliteUsageWorker implements UsageEventSink, UsageEventStore, Usage
     this.exportBusy = true;
     try { await this.ready; await this.drain(); await this.rpc('backup', { at }); } finally { this.exportBusy = false; }
   }
-  async close() {
+  close(): Promise<void> { return this.closing ??= this.finishClose(); }
+  private async finishClose() {
+    const deadline = Date.now() + this.limits.drainMs;
     clearInterval(this.timer); await this.drain(); this.stopped = true;
     for (const entry of this.queue.splice(0)) this.drop(entry, 'SHUTDOWN_DEADLINE');
-    if (!this.failed && !this.flight.length) { try { await this.rpc('close', {}, this.limits.drainMs); } catch { this.warn('SHUTDOWN_DEADLINE'); } }
-    await this.worker.terminate();
+    if (!this.failed && !this.flight.length && Date.now() < deadline) { try { await this.rpc('close', {}, Math.max(1, deadline - Date.now())); } catch { this.warn('SHUTDOWN_DEADLINE'); } }
+    for (const entry of this.flight) this.drop(entry, 'SHUTDOWN_DEADLINE'); this.flight = [];
+    for (const pending of this.pending.values()) { clearTimeout(pending.timer); pending.reject(new UsageError('STORAGE_UNAVAILABLE')); } this.pending.clear();
+    this.worker.unref();
+    const termination = this.worker.terminate();
+    const remaining = Math.max(0, deadline - Date.now());
+    let timer: NodeJS.Timeout | undefined;
+    await Promise.race([termination, new Promise<void>((resolve) => { timer = setTimeout(resolve, remaining); })]);
+    if (timer) clearTimeout(timer);
+    const cleanupRemaining = Math.max(0, deadline - Date.now());
+    await Promise.race([this.cleanup, new Promise<void>((resolve) => { timer = setTimeout(resolve, cleanupRemaining); })]);
+    if (timer) clearTimeout(timer);
   }
 }

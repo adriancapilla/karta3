@@ -3,6 +3,11 @@ import { joinReasons, type UsageEvent } from '../../application/usage/contracts.
 
 const number = (v: unknown) => Number.isSafeInteger(v) && Number(v) >= 0;
 const uuidFields = (v: Record<string, unknown>, fields: string[]) => fields.every((key) => usageUuid(v[key]));
+export function canonicalUsage(value: unknown): string {
+  const canonical = (v: unknown): unknown => Array.isArray(v) ? v.map(canonical) : v && typeof v === 'object'
+    ? Object.fromEntries(Object.entries(v).sort(([a], [b]) => a < b ? -1 : a > b ? 1 : 0).map(([key, item]) => [key, canonical(item)])) : v;
+  return JSON.stringify(canonical(value));
+}
 /** Segunda frontera cerrada del worker. No serialización de objetos de aplicación. */
 export function validUsageEvent(value: UsageEvent): boolean {
   const e = value; const d = e.data as unknown as Record<string, unknown>;

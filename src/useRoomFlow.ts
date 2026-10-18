@@ -4,6 +4,8 @@ import { api, ApiError } from './api';
 import { send, sendGame, socket, type RoomAck } from './socket';
 import { acceptsRoom, automaticEndMessage } from './roomState';
 import type { RoundResolvedEvent, TurnExpiredEvent } from '../shared/contracts/game';
+import type { UsageContext } from '../shared/contracts/usage';
+import { beginUsageIntent } from './usage';
 
 function roomPath(id: string) { return `/sala/${id}`; }
 function isRoomPath() { return window.location.pathname.startsWith('/sala/'); }
@@ -28,7 +30,8 @@ export function useRoomFlow() {
   const timeoutNoticeTimer = useRef<number | undefined>(undefined);
   const [timeoutNotice, setTimeoutNotice] = useState('');
   const dirtyName = useRef(false);
-  const pendingJoin = useRef<{ id: string; code: string; name: string } | null>(null);
+  const pendingJoin = useRef<{ id: string; code: string; name: string; usageContext?: UsageContext } | null>(null);
+  const pendingCreate = useRef<{ context?: UsageContext } | null>(null);
   const pendingLeave = useRef<{ id: string; roomId: string; participantId: string } | null>(null);
   const noticeTimer = useRef<number | undefined>(undefined);
   const [loading, setLoading] = useState(true);
@@ -289,8 +292,10 @@ export function useRoomFlow() {
     setBusy(true);
     explicitResult.current = null;
     setNotice('');
-    try { applyRoom((await api.create()).room); }
+    pendingCreate.current ??= { context: beginUsageIntent('create') };
+    try { applyRoom((await api.create(pendingCreate.current.context)).room); pendingCreate.current = null; }
     catch (error) {
+      if (!(error instanceof ApiError && error.code === 'NETWORK_ERROR')) pendingCreate.current = null;
       setNotice(message(error));
       if (error instanceof ApiError && error.code === 'SESSION_REQUIRED') void refresh();
     } finally { setBusy(false); }
@@ -304,10 +309,11 @@ export function useRoomFlow() {
     setNotice('');
     setJoinError('');
     const pending = pendingJoin.current?.code === code && pendingJoin.current.name === joinName
-      ? pendingJoin.current : { id: crypto.randomUUID(), code, name: joinName };
+      ? pendingJoin.current : { id: crypto.randomUUID(), code, name: joinName, usageContext: beginUsageIntent('join') };
     pendingJoin.current = pending;
     try {
-      const result = await send<RoomAck>('room:join', { requestId: pending.id, code: pending.code, name: pending.name });
+      const result = await send<RoomAck>('room:join', { requestId: pending.id, code: pending.code, name: pending.name,
+        ...(pending.usageContext ? { usageContext: pending.usageContext } : {}) });
       pendingJoin.current = null;
       applyRoom(result.room);
     } catch (error) {
