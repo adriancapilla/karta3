@@ -7,6 +7,13 @@ import { promisify } from 'node:util';
 import { execFile } from 'node:child_process';
 import { usageInstallation } from '../tests/support/usageCompiledServer.js';
 import type { RoomResponse, SocketAck } from '../shared/contracts/room.js';
+import { usageLocation } from './composition/usage.js';
+
+it('directorio privado no admite árboles públicos con diferencias de mayúsculas', () => {
+  for (const name of ['dist', 'DiSt', 'PUBLIC', 'barajas', 'SRC', 'dist-server']) {
+    expect(() => usageLocation('test', path.resolve(name), 'SYNTHETIC')).toThrow('INVALID_FILTER');
+  }
+});
 
 for (const controlled of [false, true]) it(`B18 proceso compilado: ${controlled ? 'parada controlada' : 'kill abrupto'} y rearranque reales, consulta administrativa privada`, async () => {
   const installation = await usageInstallation(); let server = await installation.start();

@@ -12,7 +12,7 @@ export function usageLocation(environment: string | undefined, directory: string
   if (!environment || !['development', 'test', 'pruebas', 'production'].includes(environment) || !directory || !path.isAbsolute(directory)) throw new UsageError('INVALID_FILTER');
   const root = path.resolve(directory, environment, traffic.toLowerCase());
   // No guardar datos administrativos en un árbol de producto/estático.
-  if (['dist', 'dist-server', 'barajas', 'public', 'src'].some((segment) => root.split(path.sep).includes(segment))) throw new UsageError('INVALID_FILTER');
+  if (['dist', 'dist-server', 'barajas', 'public', 'src'].some((segment) => root.split(path.sep).some((part) => part.toLowerCase() === segment))) throw new UsageError('INVALID_FILTER');
   return { root, file: path.join(root, 'usage.sqlite'), environment: environment as UsageEnvironment, traffic };
 }
 export async function createUsageRuntime() {
