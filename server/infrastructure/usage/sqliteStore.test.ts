@@ -75,6 +75,15 @@ describe('B18 SQLite temporal real, reloj controlado', () => {
     const fact = event({ name: 'room_created', data: { roomRef: randomUUID() } });
     expect(validUsageEvent(fact)).toBe(true); expect(validUsageEvent({ ...fact, data: { ...fact.data, name: 'excluido' } } as UsageEvent)).toBe(false);
     expect(validUsageEvent({ ...fact, source: 'BROWSER' } as UsageEvent)).toBe(false);
+    const started = event({ name: 'game_started', data: { roomRef: randomUUID(), gameRef: randomUUID(), configuration,
+      humanParticipations: [1, 2].map(() => ({ participationRef: randomUUID(), isHost: false })) } });
+    expect(validUsageEvent(started)).toBe(true);
+    for (const key of ['deckSchemaVersion', 'turnSeconds', 'reviewSeconds'] as const) {
+      const altered = structuredClone(started);
+      if (altered.name !== 'game_started') throw new Error('fixture');
+      Object.assign(altered.data.configuration, { [key]: String(altered.data.configuration[key]) });
+      expect(validUsageEvent(altered)).toBe(false);
+    }
   });
   it('intención tardía se enlaza; intención sin resultado no se denomina rechazo', () => {
     const { store } = setup(); const visitId = randomUUID(); const intentId = randomUUID();

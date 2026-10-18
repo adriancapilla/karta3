@@ -38,13 +38,13 @@ export function validUsageEvent(value: UsageEvent): boolean {
       return usageKeys(c, ['deckId', 'deckSchemaVersion', 'deckContentVersion', 'humanPlayerCount', 'humanObserverCount', 'botCount', 'playerCount',
         'hostPlays', 'botsByDifficulty', 'turnSeconds', 'reviewSeconds', 'forceTieBreak', 'attributeValueMode', 'optimizeForMobile'])
         && typeof c.deckId === 'string' && /^[a-z0-9-]{1,64}$/.test(c.deckId)
-        && [1, 2].includes(Number(c.deckSchemaVersion)) && number(c.deckContentVersion) && Number(c.deckContentVersion) > 0
+        && [1, 2].includes(c.deckSchemaVersion as number) && number(c.deckContentVersion) && Number(c.deckContentVersion) > 0
         && ['humanPlayerCount', 'humanObserverCount', 'botCount', 'playerCount'].every((key) => number(c[key]) && Number(c[key]) <= 5)
         && Number(c.humanPlayerCount) >= 1 && Number(c.playerCount) >= 2 && c.playerCount === Number(c.humanPlayerCount) + Number(c.botCount)
         && typeof c.hostPlays === 'boolean' && c.humanObserverCount === (c.hostPlays ? 0 : 1)
         && usageKeys(c.botsByDifficulty, ['EASY', 'HARD']) && number(c.botsByDifficulty.EASY) && number(c.botsByDifficulty.HARD)
         && c.botCount === Number(c.botsByDifficulty.EASY) + Number(c.botsByDifficulty.HARD)
-        && [15, 30, 60].includes(Number(c.turnSeconds)) && [0, 2, 5, 10, 15, 30].includes(Number(c.reviewSeconds))
+        && [15, 30, 60].includes(c.turnSeconds as number) && [0, 2, 5, 10, 15, 30].includes(c.reviewSeconds as number)
         && typeof c.forceTieBreak === 'boolean' && typeof c.optimizeForMobile === 'boolean' && ['PLAY_VALUE', 'DISPLAY_VALUE'].includes(String(c.attributeValueMode))
         && Array.isArray(d.humanParticipations) && d.humanParticipations.length === c.humanPlayerCount
         && d.humanParticipations.every((p) => usageKeys(p, ['participationRef', 'isHost']) && usageUuid(p.participationRef) && typeof p.isHost === 'boolean');
