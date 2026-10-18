@@ -74,6 +74,8 @@ test "$ca_before" = "$(sha256sum "$proof/local-ca-after.crt" | cut -d ' ' -f1)"
 test "$app" = "$(compose ps -q app)"
 wait_tls
 docker exec -i "$app" node --input-type=module < tools/ci-image-runtime.mjs > "$proof/runtime-after.json"
+# B18: misma imagen OCI, volúmenes efímeros privados, tráfico solo sintético.
+bash tools/ci-usage.sh
 archive_sha=$(sha256sum "$proof/karta3.oci.tar" | cut -d ' ' -f1)
 jq -n --arg commit "$CHECKED_SHA" --arg digest "$manifest_digest" --arg config "$config_digest" \
   --arg archive "$archive_sha" --arg run "$GITHUB_RUN_ID" --arg attempt "$GITHUB_RUN_ATTEMPT" \
@@ -81,7 +83,8 @@ jq -n --arg commit "$CHECKED_SHA" --arg digest "$manifest_digest" --arg config "
   '{commit:$commit,platform:"linux/amd64",ociManifestDigest:$digest,imageConfigDigest:$config,
     archiveSha256:$archive,runId:$run,runAttempt:$attempt,started:$started,completed:$completed,
     registryPublished:false,checks:{nativeSharp:true,nonRoot:true,readOnly:true,health:true,
-    approvedDeckHashes:true,httpsLocalCA:true,proxyChrome:1,certificatePersistence:true}}' > "$proof/trace.json"
+    approvedDeckHashes:true,httpsLocalCA:true,proxyChrome:1,certificatePersistence:true,
+    usageSyntheticVolume:true,usagePersistence:true,usageEncryptedRestore:true,usageOff:true}}' > "$proof/trace.json"
 cat "$proof/trace.json"
 # No se conservan configuraciones generales/variables de contenedores como artefacto.
 rm "$proof/container.json"

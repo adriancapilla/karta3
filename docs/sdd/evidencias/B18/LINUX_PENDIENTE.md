@@ -1,5 +1,7 @@
 # B18 — comprobación Linux pendiente para el autor
 
+**Continuación técnica 18/10:** la lista siguiente conserva la preparación histórica. El workflow CI añade la entrada manual `usage_linux_gate`: junto al filtro `B18` ejecuta primero check/Chrome focal y la imagen/volumen Linux. `tools/ci-usage.sh` comprueba sobre el mismo OCI exportado dos paradas POSIX/recreaciones (controlada y abrupta), permisos, separación, consulta/copia privadas y restauración en otro volumen. Solo conserva JSON resumidos sin DB, clave, sesión o informes; destruye sus propios volúmenes al terminar. No acredita una puerta hasta registrar su ejecución real. Después se requiere CI completa sin filtro del HEAD final y main; límites operativos externos siguen pendientes.
+
 No ejecutada desde esta máquina: no hay motor Docker Linux utilizable. No constituye aprobación para publicar, usar GHCR o operar VPS. Usar checkout del commit local entregado, Node24.19.0 y una máquina Linux propia; datos exclusivamente sintéticos, nombres/volúmenes nuevos y **sin publicar puertos**.
 
 ## Puertas a repetir
