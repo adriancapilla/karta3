@@ -28,7 +28,16 @@ for (const controlled of [false, true]) it(`B18 proceso compilado: ${controlled 
     expect((await send('room:configure', { requestId: 'deck', roomId, change: { field: 'deck', value: { id: 'generica', contentVersion: 4 } } })).ok).toBe(true);
     expect((await send('room:start', { requestId: 'start', roomId })).ok).toBe(true);
     await expect.poll(() => installation.events().filter((e) => e.name === 'game_started').length).toBe(1);
-    socket.disconnect(); await server.stop(controlled);
+    const disconnected = controlled ? new Promise<{ reason: string; active: boolean }>((resolve) => {
+      socket.once('disconnect', (reason) => resolve({ reason, active: socket.active }));
+    }) : undefined;
+    if (!controlled) socket.disconnect();
+    await server.stop(controlled);
+    if (disconnected) {
+      const observation = await disconnected;
+      expect(observation.reason).not.toBe('io server disconnect'); expect(observation.active).toBe(true);
+      socket.disconnect();
+    }
     server = await installation.start();
     const recovered = await (await fetch(server.base + '/api/rooms/current', { headers: { Cookie: cookie } })).json(); expect(recovered.room).toBeNull();
     const facts = installation.events(); const ends = facts.filter((e) => e.name === 'game_ended');

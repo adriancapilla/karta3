@@ -18,7 +18,9 @@ try {
   let stopping = false;
   const stop = () => {
     if (stopping) return; stopping = true;
-    runtime.controlledStop(); runtime.dispose(); realtime.disconnectSockets(true);
+    runtime.controlledStop(); runtime.dispose();
+    // Cerrar transporte conserva reconexión; DISCONNECT de namespace la desactiva.
+    realtime.engine.close();
     server.close(); server.closeAllConnections();
     void usage.close().finally(() => process.exit(0));
   };
