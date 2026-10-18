@@ -16,6 +16,7 @@ import { ControlledTime } from '../tests/support/controlledTime.js';
 import type { UsageEvent } from './application/usage/contracts.js';
 import type { SocketAck, RoomResponse } from '../shared/contracts/room.js';
 import { SystemClock } from './infrastructure/time.js';
+import type { Worker } from 'node:worker_threads';
 
 const stops: (() => Promise<void>)[] = [];
 afterEach(async () => { for (const stop of stops.splice(0)) await stop(); });
@@ -40,7 +41,10 @@ async function setup(enabled = true, realTime = false) {
   };
   const facts = async () => { await writer.drain(); const db = new DatabaseSync(file, { readOnly: true });
     try { return db.prepare('SELECT payload FROM events ORDER BY at,rowid').all().map((r) => JSON.parse(String(r.payload)) as UsageEvent); } finally { db.close(); } };
-  stops.push(async () => { for (const s of sockets) s.disconnect(); runtime.dispose(); await writer.close();
+  stops.push(async () => { for (const s of sockets) s.disconnect(); runtime.dispose();
+    const resources = writer as unknown as { worker: Worker; cleanup: Promise<void> };
+    const exited = new Promise<void>((resolve) => resources.worker.once('exit', () => resolve()));
+    await writer.close(); await exited; await resources.cleanup; // Solo limpieza del fixture, después del drenaje acotado.
     await new Promise<void>((resolve) => server.close(() => resolve())); server.closeAllConnections();
     if (path.dirname(root) !== os.tmpdir() || !path.basename(root).startsWith('karta3-usage-socket-')) throw new Error('ruta'); fs.rmSync(root, { recursive: true, force: true }); });
   return { root, file, time, repository, runtime, writer, post, player, facts, base };
