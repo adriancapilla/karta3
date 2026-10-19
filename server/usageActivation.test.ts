@@ -72,6 +72,8 @@ async function setup() {
   });
   return { root, file, usage, time, base, post, player, events, state };
 }
+// Incluye ACL/worker/catálogo fríos y varias conexiones; no es un SLA de ingesta.
+// La espera de los nueve hechos y todos los plazos funcionales conservan sus límites.
 it('H03 HUMAN fabricado: dos sesiones/dos sockets host, nueve hechos sin ampliar DTO y terminal único', async () => {
   const f = await setup(); const host = await f.player(); const tab = await f.player(host.cookie); const guest = await f.player();
   const visitId = randomUUID(); const intentId = randomUUID();
@@ -103,7 +105,7 @@ it('H03 HUMAN fabricado: dos sesiones/dos sockets host, nueve hechos sin ampliar
   expect(facts.filter(event => event.name === 'human_became_automatic')).toHaveLength(2);
   for (const excluded of [roomId, created.room.code, 'Ensayo', host.cookie, guest.cookie, room.result.gameId, 'requestId', 'hand', 'playValue']) expect(JSON.stringify(facts)).not.toContain(excluded);
   expect((await f.post('/api/usage/events', { ...facts[0], name: 'game_started' })).status).toBe(400);
-});
+}, 10_000);
 it('H05 caída real del escritor retira señal, ignora ingestión tardía y conserva juego y plazos', async () => {
   const f = await setup(); const host = await f.player();
   const created = await (await f.post('/api/rooms', {}, host.cookie)).json() as RoomResponse; const roomId = created.room.id;
