@@ -184,11 +184,13 @@ test('B03-15 reiniciar el runtime pierde el motivo privado y permite crear otra 
       if (!['/api/rooms/current', '/api/usage/choice'].includes(route)) return;
       pendingObservations.push((async () => {
         const body = await response.json().catch(() => null);
-        observe('http.response', { actor, route, status: response.status(), setCookie: !!response.headers()['set-cookie'],
+        const responseHeaders = await response.allHeaders();
+        observe('http.response', { actor, route, status: response.status(), setCookie: !!responseHeaders['set-cookie'],
           hasRoom: !!body?.room, hasEnded: !!body?.ended, hasLastResult: !!body?.lastResult });
       })());
     });
-    page.on('requestfailed', request => observe('http.failed', { actor, route: new URL(request.url()).pathname }));
+    page.on('requestfailed', request => observe('http.failed', { actor,
+      route: new URL(request.url()).pathname.replace(/^\/(sala|resultado)\/[^/]+/, '/$1/:id') }));
   }
   try {
     const b = await sessionId(p.guestContext, s.sessions); const original = await current(p.guest);
