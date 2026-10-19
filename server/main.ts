@@ -4,12 +4,13 @@ import { createRuntime } from './composition/createApp.js';
 import { DeckLoadError, installationRoot, loadInstallationDecks, reportDeckDiagnostics } from './composition/decks.js';
 import { attachPublicFiles } from './infrastructure/http/publicFiles.js';
 import { createUsageRuntime } from './composition/usage.js';
+import { privacyNotice } from '../shared/contracts/privacyNotice.js';
 
 try {
   const loaded = await loadInstallationDecks();
   reportDeckDiagnostics(loaded.diagnostics);
-  const usage = await createUsageRuntime();
-  const runtime = createRuntime({ decks: loaded.catalog, deckVersions: loaded.catalog, gameDecks: loaded.catalog, usage: usage.recorder, usageHttp: usage.http });
+  const usage = await createUsageRuntime(privacyNotice.complete);
+  const runtime = createRuntime({ decks: loaded.catalog, deckVersions: loaded.catalog, gameDecks: loaded.catalog, usage: usage.recorder, usageHttp: usage.http, usageChoices: usage.choices });
   attachPublicFiles(runtime.app, path.join(installationRoot, 'dist'), loaded.catalog);
   const port = Number(process.env.PORT ?? 3000);
   const host = process.env.HOST ?? '127.0.0.1';

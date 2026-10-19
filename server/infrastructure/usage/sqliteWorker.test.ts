@@ -124,11 +124,16 @@ it('copia requerida fallida pausa captura sin impedir purga y se recupera por el
   expect(fs.readdirSync(destination).filter(name => name.endsWith('.agg.enc'))).toHaveLength(1);
 });
 it.each(['databaseBytes', 'walBytes'] as const)('presupuesto %s reducido: pausa antes de escribir un batch sin ocupar un disco real', async (field) => {
-  const { writer, root } = setup({ [field]: 64 * 1024 }); await writer.ready;
+  // Esquema2 vacío:64 KiB. Una página adicional permite arrancar, no admitir el batch reservado.
+  const budget = 64 * 1024 + 4096;
+  const { writer, root } = setup({ [field]: budget }); await writer.ready;
+  const file = path.join(root, 'usage.sqlite'); const before = fs.statSync(file).size; expect(before).toBeLessThan(budget);
   expect(writer.tryRecord(event('SERVER'))).toBe(true); await writer.drain();
   expect(writer.status()).toMatchObject({ paused: true, degraded: true, queue: 0 });
   expect(writer.tryRecord(event('SERVER'))).toBe(false);
-  expect(fs.statSync(path.join(root, 'usage.sqlite')).size).toBeLessThan(64 * 1024);
+  expect(fs.statSync(file).size).toBe(before);
+  const db = new DatabaseSync(file, { readOnly: true });
+  try { expect(db.prepare('SELECT count(*) n FROM events').get()?.n).toBe(0); } finally { db.close(); }
 });
 it('un escritor por fichero; informe/copia administrativos solo lectura no alteran el arranque vivo', async () => {
   const { writer, root } = setup(); await writer.ready; const file = path.join(root, 'usage.sqlite');

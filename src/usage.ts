@@ -2,6 +2,7 @@ import type { BrowserUsageEvent, UsageContext } from '../shared/contracts/usage'
 
 let enabled = false;
 let mode: 'synthetic' | 'human' | undefined;
+let locallyBlocked = false;
 let generation = 0;
 let sequence = 0;
 let lastSignal = 0;
@@ -12,6 +13,7 @@ let visit: { id: string; born: number; last: number } | undefined;
 let homeVisible = false;
 let shown = false;
 let leftInitialRoute = false;
+let observedHome = false;
 export function usageSignalTicket() { return { generation, sequence: ++sequence }; }
 export function invalidateBrowserUsage(ticket?: ReturnType<typeof usageSignalTicket>) {
   if (ticket && ticket.generation !== generation) return;
@@ -20,10 +22,14 @@ export function invalidateBrowserUsage(ticket?: ReturnType<typeof usageSignalTic
   for (const listener of invalidated) listener();
 }
 export function onUsageInvalidated(listener: () => void) { invalidated.add(listener); return () => { invalidated.delete(listener); }; }
+export function suspendBrowserUsage() { locallyBlocked = true; invalidateBrowserUsage(); }
+export function releaseUsageSuppression() { locallyBlocked = false; }
+export function browserUsageMode() { return mode; }
 export function configureBrowserUsage(value: string | null, ticket = usageSignalTicket()) {
   if (ticket.generation !== generation || ticket.sequence < lastSignal) return;
   lastSignal = ticket.sequence;
   if (value !== 'synthetic' && value !== 'human') { invalidateBrowserUsage(ticket); return; }
+  if (locallyBlocked) return;
   if (mode && mode !== value) invalidateBrowserUsage();
   enabled = true; mode = value;
 }
@@ -40,7 +46,7 @@ function record(event: BrowserUsageEvent) {
     if (!enabled || generation !== eventGeneration || Date.now() - born > 10_000) return;
     const ticket = usageSignalTicket();
     let retryable: boolean;
-    try { const result = await fetch('/api/usage/events', { method: 'POST', credentials: 'omit', keepalive: true,
+    try { const result = await fetch('/api/usage/events', { method: 'POST', credentials: mode === 'human' ? 'same-origin' : 'omit', keepalive: true,
       headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(event) });
       configureBrowserUsage(result.headers.get('X-Karta3-Usage-Collection'), ticket); retryable = result.status >= 500; }
     catch { retryable = true; }
@@ -51,13 +57,19 @@ function record(event: BrowserUsageEvent) {
   void post(true);
 }
 export function usageHome(visible: boolean) {
-  if (!visible) { homeVisible = false; leftInitialRoute = true; return; }
+  if (!visible) { homeVisible = false; observedHome = false; leftInitialRoute = true; return; }
   if (homeVisible) return; homeVisible = true;
   if (!enabled) return;
   const entry = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming | undefined;
   const navigation = shown || leftInitialRoute ? 'SPA_RETURN' : entry?.type === 'reload' ? 'DOCUMENT_RELOAD' : 'DOCUMENT_INITIAL';
   shown = true;
+  observedHome = true;
   record({ eventId: crypto.randomUUID(), version: 1, visitId: visitId(), name: 'home_viewed', data: { viewId: crypto.randomUUID(), navigation } });
+}
+/** Acto confirmado, solo la portada que continúa visible; no reconstruye la llegada. */
+export function usageAccepted() {
+  if (!enabled || !homeVisible || observedHome) return;
+  homeVisible = false; usageHome(true);
 }
 export function beginUsageIntent(kind: 'create' | 'join'): UsageContext | undefined {
   if (!enabled) return;

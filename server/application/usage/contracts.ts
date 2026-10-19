@@ -41,7 +41,24 @@ export type UsageReport = { version: 1; traffic: UsageTraffic; filter: UsageFilt
 export type UsageErrorCode = 'INVALID_FILTER' | 'ENVIRONMENT_MISMATCH' | 'INSUFFICIENT_DETAIL' | 'COLLECTION_DISABLED'
   | 'STORAGE_UNAVAILABLE' | 'REPORT_TIMEOUT' | 'NOT_AUTHORIZED';
 export class UsageError extends Error { constructor(readonly code: UsageErrorCode) { super(code); } }
-export interface UsageEventSink { tryRecord(event: UsageEvent): boolean; noteLoss?(reason: 'CORRELATION_LIMIT'): void }
+/** Contexto de admisión RAM, ajeno al payload/ids de los nueve eventos. Nunca se reactiva. */
+export type UsageScope = { active: boolean };
+export type UsagePrivacyControl =
+  | { kind: 'accept'; proof: { proofRef: string; noticeVersion: string; acceptedAt: number; validUntil: number } }
+  | { kind: 'cut'; at: number; proofRefs: readonly string[]; roomRefs: readonly string[]; gameRefs: readonly string[] };
+export interface UsagePrivacyStore {
+  control(command: UsagePrivacyControl): Promise<void>;
+  revoke(scopes: readonly UsageScope[], command: Extract<UsagePrivacyControl, { kind: 'cut' }>): Promise<void>;
+}
+export const nullUsagePrivacyStore: UsagePrivacyStore = { control: async () => { throw new UsageError('STORAGE_UNAVAILABLE'); },
+  revoke: async () => { throw new UsageError('STORAGE_UNAVAILABLE'); } };
+export type UsageObservationCut = { scopes: UsageScope[]; roomRefs: string[]; gameRefs: string[] };
+export interface UsagePermission {
+  scope(sessionId: string): UsageScope | undefined;
+  onInvalidated(listener: (sessionId: string) => UsageObservationCut): () => void;
+  censor(cut: UsageObservationCut): void;
+}
+export interface UsageEventSink { tryRecord(event: UsageEvent, scopes?: readonly UsageScope[]): boolean; noteLoss?(reason: 'CORRELATION_LIMIT'): void }
 export interface UsageEventStore { append(events: readonly UsageEvent[]): Promise<void> }
 export interface UsageReportReader { read(filter: UsageFilter): Promise<UsageReport> }
 export interface UsageMaintenance { maintain(at: number): Promise<void>; backup(at: number): Promise<void> }

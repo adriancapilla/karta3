@@ -40,9 +40,16 @@ it('HUMAN fabricado: solo ready efectivo, metadata HUMAN/pruebas, copia cifrada 
   const fixture = setup(); const usage = await runtime(); expect(usage.http?.enabled).toBe(true); expect(usage.http?.mode).toBe('human');
   const browser = { eventId: randomUUID(), version: 1 as const, visitId: randomUUID(), name: 'home_viewed' as const,
     data: { viewId: randomUUID(), navigation: 'DOCUMENT_INITIAL' as const } };
-  expect(usage.recorder.browser(browser)).toBe(true);
   const app = createApp({ usage: usage.recorder, usageHttp: usage.http });
-  const response = await request(app).get('/api/rooms/current'); expect(response.headers['x-karta3-usage-collection']).toBe('human');
+  const first = await request(app).get('/api/rooms/current'); expect(first.headers['x-karta3-usage-collection']).toBe('off');
+  const cookie = String(first.headers['set-cookie'][0]).split(';')[0];
+  const choice = (await request(app).get('/api/usage/choice').set('Cookie', cookie)).body;
+  const accepted = await request(app).put('/api/usage/choice').set('Cookie', cookie).set('Host', '127.0.0.1:3000').set('Origin', 'http://127.0.0.1:3000')
+    .send({ decision: 'ACCEPTED', noticeVersion: choice.noticeVersion, expectedRevision: choice.revision, requestId: randomUUID() });
+  expect(accepted.status).toBe(200); expect(accepted.body.decision).toBe('ACCEPTED');
+  expect(usage.recorder.browser(browser)).toBe(false); // Falta autorización de sesión, aunque el DTO sea válido.
+  expect((await request(app).post('/api/usage/events').set('Cookie', cookie).set('Host', '127.0.0.1:3000').set('Origin', 'http://127.0.0.1:3000').send(browser)).status).toBe(202);
+  const response = await request(app).get('/api/rooms/current').set('Cookie', cookie); expect(response.headers['x-karta3-usage-collection']).toBe('human');
   expect(response.headers['cache-control']).toBe('no-store');
   await usage.close();
   const db = new DatabaseSync(fixture.db, { readOnly: true });

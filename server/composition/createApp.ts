@@ -1,7 +1,7 @@
 import type { CardPermutation, Clock, CodeCandidateSource, IdentifierGenerator, RoomRepository, Scheduler } from '../application/ports.js';
 import type { Server as HttpServer } from 'node:http';
 import { RoomUseCases } from '../application/roomUseCases.js';
-import { createId, drawCodeCandidate } from '../infrastructure/generators.js';
+import { createId, drawCodeCandidate, drawChoiceRevision } from '../infrastructure/generators.js';
 import { createHttpApp } from '../infrastructure/http/expressApp.js';
 import { MemoryRoomRepository } from '../infrastructure/memoryRoomRepository.js';
 import { MemorySessions } from '../infrastructure/memorySessions.js';
@@ -15,6 +15,9 @@ import { SystemClock, TimerScheduler } from '../infrastructure/time.js';
 import { ListDecks, type DeckCatalog, type PublishedDeckVersions, type PublishedGameDecks } from '../application/deckCatalog.js';
 import { LoadedDeckCatalog } from '../infrastructure/decks/catalog.js';
 import { disabledUsage, type UsageRecorder } from '../application/usage/recording.js';
+import { UsageChoices } from '../application/usage/choice.js';
+import { nullUsagePrivacyStore } from '../application/usage/contracts.js';
+import { USAGE_NOTICE_VERSION } from '../../shared/contracts/usage.js';
 
 type Options = {
   repository?: RoomRepository;
@@ -29,6 +32,7 @@ type Options = {
   gameDecks?: PublishedGameDecks;
   permutation?: CardPermutation;
   usage?: UsageRecorder;
+  usageChoices?: UsageChoices;
   usageHttp?: import('../infrastructure/usage/http.js').UsageHttp;
 };
 
@@ -38,6 +42,9 @@ export function createRuntime(options: Options = {}) {
   const changes = new SocketRoomChanges();
   const clock = options.clock ?? new SystemClock(); const scheduler = options.scheduler ?? new TimerScheduler();
   const usage = options.usage ?? disabledUsage;
+  const choices = options.usageChoices ?? options.usageHttp?.choices
+    ?? new UsageChoices(nullUsagePrivacyStore, clock, scheduler, createId, drawChoiceRevision, USAGE_NOTICE_VERSION, () => false);
+  const unsubscribeChoice = choices.subscribe((session, choice) => changes.choice(session, choice));
   const lifecycle = new WaitingLifecycle(repository, clock, scheduler, changes, sessions, changes, usage);
   const emptyCatalog = new LoadedDeckCatalog([], new Map(), new Map());
   const requests = new MemoryRoomRequests();
@@ -47,10 +54,10 @@ export function createRuntime(options: Options = {}) {
     options.deckVersions ?? emptyCatalog, options.gameDecks ?? emptyCatalog, options.permutation ?? permuteCards, games, usage);
   const production = options.production ?? process.env.NODE_ENV === 'production';
   return {
-    app: createHttpApp({ rooms, sessions, production, decks: new ListDecks(options.decks ?? emptyCatalog), usage: options.usageHttp }),
+    app: createHttpApp({ rooms, sessions, production, decks: new ListDecks(options.decks ?? emptyCatalog), usage: options.usageHttp, choices }),
     attachRealtime: (server: HttpServer) => changes.attach(server, rooms, sessions, production),
     controlledStop: () => { for (const room of repository.allActive()) if (room.status === 'IN_GAME') usage.ended(room, true); },
-    dispose: () => { changes.dispose(); coordinator.dispose(); }
+    dispose: () => { unsubscribeChoice(); if (!options.usageChoices && !options.usageHttp?.choices) choices.dispose(); changes.dispose(); coordinator.dispose(); }
   };
 }
 

@@ -50,3 +50,26 @@ it('204/503 OFF de la ingesta invalida antes de decidir otro reintento', async (
   usage.beginUsageIntent('create'); await vi.advanceTimersByTimeAsync(10_000);
   expect(fetch).toHaveBeenCalledOnce(); expect(usage.beginUsageIntent('join')).toBeUndefined();
 });
+it('aceptación confirmada observa solo la portada aún visible una vez, con hora actual y credencial funcional HUMAN', async () => {
+  const { usage, fetch } = await setup(); usage.configureBrowserUsage('off'); usage.usageHome(true);
+  vi.setSystemTime(Date.now() + 5000); usage.configureBrowserUsage('human'); usage.usageAccepted(); usage.usageAccepted();
+  expect(fetch).toHaveBeenCalledOnce(); expect(fetch.mock.calls[0][1].credentials).toBe('same-origin');
+  const event = JSON.parse(fetch.mock.calls[0][1].body); expect(event.name).toBe('home_viewed'); expect(event.data.navigation).toBe('DOCUMENT_INITIAL');
+  expect(Object.keys(event.data).sort()).toEqual(['navigation', 'viewId']);
+  usage.usageHome(false); usage.invalidateBrowserUsage(); usage.configureBrowserUsage('human'); usage.usageAccepted(); expect(fetch).toHaveBeenCalledOnce();
+});
+it('retirada pendiente bloquea señales HTTP positivas nuevas hasta confirmar estado o un acto nuevo', async () => {
+  const { usage, fetch } = await setup(); usage.suspendBrowserUsage(); usage.configureBrowserUsage('human');
+  expect(usage.beginUsageIntent('join')).toBeUndefined(); expect(fetch).not.toHaveBeenCalled();
+  usage.releaseUsageSuppression(); expect(usage.beginUsageIntent('join')).toBeUndefined();
+  usage.configureBrowserUsage('human'); expect(usage.beginUsageIntent('join')).toBeDefined(); expect(fetch).toHaveBeenCalledOnce();
+});
+it('aceptar/rechazar/aceptar en la misma portada visible no duplica la observación', async () => {
+  const { usage, fetch } = await setup(); usage.configureBrowserUsage('off'); usage.usageHome(true);
+  fetch.mockResolvedValue({ status: 202, headers: new Headers({ 'X-Karta3-Usage-Collection': 'human' }) });
+  usage.configureBrowserUsage('human'); usage.usageAccepted(); await Promise.resolve();
+  usage.suspendBrowserUsage(); usage.releaseUsageSuppression(); usage.configureBrowserUsage('human'); usage.usageAccepted();
+  expect(fetch).toHaveBeenCalledOnce();
+  usage.usageHome(false); usage.usageHome(true); expect(fetch).toHaveBeenCalledTimes(2);
+  expect(JSON.parse(fetch.mock.calls[1][1].body).data.navigation).toBe('SPA_RETURN');
+});

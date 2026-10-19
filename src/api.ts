@@ -1,6 +1,6 @@
 import type { CurrentRoomResponse, RenameRoomRequest, ResultsRoomView, RoomResponse } from '../shared/contracts/room';
 import type { DecksResponse } from '../shared/contracts/deck';
-import type { UsageContext } from '../shared/contracts/usage';
+import type { UsageContext, UsageChoiceRequest, UsageChoiceView } from '../shared/contracts/usage';
 import { configureBrowserUsage, currentUsageContext, invalidateBrowserUsage, usageSignalTicket } from './usage';
 
 export class ApiError extends Error {
@@ -30,6 +30,8 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
 }
 
 export const api = {
+  usageChoice: () => request<UsageChoiceView>('/usage/choice'),
+  chooseUsage: (input: UsageChoiceRequest) => request<UsageChoiceView>('/usage/choice', { method: 'PUT', body: JSON.stringify(input), signal: AbortSignal.timeout(5000) }),
   decks: () => request<DecksResponse>('/decks'),
   current: () => request<CurrentRoomResponse>('/rooms/current'),
   result: (gameId: string) => request<{ room: ResultsRoomView }>(`/results/${encodeURIComponent(gameId)}`),

@@ -1,6 +1,6 @@
 import { Worker } from 'node:worker_threads';
 import { randomUUID } from 'node:crypto';
-import type { UsageEnvironment, UsageEvent, UsageEventSink, UsageEventStore, UsageFilter, UsageMaintenance, UsageReport, UsageReportReader, UsageTraffic } from '../../application/usage/contracts.js';
+import type { UsageEnvironment, UsageEvent, UsageEventSink, UsageEventStore, UsageFilter, UsageMaintenance, UsageReport, UsageReportReader, UsageTraffic, UsageScope, UsagePrivacyControl, UsagePrivacyStore } from '../../application/usage/contracts.js';
 import { UsageError, type UsageErrorCode } from '../../application/usage/contracts.js';
 import { releaseOrphanWriter } from './privateFiles.js';
 
@@ -8,16 +8,19 @@ export type UsageLimits = { events: number; bytes: number; serverReserve: number
   retriesMs: number[]; maxAgeMs: number; drainMs: number; databaseBytes: number; walBytes: number; reserveBytes: number };
 export const usageLimits: UsageLimits = { events: 2048, bytes: 2 * 1024 ** 2, serverReserve: 1024, batch: 64, flushMs: 250,
   retriesMs: [1000, 5000, 30_000], maxAgeMs: 60_000, drainMs: 2000, databaseBytes: 512 * 1024 ** 2, walBytes: 64 * 1024 ** 2, reserveBytes: 128 * 1024 ** 2 };
-type Entry = { event: UsageEvent; bytes: number; born: number };
+type EventEntry = { kind: 'event'; event: UsageEvent; scopes: readonly UsageScope[]; guards: readonly SharedArrayBuffer[]; bytes: number; born: number };
+type ControlEntry = { kind: 'control'; command: UsagePrivacyControl; resolve: () => void; reject: (error: Error) => void; bytes: number; born: number };
+type Entry = EventEntry | ControlEntry;
 type Pending = { resolve: (value: unknown) => void; reject: (error: Error) => void; timer: NodeJS.Timeout };
 type WriterOptions = { file: string; environment: UsageEnvironment; traffic?: UsageTraffic; bootRef?: string; now?: number; backupDirectory?: string; backupKey?: string;
-  limits?: Partial<UsageLimits>; warning?: (code: string) => void; existingOnly?: boolean; readOnly?: boolean; collecting?: boolean; requireBackup?: boolean };
+  limits?: Partial<UsageLimits>; warning?: (code: string) => void; existingOnly?: boolean; readOnly?: boolean; collecting?: boolean; requireBackup?: boolean; consentRequired?: boolean };
 
 /** Un batch en vuelo; el puerto nunca admite espera/IO o excepciones hacia el juego. */
-export class SqliteUsageWorker implements UsageEventSink, UsageEventStore, UsageReportReader, UsageMaintenance {
+export class SqliteUsageWorker implements UsageEventSink, UsageEventStore, UsageReportReader, UsageMaintenance, UsagePrivacyStore {
   private readonly worker: Worker;
   private readonly limits: UsageLimits;
   private readonly queue: Entry[] = [];
+  private readonly guards = new WeakMap<UsageScope, Int32Array>();
   private flight: Entry[] = [];
   private bytes = 0;
   private nextId = 0;
@@ -80,7 +83,11 @@ export class SqliteUsageWorker implements UsageEventSink, UsageEventStore, Usage
     this.warnings.set(code, Date.now());
     queueMicrotask(() => { try { this.options.warning?.(code); } catch { /* Diagnóstico fuera de la decisión del juego. */ } });
   }
-  private drop(entry: Entry, reason: string) { this.bytes -= entry.bytes; this.count(reason, entry.event.source); }
+  private drop(entry: Entry, reason: string) {
+    this.bytes -= entry.bytes;
+    if (entry.kind === 'control') { entry.reject(new UsageError('STORAGE_UNAVAILABLE')); this.count(reason, 'SERVER'); this.warn('CONTROL_UNAVAILABLE'); }
+    else this.count(reason, entry.event.source);
+  }
   private count(reason: string, source: string) { const key = `${source}:${reason}`; this.drops[key] = (this.drops[key] ?? 0) + 1; this.warn(reason); }
   noteLoss(reason: 'CORRELATION_LIMIT') { this.count(reason, 'SERVER'); }
   private publishHealth(): Promise<void> | undefined {
@@ -90,21 +97,47 @@ export class SqliteUsageWorker implements UsageEventSink, UsageEventStore, Usage
     return this.healthFlight = this.rpc('health', { health: { ...status, at: Date.now() } }).then(() => { this.lastHealth = signature; })
       .catch(() => { this.healthRetryAt = Date.now() + 1000; }).finally(() => { this.healthFlight = undefined; });
   }
-  tryRecord(event: UsageEvent): boolean {
+  private admit(entry: Entry) {
+    const full = () => this.queue.length + this.flight.length >= this.limits.events || this.bytes + entry.bytes > this.limits.bytes;
+    const browser = entry.kind === 'event' && entry.event.source === 'BROWSER';
+    if (browser && this.queue.length + this.flight.length >= this.limits.events - this.limits.serverReserve) { this.count('BROWSER_RESERVE', 'BROWSER'); return false; }
+    while (full() && !browser) {
+      let index = this.queue.findIndex(item => item.kind === 'event' && item.event.source === 'BROWSER');
+      if (index < 0 && entry.kind === 'control') index = this.queue.findIndex(item => item.kind === 'event');
+      if (index < 0) break;
+      this.drop(this.queue.splice(index, 1)[0], 'EVICTED_FOR_SERVER');
+    }
+    if (full()) { this.count('QUEUE_FULL', entry.kind === 'event' ? entry.event.source : 'SERVER'); if (entry.kind === 'control') this.warn('CONTROL_UNAVAILABLE'); return false; }
+    this.queue.push(entry); this.bytes += entry.bytes;
+    if (this.queue.length >= this.limits.batch || entry.kind === 'control') queueMicrotask(() => void this.flush());
+    return true;
+  }
+  tryRecord(event: UsageEvent, scopes: readonly UsageScope[] = []): boolean {
     try {
+      if (scopes.some(scope => !scope.active)) return false;
       if (this.stopped || this.failed || this.paused) { this.count(this.paused ? this.pauseCause : 'WRITER_UNAVAILABLE', event.source); return false; }
-      const entry = { event: structuredClone(event), bytes: Buffer.byteLength(JSON.stringify(event)), born: Date.now() };
-      const full = () => this.queue.length + this.flight.length >= this.limits.events || this.bytes + entry.bytes > this.limits.bytes;
-      if (event.source === 'BROWSER' && this.queue.length + this.flight.length >= this.limits.events - this.limits.serverReserve) { this.count('BROWSER_RESERVE', event.source); return false; }
-      while (full() && event.source === 'SERVER') {
-        const index = this.queue.findIndex((item) => item.event.source === 'BROWSER'); if (index < 0) break;
-        this.drop(this.queue.splice(index, 1)[0], 'EVICTED_FOR_SERVER');
-      }
-      if (full()) { this.count('QUEUE_FULL', event.source); return false; }
-      this.queue.push(entry); this.bytes += entry.bytes;
-      if (this.queue.length >= this.limits.batch) queueMicrotask(() => void this.flush());
-      return true;
+      const guards = scopes.map(scope => {
+        let flag = this.guards.get(scope); if (!flag) { flag = new Int32Array(new SharedArrayBuffer(4)); Atomics.store(flag, 0, 1); this.guards.set(scope, flag); }
+        return flag.buffer as SharedArrayBuffer;
+      });
+      return this.admit({ kind: 'event', event: structuredClone(event), scopes: [...scopes], guards,
+        bytes: Buffer.byteLength(JSON.stringify(event)) + guards.length * 4, born: Date.now() });
     } catch { this.count('INVALID_EVENT', event.source); return false; }
+  }
+  control(command: UsagePrivacyControl): Promise<void> {
+    if (this.failed || this.stopped || this.options.readOnly) return Promise.reject(new UsageError('STORAGE_UNAVAILABLE'));
+    return new Promise((resolve, reject) => {
+      const entry: ControlEntry = { kind: 'control', command: structuredClone(command), resolve, reject, born: Date.now(), bytes: Buffer.byteLength(JSON.stringify(command)) };
+      if (!this.admit(entry)) reject(new UsageError('STORAGE_UNAVAILABLE'));
+    });
+  }
+  revoke(scopes: readonly UsageScope[], command: Extract<UsagePrivacyControl, { kind: 'cut' }>): Promise<void> {
+    for (const scope of scopes) { scope.active = false; const flag = this.guards.get(scope); if (flag) Atomics.store(flag, 0, 0); }
+    for (let i = this.queue.length - 1; i >= 0; i--) {
+      const entry = this.queue[i];
+      if (entry.kind === 'event' && entry.scopes.some(scope => !scope.active)) { this.queue.splice(i, 1); this.bytes -= entry.bytes; }
+    }
+    return this.control(command);
   }
   private rpc(type: string, extra: object = {}, timeout = 5000): Promise<unknown> {
     if (this.failed) return Promise.reject(new UsageError('STORAGE_UNAVAILABLE'));
@@ -122,13 +155,21 @@ export class SqliteUsageWorker implements UsageEventSink, UsageEventStore, Usage
     this.pending.clear(); void this.worker.terminate();
   }
   private async flush() {
-    if (this.stopped || this.failed || this.paused || this.flight.length || !this.queue.length || this.retryAt > Date.now()) return;
+    if (this.stopped || this.failed || this.paused && this.queue[0]?.kind !== 'control' || this.flight.length || !this.queue.length || this.retryAt > Date.now()) return;
     while (this.queue[0] && Date.now() - this.queue[0].born >= this.limits.maxAgeMs) this.drop(this.queue.shift()!, 'TOO_OLD');
     if (!this.queue.length) return;
-    this.flight = this.queue.splice(0, this.limits.batch);
+    const count = this.queue[0].kind === 'control' ? 1 : Math.min(this.limits.batch,
+      this.queue.findIndex(entry => entry.kind === 'control') < 0 ? this.queue.length : this.queue.findIndex(entry => entry.kind === 'control'));
+    this.flight = this.queue.splice(0, count);
     try {
-      await this.ready; await this.rpc('append', { events: this.flight.map((entry) => entry.event) });
-      for (const entry of this.flight) this.bytes -= entry.bytes;
+      await this.ready;
+      const first = this.flight[0];
+      if (first.kind === 'control') await this.rpc('control', { command: first.command });
+      else {
+        const entries = this.flight as EventEntry[];
+        await this.rpc('append', { events: entries.map(entry => entry.event), guards: entries.map(entry => entry.guards) });
+      }
+      for (const entry of this.flight) { this.bytes -= entry.bytes; if (entry.kind === 'control') entry.resolve(); }
       this.flight = []; this.retry = 0; this.retryAt = 0;
     } catch (error) {
       if (this.failed) return;

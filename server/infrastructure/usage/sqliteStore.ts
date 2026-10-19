@@ -1,10 +1,10 @@
 import { DatabaseSync } from 'node:sqlite';
 import fs from 'node:fs';
 import path from 'node:path';
-import { UsageError, type Aggregate, type UsageEnvironment, type UsageEvent, type UsageFilter, type UsageReport, type UsageTraffic, type UsageHealth } from '../../application/usage/contracts.js';
+import { UsageError, type Aggregate, type UsageEnvironment, type UsageEvent, type UsageFilter, type UsageReport, type UsageTraffic, type UsageHealth, type UsagePrivacyControl } from '../../application/usage/contracts.js';
 import { mergeAggregates } from '../../application/usage/reports.js';
 import { contributions, logicalKey, type Contribution, type Subject } from '../../application/usage/projections.js';
-import { canonicalUsage, validUsageEvent, validUsageHealth } from './eventValidation.js';
+import { canonicalUsage, validUsageEvent, validUsageHealth, validPrivacyControl } from './eventValidation.js';
 import { DETAIL_MS, month, firstMonth, type Metadata } from './schema.js';
 import { readSqliteUsage } from './sqliteReader.js';
 export { DETAIL_MS, month, firstMonth } from './schema.js';
@@ -13,7 +13,7 @@ export { DETAIL_MS, month, firstMonth } from './schema.js';
 export class SqliteUsageStore {
   readonly db: DatabaseSync;
   private metadata: Metadata;
-  constructor(readonly file: string, readonly environment: UsageEnvironment, now: number, bootRef?: string, readonly traffic: UsageTraffic = 'SYNTHETIC', collecting = true) {
+  constructor(readonly file: string, readonly environment: UsageEnvironment, now: number, bootRef?: string, readonly traffic: UsageTraffic = 'SYNTHETIC', collecting = true, consentRequired = false) {
     const existed = fs.existsSync(file);
     fs.mkdirSync(path.dirname(file), { recursive: true, mode: 0o700 });
     this.db = new DatabaseSync(file, { timeout: 100 });
@@ -24,8 +24,10 @@ export class SqliteUsageStore {
       this.metadata = existing ? JSON.parse(String(existing.value)) as Metadata : { environment, traffic, version: 1, coverageFrom: now, bootRef: null,
         clean: true, possibleLoss: false, conflicts: 0, unlinked: 0, lastDurableAt: null, lastMaintenanceAt: null, restoredAggregatesOnly: false, lastBackupAt: null, collectionEnabled: collecting };
       if (this.metadata.environment !== environment || this.metadata.traffic !== traffic) throw new UsageError('ENVIRONMENT_MISMATCH');
-      if (this.metadata.version !== 1) throw new UsageError('STORAGE_UNAVAILABLE');
+      if (![1, 2].includes(this.metadata.version)) throw new UsageError('STORAGE_UNAVAILABLE');
+      if (collecting && bootRef && this.metadata.restoredAggregatesOnly) throw new UsageError('STORAGE_UNAVAILABLE');
       this.metadata.collectionEnabled = collecting && !this.metadata.restoredAggregatesOnly;
+      if (consentRequired) this.metadata.consentRequired = true;
       this.db.exec(`PRAGMA journal_mode=WAL; PRAGMA synchronous=FULL; PRAGMA foreign_keys=ON; PRAGMA secure_delete=ON;
         PRAGMA journal_size_limit=67108864; PRAGMA max_page_count=131072;
         CREATE TABLE IF NOT EXISTS events (id TEXT PRIMARY KEY, logical TEXT UNIQUE NOT NULL, at INTEGER NOT NULL, signature TEXT NOT NULL, payload TEXT NOT NULL) STRICT;
@@ -36,7 +38,11 @@ export class SqliteUsageStore {
           metric TEXT NOT NULL, count INTEGER NOT NULL, sum REAL NOT NULL, min REAL, max REAL,
           PRIMARY KEY(month,traffic,report,dimension,metric)) STRICT;
         CREATE TABLE IF NOT EXISTS quality (month TEXT NOT NULL, kind TEXT NOT NULL, count INTEGER NOT NULL, firstAt INTEGER NOT NULL, lastAt INTEGER NOT NULL,
-          PRIMARY KEY(month,kind)) STRICT;`);
+          PRIMARY KEY(month,kind)) STRICT;
+        CREATE TABLE IF NOT EXISTS usage_choice_proofs (proof_ref TEXT PRIMARY KEY, notice_version TEXT NOT NULL,
+          accepted_at INTEGER NOT NULL, valid_until INTEGER NOT NULL, withdrawn_at INTEGER, purge_at INTEGER NOT NULL) STRICT;
+        CREATE INDEX IF NOT EXISTS usage_choice_proofs_expiry ON usage_choice_proofs(purge_at);`);
+      this.metadata.version = 2;
       if (bootRef) {
         this.transaction(() => {
           if (this.metadata.bootRef !== bootRef) {
@@ -78,12 +84,39 @@ export class SqliteUsageStore {
     if (!validUsageHealth(value)) throw new UsageError('INVALID_FILTER');
     this.metadata.operational = structuredClone(value); this.saveMetadata();
   }
+  privacyControl(command: UsagePrivacyControl) {
+    if (!validPrivacyControl(command) || this.metadata.restoredAggregatesOnly) throw new UsageError('INVALID_FILTER');
+    this.transaction(() => {
+      if (command.kind === 'accept') {
+        const p = command.proof;
+        const previous = this.db.prepare('SELECT * FROM usage_choice_proofs WHERE proof_ref=?').get(p.proofRef);
+        if (previous) {
+          if (previous.notice_version !== p.noticeVersion || previous.accepted_at !== p.acceptedAt || previous.valid_until !== p.validUntil) throw new UsageError('INVALID_FILTER');
+        } else this.db.prepare('INSERT INTO usage_choice_proofs VALUES (?,?,?,?,NULL,?)').run(p.proofRef, p.noticeVersion, p.acceptedAt, p.validUntil, p.validUntil + DETAIL_MS);
+      } else {
+        for (const ref of command.proofRefs) this.db.prepare(`UPDATE usage_choice_proofs SET withdrawn_at=CASE WHEN ?<valid_until THEN coalesce(withdrawn_at,?) ELSE withdrawn_at END,
+          purge_at=min(purge_at,min(?,valid_until)+?) WHERE proof_ref=?`).run(command.at, command.at, command.at, DETAIL_MS, ref);
+        for (const [kind, refs] of [['room', command.roomRefs], ['game', command.gameRefs]] as const) for (const ref of refs) {
+          const subject = this.get(`${kind}:${ref}`);
+          if (subject?.kind === 'room' && subject.state === 'WAITING' || subject?.kind === 'game' && subject.state === 'ACTIVE') {
+            subject.state = 'OBSERVATION_CENSORED'; this.put(subject);
+          }
+        }
+      }
+    });
+    this.permissions();
+  }
 
   append(events: readonly UsageEvent[], failBeforeCommit?: () => void): void {
     if (this.metadata.restoredAggregatesOnly) throw new UsageError('STORAGE_UNAVAILABLE');
     this.transaction(() => {
       for (const event of events) {
         if (!validUsageEvent(event) || event.environment !== this.environment || event.traffic !== this.traffic) throw new UsageError('INVALID_FILTER');
+        if (event.source === 'SERVER') {
+          const d = event.data as { roomRef?: string; gameRef?: string };
+          const room = d.roomRef ? this.get(`room:${d.roomRef}`) : undefined; const game = d.gameRef ? this.get(`game:${d.gameRef}`) : undefined;
+          if (room?.kind === 'room' && room.state === 'OBSERVATION_CENSORED' || game?.kind === 'game' && game.state === 'OBSERVATION_CENSORED') continue;
+        }
         const logical = logicalKey(event); const signature = canonicalUsage([event.source, event.name, event.traffic,
           event.source === 'BROWSER' ? event.visitId : null, event.data]);
         const previous = this.db.prepare('SELECT signature FROM events WHERE id=? OR logical=?').all(event.eventId, logical);
@@ -172,6 +205,7 @@ export class SqliteUsageStore {
         this.db.prepare('DELETE FROM subjects WHERE key=?').run(subject.key);
       }
       this.db.prepare('DELETE FROM events WHERE at<=?').run(at - DETAIL_MS);
+      this.db.prepare('DELETE FROM usage_choice_proofs WHERE purge_at<=?').run(at);
       this.db.prepare('DELETE FROM monthly WHERE month<?').run(month(firstMonth(at, -11)));
       this.db.prepare('DELETE FROM quality WHERE month<?').run(month(firstMonth(at, -11)));
       const count = (kind: string) => Number(this.db.prepare('SELECT coalesce(sum(count),0) n FROM quality WHERE kind=?').get(kind)?.n);
@@ -190,7 +224,8 @@ export class SqliteUsageStore {
   }
   nextExpiry(now: number) {
     const first = this.db.prepare('SELECT min(at) AS at FROM (SELECT at FROM events UNION ALL SELECT at FROM subjects)').get();
-    return Math.min(now + 86_400_000, first?.at === null ? Infinity : Number(first?.at) + DETAIL_MS);
+    const proof = this.db.prepare('SELECT min(purge_at) at FROM usage_choice_proofs').get();
+    return Math.min(now + 86_400_000, first?.at === null ? Infinity : Number(first?.at) + DETAIL_MS, proof?.at === null ? Infinity : Number(proof?.at));
   }
   read(filter: UsageFilter, now: number, traffic: 'HUMAN' | 'SYNTHETIC' = 'HUMAN'): UsageReport {
     this.maintain(now); return readSqliteUsage(this.db, this.environment, filter, now, traffic);

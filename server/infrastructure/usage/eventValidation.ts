@@ -1,8 +1,18 @@
 import { browserUsage, usageKeys, usageUuid } from '../../../shared/contracts/usage.js';
-import { discardReasons, joinReasons, type UsageEvent, type UsageHealth } from '../../application/usage/contracts.js';
+import { discardReasons, joinReasons, type UsageEvent, type UsageHealth, type UsagePrivacyControl } from '../../application/usage/contracts.js';
 
 const number = (v: unknown) => Number.isSafeInteger(v) && Number(v) >= 0;
 const uuidFields = (v: Record<string, unknown>, fields: string[]) => fields.every((key) => usageUuid(v[key]));
+export function validPrivacyControl(value: unknown): value is UsagePrivacyControl {
+  const refs = (v: unknown) => Array.isArray(v) && v.length <= 64 && v.every(usageUuid) && new Set(v).size === v.length;
+  if (usageKeys(value, ['kind', 'proof']) && value.kind === 'accept' && usageKeys(value.proof, ['proofRef', 'noticeVersion', 'acceptedAt', 'validUntil'])) {
+    const p = value.proof;
+    return usageUuid(p.proofRef) && typeof p.noticeVersion === 'string' && /^[a-zA-Z0-9][a-zA-Z0-9._-]{0,79}$/.test(p.noticeVersion)
+      && number(p.acceptedAt) && number(p.validUntil) && p.validUntil === Number(p.acceptedAt) + 12 * 60 * 60_000;
+  }
+  return usageKeys(value, ['kind', 'at', 'proofRefs', 'roomRefs', 'gameRefs']) && value.kind === 'cut' && number(value.at)
+    && refs(value.proofRefs) && refs(value.roomRefs) && refs(value.gameRefs);
+}
 export function validUsageHealth(value: unknown): value is UsageHealth {
   if (!usageKeys(value, ['at', 'enabled', 'degraded', 'paused', 'queue', 'bytes', 'discarded']) || !number(value.at)
     || typeof value.enabled !== 'boolean' || typeof value.degraded !== 'boolean' || typeof value.paused !== 'boolean'

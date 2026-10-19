@@ -29,7 +29,9 @@ export function contributions(subject: Subject): Contribution[] {
         } else add('configuration', key, 1, String(value));
       }
       add('completion', subject.state); add('automatic', 'human-players', subject.people.length);
-      add('automatic', 'automatic', subject.automatic.length); break;
+      add('automatic', 'automatic', subject.automatic.length);
+      if (subject.state === 'OBSERVATION_CENSORED') { add('automatic', subject.state); add('duration', subject.state); }
+      break;
     }
     case 'end': add('duration', 'durationMs', 1, subject.reason, subject.duration, subject.duration, subject.duration); break;
   }

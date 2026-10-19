@@ -1,7 +1,7 @@
 import { parentPort, workerData } from 'node:worker_threads';
 import fs from 'node:fs';
 import path from 'node:path';
-import type { UsageEnvironment, UsageEvent, UsageFilter, UsageTraffic, UsageHealth } from '../../application/usage/contracts.js';
+import type { UsageEnvironment, UsageEvent, UsageFilter, UsageTraffic, UsageHealth, UsagePrivacyControl } from '../../application/usage/contracts.js';
 import { UsageError } from '../../application/usage/contracts.js';
 import { SqliteUsageStore } from './sqliteStore.js';
 import { SqliteUsageReader } from './sqliteReader.js';
@@ -9,7 +9,7 @@ import { backupUsage, cleanUsageTemporaries, pruneUsageBackups } from './backups
 import { acquirePrivateLease, withPrivateExport } from './privateFiles.js';
 
 type Options = { file: string; environment: UsageEnvironment; traffic: UsageTraffic; bootRef?: string; now: number; backupDirectory?: string; backupKey?: string;
-  limits: { databaseBytes: number; walBytes: number; reserveBytes: number }; existingOnly?: boolean; readOnly?: boolean; writerToken: string; collecting: boolean; requireBackup?: boolean };
+  limits: { databaseBytes: number; walBytes: number; reserveBytes: number }; existingOnly?: boolean; readOnly?: boolean; writerToken: string; collecting: boolean; requireBackup?: boolean; consentRequired?: boolean };
 const options = workerData as Options;
 let store: SqliteUsageStore | SqliteUsageReader;
 let releaseWriter: (() => void) | undefined;
@@ -81,17 +81,28 @@ try {
   else {
     fs.mkdirSync(path.dirname(options.file), { recursive: true, mode: 0o700 });
     releaseWriter = acquirePrivateLease(path.join(path.dirname(options.file), '.writer.lock'), options.writerToken);
-    store = new SqliteUsageStore(options.file, options.environment, options.now, options.bootRef, options.traffic, options.collecting);
+    store = new SqliteUsageStore(options.file, options.environment, options.now, options.bootRef, options.traffic, options.collecting, options.consentRequired);
     budget(); await maintain(options.now); schedule();
   }
   parentPort!.postMessage({ ready: true });
-  parentPort!.on('message', async (message: { id: number; type: string; events?: UsageEvent[]; filter?: UsageFilter; at?: number; synthetic?: boolean; loss?: boolean; health?: UsageHealth }) => {
+  parentPort!.on('message', async (message: { id: number; type: string; events?: UsageEvent[]; guards?: SharedArrayBuffer[][]; command?: UsagePrivacyControl;
+    filter?: UsageFilter; at?: number; synthetic?: boolean; loss?: boolean; health?: UsageHealth }) => {
     if (busy) { parentPort!.postMessage({ id: message.id, error: 'BUSY', transient: true }); return; }
     busy = true;
     try {
       if (message.loss && store instanceof SqliteUsageStore) store.noteLoss();
       let result: unknown;
-      if (message.type === 'append') { if (maintenancePaused || options.requireBackup && backupRetryAt !== Infinity) throw new Error('MAINTENANCE_FAILED'); budget(message.events!); requireWriter().append(message.events!); }
+      if (message.type === 'append') {
+        if (maintenancePaused || options.requireBackup && backupRetryAt !== Infinity) throw new Error('MAINTENANCE_FAILED');
+        const entries = message.events!.map((event, i) => ({ event, guards: message.guards?.[i] ?? [] }));
+        const allowed = (entry: typeof entries[number]) => entry.guards.every(buffer => buffer instanceof SharedArrayBuffer && buffer.byteLength === 4 && Atomics.load(new Int32Array(buffer), 0) === 1);
+        const accepted = entries.filter(allowed); budget(accepted.map(entry => entry.event));
+        requireWriter().append(accepted.map(entry => entry.event), () => {
+          // Revocación concurrente: rollback del batch no durable; el reintento excluye lo revocado.
+          if (!accepted.every(allowed)) throw Object.assign(new Error('ADMISSION_CHANGED'), { errcode: 5 });
+        });
+      }
+      else if (message.type === 'control') { budget([]); requireWriter().privacyControl(message.command!); }
       else if (message.type === 'read') result = store.read(message.filter!, message.at ?? Date.now(), message.synthetic ? 'SYNTHETIC' : 'HUMAN');
       else if (message.type === 'health') requireWriter().health(message.health!);
       else if (message.type === 'maintain') await maintain(message.at ?? Date.now());

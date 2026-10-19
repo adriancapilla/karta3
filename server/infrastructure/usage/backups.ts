@@ -83,6 +83,8 @@ export async function restoreUsageBackup(file: string, destination: string, key:
     if (db.prepare('PRAGMA integrity_check').get()?.integrity_check !== 'ok'
       || Number(db.prepare('SELECT count(*) AS n FROM events').get()?.n) !== 0
       || Number(db.prepare('SELECT count(*) AS n FROM subjects').get()?.n) !== 0) throw new Error('BACKUP_INVALID');
+    if (db.prepare("SELECT 1 FROM sqlite_schema WHERE name='usage_choice_proofs'").get()
+      && Number(db.prepare('SELECT count(*) AS n FROM usage_choice_proofs').get()?.n) !== 0) throw new Error('BACKUP_INVALID');
   } finally { db.close(); }
   const restored = new SqliteUsageStore(destination, environment, at, undefined, traffic); restored.close();
 }

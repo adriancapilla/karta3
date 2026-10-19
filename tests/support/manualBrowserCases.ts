@@ -3,11 +3,12 @@ import type { InitialGameRoomView, RoomView } from '../../shared/contracts/room.
 
 export const readRoom = (page: Page): Promise<RoomView> => page.evaluate(async () => (await (await fetch('/api/rooms/current')).json()).room);
 export const readGame = async (page: Page) => await readRoom(page) as InitialGameRoomView;
-export async function manualTable(browser: Browser, base: string, options: { width?: number; height?: number; hostName?: string; valueMode?: 'PLAY_VALUE' | 'DISPLAY_VALUE'; optimize?: boolean; count?: number; observer?: boolean; deckId?: string; version?: number; review?: number; tie?: boolean; turn?: 15 | 30 | 60; names?: readonly string[]; bots?: readonly ('EASY' | 'HARD')[] } = {}) {
+export async function manualTable(browser: Browser, base: string, options: { width?: number; height?: number; hostName?: string; valueMode?: 'PLAY_VALUE' | 'DISPLAY_VALUE'; optimize?: boolean; count?: number; observer?: boolean; deckId?: string; version?: number; review?: number; tie?: boolean; turn?: 15 | 30 | 60; names?: readonly string[]; bots?: readonly ('EASY' | 'HARD')[]; beforeCreate?: (pages: readonly Page[]) => Promise<void> } = {}) {
   const width = options.width ?? 1280; const count = options.count ?? 2;
   const contexts = await Promise.all(Array.from({ length: count + Number(!!options.observer) }, () => browser.newContext({ viewport: { width, height: options.height ?? 844 }, hasTouch: width < 760, isMobile: width < 760 })));
   const pages = await Promise.all(contexts.map((context) => context.newPage()));
   await Promise.all(pages.map((page) => page.goto(base)));
+  await options.beforeCreate?.(pages);
   const host = pages[0]; await host.getByRole('button', { name: 'Crear sala', exact: true }).click();
   if (options.hostName) { await host.getByLabel('Editar mi nombre').fill(options.hostName); await host.getByRole('button', { name: 'Guardar', exact: true }).click(); await expect(host.locator('.participant-list')).toContainText(options.hostName); }
   const code = (await host.locator('.code').textContent())!;
