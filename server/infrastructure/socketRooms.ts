@@ -67,7 +67,8 @@ export class SocketRoomChanges implements GameChanges, SessionPresence {
 
     io.on('connection', (socket) => {
       const sessionId = socket.data.sessionId as string;
-      if (this.stopped) { socket.disconnect(true); return; }
+      // Cierre transitorio del proceso: conservar la reconexión, sin expulsión de namespace.
+      if (this.stopped) { socket.conn.close(); return; }
       const connections = this.connections.get(sessionId) ?? new Set<string>();
       this.connections.set(sessionId, connections);
       connections.add(socket.id);
