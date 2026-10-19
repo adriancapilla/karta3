@@ -6,6 +6,9 @@ prefix="karta3-b18-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT"
 volume="$prefix-data"
 restored="$prefix-restored"
 app="$prefix-app"
+human="$prefix-human"
+secret="$prefix-secret"
+human_restored="$prefix-human-restored"
 cleanup_usage() {
   status=$?
   if [ "$status" -ne 0 ]; then
@@ -13,7 +16,7 @@ cleanup_usage() {
     docker logs "$app" 2>&1 | grep -E '^(USAGE_|KARTA3:)' || true
   fi
   docker rm -f "$app" >/dev/null 2>&1 || true
-  docker volume rm "$volume" "$restored" >/dev/null 2>&1 || true
+  docker volume rm "$volume" "$restored" "$human" "$secret" "$human_restored" >/dev/null 2>&1 || true
 }
 trap cleanup_usage EXIT
 docker volume create "$volume" >/dev/null
@@ -65,3 +68,15 @@ docker run --rm -i --read-only --tmpfs /tmp --network none \
 docker run --rm --user 1001:1001 --read-only --network none --mount "source=$volume,target=/var/lib/karta3/usage,readonly" \
   karta3:ci node -e "require('node:assert/strict').throws(()=>require('node:fs').readFileSync('/var/lib/karta3/usage/test/synthetic/usage.sqlite'),{code:'EACCES'})"
 printf '%s\n' '{"otherUidDenied":true,"collectionHumanEnabled":false,"publishedPorts":0,"syntheticVolumesRemovedOnExit":true}' > "$proof/usage-permissions.json"
+# B19: servidor HUMAN exclusivamente fabricado por stdin, sin bandera pública de readiness.
+for name in "$human" "$secret" "$human_restored"; do docker volume create "$name" >/dev/null; done
+docker run --rm --read-only --network none --mount "source=$secret,target=/var/lib/karta3/usage" karta3:ci \
+  node -e "require('node:fs').writeFileSync('/var/lib/karta3/usage/copy.key',require('node:crypto').randomBytes(32).toString('hex'),{flag:'wx',mode:0o600})"
+# Inicializar propietario1000 del volumen de restauración antes de montarlo en /restore.
+docker run --rm --read-only --network none --mount "source=$human_restored,target=/var/lib/karta3/usage" karta3:ci node -e "process.exit(0)"
+docker run --rm -i --read-only --tmpfs /tmp --network none \
+  --mount "source=$human,target=/var/lib/karta3/usage" --mount "source=$secret,target=/run/karta3-secrets,readonly" \
+  --mount "source=$human_restored,target=/restore" \
+  karta3:ci node --input-type=module < tools/ci-usage-human.mjs | tee "$proof/usage-b19-human.json"
+docker run --rm --user 1001:1001 --read-only --network none --mount "source=$human,target=/var/lib/karta3/usage,readonly" \
+  karta3:ci node -e "require('node:assert/strict').throws(()=>require('node:fs').readFileSync('/var/lib/karta3/usage/pruebas/human/usage.sqlite'),{code:'EACCES'})"

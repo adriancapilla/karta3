@@ -1,0 +1,17 @@
+# B19 — preparación de puerta Linux focal, 19/10/2026
+
+Fuente recibida2f94f7f, siete commits propios sobre B18 integrado2b25f69, conservados. Rama única de publicación autorizada: chore/publicacion-b19 en APP/karta3, sin otro checkout. AGENTS del autor (doce líneas) registrado aparte en18300c2, sin atribuirlo a Implementación. Main local2f94f7f y remoto2b25f69 se conservan hasta publicación final.
+
+Windows645/59/98 y45 Chrome pertinentes siguen siendo evidencia local histórica; no batería global ni Linux. Aviso operativo incompleto, privacyNotice.complete=false y normal OFF. La alineación general19/10 y los datos operativos se completan por sus responsables; no se inventan textos ni se editan fuentes TFM.
+
+## Puerta prevista, todavía no acreditada
+
+Despacho manual único del workflow CI sobre esta rama, chrome_diagnostic=`H0[2346]|B18` y usage_linux_gate=true. Debe seleccionar once casos de usageChoice.spec.ts (cinco), usageActivation.spec.ts (dos) y usage.spec.ts (cuatro), un trabajador/cero reintentos. El workflow conserva npm ci/check y la construcción/verificación Linux; **no ejecuta Chrome completo ni acredita fuente final**. Preparación/aviso pendientes impiden todavía PR final/squash/CI completa/GHCR.
+
+El check Linux ejecutará composición/matriz, elección, censura, worker, esquema2, retención y regresiones existentes. La imagen ejecuta el verificador B18 y añade tools/ci-usage-human.mjs por stdin: servidor HUMAN fabricado en espacio privado del contenedor, readiness explícita solo del arnés, sin bandera pública, puertos o red. UID1000, raíz read-only y tres volúmenes propios: datos, clave privada montada RO y restauración aislada. No servidores/datos manuales del autor.
+
+Se exige: migración fabricada1→2 conservando el hecho previo; aceptación durable, retirada con barrera y censura sin terminar Game; rechazo de POST tras retirada; parada POSIX/reinicio a OFF con mismo volumen y pérdida de permiso/juego RAM; información incompleta y clave ausente bloquean captura conservando mantenimiento; rutas privadas404 y privacidad pública404 mientras el aviso no esté completo; copia cifrada/restore con agregados iguales, sin eventos/subjects/recibos ni referencias de recibo en bytes y rechazo de captura sobre agregado restaurado. La clave nunca sale de su volumen; solo se conserva JSON resumido, no DB/WAL/SHM/CSV/contexto/secretos. La imagen/OCI de esta focal no se declara candidato final aprobado.
+
+El verificador añade un módulo técnico (98→99 esperados), no función de producto. No se modifican reglas, fórmulas, presentación, paquetes o criterios. Presupuestos actuales conservados; supervisión por una sola espera acotada al flujo más cola y resumen al terminar. Registrar URL/ID/intento/HEAD/alcance antes de esperar; revisar logs detallados solo si falla. No cancelar o ampliar límites por agotar la supervisión.
+
+Resultados reales y eventual diagnóstico: APP/verificacion-b19-20261019. Este documento se completará solo tras ejecutar la puerta; no se repite CI completa hasta recibir aviso y fuente definitivos. Sin publicador GHCR o VPS.

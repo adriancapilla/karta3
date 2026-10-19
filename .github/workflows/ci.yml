@@ -13,7 +13,7 @@ on:
         default: ''
         type: string
       usage_linux_gate:
-        description: 'B18: incluir imagen/volumen sintético junto al diagnóstico Chrome; no sustituye CI completa.'
+        description: 'B18/B19: incluir imagen/volumen de ensayo junto al diagnóstico Chrome; no sustituye CI completa.'
         required: false
         default: false
         type: boolean
@@ -84,6 +84,7 @@ jobs:
             ${{ runner.temp }}/karta3-browser.json
             test-results/
             playwright-report/b17-adenda/acceptance/
+            playwright-report/b19/eleccion-*.png
           if-no-files-found: warn
           retention-days: 7
 

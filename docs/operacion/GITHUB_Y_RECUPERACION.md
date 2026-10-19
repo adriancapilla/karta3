@@ -1,7 +1,15 @@
 # GitHub, comprobaciones y recuperación
 
-Actualizado: 18/10/2026. Repositorio existente: `E:\KARTA3\KARTA3_IA\APP\karta3`.
+Actualizado: 19/10/2026. Repositorio existente: `E:\KARTA3\KARTA3_IA\APP\karta3`.
 Versión de paquete: 0.1.0. Remoto privado: `https://github.com/adriancapilla/karta3.git`.
+
+## B19 — preparación focal, sin publicación final
+
+Por traslado de Coordinación: fuente2f94f7f, siete commits conservados sobre B18 integrado2b25f69. Única rama temporal autorizada chore/publicacion-b19 en la carpeta activa, sin otro checkout. AGENTS del autor registrado documentalmente aparte en18300c2. No se fusiona diagnóstico GHCR ni se aplica reserva4516d23. Servidores/histórico manual del autor preservados.
+
+Primero [puerta focal Linux](../sdd/evidencias/B19/LINUX_FOCAL.md): once Chrome, matriz/elección/censura en check e imagen con UID1000, volumen privado/esquema2, clave RO, reinicio compatible OFF y copia/restauración sin recibos. Datos HUMAN exclusivamente fabricados por arnés privado; normal OFF/informationReady=false. Mantener un trabajador/cero reintentos y presupuestos vigentes. Registrar ejecución/intento/fuente y usar una sola espera acotada, sin consultas frecuentes o relanzamientos ciegos.
+
+No PR final/squash/CI Chrome completa, publicador GHCR o VPS hasta recibir aviso operativo y fuente definitivos. Información de alojamiento/Hostinger/logs y consecuencia de cobertura/recibos se completan por Coordinación/autor; no inventar texto ni modificar TFM. La focal temprana y cualquier OCI generado no sustituyen CI final de PR/main/clon y artefacto exacto B19 posteriores. El cierre técnico/IDs se registra en APP/verificacion-b19-20261019 y esta evidencia; no se declara operación pública.
 
 ## Publicación B18 — preparación del 18/10/2026
 
