@@ -15,3 +15,5 @@ Se exige: migración fabricada1→2 conservando el hecho previo; aceptación dur
 El verificador añade un módulo técnico (98→99 esperados), no función de producto. No se modifican reglas, fórmulas, presentación, paquetes o criterios. Presupuestos actuales conservados; supervisión por una sola espera acotada al flujo más cola y resumen al terminar. Registrar URL/ID/intento/HEAD/alcance antes de esperar; revisar logs detallados solo si falla. No cancelar o ampliar límites por agotar la supervisión.
 
 Resultados reales y eventual diagnóstico: APP/verificacion-b19-20261019. Este documento se completará solo tras ejecutar la puerta; no se repite CI completa hasta recibir aviso y fuente definitivos. Sin publicador GHCR o VPS.
+
+El workflow conserva además un artefacto pequeño karta3-usage-proof-ID-intento con JSON resumidos del volumen/elección y trace, sin DB o clave, durante14 días. Permite cerrar la focal sin descargar o tratar el OCI provisional como candidato final. El resultado de check/Chrome y los tiempos se recogerán una sola vez al terminar.
