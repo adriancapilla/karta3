@@ -1,5 +1,5 @@
 /** Solo declaraciones del documento; nunca identidad, reloj ni resultados de juego. */
-export const USAGE_NOTICE_VERSION = '2026-10-19.1';
+export const USAGE_NOTICE_VERSION = '2026-10-19.2';
 export type UsageContext = { visitId: string; intentId: string };
 export type UsageChoiceView = { available: boolean; decision: 'UNDECIDED' | 'ACCEPTED' | 'REJECTED'; revision: number;
   noticeVersion: string; validUntil: number | null };

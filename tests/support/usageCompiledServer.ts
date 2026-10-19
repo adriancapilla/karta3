@@ -7,9 +7,8 @@ import { compiledInstallation, removeTestInstallation } from './compiledDeckServ
 import type { UsageEvent } from '../../server/application/usage/contracts.js';
 import { randomBytes } from 'node:crypto';
 import { privateDirectory } from '../../server/infrastructure/usage/privateFiles.js';
-import { privacyNotice } from '../../shared/contracts/privacyNotice.js';
 
-/** Instancia propia compilada, barajas normales, colección sintética y transporte/entropía/reloj normales. */
+/** Instancia propia compilada y datos fabricados; mismo main/aviso, transporte/entropía/reloj normales. */
 export async function usageInstallation(options: { human?: boolean } = {}) {
   const root = await compiledInstallation();
   await fs.cp(path.resolve('barajas'), path.join(root, 'barajas'), { recursive: true });
@@ -19,23 +18,7 @@ export async function usageInstallation(options: { human?: boolean } = {}) {
     const secret = path.join(data, 'secret'); privateDirectory(secret, true); keyFile = path.join(secret, 'copy.key');
     await fs.writeFile(keyFile, randomBytes(32).toString('hex'), { mode: 0o600 });
   }
-  const entry = options.human && !privacyNotice.complete ? `
-// Montaje HUMAN fabricado: readiness informativa de ensayo, nunca aplicación pública.
-import {createServer} from 'node:http';
-import {fileURLToPath} from 'node:url';
-import {createRuntime} from './dist-server/server/composition/createApp.js';
-import {createUsageRuntime} from './dist-server/server/composition/usage.js';
-import {loadInstallationDecks} from './dist-server/server/composition/decks.js';
-import {attachPublicFiles} from './dist-server/server/infrastructure/http/publicFiles.js';
-const loaded=await loadInstallationDecks(); const usage=await createUsageRuntime(true);
-const runtime=createRuntime({decks:loaded.catalog,deckVersions:loaded.catalog,gameDecks:loaded.catalog,usage:usage.recorder,usageHttp:usage.http,usageChoices:usage.choices});
-attachPublicFiles(runtime.app,fileURLToPath(new URL('./dist',import.meta.url)),loaded.catalog);
-const server=createServer(runtime.app); const realtime=runtime.attachRealtime(server);let stopping=false;
-const stop=()=>{if(stopping)return;stopping=true;runtime.controlledStop();runtime.dispose();realtime.engine.close();server.close();server.closeAllConnections();void usage.close().finally(()=>process.exit(0));};
-process.on('SIGTERM',stop);process.on('SIGINT',stop);
-server.listen(Number(process.env.PORT),'127.0.0.1',()=>console.log('KARTA3: http://127.0.0.1:'+server.address().port));
-` : `import './dist-server/server/main.js';`;
-  await fs.writeFile(path.join(root, 'usage-process.mjs'), `${entry}
+  await fs.writeFile(path.join(root, 'usage-process.mjs'), `import './dist-server/server/main.js';
 // Solo arnés privado del ensayo, sin endpoint ni control incorporado a producto.
 process.on('message', (message) => { if (message === 'test-controlled-stop') process.emit('SIGTERM'); });
 `);

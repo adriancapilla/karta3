@@ -25,7 +25,7 @@ export function usageMode(mode: string | undefined, environment: string | undefi
   if (mode === 'human' && environment === 'pruebas') return 'human';
 }
 // informationReady acredita contenido completo incluido en la versión, no aprobación jurídica/operativa.
-// Permanece false hasta recibir el texto final; no existe variable de aprobación ni activación HTTP.
+// main aporta la comprobación del aviso incluido; por defecto cerrado, sin variable de aprobación o activación HTTP.
 export async function createUsageRuntime(informationReady = false, time?: { clock: Clock; scheduler: Scheduler }) {
   let writer: SqliteUsageWorker | undefined;
   let capturesHuman = false;

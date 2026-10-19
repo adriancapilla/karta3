@@ -17,7 +17,7 @@ export function attachPublicFiles(app: Express, clientDirectory: string, decks: 
     let decoded: string;
     try { decoded = decodeURIComponent(req.path); } catch { res.status(404).end(); return; }
     if (/^\/privacidad\/?$/i.test(decoded)) {
-      res.set('Cache-Control', 'no-store');
+      res.set({ 'Cache-Control': 'no-store', 'X-Karta3-Usage-Collection': 'off' });
       if (!privacyNotice.complete) { res.status(404).type('text/plain').send('Información de privacidad no disponible.'); return; }
       res.sendFile(path.join(clientDirectory, 'index.html')); return;
     }

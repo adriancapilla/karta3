@@ -2,7 +2,7 @@ import { expect, test, type Page } from '@playwright/test';
 import { usageInstallation } from '../support/usageCompiledServer.js';
 import { manualTable, humanPlay, readRoom } from '../support/manualBrowserCases.js';
 
-/** HUMAN fabricado: mismos adaptadores, readiness informativa de ensayo mientras falta inventario. */
+/** Datos HUMAN fabricados y aislados; main compilado y aviso factual completo, sin activar tráfico real. */
 async function accept(pages: readonly Page[]) {
   for (const page of pages) {
     const area = page.getByRole('complementary', { name: 'Analítica y privacidad' });
@@ -41,7 +41,7 @@ for (const width of [390, 1280]) test(`H06 ${width}: elección/retirada propias 
     await table.host.reload(); await expect(table.host.getByRole('complementary', { name: 'Analítica y privacidad' })).toContainText('Analítica rechazada');
     expect(await table.host.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
     await tab.screenshot({ path: `playwright-report/b19/eleccion-${width}.png`, fullPage: true });
-    testInfo.annotations.push({ type: 'montaje', description: 'HUMAN fabricado/compilado; reloj y entropía normales; texto operativo aún no completo, no activación pública.' });
+    testInfo.annotations.push({ type: 'montaje', description: 'Datos HUMAN fabricados; main/aviso compilados, reloj y entropía normales; no activación pública.' });
   } finally { await table.close(); await server.stop(); await installation.cleanup(); }
 });
 
