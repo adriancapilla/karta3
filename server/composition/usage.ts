@@ -3,7 +3,7 @@ import { randomUUID } from 'node:crypto';
 import { SystemClock } from '../infrastructure/time.js';
 import { UsageRecording, disabledUsage } from '../application/usage/recording.js';
 import { SqliteUsageWorker } from '../infrastructure/usage/sqliteWorker.js';
-import { privateDirectory } from '../infrastructure/usage/privateFiles.js';
+import { privateDirectory, readPrivateUsageKey } from '../infrastructure/usage/privateFiles.js';
 import { UsageAdmission } from '../infrastructure/usage/http.js';
 import { UsageError, type UsageEnvironment, type UsageTraffic } from '../application/usage/contracts.js';
 import fs from 'node:fs';
@@ -15,32 +15,50 @@ export function usageLocation(environment: string | undefined, directory: string
   if (['dist', 'dist-server', 'barajas', 'public', 'src'].some((segment) => root.split(path.sep).some((part) => part.toLowerCase() === segment))) throw new UsageError('INVALID_FILTER');
   return { root, file: path.join(root, 'usage.sqlite'), environment: environment as UsageEnvironment, traffic };
 }
-export async function createUsageRuntime() {
+export function usageMode(mode: string | undefined, environment: string | undefined): 'off' | 'synthetic' | 'human' | undefined {
+  if (mode === undefined || mode === 'off') return 'off';
+  if (mode === 'synthetic' && environment === 'test') return 'synthetic';
+  if (mode === 'human' && environment === 'pruebas') return 'human';
+}
+// informationReady acredita contenido completo incluido en la versión, no aprobación jurídica/operativa.
+// Permanece false hasta recibir el texto final; no existe variable de aprobación ni activación HTTP.
+export async function createUsageRuntime(informationReady = false) {
   const disabled = { recorder: disabledUsage, http: undefined, close: async () => {} };
-  // Esta entrega NO proporciona activación HUMAN. Solo pruebas aisladas explícitas.
-  const enabled = process.env.KARTA3_USAGE_COLLECTION === 'synthetic' && process.env.KARTA3_ENV === 'test';
-  if (process.env.KARTA3_USAGE_COLLECTION && process.env.KARTA3_USAGE_COLLECTION !== 'off' && !enabled) console.error('USAGE_PUBLIC_COLLECTION_DISABLED');
-  if (!enabled && (!process.env.KARTA3_USAGE_DIRECTORY || !process.env.KARTA3_ENV)) return disabled;
+  const mode = usageMode(process.env.KARTA3_USAGE_COLLECTION, process.env.KARTA3_ENV);
+  if (mode === undefined) console.error('USAGE_INVALID_COLLECTION_MODE');
+  const requested = mode === 'human' || mode === 'synthetic';
+  if (!requested && (!process.env.KARTA3_USAGE_DIRECTORY || !process.env.KARTA3_ENV)) return disabled;
+  let writer: SqliteUsageWorker | undefined;
   try {
     const traffic = process.env.KARTA3_ENV === 'test' ? 'SYNTHETIC' : 'HUMAN';
     const location = usageLocation(process.env.KARTA3_ENV, process.env.KARTA3_USAGE_DIRECTORY, traffic);
+    let enabled = requested;
+    if (mode === 'human' && !informationReady) { console.error('USAGE_INFORMATION_UNAVAILABLE'); enabled = false; }
+    let backupKey: string | undefined;
+    try {
+      const keyFile = process.env.KARTA3_USAGE_BACKUP_KEY_FILE;
+      if (keyFile) backupKey = readPrivateUsageKey(keyFile);
+      else if (mode === 'synthetic') backupKey = process.env.KARTA3_USAGE_BACKUP_KEY || undefined;
+      if (backupKey && !/^[a-f0-9]{64}$/i.test(backupKey)) throw new UsageError('INVALID_FILTER');
+      if (mode === 'human' && !backupKey) throw new UsageError('NOT_AUTHORIZED');
+    } catch { console.error('USAGE_BACKUP_KEY_UNAVAILABLE'); backupKey = undefined; if (mode === 'human') enabled = false; }
     if (!enabled && !fs.existsSync(location.file)) return disabled;
     privateDirectory(location.root, enabled);
-    const keyFile = process.env.KARTA3_USAGE_BACKUP_KEY_FILE;
-    const backupKey = keyFile ? fs.readFileSync(keyFile, 'utf8').trim() : process.env.KARTA3_USAGE_BACKUP_KEY;
     const backupPath = path.join(location.root, 'backups');
-    const backupDirectory = backupKey || fs.existsSync(backupPath) ? backupPath : undefined;
-    if (backupDirectory) {
-      if (backupKey && !/^[a-f0-9]{64}$/i.test(backupKey)) throw new UsageError('INVALID_FILTER');
-      privateDirectory(backupDirectory, true);
+    let backupDirectory: string | undefined;
+    if (backupKey || fs.existsSync(backupPath)) {
+      try { privateDirectory(backupPath, true); backupDirectory = backupPath; }
+      catch { console.error('USAGE_BACKUP_DIRECTORY_UNAVAILABLE'); if (mode === 'human') enabled = false; }
     }
     const bootRef = randomUUID();
-    const writer = new SqliteUsageWorker({ ...location, bootRef, collecting: enabled, warning: (code) => console.error(`USAGE_${location.environment}_${code}`),
-      backupDirectory, backupKey });
+    writer = new SqliteUsageWorker({ ...location, bootRef, collecting: enabled, existingOnly: !enabled,
+      warning: (code) => console.error(`USAGE_${location.environment}_${code}`), backupDirectory, backupKey,
+      requireBackup: mode === 'human' && enabled });
     await writer.ready;
-    if (!enabled) return { ...disabled, close: () => writer.close() };
-    const recorder = new UsageRecording(writer, new SystemClock(), randomUUID, location.environment, 'SYNTHETIC', bootRef);
-    // El arranque del envelope y el de reconciliación son el mismo identificador estadístico.
-    return { recorder, http: { enabled: true, recorder, admission: new UsageAdmission() }, close: () => writer.close() };
-  } catch { console.error('USAGE_STORAGE_UNAVAILABLE'); return disabled; }
+    const activeWriter = writer;
+    if (!enabled) return { ...disabled, close: () => activeWriter.close() };
+    const recorder = new UsageRecording(activeWriter, new SystemClock(), randomUUID, location.environment, traffic, bootRef);
+    return { recorder, http: { get enabled() { return activeWriter.isCollecting(); }, mode: mode as 'human' | 'synthetic', recorder,
+      admission: new UsageAdmission() }, close: () => activeWriter.close() };
+  } catch { await writer?.close(); console.error('USAGE_STORAGE_UNAVAILABLE'); return disabled; }
 }

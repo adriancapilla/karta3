@@ -26,12 +26,14 @@ export function readSqliteUsage(db: DatabaseSync, environment: UsageEnvironment,
       metadata.restoredAggregatesOnly && filter.to !== firstMonth(filter.to) && filter.to >= metadata.aggregateAsOf! ? 1 : 0)), traffic) as unknown as Aggregate[];
   const issues = db.prepare('SELECT kind,sum(count) n FROM quality WHERE month>=? AND month<=? GROUP BY kind').all(month(filter.from), month(filter.to - 1));
   const issue = (kind: string) => Number(issues.find((row) => row.kind === kind)?.n ?? 0);
+  const operational = validUsageHealth(metadata.operational) ? metadata.operational : null;
+  const operationalStale = !operational || now - operational.at > 60_000;
   const quality: UsageQuality = { coverageFrom: earliest, asOf: metadata.aggregateAsOf ?? now, possibleLoss: issue('loss') > 0, conflicts: issue('conflict'),
     unlinked: issue('unlinked'), lastDurableAt: metadata.lastDurableAt, lastMaintenanceAt: metadata.lastMaintenanceAt,
     restoredAggregatesOnly: metadata.restoredAggregatesOnly, partialCoverage: filter.from < earliest || metadata.restoredAggregatesOnly,
-    lastBackupAt: metadata.lastBackupAt ?? null, collection: !metadata.collectionEnabled ? 'disabled' : metadata.possibleLoss ? 'degraded' : 'enabled',
-    operational: validUsageHealth(metadata.operational) ? metadata.operational : null,
-    operationalStale: !validUsageHealth(metadata.operational) || now - metadata.operational.at > 60_000 };
+    lastBackupAt: metadata.lastBackupAt ?? null, collection: !metadata.collectionEnabled ? 'disabled'
+      : metadata.possibleLoss || !operationalStale && operational?.degraded ? 'degraded' : 'enabled',
+    operational, operationalStale };
   return usageReport(filter, quality, [...detailed, ...monthly], traffic);
 }
 /** Conexión administrativa SOLO LECTURA, sin migrar/reconciliar/purgar la DB viva. */

@@ -37,7 +37,11 @@ export function createHttpApp(dependencies: { rooms: RoomActions; sessions: Memo
   const { rooms, sessions, production, decks } = dependencies;
   const app = express();
   app.disable('x-powered-by');
-  if (dependencies.usage?.enabled) app.use((_req, res, next) => { res.set('X-Karta3-Usage-Collection', 'synthetic'); next(); });
+  app.use('/api', (_req, res, next) => {
+    res.set('Cache-Control', 'no-store');
+    res.set('X-Karta3-Usage-Collection', dependencies.usage?.enabled ? dependencies.usage.mode ?? 'synthetic' : 'off');
+    next();
+  });
   attachUsageHttp(app, dependencies.usage, production);
   app.use(express.json({ limit: '4kb' }));
 

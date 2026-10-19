@@ -133,7 +133,7 @@ if (stage === 'seed') {
   await assert.rejects(fs.writeFile(root + '/.readonly-volume-probe', 'x', { flag: 'wx' }), { code: 'EROFS' });
   await postEvent(204);
   const session = await globalThis.fetch(base + '/api/rooms/current');
-  assert.equal(session.headers.get('X-Karta3-Usage-Collection'), null);
+  assert.equal(session.headers.get('X-Karta3-Usage-Collection'), 'off');
   const cookie = session.headers.get('set-cookie').split(';')[0];
   const response = await globalThis.fetch(base + '/api/rooms', { method: 'POST', headers: { Cookie: cookie,
     Origin: 'https://127.0.0.1:3000', 'Content-Type': 'application/json' }, body: '{}' });

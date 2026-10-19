@@ -1,0 +1,13 @@
+# Opcional, junto a compose.yaml y compose.usage.yaml. No contiene la clave.
+# El archivo debe ser privado y legible por UID1000; no cambiar su propietario a ciegas.
+services:
+  app:
+    environment:
+      KARTA3_USAGE_BACKUP_KEY_FILE: /run/secrets/karta3-usage-backup-key
+    secrets:
+      - source: usage_backup_key
+        target: karta3-usage-backup-key
+
+secrets:
+  usage_backup_key:
+    file: ${KARTA3_USAGE_BACKUP_KEY_PATH:?Archivo de clave privado existente fuera de Git}

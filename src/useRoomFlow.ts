@@ -5,7 +5,7 @@ import { send, sendGame, socket, type RoomAck } from './socket';
 import { acceptsRoom, automaticEndMessage } from './roomState';
 import type { RoundResolvedEvent, TurnExpiredEvent } from '../shared/contracts/game';
 import type { UsageContext } from '../shared/contracts/usage';
-import { beginUsageIntent } from './usage';
+import { beginUsageIntent, currentUsageContext, invalidateBrowserUsage, onUsageInvalidated } from './usage';
 
 function roomPath(id: string) { return `/sala/${id}`; }
 function isRoomPath() { return window.location.pathname.startsWith('/sala/'); }
@@ -48,6 +48,11 @@ export function useRoomFlow() {
   const [confirmClose, setConfirmClose] = useState(false);
   const [confirmLeave, setConfirmLeave] = useState(false);
   const [connected, setConnected] = useState(false);
+
+  useEffect(() => onUsageInvalidated(() => {
+    if (pendingCreate.current) delete pendingCreate.current.context;
+    if (pendingJoin.current) delete pendingJoin.current.usageContext;
+  }), []);
 
   const clearRoom = useCallback((noticeText: string) => {
     roomRef.current = null;
@@ -220,6 +225,9 @@ export function useRoomFlow() {
     };
     const onConnect = () => {
       const expectedRoomId = activeRoomRef.current?.id ?? null;
+      // Socket.IO no confirma el modo estadístico del proceso que acaba de conectar.
+      // La recuperación HTTP vigente lo confirma sin bloquear la recuperación del juego.
+      void api.current().catch(() => {});
       void send<CurrentRoomResponse>('room:resume', {}).then((result) => {
         if (!active) return;
         setConnected(true);
@@ -235,7 +243,7 @@ export function useRoomFlow() {
         socket.connect();
       }).catch(() => { if (active) setNotice('No se pudo recuperar la conexión. Inténtalo de nuevo.'); });
     };
-    const onDisconnect = () => { if (active) setConnected(false); };
+    const onDisconnect = () => { if (active) { invalidateBrowserUsage(); setConnected(false); } };
     socket.on('room:state', onState);
     socket.on('game:round-resolved', onResolved);
     socket.on('game:turn-expired', onExpired);
@@ -267,6 +275,7 @@ export function useRoomFlow() {
       socket.off('connect', onConnect);
       socket.off('connect_error', onConnectError);
       socket.off('disconnect', onDisconnect);
+      invalidateBrowserUsage();
       socket.disconnect();
     };
   }, [applyCurrent, applyRoom, clearRoom, showActivity, openResult]);
@@ -313,7 +322,7 @@ export function useRoomFlow() {
     pendingJoin.current = pending;
     try {
       const result = await send<RoomAck>('room:join', { requestId: pending.id, code: pending.code, name: pending.name,
-        ...(pending.usageContext ? { usageContext: pending.usageContext } : {}) });
+        ...(currentUsageContext(pending.usageContext) ? { usageContext: pending.usageContext } : {}) });
       pendingJoin.current = null;
       applyRoom(result.room);
     } catch (error) {

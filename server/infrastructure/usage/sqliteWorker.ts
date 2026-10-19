@@ -11,7 +11,7 @@ export const usageLimits: UsageLimits = { events: 2048, bytes: 2 * 1024 ** 2, se
 type Entry = { event: UsageEvent; bytes: number; born: number };
 type Pending = { resolve: (value: unknown) => void; reject: (error: Error) => void; timer: NodeJS.Timeout };
 type WriterOptions = { file: string; environment: UsageEnvironment; traffic?: UsageTraffic; bootRef?: string; now?: number; backupDirectory?: string; backupKey?: string;
-  limits?: Partial<UsageLimits>; warning?: (code: string) => void; existingOnly?: boolean; readOnly?: boolean; collecting?: boolean };
+  limits?: Partial<UsageLimits>; warning?: (code: string) => void; existingOnly?: boolean; readOnly?: boolean; collecting?: boolean; requireBackup?: boolean };
 
 /** Un batch en vuelo; el puerto nunca admite espera/IO o excepciones hacia el juego. */
 export class SqliteUsageWorker implements UsageEventSink, UsageEventStore, UsageReportReader, UsageMaintenance {
@@ -30,6 +30,7 @@ export class SqliteUsageWorker implements UsageEventSink, UsageEventStore, Usage
   private failed = false;
   private paused = false;
   private pauseCause = 'DISK_LIMIT';
+  private copyPaused = false;
   private exportBusy = false;
   private drops: Record<string, number> = {};
   private warnings = new Map<string, number>();
@@ -49,10 +50,11 @@ export class SqliteUsageWorker implements UsageEventSink, UsageEventStore, Usage
       const initial = setTimeout(() => { this.fail(); reject(new UsageError('STORAGE_UNAVAILABLE')); }, 5000);
       this.worker.on('message', (message: { ready?: boolean; failed?: string; warning?: string; id?: number; result?: unknown; error?: string; transient?: boolean; paused?: boolean; resumed?: boolean }) => {
         if (message.paused || message.warning === 'MAINTENANCE_FAILED') {
-          this.paused = true; this.pauseCause = message.warning === 'MAINTENANCE_FAILED' ? 'MAINTENANCE_FAILED' : 'DISK_LIMIT'; this.warn(this.pauseCause);
+          this.copyPaused = message.warning === 'BACKUP_FAILED';
+          this.paused = true; this.pauseCause = message.warning === 'MAINTENANCE_FAILED' || message.warning === 'BACKUP_FAILED' ? 'MAINTENANCE_FAILED' : 'DISK_LIMIT'; this.warn(this.pauseCause);
           for (const entry of this.queue.splice(0)) this.drop(entry, this.pauseCause);
         }
-        if (message.resumed) this.paused = false;
+        if (message.resumed) { this.paused = false; this.copyPaused = false; }
         if (message.ready) { this.readyOk = true; clearTimeout(initial); resolve(); }
         if (message.failed) { clearTimeout(initial); this.fail(); reject(new UsageError(message.failed as UsageErrorCode)); }
         if (message.warning) this.warn(message.warning);
@@ -70,7 +72,8 @@ export class SqliteUsageWorker implements UsageEventSink, UsageEventStore, Usage
     void this.ready.catch(() => {});
     this.timer = setInterval(() => { void this.flush(); void this.publishHealth(); }, this.limits.flushMs); this.timer.unref();
   }
-  status() { return { enabled: !this.stopped && (this.options.collecting ?? !!this.options.bootRef), degraded: this.failed || this.paused || Object.keys(this.drops).length > 0, paused: this.paused, queue: this.queue.length + this.flight.length,
+  isCollecting() { return this.readyOk && !this.stopped && !this.failed && !this.paused && (this.options.collecting ?? !!this.options.bootRef); }
+  status() { return { enabled: this.isCollecting(), degraded: this.failed || this.paused || Object.keys(this.drops).length > 0, paused: this.paused, queue: this.queue.length + this.flight.length,
     bytes: this.bytes, discarded: { ...this.drops } }; }
   private warn(code: string) {
     if (Date.now() - (this.warnings.get(code) ?? -Infinity) < 60_000) return;
@@ -81,7 +84,7 @@ export class SqliteUsageWorker implements UsageEventSink, UsageEventStore, Usage
   private count(reason: string, source: string) { const key = `${source}:${reason}`; this.drops[key] = (this.drops[key] ?? 0) + 1; this.warn(reason); }
   noteLoss(reason: 'CORRELATION_LIMIT') { this.count(reason, 'SERVER'); }
   private publishHealth(): Promise<void> | undefined {
-    if (!this.readyOk || this.options.readOnly || this.stopped || this.failed || this.paused || this.flight.length || this.healthFlight
+    if (!this.readyOk || this.options.readOnly || this.stopped || this.failed || this.paused && !this.copyPaused || this.flight.length || this.healthFlight
       || this.retryAt > Date.now() || this.healthRetryAt > Date.now()) return;
     const status = this.status(); const signature = JSON.stringify(status); if (signature === this.lastHealth) return;
     return this.healthFlight = this.rpc('health', { health: { ...status, at: Date.now() } }).then(() => { this.lastHealth = signature; })

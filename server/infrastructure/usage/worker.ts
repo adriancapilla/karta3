@@ -9,7 +9,7 @@ import { backupUsage, cleanUsageTemporaries, pruneUsageBackups } from './backups
 import { acquirePrivateLease, withPrivateExport } from './privateFiles.js';
 
 type Options = { file: string; environment: UsageEnvironment; traffic: UsageTraffic; bootRef?: string; now: number; backupDirectory?: string; backupKey?: string;
-  limits: { databaseBytes: number; walBytes: number; reserveBytes: number }; existingOnly?: boolean; readOnly?: boolean; writerToken: string; collecting: boolean };
+  limits: { databaseBytes: number; walBytes: number; reserveBytes: number }; existingOnly?: boolean; readOnly?: boolean; writerToken: string; collecting: boolean; requireBackup?: boolean };
 const options = workerData as Options;
 let store: SqliteUsageStore | SqliteUsageReader;
 let releaseWriter: (() => void) | undefined;
@@ -36,6 +36,7 @@ async function maintain(at: number) {
   store.maintain(at);
   maintenancePaused = false;
   try {
+    if (options.requireBackup && (!options.backupDirectory || !options.backupKey)) throw new Error('BACKUP_NOT_CONFIGURED');
     if (options.backupDirectory) await withPrivateExport(path.dirname(options.backupDirectory), async () => {
       await cleanUsageTemporaries(options.backupDirectory!); await pruneUsageBackups(options.backupDirectory!, at);
     });
@@ -45,7 +46,9 @@ async function maintain(at: number) {
     }
     backupRetryAt = Infinity;
   } catch { backupRetryAt = Date.now() + 60_000; parentPort!.postMessage({ warning: 'BACKUP_FAILED' }); }
-  budget(); parentPort!.postMessage({ resumed: true });
+  budget();
+  if (options.requireBackup && backupRetryAt !== Infinity) parentPort!.postMessage({ paused: true, warning: 'BACKUP_FAILED' });
+  else parentPort!.postMessage({ resumed: true });
 }
 function nextMaintenance() {
   if (!(store instanceof SqliteUsageStore)) return 86_400_000;
@@ -88,7 +91,7 @@ try {
     try {
       if (message.loss && store instanceof SqliteUsageStore) store.noteLoss();
       let result: unknown;
-      if (message.type === 'append') { if (maintenancePaused) throw new Error('MAINTENANCE_FAILED'); budget(message.events!); requireWriter().append(message.events!); }
+      if (message.type === 'append') { if (maintenancePaused || options.requireBackup && backupRetryAt !== Infinity) throw new Error('MAINTENANCE_FAILED'); budget(message.events!); requireWriter().append(message.events!); }
       else if (message.type === 'read') result = store.read(message.filter!, message.at ?? Date.now(), message.synthetic ? 'SYNTHETIC' : 'HUMAN');
       else if (message.type === 'health') requireWriter().health(message.health!);
       else if (message.type === 'maintain') await maintain(message.at ?? Date.now());

@@ -30,6 +30,20 @@ export function privateOutput(file: string, text: string) {
   privateDirectory(path.dirname(file), false);
   fs.writeFileSync(file, text, { flag: 'wx', mode: 0o600 });
 }
+/** Clave de copia por archivo privado; nunca usa el contenido como diagnóstico. */
+export function readPrivateUsageKey(file: string) {
+  if (!path.isAbsolute(file)) throw new UsageError('INVALID_FILTER');
+  const stat = fs.lstatSync(file);
+  if (!stat.isFile() || stat.size > 128) throw new UsageError('NOT_AUTHORIZED');
+  if (process.platform === 'win32') {
+    const script = `$ErrorActionPreference='Stop'; $a=[IO.File]::GetAccessControl('${file.replaceAll("'", "''")}'); $me=[Security.Principal.WindowsIdentity]::GetCurrent().User.Value; foreach($r in $a.GetAccessRules($true,$true,[Security.Principal.SecurityIdentifier])){if($r.AccessControlType -eq 'Allow' -and $r.IdentityReference.Value -notin @($me,'S-1-5-18','S-1-5-32-544')){exit 1}}; exit 0`;
+    try { execFileSync('powershell.exe', ['-NoProfile', '-NonInteractive', '-EncodedCommand', Buffer.from(script, 'utf16le').toString('base64')], { windowsHide: true, stdio: 'ignore' }); }
+    catch { throw new UsageError('NOT_AUTHORIZED'); }
+  } else if (stat.uid !== process.geteuid?.() || (stat.mode & 0o077) !== 0) throw new UsageError('NOT_AUTHORIZED');
+  const key = fs.readFileSync(file, 'utf8').trim();
+  if (!/^[a-f0-9]{64}$/i.test(key)) throw new UsageError('INVALID_FILTER');
+  return key;
+}
 type LeaseOwner = { pid: number; token?: string; identity?: string };
 /** Un PID puede repetirse en otro contenedor. Identidad del proceso, no del visitante. */
 function linuxProcessIdentity(pid: number): string | undefined {

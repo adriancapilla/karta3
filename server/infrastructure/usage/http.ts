@@ -22,7 +22,7 @@ export class UsageAdmission {
   }
   get size() { return this.visits.size; }
 }
-export type UsageHttp = { enabled: boolean; recorder: UsageRecorder; admission: UsageAdmission };
+export type UsageHttp = { enabled: boolean; mode?: 'synthetic' | 'human'; recorder: UsageRecorder; admission: UsageAdmission };
 let lastInvalidContext = -Infinity;
 export function safeUsageContext(value: unknown): UsageContext | undefined {
   if (value === undefined) return;

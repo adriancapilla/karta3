@@ -104,6 +104,24 @@ it('caída real del worker descarta de forma acotada sin propagar al llamante', 
   await (writer as unknown as { worker: Worker }).worker.terminate();
   await new Promise((resolve) => setTimeout(resolve, 10));
   expect(writer.tryRecord(event('SERVER'))).toBe(false); expect(writer.status()).toMatchObject({ degraded: true, queue: 0, bytes: 0 });
+  expect(writer.isCollecting()).toBe(false); expect(writer.status().enabled).toBe(false);
+});
+it('copia requerida fallida pausa captura sin impedir purga y se recupera por el mismo mantenimiento', async () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'karta3-usage-worker-')); roots.push(root);
+  const destination = path.join(root, 'copies'); fs.writeFileSync(destination, 'not a directory');
+  const writer = new SqliteUsageWorker({ file: path.join(root, 'usage.sqlite'), environment: 'test', bootRef: randomUUID(),
+    requireBackup: true, backupDirectory: destination, backupKey: '08'.repeat(32) }); writers.push(writer);
+  await writer.ready; expect(writer.isCollecting()).toBe(false); expect(writer.status()).toMatchObject({ paused: true, enabled: false });
+  expect(writer.tryRecord(event('SERVER'))).toBe(false);
+  const db = new DatabaseSync(path.join(root, 'usage.sqlite'), { readOnly: true });
+  const metadata = JSON.parse(String(db.prepare('SELECT value FROM metadata WHERE id=1').get()!.value));
+  expect(metadata.lastMaintenanceAt).toBeGreaterThan(0); db.close();
+  const report = () => writer.read({ report: 'creation', environment: 'test', from: metadata.coverageFrom, to: Date.now() }, true);
+  await expect.poll(async () => (await report()).quality.operational?.paused).toBe(true);
+  expect((await report()).quality.collection).toBe('degraded');
+  fs.unlinkSync(destination); fs.mkdirSync(destination, { mode: 0o700 });
+  await writer.maintain(Date.now()); expect(writer.isCollecting()).toBe(true);
+  expect(fs.readdirSync(destination).filter(name => name.endsWith('.agg.enc'))).toHaveLength(1);
 });
 it.each(['databaseBytes', 'walBytes'] as const)('presupuesto %s reducido: pausa antes de escribir un batch sin ocupar un disco real', async (field) => {
   const { writer, root } = setup({ [field]: 64 * 1024 }); await writer.ready;

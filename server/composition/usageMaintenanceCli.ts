@@ -1,8 +1,7 @@
-import fs from 'node:fs';
 import path from 'node:path';
 import { usageLocation } from './usage.js';
 import { UsageError } from '../application/usage/contracts.js';
-import { privateDirectory, withPrivateExport } from '../infrastructure/usage/privateFiles.js';
+import { privateDirectory, readPrivateUsageKey, withPrivateExport } from '../infrastructure/usage/privateFiles.js';
 import { restoreUsageBackup } from '../infrastructure/usage/backups.js';
 import { SqliteUsageWorker } from '../infrastructure/usage/sqliteWorker.js';
 
@@ -13,8 +12,12 @@ try {
   const location = usageLocation(process.env.KARTA3_ENV, process.env.KARTA3_USAGE_DIRECTORY, process.env.KARTA3_ENV === 'test' ? 'SYNTHETIC' : 'HUMAN');
   const keyFile = process.env.KARTA3_USAGE_BACKUP_KEY_FILE;
   if (!keyFile && operation !== 'maintain') throw new UsageError('INVALID_FILTER');
-  const key = keyFile ? fs.readFileSync(keyFile, 'utf8').trim() : '';
-  if (keyFile && !/^[a-f0-9]{64}$/i.test(key)) throw new UsageError('INVALID_FILTER');
+  let key = '';
+  try { key = keyFile ? readPrivateUsageKey(keyFile) : ''; }
+  catch (error) {
+    if (operation !== 'maintain') throw error;
+    console.error('USAGE_BACKUP_KEY_UNAVAILABLE'); // La purga no depende de poder copiar.
+  }
   privateDirectory(location.root, operation === 'restore');
   const execute = async () => {
     if (operation === 'backup' || operation === 'maintain') {
