@@ -5,7 +5,8 @@ import type { RoomActions } from '../../application/roomUseCases.js';
 import { RoomError, type RoomErrorCode } from '../../application/roomError.js';
 import type { MemorySessions } from '../memorySessions.js';
 import type { ListDecks } from '../../application/deckCatalog.js';
-import { attachUsageHttp, safeUsageContext, type UsageHttp } from '../usage/http.js';
+import { attachUsageHttp, safeUsageContext, usageSignal, type UsageHttp } from '../usage/http.js';
+import type { UsageChoices } from '../../application/usage/choice.js';
 
 const COOKIE_NAME = 'karta3_session';
 
@@ -33,12 +34,16 @@ const roomErrorStatus: Record<RoomErrorCode, number> = {
   INTERNAL_ERROR: 500
 };
 
-export function createHttpApp(dependencies: { rooms: RoomActions; sessions: MemorySessions; production: boolean; decks: ListDecks; usage?: UsageHttp }) {
+export function createHttpApp(dependencies: { rooms: RoomActions; sessions: MemorySessions; production: boolean; decks: ListDecks; usage?: UsageHttp; choices: UsageChoices }) {
   const { rooms, sessions, production, decks } = dependencies;
   const app = express();
   app.disable('x-powered-by');
-  if (dependencies.usage?.enabled) app.use((_req, res, next) => { res.set('X-Karta3-Usage-Collection', 'synthetic'); next(); });
-  attachUsageHttp(app, dependencies.usage, production);
+  app.use('/api', (req, res, next) => {
+    res.set('Cache-Control', 'no-store');
+    res.set('X-Karta3-Usage-Collection', usageSignal(dependencies.usage, currentSession(req)));
+    next();
+  });
+  attachUsageHttp(app, dependencies.usage, production, dependencies.choices, { current: currentSession, establish });
   app.use(express.json({ limit: '4kb' }));
 
   app.get('/api/decks', (_req, res) => {
@@ -50,6 +55,13 @@ export function createHttpApp(dependencies: { rooms: RoomActions; sessions: Memo
     const id = sessions.get(token);
     if (!id) throw new TransportError('SESSION_REQUIRED', 401, 'Tu sesión ya no está disponible. Recarga para continuar.');
     return id;
+  }
+  function currentSession(req: Request) { return sessions.get(parseCookie(req.headers.cookie ?? '')[COOKIE_NAME]); }
+  function establish(req: Request, res: Response) {
+    const current = currentSession(req); if (current) return current;
+    const fresh = sessions.establish();
+    res.cookie(COOKIE_NAME, fresh.token, { httpOnly: true, secure: production, sameSite: 'strict', path: '/', maxAge: 30 * 24 * 60 * 60 * 1000 });
+    return fresh.id;
   }
 
   app.use('/api', (req, _res, next) => {
@@ -68,19 +80,7 @@ export function createHttpApp(dependencies: { rooms: RoomActions; sessions: Memo
 
   app.get('/api/rooms/current', (req, res) => {
     res.set('Cache-Control', 'no-store');
-    let id = sessions.get(parseCookie(req.headers.cookie ?? '')[COOKIE_NAME]);
-    if (!id) {
-      const fresh = sessions.establish();
-      id = fresh.id;
-      res.cookie(COOKIE_NAME, fresh.token, {
-        httpOnly: true,
-        secure: production,
-        sameSite: 'strict',
-        path: '/',
-        maxAge: 30 * 24 * 60 * 60 * 1000
-      });
-    }
-    res.json(rooms.resume(id) satisfies CurrentRoomResponse);
+    res.json(rooms.resume(establish(req, res)) satisfies CurrentRoomResponse);
   });
 
   app.post('/api/rooms', (req, res) => {

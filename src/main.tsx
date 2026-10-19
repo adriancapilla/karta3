@@ -1,5 +1,10 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App';
+import { PrivacyScreen } from './PrivacyScreen';
+import './style.css';
 
-createRoot(document.getElementById('root')!).render(<React.StrictMode><App /></React.StrictMode>);
+let information = false;
+try { information = /^\/privacidad\/?$/i.test(decodeURIComponent(window.location.pathname)); } catch { /* URL inválida no se trata como información. */ }
+
+createRoot(document.getElementById('root')!).render(<React.StrictMode>{information ? <PrivacyScreen /> : <App />}</React.StrictMode>);

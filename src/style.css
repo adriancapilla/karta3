@@ -181,3 +181,9 @@ html:has(.game-shell){scrollbar-gutter:stable}
 .card-details-dialog:not(.consultation)>.game-card-image{min-height:0;display:block}
 .card-details-dialog:not(.consultation)>.game-card-image img{width:100%;height:auto;max-width:100%;display:block;object-fit:contain}
 .card-details-dialog:not(.consultation)>.game-card-image>svg{width:85px;height:76px}
+/* Elección de analítica fuera de la secuencia de la mesa; no cambia paneles o cartas. */
+.usage-choice { width: calc(100% - 32px); max-width: 1400px; margin: 16px auto; padding: 16px; overflow-wrap: anywhere; }
+.usage-choice h2 { font-size: 1.1rem; }
+.usage-choice-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.usage-choice-actions button { flex: 0 1 auto; }
+.privacy-information { max-width: 780px; overflow-wrap: anywhere; }

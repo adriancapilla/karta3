@@ -1,0 +1,64 @@
+{
+  "date": "2026-10-19",
+  "base": "8c1bde57753a80c21b11572cf4e17fc7639b5b25",
+  "source": "af9c3882739d7bbb97bdb00644862f10d1911cd7",
+  "platform": "Windows/x64",
+  "node": "24.19.0",
+  "icu": "78.3",
+  "unicode": "17.0",
+  "sqlite": "3.53.3",
+  "npm": "11.6.2",
+  "collection": "off",
+  "check": {
+    "modules": 99,
+    "testDurationSeconds": 37.49,
+    "tests": 645,
+    "files": 59,
+    "logSha256": "8b67bc33119e585e7c834e9e379b49130e75eb2bae908286dcc87cd07ed10815",
+    "exitCode": 0
+  },
+  "browser": {
+    "originalRuns": 3,
+    "adverseRuns": 3,
+    "workers": 1,
+    "exitCode": 0,
+    "uniqueCases": 2,
+    "retries": 0,
+    "durationSeconds": 27.7,
+    "logSha256": "4c7a371f054dfbc00001d76215cb40a5a793c7cd69a5415b11aa6109f615e08a",
+    "totalRuns": 6
+  },
+  "relatedBrowser": {
+    "runs": 5,
+    "workers": 1,
+    "retries": 0,
+    "product": "same final product; before final test-only refinements",
+    "logSha256": "7d78fc9c76059aa7f12e9201f418587b9db0d8e239f0fd0db0680ad649adb6e4",
+    "uniqueCases": 5,
+    "durationSeconds": 38.3,
+    "exitCode": 0
+  },
+  "h03": {
+    "finalBudgetMs": 10000,
+    "previousBudgetMs": 5000,
+    "phasesMs": {
+      "decksReady": 2952,
+      "playersConnected": 3112,
+      "workerReady": 1558,
+      "started": 3188,
+      "finished": 3463,
+      "nineFacts": 3459,
+      "browserFactsAccepted": 3152,
+      "newRoomClosed": 3245,
+      "results": 3214,
+      "listening": 2973
+    },
+    "temporaryInstrumentationRemoved": true,
+    "focalFileDurationSeconds": 17.56,
+    "focalFileTests": 8,
+    "scope": "only complete integration test; no functional limits changed"
+  },
+  "linux": "not executed locally; pending final source",
+  "fullBrowserSuite": "not executed locally",
+  "noPublication": true
+}

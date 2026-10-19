@@ -1,5 +1,16 @@
 /** Solo declaraciones del documento; nunca identidad, reloj ni resultados de juego. */
+export const USAGE_NOTICE_VERSION = '2026-10-19.2';
 export type UsageContext = { visitId: string; intentId: string };
+export type UsageChoiceView = { available: boolean; decision: 'UNDECIDED' | 'ACCEPTED' | 'REJECTED'; revision: number;
+  noticeVersion: string; validUntil: number | null };
+export type UsageChoiceRequest = { decision: 'ACCEPTED' | 'REJECTED'; noticeVersion: string; expectedRevision: number; requestId: string };
+export function usageChoiceRequest(value: unknown): UsageChoiceRequest | undefined {
+  if (usageKeys(value, ['decision', 'noticeVersion', 'expectedRevision', 'requestId'])
+    && (value.decision === 'ACCEPTED' || value.decision === 'REJECTED')
+    && typeof value.noticeVersion === 'string' && /^[a-zA-Z0-9][a-zA-Z0-9._-]{0,79}$/.test(value.noticeVersion)
+    && Number.isSafeInteger(value.expectedRevision) && Number(value.expectedRevision) >= 0
+    && typeof value.requestId === 'string' && value.requestId.length > 0 && value.requestId.length <= 100) return value as UsageChoiceRequest;
+}
 export type BrowserUsageEvent = { eventId: string; version: 1; visitId: string } & (
   { name: 'home_viewed'; data: { viewId: string; navigation: 'DOCUMENT_INITIAL' | 'DOCUMENT_RELOAD' | 'SPA_RETURN' } }
   | { name: 'room_create_intended' | 'room_join_attempted'; data: { intentId: string } }

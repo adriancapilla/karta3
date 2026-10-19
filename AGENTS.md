@@ -53,3 +53,15 @@ El mantenimiento y la publicación del repositorio en GitHub se coordinan desde 
 - Ejecutar `npm run check` y las pruebas de navegador pertinentes al bloque. Registrar qué se ejecutó realmente; una lista de criterios en Markdown no cuenta como prueba pasada.
 - Mantener documentación del bloque, README y ejemplos de configuración alineados con lo entregado. Las decisiones de arquitectura transversales se registran en `docs/arquitectura/ORGANIZACION_Y_DEPENDENCIAS.md` o se comunican a este hilo si alteran sus premisas. Las reglas generales del juego y la aplicación se corrigen en su documento responsable de TFM.
 - No versionar secretos, datos de sesiones ni artefactos generados innecesarios. No afirmar que el VPS, Docker, Caddy o el subdominio de pruebas están desplegados hasta haberlo verificado.
+
+## Supervisión eficiente de pruebas y GitHub Actions
+
+- Al iniciar una ejecución, registra su URL/identificador, intento, commit y alcance. Evita lanzar ejecuciones duplicadas.
+- Utiliza una única herramienta de espera o seguimiento por ejecución, preferentemente con salida resumida al terminar. No mantengas un ciclo de consultas del modelo cuando una herramienta pueda esperar por sí misma.
+- Si necesitas consultar el estado manualmente, utiliza consultas compactas y espaciadas; como orientación, cada 5–10 minutos durante ejecuciones largas, respetando las posibilidades y límites de las herramientas. No releas registros que no han cambiado.
+- Consulta registros detallados ante fallos o anomalías que requieran diagnóstico. Para ejecuciones correctas, recoge únicamente resultados, tiempos y evidencias necesarias para el cierre.
+- No repitas pruebas correctas sin una razón identificada: cambios relevantes, reparación, incidencia externa o puerta obligatoria del proceso. Esta regla no elimina las comprobaciones exigidas de la fuente final, main integrado, imagen o clon.
+- Fija un límite de supervisión considerando los presupuestos del flujo y la espera en cola. Alcanzarlo no autoriza a cancelar la ejecución remota ni a ampliar sus tiempos.
+- Si no puedes continuar esperando eficientemente, termina la intervención indicando qué sigue pendiente, la URL, el commit, el último estado conocido y el siguiente paso. No declares comprobaciones superadas ni integración completada.
+- Al retomar, consulta primero la ejecución existente. No la relances automáticamente.
+- No crees automatizaciones, monitores recurrentes o tareas adicionales sin encargo del autor.

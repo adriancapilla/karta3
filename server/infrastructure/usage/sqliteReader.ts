@@ -12,6 +12,7 @@ export function readSqliteUsage(db: DatabaseSync, environment: UsageEnvironment,
   const earliest = Math.max(metadata.coverageFrom, firstMonth(now, -11));
   if (filter.from < firstMonth(earliest) || filter.to <= earliest || filter.to > now) throw new UsageError('INSUFFICIENT_DETAIL');
   const cut = now - DETAIL_MS;
+  if (metadata.version === 2 && db.prepare('SELECT 1 FROM usage_choice_proofs WHERE purge_at<=? LIMIT 1').get(now)) throw new UsageError('STORAGE_UNAVAILABLE');
   // Un lector nunca purga ni sirve el detalle que otro proceso debió consolidar.
   const due = db.prepare('SELECT min(at) at FROM (SELECT at FROM subjects UNION ALL SELECT at FROM events)').get();
   if (due?.at !== null && Number(due?.at) <= cut) throw new UsageError('STORAGE_UNAVAILABLE');
@@ -26,12 +27,14 @@ export function readSqliteUsage(db: DatabaseSync, environment: UsageEnvironment,
       metadata.restoredAggregatesOnly && filter.to !== firstMonth(filter.to) && filter.to >= metadata.aggregateAsOf! ? 1 : 0)), traffic) as unknown as Aggregate[];
   const issues = db.prepare('SELECT kind,sum(count) n FROM quality WHERE month>=? AND month<=? GROUP BY kind').all(month(filter.from), month(filter.to - 1));
   const issue = (kind: string) => Number(issues.find((row) => row.kind === kind)?.n ?? 0);
+  const operational = validUsageHealth(metadata.operational) ? metadata.operational : null;
+  const operationalStale = !operational || now - operational.at > 60_000;
   const quality: UsageQuality = { coverageFrom: earliest, asOf: metadata.aggregateAsOf ?? now, possibleLoss: issue('loss') > 0, conflicts: issue('conflict'),
     unlinked: issue('unlinked'), lastDurableAt: metadata.lastDurableAt, lastMaintenanceAt: metadata.lastMaintenanceAt,
-    restoredAggregatesOnly: metadata.restoredAggregatesOnly, partialCoverage: filter.from < earliest || metadata.restoredAggregatesOnly,
-    lastBackupAt: metadata.lastBackupAt ?? null, collection: !metadata.collectionEnabled ? 'disabled' : metadata.possibleLoss ? 'degraded' : 'enabled',
-    operational: validUsageHealth(metadata.operational) ? metadata.operational : null,
-    operationalStale: !validUsageHealth(metadata.operational) || now - metadata.operational.at > 60_000 };
+    restoredAggregatesOnly: metadata.restoredAggregatesOnly, partialCoverage: filter.from < earliest || metadata.restoredAggregatesOnly || metadata.consentRequired === true,
+    lastBackupAt: metadata.lastBackupAt ?? null, collection: !metadata.collectionEnabled ? 'disabled'
+      : metadata.possibleLoss || !operationalStale && operational?.degraded ? 'degraded' : 'enabled',
+    operational, operationalStale };
   return usageReport(filter, quality, [...detailed, ...monthly], traffic);
 }
 /** Conexión administrativa SOLO LECTURA, sin migrar/reconciliar/purgar la DB viva. */
@@ -42,7 +45,7 @@ export class SqliteUsageReader {
     try {
       const metadata = JSON.parse(String(this.db.prepare('SELECT value FROM metadata WHERE id=1').get()!.value)) as Metadata;
       if (metadata.environment !== environment || metadata.traffic !== traffic) throw new UsageError('ENVIRONMENT_MISMATCH');
-      if (metadata.version !== 1) throw new UsageError('STORAGE_UNAVAILABLE');
+      if (![1, 2].includes(metadata.version)) throw new UsageError('STORAGE_UNAVAILABLE');
     } catch (error) { this.db.close(); throw error; }
   }
   read(filter: UsageFilter, now: number, traffic: UsageTraffic) {

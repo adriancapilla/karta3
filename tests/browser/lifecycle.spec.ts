@@ -27,14 +27,31 @@ async function boot(controlled = true, port = 0) {
   runtime.app.get('/{*path}', (_req, res) => res.sendFile(path.join(dist, 'index.html')));
   const server = createServer(runtime.app); const io = runtime.attachRealtime(server);
   const disconnections: { sessionId: string; at: number; reason: string }[] = [];
-  io.on('connection', (socket) => socket.on('disconnect', (reason) => {
-    disconnections.push({ sessionId: socket.data.sessionId as string, at: performance.now(), reason });
-  }));
+  let stopping = false; const shutdownConnections = new Map<string, number>();
+  io.on('connection', (socket) => {
+    const session = socket.data.sessionId as string;
+    if (stopping) shutdownConnections.set(session, (shutdownConnections.get(session) ?? 0) + 1);
+    socket.on('disconnect', (reason) => {
+      disconnections.push({ sessionId: socket.data.sessionId as string, at: performance.now(), reason });
+    });
+  });
   await new Promise<void>((resolve) => server.listen(port, '127.0.0.1', resolve));
   const address = server.address(); if (!address || typeof address === 'string') throw new Error('Puerto ausente');
   return { time, repository, sessions, removedAt, disconnections, port: address.port, base: `http://127.0.0.1:${address.port}`,
     websocketCount: (sessionId: string) => [...io.sockets.sockets.values()].filter((socket) => socket.data.sessionId === sessionId && socket.conn.transport.name === 'websocket').length,
-    stop: async () => { runtime.dispose(); await new Promise<void>((resolve) => io.close(() => resolve())); } };
+    shutdownConnections: (session: string) => shutdownConnections.get(session) ?? 0,
+    dropTransports: () => { for (const client of Object.values(io.engine.clients)) client.close(); },
+    stop: async (beforeTransportClose?: () => Promise<void>) => {
+      stopping = true; runtime.dispose();
+      if (beforeTransportClose) await beforeTransportClose(); // Barrera privada solo del caso adverso.
+      // Como main: cerrar transporte y HTTP activo, también si llega una reconexión.
+      // io.close solo espera server.close y puede dejar un polling en vuelo abierto.
+      io.engine.close();
+      const closed = new Promise<void>((resolve) => server.close(() => resolve()));
+      server.closeAllConnections();
+      await closed;
+      await new Promise<void>((resolve) => io.close(() => resolve()));
+    } };
 }
 
 async function pair(browser: Browser, base: string, hostWidth = 1280) {
@@ -160,13 +177,46 @@ test('B03-15 reiniciar el runtime pierde el motivo privado y permite crear otra 
   test.setTimeout(60_000);
   const s = await boot(); const p = await pair(browser, s.base);
   let fresh: Awaited<ReturnType<typeof boot>> | undefined;
+  // Diagnóstico B19: solo señales técnicas y booleanos de instalaciones fabricadas.
+  // No conserva cookies, IDs, query strings ni cuerpos de transporte.
+  const began = performance.now();
+  const events: Record<string, unknown>[] = [];
+  const pendingObservations: Promise<unknown>[] = [];
+  const observe = (kind: string, data: Record<string, unknown> = {}) => {
+    if (events.length < 300) events.push({ ms: performance.now() - began, kind, ...data });
+  };
+  for (const [actor, page] of [['host', p.host], ['guest', p.guest]] as const) {
+    page.on('websocket', ws => {
+      observe('websocket.open', { actor });
+      for (const direction of ['framesent', 'framereceived'] as const) ws.on(direction, frame => {
+        const payload = String(frame.payload);
+        // Solo tipo Engine.IO/Socket.IO. Nunca el resto del paquete con identidad/datos.
+        observe(`websocket.${direction}`, { actor, packet: /^(40|41|44)/.exec(payload)?.[0] ?? payload.slice(0, 1) });
+      });
+      ws.on('close', () => observe('websocket.close', { actor }));
+      ws.on('socketerror', () => observe('websocket.error', { actor }));
+    });
+    page.on('response', response => {
+      const route = new URL(response.url()).pathname;
+      if (!['/api/rooms/current', '/api/usage/choice'].includes(route)) return;
+      pendingObservations.push((async () => {
+        const body = await response.json().catch(() => null);
+        const responseHeaders = await response.allHeaders();
+        observe('http.response', { actor, route, status: response.status(), setCookie: !!responseHeaders['set-cookie'],
+          hasRoom: !!body?.room, hasEnded: !!body?.ended, hasLastResult: !!body?.lastResult });
+      })());
+    });
+    page.on('requestfailed', request => observe('http.failed', { actor,
+      route: new URL(request.url()).pathname.replace(/^\/(sala|resultado)\/[^/]+/, '/$1/:id') }));
+  }
   try {
     const b = await sessionId(p.guestContext, s.sessions); const original = await current(p.guest);
     await p.guestContext.setOffline(true);
     await expect.poll(() => s.repository.findActiveBySession(b)?.participantFor(b)?.presence, { timeout: 12_000 }).toBe('RECONNECTING');
     s.time.advance(30_000); await p.guestContext.setOffline(false);
     await expect(p.guest.getByRole('alert')).toContainText('Tu plaza se liberó', { timeout: 10_000 });
-    await s.stop(); fresh = await boot(true, s.port);
+    observe('old.stop.begin'); await s.stop(); observe('old.stop.end');
+    fresh = await boot(true, s.port); observe('fresh.listening');
     await expect(p.host.getByRole('alert')).toContainText('La sala ya no está disponible', { timeout: 10_000 });
     await expect(p.host.getByRole('button', { name: 'Crear sala' })).toBeVisible();
     await p.host.getByRole('button', { name: 'Crear sala' }).click();
@@ -178,7 +228,52 @@ test('B03-15 reiniciar el runtime pierde el motivo privado y permite crear otra 
     await expect(p.guest.getByRole('alert')).toContainText('La sala ya no está disponible');
     expect(await p.guest.evaluate(async () => (await (await fetch('/api/rooms/current')).json()).ended)).toBeUndefined();
   } finally {
+    observe('finally'); await Promise.allSettled(pendingObservations);
+    const serverDisconnections = (entries: typeof s.disconnections) => entries.map(({ at, reason }) => ({ ms: at - began, reason }));
+    await test.info().attach('B03-15-restart-signals', { body: JSON.stringify({ events,
+      oldServerDisconnections: serverDisconnections(s.disconnections), freshServerDisconnections: serverDisconnections(fresh?.disconnections ?? []) }, null, 2), contentType: 'application/json' });
     // Cerrar clientes antes del servidor evita reconexiones durante la limpieza.
+    try { await Promise.all([p.hostContext.close(), p.guestContext.close()]); }
+    finally { await (fresh ?? s).stop(); }
+  }
+});
+
+test('B03-15 adverso: una conexión entrante durante cierre conserva reconexión y recupera la ausencia de sala', async ({ browser }) => {
+  const s = await boot(); const p = await pair(browser, s.base);
+  const hostBefore = await sessionId(p.hostContext, s.sessions);
+  let fresh: Awaited<ReturnType<typeof boot>> | undefined;
+  let release!: () => void; const gate = new Promise<void>(resolve => { release = resolve; });
+  let namespaceDisconnected = false;
+  const http: { route: string; status: number; setCookie: boolean; hasRoom: boolean }[] = [];
+  const reads: Promise<unknown>[] = [];
+  const packet = (text: string) => { if (text.split('\x1e').includes('41')) namespaceDisconnected = true; };
+  p.host.on('websocket', ws => ws.on('framereceived', frame => packet(String(frame.payload))));
+  p.host.on('response', response => {
+    const route = new URL(response.url()).pathname;
+    if (route === '/socket.io/') reads.push(response.text().then(packet).catch(() => {}));
+    if (['/api/rooms/current', '/api/usage/choice'].includes(route)) reads.push(response.json().then(async body => {
+      const headers = await response.allHeaders();
+      if (http.length < 60) http.push({ route, status: response.status(), setCookie: !!headers['set-cookie'], hasRoom: !!body?.room });
+    }).catch(() => {}));
+  });
+  // Conserva HTTP/Socket.IO reales: una barrera de cierre deja que llegue una reconexión
+  // después de dispose y antes de cerrar la escucha. No hay endpoint o acción de juego de ensayo.
+  const stopping = s.stop(async () => { s.dropTransports(); await gate; });
+  try {
+    // Esperar al propio anfitrión, no basta que la primera reconexión sea del invitado.
+    await expect.poll(() => s.shutdownConnections(hostBefore)).toBeGreaterThan(0);
+    release(); await stopping; fresh = await boot(true, s.port);
+    await expect(p.host.getByRole('alert')).toContainText('La sala ya no está disponible', { timeout: 10_000 });
+    expect(namespaceDisconnected).toBe(false);
+    await expect(p.host.getByRole('button', { name: 'Crear sala' })).toBeVisible();
+    await p.host.getByRole('button', { name: 'Crear sala' }).click();
+    await expect(p.host.getByText('1 de 5 jugadores')).toBeVisible();
+    const hostSession = await sessionId(p.hostContext, fresh.sessions);
+    await expect.poll(() => fresh!.repository.findActiveBySession(hostSession)?.participantFor(hostSession)?.presence).toBe('CONNECTED');
+  } finally {
+    release(); await stopping; await Promise.allSettled(reads);
+    await test.info().attach('B03-15-adverse-close', { body: JSON.stringify({ actor: 'host', namespaceDisconnected,
+      connectionsDuringShutdown: s.shutdownConnections(hostBefore), freshListening: !!fresh, http }, null, 2), contentType: 'application/json' });
     try { await Promise.all([p.hostContext.close(), p.guestContext.close()]); }
     finally { await (fresh ?? s).stop(); }
   }

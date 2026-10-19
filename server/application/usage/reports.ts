@@ -31,7 +31,8 @@ export function usageReport(filter: UsageFilter, inputQuality: UsageQuality, inp
     case 'completion': numerator = count('DECK_COMPLETED'); denominator = ['DECK_COMPLETED', 'HOST_CANCELLED', 'NO_ACTIVE_HUMAN_PLAYERS', 'TECHNICAL_INTERRUPTION'].reduce((sum, key) => sum + count(key), 0); break;
     case 'automatic': numerator = count('automatic'); denominator = count('human-players'); break;
     case 'configuration': numerator = count('games'); denominator = numerator; break;
-    case 'duration': numerator = rows.reduce((sum, row) => sum + row.sum, 0); denominator = rows.reduce((sum, row) => sum + row.count, 0); break;
+    case 'duration': numerator = rows.filter(row => row.metric === 'durationMs').reduce((sum, row) => sum + row.sum, 0);
+      denominator = count('durationMs'); break;
   }
   const incomplete = quality.possibleLoss || censored || quality.conflicts > 0 || quality.unlinked > 0
     || count('unlinked-creations') > 0 || count('unlinked-results') > 0 || count('unconfirmed-intentions') > 0 || count('unresolved-intentions') > 0

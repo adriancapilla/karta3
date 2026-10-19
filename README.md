@@ -8,6 +8,27 @@ SQLite se incorpora **solo para estadística**, con worker, cola acotada, nueve 
 
 [Guía de configuración, ensayo sintético con dos sesiones, informes, mantenimiento y restauración aislada](docs/operacion/ANALITICA_USO.md). [Registro por etapas y límites B18](docs/sdd/BLOQUE_18_ANALITICA_BASICA_USO.md#15-registro-de-implementación--18102026). Las pruebas técnicas locales no sustituyen Linux/volumen, revisión de privacidad, preparación operativa o alineación documental de Arquitectura; esos pendientes impiden declarar el cierre global verificado. C09–C10 conservan su cobertura parcial. Sin cambios de barajas, presentación o reglas.
 
+### Continuación B19 — preparación técnica, todavía OFF
+
+[B19](docs/sdd/BLOQUE_19_HABILITACION_ANALITICA_REAL.md) prepara la elección opcional de analítica, comprobada por servidor y compartida entre pestañas de la sesión funcional. No elegir o rechazar permite jugar igual; retirar no pausa ni cancela la partida. Conserva nueve hechos y ocho consultas. Las salas con cobertura incompleta dejan de observarse; no se reconstruyen hechos anteriores ni se presentan como abandonadas. Los informes conservan lo conocido y señalan censura/tasas incompletas.
+
+**La aplicación normal permanece OFF.** El aviso factual **2026-10-19.2** está completo y accesible en `/privacidad`:200/no-store/sin cookie, sesión, visita o captura. Describe VPS París, copias mostradas en Alemania/rotación semanal y logs por tamaño, distinguiendo esos hechos de garantías no acreditadas. HUMAN queda técnicamente habilitable solo en Pruebas con la configuración/clave privada correspondientes; **no está activado ni autorizado por completar el texto**. Revisión y puesta en servicio siguen coordinadas por el autor. No se han actualizado Pruebas, el VPS o una imagen pública desde este trabajo. [Texto exacto, huella y comprobaciones nuevas](docs/sdd/evidencias/B19/AVISO_FINAL.md).
+
+La elección vive en RAM hasta doce horas, sin renovación por consulta; no hay cookie estadística, localStorage, edad o cuenta nueva. Un recibo técnico mínimo se guarda separado de los eventos y se purga noventa días tras vencer o retirarse; las copias de agregados lo excluyen. La retirada se confirma tras la barrera del escritor. Si falta confirmación, muestra «Retirada pendiente; no se ha podido confirmar en el servidor» y permite consultar/reintentar el control, sin reenvío automático ni bloqueo del juego.
+
+Ensayos aislados y repetibles (Node fijado del proyecto, tras compilar):
+
+```powershell
+npm run check
+npm run test:browser -- --workers=1 --retries=0 privacyNotice.spec.ts usageChoice.spec.ts usageActivation.spec.ts usage.spec.ts
+```
+
+Esos archivos montan sus propias instancias/SQLite/clave temporales. Los casos HUMAN usan **datos fabricados y el mismo main/aviso compilados**, sin sustituir la condición informativa ni activar el servidor habitual. No son consentimiento de personas reales o autorización operativa. Los recorridos heredados que usan la URL base requieren una instancia propia adicional, según la selección registrada en la evidencia. [Resultados anteriores conservados](docs/sdd/evidencias/B19/ELECCION_Y_CENSURA.md), [preparación operativa y autorización final](docs/operacion/PREPARACION_ANALITICA_REAL_B19.md). La alineación general19/10 está recibida: Aplicación16.1–16.2/17.13 e Infraestructura16.10; no sustituye la aprobación final de muestra consentida/censura, recibos90d y operación.
+
+Para revisión humana posterior, abrir primero `/privacidad` desde una ventana nueva de la instancia propia OFF: texto completo, navegación de teclado y ninguna sesión creada. En el ensayo aislado: dos sesiones independientes aceptan explícitamente, crean/entran y juegan; otra pestaña del anfitrión comparte la elección. Abrir Detalles y retirar desde esa segunda pestaña conserva foco/mano/plazo en la primera. Probar sin elegir/rechazando, sin red (retirada pendiente y consulta al volver), F5, resultado y otra sala. No usar este montaje para recoger tráfico real. El ensayo humano y la autorización final siguen pendientes.
+
+**Recuperación tras reinicio, corrección focal 19/10:** una conexión que alcanza el runtime durante su parada cierra el transporte sin expulsión de namespace, para conservar la reconexión normal. El proceso nuevo pierde salas/sesiones/elección RAM; confirma la ausencia de la sala antigua y permite crear otra. No reenvía acciones de juego ni reactiva analítica. [Causa reproducida, regresión, medidas y límites](docs/sdd/evidencias/B19/RECUPERACION_REINICIO.md): check Windows645/645 y99 módulos; original/adverso3+3 ejecuciones y cinco regresiones relacionadas correctas. Linux y CI completa del HEAD final siguen pendientes de GitHub; no activación o publicación desde Implementación.
+
 La aplicación se construye de forma incremental, con especificaciones, pruebas y documentación de cada entrega. Utiliza TypeScript, React y un servidor Node.js con Express y Socket.IO.
 
 ## Estado actual

@@ -135,15 +135,15 @@ export class RoomUseCases implements RoomActions {
     if (this.usage === disabledUsage) return;
     if (typeof requestId !== 'string' || !requestId.length || requestId.length > 100) {
       // Sin ID válido no hay replay identificable; solo el rechazo observado, sin cuerpo/contexto.
-      this.usage.joinRejected('INVALID_INPUT'); return;
+      this.usage.joinRejected('INVALID_INPUT', undefined, sessionId); return;
     }
     if (this.requests.get(sessionId, requestId)) return;
     const at = this.lifecycle.clock.now().monotonic;
     for (const [key, expiry] of this.invalidJoinRequests) if (expiry <= at) this.invalidJoinRequests.delete(key);
     const key = JSON.stringify([sessionId, requestId]); if (this.invalidJoinRequests.has(key)) return;
     // Solo dedupe estadístico RAM; nunca consume una solicitud de juego ni conserva su cuerpo.
-    if (this.invalidJoinRequests.size >= 4096) { this.usage.lost(); return; }
-    this.invalidJoinRequests.set(key, at + 90 * 86_400_000); this.usage.joinRejected('INVALID_INPUT');
+    if (this.invalidJoinRequests.size >= 4096) { this.usage.lost(sessionId); return; }
+    this.invalidJoinRequests.set(key, at + 90 * 86_400_000); this.usage.joinRejected('INVALID_INPUT', undefined, sessionId);
   }
 
   join(sessionId: string, requestId: string, codeInput: string, nameInput: string, usageContext?: UsageContext): RoomView {
@@ -188,7 +188,7 @@ export class RoomUseCases implements RoomActions {
     } catch (error) {
       if (error instanceof RoomError && !this.requests.get(sessionId, requestId)) { this.requests.save(sessionId, requestId, {
         kind: 'JOIN', signature, roomId: '', participantId: '', error: { code: error.code, message: error.message }
-      }); this.usage.joinRejected(error.code, usageContext); }
+      }); this.usage.joinRejected(error.code, usageContext, sessionId); }
       throw error;
     }
   }

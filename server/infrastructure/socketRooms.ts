@@ -11,6 +11,7 @@ import { configurationInput, exactObject } from './configurationInput.js';
 import { cancelGameInput, gameInput } from './gameInput.js';
 import { botInput } from './botInput.js';
 import { safeUsageContext } from './usage/http.js';
+import type { UsageChoiceView } from '../../shared/contracts/usage.js';
 
 const sessionRoom = (sessionId: string) => `session:${sessionId}`;
 const invalid = () => new RoomError('INVALID_INPUT', 'Los datos enviados no son válidos.');
@@ -42,6 +43,7 @@ export class SocketRoomChanges implements GameChanges, SessionPresence {
   private stopped = false;
 
   isConnected(sessionId: string): boolean { return (this.connections.get(sessionId)?.size ?? 0) > 0; }
+  choice(sessionId: string, choice: UsageChoiceView): void { this.io?.to(sessionRoom(sessionId)).emit('usage:choice', choice); }
 
   dispose(): void { this.stopped = true; this.connections.clear(); }
 
@@ -65,7 +67,8 @@ export class SocketRoomChanges implements GameChanges, SessionPresence {
 
     io.on('connection', (socket) => {
       const sessionId = socket.data.sessionId as string;
-      if (this.stopped) { socket.disconnect(true); return; }
+      // Cierre transitorio del proceso: conservar la reconexión, sin expulsión de namespace.
+      if (this.stopped) { socket.conn.close(); return; }
       const connections = this.connections.get(sessionId) ?? new Set<string>();
       this.connections.set(sessionId, connections);
       connections.add(socket.id);

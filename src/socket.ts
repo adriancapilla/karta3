@@ -1,6 +1,8 @@
 import { io, type Socket } from 'socket.io-client';
 import type { ConfigureRoomRequest, StartRoomRequest, RoomView, SocketAck } from '../shared/contracts/room';
 import { ApiError } from './api';
+import type { UsageContext } from '../shared/contracts/usage';
+import { currentUsageContext } from './usage';
 
 export const socket: Socket = io({ autoConnect: false, withCredentials: true });
 export const ACK_TIMEOUT_MS = 5000;
@@ -16,6 +18,12 @@ export async function send<T>(event: string, payload: object): Promise<T> {
       socket.once('connect_error', failed);
       socket.connect();
     });
+  }
+  // El transporte puede haber esperado conexión: el contexto estadístico se revalida al enviar.
+  // requestId/código/nombre del juego permanecen íntegros para un reintento explícito.
+  if (event === 'room:join' && 'usageContext' in payload) {
+    const { usageContext, ...gameInput } = payload as Record<string, unknown> & { usageContext?: UsageContext };
+    const context = currentUsageContext(usageContext); payload = context ? { ...gameInput, usageContext: context } : gameInput;
   }
   return new Promise<T>((resolve, reject) => {
     socket.timeout(ACK_TIMEOUT_MS).emit(event, payload, (error: Error | null, response: SocketAck<T>) => {

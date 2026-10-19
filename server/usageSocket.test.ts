@@ -19,6 +19,7 @@ import { SystemClock } from './infrastructure/time.js';
 import type { Worker } from 'node:worker_threads';
 
 const stops: (() => Promise<void>)[] = [];
+let approvedDecks: ReturnType<typeof loadInstallationDecks> | undefined;
 afterEach(async () => { for (const stop of stops.splice(0)) await stop(); });
 async function setup(enabled = true, realTime = false) {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'karta3-usage-socket-')); const time = new ControlledTime(); const repository = new MemoryRoomRepository();
@@ -26,7 +27,8 @@ async function setup(enabled = true, realTime = false) {
   const clock = realTime ? new SystemClock() : time;
   const writer = new SqliteUsageWorker({ file, environment: 'test', bootRef: boot, now: Math.floor(clock.now().unix) }); await writer.ready;
   const usage = new UsageRecording(writer, clock, randomUUID, 'test', 'SYNTHETIC', boot);
-  const decks = (await loadInstallationDecks()).catalog;
+  // La copia normal no cambia en este archivo; cada instalación conserva su RAM/DB propias.
+  const decks = (await (approvedDecks ??= loadInstallationDecks())).catalog;
   const runtime = createRuntime({ repository, clock, ...(realTime ? {} : { scheduler: time }), decks, deckVersions: decks, gameDecks: decks,
     ...(enabled ? { usage, usageHttp: { enabled, recorder: usage, admission: new UsageAdmission(() => time.now().unix) } } : {}) });
   const server = createServer(runtime.app); runtime.attachRealtime(server);

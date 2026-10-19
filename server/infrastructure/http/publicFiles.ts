@@ -1,6 +1,7 @@
 import path from 'node:path';
 import express, { type Express } from 'express';
 import type { LoadedDeckCatalog } from '../decks/catalog.js';
+import { privacyNotice } from '../../../shared/contracts/privacyNotice.js';
 
 /** Las URLs de medios son claves de una lista admitida; nunca rutas de disco. */
 export function attachPublicFiles(app: Express, clientDirectory: string, decks: LoadedDeckCatalog) {
@@ -15,6 +16,11 @@ export function attachPublicFiles(app: Express, clientDirectory: string, decks: 
   app.get('/{*path}', (req, res) => {
     let decoded: string;
     try { decoded = decodeURIComponent(req.path); } catch { res.status(404).end(); return; }
+    if (/^\/privacidad\/?$/i.test(decoded)) {
+      res.set({ 'Cache-Control': 'no-store', 'X-Karta3-Usage-Collection': 'off' });
+      if (!privacyNotice.complete) { res.status(404).type('text/plain').send('Información de privacidad no disponible.'); return; }
+      res.sendFile(path.join(clientDirectory, 'index.html')); return;
+    }
     // También bloquea rutas desconocidas a JSON y archivos privados fuera de un prefijo.
     const segments = decoded.split('/');
     if (path.extname(decoded) || segments.some((part) => part.startsWith('.') || part.includes('\\')) ||
