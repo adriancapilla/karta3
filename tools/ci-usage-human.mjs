@@ -186,7 +186,14 @@ server.listen(0,'127.0.0.1',()=>console.log('KARTA3: http://127.0.0.1:'+server.a
   const restored = snapshot(restoredRoot + '/pruebas/human/usage.sqlite'); assert.equal(restored.metadata.version, 2);
   assert.equal(restored.events.length, 0); assert.equal(restored.subjects.length, 0); assert.equal(restored.proofs.length, 0);
   const reportBefore = await report('completion'); const reportAfter = await report('completion', restoredRoot);
-  assert.deepEqual(reportAfter.rows, reportBefore.rows); assert.equal(reportAfter.percentage, null);
+  // Aggregate tiene siete campos. Las contribuciones vivas incluyen además at/traffic;
+  // esos metadatos de detalle no forman parte de la copia agregada aprobada.
+  const aggregateRows = rows => rows.map(({ report, dimension, metric, count, sum, min, max }) =>
+    ({ report, dimension, metric, count, sum, min, max }))
+    .sort((a, b) => JSON.stringify([a.report, a.dimension, a.metric]).localeCompare(JSON.stringify([b.report, b.dimension, b.metric]), 'en'));
+  assert.deepEqual(aggregateRows(reportAfter.rows), aggregateRows(reportBefore.rows));
+  for (const field of ['numerator', 'denominator', 'percentage', 'meanDurationMs']) assert.equal(reportAfter[field], reportBefore[field]);
+  assert.equal(reportAfter.percentage, null);
   for (const value of sensitive) assert(!JSON.stringify(reportAfter).includes(value));
   const restoredBytes = await fs.readFile(restoredRoot + '/pruebas/human/usage.sqlite');
   for (const proof of snapshot().proofs) assert(!restoredBytes.includes(Buffer.from(proof.proof_ref)));

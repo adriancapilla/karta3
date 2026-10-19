@@ -17,6 +17,11 @@ on:
         required: false
         default: false
         type: boolean
+      image_only_diagnostic:
+        description: 'Solo diagnóstico de imagen; omite check/Chrome del host y NO acredita CI completa ni publicación.'
+        required: false
+        default: false
+        type: boolean
 
 permissions:
   contents: read
@@ -27,6 +32,7 @@ concurrency:
 
 jobs:
   checks:
+    if: github.event_name != 'workflow_dispatch' || !inputs.image_only_diagnostic
     name: ${{ github.event_name == 'workflow_dispatch' && inputs.chrome_diagnostic != '' && 'Diagnóstico focal Chrome (no batería completa)' || 'Tipos, análisis, pruebas, arquitectura y compilación' }}
     runs-on: ubuntu-24.04
     # B15: CI 38592289027 agotó 20 min tras 144/152 resultados, con un fallo Solar pendiente.
@@ -91,8 +97,8 @@ jobs:
 
   image:
     # El diagnóstico manual focal no construye imágenes ni sustituye CI completa.
-    if: github.event_name != 'workflow_dispatch' || inputs.chrome_diagnostic == '' || inputs.usage_linux_gate
-    name: Imagen Linux amd64 y Compose/Caddy HTTPS
+    if: github.event_name != 'workflow_dispatch' || inputs.chrome_diagnostic == '' || inputs.usage_linux_gate || inputs.image_only_diagnostic
+    name: ${{ github.event_name == 'workflow_dispatch' && inputs.image_only_diagnostic && 'Diagnóstico de imagen (no CI completa ni publicable)' || 'Imagen Linux amd64 y Compose/Caddy HTTPS' }}
     runs-on: ubuntu-24.04
     timeout-minutes: 30
     steps:
