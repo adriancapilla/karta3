@@ -93,3 +93,24 @@ test('H03 HUMAN fabricado completo con bots normales: resultado/F5, retirada fin
     expect(installation.events().filter(event => event.name === 'room_created')).toHaveLength(1);
   } finally { await table.close(); await server.stop(); await installation.cleanup(); }
 });
+
+test('H04 HUMAN fabricado → parada controlada → OFF: mismo histórico, sin permiso ni partida recuperados', async ({ browser }) => {
+  const installation = await usageInstallation({ human: true }); let server = await installation.start();
+  const table = await manualTable(browser, server.base, { count: 1, bots: ['EASY'], width: 390, review: 0, turn: 60, beforeCreate: accept });
+  try {
+    await expect.poll(() => installation.events().filter(event => event.name === 'game_started').length).toBe(1);
+    const previous = await readRoom(table.host); if (previous.status !== 'IN_GAME') throw new Error('partida esperada');
+    await server.stop();
+    expect(installation.events().filter(event => event.name === 'game_ended')).toMatchObject([{ data: { reason: 'TECHNICAL_INTERRUPTION', evidence: 'CONTROLLED_SERVER_STOP' } }]);
+    const durable = installation.events(); const proofs = installation.state().proofs;
+    server = await installation.start(false, Number(new URL(server.base).port));
+    await table.host.reload(); await expect(table.host.getByRole('button', { name: 'Crear sala', exact: true })).toBeVisible();
+    const response = await table.host.request.get(`${server.base}/api/usage/choice`);
+    expect(response.headers()['x-karta3-usage-collection']).toBe('off');
+    expect(await response.json()).toMatchObject({ available: false, decision: 'UNDECIDED' });
+    expect(installation.state().proofs).toEqual(proofs); // El recibo histórico no restaura autorización RAM.
+    await table.host.getByRole('button', { name: 'Crear sala', exact: true }).click();
+    await expect(table.host.getByRole('heading', { name: 'Tu sala está lista' })).toBeVisible();
+    expect((await readRoom(table.host)).id).not.toBe(previous.id); expect(installation.events()).toEqual(durable);
+  } finally { await table.close(); await server.stop(); await installation.cleanup(); }
+});
