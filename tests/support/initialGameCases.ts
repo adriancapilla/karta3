@@ -11,8 +11,9 @@ import type { PublishedGameDecks } from '../../server/application/deckCatalog.js
 import type { CardPermutation } from '../../server/application/ports.js';
 import { ControlledTime } from './controlledTime.js';
 import { deckFixture } from './deckFixtures.js';
+import type { UsageRecorder } from '../../server/application/usage/recording.js';
 
-export function initialGameCases(options: { gameDecks?: PublishedGameDecks; permutation?: CardPermutation; fixture?: ReturnType<typeof deckFixture> } = {}) {
+export function initialGameCases(options: { gameDecks?: PublishedGameDecks; permutation?: CardPermutation; fixture?: ReturnType<typeof deckFixture>; usage?: UsageRecorder; time?: ControlledTime } = {}) {
   const fixture = options.fixture ?? deckFixture(); const deckId = fixture.metadata.id;
   const definition = validatePackageFormat(fixture.metadata, fixture.collection, fixture.metadata.id).data!.definition;
   const summary = { id: deckId, schemaVersion: 2 as const, contentVersion: 7, name: 'Prueba', subtitle: '', description: 'Sintética', imageUrl: null, imageAlt: '' };
@@ -21,13 +22,13 @@ export function initialGameCases(options: { gameDecks?: PublishedGameDecks; perm
   const repository = new MemoryRoomRepository(); const requests = new MemoryRoomRequests();
   const events = { updated: vi.fn(), closed: vi.fn(), left: vi.fn(), roundResolved: vi.fn(), turnExpired: vi.fn(), resultsHome: vi.fn(), technicalFailure: vi.fn() };
   const connected = new Set(['host', 'other', ...Array.from({ length: 6 }, (_, n) => `g${n}`)]);
-  const ends = new Map(); const time = new ControlledTime();
+  const ends = new Map(); const time = options.time ?? new ControlledTime();
   const waiting = new WaitingLifecycle(repository, time, time, { isConnected: (id) => connected.has(id) },
-    { getEnd: (id) => ends.get(id), saveEnd: (id, end) => ends.set(id, end), clearEnd: (id) => { ends.delete(id); } }, events);
+    { getEnd: (id) => ends.get(id), saveEnd: (id, end) => ends.set(id, end), clearEnd: (id) => { ends.delete(id); } }, events, options.usage);
   let n = 0; const permutation = vi.fn(options.permutation ?? ((ids) => [...ids]));
-  const games = new GameCoordinator(repository, requests, events, time, time, permutation);
+  const games = new GameCoordinator(repository, requests, events, time, time, permutation, options.usage);
   const coordinator = new RoomCoordinator(repository, waiting, events, games);
-  const rooms = new RoomUseCases(repository, () => `id-${++n}`, () => n + 42, requests, coordinator, catalog, options.gameDecks ?? catalog, permutation, games);
+  const rooms = new RoomUseCases(repository, () => `id-${++n}`, () => n + 42, requests, coordinator, catalog, options.gameDecks ?? catalog, permutation, games, options.usage);
   const initial = rooms.createOrGet('host'); const room = repository.findById(initial.id)!;
   const configure = (change: Parameters<typeof rooms.configure>[3], id = `config-${++n}`) => rooms.configure('host', id, room.id, change);
   const select = () => configure({ field: 'deck', value: { id: deckId, contentVersion: 7 } }, 'select');

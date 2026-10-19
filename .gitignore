@@ -11,3 +11,9 @@ test-results/
 *.tsbuildinfo
 barajas/catalogo.json
 barajas/.catalogo-*.tmp
+usage-data/
+*.sqlite
+*.sqlite-wal
+*.sqlite-shm
+*.sqlite-journal
+*.agg.enc

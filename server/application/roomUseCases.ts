@@ -9,16 +9,19 @@ import { displayName } from './roomView.js';
 import type { WaitingLifecycle } from './waitingLifecycle.js';
 import type { GameActions } from './gameCoordinator.js';
 import type { CancelGameRequest, OpeningDirectionRequest, PlayCardRequest } from '../../shared/contracts/game.js';
+import type { UsageContext } from '../../shared/contracts/usage.js';
+import { disabledUsage, type UsageRecorder } from './usage/recording.js';
 
 export interface RoomActions extends Omit<GameActions, 'started'> {
   current(sessionId: string): RoomView | null;
   resume(sessionId: string): CurrentRoomResponse;
   presenceChanged(sessionId: string): void;
-  createOrGet(sessionId: string): RoomView;
+  createOrGet(sessionId: string, usageContext?: UsageContext): RoomView;
   getOwn(sessionId: string, roomId: string): RoomView;
   rename(sessionId: string, roomId: string, value: unknown): RoomView;
   close(sessionId: string, roomId: string): void;
-  join(sessionId: string, requestId: string, code: string, name: string): RoomView;
+  join(sessionId: string, requestId: string, code: string, name: string, usageContext?: UsageContext): RoomView;
+  joinInputRejected?(sessionId: string, requestId: unknown): void;
   leave(sessionId: string, requestId: string, roomId: string, participantId: string): void;
   configure(sessionId: string, requestId: string, roomId: string, change: ConfigurationChange): RoomView;
   start(sessionId: string, requestId: string, roomId: string): RoomView;
@@ -29,6 +32,7 @@ const ALREADY = 'Ya estás en una sala. Sal de ella antes de crear otra o entrar
 const UNAVAILABLE = 'No hay una sala disponible con ese código. Compruébalo.';
 
 export class RoomUseCases implements RoomActions {
+  private readonly invalidJoinRequests = new Map<string, number>();
   constructor(
     private readonly repository: RoomRepository,
     private readonly createId: IdentifierGenerator,
@@ -38,7 +42,8 @@ export class RoomUseCases implements RoomActions {
     private readonly decks: PublishedDeckVersions = { resolveVersion: () => ({ ok: false, reason: 'DECK_NOT_AVAILABLE' }) },
     private readonly gameDecks: PublishedGameDecks = { gameDeck: () => ({ ok: false, reason: 'DECK_NOT_AVAILABLE' }) },
     private readonly permute: CardPermutation = () => { throw new Error('Entropía no conectada'); },
-    private readonly games?: GameActions
+    private readonly games?: GameActions,
+    private readonly usage: UsageRecorder = disabledUsage
   ) {}
 
   current(sessionId: string): RoomView | null {
@@ -79,7 +84,7 @@ export class RoomUseCases implements RoomActions {
     return this.games.returnHome(sessionId, input);
   }
 
-  createOrGet(sessionId: string): RoomView {
+  createOrGet(sessionId: string, usageContext?: UsageContext): RoomView {
     this.lifecycle.prepare();
     const existing = this.repository.findActiveBySession(sessionId);
     if (existing) {
@@ -101,6 +106,7 @@ export class RoomUseCases implements RoomActions {
       now: this.lifecycle.clock.now(), connected: this.lifecycle.presence.isConnected(sessionId) });
     this.repository.save(room);
     this.lifecycle.ends.clearEnd(sessionId);
+    this.usage.created(room, usageContext);
     this.lifecycle.publish(room);
     return this.lifecycle.view(room, sessionId);
   }
@@ -125,7 +131,22 @@ export class RoomUseCases implements RoomActions {
     this.lifecycle.close(room, 'HOST_CLOSED');
   }
 
-  join(sessionId: string, requestId: string, codeInput: string, nameInput: string): RoomView {
+  joinInputRejected(sessionId: string, requestId: unknown): void {
+    if (this.usage === disabledUsage) return;
+    if (typeof requestId !== 'string' || !requestId.length || requestId.length > 100) {
+      // Sin ID válido no hay replay identificable; solo el rechazo observado, sin cuerpo/contexto.
+      this.usage.joinRejected('INVALID_INPUT'); return;
+    }
+    if (this.requests.get(sessionId, requestId)) return;
+    const at = this.lifecycle.clock.now().monotonic;
+    for (const [key, expiry] of this.invalidJoinRequests) if (expiry <= at) this.invalidJoinRequests.delete(key);
+    const key = JSON.stringify([sessionId, requestId]); if (this.invalidJoinRequests.has(key)) return;
+    // Solo dedupe estadístico RAM; nunca consume una solicitud de juego ni conserva su cuerpo.
+    if (this.invalidJoinRequests.size >= 4096) { this.usage.lost(); return; }
+    this.invalidJoinRequests.set(key, at + 90 * 86_400_000); this.usage.joinRejected('INVALID_INPUT');
+  }
+
+  join(sessionId: string, requestId: string, codeInput: string, nameInput: string, usageContext?: UsageContext): RoomView {
     this.lifecycle.prepare();
     const signature = JSON.stringify([codeInput, nameInput]);
     const previous = this.requests.get(sessionId, requestId);
@@ -149,6 +170,7 @@ export class RoomUseCases implements RoomActions {
         if (active.status === 'RESULTS') this.requireWaiting(active);
         const participantId = active.participantFor(sessionId)!.id;
         this.requests.save(sessionId, requestId, { kind: 'JOIN', signature, roomId: active.id, participantId });
+        this.usage.joined(active, participantId, true, usageContext);
         return this.lifecycle.view(active, sessionId);
       }
 
@@ -160,12 +182,13 @@ export class RoomUseCases implements RoomActions {
       this.repository.save(room);
       this.requests.save(sessionId, requestId, { kind: 'JOIN', signature, roomId: room.id, participantId });
       this.lifecycle.ends.clearEnd(sessionId);
+      this.usage.joined(room, participantId, false, usageContext);
       this.lifecycle.publish(room);
       return this.lifecycle.view(room, sessionId);
     } catch (error) {
-      if (error instanceof RoomError) this.requests.save(sessionId, requestId, {
+      if (error instanceof RoomError && !this.requests.get(sessionId, requestId)) { this.requests.save(sessionId, requestId, {
         kind: 'JOIN', signature, roomId: '', participantId: '', error: { code: error.code, message: error.message }
-      });
+      }); this.usage.joinRejected(error.code, usageContext); }
       throw error;
     }
   }
@@ -309,6 +332,7 @@ export class RoomUseCases implements RoomActions {
         this.repository.save(room);
         // Registrar aceptación antes de emitir: perder el ack no permite repetir el reparto.
         this.requests.save(sessionId, requestId, { kind: 'START', signature, roomId, participantId: room.participantId });
+        this.usage.started(room);
         this.lifecycle.publish(room);
       } else {
         this.requests.save(sessionId, requestId, { kind: 'START', signature, roomId, participantId: room.participantId });

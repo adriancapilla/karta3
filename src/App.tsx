@@ -3,9 +3,12 @@ import { useRoomFlow } from './useRoomFlow';
 import { GameScreen } from './GameScreen';
 import { ResultsScreen } from './ResultsScreen';
 import './style.css';
+import { useEffect } from 'react';
+import { usageHome } from './usage';
 
 export default function App() {
   const flow = useRoomFlow();
+  useEffect(() => { if (!flow.loading) usageHome(!flow.room); }, [flow.loading, flow.room]);
   if (flow.loading) return <main className="shell"><p role="status">Cargando tu sala…</p></main>;
   if (!flow.room) return <HomeScreen
     busy={flow.busy} joining={flow.joining} notice={flow.notice} code={flow.code} joinName={flow.joinName} joinError={flow.joinError}

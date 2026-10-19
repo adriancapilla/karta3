@@ -2,6 +2,7 @@ import type { RoomChange, RoomClosedEvent, RoomView } from '../../shared/contrac
 import type { Clock, ParticipationEnds, RoomChanges, RoomRepository, Scheduler, SessionPresence } from './ports.js';
 import type { Room, WaitingDeadline } from './room.js';
 import { displayName, toRoomView } from './roomView.js';
+import { disabledUsage, type UsageRecorder } from './usage/recording.js';
 
 type Scheduled = { deadline: WaitingDeadline; cancel: () => void };
 const key = (deadline: WaitingDeadline) => `${deadline.kind}:${deadline.participantId ?? ''}:${deadline.generation}`;
@@ -16,7 +17,8 @@ export class WaitingLifecycle {
     private readonly scheduler: Scheduler,
     readonly presence: SessionPresence,
     readonly ends: ParticipationEnds,
-    private readonly changes: RoomChanges
+    private readonly changes: RoomChanges,
+    private readonly usage: UsageRecorder = disabledUsage
   ) {}
 
   prepare(): void {
@@ -55,6 +57,7 @@ export class WaitingLifecycle {
     }
     this.repository.remove(room.id);
     this.cancelRoom(room.id);
+    this.usage.closed(room, reason);
     this.changes.closed(people.map((person) => person.sessionId), room.id, room.revision, reason);
   }
 

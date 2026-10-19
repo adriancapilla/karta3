@@ -1,0 +1,14 @@
+# Preparación únicamente: usar junto a compose.yaml en una pila propia aislada.
+# Recogida pública permanece OFF. No aplicar a VPS desde B18.
+services:
+  app:
+    environment:
+      KARTA3_ENV: ${KARTA3_ENV:?Entorno administrativo explícito}
+      KARTA3_USAGE_COLLECTION: "off"
+      KARTA3_USAGE_DIRECTORY: /var/lib/karta3/usage
+    volumes:
+      - usage_data:/var/lib/karta3/usage
+
+volumes:
+  usage_data:
+    # Un proyecto y volumen distintos por entorno; no compartir Pruebas/Play/test.

@@ -7,6 +7,11 @@
     "node": ">=24.19.0 <25"
   },
   "scripts": {
+    "usage:report": "node dist-server/server/composition/usageCli.js",
+    "usage:report:synthetic": "node dist-server/server/composition/usageSyntheticCli.js",
+    "usage:backup": "node dist-server/server/composition/usageMaintenanceCli.js backup",
+    "usage:restore": "node dist-server/server/composition/usageMaintenanceCli.js restore",
+    "usage:maintain": "node dist-server/server/composition/usageMaintenanceCli.js maintain",
     "predev": "npm run decks:prepare",
     "dev": "concurrently -k \"npm:dev:server\" \"npm:dev:client\"",
     "dev:server": "tsx watch server/main.ts",

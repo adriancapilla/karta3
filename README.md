@@ -2,6 +2,12 @@
 
 KARTA3 es un proyecto de adaptación de un juego de cartas a una aplicación web multijugador, desarrollado como Trabajo Fin de Máster.
 
+## B18 — analítica propia (recogida pública apagada)
+
+SQLite se incorpora **solo para estadística**, con worker, cola acotada, nueve hechos cerrados, consultas administrativas/CSV y copias cifradas exclusivamente de agregados. El juego continúa en RAM y sus fallos estadísticos no deben detenerlo. No hay panel, servicio externo ni activación HUMAN en esta entrega. La ejecución normal no genera/envía visitas analíticas.
+
+[Guía de configuración, ensayo sintético con dos sesiones, informes, mantenimiento y restauración aislada](docs/operacion/ANALITICA_USO.md). [Registro por etapas y límites B18](docs/sdd/BLOQUE_18_ANALITICA_BASICA_USO.md#15-registro-de-implementación--18102026). Las pruebas técnicas locales no sustituyen Linux/volumen, revisión de privacidad, preparación operativa o alineación documental de Arquitectura; esos pendientes impiden declarar el cierre global verificado. C09–C10 conservan su cobertura parcial. Sin cambios de barajas, presentación o reglas.
+
 La aplicación se construye de forma incremental, con especificaciones, pruebas y documentación de cada entrega. Utiliza TypeScript, React y un servidor Node.js con Express y Socket.IO.
 
 ## Estado actual

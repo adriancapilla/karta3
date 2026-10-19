@@ -30,6 +30,8 @@ COPY --from=build --chown=node:node /app/package.json /app/package-lock.json /ap
 COPY --from=build --chown=node:node /app/dist-server ./dist-server
 COPY --from=build --chown=node:node /app/dist ./dist
 COPY --from=build --chown=node:node /app/barajas ./barajas
+# Punto de montaje opcional B18. No activa recogida ni guarda estado jugable.
+RUN mkdir -p /var/lib/karta3/usage && chown node:node /var/lib/karta3/usage && chmod 0700 /var/lib/karta3/usage
 USER node
 EXPOSE 3000
 HEALTHCHECK --interval=30s --timeout=5s --start-period=20s --retries=3 \

@@ -10,6 +10,7 @@ import type { MemorySessions } from './memorySessions.js';
 import { configurationInput, exactObject } from './configurationInput.js';
 import { cancelGameInput, gameInput } from './gameInput.js';
 import { botInput } from './botInput.js';
+import { safeUsageContext } from './usage/http.js';
 
 const sessionRoom = (sessionId: string) => `session:${sessionId}`;
 const invalid = () => new RoomError('INVALID_INPUT', 'Los datos enviados no son válidos.');
@@ -82,11 +83,16 @@ export class SocketRoomChanges implements GameChanges, SessionPresence {
       });
       socket.on('room:join', (payload: unknown, ack: (result: SocketAck<{ room: RoomView }>) => void) => {
         try {
-          if (!object(payload, ['requestId', 'code', 'name']) || !field(payload.requestId, 100)
+          const hasContext = !!payload && typeof payload === 'object' && Object.hasOwn(payload, 'usageContext');
+          if (!object(payload, ['requestId', 'code', 'name', ...(hasContext ? ['usageContext'] : [])]) || !field(payload.requestId, 100)
             || typeof payload.code !== 'string' || payload.code.length > 64
             || typeof payload.name !== 'string' || payload.name.length > 128) throw invalid();
-          respond(ack, { ok: true, room: rooms.join(sessionId, payload.requestId, payload.code, payload.name) });
-        } catch (error) { respond(ack, ackError(error)); }
+          respond(ack, { ok: true, room: rooms.join(sessionId, payload.requestId, payload.code, payload.name, safeUsageContext(payload.usageContext)) });
+        } catch (error) {
+          if (error instanceof RoomError && error.code === 'INVALID_INPUT') rooms.joinInputRejected?.(sessionId,
+            payload && typeof payload === 'object' && 'requestId' in payload ? payload.requestId : undefined);
+          respond(ack, ackError(error));
+        }
       });
       socket.on('room:leave', (payload: unknown, ack: (result: SocketAck<{ roomId: string; participantId: string }>) => void) => {
         try {

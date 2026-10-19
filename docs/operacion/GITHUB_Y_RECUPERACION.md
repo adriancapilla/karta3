@@ -1,7 +1,27 @@
 # GitHub, comprobaciones y recuperación
 
-Actualizado: 17/10/2026. Repositorio existente: `E:\KARTA3\KARTA3_IA\APP\karta3`.
+Actualizado: 18/10/2026. Repositorio existente: `E:\KARTA3\KARTA3_IA\APP\karta3`.
 Versión de paquete: 0.1.0. Remoto privado: `https://github.com/adriancapilla/karta3.git`.
+
+## Publicación B18 — preparación del 18/10/2026
+
+Base main555c50d, rama existente feat/b18-analitica-basica, preparación d9262c9, código1ce58e2 y cierre fedd873; árbol limpio verificado antes de intervenir, remoto privado y sin PR B18 al comenzar. No otras ramas/checkouts de desarrollo creados, reserva4516d23 no aplicada, sin histórico manual del autor ni servidores usados.
+
+Alineación general recibida18/10 y contrastada de lectura: Aplicación16.1/17.12; Infraestructura1–4/12.1/14.1/15.1–15.2/16.9. Recepción registrada en B18, evidencia/traslado, mapa APP y guía de operación, sin modificar fuentes TFM/contexto. Windows587/51/92 y selecciones39+8 son evidencia local histórica; partidas/informes manuales comunicados son sintéticos. No acreditan Linux o batería completa.
+
+Puertas: despacho manual focal B18 con imagen/volumen sintético, después CI completa sin filtro del HEAD final, revisión/squash y CI completa de main, clon limpio con catálogo3/124 huellas. Mantener presupuestos Chrome30/trabajo35 e imagen20/30, worker1/retries0; cualquier insuficiencia requiere tiempos y diagnóstico. Los verificadores usan solo datos propios/volúmenes efímeros y publican resultados resumidos, nunca DB, WAL/SHM, informes privados, claves o contexto de sesión.
+
+Cierre de ejecución en la PR de esta rama: fuente final/squash, ejecuciones/resultados/duración, clon, etiqueta de recuperación y OCI de main con artefacto/digest/caducidad; sin commits solo para anotar el SHA integrado. Preservar originales e históricos. Preparación operativa pendiente: privacidad/información, habilitación real expresa, administración VPS y copias externas/ensayo del responsable. No HUMAN/GHCR/VPS/dashboard/métricas adicionales.
+
+### Recuperación tras reinicio: reparación autorizada y puerta correcta
+
+[PR #14](https://github.com/adriancapilla/karta3/pull/14). Primera CI completa [39162421739](https://github.com/adriancapilla/karta3/actions/runs/39162421739), fuente65efd1a: check589/51/93 e imagen correctos, Chrome195/196 en1490,078997s; trabajo27min25, dentro de30/35. No vencimiento de presupuesto. B06-17/E7 falló porque disconnectSockets(true) enviaba DISCONNECT de namespace, desactivando la reconexión de Socket.IO. Tras diagnóstico y autorización expresa del autor,29083ff cierra únicamente el transporte Engine.IO y conserva parada controlada, disposición y drenaje estadístico2s. Sin modificación del cliente, prueba B06, plazos, reglas o retención.
+
+Puerta [39165051205](https://github.com/adriancapilla/karta3/actions/runs/39165051205) sobre29083ff: **589 pruebas/51 archivos/93 módulos;5/5 Chrome en39,614512s**, B06 y los cuatro B18, worker1/retries0/omitidos0/flaky0. Imagen correcta en263s, paso192s, HTTPS1/1 en4,6s. SIGTERM conserva TECHNICAL_INTERRUPTION; KILL conserva UNKNOWN sin duración, incluso con PID reutilizado observado en esta ejecución; RAM vacía y recogida off en ambos. Volumen físicamente read-only no altera DB ni impide crear sala; restauración aislada mantiene agregados, sin eventos/subjects, rechaza clave incorrecta/sobrescritura. Reportes y OCI de diagnóstico preservados; no candidato final de main.
+
+Comprobación Windows estable3/3 en15,38s sobre build terminado y huellas dist/dist-server invariables. El3/3 previo en22,32s solapó compilación y se conserva solo como intermedio, no como evidencia final. Main remoto555c50d; main locald9262c9, preparación original ya conservada por la fuente archivada. La sincronización posterior se hará sin visitar un producto antiguo ni perder ese commit. Reserva4516d23 intacta.
+
+La siguiente CI será completa del HEAD documental definitivo, sin filtro:196 Chrome/24 archivos, check e imagen, con los presupuestos y criterios anteriores. Resultados reales de esa CI, squash, CI main, clon y OCI final se registrarán en la PR; no se anticipa su aprobación. Siguen pendientes privacidad/información, autorización real futura, operación/copias externas/ensayo del responsable y controles físicos declarados. Sin HUMAN/GHCR/VPS.
 
 ## Publicación conjunta B16+B17 — 16/10/2026
 
@@ -413,3 +433,17 @@ Antes de automatizar copias, acordar destino, acceso, retención y frecuencia. U
 ## Mantenimiento
 
 Actualizar Node, dependencias y commits de acciones mediante PR y repetir comprobaciones. Revisar fallos en Actions, conservar referencias a ejecuciones relevantes y mantener acceso y permisos mínimos. Al añadir pruebas o herramientas de barajas, incorporar su comando real y actualizar esta descripción. T05 comprueba Docker/Caddy en CI; la publicación posterior usa el OCI aprobado mediante invocación manual, conforme al registro superior. Despliegue y operaciones VPS requieren su encargo y ejecución por el autor.
+
+## Cierre focal Linux previo a CI completa — 18/10/2026
+
+- Intento39161057170/3d043d8:587/51/93 y4/4 Chrome23,6s, pero imagen fallida tras KILL por lease PID; se conserva como diagnóstico, no candidato aprobado.
+- Reparación39161576279/e111df4:589/51/93 y4/4 Chrome27,662665s; imagen215s, paso157s; señales/volumen/backup/restore correctos.
+- Puerta final39161953043/d73097f:589/51/93 y4/4 Chrome32,3s; Compose con montaje usage y off fijo, todos los controles nuevos correctos. HTTPS Chrome1/1 en4,7s. Informes, resultados resumidos y logs descargados en APP/verificacion-b18-20261018 por ejecución.
+
+Linux real: Node24.19.0/SQLite3.53.3, UID1000, raíz read-only, red ninguna/sin puertos para las instancias sintéticas, volumen0700/archivos0600, acceso denegadoUID1001 y doce rutas privadas404. Consulta/copia de solo lectura sin cambiar hechos/arranque vivo; informe humano no abre sintéticos y entorno erróneo falla. SIGTERM y recreación conservan estadística/TECHNICAL_INTERRUPTION; KILL y recreación conservan histórico/UNKNOWN sin duración; juego/sesiones RAM vacíos. Reutilización de PID controlada observada y cubierta también por regresión Linux de identidad distinta.
+
+Copia K3AGG1/AES-GCM privada sin UUID/detalle, restauración en otro volumen con mismo contador, cero eventos/subjects y sin salud volátil. Rechazo de clave incorrecta y destino existente. Volumen físicamente read-only: error seguro, DB inalterada, recogida off y sala creada correctamente. No se prueba aquí disco físicamente lleno, capacidad VPS,90d reales,5s de SQL lento real o recuperación exactamente una vez. Límites/retención/rotación/fallos mediante SQLite y reloj/fixtures declarados en B18, reejecutados en el check Linux.
+
+e111df4 conserva contrato del bloqueo: propietario vivo/legacy dudoso no se roba; Linux identifica proceso con boot/namespace/inicio. Es portabilidad del adaptador, no identidad estadística nueva. Windows focal12/12 fuera sandbox; intento10/12 por permisos del sandbox conservado. Montaje y verificadores posteriores no alteran producto.124 huellas/versiones conservadas. Fuente recibida archivada en etiqueta publicada archivo/2026-10-18/b18-fuente-original→fedd873; reserva4516d23 intacta.
+
+La versión definitiva añade solo este cierre documental a d73097f. La CI completa sobre ese HEAD se solicita sin filtro y debe ejecutar196 recorridos/24 archivos,589 pruebas/51 archivos/93 módulos e imagen Linux. Sin presupuesto ampliado, tolerancias mayores, aserciones reducidas o reintentos nuevos. El cierre fuente/squash/main/clon/OCI se registra en la PR, sin commits solo para anotar el SHA integrado.
