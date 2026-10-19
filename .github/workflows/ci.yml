@@ -12,6 +12,11 @@ on:
         required: false
         default: ''
         type: string
+      chrome_diagnostic_repeat:
+        description: '1–5 iteraciones independientes solo del diagnóstico filtrado; no reintentos y no batería completa.'
+        required: false
+        default: '1'
+        type: string
       usage_linux_gate:
         description: 'B18/B19: incluir imagen/volumen de ensayo junto al diagnóstico Chrome; no sustituye CI completa.'
         required: false
@@ -73,13 +78,17 @@ jobs:
             exit 1
           fi
           if [ -n "$CHROME_DIAGNOSTIC" ]; then
-            npx playwright test --grep "$CHROME_DIAGNOSTIC" --trace retain-on-failure --reporter=list,json
+            [[ "$CHROME_DIAGNOSTIC_REPEAT" =~ ^[1-5]$ ]]
+            # Conservar también el intento diagnóstico correcto de un fallo intermitente.
+            npx playwright test --grep "$CHROME_DIAGNOSTIC" --repeat-each="$CHROME_DIAGNOSTIC_REPEAT" --trace on --reporter=list,json
           else
+            test "$CHROME_DIAGNOSTIC_REPEAT" = 1
             npx playwright test --reporter=list,json
           fi
         env:
           CI: 'true'
           CHROME_DIAGNOSTIC: ${{ github.event_name == 'workflow_dispatch' && inputs.chrome_diagnostic || '' }}
+          CHROME_DIAGNOSTIC_REPEAT: ${{ github.event_name == 'workflow_dispatch' && inputs.chrome_diagnostic_repeat || '1' }}
           PLAYWRIGHT_JSON_OUTPUT_FILE: ${{ runner.temp }}/karta3-browser.json
       - name: Conservar resultados y diagnósticos de Chrome
         if: always()

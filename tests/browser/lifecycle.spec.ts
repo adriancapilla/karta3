@@ -160,13 +160,44 @@ test('B03-15 reiniciar el runtime pierde el motivo privado y permite crear otra 
   test.setTimeout(60_000);
   const s = await boot(); const p = await pair(browser, s.base);
   let fresh: Awaited<ReturnType<typeof boot>> | undefined;
+  // Diagnóstico B19: solo señales técnicas y booleanos de instalaciones fabricadas.
+  // No conserva cookies, IDs, query strings ni cuerpos de transporte.
+  const began = performance.now();
+  const events: Record<string, unknown>[] = [];
+  const pendingObservations: Promise<unknown>[] = [];
+  const observe = (kind: string, data: Record<string, unknown> = {}) => {
+    if (events.length < 300) events.push({ ms: performance.now() - began, kind, ...data });
+  };
+  for (const [actor, page] of [['host', p.host], ['guest', p.guest]] as const) {
+    page.on('websocket', ws => {
+      observe('websocket.open', { actor });
+      for (const direction of ['framesent', 'framereceived'] as const) ws.on(direction, frame => {
+        const payload = String(frame.payload);
+        // Solo tipo Engine.IO/Socket.IO. Nunca el resto del paquete con identidad/datos.
+        observe(`websocket.${direction}`, { actor, packet: /^(40|41|44)/.exec(payload)?.[0] ?? payload.slice(0, 1) });
+      });
+      ws.on('close', () => observe('websocket.close', { actor }));
+      ws.on('socketerror', () => observe('websocket.error', { actor }));
+    });
+    page.on('response', response => {
+      const route = new URL(response.url()).pathname;
+      if (!['/api/rooms/current', '/api/usage/choice'].includes(route)) return;
+      pendingObservations.push((async () => {
+        const body = await response.json().catch(() => null);
+        observe('http.response', { actor, route, status: response.status(), setCookie: !!response.headers()['set-cookie'],
+          hasRoom: !!body?.room, hasEnded: !!body?.ended, hasLastResult: !!body?.lastResult });
+      })());
+    });
+    page.on('requestfailed', request => observe('http.failed', { actor, route: new URL(request.url()).pathname }));
+  }
   try {
     const b = await sessionId(p.guestContext, s.sessions); const original = await current(p.guest);
     await p.guestContext.setOffline(true);
     await expect.poll(() => s.repository.findActiveBySession(b)?.participantFor(b)?.presence, { timeout: 12_000 }).toBe('RECONNECTING');
     s.time.advance(30_000); await p.guestContext.setOffline(false);
     await expect(p.guest.getByRole('alert')).toContainText('Tu plaza se liberó', { timeout: 10_000 });
-    await s.stop(); fresh = await boot(true, s.port);
+    observe('old.stop.begin'); await s.stop(); observe('old.stop.end');
+    fresh = await boot(true, s.port); observe('fresh.listening');
     await expect(p.host.getByRole('alert')).toContainText('La sala ya no está disponible', { timeout: 10_000 });
     await expect(p.host.getByRole('button', { name: 'Crear sala' })).toBeVisible();
     await p.host.getByRole('button', { name: 'Crear sala' }).click();
@@ -178,6 +209,10 @@ test('B03-15 reiniciar el runtime pierde el motivo privado y permite crear otra 
     await expect(p.guest.getByRole('alert')).toContainText('La sala ya no está disponible');
     expect(await p.guest.evaluate(async () => (await (await fetch('/api/rooms/current')).json()).ended)).toBeUndefined();
   } finally {
+    observe('finally'); await Promise.allSettled(pendingObservations);
+    const serverDisconnections = (entries: typeof s.disconnections) => entries.map(({ at, reason }) => ({ ms: at - began, reason }));
+    await test.info().attach('B03-15-restart-signals', { body: JSON.stringify({ events,
+      oldServerDisconnections: serverDisconnections(s.disconnections), freshServerDisconnections: serverDisconnections(fresh?.disconnections ?? []) }, null, 2), contentType: 'application/json' });
     // Cerrar clientes antes del servidor evita reconexiones durante la limpieza.
     try { await Promise.all([p.hostContext.close(), p.guestContext.close()]); }
     finally { await (fresh ?? s).stop(); }
