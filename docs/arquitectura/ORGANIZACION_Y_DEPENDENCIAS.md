@@ -15,6 +15,20 @@
 
 ## B18 — responsabilidades concretas
 
+**Continuación local B19 — 19/10/2026, no activada:** se conserva la evidencia histórica B18. El cierre Linux integrado posterior está en `APP/verificacion-b18-20261018/cierre-publicacion.md`; no acredita B19. La implementación actual añade elección/corte sin cambiar dominio, reglas ni estado jugable RAM. [Evidencia propia](../sdd/evidencias/B19/ELECCION_Y_CENSURA.md).
+
+| Pieza B19 | Responsabilidad y límite |
+|---|---|
+| `application/usage/choice.ts` | Elección RAM de la sesión funcional, revisión/aviso, vigencia fija12 h, dedupe acotado y permisos/ámbitos efímeros. Acepta solo tras recibo durable; revoca admisión antes de esperar barrera. Ningún identificador funcional atraviesa el puerto de escritura. Usa Clock/Scheduler existentes, sin Game/SQL. |
+| `recording.ts`, proyecciones/informes | Exige permiso de todos los HUMAN, incluido observador; bots no consienten. La pérdida de cobertura censura irreversiblemente ese ciclo; no backfill. Guarda denominadores/terminales conocidos y marca informes incompletos; no noveno informe/décimo evento. |
+| `sqliteWorker.ts`, `worker.ts` | Misma cola y presupuestos B18 para hechos/control; flags efímeros compartidos y revalidación antes de commit, retirada de pendientes y barrera ordenada. Los controles pueden desalojar hechos pendientes con pérdida técnica explícita; nunca cola ilimitada o IO/await en una decisión del juego. |
+| `sqliteStore.ts`, `schema.ts`, lector/copias | Migración estadística1→2; recibos mínimos en tabla privada aparte, purga y censura transaccionales/idempotentes. Lector1/2 solo lectura; copias nuevas de agregados sin recibos/detalle. Un archivo restaurado no admite captura. Reversión compatible conserva esquema2 y OFF: no degradar a B18 ni borrar DB para revertir. |
+| HTTP/Socket.IO | GET/PUT propios `/api/usage/choice`, enum/claves exactos,1 KiB, origen/sesión/límites. `usage:choice` solo a pestañas de esa sesión; no es evento estadístico. Ingesta HUMAN autentica sesión y permiso; señal HTTP efectiva por destinatario/no-store. Sin endpoint de activación/informes públicos. |
+| Composición/main | Matriz exacta OFF, SYNTHETIC/test, HUMAN/pruebas; archivo privado de clave y disponibilidad del worker. La información pública completa es condición técnica, nunca variable de aprobación jurídica. OFF sigue siendo predeterminado; el texto operativo incompleto mantiene HUMAN bloqueado. |
+| `src/usage.ts`, `useUsageChoice`, `UsageChoiceControl`, `PrivacyScreen` | Tres hechos permitidos, memoria del documento y cancelación de señales/reintentos antiguos. Elección al pie, sin modal que pause; pendientes separados de juego. Información en entrada independiente sin montar sesión/visita; no publicar borrador incompleto. Sin datos ocultos ni control de permisos en React. |
+
+La consecuencia material de la cobertura por permiso, el plazo de recibos y el aviso requieren el paquete final del autor/Coordinación; no se atribuye aceptación final por pasar tests. No se editan aquí las fuentes TFM ni se activa recogida. C09–C10 y revisión humana mantienen sus límites.
+
 | Pieza | Responsabilidad y límite |
 |---|---|
 | `shared/contracts/usage.ts` | Tres declaraciones BROWSER y contexto opcional exactos; UUID/enums/claves cerrados. Sin referencias estadísticas internas o informes públicos. |

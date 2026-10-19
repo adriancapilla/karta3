@@ -1,0 +1,85 @@
+{
+  "date": "2026-10-19",
+  "source": "8d21f48b82fea9f484dafaf125e4362d7a344ec0",
+  "platform": "Windows/x64",
+  "node": "v24.19.0",
+  "nodePath": "C:\\Users\\Adrian\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+  "sqlite": "3.53.3",
+  "normalCollection": "off",
+  "normalHumanBlocked": true,
+  "humanFixtures": "fabricated informational readiness; disposable private installations; no real visitors",
+  "check": {
+    "files": 59,
+    "tests": 645,
+    "exitCode": 0,
+    "modules": 98
+  },
+  "browser": {
+    "selection2": 8,
+    "selection1": 36,
+    "results": [
+      {
+        "args": [
+          "run",
+          "test:browser",
+          "--",
+          "--workers=1",
+          "--retries=0",
+          "usageChoice.spec.ts",
+          "usageActivation.spec.ts",
+          "usage.spec.ts",
+          "room.spec.ts",
+          "join.spec.ts",
+          "cancelGame.spec.ts",
+          "resultNotice.spec.ts",
+          "timedRealGame.spec.ts"
+        ],
+        "base": "http://127.0.0.1:50299",
+        "pid": 15556,
+        "startedAt": "2026-10-19T10:12:29.704Z",
+        "endedAt": "2026-10-19T10:15:53.135Z",
+        "exitCode": 0,
+        "servedBuildUnchanged": true
+      },
+      {
+        "args": [
+          "run",
+          "test:browser",
+          "--",
+          "--workers=2",
+          "--retries=0",
+          "bots.spec.ts",
+          "format2Presentation.spec.ts",
+          "timedGame.spec.ts",
+          "--grep",
+          "B09 P2 normal compilado|B15 espera:|B15 frontera medida|B08 T1|B08 T2"
+        ],
+        "base": "http://127.0.0.1:50299",
+        "pid": 15556,
+        "startedAt": "2026-10-19T10:15:53.136Z",
+        "endedAt": "2026-10-19T10:16:47.073Z",
+        "exitCode": 0,
+        "servedBuildUnchanged": true
+      }
+    ],
+    "fullSuite": false,
+    "h04AdditionalCases": 1,
+    "uniqueCasesTotal": 45,
+    "h04Seconds": 9.5
+  },
+  "decks": {
+    "sha256AndSizeUnchanged": true,
+    "files": 124
+  },
+  "pending": [
+    "final public information and author review",
+    "Linux B19",
+    "publication by responsible thread",
+    "VPS and final authorization; real HUMAN off",
+    "human/device review; C09-C10 partial"
+  ],
+  "sourceWithAdditionalRegression": "439e33a8ded1538da83b5bca71bdab801e198293",
+  "finalBuildFilesCompared": 71,
+  "finalBuildIdenticalToBrowser": true,
+  "finalCheckLog": "playwright-report/b19/check-choice-final-3.log"
+}

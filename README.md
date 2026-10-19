@@ -8,6 +8,25 @@ SQLite se incorpora **solo para estadística**, con worker, cola acotada, nueve 
 
 [Guía de configuración, ensayo sintético con dos sesiones, informes, mantenimiento y restauración aislada](docs/operacion/ANALITICA_USO.md). [Registro por etapas y límites B18](docs/sdd/BLOQUE_18_ANALITICA_BASICA_USO.md#15-registro-de-implementación--18102026). Las pruebas técnicas locales no sustituyen Linux/volumen, revisión de privacidad, preparación operativa o alineación documental de Arquitectura; esos pendientes impiden declarar el cierre global verificado. C09–C10 conservan su cobertura parcial. Sin cambios de barajas, presentación o reglas.
 
+### Continuación B19 — preparación técnica, todavía OFF
+
+[B19](docs/sdd/BLOQUE_19_HABILITACION_ANALITICA_REAL.md) prepara la elección opcional de analítica, comprobada por servidor y compartida entre pestañas de la sesión funcional. No elegir o rechazar permite jugar igual; retirar no pausa ni cancela la partida. Conserva nueve hechos y ocho consultas. Las salas con cobertura incompleta dejan de observarse; no se reconstruyen hechos anteriores ni se presentan como abandonadas. Los informes conservan lo conocido y señalan censura/tasas incompletas.
+
+**La aplicación normal permanece OFF y HUMAN bloqueado:** falta completar la información operativa pública y la revisión/puesta en servicio coordinadas por el autor. `/privacidad` no publica un borrador incompleto: devuelve 404 sin iniciar sesión ni visita. El enlace «Analítica y privacidad» queda accesible fuera de los bloques de juego. No se han actualizado Pruebas, el VPS o una imagen pública desde este trabajo. El antecedente Linux B18 no acredita el cambio B19.
+
+La elección vive en RAM hasta doce horas, sin renovación por consulta; no hay cookie estadística, localStorage, edad o cuenta nueva. Un recibo técnico mínimo se guarda separado de los eventos y se purga noventa días tras vencer o retirarse; las copias de agregados lo excluyen. La retirada se confirma tras la barrera del escritor. Si falta confirmación, muestra «Retirada pendiente; no se ha podido confirmar en el servidor» y permite consultar/reintentar el control, sin reenvío automático ni bloqueo del juego.
+
+Ensayos aislados y repetibles (Node fijado del proyecto, tras compilar):
+
+```powershell
+npm run check
+npm run test:browser -- --workers=1 --retries=0 usageChoice.spec.ts usageActivation.spec.ts usage.spec.ts
+```
+
+Esos archivos montan sus propias instancias/SQLite/clave temporales. Los casos HUMAN **fabrican únicamente la condición informativa del arnés**, para probar el mecanismo pendiente; no activan el servidor habitual, no son consentimiento de personas reales ni acreditan el aviso definitivo. Los recorridos heredados que usan la URL base requieren una instancia propia adicional, según la selección registrada en la evidencia. [Resultados y límites nuevos B19](docs/sdd/evidencias/B19/ELECCION_Y_CENSURA.md), [preparación operativa y autorización final](docs/operacion/PREPARACION_ANALITICA_REAL_B19.md).
+
+Para revisión humana posterior, en el ensayo aislado: dos sesiones independientes aceptan explícitamente, crean/entran y juegan; otra pestaña del anfitrión comparte la elección. Abrir Detalles y retirar desde esa segunda pestaña conserva foco/mano/plazo en la primera. Probar sin elegir/rechazando, sin red (retirada pendiente y consulta al volver), F5, resultado y otra sala. No usar este montaje para recoger tráfico real. La información completa y el ensayo humano siguen pendientes.
+
 La aplicación se construye de forma incremental, con especificaciones, pruebas y documentación de cada entrega. Utiliza TypeScript, React y un servidor Node.js con Express y Socket.IO.
 
 ## Estado actual
