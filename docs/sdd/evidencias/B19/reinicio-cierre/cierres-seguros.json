@@ -1,0 +1,686 @@
+[
+  {
+    "case": "adverse",
+    "iteration": 2,
+    "signals": {
+      "actor": "host",
+      "namespaceDisconnected": false,
+      "connectionsDuringShutdown": 1,
+      "freshListening": true,
+      "http": [
+        {
+          "route": "/api/rooms/current",
+          "status": 200,
+          "setCookie": false,
+          "hasRoom": true
+        },
+        {
+          "route": "/api/usage/choice",
+          "status": 200,
+          "setCookie": false,
+          "hasRoom": false
+        },
+        {
+          "route": "/api/rooms/current",
+          "status": 200,
+          "setCookie": true,
+          "hasRoom": false
+        },
+        {
+          "route": "/api/rooms/current",
+          "status": 200,
+          "setCookie": false,
+          "hasRoom": false
+        },
+        {
+          "route": "/api/usage/choice",
+          "status": 200,
+          "setCookie": false,
+          "hasRoom": false
+        }
+      ]
+    }
+  },
+  {
+    "case": "adverse",
+    "iteration": 3,
+    "signals": {
+      "actor": "host",
+      "namespaceDisconnected": false,
+      "connectionsDuringShutdown": 1,
+      "freshListening": true,
+      "http": [
+        {
+          "route": "/api/rooms/current",
+          "status": 200,
+          "setCookie": false,
+          "hasRoom": true
+        },
+        {
+          "route": "/api/usage/choice",
+          "status": 200,
+          "setCookie": false,
+          "hasRoom": false
+        },
+        {
+          "route": "/api/rooms/current",
+          "status": 200,
+          "setCookie": true,
+          "hasRoom": false
+        },
+        {
+          "route": "/api/rooms/current",
+          "status": 200,
+          "setCookie": false,
+          "hasRoom": false
+        },
+        {
+          "route": "/api/usage/choice",
+          "status": 200,
+          "setCookie": false,
+          "hasRoom": false
+        }
+      ]
+    }
+  },
+  {
+    "case": "adverse",
+    "iteration": 1,
+    "signals": {
+      "actor": "host",
+      "namespaceDisconnected": false,
+      "connectionsDuringShutdown": 1,
+      "freshListening": true,
+      "http": [
+        {
+          "route": "/api/rooms/current",
+          "status": 200,
+          "setCookie": false,
+          "hasRoom": true
+        },
+        {
+          "route": "/api/usage/choice",
+          "status": 200,
+          "setCookie": false,
+          "hasRoom": false
+        },
+        {
+          "route": "/api/rooms/current",
+          "status": 200,
+          "setCookie": true,
+          "hasRoom": false
+        },
+        {
+          "route": "/api/rooms/current",
+          "status": 200,
+          "setCookie": false,
+          "hasRoom": false
+        },
+        {
+          "route": "/api/usage/choice",
+          "status": 200,
+          "setCookie": false,
+          "hasRoom": false
+        }
+      ]
+    }
+  },
+  {
+    "case": "original",
+    "iteration": 2,
+    "phases": [
+      {
+        "ms": 996.6963999999998,
+        "kind": "old.stop.begin"
+      },
+      {
+        "ms": 999.3795,
+        "kind": "old.stop.end"
+      },
+      {
+        "ms": 1003.0616,
+        "kind": "fresh.listening"
+      },
+      {
+        "ms": 2579.1699,
+        "kind": "finally"
+      }
+    ],
+    "http": [
+      {
+        "ms": 17.47980000000007,
+        "kind": "http.response",
+        "actor": "guest",
+        "route": "/api/rooms/current",
+        "status": 200,
+        "setCookie": false,
+        "hasRoom": true,
+        "hasEnded": false,
+        "hasLastResult": false
+      },
+      {
+        "ms": 728.5812000000001,
+        "kind": "http.response",
+        "actor": "guest",
+        "route": "/api/rooms/current",
+        "status": 200,
+        "setCookie": false,
+        "hasRoom": false,
+        "hasEnded": true,
+        "hasLastResult": false
+      },
+      {
+        "ms": 738.6349,
+        "kind": "http.response",
+        "actor": "guest",
+        "route": "/api/usage/choice",
+        "status": 200,
+        "setCookie": false,
+        "hasRoom": false,
+        "hasEnded": false,
+        "hasLastResult": false
+      },
+      {
+        "ms": 2026.9880000000003,
+        "kind": "http.response",
+        "actor": "guest",
+        "route": "/api/rooms/current",
+        "status": 200,
+        "setCookie": true,
+        "hasRoom": false,
+        "hasEnded": false,
+        "hasLastResult": false
+      },
+      {
+        "ms": 2044.6391000000003,
+        "kind": "http.response",
+        "actor": "guest",
+        "route": "/api/rooms/current",
+        "status": 200,
+        "setCookie": false,
+        "hasRoom": false,
+        "hasEnded": false,
+        "hasLastResult": false
+      },
+      {
+        "ms": 2044.6666999999998,
+        "kind": "http.response",
+        "actor": "guest",
+        "route": "/api/usage/choice",
+        "status": 200,
+        "setCookie": false,
+        "hasRoom": false,
+        "hasEnded": false,
+        "hasLastResult": false
+      },
+      {
+        "ms": 2325.6652999999997,
+        "kind": "http.response",
+        "actor": "host",
+        "route": "/api/rooms/current",
+        "status": 200,
+        "setCookie": true,
+        "hasRoom": false,
+        "hasEnded": false,
+        "hasLastResult": false
+      },
+      {
+        "ms": 2340.8657999999996,
+        "kind": "http.response",
+        "actor": "host",
+        "route": "/api/rooms/current",
+        "status": 200,
+        "setCookie": false,
+        "hasRoom": false,
+        "hasEnded": false,
+        "hasLastResult": false
+      },
+      {
+        "ms": 2340.8972999999996,
+        "kind": "http.response",
+        "actor": "host",
+        "route": "/api/usage/choice",
+        "status": 200,
+        "setCookie": false,
+        "hasRoom": false,
+        "hasEnded": false,
+        "hasLastResult": false
+      },
+      {
+        "ms": 2540.2883,
+        "kind": "http.response",
+        "actor": "guest",
+        "route": "/api/rooms/current",
+        "status": 200,
+        "setCookie": false,
+        "hasRoom": false,
+        "hasEnded": false,
+        "hasLastResult": false
+      },
+      {
+        "ms": 2542.0708999999997,
+        "kind": "http.response",
+        "actor": "guest",
+        "route": "/api/usage/choice",
+        "status": 200,
+        "setCookie": false,
+        "hasRoom": false,
+        "hasEnded": false,
+        "hasLastResult": false
+      },
+      {
+        "ms": 2551.7844999999998,
+        "kind": "http.response",
+        "actor": "guest",
+        "route": "/api/rooms/current",
+        "status": 200,
+        "setCookie": false,
+        "hasRoom": false,
+        "hasEnded": false,
+        "hasLastResult": false
+      },
+      {
+        "ms": 2551.8100000000004,
+        "kind": "http.response",
+        "actor": "guest",
+        "route": "/api/usage/choice",
+        "status": 200,
+        "setCookie": false,
+        "hasRoom": false,
+        "hasEnded": false,
+        "hasLastResult": false
+      },
+      {
+        "ms": 2579.6115,
+        "kind": "http.response",
+        "actor": "guest",
+        "route": "/api/rooms/current",
+        "status": 200,
+        "setCookie": false,
+        "hasRoom": false,
+        "hasEnded": false,
+        "hasLastResult": false
+      }
+    ],
+    "oldDisconnectReasons": [
+      "transport close",
+      "forced close",
+      "forced close"
+    ],
+    "freshDisconnectReasons": [
+      "transport close"
+    ]
+  },
+  {
+    "case": "original",
+    "iteration": 3,
+    "phases": [
+      {
+        "ms": 1005.2377000000001,
+        "kind": "old.stop.begin"
+      },
+      {
+        "ms": 1008.9365000000003,
+        "kind": "old.stop.end"
+      },
+      {
+        "ms": 1012.3905,
+        "kind": "fresh.listening"
+      },
+      {
+        "ms": 3066.967,
+        "kind": "finally"
+      }
+    ],
+    "http": [
+      {
+        "ms": 21.008499999999913,
+        "kind": "http.response",
+        "actor": "guest",
+        "route": "/api/rooms/current",
+        "status": 200,
+        "setCookie": false,
+        "hasRoom": true,
+        "hasEnded": false,
+        "hasLastResult": false
+      },
+      {
+        "ms": 622.5219000000002,
+        "kind": "http.response",
+        "actor": "guest",
+        "route": "/api/rooms/current",
+        "status": 200,
+        "setCookie": false,
+        "hasRoom": false,
+        "hasEnded": true,
+        "hasLastResult": false
+      },
+      {
+        "ms": 626.1235000000001,
+        "kind": "http.response",
+        "actor": "guest",
+        "route": "/api/usage/choice",
+        "status": 200,
+        "setCookie": false,
+        "hasRoom": false,
+        "hasEnded": false,
+        "hasLastResult": false
+      },
+      {
+        "ms": 1598.2161999999998,
+        "kind": "http.response",
+        "actor": "guest",
+        "route": "/api/rooms/current",
+        "status": 200,
+        "setCookie": true,
+        "hasRoom": false,
+        "hasEnded": false,
+        "hasLastResult": false
+      },
+      {
+        "ms": 1613.0656,
+        "kind": "http.response",
+        "actor": "guest",
+        "route": "/api/rooms/current",
+        "status": 200,
+        "setCookie": false,
+        "hasRoom": false,
+        "hasEnded": false,
+        "hasLastResult": false
+      },
+      {
+        "ms": 1613.0988000000002,
+        "kind": "http.response",
+        "actor": "guest",
+        "route": "/api/usage/choice",
+        "status": 200,
+        "setCookie": false,
+        "hasRoom": false,
+        "hasEnded": false,
+        "hasLastResult": false
+      },
+      {
+        "ms": 2443.8354999999997,
+        "kind": "http.response",
+        "actor": "host",
+        "route": "/api/rooms/current",
+        "status": 200,
+        "setCookie": true,
+        "hasRoom": false,
+        "hasEnded": false,
+        "hasLastResult": false
+      },
+      {
+        "ms": 2463.1599,
+        "kind": "http.response",
+        "actor": "host",
+        "route": "/api/rooms/current",
+        "status": 200,
+        "setCookie": false,
+        "hasRoom": false,
+        "hasEnded": false,
+        "hasLastResult": false
+      },
+      {
+        "ms": 2463.1908,
+        "kind": "http.response",
+        "actor": "host",
+        "route": "/api/usage/choice",
+        "status": 200,
+        "setCookie": false,
+        "hasRoom": false,
+        "hasEnded": false,
+        "hasLastResult": false
+      },
+      {
+        "ms": 3043.4096999999997,
+        "kind": "http.response",
+        "actor": "guest",
+        "route": "/api/rooms/current",
+        "status": 200,
+        "setCookie": false,
+        "hasRoom": false,
+        "hasEnded": false,
+        "hasLastResult": false
+      },
+      {
+        "ms": 3043.4432,
+        "kind": "http.response",
+        "actor": "guest",
+        "route": "/api/usage/choice",
+        "status": 200,
+        "setCookie": false,
+        "hasRoom": false,
+        "hasEnded": false,
+        "hasLastResult": false
+      },
+      {
+        "ms": 3046.6348000000003,
+        "kind": "http.response",
+        "actor": "guest",
+        "route": "/api/rooms/current",
+        "status": 200,
+        "setCookie": false,
+        "hasRoom": false,
+        "hasEnded": false,
+        "hasLastResult": false
+      },
+      {
+        "ms": 3057.2327,
+        "kind": "http.response",
+        "actor": "guest",
+        "route": "/api/usage/choice",
+        "status": 200,
+        "setCookie": false,
+        "hasRoom": false,
+        "hasEnded": false,
+        "hasLastResult": false
+      },
+      {
+        "ms": 3067.0962000000004,
+        "kind": "http.response",
+        "actor": "guest",
+        "route": "/api/rooms/current",
+        "status": 200,
+        "setCookie": false,
+        "hasRoom": false,
+        "hasEnded": false,
+        "hasLastResult": false
+      }
+    ],
+    "oldDisconnectReasons": [
+      "transport close",
+      "forced close",
+      "forced close"
+    ],
+    "freshDisconnectReasons": [
+      "transport close"
+    ]
+  },
+  {
+    "case": "original",
+    "iteration": 1,
+    "phases": [
+      {
+        "ms": 972.5322999999999,
+        "kind": "old.stop.begin"
+      },
+      {
+        "ms": 979.6474999999996,
+        "kind": "old.stop.end"
+      },
+      {
+        "ms": 985.8945999999996,
+        "kind": "fresh.listening"
+      },
+      {
+        "ms": 2575.005,
+        "kind": "finally"
+      }
+    ],
+    "http": [
+      {
+        "ms": 15.860099999999875,
+        "kind": "http.response",
+        "actor": "guest",
+        "route": "/api/rooms/current",
+        "status": 200,
+        "setCookie": false,
+        "hasRoom": true,
+        "hasEnded": false,
+        "hasLastResult": false
+      },
+      {
+        "ms": 707.5403999999999,
+        "kind": "http.response",
+        "actor": "guest",
+        "route": "/api/rooms/current",
+        "status": 200,
+        "setCookie": false,
+        "hasRoom": false,
+        "hasEnded": true,
+        "hasLastResult": false
+      },
+      {
+        "ms": 714.0591,
+        "kind": "http.response",
+        "actor": "guest",
+        "route": "/api/usage/choice",
+        "status": 200,
+        "setCookie": false,
+        "hasRoom": false,
+        "hasEnded": false,
+        "hasLastResult": false
+      },
+      {
+        "ms": 1573.9195,
+        "kind": "http.response",
+        "actor": "guest",
+        "route": "/api/rooms/current",
+        "status": 200,
+        "setCookie": true,
+        "hasRoom": false,
+        "hasEnded": false,
+        "hasLastResult": false
+      },
+      {
+        "ms": 1588.2359999999999,
+        "kind": "http.response",
+        "actor": "guest",
+        "route": "/api/rooms/current",
+        "status": 200,
+        "setCookie": false,
+        "hasRoom": false,
+        "hasEnded": false,
+        "hasLastResult": false
+      },
+      {
+        "ms": 1588.2736,
+        "kind": "http.response",
+        "actor": "guest",
+        "route": "/api/usage/choice",
+        "status": 200,
+        "setCookie": false,
+        "hasRoom": false,
+        "hasEnded": false,
+        "hasLastResult": false
+      },
+      {
+        "ms": 2193.2758999999996,
+        "kind": "http.response",
+        "actor": "host",
+        "route": "/api/rooms/current",
+        "status": 200,
+        "setCookie": true,
+        "hasRoom": false,
+        "hasEnded": false,
+        "hasLastResult": false
+      },
+      {
+        "ms": 2207.4177,
+        "kind": "http.response",
+        "actor": "host",
+        "route": "/api/rooms/current",
+        "status": 200,
+        "setCookie": false,
+        "hasRoom": false,
+        "hasEnded": false,
+        "hasLastResult": false
+      },
+      {
+        "ms": 2207.4498999999996,
+        "kind": "http.response",
+        "actor": "host",
+        "route": "/api/usage/choice",
+        "status": 200,
+        "setCookie": false,
+        "hasRoom": false,
+        "hasEnded": false,
+        "hasLastResult": false
+      },
+      {
+        "ms": 2533.5708999999997,
+        "kind": "http.response",
+        "actor": "guest",
+        "route": "/api/rooms/current",
+        "status": 200,
+        "setCookie": false,
+        "hasRoom": false,
+        "hasEnded": false,
+        "hasLastResult": false
+      },
+      {
+        "ms": 2539.8449,
+        "kind": "http.response",
+        "actor": "guest",
+        "route": "/api/usage/choice",
+        "status": 200,
+        "setCookie": false,
+        "hasRoom": false,
+        "hasEnded": false,
+        "hasLastResult": false
+      },
+      {
+        "ms": 2545.0787,
+        "kind": "http.response",
+        "actor": "guest",
+        "route": "/api/rooms/current",
+        "status": 200,
+        "setCookie": false,
+        "hasRoom": false,
+        "hasEnded": false,
+        "hasLastResult": false
+      },
+      {
+        "ms": 2545.1030999999994,
+        "kind": "http.response",
+        "actor": "guest",
+        "route": "/api/usage/choice",
+        "status": 200,
+        "setCookie": false,
+        "hasRoom": false,
+        "hasEnded": false,
+        "hasLastResult": false
+      },
+      {
+        "ms": 2575.5635,
+        "kind": "http.response",
+        "actor": "guest",
+        "route": "/api/rooms/current",
+        "status": 200,
+        "setCookie": false,
+        "hasRoom": false,
+        "hasEnded": false,
+        "hasLastResult": false
+      }
+    ],
+    "oldDisconnectReasons": [
+      "transport close",
+      "forced close",
+      "forced close"
+    ],
+    "freshDisconnectReasons": [
+      "transport close"
+    ]
+  }
+]

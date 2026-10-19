@@ -1,0 +1,24 @@
+{
+  "date": "2026-10-19",
+  "base": "8c1bde57753a80c21b11572cf4e17fc7639b5b25",
+  "category": "real HTTP/Socket.IO; controlled shutdown barrier; initial adverse harness; before product fix",
+  "result": "failed recovery assertion at 10 seconds",
+  "actor": "host",
+  "namespaceDisconnected": true,
+  "connectionsDuringShutdown": 2,
+  "counterScope": "all sessions in initial harness; packet 41 specifically observed on host",
+  "freshListening": true,
+  "cookieObservation": "not credited: initial observer used headers(), not allHeaders()",
+  "http": [
+    {
+      "route": "/api/rooms/current",
+      "status": 200,
+      "hasRoom": true
+    },
+    {
+      "route": "/api/usage/choice",
+      "status": 200,
+      "hasRoom": false
+    }
+  ]
+}

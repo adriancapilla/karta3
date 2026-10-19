@@ -27,6 +27,8 @@ Esos archivos montan sus propias instancias/SQLite/clave temporales. Los casos H
 
 Para revisión humana posterior, abrir primero `/privacidad` desde una ventana nueva de la instancia propia OFF: texto completo, navegación de teclado y ninguna sesión creada. En el ensayo aislado: dos sesiones independientes aceptan explícitamente, crean/entran y juegan; otra pestaña del anfitrión comparte la elección. Abrir Detalles y retirar desde esa segunda pestaña conserva foco/mano/plazo en la primera. Probar sin elegir/rechazando, sin red (retirada pendiente y consulta al volver), F5, resultado y otra sala. No usar este montaje para recoger tráfico real. El ensayo humano y la autorización final siguen pendientes.
 
+**Recuperación tras reinicio, corrección focal 19/10:** una conexión que alcanza el runtime durante su parada cierra el transporte sin expulsión de namespace, para conservar la reconexión normal. El proceso nuevo pierde salas/sesiones/elección RAM; confirma la ausencia de la sala antigua y permite crear otra. No reenvía acciones de juego ni reactiva analítica. [Causa reproducida, regresión, medidas y límites](docs/sdd/evidencias/B19/RECUPERACION_REINICIO.md): check Windows645/645 y99 módulos; original/adverso3+3 ejecuciones y cinco regresiones relacionadas correctas. Linux y CI completa del HEAD final siguen pendientes de GitHub; no activación o publicación desde Implementación.
+
 La aplicación se construye de forma incremental, con especificaciones, pruebas y documentación de cada entrega. Utiliza TypeScript, React y un servidor Node.js con Express y Socket.IO.
 
 ## Estado actual
