@@ -1,5 +1,7 @@
 # B19 — elección, barrera de retirada y censura
 
+**Continuación posterior del mismo19/10:** este registro conserva el incremento8d21f48/439e33a y sus condiciones de entonces. El aviso factual se completó después; el estado vigente, sus fuentes, huella y nuevas pruebas están en [AVISO_FINAL.md](AVISO_FINAL.md). Ya no falta ubicación/hPanel o referencia de Arquitectura. OFF se mantiene y la aprobación/publicación/operación final sigue pendiente.
+
 **19/10/2026. Entrega técnica local; B19 global abierto. Recogida normal OFF.** Información pública operativa incompleta, aceptación final de cobertura/recibos, Linux B19, publicación y operación/activación pendientes. No se atribuye consentimiento real, aprobación jurídica, revisión humana o pruebas VPS a estos ensayos.
 
 ## Base, versiones y separación

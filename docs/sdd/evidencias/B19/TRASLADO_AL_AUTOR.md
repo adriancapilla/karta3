@@ -1,5 +1,7 @@
 # B19 — resumen para Coordinación y Arquitectura
 
+**Actualización posterior19/10:** [cierre del aviso factual](AVISO_FINAL.md) sustituye el pendiente de datos operativos/aviso de este traslado histórico. Recibidos preparación§8, inventario/hPanel y alineación general19/10; aviso2026-10-19.2 completo,200/OFF/sin sesión. Aprobación final de cobertura/recibos y operación/publicación siguen pendientes. No se reabre investigación del proveedor ni SSH delegado.
+
 19/10/2026. **Incremento local comprobado; no cierre global ni activación.** Base main2b25f69, preparación38152bc/4006397, independiente662e696, elección/censura8d21f48 y regresión439e33a. Sin publicación o cambios en servidores del autor.
 
 ## Entregado técnicamente
