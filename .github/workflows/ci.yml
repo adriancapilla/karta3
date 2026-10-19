@@ -85,6 +85,7 @@ jobs:
             test-results/
             playwright-report/b17-adenda/acceptance/
             playwright-report/b19/eleccion-*.png
+            playwright-report/b19/aviso-final/
           if-no-files-found: warn
           retention-days: 7
 

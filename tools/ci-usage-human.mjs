@@ -6,13 +6,15 @@ import os from 'node:os';
 import { spawn, execFile } from 'node:child_process';
 import { promisify } from 'node:util';
 import { once } from 'node:events';
-import { URL } from 'node:url';
+import { URL, pathToFileURL } from 'node:url';
 import { randomUUID } from 'node:crypto';
 import { Buffer } from 'node:buffer';
 import { DatabaseSync } from 'node:sqlite';
 import { setTimeout as delay } from 'node:timers/promises';
 import { io } from 'socket.io-client';
 
+// El arnés por stdin carga artefactos compilados de su instalación, no dependencias fuente.
+const compiledModule = relative => pathToFileURL(path.resolve('dist-server', relative)).href;
 const root = '/var/lib/karta3/usage';
 const directory = root + '/pruebas/human';
 const file = directory + '/usage.sqlite';
@@ -105,6 +107,7 @@ async function maintenance(operation, location = root, source) {
 }
 try {
   assert.equal(process.version, 'v24.19.0'); assert.equal(process.platform, 'linux'); assert.equal(process.getuid(), 1000);
+  assert.equal(process.cwd(), '/app');
   await assert.rejects(fs.writeFile('/app/.b19-probe', 'x', { flag: 'wx' }), { code: 'EROFS' });
   assert.equal((await fs.stat(root)).mode & 0o777, 0o700);
   assert.equal((await fs.stat(keyFile)).mode & 0o777, 0o600);
@@ -126,7 +129,7 @@ process.on('SIGTERM',stop);process.on('SIGINT',stop);
 server.listen(0,'127.0.0.1',()=>console.log('KARTA3: http://127.0.0.1:'+server.address().port));
 `, { mode: 0o600 });
   stage = 'legacy-fixture';
-  const { SqliteUsageStore } = await import('/app/dist-server/server/infrastructure/usage/sqliteStore.js');
+  const { SqliteUsageStore } = await import(compiledModule('server/infrastructure/usage/sqliteStore.js'));
   const legacy = new SqliteUsageStore(file, 'pruebas', Date.now(), undefined, 'HUMAN', false);
   const fact = { name: 'room_created', source: 'SERVER', version: 1, eventId: randomUUID(), bootRef: randomUUID(), environment: 'pruebas', traffic: 'HUMAN',
     occurredAt: Date.now(), receivedAt: Date.now(), data: { roomRef: randomUUID() } };
@@ -166,7 +169,7 @@ server.listen(0,'127.0.0.1',()=>console.log('KARTA3: http://127.0.0.1:'+server.a
   assert.equal(snapshot().events.length, count); off.socket.disconnect(); await server.stop();
   server = await start({ ready: false }); const unavailable = await player(server.base); assert.equal((await unavailable.choice()).available, false);
   const privacy = await globalThis.fetch(server.base + '/privacidad');
-  const { privacyNotice } = await import('/app/dist-server/shared/contracts/privacyNotice.js');
+  const { privacyNotice } = await import(compiledModule('shared/contracts/privacyNotice.js'));
   assert.equal(privacy.status, privacyNotice.complete ? 200 : 404); assert.equal(privacy.headers.get('set-cookie'), null); assert.equal(privacy.headers.get('cache-control'), 'no-store');
   for (const route of ['/usage', '/usage-data', '/backups', '/usage.sqlite', '/usage.sqlite-wal', '/usage.sqlite-shm', '/api/usage/report']) assert.equal((await globalThis.fetch(server.base + route)).status, 404);
   unavailable.socket.disconnect(); await server.stop();
