@@ -43,15 +43,13 @@ async function boot(controlled = true, port = 0) {
     dropTransports: () => { for (const client of Object.values(io.engine.clients)) client.close(); },
     stop: async (beforeTransportClose?: () => Promise<void>) => {
       stopping = true; runtime.dispose();
-      if (beforeTransportClose) {
-        await beforeTransportClose(); // Barrera privada solo del caso adverso.
-        // Como main: cerrar también HTTP activo tras admitir conexiones durante la barrera.
-        // io.close solo espera server.close y puede dejar un polling en vuelo abierto.
-        io.engine.close();
-        const closed = new Promise<void>((resolve) => server.close(() => resolve()));
-        server.closeAllConnections();
-        await closed;
-      }
+      if (beforeTransportClose) await beforeTransportClose(); // Barrera privada solo del caso adverso.
+      // Como main: cerrar transporte y HTTP activo, también si llega una reconexión.
+      // io.close solo espera server.close y puede dejar un polling en vuelo abierto.
+      io.engine.close();
+      const closed = new Promise<void>((resolve) => server.close(() => resolve()));
+      server.closeAllConnections();
+      await closed;
       await new Promise<void>((resolve) => io.close(() => resolve()));
     } };
 }
