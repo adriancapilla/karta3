@@ -1,0 +1,12 @@
+
+> karta3@0.1.0 test
+> vitest run server/composition/usageMaintenance.test.ts server/usageActivation.test.ts
+
+
+ RUN  v5.0.2 E:/KARTA3/KARTA3_IA/APP/karta3
+
+
+ Test Files  2 passed (2)
+      Tests  11 passed (11)
+   Start at  18:07:07
+   Duration  21.15s (tests 94%, import 4%, transform 2%)

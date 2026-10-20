@@ -1,6 +1,6 @@
 # Adenda B20 — Ancho del selector y acciones de Detalles
 
-**20/10/2026. Estado:** especificación correctiva preparada; implementación y comprobaciones nuevas pendientes. No abre otro bloque. El autor ha probado el selector, lo valora favorablemente y solicita únicamente estas dos correcciones; esa valoración no sustituye las verificaciones pendientes de B20.
+**20/10/2026. Estado vigente:** implementado y comprobado técnicamente en Windows; [registro nuevo §6](#6-implementación-y-comprobación--20102026). No abre otro bloque ni cierra los pendientes generales B20. La preparación original quedó registrada separadamente. El autor había probado el selector y solicitado únicamente estas dos correcciones; esa valoración no sustituye la revisión humana/física posterior de esta entrega.
 
 **Base observada:** carpeta única `E:\KARTA3\KARTA3_IA\APP\karta3`, rama `main`, HEAD `40f3f48553a3353433942124b625354c35ed2972`. Ya estaban modificados proceso, B19, `ANALITICA_USO.md` y `PREPARACION_ANALITICA_REAL_B19.md`; conservarlos. No crear ramas/checkouts, revertir o mezclar trabajo ajeno.
 
@@ -58,3 +58,17 @@ Reutilizar casos afectados de `tests/browser/appearance.spec.ts` y el recorrido 
 Conservar evidencia/cierres B20, incluidas sus limitaciones. Registrar esta corrección en una sección/evidencia nueva con commit/build, pruebas reales, capturas/medidas y límites; no atribuirle las pruebas históricas ni declarar verificación Linux/humana/física por redactarla. El nuevo trabajo SDD ha sido solo lectura y documentación, sin pruebas de producto.
 
 [Prompt acotado para Implementación](PROMPT_IMPLEMENTACION_ADENDA_B20.md). Sin publicación, despliegue, activación analítica, fuentes TFM o mensajes a otros hilos. No requiere un cambio de arquitectura; conserva los pendientes generales de alineación B20. Tras entregar esta preparación, SDD se detiene.
+
+## 6. Implementación y comprobación — 20/10/2026
+
+Encargo posterior del autor, carpeta/rama existentes y base real `main/40f3f48553a3353433942124b625354c35ed2972`. Preparación separada `b69d71b`, producto/pruebas `8bed83a`, sondeo y aislamiento de artefactos exclusivamente de prueba `b391546`. Cinco documentos previos modificados conservados; sin ramas/checkouts/reinstalación o servidores ajenos alterados.
+
+Producto limitado a `src/appearance.css` y contenedor local de acciones de `CardDetails` en `src/GameCard.tsx`. Sin nuevos handlers, cambios a `DeckInformation`/su consulta, contratos/estadística/persistencia, reglas, paquetes, fuentes o geometría de cartas/mesa. Se conserva la cascada global de `.card-details-dialog>button`; el grupo local usa padding20/gap12 y margen automático de Cerrar. No necesita otra decisión de Arquitectura.
+
+[Evidencia nueva C1–C6](evidencias/B20/adenda-selector-detalles/README.md), con32 capturas propias antes/después y medidas: selector vertical139→163,046875px, Cancelar163,046875px intacto, desviación de ancho/bordes0px. Invitado/horizontal139px y mismas cajas. Detalles ancho480/interior434px, separación0→61,546875px; estrecho337/interior291px, salto de fila con12px y Cerrar al borde derecho. Se conservan36px respecto a contenido, imágenes/texto/fuentes, foco exterior3px/offset3px y estado/plazo/parcial. Revisión de capturas por Implementación distinta de aprobación humana.
+
+**Puertas nuevas:** `npm run check` con `VITEST_MAX_WORKERS=2`, **672/672 en63 archivos,105 módulos**, typecheck/lint/build correctos. El primer check agotó5000ms en dos pruebas estadísticas existentes;11/11 focales sin cambios y check acotado correcto, sin ampliar plazos/cambiar aserciones o afirmar causa no demostrada. Selección compilada **7 casos únicos correctos**:6/7 inicial y1/1 reparado (sondeo isTrusted consultaba una carta ya jugada/retirada; se conserva en la región estable de mano). Dos casos P1 repetidos solo para aislar sus salidas y un caso horizontal comprueba destino automático único; no son casos nuevos. [Comandos/resultados/fallos](evidencias/B20/adenda-selector-detalles/README.md#pruebas-realmente-ejecutadas).
+
+Node24.19.0/ICU78.3/Unicode17 Windows/x64, Chrome155.0.8059.80, zoom100%/DPR1. [73 huellas del build](evidencias/B20/adenda-selector-detalles/build-final.json);70 de servidor idénticas al cierre B20.124 archivos editoriales intactos. HTTP/sockets reales, reloj/entropía de prueba controlados; no plazos físicos/dispositivos o revisión humana. Los casos comprueban Tab/Shift+Tab/Enter/Space/Escape, consulta/retorno de foco, clic normal isTrusted/una jugada y foco de recuperación tras timeout/revisión.
+
+Históricos y preparación conservados. Los nuevos reportes/trazas se aíslan en `playwright-report/b20-adenda/20261020-selector-detalles/`; la evidencia explica y contrasta la restauración de las copias ignoradas P1 reutilizadas, sin modificar sus originales versionados. C1–C6 comprobados técnicamente; Linux/CI y aprobación humana/física no ejecutados. B20 global/Arquitectura y C09–C10 mantienen sus límites, recogida pública OFF. Sin publicación, despliegue, TFM o instrucciones a otros hilos. Tras entregar este cierre, Implementación se detiene.

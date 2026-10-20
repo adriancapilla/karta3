@@ -1,0 +1,82 @@
+
+> karta3@0.1.0 check
+> npm run typecheck && npm run lint && npm run build && npm run test && npm run check:architecture
+
+
+> karta3@0.1.0 typecheck
+> tsc -b --pretty false
+
+
+> karta3@0.1.0 lint
+> eslint .
+
+
+> karta3@0.1.0 build
+> npm run decks:prepare && tsc -b && vite build
+
+
+> karta3@0.1.0 decks:prepare
+> tsx tools/decks.ts prepare
+
+criaturas-magicas: válida; disponibilidad true
+generica: válida; disponibilidad true
+sistema-solar: válida; disponibilidad true
+Catálogo preparado: 3 barajas disponibles.
+vite v8.3.1 building client environment for production...
+transforming...
+✓ 82 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.45 kB │ gzip:   0.30 kB
+dist/assets/index-vH3HYJDV.css   32.15 kB │ gzip:   7.18 kB
+dist/assets/index-CqTh2426.js   357.49 kB │ gzip: 109.04 kB
+
+✓ built in 171ms
+
+> karta3@0.1.0 test
+> vitest run
+
+
+ RUN  v5.0.2 E:/KARTA3/KARTA3_IA/APP/karta3
+
+ ❯ server/composition/usageMaintenance.test.ts (1 test | 1 failed) 5007ms
+   × CLI real mantiene/purga HUMAN fabricado aun con archivo de clave incorrecto, sin capturar ni exponerlo 5006ms
+ ❯ server/usageActivation.test.ts (10 tests | 1 failed) 35404ms
+   × B20 HTTP/socket: ventanas privadas por conexión, dedupe, final A tras crear B y cuerpo normalizado 5027ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  server/usageActivation.test.ts > B20 HTTP/socket: ventanas privadas por conexión, dedupe, final A tras crear B y cuerpo normalizado
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ server/usageActivation.test.ts:224:1
+    222| });
+    223|
+    224| it('B20 HTTP/socket: ventanas privadas por conexión, dedupe, final A t…
+       | ^
+    225|   const f = await setup(); const host = await f.player(); const tab = …
+    226|   const created = await (await f.post('/api/rooms', {}, host.cookie)).…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  server/composition/usageMaintenance.test.ts > CLI real mantiene/purga HUMAN fabricado aun con archivo de clave incorrecto, sin capturar ni exponerlo
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ server/composition/usageMaintenance.test.ts:12:1
+     10| import { SqliteUsageStore } from '../infrastructure/usage/sqliteStore.…
+     11|
+     12| it('CLI real mantiene/purga HUMAN fabricado aun con archivo de clave i…
+       | ^
+     13|   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'karta3-b19-maint…
+     14|   if (path.dirname(root) !== os.tmpdir() || !path.basename(root).start…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  2 failed | 61 passed (63)
+      Tests  2 failed | 670 passed (672)
+   Start at  18:05:35
+   Duration  45.60s (tests 92%, import 7%, transform 1%)
+
+    Isolate  63 workers spawned · ~248ms startup each (spawn + environment, per file)
+             at least ~2.88s faster with isolate: false — reuses workers across files instead of one per file

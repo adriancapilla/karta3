@@ -1,0 +1,254 @@
+[
+  {
+    "width": 1800,
+    "theme": "LIGHT",
+    "measurement": {
+      "viewport": 1800,
+      "useful": 1368,
+      "dpr": 1,
+      "dialog": {
+        "width": 480,
+        "height": 802.5,
+        "left": 675.5,
+        "right": 1109.5,
+        "clientWidth": 478,
+        "scrollWidth": 478,
+        "padding": "22px",
+        "maxHeight": "964px"
+      },
+      "info": {
+        "x": 675.5,
+        "y": 827.25,
+        "width": 223.5,
+        "height": 51,
+        "right": 899,
+        "bottom": 878.25,
+        "font": "750 16px Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "marginTop": "20px"
+      },
+      "close": {
+        "x": 899,
+        "y": 827.25,
+        "width": 148.953125,
+        "height": 51,
+        "right": 1047.953125,
+        "bottom": 878.25,
+        "font": "750 16px Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "marginTop": "20px"
+      },
+      "gapX": 0,
+      "gapY": -51,
+      "contentGap": 36,
+      "image": {
+        "x": 675.5,
+        "y": 163.75,
+        "width": 434,
+        "height": 325.5,
+        "right": 1109.5,
+        "bottom": 489.25,
+        "font": "16px Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "marginTop": "0px"
+      },
+      "text": "Detalles de Dragón de cristalDragón de los prismasAtributoDato● PoderActivo38▲ Astucia30■ Resistencia6Sus escamas transparentes descomponen la luz en destellos de colores. Utiliza los reflejos para transformar lo que se ve, pero su cuerpo de cristal es frágil.Información de la barajaCerrar detalles",
+      "card": {
+        "x": 501.5,
+        "y": 575.109375,
+        "width": 230,
+        "height": 321,
+        "right": 731.5,
+        "bottom": 896.109375,
+        "font": "16px Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "marginTop": "0px"
+      }
+    }
+  },
+  {
+    "width": 1800,
+    "theme": "DARK",
+    "measurement": {
+      "viewport": 1800,
+      "useful": 1368,
+      "dpr": 1,
+      "dialog": {
+        "width": 480,
+        "height": 802.5,
+        "left": 675.5,
+        "right": 1109.5,
+        "clientWidth": 478,
+        "scrollWidth": 478,
+        "padding": "22px",
+        "maxHeight": "964px"
+      },
+      "info": {
+        "x": 675.5,
+        "y": 827.25,
+        "width": 223.5,
+        "height": 51,
+        "right": 899,
+        "bottom": 878.25,
+        "font": "750 16px Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "marginTop": "20px"
+      },
+      "close": {
+        "x": 899,
+        "y": 827.25,
+        "width": 148.953125,
+        "height": 51,
+        "right": 1047.953125,
+        "bottom": 878.25,
+        "font": "750 16px Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "marginTop": "20px"
+      },
+      "gapX": 0,
+      "gapY": -51,
+      "contentGap": 36,
+      "image": {
+        "x": 675.5,
+        "y": 163.75,
+        "width": 434,
+        "height": 325.5,
+        "right": 1109.5,
+        "bottom": 489.25,
+        "font": "16px Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "marginTop": "0px"
+      },
+      "text": "Detalles de Dragón de cristalDragón de los prismasAtributoDato● PoderActivo38▲ Astucia30■ Resistencia6Sus escamas transparentes descomponen la luz en destellos de colores. Utiliza los reflejos para transformar lo que se ve, pero su cuerpo de cristal es frágil.Información de la barajaCerrar detalles",
+      "card": {
+        "x": 501.5,
+        "y": 575.109375,
+        "width": 230,
+        "height": 321,
+        "right": 731.5,
+        "bottom": 896.109375,
+        "font": "16px Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "marginTop": "0px"
+      }
+    }
+  },
+  {
+    "width": 390,
+    "theme": "LIGHT",
+    "measurement": {
+      "viewport": 390,
+      "useful": 343,
+      "dpr": 1,
+      "dialog": {
+        "width": 337,
+        "height": 841.296875,
+        "left": 42,
+        "right": 333,
+        "clientWidth": 335,
+        "scrollWidth": 335,
+        "padding": "22px",
+        "maxHeight": "964px"
+      },
+      "info": {
+        "x": 42,
+        "y": 775.640625,
+        "width": 223.5,
+        "height": 51,
+        "right": 265.5,
+        "bottom": 826.640625,
+        "font": "750 16px Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "marginTop": "20px"
+      },
+      "close": {
+        "x": 42,
+        "y": 846.640625,
+        "width": 148.953125,
+        "height": 51,
+        "right": 190.953125,
+        "bottom": 897.640625,
+        "font": "750 16px Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "marginTop": "20px"
+      },
+      "gapX": -223.5,
+      "gapY": 20,
+      "contentGap": 36,
+      "image": {
+        "x": 42,
+        "y": 174.34375,
+        "width": 291,
+        "height": 218.25,
+        "right": 333,
+        "bottom": 392.59375,
+        "font": "16px Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "marginTop": "0px"
+      },
+      "text": "Detalles de Dragón de cristalDragón de los prismasAtributoDato● PoderActivo38▲ Astucia30■ Resistencia6Sus escamas transparentes descomponen la luz en destellos de colores. Utiliza los reflejos para transformar lo que se ve, pero su cuerpo de cristal es frágil.Información de la barajaCerrar detalles",
+      "card": {
+        "x": 19,
+        "y": 606.25,
+        "width": 220,
+        "height": 203.46875,
+        "right": 239,
+        "bottom": 809.71875,
+        "font": "16px Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "marginTop": "0px"
+      }
+    }
+  },
+  {
+    "width": 390,
+    "theme": "DARK",
+    "measurement": {
+      "viewport": 390,
+      "useful": 343,
+      "dpr": 1,
+      "dialog": {
+        "width": 337,
+        "height": 841.296875,
+        "left": 42,
+        "right": 333,
+        "clientWidth": 335,
+        "scrollWidth": 335,
+        "padding": "22px",
+        "maxHeight": "964px"
+      },
+      "info": {
+        "x": 42,
+        "y": 775.640625,
+        "width": 223.5,
+        "height": 51,
+        "right": 265.5,
+        "bottom": 826.640625,
+        "font": "750 16px Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "marginTop": "20px"
+      },
+      "close": {
+        "x": 42,
+        "y": 846.640625,
+        "width": 148.953125,
+        "height": 51,
+        "right": 190.953125,
+        "bottom": 897.640625,
+        "font": "750 16px Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "marginTop": "20px"
+      },
+      "gapX": -223.5,
+      "gapY": 20,
+      "contentGap": 36,
+      "image": {
+        "x": 42,
+        "y": 174.34375,
+        "width": 291,
+        "height": 218.25,
+        "right": 333,
+        "bottom": 392.59375,
+        "font": "16px Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "marginTop": "0px"
+      },
+      "text": "Detalles de Dragón de cristalDragón de los prismasAtributoDato● PoderActivo38▲ Astucia30■ Resistencia6Sus escamas transparentes descomponen la luz en destellos de colores. Utiliza los reflejos para transformar lo que se ve, pero su cuerpo de cristal es frágil.Información de la barajaCerrar detalles",
+      "card": {
+        "x": 19,
+        "y": 606.25,
+        "width": 220,
+        "height": 203.46875,
+        "right": 239,
+        "bottom": 809.71875,
+        "font": "16px Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "marginTop": "0px"
+      }
+    }
+  }
+]
