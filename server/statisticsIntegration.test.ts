@@ -90,10 +90,12 @@ it('B21 A03/A10: muerte real del writer no reinicia turno, admite juegos y solo 
     await s.send(host.socket, 'room:configure', { requestId: field, roomId: room.id, change: { field, value } });
   const started = await s.send(host.socket, 'room:start', { requestId: 'start', roomId: room.id });
   if (!started.ok || started.room.status !== 'IN_GAME') throw new Error('start'); await s.writer.flush();
-  const before = started.room.game.timing; const resources = s.writer as unknown as { worker: Worker };
+  const before = started.room.game.interaction.turn!.timing!;
+  expect(before).not.toBeNull(); expect(before.endsAt - before.startedAt).toBe(15000);
+  const resources = s.writer as unknown as { worker: Worker };
   await resources.worker.terminate(); await expect.poll(() => s.writer.available()).toBe(true);
   const recovered = await (await s.http('/api/rooms/' + room.id, host.cookie)).json() as RoomResponse;
-  expect(recovered.room.status).toBe('IN_GAME'); if (recovered.room.status === 'IN_GAME') expect(recovered.room.game.timing).toEqual(before);
+  expect(recovered.room.status).toBe('IN_GAME'); if (recovered.room.status === 'IN_GAME') expect(recovered.room.game.interaction.turn!.timing).toEqual(before);
   s.time.advance(120_000); expect(s.repository.findById(room.id)?.status).toBe('RESULTS'); await s.writer.flush();
   expect(s.total('GAME', 'unknown')).toBe(1); expect(s.total('GAME', 'NO_ACTIVE_HUMAN_PLAYERS')).toBe(0);
   const a = s.repository.findById(room.id)!;
