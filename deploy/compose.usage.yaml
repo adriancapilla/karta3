@@ -1,14 +1,14 @@
-# Configuración B19: OFF predeterminado; activar exige autorización operativa separada.
+# B21: nuevo volumen separado; aplicar requiere encargo operativo independiente.
 # Ensayos con datos fabricados únicamente en una pila propia aislada.
 services:
   app:
     environment:
       KARTA3_ENV: ${KARTA3_ENV:?Entorno administrativo explícito}
-      KARTA3_USAGE_COLLECTION: ${KARTA3_USAGE_COLLECTION:-off}
-      KARTA3_USAGE_DIRECTORY: /var/lib/karta3/usage
+      KARTA3_STATISTICS_MODE: ${KARTA3_STATISTICS_MODE:-aggregate}
+      KARTA3_STATISTICS_DIRECTORY: /var/lib/karta3/statistics
     volumes:
-      - usage_data:/var/lib/karta3/usage
+      - statistics_data:/var/lib/karta3/statistics
 
 volumes:
-  usage_data:
+  statistics_data:
     # Un proyecto y volumen distintos por entorno; no compartir Pruebas/Play/test.

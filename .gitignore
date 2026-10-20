@@ -12,8 +12,10 @@ test-results/
 barajas/catalogo.json
 barajas/.catalogo-*.tmp
 usage-data/
+statistics-data/
 *.sqlite
 *.sqlite-wal
 *.sqlite-shm
 *.sqlite-journal
 *.agg.enc
+*.enc

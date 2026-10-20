@@ -4,8 +4,7 @@ import { api, ApiError } from './api';
 import { send, sendGame, socket, type RoomAck } from './socket';
 import { acceptsRoom, automaticEndMessage } from './roomState';
 import type { RoundResolvedEvent, TurnExpiredEvent } from '../shared/contracts/game';
-import type { UsageContext } from '../shared/contracts/usage';
-import { beginUsageIntent, currentUsageContext, invalidateBrowserUsage, onUsageInvalidated } from './usage';
+import { suspendStatistics, onStatisticsInvalidated } from './statistics';
 import { AppearanceCaptures } from './appearanceSnapshots';
 
 function roomPath(id: string) { return `/sala/${id}`; }
@@ -32,8 +31,7 @@ export function useRoomFlow() {
   const timeoutNoticeTimer = useRef<number | undefined>(undefined);
   const [timeoutNotice, setTimeoutNotice] = useState('');
   const dirtyName = useRef(false);
-  const pendingJoin = useRef<{ id: string; code: string; name: string; usageContext?: UsageContext } | null>(null);
-  const pendingCreate = useRef<{ context?: UsageContext } | null>(null);
+  const pendingJoin = useRef<{ id: string; code: string; name: string } | null>(null);
   const pendingLeave = useRef<{ id: string; roomId: string; participantId: string } | null>(null);
   const noticeTimer = useRef<number | undefined>(undefined);
   const [loading, setLoading] = useState(true);
@@ -51,10 +49,8 @@ export function useRoomFlow() {
   const [confirmLeave, setConfirmLeave] = useState(false);
   const [connected, setConnected] = useState(false);
 
-  useEffect(() => onUsageInvalidated(() => {
+  useEffect(() => onStatisticsInvalidated(() => {
     appearances.current.clear();
-    if (pendingCreate.current) delete pendingCreate.current.context;
-    if (pendingJoin.current) delete pendingJoin.current.usageContext;
   }), []);
 
   const clearRoom = useCallback((noticeText: string) => {
@@ -251,7 +247,7 @@ export function useRoomFlow() {
         socket.connect();
       }).catch(() => { if (active) setNotice('No se pudo recuperar la conexión. Inténtalo de nuevo.'); });
     };
-    const onDisconnect = () => { if (active) { invalidateBrowserUsage(); setConnected(false); } };
+    const onDisconnect = () => { if (active) { suspendStatistics(); setConnected(false); } };
     socket.on('room:state', onState);
     socket.on('game:round-resolved', onResolved);
     socket.on('game:turn-expired', onExpired);
@@ -283,7 +279,7 @@ export function useRoomFlow() {
       socket.off('connect', onConnect);
       socket.off('connect_error', onConnectError);
       socket.off('disconnect', onDisconnect);
-      invalidateBrowserUsage();
+      suspendStatistics();
       socket.disconnect();
     };
   }, [applyCurrent, applyRoom, clearRoom, showActivity, openResult]);
@@ -309,10 +305,8 @@ export function useRoomFlow() {
     setBusy(true);
     explicitResult.current = null;
     setNotice('');
-    pendingCreate.current ??= { context: beginUsageIntent('create') };
-    try { applyRoom((await api.create(pendingCreate.current.context)).room); pendingCreate.current = null; }
+    try { applyRoom((await api.create()).room); }
     catch (error) {
-      if (!(error instanceof ApiError && error.code === 'NETWORK_ERROR')) pendingCreate.current = null;
       setNotice(message(error));
       if (error instanceof ApiError && error.code === 'SESSION_REQUIRED') void refresh();
     } finally { setBusy(false); }
@@ -326,11 +320,10 @@ export function useRoomFlow() {
     setNotice('');
     setJoinError('');
     const pending = pendingJoin.current?.code === code && pendingJoin.current.name === joinName
-      ? pendingJoin.current : { id: crypto.randomUUID(), code, name: joinName, usageContext: beginUsageIntent('join') };
+      ? pendingJoin.current : { id: crypto.randomUUID(), code, name: joinName };
     pendingJoin.current = pending;
     try {
-      const result = await send<RoomAck>('room:join', { requestId: pending.id, code: pending.code, name: pending.name,
-        ...(currentUsageContext(pending.usageContext) ? { usageContext: pending.usageContext } : {}) });
+      const result = await send<RoomAck>('room:join', { requestId: pending.id, code: pending.code, name: pending.name });
       pendingJoin.current = null;
       applyRoom(result.room);
     } catch (error) {

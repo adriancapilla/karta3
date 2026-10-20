@@ -1,7 +1,6 @@
 import type { DeckSummary, DeckInformationView } from './deck.js';
 import type { InitialGameView } from './game.js';
-import type { UsageContext } from './usage.js';
-export type JoinRoomRequest = { requestId: string; code: string; name: string; usageContext?: UsageContext };
+export type JoinRoomRequest = { requestId: string; code: string; name: string };
 
 export type BotDifficulty = 'EASY' | 'HARD';
 export type HumanParticipant = { id: string; name: string; kind: 'HUMAN'; role: 'HOST' | 'GUEST'; isPlayer: boolean; botDifficulty: null };

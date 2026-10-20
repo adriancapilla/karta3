@@ -4,14 +4,14 @@ import { GameScreen } from './GameScreen';
 import { ResultsScreen } from './ResultsScreen';
 import './style.css';
 import { useEffect, type ReactNode } from 'react';
-import { usageHome } from './usage';
-import { UsageChoiceControl } from './UsageChoiceControl';
+import { statisticsHome } from './statistics';
+import { StatisticsControl } from './StatisticsControl';
 
-function withPrivacy(screen: ReactNode) { return <>{screen}<UsageChoiceControl /></>; }
+function withPrivacy(screen: ReactNode) { return <>{screen}<StatisticsControl /></>; }
 
 export default function App() {
   const flow = useRoomFlow();
-  useEffect(() => { if (!flow.loading) usageHome(!flow.room); }, [flow.loading, flow.room]);
+  useEffect(() => { if (!flow.loading) statisticsHome(!flow.room); }, [flow.loading, flow.room]);
   if (flow.loading) return <main className="shell"><p role="status">Cargando tu sala…</p></main>;
   if (!flow.room) return withPrivacy(<HomeScreen
     busy={flow.busy} joining={flow.joining} notice={flow.notice} code={flow.code} joinName={flow.joinName} joinError={flow.joinError}

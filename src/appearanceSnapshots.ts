@@ -1,7 +1,7 @@
 import type { RoomView } from '../shared/contracts/room';
 import type { AppearanceValue, AppearanceWindow } from '../shared/contracts/appearance';
 import { currentAppearance } from './appearance';
-import { browserUsageMode, recordAppearance } from './usage';
+import { canCaptureAppearance, recordAppearance } from './statistics';
 
 /** Captura local breve; recuperación/recarga nunca inventan una transición. */
 export class AppearanceCaptures {
@@ -9,7 +9,7 @@ export class AppearanceCaptures {
   clear() { this.captures.clear(); }
   private sweep() { for (const [key, value] of this.captures) if (performance.now() >= value.deadline) this.captures.delete(key); }
   transition(previous: RoomView | null, next: RoomView, connection: string) {
-    this.sweep(); if (!connection || !browserUsageMode() || !previous || previous.id !== next.id || !next.participant.isPlayer) return;
+    this.sweep(); if (!connection || !canCaptureAppearance() || !previous || previous.id !== next.id || !next.participant.isPlayer) return;
     const moment = previous.status === 'WAITING' && next.status === 'IN_GAME' ? 'START'
       : previous.status === 'IN_GAME' && next.status === 'RESULTS' && previous.game.id === next.result.gameId ? 'END' : null;
     if (!moment) return;
@@ -20,7 +20,7 @@ export class AppearanceCaptures {
   }
   window(window: AppearanceWindow, connection: string, connected: () => boolean) {
     this.sweep(); const capture = this.captures.get(`${window.gameId}:${window.moment}`);
-    if (!capture || capture.sent || capture.connection !== connection || !connected() || !browserUsageMode()) return;
+    if (!capture || capture.sent || capture.connection !== connection || !connected() || !canCaptureAppearance()) return;
     capture.sent = true;
     recordAppearance({ gameId: window.gameId, moment: window.moment, windowToken: window.token, ...capture.value },
       () => performance.now() < capture.deadline && connected() && this.captures.get(`${window.gameId}:${window.moment}`) === capture);

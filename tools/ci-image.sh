@@ -74,7 +74,7 @@ test "$ca_before" = "$(sha256sum "$proof/local-ca-after.crt" | cut -d ' ' -f1)"
 test "$app" = "$(compose ps -q app)"
 wait_tls
 docker exec -i "$app" node --input-type=module < tools/ci-image-runtime.mjs > "$proof/runtime-after.json"
-# B18/B19: misma imagen OCI, volúmenes propios y HUMAN exclusivamente fabricado.
+# B21: misma imagen OCI, volúmenes propios y HUMAN exclusivamente fabricado.
 bash tools/ci-usage.sh
 archive_sha=$(sha256sum "$proof/karta3.oci.tar" | cut -d ' ' -f1)
 jq -n --arg commit "$CHECKED_SHA" --arg digest "$manifest_digest" --arg config "$config_digest" \

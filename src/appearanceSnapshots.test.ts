@@ -1,12 +1,16 @@
 import { afterEach, expect, it, vi } from 'vitest';
 import type { RoomView } from '../shared/contracts/room';
 import type { AppearanceValue } from '../shared/contracts/appearance';
-const mocks = vi.hoisted(() => ({ value: { theme: 'LIGHT', origin: 'DEFAULT' } as AppearanceValue, record: vi.fn(), mode: 'human' as string | undefined }));
-vi.mock('./appearance', () => ({ currentAppearance: () => mocks.value }));
-vi.mock('./usage', () => ({ browserUsageMode: () => mocks.mode, recordAppearance: mocks.record }));
+const mocks = vi.hoisted(() => ({ value: { theme: 'LIGHT', origin: 'DEFAULT' } as AppearanceValue, read: vi.fn(), record: vi.fn(), mode: 'human' as string | undefined }));
+vi.mock('./appearance', () => ({ currentAppearance: () => { mocks.read(); return mocks.value; } }));
+vi.mock('./statistics', () => ({ canCaptureAppearance: () => !!mocks.mode, recordAppearance: mocks.record }));
 import { AppearanceCaptures } from './appearanceSnapshots';
-afterEach(() => { mocks.record.mockClear(); mocks.mode = 'human'; mocks.value = { theme: 'LIGHT', origin: 'DEFAULT' }; vi.useRealTimers(); });
+afterEach(() => { mocks.record.mockClear(); mocks.read.mockClear(); mocks.mode = 'human'; mocks.value = { theme: 'LIGHT', origin: 'DEFAULT' }; vi.useRealTimers(); });
 const room = (status: 'WAITING' | 'IN_GAME' | 'RESULTS', id = 'A', player = true) => ({ status, id, participant: { isPlayer: player }, game: { id: `game-${id}` }, result: { gameId: `game-${id}` } }) as unknown as RoomView;
+it('B21: sin permiso confirmado ni siquiera consulta el tema con finalidad estadística', () => {
+  mocks.mode = undefined; const c = new AppearanceCaptures(); c.transition(room('WAITING'), room('IN_GAME'), 'connection');
+  c.transition(room('IN_GAME'), room('RESULTS'), 'connection'); expect(mocks.read).not.toHaveBeenCalled(); expect(mocks.record).not.toHaveBeenCalled();
+});
 it('ack antes del evento y misma revisión congelan una vez, sin remuestrear al llegar metadata', () => {
   const captures = new AppearanceCaptures(); captures.transition(room('WAITING'), room('IN_GAME'), 'connection');
   mocks.value = { theme: 'DARK', origin: 'EXPLICIT' }; captures.transition(room('IN_GAME'), room('IN_GAME'), 'connection');
