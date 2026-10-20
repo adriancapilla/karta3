@@ -145,7 +145,7 @@ test('B17 D: clic/Enter/Space/arrastre no juegan; parcial/plazo, Información, r
       await expect(fullDetails(opener)).toHaveCount(0);
     }
     await d.focus(); await d.press('Enter'); // El arrastre anterior no bloquea el teclado.
-    const adendaPhase = process.env.KARTA3_B20_ADENDA_BASELINE ? 'base' : (process.env.KARTA3_B20_ADENDA_ATTEMPT ?? 'final');
+    const adendaPhase = process.env.KARTA3_B20_ADENDA_BASELINE ? 'base' : (process.env.KARTA3_B20_ADENDA_ATTEMPT ?? `run-${process.pid}-${Date.now()}`);
     const folder = `playwright-report/b20-adenda/20261020-selector-detalles/${adendaPhase}`;
     const actionMeasurements = [];
     for (const width of [1800, 390]) for (const theme of ['LIGHT', 'DARK']) {
@@ -197,8 +197,8 @@ test('B17 D: clic/Enter/Space/arrastre no juegan; parcial/plazo, Información, r
     const after = await readGame(opener); expect(after.game.interaction.turn).toEqual(before.game.interaction.turn); expect(after.game.interaction.openingSelection).toEqual({ direction: 'HIGH' });
     expect(s.gameRequests).toHaveLength(1); await expect(slot.locator('.card-play-button')).toHaveAttribute('aria-pressed', 'false');
     const surface = slot.locator('.card-play-surface .card-heading');
-    await surface.evaluate(e => e.addEventListener('click', event => e.setAttribute('data-adenda-trusted', String(event.isTrusted)), { once: true }));
-    await surface.click(); await expect(surface).toHaveAttribute('data-adenda-trusted', 'true'); await expect.poll(() => s.gameRequests.filter(r => r.event === 'game:play').length).toBe(1);
+    await surface.evaluate(e => { const hand = e.closest('.game-hand')!; e.addEventListener('click', event => hand.setAttribute('data-adenda-trusted', String(event.isTrusted)), { once: true }); });
+    await surface.click(); await expect(opener.locator('.game-hand')).toHaveAttribute('data-adenda-trusted', 'true'); await expect.poll(() => s.gameRequests.filter(r => r.event === 'game:play').length).toBe(1);
     expect((await readGame(p.host)).game.round.plays.map(play => play.card.id)).toEqual([id]);
   } finally { await p.close(); await s.stop(); }
 });

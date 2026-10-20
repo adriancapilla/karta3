@@ -3,7 +3,7 @@ import fs from 'node:fs/promises';
 import { configurationBrowserServer } from '../support/configurationBrowserServer.js';
 import { manualTable, readGame } from '../support/manualBrowserCases.js';
 
-const adendaPhase = process.env.KARTA3_B20_ADENDA_BASELINE ? 'base' : (process.env.KARTA3_B20_ADENDA_ATTEMPT ?? 'final');
+const adendaPhase = process.env.KARTA3_B20_ADENDA_BASELINE ? 'base' : (process.env.KARTA3_B20_ADENDA_ATTEMPT ?? `run-${process.pid}-${Date.now()}`);
 const adendaEvidence = `playwright-report/b20-adenda/20261020-selector-detalles/${adendaPhase}`;
 
 for (const scenario of [
@@ -84,7 +84,8 @@ for (const width of [1800, 390]) test(`B20 P1 paletas y geometría ${width}`, as
   server.permutation(ids => ids);
   const table = await manualTable(browser, server.base, { width, height: width === 390 ? 844 : 1000,
     deckId: 'criaturas-magicas', version: 2, optimize: true });
-  const folder = `playwright-report/b20/${process.env.KARTA3_B20_BASELINE ? 'base' : 'p1'}`;
+  const folder = process.env.KARTA3_B20_ADENDA_ATTEMPT ? `${adendaEvidence}/palettes`
+    : `playwright-report/b20/${process.env.KARTA3_B20_BASELINE ? 'base' : 'p1'}`;
   await fs.mkdir(folder, { recursive: true });
   try {
     const before = await readGame(table.host);
