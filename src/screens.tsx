@@ -5,6 +5,7 @@ import { RoomConfiguration } from './RoomConfiguration';
 import { StartRoomControl } from './StartRoomControl';
 import { LastResultLink } from './LastResultLink';
 import { WaitingPlayers } from './WaitingPlayers';
+import { AppearanceControl } from './AppearanceControl';
 
 export function HomeScreen(props: {
   busy: boolean; joining: boolean; notice: string; code: string; joinName: string; joinError: string;
@@ -14,7 +15,7 @@ export function HomeScreen(props: {
 }) {
   const submit = (event: FormEvent) => { event.preventDefault(); props.onJoin(); };
   return <main className="shell">
-    <header><span className="brand">KARTA<span>3</span></span></header>
+    <header><span className="brand">KARTA<span>3</span></span><AppearanceControl /></header>
     <div className="home-grid">
       <section className="card home">
         <p className="eyebrow">Juega en compañía</p>

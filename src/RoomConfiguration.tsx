@@ -5,6 +5,7 @@ import { api } from './api';
 import { useRoomConfiguration } from './useRoomConfiguration';
 import type { ConfigurationField } from './configurationState';
 import { DeckInformation } from './DeckInformation';
+import { AppearanceControl } from './AppearanceControl';
 
 type Catalog = { status: 'LOADING' | 'READY' | 'ERROR'; decks: readonly DeckSummary[]; showReload: boolean };
 function useDeckCatalog(host: boolean) {
@@ -102,5 +103,6 @@ export function RoomConfiguration({ room, connected, onRoom, onPendingChange }: 
       <dt>Forzar desempate</dt><dd>{room.settings.forceTieBreak ? 'Sí' : 'No'}</dd>
       <dt>Revisión de ronda</dt><dd>{room.settings.reviewSeconds === 0 ? 'Sin pausa (0 s)' : `${room.settings.reviewSeconds} s`}</dd>
     </dl>}
+    <div className="personal-preference"><p>Preferencia personal</p><AppearanceControl labelled /></div>
   </section>;
 }
