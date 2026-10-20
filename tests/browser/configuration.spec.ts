@@ -35,7 +35,11 @@ for (const width of [390, 1280]) test(`B05-01/03/04/07/09/11/13/15 recorrido com
   try {
     expect((await current(p.host)).settings).toEqual({ deckId: null, deckContentVersion: null, hostPlays: true, turnSeconds: 30, forceTieBreak: false, reviewSeconds: 5, attributeValueMode: 'PLAY_VALUE', optimizeForMobile: false });
     await expect(p.host.getByLabel('Baraja', { exact: true })).toHaveValue(''); expect(s.requests).toHaveLength(0);
-    expect(await p.guest.getByRole('combobox').count()).toBe(0);
+    // B20 permite la apariencia personal al invitado; la preparación compartida sigue solo consultable.
+    await expect(p.guest.getByRole('combobox')).toHaveCount(1);
+    await expect(p.guest.getByRole('combobox', { name: 'Apariencia', exact: true })).toBeEnabled();
+    await expect(p.guest.locator('.config-control')).toHaveCount(0);
+    await expect(p.guest.getByRole('checkbox')).toHaveCount(0);
     await p.host.getByLabel('Editar mi nombre').fill('Mi borrador'); await p.host.getByLabel('Editar mi nombre').focus();
     await choose(p.tab, 'portada');
     for (const page of [p.host, p.tab, p.guest]) {
