@@ -56,6 +56,7 @@ for (const width of [1800, 390]) test(`B20 P1 paletas y geometría ${width}`, as
         await expect(details).toHaveCSS('outline-color', dColor);
         const actor = table.pages[1]; await actor.getByRole('combobox', { name: 'Apariencia', exact: true }).selectOption(theme);
         const play = actor.locator('.game-hand .card-play-button').first(); await expect(play).toBeEnabled(); await play.focus();
+        await play.press('Tab'); await actor.keyboard.press('Shift+Tab'); // Modalidad de teclado real: :focus-visible, sin jugar.
         const playColor = { LIGHT: 'rgb(180, 90, 0)', DARK: 'rgb(255, 189, 102)', CREAM: 'rgb(151, 68, 0)', HIGH_CONTRAST: 'rgb(0, 189, 199)' }[theme];
         await expect(play).toBeFocused(); await expect(play).toHaveCSS('outline-color', playColor!);
         const real = await play.evaluate(e => { const s = getComputedStyle(e); return { background: s.backgroundColor, color: s.color, outline: s.outlineColor, outlineWidth: s.outlineWidth, outlineOffset: s.outlineOffset }; });
