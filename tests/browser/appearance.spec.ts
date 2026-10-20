@@ -14,6 +14,7 @@ for (const width of [1800, 390]) test(`B20 P1 paletas y geometría ${width}`, as
     const before = await readGame(table.host);
     const themes = process.env.KARTA3_B20_BASELINE ? ['BASE'] : ['LIGHT', 'DARK', 'CREAM', 'HIGH_CONTRAST'];
     const measures: unknown[] = [];
+    const focusEvidence: unknown[] = [];
     for (const theme of themes) {
       if (theme !== 'BASE') await table.host.getByRole('combobox', { name: 'Apariencia', exact: true }).selectOption(theme);
       await table.host.evaluate(() => document.fonts.ready);
@@ -50,6 +51,16 @@ for (const width of [1800, 390]) test(`B20 P1 paletas y geometría ${width}`, as
       await details.click(); await expect(table.host.getByRole('dialog')).toBeVisible();
       await table.host.getByRole('button', { name: 'Cerrar detalles', exact: true }).press('Escape');
       await expect(details).toBeFocused();
+      if (theme !== 'BASE') {
+        const dColor = theme === 'HIGH_CONTRAST' ? 'rgb(0, 0, 0)' : theme === 'CREAM' ? 'rgb(85, 57, 31)' : 'rgb(24, 43, 88)';
+        await expect(details).toHaveCSS('outline-color', dColor);
+        const actor = table.pages[1]; await actor.getByRole('combobox', { name: 'Apariencia', exact: true }).selectOption(theme);
+        const play = actor.locator('.game-hand .card-play-button').first(); await expect(play).toBeEnabled(); await play.focus();
+        const playColor = { LIGHT: 'rgb(180, 90, 0)', DARK: 'rgb(255, 189, 102)', CREAM: 'rgb(151, 68, 0)', HIGH_CONTRAST: 'rgb(0, 189, 199)' }[theme];
+        await expect(play).toBeFocused(); await expect(play).toHaveCSS('outline-color', playColor!);
+        const real = await play.evaluate(e => { const s = getComputedStyle(e); return { background: s.backgroundColor, color: s.color, outline: s.outlineColor, outlineWidth: s.outlineWidth, outlineOffset: s.outlineOffset }; });
+        focusEvidence.push({ theme, dColor, play: real });
+      }
     }
     if (!process.env.KARTA3_B20_BASELINE) {
       const base = JSON.parse(await fs.readFile(`docs/sdd/evidencias/B20/p1/${width}-base-measures.json`, 'utf8'));
@@ -57,6 +68,7 @@ for (const width of [1800, 390]) test(`B20 P1 paletas y geometría ${width}`, as
       for (const measurement of measures) expect(geometry(measurement)).toEqual(geometry(base[0]));
     }
     await fs.writeFile(`${folder}/${width}-measures.json`, JSON.stringify(measures, null, 2));
+    await fs.writeFile(`${folder}/${width}-focus.json`, JSON.stringify(focusEvidence, null, 2));
   } finally { await table.close(); await server.stop(); }
 });
 

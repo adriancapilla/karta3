@@ -74,7 +74,7 @@ a,.text-button{color:var(--link)}
 .eyebrow{color:var(--link)}
 .danger-link{color:var(--error-text)}
 .card-details-dialog::backdrop,.bot-name-dialog::backdrop,.modal-backdrop{background:var(--scrim)}
-button:focus-visible,input:focus-visible,select:focus-visible,a:focus-visible,.code:focus-visible,
+button:focus-visible,.card-play-button:focus-visible,input:focus-visible,select:focus-visible,a:focus-visible,.code:focus-visible,
 .hand-row:focus-visible,.played-row:focus-visible,.roster-identity:focus-visible,.identity-link:focus-visible{outline-color:var(--focus)}
 .game-card button:focus-visible,.selected-card{outline-color:var(--card-focus)}
 .game-initial-state button[aria-pressed=true]{outline-color:var(--focus)}
