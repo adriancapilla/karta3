@@ -97,3 +97,5 @@ La publicación verificará primero Linux focal B18 y la misma imagen con UID100
 Siguen pendientes privacidad/información, habilitación expresa futura de recogida real, acceso administrativo en VPS, copia externa/supervisión y ensayo del responsable. Sin modo HUMAN habilitado, GHCR, VPS, dashboard, métricas nuevas o cambios editoriales. B18 no se declara verificado globalmente ni operativo públicamente.
 
 El lease Linux incluye identidad técnica de arranque/namespace/inicio del proceso para no confundir PIDs reutilizados entre contenedores. Mantiene el rechazo de propietario vivo o lock antiguo dudoso; no se elimina por antigüedad únicamente. No contiene referencias de visitantes. Las sondas CI son propias/efímeras y no habilitan una operación real.
+
+**Limpieza operativa B19, 20/10/2026:** el circuito operativo descartado se identifica únicamente en la [anotación histórica canónica](GITHUB_Y_RECUPERACION.md#b19-circuito-operativo-retirado). Se mantienen los mecanismos internos del servidor.

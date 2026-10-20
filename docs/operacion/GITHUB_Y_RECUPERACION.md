@@ -477,3 +477,13 @@ Copia K3AGG1/AES-GCM privada sin UUID/detalle, restauración en otro volumen con
 e111df4 conserva contrato del bloqueo: propietario vivo/legacy dudoso no se roba; Linux identifica proceso con boot/namespace/inicio. Es portabilidad del adaptador, no identidad estadística nueva. Windows focal12/12 fuera sandbox; intento10/12 por permisos del sandbox conservado. Montaje y verificadores posteriores no alteran producto.124 huellas/versiones conservadas. Fuente recibida archivada en etiqueta publicada archivo/2026-10-18/b18-fuente-original→fedd873; reserva4516d23 intacta.
 
 La versión definitiva añade solo este cierre documental a d73097f. La CI completa sobre ese HEAD se solicita sin filtro y debe ejecutar196 recorridos/24 archivos,589 pruebas/51 archivos/93 módulos e imagen Linux. Sin presupuesto ampliado, tolerancias mayores, aserciones reducidas o reintentos nuevos. El cierre fuente/squash/main/clon/OCI se registra en la PR, sin commits solo para anotar el SHA integrado.
+
+## B19: circuito operativo retirado
+
+> Se preparó un procedimiento de custodia y traslado mediante Windows/DPAPI que no fue autorizado ni ejecutado. No se crearon archivos privados ni copias en el PC. Sus borradores e instrucciones se retiraron para evitar su reutilización. No forma parte de la operación de KARTA3.
+
+Retirada documental acotada por encargo del autor, 20/10/2026. Se retiraron el paquete operativo descartado y la propuesta posterior de captura sin aceptación; esta última se descartó antes de modificar código. La versión vigente conserva aceptación individual.
+
+Se conservan SQLite, mantenimiento, clave privada del servidor, copias agregadas cifradas, restauración aislada comprobada en el VPS y Hostinger. El cierre operativo vigente y la configuración base más `compose.b19.json` se documentan en [PREPARACION_B19_2026-10-19, §12](../../../../TFM/Planificación/despliegue_pruebas/PREPARACION_B19_2026-10-19.md#12-reanudación-expresa-b19-publicado-aceptación-individual-y-human-directo). No se modificaron producto, pruebas, configuración de ejecución ni evidencias de implementación/publicación.
+
+El [aviso original y su huella](../sdd/evidencias/B19/AVISO_FINAL.md) y el [texto publicado](../sdd/evidencias/B19/aviso-final/AVISO_PUBLICO_2026-10-19.2.txt) permanecen intactos en sus fuentes. La retirada actual no borra las versiones históricas de Git ni constituye un saneamiento de secretos.
