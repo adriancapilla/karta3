@@ -1,0 +1,922 @@
+[
+  {
+    "theme": "LIGHT",
+    "width": 390,
+    "dpr": 1,
+    "useful": 358,
+    "compact": true,
+    "elements": [
+      {
+        "className": "game-card compact-card",
+        "width": 220,
+        "height": 203.46875,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "size": "16px",
+        "color": "rgb(28, 37, 64)",
+        "background": "rgb(247, 248, 252)"
+      },
+      {
+        "className": "card-heading",
+        "width": 166,
+        "height": 51.90625,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "size": "16px",
+        "color": "rgb(28, 37, 64)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "className": "game-card-image",
+        "width": 32,
+        "height": 32,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "size": "16px",
+        "color": "rgb(28, 37, 64)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "className": "card-values",
+        "width": 202,
+        "height": 81.5625,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "size": "14px",
+        "color": "rgb(28, 37, 64)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "className": "primary card-play-button",
+        "width": 220,
+        "height": 44,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "size": "14px",
+        "color": "rgb(24, 43, 88)",
+        "background": "rgb(255, 255, 255)"
+      },
+      {
+        "className": "game-card compact-card",
+        "width": 220,
+        "height": 203.46875,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "size": "16px",
+        "color": "rgb(28, 37, 64)",
+        "background": "rgb(247, 248, 252)"
+      },
+      {
+        "className": "card-heading",
+        "width": 166,
+        "height": 51.90625,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "size": "16px",
+        "color": "rgb(28, 37, 64)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "className": "game-card-image",
+        "width": 32,
+        "height": 32,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "size": "16px",
+        "color": "rgb(28, 37, 64)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "className": "card-values",
+        "width": 202,
+        "height": 81.5625,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "size": "14px",
+        "color": "rgb(28, 37, 64)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "className": "primary card-play-button",
+        "width": 220,
+        "height": 44,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "size": "14px",
+        "color": "rgb(24, 43, 88)",
+        "background": "rgb(255, 255, 255)"
+      },
+      {
+        "className": "game-card compact-card",
+        "width": 220,
+        "height": 188,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "size": "16px",
+        "color": "rgb(28, 37, 64)",
+        "background": "rgb(247, 248, 252)"
+      },
+      {
+        "className": "card-heading",
+        "width": 166,
+        "height": 34,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "size": "16px",
+        "color": "rgb(28, 37, 64)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "className": "game-card-image",
+        "width": 32,
+        "height": 32,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "size": "16px",
+        "color": "rgb(28, 37, 64)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "className": "card-values",
+        "width": 202,
+        "height": 81.5625,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "size": "14px",
+        "color": "rgb(28, 37, 64)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "className": "primary card-play-button",
+        "width": 220,
+        "height": 44,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "size": "14px",
+        "color": "rgb(24, 43, 88)",
+        "background": "rgb(255, 255, 255)"
+      }
+    ],
+    "contrast": [
+      {
+        "pair": "text/page",
+        "foreground": "#1c2540",
+        "background": "#f3f5fa",
+        "minimum": 4.5,
+        "ratio": 13.870196940940081
+      },
+      {
+        "pair": "text/panel",
+        "foreground": "#1c2540",
+        "background": "#fff",
+        "minimum": 4.5,
+        "ratio": 15.129295901735647
+      },
+      {
+        "pair": "muted/panel",
+        "foreground": "#566178",
+        "background": "#fff",
+        "minimum": 4.5,
+        "ratio": 6.218946764374053
+      },
+      {
+        "pair": "card-text/card",
+        "foreground": "#1c2540",
+        "background": "#f7f8fc",
+        "minimum": 4.5,
+        "ratio": 14.255721011514318
+      },
+      {
+        "pair": "active-text/active",
+        "foreground": "#182342",
+        "background": "#fff0d9",
+        "minimum": 4.5,
+        "ratio": 13.784304520324849
+      },
+      {
+        "pair": "primary-text/primary",
+        "foreground": "#fff",
+        "background": "#29428d",
+        "minimum": 4.5,
+        "ratio": 9.299496698352922
+      },
+      {
+        "pair": "control-text/control",
+        "foreground": "#182b58",
+        "background": "#fff",
+        "minimum": 4.5,
+        "ratio": 13.767738964925067
+      },
+      {
+        "pair": "detail-text/detail",
+        "foreground": "#182b58",
+        "background": "#fff",
+        "minimum": 4.5,
+        "ratio": 13.767738964925067
+      },
+      {
+        "pair": "control-line/control",
+        "foreground": "#182b58",
+        "background": "#fff",
+        "minimum": 3,
+        "ratio": 13.767738964925067
+      },
+      {
+        "pair": "detail-line/detail",
+        "foreground": "#182b58",
+        "background": "#fff",
+        "minimum": 3,
+        "ratio": 13.767738964925067
+      },
+      {
+        "pair": "focus/panel",
+        "foreground": "#b45a00",
+        "background": "#fff",
+        "minimum": 3,
+        "ratio": 4.769339501774796
+      },
+      {
+        "pair": "card-focus/detail",
+        "foreground": "#182b58",
+        "background": "#fff",
+        "minimum": 3,
+        "ratio": 13.767738964925067
+      }
+    ]
+  },
+  {
+    "theme": "DARK",
+    "width": 390,
+    "dpr": 1,
+    "useful": 358,
+    "compact": true,
+    "elements": [
+      {
+        "className": "game-card compact-card",
+        "width": 220,
+        "height": 203.46875,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "size": "16px",
+        "color": "rgb(28, 37, 64)",
+        "background": "rgb(247, 248, 252)"
+      },
+      {
+        "className": "card-heading",
+        "width": 166,
+        "height": 51.90625,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "size": "16px",
+        "color": "rgb(28, 37, 64)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "className": "game-card-image",
+        "width": 32,
+        "height": 32,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "size": "16px",
+        "color": "rgb(28, 37, 64)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "className": "card-values",
+        "width": 202,
+        "height": 81.5625,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "size": "14px",
+        "color": "rgb(28, 37, 64)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "className": "primary card-play-button",
+        "width": 220,
+        "height": 44,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "size": "14px",
+        "color": "rgb(238, 243, 251)",
+        "background": "rgb(37, 53, 76)"
+      },
+      {
+        "className": "game-card compact-card",
+        "width": 220,
+        "height": 203.46875,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "size": "16px",
+        "color": "rgb(28, 37, 64)",
+        "background": "rgb(247, 248, 252)"
+      },
+      {
+        "className": "card-heading",
+        "width": 166,
+        "height": 51.90625,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "size": "16px",
+        "color": "rgb(28, 37, 64)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "className": "game-card-image",
+        "width": 32,
+        "height": 32,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "size": "16px",
+        "color": "rgb(28, 37, 64)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "className": "card-values",
+        "width": 202,
+        "height": 81.5625,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "size": "14px",
+        "color": "rgb(28, 37, 64)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "className": "primary card-play-button",
+        "width": 220,
+        "height": 44,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "size": "14px",
+        "color": "rgb(238, 243, 251)",
+        "background": "rgb(37, 53, 76)"
+      },
+      {
+        "className": "game-card compact-card",
+        "width": 220,
+        "height": 188,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "size": "16px",
+        "color": "rgb(28, 37, 64)",
+        "background": "rgb(247, 248, 252)"
+      },
+      {
+        "className": "card-heading",
+        "width": 166,
+        "height": 34,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "size": "16px",
+        "color": "rgb(28, 37, 64)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "className": "game-card-image",
+        "width": 32,
+        "height": 32,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "size": "16px",
+        "color": "rgb(28, 37, 64)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "className": "card-values",
+        "width": 202,
+        "height": 81.5625,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "size": "14px",
+        "color": "rgb(28, 37, 64)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "className": "primary card-play-button",
+        "width": 220,
+        "height": 44,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "size": "14px",
+        "color": "rgb(238, 243, 251)",
+        "background": "rgb(37, 53, 76)"
+      }
+    ],
+    "contrast": [
+      {
+        "pair": "text/page",
+        "foreground": "#eef3fb",
+        "background": "#101725",
+        "minimum": 4.5,
+        "ratio": 16.092033115185792
+      },
+      {
+        "pair": "text/panel",
+        "foreground": "#eef3fb",
+        "background": "#1b273a",
+        "minimum": 4.5,
+        "ratio": 13.483489400242341
+      },
+      {
+        "pair": "muted/panel",
+        "foreground": "#bac7dc",
+        "background": "#1b273a",
+        "minimum": 4.5,
+        "ratio": 8.792177398537422
+      },
+      {
+        "pair": "card-text/card",
+        "foreground": "#1c2540",
+        "background": "#f7f8fc",
+        "minimum": 4.5,
+        "ratio": 14.255721011514318
+      },
+      {
+        "pair": "active-text/active",
+        "foreground": "#182342",
+        "background": "#ffe5b3",
+        "minimum": 4.5,
+        "ratio": 12.60063643062612
+      },
+      {
+        "pair": "primary-text/primary",
+        "foreground": "#122442",
+        "background": "#b7d1ff",
+        "minimum": 4.5,
+        "ratio": 10.0075510913756
+      },
+      {
+        "pair": "control-text/control",
+        "foreground": "#eef3fb",
+        "background": "#25354c",
+        "minimum": 4.5,
+        "ratio": 11.13813482199135
+      },
+      {
+        "pair": "detail-text/detail",
+        "foreground": "#182b58",
+        "background": "#fff",
+        "minimum": 4.5,
+        "ratio": 13.767738964925067
+      },
+      {
+        "pair": "control-line/control",
+        "foreground": "#8097b9",
+        "background": "#25354c",
+        "minimum": 3,
+        "ratio": 4.163083261814491
+      },
+      {
+        "pair": "detail-line/detail",
+        "foreground": "#182b58",
+        "background": "#fff",
+        "minimum": 3,
+        "ratio": 13.767738964925067
+      },
+      {
+        "pair": "focus/panel",
+        "foreground": "#ffbd66",
+        "background": "#1b273a",
+        "minimum": 3,
+        "ratio": 9.101388565337277
+      },
+      {
+        "pair": "card-focus/detail",
+        "foreground": "#182b58",
+        "background": "#fff",
+        "minimum": 3,
+        "ratio": 13.767738964925067
+      }
+    ]
+  },
+  {
+    "theme": "CREAM",
+    "width": 390,
+    "dpr": 1,
+    "useful": 358,
+    "compact": true,
+    "elements": [
+      {
+        "className": "game-card compact-card",
+        "width": 220,
+        "height": 203.46875,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "size": "16px",
+        "color": "rgb(57, 47, 37)",
+        "background": "rgb(255, 253, 248)"
+      },
+      {
+        "className": "card-heading",
+        "width": 166,
+        "height": 51.90625,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "size": "16px",
+        "color": "rgb(57, 47, 37)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "className": "game-card-image",
+        "width": 32,
+        "height": 32,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "size": "16px",
+        "color": "rgb(57, 47, 37)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "className": "card-values",
+        "width": 202,
+        "height": 81.5625,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "size": "14px",
+        "color": "rgb(57, 47, 37)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "className": "primary card-play-button",
+        "width": 220,
+        "height": 44,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "size": "14px",
+        "color": "rgb(85, 57, 31)",
+        "background": "rgb(255, 253, 248)"
+      },
+      {
+        "className": "game-card compact-card",
+        "width": 220,
+        "height": 203.46875,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "size": "16px",
+        "color": "rgb(57, 47, 37)",
+        "background": "rgb(255, 253, 248)"
+      },
+      {
+        "className": "card-heading",
+        "width": 166,
+        "height": 51.90625,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "size": "16px",
+        "color": "rgb(57, 47, 37)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "className": "game-card-image",
+        "width": 32,
+        "height": 32,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "size": "16px",
+        "color": "rgb(57, 47, 37)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "className": "card-values",
+        "width": 202,
+        "height": 81.5625,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "size": "14px",
+        "color": "rgb(57, 47, 37)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "className": "primary card-play-button",
+        "width": 220,
+        "height": 44,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "size": "14px",
+        "color": "rgb(85, 57, 31)",
+        "background": "rgb(255, 253, 248)"
+      },
+      {
+        "className": "game-card compact-card",
+        "width": 220,
+        "height": 188,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "size": "16px",
+        "color": "rgb(57, 47, 37)",
+        "background": "rgb(255, 253, 248)"
+      },
+      {
+        "className": "card-heading",
+        "width": 166,
+        "height": 34,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "size": "16px",
+        "color": "rgb(57, 47, 37)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "className": "game-card-image",
+        "width": 32,
+        "height": 32,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "size": "16px",
+        "color": "rgb(57, 47, 37)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "className": "card-values",
+        "width": 202,
+        "height": 81.5625,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "size": "14px",
+        "color": "rgb(57, 47, 37)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "className": "primary card-play-button",
+        "width": 220,
+        "height": 44,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "size": "14px",
+        "color": "rgb(85, 57, 31)",
+        "background": "rgb(255, 253, 248)"
+      }
+    ],
+    "contrast": [
+      {
+        "pair": "text/page",
+        "foreground": "#392f25",
+        "background": "#eee4d4",
+        "minimum": 4.5,
+        "ratio": 10.379871765209682
+      },
+      {
+        "pair": "text/panel",
+        "foreground": "#392f25",
+        "background": "#fff9ef",
+        "minimum": 4.5,
+        "ratio": 12.47357304097679
+      },
+      {
+        "pair": "muted/panel",
+        "foreground": "#6c5c4c",
+        "background": "#fff9ef",
+        "minimum": 4.5,
+        "ratio": 6.125756970749036
+      },
+      {
+        "pair": "card-text/card",
+        "foreground": "#392f25",
+        "background": "#fffdf8",
+        "minimum": 4.5,
+        "ratio": 12.85241050198631
+      },
+      {
+        "pair": "active-text/active",
+        "foreground": "#382b1b",
+        "background": "#f4dfb9",
+        "minimum": 4.5,
+        "ratio": 10.527593494816877
+      },
+      {
+        "pair": "primary-text/primary",
+        "foreground": "#fff",
+        "background": "#72502f",
+        "minimum": 4.5,
+        "ratio": 7.231422388723723
+      },
+      {
+        "pair": "control-text/control",
+        "foreground": "#55391f",
+        "background": "#fffdf8",
+        "minimum": 4.5,
+        "ratio": 10.373935746691501
+      },
+      {
+        "pair": "detail-text/detail",
+        "foreground": "#55391f",
+        "background": "#fffdf8",
+        "minimum": 4.5,
+        "ratio": 10.373935746691501
+      },
+      {
+        "pair": "control-line/control",
+        "foreground": "#55391f",
+        "background": "#fffdf8",
+        "minimum": 3,
+        "ratio": 10.373935746691501
+      },
+      {
+        "pair": "detail-line/detail",
+        "foreground": "#55391f",
+        "background": "#fffdf8",
+        "minimum": 3,
+        "ratio": 10.373935746691501
+      },
+      {
+        "pair": "focus/panel",
+        "foreground": "#974400",
+        "background": "#fff9ef",
+        "minimum": 3,
+        "ratio": 6.379420003691881
+      },
+      {
+        "pair": "card-focus/detail",
+        "foreground": "#55391f",
+        "background": "#fffdf8",
+        "minimum": 3,
+        "ratio": 10.373935746691501
+      }
+    ]
+  },
+  {
+    "theme": "HIGH_CONTRAST",
+    "width": 390,
+    "dpr": 1,
+    "useful": 358,
+    "compact": true,
+    "elements": [
+      {
+        "className": "game-card compact-card",
+        "width": 220,
+        "height": 203.46875,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "size": "16px",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgb(255, 255, 255)"
+      },
+      {
+        "className": "card-heading",
+        "width": 166,
+        "height": 51.90625,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "size": "16px",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "className": "game-card-image",
+        "width": 32,
+        "height": 32,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "size": "16px",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "className": "card-values",
+        "width": 202,
+        "height": 81.5625,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "size": "14px",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "className": "primary card-play-button",
+        "width": 220,
+        "height": 44,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "size": "14px",
+        "color": "rgb(255, 255, 255)",
+        "background": "rgb(17, 17, 17)"
+      },
+      {
+        "className": "game-card compact-card",
+        "width": 220,
+        "height": 203.46875,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "size": "16px",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgb(255, 255, 255)"
+      },
+      {
+        "className": "card-heading",
+        "width": 166,
+        "height": 51.90625,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "size": "16px",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "className": "game-card-image",
+        "width": 32,
+        "height": 32,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "size": "16px",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "className": "card-values",
+        "width": 202,
+        "height": 81.5625,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "size": "14px",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "className": "primary card-play-button",
+        "width": 220,
+        "height": 44,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "size": "14px",
+        "color": "rgb(255, 255, 255)",
+        "background": "rgb(17, 17, 17)"
+      },
+      {
+        "className": "game-card compact-card",
+        "width": 220,
+        "height": 188,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "size": "16px",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgb(255, 255, 255)"
+      },
+      {
+        "className": "card-heading",
+        "width": 166,
+        "height": 34,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "size": "16px",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "className": "game-card-image",
+        "width": 32,
+        "height": 32,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "size": "16px",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "className": "card-values",
+        "width": 202,
+        "height": 81.5625,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "size": "14px",
+        "color": "rgb(0, 0, 0)",
+        "background": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "className": "primary card-play-button",
+        "width": 220,
+        "height": 44,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "size": "14px",
+        "color": "rgb(255, 255, 255)",
+        "background": "rgb(17, 17, 17)"
+      }
+    ],
+    "contrast": [
+      {
+        "pair": "text/page",
+        "foreground": "#fff",
+        "background": "#000",
+        "minimum": 4.5,
+        "ratio": 21
+      },
+      {
+        "pair": "text/panel",
+        "foreground": "#fff",
+        "background": "#0b0b0b",
+        "minimum": 4.5,
+        "ratio": 19.682627652657427
+      },
+      {
+        "pair": "muted/panel",
+        "foreground": "#e7e7e7",
+        "background": "#0b0b0b",
+        "minimum": 4.5,
+        "ratio": 15.916736220180514
+      },
+      {
+        "pair": "card-text/card",
+        "foreground": "#000",
+        "background": "#fff",
+        "minimum": 4.5,
+        "ratio": 21
+      },
+      {
+        "pair": "active-text/active",
+        "foreground": "#000",
+        "background": "#ffe066",
+        "minimum": 4.5,
+        "ratio": 16.106123669589415
+      },
+      {
+        "pair": "primary-text/primary",
+        "foreground": "#000",
+        "background": "#ffe066",
+        "minimum": 4.5,
+        "ratio": 16.106123669589415
+      },
+      {
+        "pair": "control-text/control",
+        "foreground": "#fff",
+        "background": "#111",
+        "minimum": 4.5,
+        "ratio": 18.883060964594996
+      },
+      {
+        "pair": "detail-text/detail",
+        "foreground": "#000",
+        "background": "#fff",
+        "minimum": 4.5,
+        "ratio": 21
+      },
+      {
+        "pair": "control-line/control",
+        "foreground": "#fff",
+        "background": "#111",
+        "minimum": 3,
+        "ratio": 18.883060964594996
+      },
+      {
+        "pair": "detail-line/detail",
+        "foreground": "#000",
+        "background": "#fff",
+        "minimum": 3,
+        "ratio": 21
+      },
+      {
+        "pair": "focus/panel",
+        "foreground": "#00bdc7",
+        "background": "#0b0b0b",
+        "minimum": 3,
+        "ratio": 8.53264653167691
+      },
+      {
+        "pair": "card-focus/detail",
+        "foreground": "#000",
+        "background": "#fff",
+        "minimum": 3,
+        "ratio": 21
+      }
+    ]
+  }
+]

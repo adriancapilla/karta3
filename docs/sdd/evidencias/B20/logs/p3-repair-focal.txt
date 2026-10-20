@@ -1,0 +1,13 @@
+
+> karta3@0.1.0 test
+> vitest run server/cancelSocket.test.ts server/application/usage/appearanceWindows.test.ts server/infrastructure/usage/appearanceStore.test.ts src/appearanceSnapshots.test.ts src/usage.test.ts
+
+
+ RUN  v5.0.2 E:/KARTA3/KARTA3_IA/APP/karta3
+
+
+ Test Files  5 passed (5)
+      Tests  29 passed (29)
+   Start at  14:27:15
+   Duration  1.72s (import 45%, tests 30%, transform 24%, worker 1%)
+

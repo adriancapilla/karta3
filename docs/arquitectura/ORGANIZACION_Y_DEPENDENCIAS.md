@@ -315,6 +315,20 @@ Para cada bloque acordado:
 
 `npm run check:architecture`, integrado en `npm run check`, revisa imports de valor y tipo, reexportaciones, aliases y ciclos entre módulos de producción y comandos de la raíz de `tools/`. Estos comandos solo importan módulos locales de composición; las fixtures anidadas se revisan como proyectos de prueba. Sus cuatro casos negativos se ejecutan con `npm test`. El control sintáctico se complementa con revisión de responsabilidades: no demostraría por sí solo que un adaptador haya dejado de decidir permisos o nombres. B04 conserva las reglas de capas y amplía su control a la herramienta.
 
+## B20 — Apariencia personal y fotografías — 20/10/2026
+
+La preferencia reside en `src/appearance.ts`, con validación pura compartida, inicialización previa a App/PrivacyScreen, almacenamiento versionado mínimo y suscripción entre pestañas. `AppearanceControl` presenta cuatro valores y distingue Predefinida/Claro explícito; `appearance.css` asigna pares semánticos sin tocar las medidas/tipografías de GameCard. No se añade preferencia a RoomSettings/GameSettings: `optimizeForMobile` sigue compartido. Los hooks/acciones de juego conservan autoridad, foco y tiempo.
+
+`AppearanceCaptures` congela START/END únicamente al aplicar una transición en vivo; `useRoomFlow` procesa metadata de la misma revisión aunque el ack ya aplicara la vista. Conserva los filtros T04: metadata de A puede completar una foto pendiente breve, nunca reaplicar A sobre B. Desconexión, retirada o invalidación cancelan la continuidad; no hay cola de recuperación.
+
+En aplicación, `AppearanceWindows` define el puerto mínimo de conexiones y una ventana RAM de diez segundos por conexión/sesión/referencias estadísticas. Reutiliza Clock/Scheduler/IdentifierGenerator; máximo4096, caducidad exacta y limpieza con generación. `UsageRecording` abre oportunidades tras registrar inicio/final, solo HUMAN jugadores admitidos y con el ámbito B19 original; no pasan Room/Game al escritor. La primera admisión lógica gana sin sobrescribir. IO/SQL/Socket.IO permanecen en infraestructura.
+
+`SocketRoomChanges` añade metadata individual por conexión solo cuando corresponde; sin ventanas mantiene difusión por sesión. HTTP autentica/decodifica la petición cerrada en la ruta existente; aplicación normaliza a referencias estadísticas distintas de ids funcionales. Solo el DTO normalizado llega al worker. `projections` y `appearanceReport` implementan cohortes UTC, marginales/pares y cobertura; `query` y puertos administrativos existentes sirven el noveno informe fijo sin panel/SQL libre.
+
+Infraestructura migra esquema1/2→3 sin reproyectar históricos ni rellenar Claro; marca comienzo de instrumentación y partidas nuevas. SQLite/lector/worker/mantenimiento/copia agregada conservan aislamiento, recibos, censura,90d y12meses. Composición inyecta los adaptadores reales y conserva sink nulo/OFF por defecto. El verificador Linux prepara nuevas comprobaciones; modificarlo o comprobar sintaxis en Windows no acredita Linux/volumen.
+
+Dominio/Game, paquetes y persistencia jugable no cambian. Diez tipos/nueve consultas y aviso2026-10-20.1 amplían solo B20; B19 mantiene aceptar/rechazar/retirar. [Evidencia B20](../sdd/evidencias/B20/README.md) separa pruebas nuevas, revisión semántica, alineación general pendiente y revisión humana. Sin activación pública, despliegue o TFM editado; C09–C10 parciales.
+
 ## Recepción de Arquitectura y preparación de publicación — 18/10/2026
 
 Referencia general recibida del autor y contrastada en lectura: **18/10/2026**, Aplicación §16.1 y evidencia §17.12; Infraestructura §§1–4, 12.1, 14.1, 15.1–15.2 y evidencia §16.9. Alineación recibida, sin modificar TFM ni el contexto de coordinación. Los textos de cierre anteriores que indican recepción pendiente son históricos de su fecha.

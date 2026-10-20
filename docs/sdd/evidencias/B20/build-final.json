@@ -1,0 +1,382 @@
+{
+  "at": "2026-10-20T14:39:39.9248619+02:00",
+  "source": "44e5546947c2e7eb1182240e36b9e250dd7460fb",
+  "production": "93e8b66",
+  "runtime": {
+    "node": "v24.19.0",
+    "execPath": "C:\\Users\\Adrian\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+    "platform": "win32",
+    "arch": "x64",
+    "icu": "78.3",
+    "unicode": "17.0",
+    "sqlite": "3.53.3"
+  },
+  "chrome": "155.0.8059.80",
+  "files": [
+    {
+      "path": "dist-server/app.js",
+      "bytes": 4240,
+      "sha256": "df83f7af31e5acb9205a488ff6d12539724ef1eed4179eb2be381a75b504ac78"
+    },
+    {
+      "path": "dist-server/main.js",
+      "bytes": 495,
+      "sha256": "35e84457ea63da9fb531fafebe513794c29ddbd2c88d8d7f12387c1fec298388"
+    },
+    {
+      "path": "dist-server/roomStore.js",
+      "bytes": 3767,
+      "sha256": "9815085590935afd4d9a2f5fc941afc5bfb6c64ff1faa5d155c00b0d3f79283c"
+    },
+    {
+      "path": "dist-server/server/application/deckCatalog.js",
+      "bytes": 485,
+      "sha256": "87fdf181996fdbd7378723a6210a584b863dd9c45f943af3db8bc9f48ea6c0df"
+    },
+    {
+      "path": "dist-server/server/application/gameCoordinator.js",
+      "bytes": 17747,
+      "sha256": "14295b8e0b724d9962cb38180c362e43c656200664ec2df4ae261b2d8b011b50"
+    },
+    {
+      "path": "dist-server/server/application/initialGameView.js",
+      "bytes": 3803,
+      "sha256": "5209dc72137a315bd5a4817535c6e0967a96af54659098532cc1739ceba0b55d"
+    },
+    {
+      "path": "dist-server/server/application/ports.js",
+      "bytes": 11,
+      "sha256": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881"
+    },
+    {
+      "path": "dist-server/server/application/resultsView.js",
+      "bytes": 1381,
+      "sha256": "9da7bbb641a05e931f4741bbda32bbaebbc7db7bdf688769c292a08ca91502c7"
+    },
+    {
+      "path": "dist-server/server/application/room.js",
+      "bytes": 21120,
+      "sha256": "e182b1c464def05ab5e130524c22a57c61498cfa5db5c064afae86d80fdf6d18"
+    },
+    {
+      "path": "dist-server/server/application/roomCoordinator.js",
+      "bytes": 2085,
+      "sha256": "f15a6b0098d91644d71664a9ed5470306f606127aaf7f67e32e648c9774f1456"
+    },
+    {
+      "path": "dist-server/server/application/roomError.js",
+      "bytes": 140,
+      "sha256": "87bf4d4a7c6d12e3237c57a891f1b2b855888783f478c3e9fbfd1e83f09dd323"
+    },
+    {
+      "path": "dist-server/server/application/roomUseCases.js",
+      "bytes": 20987,
+      "sha256": "68a0953022b93085b7d4c55cb92b1a19022cfd2ad5f5a398642636394bf585bd"
+    },
+    {
+      "path": "dist-server/server/application/roomView.js",
+      "bytes": 2026,
+      "sha256": "17b152ced2e538e30aee5f132074740717a250fde828869d718562b3061e051e"
+    },
+    {
+      "path": "dist-server/server/application/usage/appearanceReport.js",
+      "bytes": 3004,
+      "sha256": "727b40b4434ee3921f99a4dbcdfea089e0427221fbf79b888b62ad866da196a9"
+    },
+    {
+      "path": "dist-server/server/application/usage/appearanceWindows.js",
+      "bytes": 5041,
+      "sha256": "00527973df1eb69b5c2136fca95b89d349b21ba5f8e96fa6eeab9d63a1408e48"
+    },
+    {
+      "path": "dist-server/server/application/usage/choice.js",
+      "bytes": 10423,
+      "sha256": "5e09f406fbcbe2ee84f51723c70303ebf022cd7658fd41f1e8be1a30e39b4861"
+    },
+    {
+      "path": "dist-server/server/application/usage/contracts.js",
+      "bytes": 993,
+      "sha256": "998a889a967fde72488c864616c505105899e09b7928cc8c7a0beb5c732d7f86"
+    },
+    {
+      "path": "dist-server/server/application/usage/projections.js",
+      "bytes": 4744,
+      "sha256": "0e9225e41118ec2c677f44b73a96da6e18b17815e0aab1573b0bf6565ec85ad4"
+    },
+    {
+      "path": "dist-server/server/application/usage/query.js",
+      "bytes": 410,
+      "sha256": "85ba7e5950853c42a8f19df6fd9c8167ebf7792f39dfdaae7a8333bf7ceaed7a"
+    },
+    {
+      "path": "dist-server/server/application/usage/recording.js",
+      "bytes": 10872,
+      "sha256": "689a991f5d281b058df81d58e63760c7d4bc857400a128865e708dcbf0d48289"
+    },
+    {
+      "path": "dist-server/server/application/usage/reports.js",
+      "bytes": 5911,
+      "sha256": "334a7097a57196f3617e1da044fe2f7a03fa0e2abe099470be84c83c26b16ef9"
+    },
+    {
+      "path": "dist-server/server/application/waitingLifecycle.js",
+      "bytes": 5313,
+      "sha256": "f17a5b416ea9e3580e3bffb24cfc75f558c3ba2966657c3e7a2d1523b603f616"
+    },
+    {
+      "path": "dist-server/server/application/waitingTime.js",
+      "bytes": 11,
+      "sha256": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881"
+    },
+    {
+      "path": "dist-server/server/composition/createApp.js",
+      "bytes": 3548,
+      "sha256": "e58f3a3ef16dcb003ec6f452e53e3e299062ad618d7d995ff251311416fa9069"
+    },
+    {
+      "path": "dist-server/server/composition/decks.js",
+      "bytes": 1249,
+      "sha256": "36ad6b0b326dd957bcd8cd506d58e3da0d07ada6558db9b7c4e820c2df7708b5"
+    },
+    {
+      "path": "dist-server/server/composition/usage.js",
+      "bytes": 6125,
+      "sha256": "083d4b3033042f7c4bf6531a44e447a03cd8fc685d540bbea64ee7e53464e14d"
+    },
+    {
+      "path": "dist-server/server/composition/usageCli.js",
+      "bytes": 93,
+      "sha256": "c20157ebfd4439d22479d1e701b99a5699d51ffdbb69e5be9245ad7f823e527a"
+    },
+    {
+      "path": "dist-server/server/composition/usageCommand.js",
+      "bytes": 3261,
+      "sha256": "75464c43b0d1fa83bf2ee89afa282eee8dcf4a41483c8c9600f4020c45943eee"
+    },
+    {
+      "path": "dist-server/server/composition/usageMaintenanceCli.js",
+      "bytes": 2733,
+      "sha256": "f2aa3fd1b4d398a1820aa0fb1616ca57fdbf149352a109368e76567195400e68"
+    },
+    {
+      "path": "dist-server/server/composition/usageSyntheticCli.js",
+      "bytes": 99,
+      "sha256": "116775d91c906b27776fd469fffbb5185fe9581a4c958708d4f482e72eba7775"
+    },
+    {
+      "path": "dist-server/server/domain/autoPlay.js",
+      "bytes": 505,
+      "sha256": "ae46087491fa8fd4df7b073bdba9233148523a315ee5556a98c2e3cfb6fc53eb"
+    },
+    {
+      "path": "dist-server/server/domain/botPlay.js",
+      "bytes": 1340,
+      "sha256": "aaee8f3090ba141e68d4f46dc7b9357bd91384ea8fb3a75f5b9d1dbaddcfdb72"
+    },
+    {
+      "path": "dist-server/server/domain/deck.js",
+      "bytes": 6227,
+      "sha256": "2d7f23c38258f9129b39fe55de77f3b47d5522b17c8821f75ff98b54ff2c3016"
+    },
+    {
+      "path": "dist-server/server/domain/game.js",
+      "bytes": 15660,
+      "sha256": "9b7accfe3a44df01df39f6d1328c48f99080fe07dc89dc7906939c8586879896"
+    },
+    {
+      "path": "dist-server/server/infrastructure/botInput.js",
+      "bytes": 1303,
+      "sha256": "145a4b9b43087a01e4412cca67c5c78dedb8601d59f258d4bdfeddc0fdc50578"
+    },
+    {
+      "path": "dist-server/server/infrastructure/cardPermutation.js",
+      "bytes": 405,
+      "sha256": "e855c0e222637815ad8c9390d8d3f4f34241456f7010bb9061975edb2c383d5c"
+    },
+    {
+      "path": "dist-server/server/infrastructure/configurationInput.js",
+      "bytes": 1916,
+      "sha256": "42c719226ad44ec546e7cf8d448065f11abf995d91f6f39f4e0b90dc960114d9"
+    },
+    {
+      "path": "dist-server/server/infrastructure/decks/catalog.js",
+      "bytes": 8618,
+      "sha256": "93becb94c8c7245885bd5c7a350bb95f22de677749a73580bbbbc8da919fb6d3"
+    },
+    {
+      "path": "dist-server/server/infrastructure/decks/format2Text.js",
+      "bytes": 6342,
+      "sha256": "6f768dc4b1ee9bb3d1695d9f968b8e7a22eca0997d95066118f03b987c1d0c43"
+    },
+    {
+      "path": "dist-server/server/infrastructure/decks/packageFormat.js",
+      "bytes": 10476,
+      "sha256": "17bf1445f87b7ff244f8b6674fba5d5fdfda1e90bc64c6e7eaa858f6971d970b"
+    },
+    {
+      "path": "dist-server/server/infrastructure/decks/readPackage.js",
+      "bytes": 2504,
+      "sha256": "564eda1e739981da8a2736b1ec97610fff1d8dd66179a621dfedfaff2918adb2"
+    },
+    {
+      "path": "dist-server/server/infrastructure/decks/resources.js",
+      "bytes": 4367,
+      "sha256": "83fda46c6e593c5a317fea5fe4cbe7ef7fbaa86ae5111cdd94a5a4d633bfa609"
+    },
+    {
+      "path": "dist-server/server/infrastructure/decks/strictJson.js",
+      "bytes": 3932,
+      "sha256": "50a671755bd61eda62083cbedb463c0c653e89be9e493a53ec8ee6c9130d6cd3"
+    },
+    {
+      "path": "dist-server/server/infrastructure/gameInput.js",
+      "bytes": 1130,
+      "sha256": "50cf912cacd2d97a8fe4f525395c9b90fbfda2796b67a7a62940071c113e467b"
+    },
+    {
+      "path": "dist-server/server/infrastructure/generators.js",
+      "bytes": 228,
+      "sha256": "4346d47eaa26efad11f00cc3552d836201c566b57f08a48b75f43961db85575c"
+    },
+    {
+      "path": "dist-server/server/infrastructure/http/expressApp.js",
+      "bytes": 5682,
+      "sha256": "f781535dfafa40ca740465cfa4382b414150c26d714d8ef830b4241b56681378"
+    },
+    {
+      "path": "dist-server/server/infrastructure/http/publicFiles.js",
+      "bytes": 2215,
+      "sha256": "f1c0a7c29a5878b57b28a6116790a09cc13b90dc22fa0e6dbb27a1aa737adaf2"
+    },
+    {
+      "path": "dist-server/server/infrastructure/memoryRoomRepository.js",
+      "bytes": 2259,
+      "sha256": "c3607a60e7560b99a969f96471805a39606c8a6c93f98619fa8290716a4c3b0f"
+    },
+    {
+      "path": "dist-server/server/infrastructure/memoryRoomRequests.js",
+      "bytes": 436,
+      "sha256": "18abfaed0c2c94e36e103181bcc8576d6bc2d6b7a734a9457334ba96615546a3"
+    },
+    {
+      "path": "dist-server/server/infrastructure/memorySessions.js",
+      "bytes": 766,
+      "sha256": "7addce270725a8165d71f01ca7af7d306191855e6540b1c90b316d9b4acdc062"
+    },
+    {
+      "path": "dist-server/server/infrastructure/socketRooms.js",
+      "bytes": 11849,
+      "sha256": "e52305d4fbd30354b8075f288b0a09939f787acfa3186d4febffa17b57504d73"
+    },
+    {
+      "path": "dist-server/server/infrastructure/time.js",
+      "bytes": 493,
+      "sha256": "364fd6718df7ba8b2cd36b88e451257b046898a752b43200fff659c7527c15e3"
+    },
+    {
+      "path": "dist-server/server/infrastructure/usage/backups.js",
+      "bytes": 6188,
+      "sha256": "832e540959c8713e5801785ec620c227dad3b44bf957193edbd3e5310ae4fb2e"
+    },
+    {
+      "path": "dist-server/server/infrastructure/usage/eventValidation.js",
+      "bytes": 7132,
+      "sha256": "27c3670351dba83ee3c5e86fd4f8187ba9ae9fbf161264c7700d655844bc24eb"
+    },
+    {
+      "path": "dist-server/server/infrastructure/usage/http.js",
+      "bytes": 5628,
+      "sha256": "99728b37fb2e0f1ab2fb35151a8583ee7663cbf283bb2a8863ad8d413381c0a4"
+    },
+    {
+      "path": "dist-server/server/infrastructure/usage/privateFiles.js",
+      "bytes": 6620,
+      "sha256": "bb361681bb616fcaefbab2dc32a3188376b7aea70a79b93874cd9f99d56abbc2"
+    },
+    {
+      "path": "dist-server/server/infrastructure/usage/projections.js",
+      "bytes": 2720,
+      "sha256": "5c29244914953a7430e7455b8bbf798548f7cf336605e59006e3ae325c062e40"
+    },
+    {
+      "path": "dist-server/server/infrastructure/usage/schema.js",
+      "bytes": 252,
+      "sha256": "726fc166c15fba26b6ebcc166896163a6b237944d01f26aae8eb29ef1fdfecea"
+    },
+    {
+      "path": "dist-server/server/infrastructure/usage/sqliteReader.js",
+      "bytes": 5121,
+      "sha256": "f7285374931ee29e5012e8aea0f146ea929a68ad4e07ce41e382bb03ec06d9bf"
+    },
+    {
+      "path": "dist-server/server/infrastructure/usage/sqliteStore.js",
+      "bytes": 23621,
+      "sha256": "add85aa063b3aef3e6ee194b31f2fb1f2566164936a359bccedac4cab7bda64c"
+    },
+    {
+      "path": "dist-server/server/infrastructure/usage/sqliteWorker.js",
+      "bytes": 16363,
+      "sha256": "408842f0b719414ae6f57cc201e1fc0c366b816a63677ed3d1429acbc5273ced"
+    },
+    {
+      "path": "dist-server/server/infrastructure/usage/worker.js",
+      "bytes": 8360,
+      "sha256": "4ee10ba05fbabf2fe6d7e2359f9739b3b6f37dff661d0f8b9d751eb7adbb28a4"
+    },
+    {
+      "path": "dist-server/server/main.js",
+      "bytes": 2285,
+      "sha256": "2f1a20312341db78f68ab6c7f17e26952586e3ab2627a5d00ad9e18e91efe87d"
+    },
+    {
+      "path": "dist-server/shared/contracts/appearance.js",
+      "bytes": 396,
+      "sha256": "9f3ad7b3a4289a6f2bb4c6dcbda38feb16a14d687d9e833d4b9ee80a8eb27e49"
+    },
+    {
+      "path": "dist-server/shared/contracts/deck.js",
+      "bytes": 11,
+      "sha256": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881"
+    },
+    {
+      "path": "dist-server/shared/contracts/game.js",
+      "bytes": 11,
+      "sha256": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881"
+    },
+    {
+      "path": "dist-server/shared/contracts/privacyNotice.js",
+      "bytes": 4406,
+      "sha256": "6cf5a30935e33a9b35165f5e7be91254652890ac6a329a3492bd34563f43e28b"
+    },
+    {
+      "path": "dist-server/shared/contracts/room.js",
+      "bytes": 11,
+      "sha256": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881"
+    },
+    {
+      "path": "dist-server/shared/contracts/usage.js",
+      "bytes": 2456,
+      "sha256": "051415816cfb0cb9e47ae76efe56e1ce791a98c0b81d602dcda2f6498e1d5f70"
+    },
+    {
+      "path": "dist-server/tsconfig.server.tsbuildinfo",
+      "bytes": 2681,
+      "sha256": "570b1768ee878d8b458853e480c82c1e98b0bb2bea89655a75467f40ee97ca34"
+    },
+    {
+      "path": "dist/assets/index-CS-rEBLr.css",
+      "bytes": 31533,
+      "sha256": "f1e73460260a1f8c500a1f513f3a09747e4bca5310036d91813410d628a57cb3"
+    },
+    {
+      "path": "dist/assets/index-Xmi7Qjp_.js",
+      "bytes": 357431,
+      "sha256": "6314db83c738b690b75762db6ddd1ca41bb145c5b5cc1c9fd245f5c2c4d777b6"
+    },
+    {
+      "path": "dist/index.html",
+      "bytes": 455,
+      "sha256": "b4be4128f5e00b7d9bb974d5f5fec40c9aa02f8542a383286ecaf0ddbdf27d1a"
+    }
+  ]
+}

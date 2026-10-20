@@ -1,6 +1,6 @@
 # B20 — Apariencia personal y fotografías de uso
 
-**Estado:** especificación para revisión del autor; implementación y verificación pendientes. **Fecha:** 20/10/2026. Prepararla no autoriza implementar, publicar ni activar recogida.
+**Estado vigente:** implementado y comprobado técnicamente en Windows; alineación de Arquitectura y revisión visual humana pendientes. **Fecha:** 20/10/2026. [Registro nuevo §15](#15-registro-de-implementación--20102026). No verificado globalmente, sin publicación o activación de recogida. La preparación y sus resultados anteriores se conservan como históricos.
 
 **Base comprobada:** carpeta única `APP/karta3`, rama `main`, HEAD `4e92efe7034cf6c10366daf90429d3f6ce02978c`. B20 libre. Ya estaban modificados `docs/sdd/PROCESO_SDD.md`, B19 y los documentos operativos `ANALITICA_USO.md` y `PREPARACION_ANALITICA_REAL_B19.md`; se conservan. No crear ramas/checkouts ni reinstalar. Los resultados históricos de B18/B19 no acreditan B20.
 
@@ -210,7 +210,7 @@ No se estiman horas/tokens sin ejecución. Separar commits/evidencias visuales y
 
 ## 13. Aceptación y plan proporcionado
 
-Todos los criterios siguientes son **previstos, sin ejecutar**:
+Plan de aceptación conservado de la preparación, entonces **previsto, sin ejecutar**. Los resultados reales por criterio están en §15 y su evidencia; esta lista no acredita por sí sola una prueba:
 
 - [ ] **V01:** cuatro valores estrictos; marcador «Predefinida» frente a Claro explícito, sin quinto tema elegible; preferencia válida anterior sigue EXPLICIT; valor/versión/JSON inválidos, borrado y fallos de lectura/escritura tratados sin bloquear.
 - [ ] **V02:** persistencia, coherencia entre pestañas y aislamiento de otros navegadores; elección independiente de anfitrión/sala/baraja/consentimiento. Cambio no emite configuración o estadística ni renueva tiempos.
@@ -242,6 +242,22 @@ Ejecutar comprobaciones focales por etapa; al cerrar, `npm run check` y una sele
 
 **Relación con el máster:** métricas accionables limitadas a uso observable y contrastadas con entrevistas; observabilidad distinta de logging técnico; datos mínimos y logging seguro; persistencia local de preferencia distinta de SQLite estadístico; puertos de aplicación/adaptadores/composición y pruebas por capa. No adoptar una herramienta solo por aparecer en el temario.
 
-**Comprobación SDD actual:** lectura de estado/documentación/código/maqueta y contraste auxiliar; redacción y comprobación de referencias/diferencias documentales. Sin código, pruebas de producto, paquetes, migraciones, reinstalación, ramas/checkouts, commits, TFM, activación, publicación o despliegue. Código B20: pendiente. Evidencia ejecutada B20: pendiente. Revisión humana/física y alineación: pendientes. No declarar completo C09–C10 por este incremento.
+**Comprobación histórica de preparación SDD:** lectura de estado/documentación/código/maqueta y contraste auxiliar; redacción y comprobación de referencias/diferencias documentales. Sin código, pruebas de producto, paquetes, migraciones, reinstalación, ramas/checkouts, commits, TFM, activación, publicación o despliegue. Código B20 y evidencia ejecutada estaban pendientes; §15 registra el trabajo posterior. Revisión humana/física y alineación siguen pendientes. No declarar completo C09–C10 por este incremento.
 
 **Encargo reutilizable:** [prompt para Implementación](PROMPT_IMPLEMENTACION_BLOQUE_20.md). Se entrega para revisión/traslado del autor; al terminar esta especificación SDD se detiene.
+
+## 15. Registro de Implementación — 20/10/2026
+
+Encargo directo posterior del autor, en la carpeta/rama existentes, desde main `4e92efe7034cf6c10366daf90429d3f6ce02978c`. Preparación propia de B20 registrada separadamente `5dac075`; los cuatro documentos previos modificados se conservan sin apropiarse de la limpieza B19. Sin ramas/checkouts/reinstalación ni servidores del autor alterados.
+
+**Entregado:** P1 preferencia personal/persistencia local/Predefinida/paletas y controles (`2ae4cae`); P2 ventanas RAM por conexión, fotografía normalizada, esquema3 e informe/CSV privado (`ddd6ee4`); P3 aviso2026-10-20.1, integración, foco por función (`93e8b66`) y última precisión de teclado exclusivamente de prueba (`44e5546`). No RoomSettings/GameSettings nuevos, reglas, cambios editoriales, panel o activación. B19 conserva elección individual, ámbitos, recibos y doce horas; su propuesta descartada no se implementa.
+
+**Puertas nuevas:** check final de producto **672/672 en63 archivos,105 módulos arquitectura**, typecheck/lint/build correctos, Node24.19.0/ICU78.3/Unicode17/SQLite3.53.3 Windows/x64 y Chrome155.0.8059.80. Navegador pertinente22/22 en2,7min; ajuste final de foco4/4 en24,9s; regresiones compiladas21/21 en1,9min, todos un trabajador/cero reintentos. **43 casos únicos**, no47: cuatro P1 repetidos por el cambio de foco. Los18 casos estadísticos no se relanzan por un ajuste exclusivamente CSS; sus contratos/código estadístico/juego permanecen idénticos. Última línea de prueba Tab/Shift+Tab verificada por navegador y lint, sin cambios posteriores de producto.
+
+[Evidencia detallada por V01–V05/A01–A06/I01–I02, E1–E9, comandos, errores/reparaciones y límites](evidencias/B20/README.md). SQLite temporal real, reloj controlado para ventanas/retención/cohortes, HTTP/Socket.IO reales y datos HUMAN fabricados/SYNTHETIC aislados. Partida ordinaria completa con main/entropía/adaptadores normales y gestos automatizados; inactividad/cancelación con reloj sustituido. Desconexión de navegador real y cierre/rearranque real de proceso propio distinguidos de los plazos simulados. No ensayo humano, móvil físico o Linux ejecutado.
+
+**Visual:** cuatro temas normales1800×1000 y compactos390×844; útil1367/1368 medido, intermedio1100×900, observador/invitado, tres barajas representativas sin repetir corpus. Cajas/tipos/títulos/columnas/imagen/D/Jugar conservados; contraste/foco por función registrados. Normal captura1203px antes/después; compacta937→1024 por grupo superior ampliado (+87px), sin ocultar scroll residual. Revisión humana de colores sigue pendiente. [Capturas/medidas](evidencias/B20/p1/1800-measures.json) y secundarios en la evidencia.
+
+**Privacidad/conservación:** aviso visible idéntico390/1280 UTF-8/LF, SHA-256 `31cde42ce2daba812babaf3a48480e1f2714000d2c42a8cdc2c9f347fbf22b06`; versión .2/evidencia B19 intactas. Normalización excluye ids funcionales/token/conexión/cookies/nombres/manos; no fotos retrospectivas. Históricos1/2 sin backfill, ocho informes conservados, dedupe/90d/12meses/copia cifrada agregada comprobados localmente. [124 archivos y huellas editoriales intactos](evidencias/B20/barajas-intactas.json), [compilación](evidencias/B20/build-final.json).
+
+**Cierre técnico, no global:** el autor respondió que la alineación de Arquitectura sigue pendiente y pidió entregar cierre técnico. [Traslado concreto para el autor](evidencias/B20/TRASLADO_ARQUITECTURA.md), [operación/instrucciones manuales](../operacion/APARIENCIA_B20.md), README y mapa APP actualizados. Linux/CI/volumen, recepción de alineación, revisión humana/física y activación/operación públicas no acreditados; verificador adaptado/sintaxis Windows no los sustituyen. Recogida pública OFF. No push/PR/GHCR/despliegue, mensajes a otros hilos ni fuentes TFM editadas. C09–C10 continúan parciales.

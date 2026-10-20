@@ -1,0 +1,55 @@
+
+> karta3@0.1.0 test:browser
+> npm run build && playwright test --workers=1 --retries=0 --trace on --output=playwright-report/b20/final-traces appearance.spec.ts appearanceUsage.spec.ts privacyNotice.spec.ts usageChoice.spec.ts usageActivation.spec.ts usage.spec.ts
+
+
+> karta3@0.1.0 build
+> npm run decks:prepare && tsc -b && vite build
+
+
+> karta3@0.1.0 decks:prepare
+> tsx tools/decks.ts prepare
+
+criaturas-magicas: válida; disponibilidad true
+generica: válida; disponibilidad true
+sistema-solar: válida; disponibilidad true
+Catálogo preparado: 3 barajas disponibles.
+vite v8.3.1 building client environment for production...
+transforming...
+✓ 82 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.45 kB │ gzip:   0.30 kB
+dist/assets/index-zlINm836.css   31.50 kB │ gzip:   7.10 kB
+dist/assets/index-NYgXYRnm.js   357.43 kB │ gzip: 109.03 kB
+
+✓ built in 164ms
+
+Running 22 tests using 1 worker
+
+(node:7028) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  1 tests\browser\appearance.spec.ts:6:34 › B20 P1 paletas y geometría 1800 (7.3s)
+  ok  2 tests\browser\appearance.spec.ts:6:34 › B20 P1 paletas y geometría 390 (6.0s)
+  ok  3 tests\browser\appearance.spec.ts:63:1 › B20 P1 intermedio/observador y frontera útil: foco, dirección, cartas y estado invariables al cambiar tema (8.5s)
+  ok  4 tests\browser\appearance.spec.ts:98:1 › B20 P1 preferencia personal, teclado, pestañas, recarga y almacenamiento bloqueado con OFF (2.5s)
+  ok  5 tests\browser\appearanceUsage.spec.ts:15:1 › B20 transporte SYNTHETIC aislado conserva contexto autenticado y fotografías sin mezclar HUMAN (5.5s)
+  ok  6 tests\browser\appearanceUsage.spec.ts:27:1 › B20 cancelación: dos sesiones/pestañas, par neto, recargas, consulta tardía y nueva sala (7.1s)
+  ok  7 tests\browser\appearanceUsage.spec.ts:64:1 › B20 inactividad y desconexión real: falta END, reconexión/consulta no lo reconstruyen (5.4s)
+  ok  8 tests\browser\appearanceUsage.spec.ts:82:1 › B20 observador y aceptación tardía: apariencia independiente sin fotos ni reactivación del ciclo censurado (5.1s)
+  ok  9 tests\browser\appearanceUsage.spec.ts:99:1 › B20 final ordinario completo: main compilado, genérica, entropía y adaptadores normales con dos humanos (12.9s)
+  ok 10 tests\browser\privacyNotice.spec.ts:7:34 › H06 aviso factual 390: OFF,200/no-store, sin sesión, visita o captura (3.9s)
+  ok 11 tests\browser\privacyNotice.spec.ts:7:34 › H06 aviso factual 1280: OFF,200/no-store, sin sesión, visita o captura (4.0s)
+  ok 12 tests\browser\usage.spec.ts:5:34 › B18 390: portada/gestos/dos sesiones/pestañas/F5 y privacidad con compilado sintético (6.1s)
+  ok 13 tests\browser\usage.spec.ts:5:34 › B18 1280: portada/gestos/dos sesiones/pestañas/F5 y privacidad con compilado sintético (5.2s)
+  ok 14 tests\browser\usage.spec.ts:42:1 › B18 documento/F5/SPA y ejecución normal apagada (8.4s)
+  ok 15 tests\browser\usage.spec.ts:63:1 › B18 partida completa normal con dos humanos y bot: terminal durable único, F5 y otra sala (12.5s)
+  ok 16 tests\browser\usageActivation.spec.ts:4:1 › H02 compilado: creación incierta, reinicio OFF y reconexión descartan contexto sin reenviar la intención (7.8s)
+  ok 17 tests\browser\usageActivation.spec.ts:31:1 › H02 compilado: respuesta SYNTHETIC antigua no reactiva tras OFF del proceso nuevo (8.9s)
+  ok 18 tests\browser\usageChoice.spec.ts:19:34 › H06 390: elección/retirada propias en mesa, otra pestaña, Detalles/foco y F5 (7.8s)
+  ok 19 tests\browser\usageChoice.spec.ts:19:34 › H06 1280: elección/retirada propias en mesa, otra pestaña, Detalles/foco y F5 (7.3s)
+  ok 20 tests\browser\usageChoice.spec.ts:48:1 › H06 retirada sin red sigue pendiente: no reenvío automático ni BROWSER al volver señal positiva (6.1s)
+  ok 21 tests\browser\usageChoice.spec.ts:74:1 › H03 HUMAN fabricado completo con bots normales: resultado/F5, retirada final y otra sala sin backfill (9.3s)
+  ok 22 tests\browser\usageChoice.spec.ts:97:1 › H04 HUMAN fabricado → parada controlada → OFF: mismo histórico, sin permiso ni partida recuperados (9.5s)
+
+  22 passed (2.7m)
