@@ -6,6 +6,7 @@ import { acceptsRoom, automaticEndMessage } from './roomState';
 import type { RoundResolvedEvent, TurnExpiredEvent } from '../shared/contracts/game';
 import type { UsageContext } from '../shared/contracts/usage';
 import { beginUsageIntent, currentUsageContext, invalidateBrowserUsage, onUsageInvalidated } from './usage';
+import { AppearanceCaptures } from './appearanceSnapshots';
 
 function roomPath(id: string) { return `/sala/${id}`; }
 function isRoomPath() { return window.location.pathname.startsWith('/sala/'); }
@@ -13,6 +14,7 @@ function navigate(path: string) { window.history.replaceState(null, '', path); }
 function message(error: unknown): string { return error instanceof Error ? error.message : 'La operación no se pudo completar.'; }
 
 export function useRoomFlow() {
+  const appearances = useRef(new AppearanceCaptures());
   const [room, setRoom] = useState<RoomView | null>(null);
   const roomRef = useRef<RoomView | null>(null);
   const activeRoomRef = useRef<RoomView | null>(null);
@@ -50,6 +52,7 @@ export function useRoomFlow() {
   const [connected, setConnected] = useState(false);
 
   useEffect(() => onUsageInvalidated(() => {
+    appearances.current.clear();
     if (pendingCreate.current) delete pendingCreate.current.context;
     if (pendingJoin.current) delete pendingJoin.current.usageContext;
   }), []);
@@ -66,7 +69,7 @@ export function useRoomFlow() {
     setNotice(noticeText);
   }, []);
 
-  const applyRoom = useCallback((incoming: RoomView): boolean => {
+  const applyRoom = useCallback((incoming: RoomView, live = true): boolean => {
     if (releasedRooms.current.has(incoming.id)) return false;
     if (explicitResult.current) {
       if (incoming.id !== roomRef.current?.id && (!activeRoomRef.current || activeRoomRef.current.id === incoming.id)) activeRoomRef.current = incoming;
@@ -74,6 +77,7 @@ export function useRoomFlow() {
     }
     const current = roomRef.current;
     if (!acceptsRoom(current, incoming, ended.current, closed.current)) return false;
+    if (live && socket.connected) appearances.current.transition(current, incoming, socket.id ?? '');
     if (!current || !dirtyName.current) setName(incoming.participant.name);
     roomRef.current = incoming;
     const cancelled = incoming.status === 'RESULTS' && incoming.result.endReason === 'HOST_CANCELLED';
@@ -101,7 +105,7 @@ export function useRoomFlow() {
     if (explicitResult.current) return;
     if (result.room) {
       if (roomRef.current && roomRef.current.id !== result.room.id) clearRoom(''); // recuperación autorizada de otra asociación vigente
-      applyRoom(result.room);
+      applyRoom(result.room, false);
     } else {
       const previous = roomRef.current;
       if (previous?.status === 'IN_GAME' && result.lastResult?.gameId === previous.game.id && !result.ended) {
@@ -109,7 +113,7 @@ export function useRoomFlow() {
         void api.result(previous.game.id).then((summary) => {
           if (activeRoomRef.current || roomRef.current?.id !== previous.id || roomRef.current.status !== 'IN_GAME'
             || roomRef.current.game.id !== previous.game.id || explicitResult.current) return;
-          applyRoom(summary.room);
+          applyRoom(summary.room, false);
         }).catch((error) => {
           if (activeRoomRef.current || roomRef.current?.id !== previous.id || roomRef.current.status !== 'IN_GAME'
             || roomRef.current.game.id !== previous.game.id || explicitResult.current) return;
@@ -200,6 +204,10 @@ export function useRoomFlow() {
     const onState = (event: RoomStateEvent) => {
       if (!active) return;
       const accepted = applyRoom(event.room);
+      if (event.appearanceWindow && socket.id) {
+        const connection = socket.id;
+        appearances.current.window(event.appearanceWindow, connection, () => socket.connected && socket.id === connection);
+      }
       if (accepted && event.change && !seenChanges.current.has(event.change.id)) {
         seenChanges.current.add(event.change.id);
         showActivity(event.change.kind === 'RECONNECTED' ? `${event.change.name} ha recuperado la conexión`

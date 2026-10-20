@@ -1,6 +1,8 @@
 export const appearanceThemes = ['LIGHT', 'DARK', 'CREAM', 'HIGH_CONTRAST'] as const;
 export type AppearanceTheme = typeof appearanceThemes[number];
 export type AppearanceValue = { theme: AppearanceTheme; origin: 'DEFAULT' | 'EXPLICIT' };
+export type AppearanceMoment = 'START' | 'END';
+export type AppearanceWindow = { gameId: string; moment: AppearanceMoment; token: string; expiresAt: number };
 export function appearanceValue(value: unknown): value is AppearanceValue {
   if (!value || typeof value !== 'object' || Array.isArray(value)) return false;
   const v = value as Record<string, unknown>;

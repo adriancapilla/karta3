@@ -7,6 +7,8 @@ export function PrivacyScreen() {
     <h1>Privacidad y analítica</h1><p>Versión {privacyNotice.version}</p>
     <h2>Quién y para qué</h2><p>Responsable: {privacyNotice.responsible}. Contacto: <a href={`mailto:${privacyNotice.contact}`}>{privacyNotice.contact}</a>.</p>
     <p>{privacyNotice.firstLayer}</p><p>{privacyNotice.minorCaution}</p>
+    <h2>Apariencia personal y fotografías de uso</h2>
+    <p>{privacyNotice.appearanceLocal}</p><p>{privacyNotice.appearanceCapture}</p>
     <h2>Datos y referencias temporales</h2>
     <p>Fechas, resultados de operaciones y configuración inicial: baraja/versiones, cantidades de humanos/bots por dificultad, anfitrión jugador/observador, tiempos, desempate y opciones compartidas de presentación. Sin servicio externo de analítica o seguimiento entre visitas.</p>
     <p>Las referencias aleatorias relacionan hechos permitidos de una visita, sala, partida o participación. La visita solo vive en memoria de la pestaña, cambia al recargar y tiene límites de treinta minutos sin un hecho permitido y doce horas. No se guarda en cookies o almacenamiento persistente del navegador ni crea un historial entre salas.</p>

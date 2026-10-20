@@ -22,6 +22,8 @@ for (const width of [390, 1280]) test(`H06 aviso factual ${width}: OFF,200/no-st
     for (const value of Object.values(privacyOperations)) await expect(page.locator('main')).toContainText(value);
     await expect(page.locator('main')).toContainText(privacyNotice.firstLayer);
     await expect(page.locator('main')).toContainText(privacyNotice.minorCaution);
+    await expect(page.locator('main')).toContainText(privacyNotice.appearanceLocal);
+    await expect(page.locator('main')).toContainText(privacyNotice.appearanceCapture);
     const text = (await page.locator('main').innerText()).replaceAll('\r\n', '\n') + '\n';
     expect(text).not.toMatch(/\[(DESTINATARIOS|COMPLETAR|PENDIENTE)|placeholder/);
     await page.getByRole('link', { name: 'Volver al juego', exact: true }).focus();
@@ -33,7 +35,7 @@ for (const width of [390, 1280]) test(`H06 aviso factual ${width}: OFF,200/no-st
     const alternate = await page.request.get(`${server.base}/PRIVACIDAD/`);
     expect(alternate.status()).toBe(200); expect(alternate.headers()['cache-control']).toBe('no-store');
     expect(alternate.headers()['set-cookie']).toBeUndefined();
-    const folder = 'playwright-report/b19/aviso-final'; await fs.mkdir(folder, { recursive: true });
+    const folder = 'playwright-report/b20/aviso-final'; await fs.mkdir(folder, { recursive: true });
     await fs.writeFile(`${folder}/aviso-${width}.txt`, text, 'utf8');
     await fs.writeFile(`${folder}/medidas-${width}.json`, JSON.stringify({ width, noticeVersion: privacyNotice.version,
       sha256: createHash('sha256').update(text).digest('hex'), status: response?.status(), cache: response?.headers()['cache-control'],

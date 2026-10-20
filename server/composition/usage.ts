@@ -63,12 +63,12 @@ export async function createUsageRuntime(informationReady = false, time?: { cloc
     const bootRef = randomUUID();
     writer = new SqliteUsageWorker({ ...location, bootRef, now: Math.floor(clock.now().unix), collecting: enabled, existingOnly: !enabled,
       warning: (code) => console.error(`USAGE_${location.environment}_${code}`), backupDirectory, backupKey,
-      requireBackup: mode === 'human' && enabled, consentRequired: mode === 'human' });
+      requireBackup: mode === 'human' && enabled, consentRequired: mode === 'human', appearanceInstrumentation: enabled });
     await writer.ready;
     const activeWriter = writer;
     if (!enabled) return { ...disabled, close: async () => { choices.dispose(); await activeWriter.close(); } };
     capturesHuman = mode === 'human';
-    const recorder = new UsageRecording(activeWriter, clock, randomUUID, location.environment, traffic, bootRef, capturesHuman ? choices : undefined);
+    const recorder = new UsageRecording(activeWriter, clock, randomUUID, location.environment, traffic, bootRef, capturesHuman ? choices : undefined, () => activeWriter.isCollecting(), scheduler);
     return { recorder, http: { get enabled() { return activeWriter.isCollecting(); }, mode: mode as 'human' | 'synthetic', recorder,
       admission: new UsageAdmission(), choices }, choices, close: async () => { choices.dispose(); await activeWriter.close(); } };
   } catch { await writer?.close(); console.error('USAGE_STORAGE_UNAVAILABLE'); return disabled; }

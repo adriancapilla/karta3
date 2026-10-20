@@ -9,7 +9,7 @@ import { backupUsage, cleanUsageTemporaries, pruneUsageBackups } from './backups
 import { acquirePrivateLease, withPrivateExport } from './privateFiles.js';
 
 type Options = { file: string; environment: UsageEnvironment; traffic: UsageTraffic; bootRef?: string; now: number; backupDirectory?: string; backupKey?: string;
-  limits: { databaseBytes: number; walBytes: number; reserveBytes: number }; existingOnly?: boolean; readOnly?: boolean; writerToken: string; collecting: boolean; requireBackup?: boolean; consentRequired?: boolean };
+  limits: { databaseBytes: number; walBytes: number; reserveBytes: number }; existingOnly?: boolean; readOnly?: boolean; writerToken: string; collecting: boolean; requireBackup?: boolean; consentRequired?: boolean; appearanceInstrumentation?: boolean };
 const options = workerData as Options;
 let store: SqliteUsageStore | SqliteUsageReader;
 let releaseWriter: (() => void) | undefined;
@@ -81,7 +81,7 @@ try {
   else {
     fs.mkdirSync(path.dirname(options.file), { recursive: true, mode: 0o700 });
     releaseWriter = acquirePrivateLease(path.join(path.dirname(options.file), '.writer.lock'), options.writerToken);
-    store = new SqliteUsageStore(options.file, options.environment, options.now, options.bootRef, options.traffic, options.collecting, options.consentRequired);
+    store = new SqliteUsageStore(options.file, options.environment, options.now, options.bootRef, options.traffic, options.collecting, options.consentRequired, options.appearanceInstrumentation);
     budget(); await maintain(options.now); schedule();
   }
   parentPort!.postMessage({ ready: true });

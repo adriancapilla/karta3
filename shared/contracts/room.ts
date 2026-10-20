@@ -97,6 +97,6 @@ export type ErrorResponse = { error: { code: PublicErrorCode; message: string } 
 
 export type SocketAck<T> = { ok: true } & T | { ok: false; error: ErrorResponse['error'] };
 export type RoomChange = { id: string; kind: 'LEFT' | 'RECONNECTED' | 'PRESENCE_EXPIRED' | 'BOT_REMOVED'; participantId: string; name: string };
-export type RoomStateEvent = { room: RoomView; change?: RoomChange };
+export type RoomStateEvent = { room: RoomView; change?: RoomChange; appearanceWindow?: import('./appearance.js').AppearanceWindow };
 export type RoomLeftEvent = { roomId: string; participantId: string; reason?: 'VOLUNTARY' | 'RECONNECT_TIMEOUT' };
 export type RoomClosedEvent = { roomId: string; revision: number; reason: 'HOST_CLOSED' | 'HOST_DISCONNECTED' | 'INACTIVITY' };

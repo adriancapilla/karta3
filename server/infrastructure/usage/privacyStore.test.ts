@@ -83,6 +83,6 @@ it('migración v1 sin reinterpretar eventos y lector de copia v2 compatible, sin
   store.db.prepare('UPDATE metadata SET value=? WHERE id=1').run(JSON.stringify(metadata)); store.db.exec('DROP TABLE usage_choice_proofs'); store.close();
   const migrated = new SqliteUsageStore(path.join(root, 'usage.sqlite'), 'test', at + 1000); stores.push(migrated);
   expect(JSON.parse(String(migrated.db.prepare('SELECT payload FROM events').get()!.payload))).toEqual(fact);
-  expect(JSON.parse(String(migrated.db.prepare('SELECT value FROM metadata WHERE id=1').get()!.value)).version).toBe(2);
+  expect(JSON.parse(String(migrated.db.prepare('SELECT value FROM metadata WHERE id=1').get()!.value)).version).toBe(3);
   expect(migrated.db.prepare('SELECT count(*) n FROM usage_choice_proofs').get()?.n).toBe(0);
 });

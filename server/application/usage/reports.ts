@@ -1,4 +1,5 @@
 import { reports, UsageError, type Aggregate, type UsageFilter, type UsageQuality, type UsageReport, type UsageTraffic } from './contracts.js';
+import { appearanceCsv, appearanceReport } from './appearanceReport.js';
 
 export function validateUsageFilter(filter: UsageFilter, environment: string) {
   if (filter.environment !== environment) throw new UsageError('ENVIRONMENT_MISMATCH');
@@ -16,11 +17,12 @@ export function mergeAggregates(rows: readonly Aggregate[]): Aggregate[] {
   }
   return [...result.values()].sort((a, b) => JSON.stringify(a).localeCompare(JSON.stringify(b), 'en'));
 }
-export function usageReport(filter: UsageFilter, inputQuality: UsageQuality, inputs: readonly Aggregate[], traffic: UsageTraffic = 'HUMAN'): UsageReport {
+export function usageReport(filter: UsageFilter, inputQuality: UsageQuality, inputs: readonly Aggregate[], traffic: UsageTraffic = 'HUMAN', instrumentedFrom: number | null = null): UsageReport {
   const rows = mergeAggregates(inputs.filter((row) => row.report === filter.report));
   const uncertain = rows.some((row) => row.count > 0 && /UNRESOLVED|LOST_ON_RESTART/.test(row.metric));
   const censored = rows.some((row) => row.count > 0 && /CENSORED|AT_BACKUP/.test(row.metric));
   const quality = { ...inputQuality, possibleLoss: inputQuality.possibleLoss || uncertain, partialCoverage: inputQuality.partialCoverage || censored };
+  if (filter.report === 'appearance') return appearanceReport(filter, quality, rows, traffic, instrumentedFrom);
   const count = (metric: string) => rows.filter((row) => row.metric === metric).reduce((sum, row) => sum + row.count, 0);
   let numerator = 0; let denominator = 0;
   switch (filter.report) {
@@ -44,6 +46,7 @@ export function usageReport(filter: UsageFilter, inputQuality: UsageQuality, inp
 }
 /** CSV nunca contiene detalle o IDs; evita fórmulas incluso en texto futuro validado. */
 export function usageCsv(report: UsageReport): string {
+  if (report.report === 'appearance') return appearanceCsv(report);
   const cell = (value: unknown) => '"' + String(value ?? '').replace(/^[=+@\-\t\r]/, "'$&").replaceAll('"', '""') + '"';
   const header = ['report', 'dimension', 'metric', 'count', 'sum', 'min', 'max', 'numerator', 'denominator', 'percentage', 'meanDurationMs',
     'from', 'to', 'environment', 'traffic', 'asOf', 'coverageFrom', 'collection', 'possibleLoss', 'conflicts', 'unlinked', 'partialCoverage', 'aggregatesOnly',

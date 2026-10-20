@@ -79,6 +79,7 @@ async function player(base) {
     assert.equal(result.status, 200); const selected = await result.json(); assert.equal(selected.decision, decision); return selected;
   };
   const socket = io(base, { transports: ['websocket'], extraHeaders: { Cookie: cookie, Origin: origin }, reconnection: false, timeout: 5000 });
+  const windows = []; socket.on('room:state', event => { if (event.appearanceWindow) windows.push(event.appearanceWindow); });
   sockets.add(socket); await new Promise((resolve, reject) => { socket.once('connect', resolve); socket.once('connect_error', reject); });
   const send = async (name, data) => { const result = await socket.timeout(5000).emitWithAck(name, { requestId: randomUUID(), ...data }); assert.equal(result.ok, true); return result; };
   const createGame = async () => {
@@ -90,7 +91,7 @@ async function player(base) {
     const started = await send('room:start', { roomId: room.id });
     assert.equal(started.room.status, 'IN_GAME'); return started.room;
   };
-  return { headers, cookie, socket, choice, decide, createGame, current: async () => (await globalThis.fetch(base + '/api/rooms/current', { headers })).json() };
+  return { headers, cookie, socket, windows, choice, decide, createGame, current: async () => (await globalThis.fetch(base + '/api/rooms/current', { headers })).json() };
 }
 async function report(name, location = root) {
   const now = new Date();
@@ -138,10 +139,28 @@ server.listen(0,'127.0.0.1',()=>console.log('KARTA3: http://127.0.0.1:'+server.a
   legacy.db.prepare('UPDATE metadata SET value=? WHERE id=1').run(JSON.stringify(metadata)); legacy.db.exec('DROP TABLE usage_choice_proofs'); legacy.close();
   stage = 'choice-withdrawal';
   let server = await start();
-  assert.equal(snapshot().metadata.version, 2); assert.deepEqual(snapshot().events.find(event => event.eventId === fact.eventId), fact);
+  assert.equal(snapshot().metadata.version, 3); assert.deepEqual(snapshot().events.find(event => event.eventId === fact.eventId), fact);
   const host = await player(server.base); assert.equal((await host.choice()).available, true);
   await host.decide('ACCEPTED'); const game = await host.createGame();
   await until(() => snapshot().events.some(event => event.name === 'game_started'));
+  stage = 'appearance-live-window';
+  await until(() => host.windows.some(window => window.gameId === game.game.id && window.moment === 'START'));
+  const opportunity = host.windows.find(window => window.gameId === game.game.id && window.moment === 'START');
+  const photo = { eventId: randomUUID(), version: 1, visitId: randomUUID(), name: 'appearance_snapshot',
+    data: { gameId: game.game.id, moment: 'START', windowToken: opportunity.token, theme: 'LIGHT', origin: 'DEFAULT' } };
+  const photograph = event => globalThis.fetch(server.base + '/api/usage/events', { method: 'POST', headers: host.headers, body: JSON.stringify(event) });
+  assert.equal((await photograph(photo)).status, 202);
+  assert.equal((await photograph(photo)).status, 204);
+  assert.equal((await photograph({ ...photo, data: { ...photo.data, theme: 'DARK', origin: 'EXPLICIT' } })).status, 400);
+  assert.equal((await photograph({ ...photo, eventId: randomUUID(), data: { ...photo.data, theme: 'DARK', origin: 'EXPLICIT' } })).status, 204);
+  await until(() => snapshot().events.some(event => event.name === 'appearance_snapshot'));
+  const normalized = snapshot().events.find(event => event.name === 'appearance_snapshot');
+  assert.deepEqual(Object.keys(normalized.data).sort(), ['gameRef', 'moment', 'origin', 'participationRef', 'roomRef', 'theme']);
+  for (const excluded of [opportunity.token, game.game.id, game.id, host.cookie.split('=')[1]]) assert(!JSON.stringify(normalized).includes(excluded));
+  const liveAppearance = await report('appearance'); assert.equal(liveAppearance.population.withStart, 1); assert.equal(liveAppearance.population.withEnd, 0);
+  assert.equal(liveAppearance.start.find(row => row.origin === 'DEFAULT').percentage, 100);
+  const windowCount = host.windows.length; await host.current(); assert.equal(host.windows.length, windowCount);
+  stage = 'choice-withdrawal';
   assert.equal(snapshot().proofs.length, 1);
   const sensitive = [host.cookie.split('=')[1], game.id, game.game.id, ...snapshot().events.map(event => event.eventId), ...snapshot().proofs.map(proof => proof.proof_ref)];
   await host.decide('REJECTED');
@@ -183,7 +202,7 @@ server.listen(0,'127.0.0.1',()=>console.log('KARTA3: http://127.0.0.1:'+server.a
   await maintenance('backup');
   const copies = (await fs.readdir(directory + '/backups')).filter(name => name.endsWith('.agg.enc')); assert.equal(copies.length, 1);
   const source = directory + '/backups/' + copies[0]; await maintenance('restore', restoredRoot, source);
-  const restored = snapshot(restoredRoot + '/pruebas/human/usage.sqlite'); assert.equal(restored.metadata.version, 2);
+  const restored = snapshot(restoredRoot + '/pruebas/human/usage.sqlite'); assert.equal(restored.metadata.version, 3);
   assert.equal(restored.events.length, 0); assert.equal(restored.subjects.length, 0); assert.equal(restored.proofs.length, 0);
   const reportBefore = await report('completion'); const reportAfter = await report('completion', restoredRoot);
   // Aggregate tiene siete campos. Las contribuciones vivas incluyen además at/traffic;
@@ -192,6 +211,10 @@ server.listen(0,'127.0.0.1',()=>console.log('KARTA3: http://127.0.0.1:'+server.a
     ({ report, dimension, metric, count, sum, min, max }))
     .sort((a, b) => JSON.stringify([a.report, a.dimension, a.metric]).localeCompare(JSON.stringify([b.report, b.dimension, b.metric]), 'en'));
   assert.deepEqual(aggregateRows(reportAfter.rows), aggregateRows(reportBefore.rows));
+  const appearanceBefore = await report('appearance'); const appearanceAfter = await report('appearance', restoredRoot);
+  assert.deepEqual(appearanceAfter.population, appearanceBefore.population);
+  assert.deepEqual(appearanceAfter.start, appearanceBefore.start); assert.deepEqual(appearanceAfter.transitions, appearanceBefore.transitions);
+  for (const value of sensitive) assert(!JSON.stringify(appearanceAfter).includes(value));
   for (const field of ['numerator', 'denominator', 'percentage', 'meanDurationMs']) assert.equal(reportAfter[field], reportBefore[field]);
   assert.equal(reportAfter.percentage, null);
   for (const value of sensitive) assert(!JSON.stringify(reportAfter).includes(value));
@@ -199,7 +222,8 @@ server.listen(0,'127.0.0.1',()=>console.log('KARTA3: http://127.0.0.1:'+server.a
   for (const proof of snapshot().proofs) assert(!restoredBytes.includes(Buffer.from(proof.proof_ref)));
   server = await start({ location: restoredRoot }); const aggregate = await player(server.base); assert.equal((await aggregate.choice()).available, false); aggregate.socket.disconnect(); await server.stop();
   console.log(JSON.stringify({ fixture: 'HUMAN fabricado aislado, no aviso final ni activación pública', node: process.version, sqlite: process.versions.sqlite, uid: process.getuid(),
-    rootReadOnly: true, secretFileReadOnly: true, privateVolume: true, schemaMigration: '1->2', legacyEventUnchanged: true,
+    rootReadOnly: true, secretFileReadOnly: true, privateVolume: true, schemaMigration: '1->3', legacyEventUnchanged: true,
+    appearanceLiveWindow: true, appearanceFirstAdmissionWins: true, appearanceNormalizedPrivate: true, appearanceAggregatesRestored: true,
     choiceDurable: true, withdrawalBarrier: true, censoredWithoutEndingGame: true, postWithdrawalBlocked: true,
     controlledStop: true, compatibleOffSameVolume: true, ramPermissionLost: true, incompleteReadinessBlocked: true,
     noticeComplete: privacyNotice.complete, normalOffOrIncompleteHumanBlocked: true, missingKeyMaintenance: true, privateRoutes: 7, aggregateRestoreIsolatedVolume: true,

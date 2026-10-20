@@ -42,6 +42,7 @@ export function createRuntime(options: Options = {}) {
   const changes = new SocketRoomChanges();
   const clock = options.clock ?? new SystemClock(); const scheduler = options.scheduler ?? new TimerScheduler();
   const usage = options.usage ?? disabledUsage;
+  usage.connectAppearance(changes);
   const choices = options.usageChoices ?? options.usageHttp?.choices
     ?? new UsageChoices(nullUsagePrivacyStore, clock, scheduler, createId, drawChoiceRevision, USAGE_NOTICE_VERSION, () => false);
   const unsubscribeChoice = choices.subscribe((session, choice) => changes.choice(session, choice));
@@ -55,9 +56,9 @@ export function createRuntime(options: Options = {}) {
   const production = options.production ?? process.env.NODE_ENV === 'production';
   return {
     app: createHttpApp({ rooms, sessions, production, decks: new ListDecks(options.decks ?? emptyCatalog), usage: options.usageHttp, choices }),
-    attachRealtime: (server: HttpServer) => changes.attach(server, rooms, sessions, production),
+    attachRealtime: (server: HttpServer) => changes.attach(server, rooms, sessions, production, usage),
     controlledStop: () => { for (const room of repository.allActive()) if (room.status === 'IN_GAME') usage.ended(room, true); },
-    dispose: () => { unsubscribeChoice(); if (!options.usageChoices && !options.usageHttp?.choices) choices.dispose(); changes.dispose(); coordinator.dispose(); }
+    dispose: () => { unsubscribeChoice(); if (!options.usageChoices && !options.usageHttp?.choices) choices.dispose(); usage.appearance?.dispose(); changes.dispose(); coordinator.dispose(); }
   };
 }
 

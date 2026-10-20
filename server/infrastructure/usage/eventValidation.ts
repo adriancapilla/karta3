@@ -1,4 +1,5 @@
 import { browserUsage, usageKeys, usageUuid } from '../../../shared/contracts/usage.js';
+import { appearanceValue } from '../../../shared/contracts/appearance.js';
 import { discardReasons, joinReasons, type UsageEvent, type UsageHealth, type UsagePrivacyControl } from '../../application/usage/contracts.js';
 
 const number = (v: unknown) => Number.isSafeInteger(v) && Number(v) >= 0;
@@ -33,6 +34,10 @@ export function validUsageEvent(value: UsageEvent): boolean {
   if (!usageKeys(e, ['eventId', 'version', 'source', 'environment', 'traffic', 'occurredAt', 'receivedAt', 'bootRef', 'name', 'data', ...(browser ? ['visitId'] : [])])
     || !usageUuid(e.eventId) || e.version !== 1 || !usageUuid(e.bootRef) || !number(e.occurredAt) || !number(e.receivedAt)
     || !['development', 'test', 'pruebas', 'production'].includes(e.environment) || !['HUMAN', 'SYNTHETIC'].includes(e.traffic)) return false;
+  if (browser && e.name === 'appearance_snapshot') return usageUuid(e.visitId)
+    && usageKeys(d, ['roomRef', 'gameRef', 'participationRef', 'moment', 'theme', 'origin'])
+    && uuidFields(d, ['roomRef', 'gameRef', 'participationRef']) && ['START', 'END'].includes(String(d.moment))
+    && appearanceValue({ theme: d.theme, origin: d.origin });
   if (browser) return !!browserUsage({ eventId: e.eventId, version: 1, visitId: e.visitId, name: e.name, data: e.data });
   if (e.source !== 'SERVER' || !d || typeof d !== 'object') return false;
   const context = Object.hasOwn(d, 'visitId') || Object.hasOwn(d, 'intentId');

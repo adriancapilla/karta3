@@ -39,14 +39,14 @@ function visitId() {
   if (!visit || now - visit.last >= 30 * 60_000 || now - visit.born >= 12 * 60 * 60_000) visit = { id: crypto.randomUUID(), born: now, last: now };
   visit.last = now; return visit.id;
 }
-function record(event: BrowserUsageEvent) {
+function record(event: BrowserUsageEvent, valid: () => boolean = () => true) {
   const born = Date.now();
   const eventGeneration = generation;
   const post = async (retry: boolean) => {
-    if (!enabled || generation !== eventGeneration || Date.now() - born > 10_000) return;
+    if (!enabled || generation !== eventGeneration || Date.now() - born > 10_000 || !valid()) return;
     const ticket = usageSignalTicket();
     let retryable: boolean;
-    try { const result = await fetch('/api/usage/events', { method: 'POST', credentials: mode === 'human' ? 'same-origin' : 'omit', keepalive: true,
+    try { const result = await fetch('/api/usage/events', { method: 'POST', credentials: mode === 'human' || event.name === 'appearance_snapshot' ? 'same-origin' : 'omit', keepalive: true,
       headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(event) });
       configureBrowserUsage(result.headers.get('X-Karta3-Usage-Collection'), ticket); retryable = result.status >= 500; }
     catch { retryable = true; }
@@ -55,6 +55,10 @@ function record(event: BrowserUsageEvent) {
     }
   };
   void post(true);
+}
+export function recordAppearance(data: Extract<BrowserUsageEvent, { name: 'appearance_snapshot' }>['data'], valid: () => boolean) {
+  if (!enabled || !valid()) return;
+  record({ eventId: crypto.randomUUID(), version: 1, visitId: visitId(), name: 'appearance_snapshot', data }, valid);
 }
 export function usageHome(visible: boolean) {
   if (!visible) { homeVisible = false; observedHome = false; leftInitialRoute = true; return; }

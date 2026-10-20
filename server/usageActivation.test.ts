@@ -13,7 +13,7 @@ import { loadInstallationDecks } from './composition/decks.js';
 import { privateDirectory } from './infrastructure/usage/privateFiles.js';
 import type { SqliteUsageWorker } from './infrastructure/usage/sqliteWorker.js';
 import type { UsageEvent } from './application/usage/contracts.js';
-import type { SocketAck, RoomResponse, CurrentRoomResponse } from '../shared/contracts/room.js';
+import type { SocketAck, RoomResponse, CurrentRoomResponse, RoomStateEvent } from '../shared/contracts/room.js';
 import { ControlledTime } from '../tests/support/controlledTime.js';
 
 const stops: (() => Promise<void>)[] = [];
@@ -44,6 +44,7 @@ async function setup() {
       expect(accepted.status).toBe(200);
     }
     const socket = io(base, { transports: ['websocket'], extraHeaders: { Cookie: cookie, Origin: base } }); sockets.push(socket);
+    const states: RoomStateEvent[] = []; socket.on('room:state', value => states.push(value));
     await new Promise<void>(resolve => socket.once('connect', resolve));
     const send = (event: string, payload: object) => socket.emitWithAck(event, payload) as Promise<SocketAck<RoomResponse>>;
     const current = async () => {
@@ -55,7 +56,7 @@ async function setup() {
       const state = await choice(); return fetch(base + '/api/usage/choice', { method: 'PUT', headers: { Cookie: cookie, Origin: base, 'Content-Type': 'application/json' },
         body: JSON.stringify({ decision, noticeVersion: state.noticeVersion, expectedRevision: state.revision, requestId: randomUUID(), ...extra }) });
     };
-    return { cookie, socket, send, current, choice, decide };
+    return { cookie, socket, states, send, current, choice, decide };
   };
   const file = path.join(data, 'pruebas', 'human', 'usage.sqlite');
   const events = () => { const db = new DatabaseSync(file, { readOnly: true }); try {
@@ -218,4 +219,63 @@ it('H06 elección limita ráfaga por sesión sin impedir crear sala cuando se ag
   for (let count = 0; count < 10; count++) expect((await host.decide('REJECTED')).status).toBe(200);
   expect((await host.decide('REJECTED')).status).toBe(429);
   expect((await f.post('/api/rooms', {}, host.cookie)).status).toBe(201); expect(f.events()).toEqual([]);
+});
+
+it('B20 HTTP/socket: ventanas privadas por conexión, dedupe, final A tras crear B y cuerpo normalizado', async () => {
+  const f = await setup(); const host = await f.player(); const tab = await f.player(host.cookie); const guest = await f.player(); const foreign = await f.player();
+  const created = await (await f.post('/api/rooms', {}, host.cookie)).json() as RoomResponse; const roomId = created.room.id;
+  await guest.send('room:join', { requestId: 'join-b20', code: created.room.code, name: 'Ensayo' });
+  await host.send('room:configure', { requestId: 'deck-b20', roomId, change: { field: 'deck', value: { id: 'generica', contentVersion: 4 } } });
+  const start = { requestId: 'start-b20', roomId }; const ack = await host.send('room:start', start);
+  expect(ack.ok).toBe(true); const playing = await host.current(); if (playing.status !== 'IN_GAME') throw Error('mesa esperada');
+  const window = (p: typeof host, moment: 'START' | 'END') => p.states.find(state => state.appearanceWindow?.moment === moment)?.appearanceWindow;
+  await expect.poll(() => [host, tab, guest].every(p => !!window(p, 'START'))).toBe(true);
+  expect(window(host, 'START')!.token).not.toBe(window(tab, 'START')!.token);
+  expect('appearanceWindow' in ack).toBe(false); expect(JSON.stringify(ack)).not.toContain(window(host, 'START')!.token);
+  const photo = (p: typeof host, moment: 'START' | 'END', theme = 'LIGHT', origin = 'DEFAULT') => ({ eventId: randomUUID(), visitId: randomUUID(), version: 1,
+    name: 'appearance_snapshot', data: { gameId: playing.game.id, moment, windowToken: window(p, moment)!.token, theme, origin } });
+  const input = photo(host, 'START');
+  expect((await f.post('/api/usage/events', input, foreign.cookie)).status).toBe(403);
+  expect((await f.post('/api/usage/events', { ...input, data: { ...input.data, theme: 'DARK' } }, host.cookie)).status).toBe(400);
+  expect((await f.post('/api/usage/events', input, host.cookie)).status).toBe(202);
+  expect((await f.post('/api/usage/events', input, host.cookie)).status).toBe(204);
+  expect((await f.post('/api/usage/events', { ...input, data: { ...input.data, theme: 'CREAM', origin: 'EXPLICIT' } }, host.cookie)).status).toBe(400);
+  expect((await f.post('/api/usage/events', photo(tab, 'START', 'DARK', 'EXPLICIT'), tab.cookie)).status).toBe(204);
+  expect((await f.post('/api/usage/events', photo(guest, 'START', 'CREAM', 'EXPLICIT'), guest.cookie)).status).toBe(202);
+  const before = host.states.length; await tab.send('room:start', start); await host.send('room:resume', {});
+  expect(host.states.slice(before).some(state => state.appearanceWindow?.moment === 'START')).toBe(false);
+  await host.send('game:cancel', { requestId: 'cancel-b20', roomId, gameId: playing.game.id });
+  await expect.poll(() => !!window(host, 'END')).toBe(true);
+  const next = await (await f.post('/api/rooms', {}, host.cookie)).json() as RoomResponse;
+  expect((await f.post('/api/usage/events', photo(host, 'END', 'LIGHT', 'EXPLICIT'), host.cookie)).status).toBe(202);
+  expect((await host.current()).id).toBe(next.room.id);
+  const guestEnd = photo(guest, 'END'); f.time.advance(10000);
+  expect((await f.post('/api/usage/events', guestEnd, guest.cookie)).status).toBe(204);
+  await expect.poll(() => f.events().filter(event => event.name === 'appearance_snapshot').length).toBe(3);
+  const photos = f.events().filter(event => event.name === 'appearance_snapshot');
+  for (const event of photos) expect(Object.keys(event.data).sort()).toEqual(['gameRef', 'moment', 'origin', 'participationRef', 'roomRef', 'theme']);
+  for (const excluded of [playing.game.id, roomId, host.cookie, input.data.windowToken, 'Ensayo', 'hand', 'windowToken', 'gameId']) expect(JSON.stringify(photos)).not.toContain(excluded);
+});
+
+it('B20 desconexión/retirada y escritor indisponible no reabren ventana ni bloquean acciones de juego', async () => {
+  const f = await setup(); const host = await f.player(); const guest = await f.player();
+  const created = await (await f.post('/api/rooms', {}, host.cookie)).json() as RoomResponse; const roomId = created.room.id;
+  await guest.send('room:join', { requestId: 'join-b20-lost', code: created.room.code, name: 'Ensayo' });
+  await host.send('room:configure', { requestId: 'deck-b20-lost', roomId, change: { field: 'deck', value: { id: 'generica', contentVersion: 4 } } });
+  await host.send('room:start', { requestId: 'start-b20-lost', roomId });
+  const playing = await host.current(); if (playing.status !== 'IN_GAME') throw Error('mesa esperada');
+  await expect.poll(() => !!guest.states.find(state => state.appearanceWindow)).toBe(true);
+  const photo = (p: typeof host) => ({ eventId: randomUUID(), visitId: randomUUID(), version: 1, name: 'appearance_snapshot',
+    data: { gameId: playing.game.id, moment: 'START', windowToken: p.states.find(state => state.appearanceWindow)!.appearanceWindow!.token, theme: 'LIGHT', origin: 'DEFAULT' } });
+  const guestPhoto = photo(guest); guest.socket.disconnect();
+  const returned = await f.player(guest.cookie);
+  expect((await f.post('/api/usage/events', guestPhoto, returned.cookie)).status).toBe(204);
+  const writer = (f.usage.recorder as unknown as { sink: SqliteUsageWorker }).sink;
+  const admission = vi.spyOn(writer, 'tryRecord').mockReturnValue(false);
+  expect((await f.post('/api/usage/events', photo(host), host.cookie)).status).toBe(503); admission.mockRestore();
+  await host.decide('REJECTED');
+  expect((await f.post('/api/usage/events', photo(host), host.cookie)).status).toBe(204);
+  const cancelled = await host.send('game:cancel', { requestId: 'cancel-b20-lost', roomId, gameId: playing.game.id });
+  expect(cancelled.ok).toBe(true); if (!cancelled.ok) throw Error('cancelación esperada');
+  expect(cancelled.room.status).toBe('RESULTS'); expect(f.events().filter(event => event.name === 'appearance_snapshot')).toEqual([]);
 });

@@ -1,4 +1,8 @@
 import type { BrowserUsageEvent, UsageContext } from '../../../shared/contracts/usage.js';
+import type { AppearanceMoment, AppearanceValue } from '../../../shared/contracts/appearance.js';
+export type AppearanceRequest = Extract<BrowserUsageEvent, { name: 'appearance_snapshot' }>;
+export type AppearanceFact = { eventId: string; version: 1; visitId: string; name: 'appearance_snapshot';
+  data: { roomRef: string; gameRef: string; participationRef: string; moment: AppearanceMoment } & AppearanceValue };
 export type UsageEnvironment = 'development' | 'test' | 'pruebas' | 'production';
 export type UsageTraffic = 'HUMAN' | 'SYNTHETIC';
 export type UsageConfiguration = {
@@ -23,9 +27,9 @@ export type ServerUsageFact =
   | { name: 'game_ended'; data: { roomRef: string; gameRef: string; reason: EndReason; durationMs: number; evidence: 'GAME_RESULT' | 'CONTROLLED_SERVER_STOP' } };
 export type UsageEvent = { eventId: string; version: 1; environment: UsageEnvironment; traffic: UsageTraffic;
   occurredAt: number; receivedAt: number; bootRef: string } & (
-    { source: 'SERVER' } & ServerUsageFact | { source: 'BROWSER' } & BrowserUsageEvent
+    { source: 'SERVER' } & ServerUsageFact | { source: 'BROWSER' } & (Exclude<BrowserUsageEvent, AppearanceRequest> | AppearanceFact)
   );
-export const reports = ['access', 'creation', 'joining', 'room-conversion', 'configuration', 'duration', 'completion', 'automatic'] as const;
+export const reports = ['access', 'creation', 'joining', 'room-conversion', 'configuration', 'duration', 'completion', 'automatic', 'appearance'] as const;
 export type UsageReportName = typeof reports[number];
 export type UsageFilter = { report: UsageReportName; from: number; to: number; environment: UsageEnvironment };
 export type Aggregate = { report: UsageReportName; dimension: string; metric: string; count: number; sum: number; min: number | null; max: number | null };
@@ -36,12 +40,19 @@ export type UsageHealth = { at: number; enabled: boolean; degraded: boolean; pau
 export type UsageQuality = { coverageFrom: number; asOf: number; possibleLoss: boolean; conflicts: number; unlinked: number;
   lastDurableAt: number | null; lastMaintenanceAt: number | null; restoredAggregatesOnly: boolean; partialCoverage: boolean;
   lastBackupAt: number | null; collection: 'enabled' | 'disabled' | 'degraded'; operational: UsageHealth | null; operationalStale: boolean };
-export type UsageReport = { version: 1; traffic: UsageTraffic; filter: UsageFilter; quality: UsageQuality; rows: Aggregate[];
+export type StandardUsageReport = { report?: never; version: 1; traffic: UsageTraffic; filter: UsageFilter; quality: UsageQuality; rows: Aggregate[];
   numerator: number; denominator: number; percentage: number | null; meanDurationMs: number | null; provisional: boolean };
+export type AppearanceCount = AppearanceValue & { count: number; denominator: number; percentage: number | null };
+export type AppearanceReport = { report: 'appearance'; version: 1; traffic: UsageTraffic; filter: UsageFilter; cohort: 'GAME_STARTED';
+  quality: UsageQuality & { instrumentedFrom: number | null }; rows: Aggregate[]; provisional: boolean;
+  population: { eligible: number; withStart: number; withEnd: number; paired: number; onlyStart: number; onlyEnd: number; neither: number; pending: number; notInstrumented: number };
+  start: AppearanceCount[]; end: AppearanceCount[]; transitions: { from: AppearanceValue; to: AppearanceValue; count: number; denominator: number; percentage: number | null }[];
+  numerator?: never; denominator?: never; percentage?: never; meanDurationMs?: never };
+export type UsageReport = StandardUsageReport | AppearanceReport;
 export type UsageErrorCode = 'INVALID_FILTER' | 'ENVIRONMENT_MISMATCH' | 'INSUFFICIENT_DETAIL' | 'COLLECTION_DISABLED'
   | 'STORAGE_UNAVAILABLE' | 'REPORT_TIMEOUT' | 'NOT_AUTHORIZED';
 export class UsageError extends Error { constructor(readonly code: UsageErrorCode) { super(code); } }
-/** Contexto de admisión RAM, ajeno al payload/ids de los nueve eventos. Nunca se reactiva. */
+/** Contexto de admisión RAM, ajeno al payload/ids estadísticos. Nunca se reactiva. */
 export type UsageScope = { active: boolean };
 export type UsagePrivacyControl =
   | { kind: 'accept'; proof: { proofRef: string; noticeVersion: string; acceptedAt: number; validUntil: number } }

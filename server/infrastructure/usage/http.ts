@@ -71,6 +71,11 @@ export function attachUsageHttp(app: Express, usage: UsageHttp | undefined, prod
     const session = sessions.current(req);
     if (!usage?.enabled || usage.mode === 'human' && !choices.scope(session ?? '')) { res.status(204).end(); return; }
     if (!usage.admission.admit(event.visitId)) { res.status(429).end(); return; }
+    if (event.name === 'appearance_snapshot') {
+      if (!session) { res.status(401).end(); return; }
+      const result = usage.recorder.appearanceSnapshot(event, session);
+      res.status(result === 'ADMITTED' ? 202 : result === 'FORBIDDEN' ? 403 : result === 'CONFLICT' ? 400 : result === 'UNAVAILABLE' ? 503 : 204).end(); return;
+    }
     res.status(usage.recorder.browser(event, session) ? 202 : 503).end();
   });
   app.use('/api/usage', (error: unknown, _req: express.Request, res: express.Response, next: express.NextFunction) => {

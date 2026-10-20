@@ -18,7 +18,7 @@
  --control:#25354c;--control-text:#eef3fb;--control-line:#8097b9;
  --detail:#fff;--detail-text:#182b58;--detail-line:#182b58;
  --link:#bcd8ff;--focus:#ffbd66;--card-focus:#182b58;--note:#263950;--scrim:#000000c7;
- --error-bg:#452c36;--error-text:#ffced5;--success-bg:#203f38;--success-text:#c2f2d9
+ --error-bg:var(--note);--error-text:var(--text);--success-bg:var(--note);--success-text:var(--text)
 }
 :root[data-appearance=CREAM]{
  --page:#eee4d4;--text:#392f25;--muted:#6c5c4c;--panel:#fff9ef;--panel-line:#cbbcaa;

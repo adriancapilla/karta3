@@ -23,6 +23,12 @@ it('solo un reintento en memoria conserva eventId; apagado no genera intención 
   expect(fetch).toHaveBeenCalledTimes(2); expect(fetch.mock.calls[0][1].body).toBe(fetch.mock.calls[1][1].body);
   usage.configureBrowserUsage(null); expect(usage.beginUsageIntent('create')).toBeUndefined(); expect(fetch).toHaveBeenCalledTimes(2);
 });
+it('fotografía sintética autentica la conexión funcional; otras intenciones sintéticas no adjuntan credencial', async () => {
+  const { usage, fetch } = await setup(); usage.beginUsageIntent('create');
+  expect(fetch.mock.calls[0][1].credentials).toBe('omit');
+  usage.recordAppearance({ gameId: 'game', windowToken: crypto.randomUUID(), moment: 'START', theme: 'LIGHT', origin: 'DEFAULT' }, () => true);
+  expect(fetch.mock.calls[1][1].credentials).toBe('same-origin');
+});
 it.each([null, 'off', '', 'HUMAN', 'unknown'])('OFF %s cancela reintento, visita y contextos; respuesta positiva vieja no reactiva', async (signal) => {
   const { usage, fetch } = await setup(); const uuid = vi.spyOn(crypto, 'randomUUID');
   fetch.mockRejectedValue(new Error('network'));

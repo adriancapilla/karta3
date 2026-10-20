@@ -13,7 +13,7 @@ export { DETAIL_MS, month, firstMonth } from './schema.js';
 export class SqliteUsageStore {
   readonly db: DatabaseSync;
   private metadata: Metadata;
-  constructor(readonly file: string, readonly environment: UsageEnvironment, now: number, bootRef?: string, readonly traffic: UsageTraffic = 'SYNTHETIC', collecting = true, consentRequired = false) {
+  constructor(readonly file: string, readonly environment: UsageEnvironment, now: number, bootRef?: string, readonly traffic: UsageTraffic = 'SYNTHETIC', collecting = true, consentRequired = false, appearanceInstrumentation = false) {
     const existed = fs.existsSync(file);
     fs.mkdirSync(path.dirname(file), { recursive: true, mode: 0o700 });
     this.db = new DatabaseSync(file, { timeout: 100 });
@@ -24,10 +24,11 @@ export class SqliteUsageStore {
       this.metadata = existing ? JSON.parse(String(existing.value)) as Metadata : { environment, traffic, version: 1, coverageFrom: now, bootRef: null,
         clean: true, possibleLoss: false, conflicts: 0, unlinked: 0, lastDurableAt: null, lastMaintenanceAt: null, restoredAggregatesOnly: false, lastBackupAt: null, collectionEnabled: collecting };
       if (this.metadata.environment !== environment || this.metadata.traffic !== traffic) throw new UsageError('ENVIRONMENT_MISMATCH');
-      if (![1, 2].includes(this.metadata.version)) throw new UsageError('STORAGE_UNAVAILABLE');
+      if (![1, 2, 3].includes(this.metadata.version)) throw new UsageError('STORAGE_UNAVAILABLE');
       if (collecting && bootRef && this.metadata.restoredAggregatesOnly) throw new UsageError('STORAGE_UNAVAILABLE');
       this.metadata.collectionEnabled = collecting && !this.metadata.restoredAggregatesOnly;
       if (consentRequired) this.metadata.consentRequired = true;
+      if (appearanceInstrumentation && collecting && bootRef) this.metadata.appearanceFrom ??= now;
       this.db.exec(`PRAGMA journal_mode=WAL; PRAGMA synchronous=FULL; PRAGMA foreign_keys=ON; PRAGMA secure_delete=ON;
         PRAGMA journal_size_limit=67108864; PRAGMA max_page_count=131072;
         CREATE TABLE IF NOT EXISTS events (id TEXT PRIMARY KEY, logical TEXT UNIQUE NOT NULL, at INTEGER NOT NULL, signature TEXT NOT NULL, payload TEXT NOT NULL) STRICT;
@@ -42,7 +43,7 @@ export class SqliteUsageStore {
         CREATE TABLE IF NOT EXISTS usage_choice_proofs (proof_ref TEXT PRIMARY KEY, notice_version TEXT NOT NULL,
           accepted_at INTEGER NOT NULL, valid_until INTEGER NOT NULL, withdrawn_at INTEGER, purge_at INTEGER NOT NULL) STRICT;
         CREATE INDEX IF NOT EXISTS usage_choice_proofs_expiry ON usage_choice_proofs(purge_at);`);
-      this.metadata.version = 2;
+      this.metadata.version = 3;
       if (bootRef) {
         this.transaction(() => {
           if (this.metadata.bootRef !== bootRef) {
@@ -117,9 +118,15 @@ export class SqliteUsageStore {
           const room = d.roomRef ? this.get(`room:${d.roomRef}`) : undefined; const game = d.gameRef ? this.get(`game:${d.gameRef}`) : undefined;
           if (room?.kind === 'room' && room.state === 'OBSERVATION_CENSORED' || game?.kind === 'game' && game.state === 'OBSERVATION_CENSORED') continue;
         }
+        if (event.name === 'appearance_snapshot') {
+          const game = this.get(`game:${event.data.gameRef}`);
+          if (!game || game.kind !== 'game' || !game.appearance || !game.people.includes(event.data.participationRef)) { this.quality('unlinked', event.receivedAt); continue; }
+          if (game.state === 'OBSERVATION_CENSORED') continue;
+        }
         const logical = logicalKey(event); const signature = canonicalUsage([event.source, event.name, event.traffic,
           event.source === 'BROWSER' ? event.visitId : null, event.data]);
-        const previous = this.db.prepare('SELECT signature FROM events WHERE id=? OR logical=?').all(event.eventId, logical);
+        const previous = this.db.prepare('SELECT id,signature FROM events WHERE id=? OR logical=?').all(event.eventId, logical);
+        if (event.name === 'appearance_snapshot' && previous.length && previous.every(row => row.id !== event.eventId)) continue;
         if (previous.length) { if (previous.some((row) => row.signature !== signature)) this.quality('conflict', event.receivedAt); continue; }
         if (event.occurredAt <= (this.metadata.lastMaintenanceAt ?? 0) - DETAIL_MS) { this.quality('unlinked', event.receivedAt); continue; }
         this.db.prepare('INSERT INTO events VALUES (?,?,?,?,?)').run(event.eventId, logical, event.occurredAt, signature, JSON.stringify(event));
@@ -180,7 +187,14 @@ export class SqliteUsageStore {
       case 'game_started':
         update(`room:${e.data.roomRef}`, (s) => { if (s.kind === 'room') s.state = 'STARTED'; });
         this.put({ ...base, key: `game:${e.data.gameRef}`, kind: 'game', state: 'ACTIVE', configuration: e.data.configuration,
-          people: e.data.humanParticipations.map((p) => p.participationRef), automatic: [] }); break;
+          people: e.data.humanParticipations.map((p) => p.participationRef), automatic: [],
+          ...(this.metadata.appearanceFrom !== undefined && e.occurredAt >= this.metadata.appearanceFrom && e.bootRef === this.metadata.bootRef ? { appearance: {} } : {}) }); break;
+      case 'appearance_snapshot': update(`game:${e.data.gameRef}`, s => {
+        if (s.kind !== 'game' || !s.appearance || !s.people.includes(e.data.participationRef)) return;
+        const person = s.appearance[e.data.participationRef] ??= {};
+        const moment = e.data.moment === 'START' ? 'start' : 'end';
+        person[moment] ??= { theme: e.data.theme, origin: e.data.origin };
+      }); break;
       case 'human_became_automatic': update(`game:${e.data.gameRef}`, (s) => {
         if (s.kind === 'game' && s.people.includes(e.data.participationRef) && !s.automatic.includes(e.data.participationRef)) s.automatic.push(e.data.participationRef);
         else this.quality('unlinked', e.receivedAt);
@@ -218,7 +232,7 @@ export class SqliteUsageStore {
     if (Number(checkpoint?.busy) !== 0) throw new UsageError('STORAGE_UNAVAILABLE');
     this.permissions();
     for (const name of fs.readdirSync(path.dirname(this.file))) {
-      const match = /^(?:access|creation|joining|room-conversion|configuration|duration|completion|automatic)-(\d{4}-\d{2})-\d+\.(?:csv|json)$/.exec(name);
+      const match = /^(?:access|creation|joining|room-conversion|configuration|duration|completion|automatic|appearance)-(\d{4}-\d{2})-\d+\.(?:csv|json)$/.exec(name);
       if (match && match[1] < month(firstMonth(at, -11))) fs.unlinkSync(path.join(path.dirname(this.file), name));
     }
   }

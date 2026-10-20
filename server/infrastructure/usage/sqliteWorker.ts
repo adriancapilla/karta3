@@ -13,7 +13,7 @@ type ControlEntry = { kind: 'control'; command: UsagePrivacyControl; resolve: ()
 type Entry = EventEntry | ControlEntry;
 type Pending = { resolve: (value: unknown) => void; reject: (error: Error) => void; timer: NodeJS.Timeout };
 type WriterOptions = { file: string; environment: UsageEnvironment; traffic?: UsageTraffic; bootRef?: string; now?: number; backupDirectory?: string; backupKey?: string;
-  limits?: Partial<UsageLimits>; warning?: (code: string) => void; existingOnly?: boolean; readOnly?: boolean; collecting?: boolean; requireBackup?: boolean; consentRequired?: boolean };
+  limits?: Partial<UsageLimits>; warning?: (code: string) => void; existingOnly?: boolean; readOnly?: boolean; collecting?: boolean; requireBackup?: boolean; consentRequired?: boolean; appearanceInstrumentation?: boolean };
 
 /** Un batch en vuelo; el puerto nunca admite espera/IO o excepciones hacia el juego. */
 export class SqliteUsageWorker implements UsageEventSink, UsageEventStore, UsageReportReader, UsageMaintenance, UsagePrivacyStore {
