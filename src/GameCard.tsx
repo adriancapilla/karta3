@@ -171,7 +171,9 @@ export function CardDetails({ card, attributes, activeAttributeId, onClose, deck
   return <dialog ref={dialog} className="card-details-dialog" aria-labelledby="card-details-title" onClose={event => { event.stopPropagation(); onClose(); }}>
     <h2 id="card-details-title">Detalles de {card.name}</h2>
     <CardInformation card={card} attributes={attributes} activeAttributeId={activeAttributeId} details />
-    {deck && information && <DeckInformation deck={deck} information={information} context={context ?? ''} />}
-    <button ref={closeButton} className="secondary" autoFocus onClick={() => dialog.current?.close()}>Cerrar detalles</button>
+    <div className="card-details-actions">
+      {deck && information && <DeckInformation deck={deck} information={information} context={context ?? ''} />}
+      <button ref={closeButton} className="secondary" autoFocus onClick={() => dialog.current?.close()}>Cerrar detalles</button>
+    </div>
   </dialog>;
 }

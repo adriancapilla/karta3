@@ -3,6 +3,82 @@ import fs from 'node:fs/promises';
 import { configurationBrowserServer } from '../support/configurationBrowserServer.js';
 import { manualTable, readGame } from '../support/manualBrowserCases.js';
 
+const adendaPhase = process.env.KARTA3_B20_ADENDA_BASELINE ? 'base' : (process.env.KARTA3_B20_ADENDA_ATTEMPT ?? 'final');
+const adendaEvidence = `playwright-report/b20-adenda/20261020-selector-detalles/${adendaPhase}`;
+
+for (const scenario of [
+  { label: 'player-narrow', width: 390, observer: false, optimize: false, vertical: true },
+  { label: 'observer-compact', width: 1100, observer: true, optimize: true, vertical: true },
+  { label: 'player-horizontal', width: 1800, observer: false, optimize: true, vertical: false }
+]) test(`Adenda B20 selector ${scenario.label}: caja real, conservación y foco exterior`, async ({ browser }) => {
+  const server = await configurationBrowserServer(true, true, undefined, { generic: true }); server.permutation(ids => ids);
+  const table = await manualTable(browser, server.base, { ...scenario, height: 900, deckId: 'generica', version: 4, turn: 60 });
+  try {
+    const before = await readGame(table.host); const measurements = [];
+    for (const theme of ['LIGHT', 'DARK']) {
+      const measure = async (page: typeof table.host) => page.evaluate(() => {
+        const box = (e: Element | null) => { if (!e) return null; const b = e.getBoundingClientRect(); const s = getComputedStyle(e);
+          return { x: b.x, y: b.y, width: b.width, height: b.height, right: b.right, bottom: b.bottom, font: s.font, borderLeft: s.borderLeftWidth, borderRight: s.borderRightWidth,
+            outlineWidth: s.outlineWidth, outlineOffset: s.outlineOffset, outlineStyle: s.outlineStyle }; };
+        const select = document.querySelector('.appearance-control select')!;
+        const cancelled = document.querySelector('.cancel-game-button');
+        // Referencias intrínsecas del mismo navegador/fuente; independientes del ancho del grupo vertical.
+        const natural = (e: Element | null) => {
+          if (!e) return null; const wrapper = document.createElement('div'); wrapper.className = 'appearance-control'; wrapper.setAttribute('aria-hidden', 'true');
+          Object.assign(wrapper.style, { position: 'fixed', visibility: 'hidden', maxWidth: 'none' });
+          const clone = e.cloneNode(true) as HTMLElement; clone.removeAttribute('id');
+          Object.assign(clone.style, { width: 'max-content', maxWidth: 'none', font: getComputedStyle(e).font });
+          wrapper.append(clone); document.body.append(wrapper); const result = box(clone); wrapper.remove(); return result;
+        };
+        const clipping: string[] = []; for (let p = select.parentElement; p; p = p.parentElement) {
+          const style = getComputedStyle(p); if (['hidden', 'clip', 'auto', 'scroll'].includes(style.overflowX)) clipping.push(p.className || p.tagName);
+        }
+        return { viewport: innerWidth, dpr: devicePixelRatio, useful: Number((document.querySelector('.game-composition') as HTMLElement).dataset.usefulWidth),
+          select: box(select)!, cancel: box(cancelled), naturalSelect: natural(select), naturalCancel: natural(cancelled), focused: select === document.activeElement, clipping,
+          card: box(document.querySelector('.game-hand .game-card')), labelHidden: getComputedStyle(document.querySelector('.appearance-control label')!).position === 'absolute' };
+      });
+      const samples = [];
+      for (const [role, page] of [['host', table.host], ['guest', table.pages[1]]] as const) {
+        const select = page.getByRole('combobox', { name: 'Apariencia', exact: true }); await select.selectOption(theme);
+        await select.focus(); await select.press('Tab'); await page.keyboard.press('Shift+Tab'); await expect(select).toBeFocused();
+        const sample = await measure(page); expect(sample.focused).toBe(true); expect(sample.labelHidden).toBe(true); expect(sample.clipping).toEqual([]);
+        expect(sample.select.outlineWidth).toBe('3px'); expect(sample.select.outlineOffset).toBe('3px'); expect(sample.select.outlineStyle).not.toBe('none');
+        expect(sample.select.x - 6).toBeGreaterThanOrEqual(0); expect(sample.select.right + 6).toBeLessThanOrEqual(scenario.width);
+        if (role === 'guest') expect(sample.cancel).toBeNull();
+        else {
+          expect(!!sample.cancel).toBe(true);
+          expect(sample.cancel!.width).toBe(sample.naturalCancel!.width); expect(sample.cancel!.height).toBe(sample.naturalCancel!.height);
+          expect(sample.select.y >= sample.cancel!.bottom).toBe(scenario.vertical);
+        }
+        if (role === 'guest' || !scenario.vertical) expect(sample.select.width).toBe(sample.naturalSelect!.width);
+        if (adendaPhase !== 'base') {
+          if (role === 'host' && scenario.vertical) {
+            expect(Math.abs(sample.select.width - sample.cancel!.width)).toBeLessThanOrEqual(1);
+            expect(Math.abs(sample.select.x - sample.cancel!.x)).toBeLessThanOrEqual(1);
+            expect(Math.abs(sample.select.right - sample.cancel!.right)).toBeLessThanOrEqual(1);
+            expect(sample.select.height).toBe(sample.naturalSelect!.height); expect(sample.select.font).toBe(sample.naturalSelect!.font);
+          }
+          // Comparación física antes/después solo al aportar la referencia del mismo sistema/fuentes.
+          if (process.env.KARTA3_B20_ADENDA_REFERENCE === '1') {
+            const baseline = JSON.parse(await fs.readFile(`docs/sdd/evidencias/B20/adenda-selector-detalles/base/${scenario.label}.json`, 'utf8'));
+            const old = baseline.find((row: { theme: string }) => row.theme === theme).samples.find((row: { role: string }) => row.role === role).measurement;
+            expect(sample.cancel).toEqual(old.cancel);
+            if (role === 'host' && scenario.vertical) { expect(sample.select.height).toBe(old.select.height); expect(sample.select.font).toBe(old.select.font); }
+            else expect(sample.select).toEqual(old.select);
+            expect(sample.card).toEqual(old.card);
+          }
+        }
+        await fs.mkdir(adendaEvidence, { recursive: true });
+        await page.screenshot({ path: `${adendaEvidence}/${scenario.label}-${role}-${theme}.png`, fullPage: true }); samples.push({ role, measurement: sample });
+      }
+      measurements.push({ theme, samples });
+    }
+    const after = await readGame(table.host); expect(after.game.interaction.turn).toEqual(before.game.interaction.turn);
+    expect(after.settings).toEqual(before.settings); expect(after.revision).toBe(before.revision);
+    await fs.writeFile(`${adendaEvidence}/${scenario.label}.json`, JSON.stringify(measurements, null, 2) + '\n', { flag: 'wx' });
+  } finally { await table.close(); await server.stop(); }
+});
+
 for (const width of [1800, 390]) test(`B20 P1 paletas y geometría ${width}`, async ({ browser }) => {
   const server = await configurationBrowserServer(true, true, undefined, { generic: true, solar: true, creatures: true });
   server.permutation(ids => ids);

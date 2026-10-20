@@ -90,3 +90,14 @@ button:focus-visible,.card-play-button:focus-visible,input:focus-visible,select:
 .game-compact .game-header-actions{flex-direction:column;align-items:flex-end}
 .game-compact .game-header-actions>.appearance-control{order:2}
 @media(max-width:760px){.game-header-actions{flex-direction:column;align-items:flex-end}.game-header-actions>.appearance-control{order:2}}
+/* Solo el selector vertical del HOST toma el ancho natural que ya tiene Cancelar. */
+.game-compact .game-header-actions:has(>.cancel-game-button)>.appearance-control{align-self:stretch}
+.game-compact .game-header-actions:has(>.cancel-game-button)>.appearance-control select{width:100%}
+@media(max-width:760px){
+ .game-header-actions:has(>.cancel-game-button)>.appearance-control{align-self:stretch}
+ .game-header-actions:has(>.cancel-game-button)>.appearance-control select{width:100%}
+}
+/* Sustituye el margin-top de los botones directos sin colapsar el margen del contenido anterior. */
+.card-details-actions{display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:12px;padding-top:20px}
+.card-details-actions>.secondary{margin-top:0}
+.card-details-actions>button:last-child{margin-left:auto}

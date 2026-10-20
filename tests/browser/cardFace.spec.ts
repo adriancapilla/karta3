@@ -145,14 +145,60 @@ test('B17 D: clic/Enter/Space/arrastre no juegan; parcial/plazo, Información, r
       await expect(fullDetails(opener)).toHaveCount(0);
     }
     await d.focus(); await d.press('Enter'); // El arrastre anterior no bloquea el teclado.
-    const info = fullDetails(opener).getByRole('button', { name: 'Información de la baraja', exact: true }); await info.click();
-    await opener.locator('.consultation').getByRole('button', { name: 'Cerrar consulta', exact: true }).press('Escape'); await expect(info).toBeFocused();
+    const adendaPhase = process.env.KARTA3_B20_ADENDA_BASELINE ? 'base' : (process.env.KARTA3_B20_ADENDA_ATTEMPT ?? 'final');
+    const folder = `playwright-report/b20-adenda/20261020-selector-detalles/${adendaPhase}`;
+    const actionMeasurements = [];
+    for (const width of [1800, 390]) for (const theme of ['LIGHT', 'DARK']) {
+      await closeDetails(opener); await opener.setViewportSize({ width, height: 1000 });
+      await opener.getByRole('combobox', { name: 'Apariencia', exact: true }).selectOption(theme);
+      await d.press('Enter'); const details = fullDetails(opener);
+      const close = details.getByRole('button', { name: 'Cerrar detalles', exact: true });
+      const info = details.getByRole('button', { name: 'Información de la baraja', exact: true });
+      await expect(close).toBeFocused(); await close.press('Shift+Tab'); await expect(info).toBeFocused();
+      await info.press('Enter'); const query = opener.locator('.consultation');
+      await expect(query).toBeVisible(); await query.getByRole('button', { name: 'Cerrar consulta', exact: true }).press('Escape'); await expect(info).toBeFocused();
+      await info.press('Space'); await expect(query).toBeVisible(); await query.getByRole('button', { name: 'Cerrar consulta', exact: true }).click(); await expect(info).toBeFocused();
+      await info.press('Tab'); await expect(close).toBeFocused();
+      const sample = await details.evaluate(element => {
+        const dialog = element as HTMLDialogElement; const s = getComputedStyle(dialog); const b = dialog.getBoundingClientRect();
+        const box = (e: Element) => { const r = e.getBoundingClientRect(); const style = getComputedStyle(e); return { x: r.x, y: r.y, width: r.width, height: r.height, right: r.right, bottom: r.bottom, font: style.font, marginTop: style.marginTop }; };
+        const info = dialog.querySelector('.deck-information-button')!; const close = [...dialog.querySelectorAll('button')].find(e => e.textContent === 'Cerrar detalles')!;
+        const contents = [...dialog.children].filter(e => e.tagName !== 'BUTTON' && !e.classList.contains('card-details-actions')); const last = contents.at(-1)!;
+        const i = box(info); const c = box(close);
+        return { viewport: innerWidth, useful: Number((document.querySelector('.game-composition') as HTMLElement).dataset.usefulWidth), dpr: devicePixelRatio,
+          dialog: { width: b.width, height: b.height, left: b.x + parseFloat(s.borderLeftWidth) + parseFloat(s.paddingLeft),
+            right: b.x + parseFloat(s.borderLeftWidth) + dialog.clientWidth - parseFloat(s.paddingRight), clientWidth: dialog.clientWidth, scrollWidth: dialog.scrollWidth,
+            padding: s.padding, maxHeight: s.maxHeight }, info: i, close: c, gapX: c.x - i.right, gapY: c.y - i.bottom,
+          contentGap: Math.min(i.y, c.y) - last.getBoundingClientRect().bottom, previousMargin: parseFloat(getComputedStyle(last).marginBottom), image: box(dialog.querySelector('.game-card-image')!),
+          text: dialog.textContent, card: box(document.querySelector('.game-hand .game-card')!) };
+      });
+      if (adendaPhase !== 'base') {
+        expect(sample.contentGap).toBeCloseTo(sample.previousMargin + 20, 0); expect(sample.info.font).toBe(sample.close.font);
+        if (process.env.KARTA3_B20_ADENDA_REFERENCE === '1') {
+          const base = JSON.parse(await fs.readFile('docs/sdd/evidencias/B20/adenda-selector-detalles/base/details-actions.json', 'utf8'));
+          const old = base.find((row: { width: number; theme: string }) => row.width === width && row.theme === theme).measurement;
+          expect(sample.dialog.width).toBe(old.dialog.width); expect(sample.dialog.padding).toBe(old.dialog.padding); expect(sample.dialog.maxHeight).toBe(old.dialog.maxHeight);
+          expect(sample.contentGap).toBeCloseTo(old.contentGap, 0); expect(sample.image.width).toBe(old.image.width); expect(sample.image.height).toBe(old.image.height);
+          expect(sample.text).toBe(old.text); expect(sample.info.font).toBe(old.info.font); expect(sample.close.font).toBe(old.close.font);
+        }
+        expect(sample.dialog.scrollWidth).toBe(sample.dialog.clientWidth);
+        expect(Math.abs(sample.info.x - sample.dialog.left)).toBeLessThanOrEqual(1); expect(Math.abs(sample.close.right - sample.dialog.right)).toBeLessThanOrEqual(1);
+        if (Math.abs(sample.info.y - sample.close.y) <= 1) expect(sample.gapX).toBeGreaterThanOrEqual(12);
+        else expect(sample.gapY).toBeGreaterThanOrEqual(12);
+      }
+      await fs.mkdir(folder, { recursive: true }); await opener.screenshot({ path: `${folder}/details-${width}-${theme}.png` }); actionMeasurements.push({ width, theme, measurement: sample });
+      await close.press(theme === 'LIGHT' ? 'Enter' : 'Space'); await expect(details).toHaveCount(0); await expect(d).toBeFocused();
+      await d.press('Enter');
+    }
+    await fs.writeFile(`${folder}/details-actions.json`, JSON.stringify(actionMeasurements, null, 2) + '\n', { flag: 'wx' });
     await opener.setViewportSize({ width: 390, height: 844 }); await expect(opener.locator('.game-composition')).toHaveAttribute('data-layout', 'compact');
     await expandedImage(opener); await closeDetails(opener); await expect(d).toBeFocused(); await expect(d).toHaveText('Detalles');
     await d.press('Space'); await opener.setViewportSize({ width: 1920, height: 1080 }); await closeDetails(opener); await expect(d).toBeFocused(); await expect(d).toHaveText('D');
     const after = await readGame(opener); expect(after.game.interaction.turn).toEqual(before.game.interaction.turn); expect(after.game.interaction.openingSelection).toEqual({ direction: 'HIGH' });
     expect(s.gameRequests).toHaveLength(1); await expect(slot.locator('.card-play-button')).toHaveAttribute('aria-pressed', 'false');
-    await slot.locator('.card-play-surface .card-heading').click(); await expect.poll(() => s.gameRequests.filter(r => r.event === 'game:play').length).toBe(1);
+    const surface = slot.locator('.card-play-surface .card-heading');
+    await surface.evaluate(e => e.addEventListener('click', event => e.setAttribute('data-adenda-trusted', String(event.isTrusted)), { once: true }));
+    await surface.click(); await expect(surface).toHaveAttribute('data-adenda-trusted', 'true'); await expect.poll(() => s.gameRequests.filter(r => r.event === 'game:play').length).toBe(1);
     expect((await readGame(p.host)).game.round.plays.map(play => play.card.id)).toEqual([id]);
   } finally { await p.close(); await s.stop(); }
 });
