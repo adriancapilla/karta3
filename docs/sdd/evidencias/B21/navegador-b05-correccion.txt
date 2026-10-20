@@ -1,0 +1,5 @@
+Fuente: 1860a9c; producto igual a c38e1f8 y d3f4486. Windows / Chrome155 / Node24.19.0.
+Comando ejecutado: node node_modules/@playwright/test/cli.js test tests/browser/configuration.spec.ts --grep B05-01/03/04/07/09/11/13/15 --workers=1 --retries=0 --trace on --output playwright-report/b21/b05-assertion-correction
+Resultado: 2 passed (8.1s), tamaños390/1280.
+Corrección: un combobox Apariencia habilitado; cero controles compartidos .config-control/checkbox. Resto del caso intacto.
+Este resumen conserva el resultado recibido de la herramienta; trazas originales locales en playwright-report/b21/b05-assertion-correction/. No es una tercera ejecución.

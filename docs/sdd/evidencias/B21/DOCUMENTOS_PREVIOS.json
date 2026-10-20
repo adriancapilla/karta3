@@ -1,0 +1,31 @@
+{
+  "base": "565795ce53d095ab05ff73880b4398be082c9f22",
+  "checkedAt": "2026-10-20T21:43:06.330Z",
+  "checks": [
+    {
+      "path": "docs/operacion/ANALITICA_USO.md",
+      "unchangedBody": true
+    },
+    {
+      "path": "docs/operacion/PREPARACION_ANALITICA_REAL_B19.md",
+      "unchangedBody": true
+    },
+    {
+      "path": "docs/sdd/PROCESO_SDD.md",
+      "unchangedBody": true
+    },
+    {
+      "path": "docs/operacion/APARIENCIA_B20.md",
+      "unchangedBody": true
+    },
+    {
+      "path": "docs/sdd/BLOQUE_19_HABILITACION_ANALITICA_REAL.md",
+      "initialDiffIntact": true
+    },
+    {
+      "path": "docs/sdd/BLOQUE_20_APARIENCIA_PERSONAL_Y_USO.md",
+      "initialDiffIntact": true
+    }
+  ],
+  "note": "Solo se registraron cabeceras propias mediante parches acotados; los cuerpos/diffs previos continúan sin registrar en los cinco documentos originales."
+}

@@ -1,0 +1,12 @@
+{
+  "clock": "SystemClock",
+  "scheduler": "TimerScheduler",
+  "entropy": "CryptoCardPermutation",
+  "package": "generica/4 (formato 2)",
+  "startedAt": "2026-10-20T21:25:47.898Z",
+  "endsAt": "2026-10-20T21:26:02.898Z",
+  "transportClosedAt": "2026-10-20T21:25:48.073Z",
+  "observedAt": "2026-10-20T21:26:03.397Z",
+  "observedAfterLimitMs": 498.2490234375,
+  "counter": 1
+}

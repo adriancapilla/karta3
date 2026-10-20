@@ -1,0 +1,66 @@
+
+Running 25 tests using 2 workers
+
+(node:31956) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:32520) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  1 tests\browser\appearance.spec.ts:13:4 › Adenda B20 selector player-narrow: caja real, conservación y foco exterior (4.4s)
+  ok  3 tests\browser\appearance.spec.ts:13:4 › Adenda B20 selector observer-compact: caja real, conservación y foco exterior (2.7s)
+  ok  4 tests\browser\appearance.spec.ts:13:4 › Adenda B20 selector player-horizontal: caja real, conservación y foco exterior (2.5s)
+  ok  2 tests\browser\bots.spec.ts:101:1 › B09 P2 normal compilado genérica 2: persona contra fácil/difícil, entropía/plazos normales, resultado y otra sala (10.5s)
+  ok  6 tests\browser\cancelGame.spec.ts:38:34 › B13 botón/diálogo/resumen 390px: foco, no pausa, cero puntos y retorno en dos pestañas (3.6s)
+  ok  7 tests\browser\cancelGame.spec.ts:82:56 › B13/T04 A cancelada → B automatic, F5, avisos/estados antiguos y límites propios (3.0s)
+  ok  5 tests\browser\appearance.spec.ts:82:34 › B20 P1 paletas y geometría 1800 (12.1s)
+  ok  8 tests\browser\cancelGame.spec.ts:82:56 › B13/T04 A cancelada → B ordinary, F5, avisos/estados antiguos y límites propios (11.4s)
+  ok  9 tests\browser\appearance.spec.ts:82:34 › B20 P1 paletas y geometría 390 (11.7s)
+  ok 10 tests\browser\cancelGame.spec.ts:113:1 › B13 ack/evento perdidos: incertidumbre, recuperación por gameId y ack A atrasado frente a B (7.4s)
+  ok 12 tests\browser\cancelGame.spec.ts:181:1 › B13 anfitrión observador, bot y desconectado: resumen/reconexión sin reactivar asociación (2.9s)
+  x  13 tests\browser\configuration.spec.ts:33:34 › B05-01/03/04/07/09/11/13/15 recorrido compartido, dos sesiones y dos pestañas a 390px (2.4s)
+(node:9000) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 11 tests\browser\cardFace.spec.ts:129:1 › B17 D: clic/Enter/Space/arrastre no juegan; parcial/plazo, Información, resize y foco equivalentes (12.0s)
+  ok 15 tests\browser\cardFace.spec.ts:206:1 › B17 consulta abierta: timeout retira la carta, revisión avanza y foco vuelve a región, sin pausas (7.8s)
+  ok 14 tests\browser\join.spec.ts:21:1 › B02 dos navegadores independientes sincronizan entrada, nombres, salida, reentrada y cierre (12.3s)
+  ok 16 tests\browser\lifecycle.spec.ts:241:1 › B03-15 adverso: una conexión entrante durante cierre conserva reconexión y recupera la ausencia de sala (3.3s)
+  ok 18 tests\browser\room.spec.ts:7:5 › 390px › E1/E3/E4/E6 crea, recupera, edita y cierra con confirmación (2.8s)
+  ok 19 tests\browser\room.spec.ts:7:5 › 1280px › E1/E3/E4/E6 crea, recupera, edita y cierra con confirmación (2.3s)
+  ok 17 tests\browser\resultNotice.spec.ts:38:56 › INC-01 expired A → B automatic: accepted result, reload, controlled expiry and old reads (5.9s)
+  ok 20 tests\browser\timedGame.spec.ts:6:34 › B08 T1 1280: deadline estable, carta local ignorada, aviso y recuperación (2.9s)
+  ok 22 tests\browser\timedGame.spec.ts:91:39 › B08 T2 390: reset, dos fallos, automático sin control, revisión y resultado (7.8s)
+  ok 21 tests\browser\resultNotice.spec.ts:38:56 › INC-01 expired A → B ordinary: accepted result, reload, controlled expiry and old reads (11.2s)
+  ok 24 tests\browser\resultNotice.spec.ts:88:1 › INC-01 late A return failure/ack/home cannot change available B or trigger obsolete recovery (8.2s)
+  ok 25 tests\browser\resultNotice.spec.ts:134:1 › INC-01 delayed HTTP recovery of expired A does not clear B after authorized socket recovery (4.0s)
+B08_REAL_EXPIRY {"clock":"SystemClock","scheduler":"TimerScheduler","entropy":"CryptoCardPermutation","package":"generica/4 (formato 2)","startedAt":"2026-10-20T21:25:47.898Z","endsAt":"2026-10-20T21:26:02.898Z","transportClosedAt":"2026-10-20T21:25:48.073Z","observedAt":"2026-10-20T21:26:03.397Z","observedAfterLimitMs":498.2490234375,"counter":1}
+  ok 23 tests\browser\timedRealGame.spec.ts:7:1 › B08-19/E7 15 segundos reales: transporte activo cerrado, observación y recuperación; APP normal sin ASSETS (19.5s)
+
+
+  1) tests\browser\configuration.spec.ts:33:34 › B05-01/03/04/07/09/11/13/15 recorrido compartido, dos sesiones y dos pestañas a 390px
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: 0
+    Received: 1
+
+      36 |     expect((await current(p.host)).settings).toEqual({ deckId: null, deckContentVersion: null, hostPlays: true, turnSeconds: 30, forceTieBreak: false, reviewSeconds: 5, attributeValueMode: 'PLAY_VALUE', optimizeForMobile: false });
+      37 |     await expect(p.host.getByLabel('Baraja', { exact: true })).toHaveValue(''); expect(s.requests).toHaveLength(0);
+    > 38 |     expect(await p.guest.getByRole('combobox').count()).toBe(0);
+         |                                                         ^
+      39 |     await p.host.getByLabel('Editar mi nombre').fill('Mi borrador'); await p.host.getByLabel('Editar mi nombre').focus();
+      40 |     await choose(p.tab, 'portada');
+      41 |     for (const page of [p.host, p.tab, p.guest]) {
+        at E:\KARTA3\KARTA3_IA\APP\karta3\tests\browser\configuration.spec.ts:38:57
+
+    Error Context: playwright-report\b21\final-browser-c38e1f8\regressions\configuration-B05-01-03-04-f825b-ones-y-dos-pestañas-a-390px\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    playwright-report\b21\final-browser-c38e1f8\regressions\configuration-B05-01-03-04-f825b-ones-y-dos-pestañas-a-390px\trace.zip
+    Usage:
+
+        npx playwright show-trace playwright-report\b21\final-browser-c38e1f8\regressions\configuration-B05-01-03-04-f825b-ones-y-dos-pestañas-a-390px\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests\browser\configuration.spec.ts:33:34 › B05-01/03/04/07/09/11/13/15 recorrido compartido, dos sesiones y dos pestañas a 390px
+  24 passed (1.6m)

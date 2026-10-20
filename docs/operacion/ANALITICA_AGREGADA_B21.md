@@ -26,13 +26,17 @@ No ejecutar sobre un directorio del autor. Sin reinstalar ni cambiar Node global
 ```powershell
 cd E:\KARTA3\KARTA3_IA\APP\karta3
 $env:PATH = 'C:\Users\Adrian\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\bin;' + $env:PATH
+$nodeKarta3 = 'C:\Users\Adrian\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\bin\node.exe'
+$npmKarta3Cli = 'C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js'
 $env:KARTA3_ENV = 'test'
 $env:KARTA3_STATISTICS_MODE = 'synthetic'
 $env:KARTA3_STATISTICS_DIRECTORY = Join-Path $env:TEMP ('karta3-b21-demo-' + [guid]::NewGuid())
 $env:PORT = '0'
-npm run build
-npm run usage:initialize
-npm run start
+& $nodeKarta3 $npmKarta3Cli run build
+if ($LASTEXITCODE -ne 0) { throw 'La compilación no ha terminado correctamente.' }
+& $nodeKarta3 $npmKarta3Cli run usage:initialize
+if ($LASTEXITCODE -ne 0) { throw 'El almacén aislado no se ha preparado.' }
+& $nodeKarta3 $npmKarta3Cli run start
 ```
 
 Abrir la dirección con el puerto real que imprime esta instancia. Dos perfiles o ventana normal/privada: comprobar inclusión por defecto; elegir temas funcionales distintos sin permitir fotos; crear/entrar/seleccionar explícitamente baraja e iniciar. Permitir apariencia **antes** de otro ensayo permite START/END; permitir solo después no reconstruye START. Probar «No permitir» y «Retirar permiso» sin cortar núcleo/HOME; excluir desde segunda pestaña corta el ciclo, sin pausar ni cancelar la partida. F5/consulta tardía no crean fotos; nueva sala tras resultado sigue T04. Probar HOST observador con invitados/bots. Una cookie anterior sin nueva preferencia debe mostrar la cautela, sin impedir jugar.
@@ -44,10 +48,12 @@ Ctrl+C detiene solo la instancia propia; pierde juego RAM. Reiniciar conserva ag
 Acceso por permisos del SO/SSH, nunca cookie HOST, SQL libre, dashboard o API pública. Nueve consultas: access/creation/joining/room-conversion/configuration/completion/duration/automatic/appearance. Las normales leen HUMAN; `usage:report:synthetic` solo SYNTHETIC/test. Ejemplo con días completos cerrados (ajustar a periodo de prueba existente):
 
 ```powershell
-npm run usage:report:synthetic -- --report appearance --from 2026-10-18 --to 2026-10-20 --environment test --format csv
+& $nodeKarta3 $npmKarta3Cli run usage:report:synthetic -- --report appearance --from 2026-10-18 --to 2026-10-20 --environment test --format csv
 ```
 
 Salida: nombre de archivo nuevo en el directorio privado, JSON o CSV agregado, permisos 0600/ACL equivalente. Incluye modelo, bases, porcentajes null, calidad/asOf/cohorte y estados ZERO/NOT_CAPTURED/NOT_INSTRUMENTED/UNAVAILABLE. Nunca sumas con series antiguas. La duración se trunca a segundos, sin mínimos/máximos individuales; bins 0/60/180/300/600/1200/2400. Configuración marginal, no cruce. Apertura de instantánea máxima cinco segundos y una exportación privada simultánea.
+
+Si se ha detenido el proceso con saldos abiertos, ejecutar mantenimiento antes de consultar. El lector solo lectura devuelve indisponibilidad; no convierte esos pendientes en actividad actual ni sanea por su cuenta. Una instancia nueva o el mantenimiento exclusivo reclasifica lo durable abierto como desconocido una sola vez.
 
 ## Fallos, límites y conservación
 
