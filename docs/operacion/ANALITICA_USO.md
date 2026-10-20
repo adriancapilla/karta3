@@ -1,5 +1,7 @@
 # Analítica propia B18 — operación preparada, recogida pública apagada
 
+**Histórico B18–B20:** para la entrega nueva rige [AGG_DAILY_V1/B21](ANALITICA_AGREGADA_B21.md). El texto inferior conserva antecedentes y cambios previos del autor; no es un procedimiento de la versión nueva ni autoriza operación.
+
 **Aviso B19 actualizado19/10/2026:** información factual completa2026-10-19.2 recibida desde preparación/inventario/hPanel y alineación general19/10. `/privacidad` ahora200/no-store/sin sesión o captura incluso OFF; [texto/huella y evidencia actual](../sdd/evidencias/B19/AVISO_FINAL.md). Los registros previos de preparación que indican información incompleta son históricos; ya no falta ubicación/hPanel. Predeterminado OFF, HUMAN solo técnicamente habilitable en Pruebas; aprobación final de muestra/censura/recibos, publicación y puesta en servicio pendientes. No cambiar el servicio por esta nota.
 
 **Continuación B19,19/10/2026:** los apartados B18 siguientes conservan su contexto histórico. El código actual prepara `human` únicamente en `pruebas`, elección individual y recibos/censura; la ejecución normal sigue OFF, con HUMAN bloqueado hasta información pública completa. El antecedente Linux B18 no prueba este cambio. Procedimiento vigente y pendientes operativos en [preparación B19](PREPARACION_ANALITICA_REAL_B19.md); resultados propios en [elección/censura](../sdd/evidencias/B19/ELECCION_Y_CENSURA.md). No ejecutar los ejemplos como autorización de tráfico real.

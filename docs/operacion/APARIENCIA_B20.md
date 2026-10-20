@@ -1,5 +1,7 @@
 # B20 — Preferencia local y consulta de fotografías
 
+**Histórico estadístico B20:** B21 conserva la preferencia funcional y su adenda visual, y sustituye la medición por [agregados con permiso específico](ANALITICA_AGREGADA_B21.md). Los recorridos y evidencias inferiores corresponden al protocolo anterior.
+
 20/10/2026. Complemento de B18/B19; no sustituye sus procedimientos, recibos, claves, límites o barreras. Recogida pública OFF. No contiene datos reales ni autoriza activación.
 
 ## Preferencia sin analítica

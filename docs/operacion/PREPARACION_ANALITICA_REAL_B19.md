@@ -1,5 +1,7 @@
 # B19 — Preparación y puesta en servicio coordinadas en Pruebas
 
+**Histórico B19:** la preparación de la sustitución B21 está en [la guía agregada vigente](ANALITICA_AGREGADA_B21.md). Se conserva íntegro este procedimiento anterior; no aplicar sus contratos, esquema o variables al paquete nuevo.
+
 **PROCEDIMIENTO VIGENTE — aclaración posterior del autor, 19/10/2026:** aplicar §0 y [B19 §14](../sdd/BLOQUE_19_HABILITACION_ANALITICA_REAL.md#14-adenda-vigente-recogida-automática-mínima--19102026). La preparación anterior de §§1–7 se conserva como antecedente: **no ejecutar** sus condiciones de elección/retirada, despliegue previo OFF o custodia/copia externa diaria como si estuvieran autorizadas. El autor aclara que esas propuestas no habían sido comprendidas/aceptadas. Recogida automática mínima; este cambio no acredita exención o conformidad jurídica.
 
 ## 0. Guion vigente: una actualización directa HUMAN

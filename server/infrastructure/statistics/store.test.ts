@@ -50,6 +50,13 @@ describe('B21 P2 — SQLite real aislado', () => {
     } finally { s.close(); }
     expect(() => new AggregateStore({ ...o, environment: 'pruebas' })).toThrow('ENVIRONMENT_MISMATCH');
   });
+  it('A04/A09: lector no presenta abiertos de un proceso detenido como actuales, incluso tras cierre limpio', () => {
+    const o = options(); let s = new AggregateStore(o); s.append([created], now); s.close(true);
+    expect(() => readAggregates(o.file, 'test', 'SYNTHETIC', '2026-10-19', '2026-10-20', now)).toThrow('STORAGE_UNAVAILABLE');
+    s = new AggregateStore(o); s.close(true);
+    const data = readAggregates(o.file, 'test', 'SYNTHETIC', '2026-10-19', '2026-10-20', now);
+    expect(data.cells.find(c => c.category === 'unknown')?.value).toBe(1);
+  });
   it('A09: no crea sin preparación explícita, no convierte SQLite anterior', () => {
     const o = options(); expect(() => new AggregateStore({ ...o, initialize: false })).toThrow();
     const db = new DatabaseSync(o.file); db.exec('CREATE TABLE events(id TEXT)'); db.close();

@@ -135,7 +135,8 @@ export function readAggregates(file: string, environment: Environment, traffic: 
   try {
     db.exec('PRAGMA query_only=ON; BEGIN');
     const m = validateMetadata(db, environment, traffic);
-    if (m.clean !== 'true' && !hasLiveWriter(file)) throw new StatisticsError('STORAGE_UNAVAILABLE');
+    if (!hasLiveWriter(file) && (m.clean !== 'true' || db.prepare("SELECT 1 FROM cells WHERE dimension='balance' AND value>0 AND ((family='WAITING' AND category='pending') OR (family='GAME' AND category='active') OR (family='AUTOMATIC' AND category='open') OR (family='APPEARANCE' AND category='pending')) LIMIT 1").get()))
+      throw new StatisticsError('STORAGE_UNAVAILABLE');
     if (m.lastMaintenance !== dayOf(now)) throw new StatisticsError('STORAGE_UNAVAILABLE');
     const cells = db.prepare('SELECT * FROM cells WHERE day>=? AND day<? ORDER BY day,family,dimension,category,measure').all(from, to) as Cell[];
     const coverage = db.prepare('SELECT * FROM coverage_days WHERE day>=? AND day<? ORDER BY day,family,cause').all(from, to) as Coverage[];
