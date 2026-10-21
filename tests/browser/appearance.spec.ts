@@ -121,7 +121,7 @@ for (const width of [1800, 390]) test(`B20 P1 paletas y geometría ${width}`, as
         await session.send('DOM.enable'); await session.send('CSS.enable');
         const { root } = await session.send('DOM.getDocument');
         const fonts = [];
-        for (const selector of ['.game-hand .card-heading', '.game-hand .card-values']) {
+        for (const selector of ['.game-hand .card-heading', '.game-hand .card-values th', '.game-hand .card-values td']) {
           const { nodeId } = await session.send('DOM.querySelector', { nodeId: root.nodeId, selector });
           fonts.push({ selector, ...await session.send('CSS.getPlatformFontsForNode', { nodeId }) });
         }
