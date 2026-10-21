@@ -198,7 +198,7 @@ test('B03-15 reiniciar el runtime pierde el motivo privado y permite crear otra 
     });
     page.on('response', response => {
       const route = new URL(response.url()).pathname;
-      if (!['/api/rooms/current', '/api/usage/choice'].includes(route)) return;
+      if (!['/api/rooms/current', '/api/statistics/exclusion', '/api/statistics/appearance-permission'].includes(route)) return;
       pendingObservations.push((async () => {
         const body = await response.json().catch(() => null);
         const responseHeaders = await response.allHeaders();
@@ -251,7 +251,7 @@ test('B03-15 adverso: una conexión entrante durante cierre conserva reconexión
   p.host.on('response', response => {
     const route = new URL(response.url()).pathname;
     if (route === '/socket.io/') reads.push(response.text().then(packet).catch(() => {}));
-    if (['/api/rooms/current', '/api/usage/choice'].includes(route)) reads.push(response.json().then(async body => {
+    if (['/api/rooms/current', '/api/statistics/exclusion', '/api/statistics/appearance-permission'].includes(route)) reads.push(response.json().then(async body => {
       const headers = await response.allHeaders();
       if (http.length < 60) http.push({ route, status: response.status(), setCookie: !!headers['set-cookie'], hasRoom: !!body?.room });
     }).catch(() => {}));

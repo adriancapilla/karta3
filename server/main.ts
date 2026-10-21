@@ -3,14 +3,14 @@ import path from 'node:path';
 import { createRuntime } from './composition/createApp.js';
 import { DeckLoadError, installationRoot, loadInstallationDecks, reportDeckDiagnostics } from './composition/decks.js';
 import { attachPublicFiles } from './infrastructure/http/publicFiles.js';
-import { createUsageRuntime } from './composition/usage.js';
+import { createStatisticsRuntime } from './composition/statistics.js';
 import { privacyNotice } from '../shared/contracts/privacyNotice.js';
 
 try {
   const loaded = await loadInstallationDecks();
   reportDeckDiagnostics(loaded.diagnostics);
-  const usage = await createUsageRuntime(privacyNotice.complete);
-  const runtime = createRuntime({ decks: loaded.catalog, deckVersions: loaded.catalog, gameDecks: loaded.catalog, usage: usage.recorder, usageHttp: usage.http, usageChoices: usage.choices });
+  const statistics = await createStatisticsRuntime(privacyNotice.complete);
+  const runtime = createRuntime({ decks: loaded.catalog, deckVersions: loaded.catalog, gameDecks: loaded.catalog, statistics });
   attachPublicFiles(runtime.app, path.join(installationRoot, 'dist'), loaded.catalog);
   const port = Number(process.env.PORT ?? 3000);
   const host = process.env.HOST ?? '127.0.0.1';
@@ -23,7 +23,7 @@ try {
     // Cerrar transporte conserva reconexión; DISCONNECT de namespace la desactiva.
     realtime.engine.close();
     server.close(); server.closeAllConnections();
-    void usage.close().finally(() => process.exit(0));
+    void statistics.close().finally(() => process.exit(0));
   };
   process.on('SIGTERM', stop); process.on('SIGINT', stop);
   server.listen(port, host, () => {

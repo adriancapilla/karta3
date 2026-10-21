@@ -1,7 +1,6 @@
 import type { DeckSummary, DeckInformationView } from './deck.js';
 import type { InitialGameView } from './game.js';
-import type { UsageContext } from './usage.js';
-export type JoinRoomRequest = { requestId: string; code: string; name: string; usageContext?: UsageContext };
+export type JoinRoomRequest = { requestId: string; code: string; name: string };
 
 export type BotDifficulty = 'EASY' | 'HARD';
 export type HumanParticipant = { id: string; name: string; kind: 'HUMAN'; role: 'HOST' | 'GUEST'; isPlayer: boolean; botDifficulty: null };
@@ -97,6 +96,6 @@ export type ErrorResponse = { error: { code: PublicErrorCode; message: string } 
 
 export type SocketAck<T> = { ok: true } & T | { ok: false; error: ErrorResponse['error'] };
 export type RoomChange = { id: string; kind: 'LEFT' | 'RECONNECTED' | 'PRESENCE_EXPIRED' | 'BOT_REMOVED'; participantId: string; name: string };
-export type RoomStateEvent = { room: RoomView; change?: RoomChange };
+export type RoomStateEvent = { room: RoomView; change?: RoomChange; appearanceWindow?: import('./appearance.js').AppearanceWindow };
 export type RoomLeftEvent = { roomId: string; participantId: string; reason?: 'VOLUNTARY' | 'RECONNECT_TIMEOUT' };
 export type RoomClosedEvent = { roomId: string; revision: number; reason: 'HOST_CLOSED' | 'HOST_DISCONNECTED' | 'INACTIVITY' };

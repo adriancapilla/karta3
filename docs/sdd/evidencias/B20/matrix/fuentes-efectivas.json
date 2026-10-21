@@ -1,0 +1,32 @@
+{
+  "title": {
+    "fonts": [
+      {
+        "familyName": "Segoe UI",
+        "postScriptName": "SegoeUI-Bold",
+        "isCustomFont": false,
+        "glyphCount": 17
+      }
+    ]
+  },
+  "lastAttribute": {
+    "fonts": [
+      {
+        "familyName": "Segoe UI",
+        "postScriptName": "SegoeUI-Bold",
+        "isCustomFont": false,
+        "glyphCount": 13
+      }
+    ]
+  },
+  "ownSymbol": {
+    "fonts": [
+      {
+        "familyName": "Segoe UI",
+        "postScriptName": "SegoeUI",
+        "isCustomFont": false,
+        "glyphCount": 1
+      }
+    ]
+  }
+}

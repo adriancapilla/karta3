@@ -4,6 +4,7 @@ import { io } from 'socket.io-client';
 import { configurationBrowserServer } from '../support/configurationBrowserServer.js';
 import { manualTable, humanPlay, readGame, readRoom } from '../support/manualBrowserCases.js';
 import { assertGamePrivacy } from '../support/gamePrivacy.js';
+import { observeKeyboard, publicationState } from '../support/b20b21PublicationDiagnostics.js';
 
 const evidence = 'playwright-report/b15/after';
 const solarPrefix = ['encke', 'borrelly', 'hyakutake', 'sedna', 'eris', 'hale-bopp', 'ryugu'];
@@ -92,6 +93,7 @@ async function cards(page:Page,mode:'PLAY_VALUE'|'DISPLAY_VALUE') {
 for(const id of ['generica','sistema-solar']) for(const mode of ['PLAY_VALUE','DISPLAY_VALUE'] as const) for(const width of [390,1920]) test(`B15 ${id} ${mode} ${width}: producto, información, indicadora, Detalles y privacidad`,async({browser})=>{
   const s=await server(); const p=await manualTable(browser,s.base,{deckId:id,version:4,valueMode:mode,optimize:true,width,turn:60,review:2});
   try {
+    await observeKeyboard(p.host);
     const own=await readGame(p.host); await cards(p.host,mode); await cards(p.pages[1],mode);
     const expected=JSON.parse(await fs.readFile(`barajas/${id}/baraja.json`,'utf8'));
     expect(own.deckInformation).toEqual({id,contentVersion:4,instructions:expected.instructions});
@@ -105,15 +107,23 @@ for(const id of ['generica','sistema-solar']) for(const mode of ['PLAY_VALUE','D
       expect(sample.panels.plays!.bottom).toBeLessThanOrEqual(sample.panels.hand!.y);
       expect(sample.cards.every(c=>c.box.width===220&&c.nameFont==='18px'&&c.image.width===32)).toBe(true);
       const trigger=p.host.getByRole('button',{name:`Carta indicadora: ${own.game.round.indicator.name}`,exact:true});await trigger.click();
-      await expect(p.host.getByRole('dialog').locator('tbody tr')).toHaveCount(3); await p.host.getByRole('button',{name:'Cerrar consulta',exact:true}).press('Escape'); await expect(p.host.getByRole('dialog')).toHaveCount(0); await expect(trigger).toBeFocused();
+      await expect(p.host.getByRole('dialog').locator('tbody tr')).toHaveCount(3); await p.host.getByRole('button',{name:'Cerrar consulta',exact:true}).press('Escape');
+      // getByRole omite el diálogo cerrado aunque siga montado y su onClose aún pueda restaurar foco.
+      await expect(p.host.locator('.consultation')).toHaveCount(0);
+      await expect(p.host.getByRole('dialog')).toHaveCount(0); await expect(trigger).toBeFocused();
     } else {expect(sample.contentWidth).toBe(1368);expect(sample.cards.every(c=>c.box.width===230)).toBe(true);}
-    const trigger=p.host.locator('.game-hand .card-details-button').first();await trigger.focus();await trigger.press('Enter');
-    const dialog=p.host.getByRole('dialog');await expect(dialog.locator('thead th')).toHaveText(['Atributo','Dato']);
+    expect(await p.host.locator('.game-hand .game-card-slot').evaluateAll(slots=>slots.map(slot=>slot.getAttribute('data-card-id')))).toEqual(own.game.hand.map(card=>card.id));
+    const trigger=p.host.locator('.game-hand .card-details-button').first();
+    await expect(trigger).toHaveAttribute('aria-label',`Detalles de ${own.game.hand[0].name}`);
+    await trigger.focus();await expect(trigger).toBeFocused();await trigger.press('Enter');
+    const dialog=p.host.getByRole('dialog');await expect(dialog.getByRole('heading',{level:2})).toHaveText(`Detalles de ${own.game.hand[0].name}`);
+    await expect(dialog.locator('thead th')).toHaveText(['Atributo','Dato']);
     await expect(dialog.locator('tbody td')).toHaveText(own.game.attributes.map(a=>literal(own.game.hand[0].values[a.id])));
+    await publicationState(p.host,`B15-${id}-${mode}-${width}-details-identity`);
     await expect(dialog).not.toContainText('Jugable:');await expect(dialog.getByRole('button',{name:'Información de la baraja',exact:true})).toBeVisible();
     const nested=dialog.getByRole('button',{name:'Información de la baraja',exact:true});await nested.click();await expect(p.host.locator('.consultation')).toContainText(expected.instructions);
     await p.host.locator('.consultation').getByRole('button',{name:'Cerrar consulta',exact:true}).press('Escape');await expect(p.host.locator('.consultation')).toHaveCount(0);await expect(dialog).toBeVisible();await expect(nested).toBeFocused();
-    await dialog.getByRole('button',{name:'Cerrar detalles',exact:true}).press('Escape');await expect(trigger).toBeFocused();
+    await dialog.getByRole('button',{name:'Cerrar detalles',exact:true}).press('Escape');await expect(p.host.locator('.card-details-dialog')).toHaveCount(0);await expect(trigger).toBeFocused();
     const info=p.host.getByRole('button',{name:'Información de la baraja',exact:true});await info.click();
     await expect(p.host.getByRole('dialog').locator('.literal-text').last()).toHaveText(expected.instructions);
     expect(await p.host.getByRole('dialog').locator('.literal-text').last().evaluate(e=>getComputedStyle(e).whiteSpace)).toBe('pre-wrap');
@@ -121,7 +131,7 @@ for(const id of ['generica','sistema-solar']) for(const mode of ['PLAY_VALUE','D
     await Promise.all(p.pages.map(page=>page.reload()));await Promise.all(p.pages.map(page=>expect(page.getByRole('heading',{level:1})).toContainText('Partida ·')));
     expect((await readGame(p.host)).settings).toEqual(own.settings);expect((await readGame(p.host)).game.id).toBe(own.game.id);
     if(width===390){await p.host.evaluate(()=>scrollTo(0,document.querySelector('.game-initial-state')!.getBoundingClientRect().top+scrollY));await p.host.screenshot({path:`${evidence}/${id}-${mode}-390-apartadas.png`});}
-  }finally{await p.close();await s.stop();}
+  }catch(error){await publicationState(p.host,`B15-${id}-${mode}-${width}-failed`);throw error;}finally{await p.close();await s.stop();}
 });
 
 test('B15 espera: dos sesiones y pestañas, info ligada a selección, cambios concurrentes y confirmación incierta',async({browser})=>{

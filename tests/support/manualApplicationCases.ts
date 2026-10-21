@@ -1,11 +1,11 @@
 import { initialGameCases } from './initialGameCases.js';
 import { manualTrace } from './manualGameTrace.js';
 import type { InitialGameRoomView } from '../../shared/contracts/room.js';
-import type { UsageRecorder } from '../../server/application/usage/recording.js';
+import type { StatisticsRecorder } from '../../server/application/statistics/recording.js';
 import type { ControlledTime } from './controlledTime.js';
 
-export function manualApplication(count = 2, options: { observer?: boolean; tie?: boolean; review?: 0 | 5; winners?: readonly number[]; turn?: 15 | 30 | 60; usage?: UsageRecorder; time?: ControlledTime } = {}) {
-  const prepared = manualTrace(count, options.winners); const f = initialGameCases({ fixture: prepared.fixture, usage: options.usage, time: options.time });
+export function manualApplication(count = 2, options: { observer?: boolean; tie?: boolean; review?: 0 | 5; winners?: readonly number[]; turn?: 15 | 30 | 60; statistics?: StatisticsRecorder; time?: ControlledTime } = {}) {
+  const prepared = manualTrace(count, options.winners); const f = initialGameCases({ fixture: prepared.fixture, statistics: options.statistics, time: options.time });
   f.configure({ field: 'reviewSeconds', value: options.review ?? 0 });
   f.configure({ field: 'forceTieBreak', value: options.tie ?? false });
   if (options.turn) f.configure({ field: 'turnSeconds', value: options.turn });

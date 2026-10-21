@@ -10,8 +10,8 @@ import type { MemorySessions } from './memorySessions.js';
 import { configurationInput, exactObject } from './configurationInput.js';
 import { cancelGameInput, gameInput } from './gameInput.js';
 import { botInput } from './botInput.js';
-import { safeUsageContext } from './usage/http.js';
-import type { UsageChoiceView } from '../../shared/contracts/usage.js';
+import { disabledStatistics, type StatisticsRecorder } from '../application/statistics/recording.js';
+import type { ControlView, StatisticsControls } from '../application/statistics/controls.js';
 
 const sessionRoom = (sessionId: string) => `session:${sessionId}`;
 const invalid = () => new RoomError('INVALID_INPUT', 'Los datos enviados no son válidos.');
@@ -41,13 +41,17 @@ export class SocketRoomChanges implements GameChanges, SessionPresence {
   private io?: Server;
   private readonly connections = new Map<string, Set<string>>();
   private stopped = false;
+  private statistics: StatisticsRecorder = disabledStatistics;
+  ids(sessionId: string): readonly string[] { return [...(this.connections.get(sessionId) ?? [])]; }
+  connected(connectionId: string): boolean { return !this.stopped && !!this.io?.sockets.sockets.get(connectionId)?.connected; }
 
   isConnected(sessionId: string): boolean { return (this.connections.get(sessionId)?.size ?? 0) > 0; }
-  choice(sessionId: string, choice: UsageChoiceView): void { this.io?.to(sessionRoom(sessionId)).emit('usage:choice', choice); }
+  statisticsState(sessionId: string, view: ControlView): void { this.io?.to(sessionRoom(sessionId)).emit('statistics:state', view); }
 
   dispose(): void { this.stopped = true; this.connections.clear(); }
 
-  attach(server: HttpServer, rooms: RoomActions, sessions: MemorySessions, production: boolean): Server {
+  attach(server: HttpServer, rooms: RoomActions, sessions: MemorySessions, production: boolean, statistics: StatisticsRecorder = disabledStatistics, controls?: StatisticsControls): Server {
+    this.statistics = statistics;
     const io = new Server(server, { ...SOCKET_DETECTION, maxHttpBufferSize: 4096, serveClient: false });
     this.io = io;
     io.use((socket, next) => {
@@ -60,6 +64,7 @@ export class SocketRoomChanges implements GameChanges, SessionPresence {
       const token = parseCookie(socket.handshake.headers.cookie ?? '').karta3_session;
       const sessionId = sessions.get(token);
       if (!sessionId) return next(new Error('Sesión no disponible.'));
+      controls?.establish(sessionId, true, parseCookie(socket.handshake.headers.cookie ?? '').karta3_statistics_exclusion);
       socket.data.sessionId = sessionId;
       socket.join(sessionRoom(sessionId));
       next();
@@ -74,6 +79,7 @@ export class SocketRoomChanges implements GameChanges, SessionPresence {
       connections.add(socket.id);
       rooms.presenceChanged(sessionId);
       socket.on('disconnect', () => {
+        this.statistics.appearance?.disconnected(socket.id);
         if (this.stopped || !connections.delete(socket.id)) return;
         if (!connections.size) this.connections.delete(sessionId);
         rooms.presenceChanged(sessionId);
@@ -86,11 +92,10 @@ export class SocketRoomChanges implements GameChanges, SessionPresence {
       });
       socket.on('room:join', (payload: unknown, ack: (result: SocketAck<{ room: RoomView }>) => void) => {
         try {
-          const hasContext = !!payload && typeof payload === 'object' && Object.hasOwn(payload, 'usageContext');
-          if (!object(payload, ['requestId', 'code', 'name', ...(hasContext ? ['usageContext'] : [])]) || !field(payload.requestId, 100)
+          if (!object(payload, ['requestId', 'code', 'name']) || !field(payload.requestId, 100)
             || typeof payload.code !== 'string' || payload.code.length > 64
             || typeof payload.name !== 'string' || payload.name.length > 128) throw invalid();
-          respond(ack, { ok: true, room: rooms.join(sessionId, payload.requestId, payload.code, payload.name, safeUsageContext(payload.usageContext)) });
+          respond(ack, { ok: true, room: rooms.join(sessionId, payload.requestId, payload.code, payload.name) });
         } catch (error) {
           if (error instanceof RoomError && error.code === 'INVALID_INPUT') rooms.joinInputRejected?.(sessionId,
             payload && typeof payload === 'object' && 'requestId' in payload ? payload.requestId : undefined);
@@ -156,7 +161,22 @@ export class SocketRoomChanges implements GameChanges, SessionPresence {
 
   updated(views: { sessionId: string; room: RoomView }[], change?: RoomChange): void {
     for (const view of views) {
-      this.io?.to(sessionRoom(view.sessionId)).emit('room:state', { room: view.room, ...(change ? { change } : {}) } satisfies RoomStateEvent);
+      const recipients = this.ids(view.sessionId).map(connection => {
+        let appearanceWindow;
+        try {
+          const room = view.room;
+          if (room.status !== 'WAITING') appearanceWindow = this.statistics.appearance?.take(view.sessionId, connection,
+            room.status === 'IN_GAME' ? room.game.id : room.result.gameId, room.status === 'IN_GAME' ? 'START' : 'END');
+        } catch { this.statistics.lost(); }
+        return { connection, appearanceWindow };
+      });
+      const state = { room: view.room, ...(change ? { change } : {}) } satisfies RoomStateEvent;
+      if (!recipients.some(recipient => recipient.appearanceWindow)) {
+        this.io?.to(sessionRoom(view.sessionId)).emit('room:state', state);
+        continue;
+      }
+      for (const { connection, appearanceWindow } of recipients) this.io?.to(connection).emit('room:state',
+        { ...state, ...(appearanceWindow ? { appearanceWindow } : {}) } satisfies RoomStateEvent);
     }
   }
   roundResolved(sessionIds: string[], event: RoundResolvedEvent): void {

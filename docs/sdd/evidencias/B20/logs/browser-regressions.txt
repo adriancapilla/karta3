@@ -1,0 +1,28 @@
+
+Running 21 tests using 1 worker
+
+(node:9396) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  1 tests\browser\cancelGame.spec.ts:38:34 › B13 botón/diálogo/resumen 390px: foco, no pausa, cero puntos y retorno en dos pestañas (3.7s)
+  ok  2 tests\browser\cancelGame.spec.ts:38:34 › B13 botón/diálogo/resumen 1800px: foco, no pausa, cero puntos y retorno en dos pestañas (2.1s)
+  ok  3 tests\browser\cancelGame.spec.ts:82:56 › B13/T04 A cancelada → B automatic, F5, avisos/estados antiguos y límites propios (2.3s)
+  ok  4 tests\browser\cancelGame.spec.ts:82:56 › B13/T04 A cancelada → B ordinary, F5, avisos/estados antiguos y límites propios (7.6s)
+  ok  5 tests\browser\cancelGame.spec.ts:113:1 › B13 ack/evento perdidos: incertidumbre, recuperación por gameId y ack A atrasado frente a B (7.8s)
+  ok  6 tests\browser\cancelGame.spec.ts:181:1 › B13 anfitrión observador, bot y desconectado: resumen/reconexión sin reactivar asociación (2.6s)
+  ok  7 tests\browser\cardColumns.spec.ts:10:3 › ADENDA B17 G columnas portada DISPLAY_VALUE: necesidades, uniformidad, contenido y clic habilitado (5.9s)
+  ok  8 tests\browser\cardColumns.spec.ts:10:3 › ADENDA B17 G columnas criaturas-magicas DISPLAY_VALUE: necesidades, uniformidad, contenido y clic habilitado (5.7s)
+  ok  9 tests\browser\cardFace.spec.ts:129:1 › B17 D: clic/Enter/Space/arrastre no juegan; parcial/plazo, Información, resize y foco equivalentes (6.1s)
+  ok 10 tests\browser\cardFace.spec.ts:181:33 › B17 compacta 390: cara intacta, consulta completa e imagen Detalles ampliada, anidación y foco (5.2s)
+  ok 11 tests\browser\cardFace.spec.ts:201:1 › B17 fallo/pendiente de medio: placeholder y aviso sin colisión con D, recurso original y recuperación (6.1s)
+  ok 12 tests\browser\cardTitleFit.spec.ts:48:131 › ADENDA B17 T/G/C sistema-solar DISPLAY_VALUE: máximo, banda, contenido y Resistencia (5.8s)
+  ok 13 tests\browser\cardTitleFit.spec.ts:48:131 › ADENDA B17 T/G/C criaturas-magicas DISPLAY_VALUE: máximo, banda, contenido y Resistencia (5.7s)
+  ok 14 tests\browser\cardTitleFit.spec.ts:83:1 › ADENDA B17 T/G/I fixture válida: corte solo a12, nombre íntegro, hit real y avance único (2.4s)
+  ok 15 tests\browser\cardTitleFit.spec.ts:112:1 › ADENDA B17 T/G fuentes tardías y zoom CSS125/200 declarado: recalcula sin pausar ni neutralizar fuente (6.6s)
+  ok 16 tests\browser\format2Presentation.spec.ts:148:1 › B15 frontera medida 1367/1368, equivalencia normal on/off, foco, parciales, resize y quinta (13.2s)
+  ok 17 tests\browser\resultNotice.spec.ts:38:56 › INC-01 expired A → B automatic: accepted result, reload, controlled expiry and old reads (2.1s)
+  ok 18 tests\browser\resultNotice.spec.ts:38:56 › INC-01 expired A → B ordinary: accepted result, reload, controlled expiry and old reads (7.4s)
+  ok 19 tests\browser\resultNotice.spec.ts:88:1 › INC-01 late A return failure/ack/home cannot change available B or trigger obsolete recovery (6.8s)
+  ok 20 tests\browser\timedGame.spec.ts:6:34 › B08 T1 1280: deadline estable, carta local ignorada, aviso y recuperación (1.6s)
+  ok 21 tests\browser\timedGame.spec.ts:91:39 › B08 T2 390: reset, dos fallos, automático sin control, revisión y resultado (2.6s)
+
+  21 passed (1.9m)

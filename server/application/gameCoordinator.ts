@@ -6,7 +6,7 @@ import type { Room } from './room.js';
 import { RoomError } from './roomError.js';
 import { toRoomView } from './roomView.js';
 import { toRoundResult } from './initialGameView.js';
-import { disabledUsage, type UsageRecorder } from './usage/recording.js';
+import { disabledStatistics, type StatisticsRecorder } from './statistics/recording.js';
 
 export interface GameActions {
   started(room: Room): void;
@@ -24,7 +24,7 @@ export class GameCoordinator implements GameActions {
   private stopped = false;
   constructor(private readonly repository: RoomRepository, private readonly requests: RoomRequests, private readonly changes: GameChanges,
     private readonly clock: Clock, private readonly scheduler: Scheduler, private readonly permute: CardPermutation,
-    private readonly usage: UsageRecorder = disabledUsage) {}
+    private readonly statistics: StatisticsRecorder = disabledStatistics) {}
 
   prepare(): void {
     if (this.stopped) return;
@@ -76,7 +76,7 @@ export class GameCoordinator implements GameActions {
     room.applyGame(next);
     this.afterPlay(room);
     this.repository.save(room);
-    this.usage.automatic(room);
+    this.statistics.automatic(room);
     const event: TurnExpiredEvent = { id: `${deadline.gameId}:${turnId}:expired`, roomId: room.id, gameId: deadline.gameId,
       roundNumber: deadline.roundNumber, turnId, playerId: deadline.playerId,
       automatic: next.players.find((person) => person.id === deadline.playerId)!.status === 'AUTOMATIC' };
@@ -106,7 +106,7 @@ export class GameCoordinator implements GameActions {
     room.applyGame(next);
     if (next.phase === 'FINISHED') { room.presentResult(this.clock.now()); this.scheduleRetention(room); }
     else this.activate(room);
-    this.repository.save(room); this.usage.ended(room); this.publish(room);
+    this.repository.save(room); this.statistics.ended(room); this.publish(room);
   }
   private schedule(room: Room) {
     const review = room.gameReview!;
@@ -163,7 +163,7 @@ export class GameCoordinator implements GameActions {
       this.repository.save(room);
       this.requests.save(sessionId, input.requestId, { kind: 'CANCEL_GAME', signature, roomId: room.id, participantId: person.id });
       this.scheduleRetention(room);
-      this.usage.ended(room);
+      this.statistics.ended(room);
       this.changes.updated(recipients.map((id) => ({ sessionId: id, room: this.view(room, id) })));
     } else if (!previous) {
       this.requests.save(sessionId, input.requestId, { kind: 'CANCEL_GAME', signature, roomId: room.id, participantId: person.id });

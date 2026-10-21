@@ -1,0 +1,50 @@
+[
+  {
+    "path": "playwright-report/b20/p1/1800-LIGHT.png",
+    "sha256": "a1f34cc546862fa75235af87319642f631c6a1b16e32a5a4ae144315a2dffc74"
+  },
+  {
+    "path": "playwright-report/b20/p1/1800-DARK.png",
+    "sha256": "7b9052097fec096d80abe863774fa9b35d5035dfba0ca2fe7beee2e6fd9f7586"
+  },
+  {
+    "path": "playwright-report/b20/p1/1800-CREAM.png",
+    "sha256": "267ec7cdd697f36184c25c1064c636251ca0fba87520933b9ecbc3600c653c6f"
+  },
+  {
+    "path": "playwright-report/b20/p1/1800-HIGH_CONTRAST.png",
+    "sha256": "99f22f975e42a3d720076ecc53f76eb587583ca87128727a0ba6ac4febc78755"
+  },
+  {
+    "path": "playwright-report/b20/p1/1800-measures.json",
+    "sha256": "767c6ded2792ff1aac70c4cd70330a0f3ba6d259dfec3760f6f6f29c2b87d4c9"
+  },
+  {
+    "path": "playwright-report/b20/p1/1800-focus.json",
+    "sha256": "2644734783d8e6516f108b14159a1de349c6cb40227ce7e9788f510db2afae8a"
+  },
+  {
+    "path": "playwright-report/b20/p1/390-LIGHT.png",
+    "sha256": "01ca6d3892847c909803e6e38febcc684e90c607d1f3a20552a846c9dbbdb738"
+  },
+  {
+    "path": "playwright-report/b20/p1/390-DARK.png",
+    "sha256": "aef582be52e83775a3cf7a407cdecfad7427c44337d315b39b5667fcd4daf9f8"
+  },
+  {
+    "path": "playwright-report/b20/p1/390-CREAM.png",
+    "sha256": "6370045607abcfd9f00b8462fc3df14ba6a0b81dea8cd91dfc673cfa51d92296"
+  },
+  {
+    "path": "playwright-report/b20/p1/390-HIGH_CONTRAST.png",
+    "sha256": "cce4c25c6c35a743aae7b208c1f03e3a421096a9f0c525b9e018f4172a8c89b0"
+  },
+  {
+    "path": "playwright-report/b20/p1/390-measures.json",
+    "sha256": "6044ff3c05dd87f12f2760087867549ce359a9507c878fe5430fc4dd6f2badf3"
+  },
+  {
+    "path": "playwright-report/b20/p1/390-focus.json",
+    "sha256": "2644734783d8e6516f108b14159a1de349c6cb40227ce7e9788f510db2afae8a"
+  }
+]

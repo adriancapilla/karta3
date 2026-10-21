@@ -6,6 +6,7 @@ import { configurationBrowserServer } from '../support/configurationBrowserServe
 import { humanPlay, manualTable, readGame } from '../support/manualBrowserCases.js';
 import { publicationDiagnostics } from '../support/publicationDiagnostics.js';
 import { assertFittedTitle } from '../support/cardTitleGeometry.js';
+import { publicationState } from '../support/b20b21PublicationDiagnostics.js';
 
 // Capture the compiled base before editing CSS; expected content/styles are never regenerated at verification.
 const captureBase = process.env.B10_CAPTURE_BASE === '1';
@@ -29,8 +30,9 @@ async function measure(page: Page) {
     // Public text only, excluding live countdown. IDs/credentials/private packets are never saved.
     const content = Object.fromEntries(['.game-shell header', '.game-shell h1', '.game-summary', '.game-people', '.game-plays', '.game-indicator', '.game-hand'].map((selector) => [selector, document.querySelector<HTMLElement>(selector)!.innerText]));
     const header = document.querySelector('header')!.getBoundingClientRect();
+    const headerPrefix = ['.brand', '.top-label'].map(selector => document.querySelector<HTMLElement>(`header ${selector}`)!.innerText).join('\n');
     const summary = document.querySelector('.game-summary')!.getBoundingClientRect();
-    return { boxes, styles, content, header: { x: header.x, y: header.y + scrollY }, summary: { x: summary.x, y: summary.y + scrollY },
+    return { boxes, styles, content, headerPrefix, header: { x: header.x, y: header.y + scrollY }, summary: { x: summary.x, y: summary.y + scrollY },
       viewport: { width: innerWidth, height: innerHeight }, pageWidth: document.documentElement.scrollWidth,
       pageHeight: document.documentElement.scrollHeight, scrollX, stateCount: document.querySelectorAll('.game-initial-state').length };
   }, [...panels]);
@@ -42,14 +44,19 @@ async function originalHeader(page: Page, content: Measurement['content'], hostA
   // the historical Windows coordinates are not a cross-platform baseline.
   const css = (await fs.readFile('tests/fixtures/style-f2d84fb.css', 'utf8')).replace(/\r\n/g, '\n');
   expect(createHash('sha256').update(css).digest('hex')).toBe('a00933484ee9c7676df79e850b676b387f86729253648f8cbed040ea0344dc20');
+  const appearance = (await fs.readFile('src/appearance.css', 'utf8')).replace(/\r\n/g, '\n');
+  expect(createHash('sha256').update(appearance).digest('hex')).toBe('095db98b349c45ebb91da5dc821e644ad3ff287a01f02711dc52685ecd6814c0');
   const reference = await page.context().newPage();
   try {
     await reference.setViewportSize(page.viewportSize()!);
-    // B13 adds a host action to both compared headers; the frozen B10 styles/content stay intact.
-    const header = hostAction ? '<header class="game-header-with-cancel"><span class="brand">KARTA<span>3</span></span><div class="game-header-actions"><span class="top-label">Partida</span><button class="secondary">Cancelar partida</button></div></header>' : '<header><span class="brand">KARTA<span>3</span></span><span class="top-label">Partida</span></header>';
+    // B13/B20: acciones aprobadas sobre el prefijo B10, sin regenerar su fixture.
+    // La cabecera de referencia incluye el selector personal ya autorizado.
+    const personal = '<div class="appearance-control"><label class="visually-hidden" for="reference-theme">Apariencia</label><select id="reference-theme"><option selected disabled hidden>Predefinida</option><option>Claro</option><option>Oscuro</option><option>Crema</option><option>Alto contraste</option></select><span class="visually-hidden">Claro aplicado por defecto. Preferencia personal de este navegador.</span></div>';
+    const header = `<header${hostAction ? ' class="game-header-with-cancel"' : ''}><span class="brand">KARTA<span>3</span></span><div class="game-header-actions"><span class="top-label">Partida</span>${personal}${hostAction ? '<button class="secondary cancel-game-button">Cancelar partida</button>' : ''}</div></header>`;
     await reference.setContent(`<!doctype html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"></head><body><div id="root"><main class="shell game-shell">${header}<h1 tabindex="-1"></h1><p class="game-summary"></p><div style="height:100vh"></div></main></div></body></html>`);
     await reference.addStyleTag({ content: css });
     await reference.addStyleTag({ content: '.game-header-actions{display:flex;align-items:center;justify-content:flex-end;flex-wrap:wrap;gap:12px;min-width:0}.game-shell header.game-header-with-cancel{height:auto;min-height:48px;gap:12px}' });
+    await reference.addStyleTag({ content: appearance });
     expect(await reference.evaluate(() => innerWidth)).toBe(page.viewportSize()!.width);
     return await reference.evaluate((content) => {
       document.querySelector('h1')!.textContent = content['.game-shell h1'];
@@ -113,7 +120,11 @@ async function record(page: Page, name: string, width: number, height: number) {
       }
     } catch (error) { await publicationDiagnostics(page, `B10-${width}-${name}`); throw error; }
     if (width <= 760) {
-      expect(sample.content['.game-shell header'].replace(/\s*Cancelar partida\s*$/, '')).toBe(base.content['.game-shell header']);
+      await publicationState(page, `B10-${width}-${name}`);
+      expect(sample.headerPrefix).toBe(base.content['.game-shell header']);
+      const personal = page.locator('header').getByRole('combobox', { name: 'Apariencia', exact: true });
+      await expect(personal).toBeEnabled();
+      await expect(personal.locator('option:not([hidden])')).toHaveText(['Claro', 'Oscuro', 'Crema', 'Alto contraste']);
       const hostAction = sample.content['.game-shell header'].includes('Cancelar partida');
       await expect(page.locator('header').getByRole('button', { name: 'Cancelar partida', exact: true })).toHaveCount(hostAction ? 1 : 0);
       const original = await originalHeader(page, base.content, hostAction);

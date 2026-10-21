@@ -1,0 +1,52 @@
+
+Running 7 tests using 1 worker
+
+(node:26420) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 tests\browser\appearance.spec.ts:13:4 › Adenda B20 selector player-narrow: caja real, conservación y foco exterior (3.3s)
+  ok 2 tests\browser\appearance.spec.ts:13:4 › Adenda B20 selector observer-compact: caja real, conservación y foco exterior (2.8s)
+  ok 3 tests\browser\appearance.spec.ts:13:4 › Adenda B20 selector player-horizontal: caja real, conservación y foco exterior (2.3s)
+  ok 4 tests\browser\appearance.spec.ts:82:34 › B20 P1 paletas y geometría 1800 (7.2s)
+  ok 5 tests\browser\appearance.spec.ts:82:34 › B20 P1 paletas y geometría 390 (6.2s)
+  x  6 tests\browser\cardFace.spec.ts:129:1 › B17 D: clic/Enter/Space/arrastre no juegan; parcial/plazo, Información, resize y foco equivalentes (12.8s)
+(node:14588) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 7 tests\browser\cardFace.spec.ts:206:1 › B17 consulta abierta: timeout retira la carta, revisión avanza y foco vuelve a región, sin pausas (7.1s)
+
+
+  1) tests\browser\cardFace.spec.ts:129:1 › B17 D: clic/Enter/Space/arrastre no juegan; parcial/plazo, Información, resize y foco equivalentes
+
+    Error: expect(locator).toHaveAttribute(expected) failed
+
+    Locator: locator('.game-hand [data-card-id="carta-002"]').locator('.card-play-surface .card-heading')
+    Expected: "true"
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toHaveAttribute" locator('.game-hand [data-card-id="carta-002"]').locator('.card-play-surface .card-heading') with timeout 5000ms
+      - waiting for locator('.game-hand [data-card-id="carta-002"]').locator('.card-play-surface .card-heading')
+
+
+      199 |     const surface = slot.locator('.card-play-surface .card-heading');
+      200 |     await surface.evaluate(e => e.addEventListener('click', event => e.setAttribute('data-adenda-trusted', String(event.isTrusted)), { once: true }));
+    > 201 |     await surface.click(); await expect(surface).toHaveAttribute('data-adenda-trusted', 'true'); await expect.poll(() => s.gameRequests.filter(r => r.event === 'game:play').length).toBe(1);
+          |                                                  ^
+      202 |     expect((await readGame(p.host)).game.round.plays.map(play => play.card.id)).toEqual([id]);
+      203 |   } finally { await p.close(); await s.stop(); }
+      204 | });
+        at E:\KARTA3\KARTA3_IA\APP\karta3\tests\browser\cardFace.spec.ts:201:50
+
+    Error Context: playwright-report\b20-adenda\20261020-selector-detalles\checked-traces\cardFace-B17-D-clic-Enter--059e6--resize-y-foco-equivalentes\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    playwright-report\b20-adenda\20261020-selector-detalles\checked-traces\cardFace-B17-D-clic-Enter--059e6--resize-y-foco-equivalentes\trace.zip
+    Usage:
+
+        npx playwright show-trace playwright-report\b20-adenda\20261020-selector-detalles\checked-traces\cardFace-B17-D-clic-Enter--059e6--resize-y-foco-equivalentes\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests\browser\cardFace.spec.ts:129:1 › B17 D: clic/Enter/Space/arrastre no juegan; parcial/plazo, Información, resize y foco equivalentes
+  6 passed (45.6s)

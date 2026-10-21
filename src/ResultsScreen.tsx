@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import type { ResultsRoomView } from '../shared/contracts/room';
 import { suffixes } from './participantNames';
+import { AppearanceControl } from './AppearanceControl';
 
 export function ResultsScreen({ room, activity, error, busy, onHome }: {
   room: ResultsRoomView; activity: string; error: string; busy: boolean; onHome: () => void;
@@ -15,7 +16,7 @@ export function ResultsScreen({ room, activity, error, busy, onHome }: {
   const observer = room.participants.find((person) => !person.isPlayer);
   const cancelled = room.result.endReason === 'HOST_CANCELLED';
   return <main className="shell game-shell results-shell">
-    <header><span className="brand">KARTA<span>3</span></span><span className="top-label">Resultados</span></header>
+    <header><span className="brand">KARTA<span>3</span></span><div className="game-header-actions"><span className="top-label">Resultados</span><AppearanceControl /></div></header>
     <h1 ref={title} tabIndex={-1}>{cancelled ? 'Partida cancelada por el anfitrión' : 'Partida terminada'}</h1>
     <p>{room.selectedDeck.name} · v{room.selectedDeck.contentVersion}</p>
     {room.result.endReason === 'NO_ACTIVE_HUMAN_PLAYERS' && <p role="status">La partida terminó porque todos los jugadores humanos pasaron a automático</p>}

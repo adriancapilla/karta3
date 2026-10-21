@@ -56,7 +56,8 @@ for (const width of [390, 1280]) test(`AGV2-04–08 genérica 2 normal: dos sesi
       await expect(page.locator('.deck-card img')).toHaveCount(0);
       expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
     }
-    await expect(guest.getByRole('combobox')).toHaveCount(0);
+    await expect(guest.getByRole('combobox', { name: 'Apariencia', exact: true })).toBeEnabled();
+    await expect(guest.getByRole('combobox', { name: /^(?!Apariencia$)/ })).toHaveCount(0);
     const acceptedHost = await current(host); const acceptedGuest = await current(guest);
     expect(acceptedHost.selectedDeck).toEqual(approvedGeneric); expect(acceptedGuest.selectedDeck).toEqual(approvedGeneric);
     expect(acceptedHost.settings).toMatchObject({ deckId: 'generica', deckContentVersion: 4 });
@@ -77,7 +78,8 @@ for (const width of [390, 1280]) test(`AGV2-04–08 genérica 2 normal: dos sesi
       expect(recovered.lifecycle.expiresAt).toBe(accepted.lifecycle.expiresAt);
     }
     expect(browserConfigurations).toBe(1); // Observación de envíos reales: recargar no vuelve a configurar.
-    await expect(guest.getByRole('combobox')).toHaveCount(0);
+    await expect(guest.getByRole('combobox', { name: 'Apariencia', exact: true })).toBeEnabled();
+    await expect(guest.getByRole('combobox', { name: /^(?!Apariencia$)/ })).toHaveCount(0);
     hs = await authenticatedSocket(base, hc); gs = await authenticatedSocket(base, gc);
     const beforeErrors = await current(host);
     const v2: ConfigureRoomRequest = { requestId: 'normal-repeat', roomId: acceptedHost.id, change: { field: 'deck', value: { id: 'generica', contentVersion: 4 } } };

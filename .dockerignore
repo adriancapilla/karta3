@@ -40,3 +40,4 @@ barajas/.catalogo-*.tmp
 **/*.sqlite-shm
 **/*.sqlite-journal
 **/*.agg.enc
+**/*.enc

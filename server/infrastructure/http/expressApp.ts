@@ -5,8 +5,7 @@ import type { RoomActions } from '../../application/roomUseCases.js';
 import { RoomError, type RoomErrorCode } from '../../application/roomError.js';
 import type { MemorySessions } from '../memorySessions.js';
 import type { ListDecks } from '../../application/deckCatalog.js';
-import { attachUsageHttp, safeUsageContext, usageSignal, type UsageHttp } from '../usage/http.js';
-import type { UsageChoices } from '../../application/usage/choice.js';
+import { attachStatisticsHttp, EXCLUSION_COOKIE, type StatisticsHttp } from '../statistics/http.js';
 
 const COOKIE_NAME = 'karta3_session';
 
@@ -34,16 +33,16 @@ const roomErrorStatus: Record<RoomErrorCode, number> = {
   INTERNAL_ERROR: 500
 };
 
-export function createHttpApp(dependencies: { rooms: RoomActions; sessions: MemorySessions; production: boolean; decks: ListDecks; usage?: UsageHttp; choices: UsageChoices }) {
+export function createHttpApp(dependencies: { rooms: RoomActions; sessions: MemorySessions; production: boolean; decks: ListDecks; statistics: StatisticsHttp }) {
   const { rooms, sessions, production, decks } = dependencies;
   const app = express();
   app.disable('x-powered-by');
-  app.use('/api', (req, res, next) => {
+  app.use('/api', (_req, res, next) => {
     res.set('Cache-Control', 'no-store');
-    res.set('X-Karta3-Usage-Collection', usageSignal(dependencies.usage, currentSession(req)));
+    res.set('X-Karta3-Statistics-Collection', dependencies.statistics.enabled() ? dependencies.statistics.mode : 'off');
     next();
   });
-  attachUsageHttp(app, dependencies.usage, production, dependencies.choices, { current: currentSession, establish });
+  attachStatisticsHttp(app, dependencies.statistics, production, { current: currentSession, establish });
   app.use(express.json({ limit: '4kb' }));
 
   app.get('/api/decks', (_req, res) => {
@@ -56,10 +55,15 @@ export function createHttpApp(dependencies: { rooms: RoomActions; sessions: Memo
     if (!id) throw new TransportError('SESSION_REQUIRED', 401, 'Tu sesión ya no está disponible. Recarga para continuar.');
     return id;
   }
-  function currentSession(req: Request) { return sessions.get(parseCookie(req.headers.cookie ?? '')[COOKIE_NAME]); }
+  function currentSession(req: Request) {
+    const cookies = parseCookie(req.headers.cookie ?? ''); const id = sessions.get(cookies[COOKIE_NAME]);
+    if (id) dependencies.statistics.controls.establish(id, true, cookies[EXCLUSION_COOKIE]); return id;
+  }
   function establish(req: Request, res: Response) {
     const current = currentSession(req); if (current) return current;
     const fresh = sessions.establish();
+    const cookies = parseCookie(req.headers.cookie ?? '');
+    dependencies.statistics.controls.establish(fresh.id, !!cookies[COOKIE_NAME], cookies[EXCLUSION_COOKIE]);
     res.cookie(COOKIE_NAME, fresh.token, { httpOnly: true, secure: production, sameSite: 'strict', path: '/', maxAge: 30 * 24 * 60 * 60 * 1000 });
     return fresh.id;
   }
@@ -87,7 +91,7 @@ export function createHttpApp(dependencies: { rooms: RoomActions; sessions: Memo
     if (!req.body || typeof req.body !== 'object' || Array.isArray(req.body) || Object.keys(req.body).length !== 0) {
       throw new TransportError('INVALID_INPUT', 400, 'La creación no necesita datos adicionales.');
     }
-    res.status(201).json({ room: rooms.createOrGet(session(req), safeUsageContext(req.get('X-Karta3-Usage-Context'))) } satisfies RoomResponse);
+    res.status(201).json({ room: rooms.createOrGet(session(req)) } satisfies RoomResponse);
   });
 
   app.get('/api/rooms/:id', (req, res) => {

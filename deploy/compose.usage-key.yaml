@@ -3,11 +3,11 @@
 services:
   app:
     environment:
-      KARTA3_USAGE_BACKUP_KEY_FILE: /run/secrets/karta3-usage-backup-key
+      KARTA3_STATISTICS_BACKUP_KEY_FILE: /run/secrets/karta3-statistics-backup-key
     secrets:
-      - source: usage_backup_key
-        target: karta3-usage-backup-key
+      - source: statistics_backup_key
+        target: karta3-statistics-backup-key
 
 secrets:
-  usage_backup_key:
-    file: ${KARTA3_USAGE_BACKUP_KEY_PATH:?Archivo de clave privado existente fuera de Git}
+  statistics_backup_key:
+    file: ${KARTA3_STATISTICS_BACKUP_KEY_PATH:?Archivo de clave privado existente fuera de Git}

@@ -4,6 +4,7 @@ import path from 'node:path';
 import { createHash } from 'node:crypto';
 import { configurationBrowserServer } from '../support/configurationBrowserServer.js';
 import { manualTable, humanPlay, readGame } from '../support/manualBrowserCases.js';
+import { publicationState } from '../support/b20b21PublicationDiagnostics.js';
 
 const before = process.env.B11_CAPTURE_BASE === '1';
 const evidence = before ? path.resolve('playwright-report/b11/before') : path.resolve('playwright-report/b12/b11-regression');
@@ -25,14 +26,19 @@ async function measure(page: Page) {
     const hand = document.querySelector('.hand-row')!; const plays = document.querySelector('.played-row')!;
     return { viewport: { width: innerWidth, height: innerHeight, dpr: devicePixelRatio, scale: visualViewport?.scale },
       pageWidth: document.documentElement.scrollWidth, pageHeight: document.documentElement.scrollHeight,
-      panels, cards, actions, header: box(header), legend: legend ? box(legend) : null,
+      panels, cards, actions, game: box(document.querySelector('main.game-shell')!), statistics: box(document.querySelector('.usage-choice')!),
+      header: box(header), legend: legend ? box(legend) : null,
       handOverflow: hand.scrollWidth - hand.clientWidth, playsOverflow: plays.scrollWidth - plays.clientWidth };
   });
 }
 type Measurement = Awaited<ReturnType<typeof measure>>;
 function reference(sample: Measurement, review = false) {
   expect(sample.viewport).toEqual({ width: 1800, height: 1600, dpr: 1, scale: 1 });
-  expect(sample.pageWidth).toBeLessThanOrEqual(1800); expect(sample.pageHeight).toBeLessThanOrEqual(1600);
+  expect(sample.pageWidth).toBeLessThanOrEqual(1800); expect(sample.game.bottom).toBeLessThanOrEqual(1600);
+  // Precisión del autor21/10: el bloque posterior puede alargar el documento,
+  // pero no ocupar o tapar la composición de juego ni provocar overflow horizontal.
+  expect(sample.statistics.y).toBeGreaterThanOrEqual(sample.game.bottom);
+  expect(sample.statistics.x).toBeGreaterThanOrEqual(0); expect(sample.statistics.right).toBeLessThanOrEqual(1800);
   expect(sample.handOverflow).toBeLessThanOrEqual(1);
   // B12 limita Mesa a cuatro completas y permite consultar la quinta lateralmente.
   expect(sample.playsOverflow).toBe(sample.cards.filter((card) => card.area === 'plays').length === 5 ? 276 : 0);
@@ -57,7 +63,14 @@ async function record(page: Page, name: string, review = false) {
   await page.screenshot({ path: path.join(evidence, `${name}-viewport.png`) });
   await page.screenshot({ path: path.join(evidence, `${name}-full.png`), fullPage: true });
   console.log(`B11_MEASURE ${name} ${JSON.stringify(sample)}`);
-  if (!before) reference(sample, review);
+  if (!before) {
+    try { reference(sample, review); }
+    catch (error) { await publicationState(page, `B11-${name}`); throw error; }
+    const privacy = page.getByRole('complementary', { name: 'Analítica y privacidad', exact: true }).getByRole('link', { name: 'Analítica y privacidad', exact: true });
+    await privacy.scrollIntoViewIfNeeded(); await expect(privacy).toBeInViewport();
+    await privacy.focus(); await expect(privacy).toBeFocused();
+    await page.evaluate(() => scrollTo(0, 0));
+  }
 }
 test.beforeAll(async () => {
   if (before) {

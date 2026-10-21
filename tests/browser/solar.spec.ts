@@ -37,7 +37,8 @@ for (const width of [390, 1280]) test(`B14 catálogo normal, cambio de baraja, p
     await guest.getByLabel('Tu nombre', { exact: true }).fill('Persona Solar');
     await guest.getByRole('button', { name: 'Entrar', exact: true }).click();
     await expect(guest.getByRole('heading', { name: 'Ya estás en la sala' })).toBeVisible();
-    await expect(guest.getByRole('combobox')).toHaveCount(0);
+    await expect(guest.getByRole('combobox', { name: 'Apariencia', exact: true })).toBeEnabled();
+    await expect(guest.getByRole('combobox', { name: /^(?!Apariencia$)/ })).toHaveCount(0);
     for (const deck of [approvedSolar, approvedGeneric, approvedSolar]) {
       await host.getByLabel('Baraja', { exact: true }).selectOption(JSON.stringify({ id: deck.id, contentVersion: 4 }));
       for (const page of [host, guest]) {
