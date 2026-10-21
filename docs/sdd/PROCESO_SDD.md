@@ -166,3 +166,5 @@ El [bloque 15: consumidor formato 2, Valor del Atributo y presentación compacta
 **Recepción B18 — 18/10/2026:** alineación general recibida y contrastada en lectura (Aplicación16.1/17.12 e Infraestructura1–4/12.1/14.1/15.1–15.2/16.9). El cierre Windows anterior conserva sus cifras/históricos. Publicación inicia puertas Linux; privacidad y preparación operativa siguen pendientes, sin HUMAN/GHCR/VPS. Resultados reales y cierre en el registro operativo/PR.
 
 **Limpieza operativa B19, 20/10/2026:** [anotación histórica canónica](../operacion/GITHUB_Y_RECUPERACION.md#b19-circuito-operativo-retirado). Conserva la implementación publicada con aceptación individual y sus evidencias.
+
+**Consolidación GitHub B20/B21 — 21/10/2026:** alineación general B20 recibida20/10 y descriptiva B21 recibida21/10 (ARQ-AGREGADOS-2026-10-20 / alternativa A-B21); referencias exactas en B20 §18/B21 §14. Valoración humana limitada al selector/botones B20 tras adenda. La retirada manual B21 ya está implementada y comprobada localmente; los apartados de preparación anteriores son históricos. Publicación/CI se registran por fuente, sin activar captura, GHCR/VPS o borrado.

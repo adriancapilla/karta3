@@ -4,6 +4,7 @@ import assert from 'node:assert/strict';
 import { createServer } from 'node:http';
 import { randomUUID } from 'node:crypto';
 import { DatabaseSync } from 'node:sqlite';
+import fs from 'node:fs/promises';
 import { io } from 'socket.io-client';
 import { createStatisticsRuntime, statisticsLocation } from '/app/dist-server/server/composition/statistics.js';
 import { createRuntime } from '/app/dist-server/server/composition/createApp.js';
@@ -12,6 +13,7 @@ import { privateDirectory } from '/app/dist-server/server/infrastructure/statist
 import { loadInstallationDecks } from '/app/dist-server/server/composition/decks.js';
 import { STATISTICS_NOTICE_VERSION } from '/app/dist-server/shared/contracts/statistics.js';
 assert.equal(process.platform, 'linux'); assert.equal(process.arch, 'x64'); assert.equal(process.version, 'v24.19.0'); assert.equal(process.getuid(), 1000);
+await assert.rejects(fs.writeFile('/run/karta3-secrets/.write-probe', 'fabricated'), { code: 'EROFS' });
 Object.assign(process.env, { KARTA3_ENV: 'pruebas', KARTA3_STATISTICS_MODE: 'aggregate', KARTA3_STATISTICS_DIRECTORY: '/var/lib/karta3/statistics', KARTA3_STATISTICS_BACKUP_KEY_FILE: '/run/karta3-secrets/copy.key' });
 const location = statisticsLocation('pruebas', process.env.KARTA3_STATISTICS_DIRECTORY); privateDirectory(location.root, true);
 const initial = new AggregateStore({ ...location, now: Date.now(), initialize: true }); initial.close(true);

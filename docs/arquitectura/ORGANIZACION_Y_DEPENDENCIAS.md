@@ -358,3 +358,9 @@ Windows conserva 587/587,51 archivos/92 módulos y39/39+8/8 seleccionados con do
 La publicación verificará primero Linux focal B18 y la misma imagen con UID1000, raíz read-only, volumen privado, permisos, administración solo lectura, parada POSIX/recreación, persistencia estadística sin RAM jugable, copia cifrada y restauración aislada. Después CI completa de fuente y squash/main, con un trabajador/cero reintentos. No se declara superada una puerta por describirla; resultados y fallos reales se enlazarán desde el registro operativo y la PR.
 
 Siguen pendientes privacidad/información, habilitación expresa futura de recogida real, acceso administrativo en VPS, copia externa/supervisión y ensayo del responsable. Sin modo HUMAN habilitado, GHCR, VPS, dashboard, métricas nuevas o cambios editoriales. B18 no se declara verificado globalmente ni operativo públicamente.
+
+## Recepción B20/B21 para publicación — 21/10/2026
+
+Referencia recibida por el autor y contrastada en lectura el 21/10/2026: B20, alineación general 20/10, Aplicación §§7.7–7.8/16.3/17.14 e Infraestructura §16.11; B21, ARQ-AGREGADOS-2026-10-20 / alternativa A-B21, Aplicación §§16.4/17.15 e Infraestructura §§12.3/14.2/15.3/16.12. No se editan las fuentes TFM.
+
+B21 sustituye íntegramente los consumidores B18–B20 descritos en los antecedentes: aplicación reduce a Delta(celdas/calidad), infraestructura statistics persiste AGG_DAILY_V1 en archivo nuevo, y composición conecta writer/lector/CLI sin lectores ni migraciones legacy. Núcleo/HOME por defecto, exclusión funcional y permiso separado de apariencia. Los nombres de scripts usage:* y ci-usage.sh se conservan por compatibilidad de invocación, con implementación únicamente nueva. Juego/dominio/transporte y apariencia funcional B20 conservados; no persistencia jugable ni activación por documentación.

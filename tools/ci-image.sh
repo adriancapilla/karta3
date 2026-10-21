@@ -84,8 +84,10 @@ jq -n --arg commit "$CHECKED_SHA" --arg digest "$manifest_digest" --arg config "
     archiveSha256:$archive,runId:$run,runAttempt:$attempt,started:$started,completed:$completed,
     registryPublished:false,checks:{nativeSharp:true,nonRoot:true,readOnly:true,health:true,
     approvedDeckHashes:true,httpsLocalCA:true,proxyChrome:1,certificatePersistence:true,
-    usageSyntheticVolume:true,usagePersistence:true,usageEncryptedRestore:true,usageOff:true,
-    usageSchema2:true,usagePrivateChoice:true,usageReadOnlyKey:true,usageReceiptFreeBackup:true}}' > "$proof/trace.json"
+    statisticsModel:"AGG_DAILY_V1",statisticsSchema:1,retiredModulesAbsent:true,
+    statisticsSyntheticVolume:true,statisticsPersistence:true,statisticsEncryptedRestore:true,
+    statisticsOff:true,statisticsSeparatePermission:true,statisticsReadOnlyKey:true,
+    statisticsIndividualDetailAbsent:true}}' > "$proof/trace.json"
 cat "$proof/trace.json"
 # No se conservan configuraciones generales/variables de contenedores como artefacto.
 rm "$proof/container.json"

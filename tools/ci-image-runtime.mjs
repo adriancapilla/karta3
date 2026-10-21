@@ -2,11 +2,20 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import sharp from 'sharp';
+import { DatabaseSync } from 'node:sqlite';
 
 assert.equal(process.version, 'v24.19.0');
 assert.equal(process.platform, 'linux');
 assert.equal(process.arch, 'x64');
 assert.notEqual(process.getuid(), 0);
+const sqlite = new DatabaseSync(':memory:');
+const sqliteVersion = sqlite.prepare('SELECT sqlite_version() AS version').get().version;
+sqlite.close();
+for (const retired of ['server/application/usage', 'server/infrastructure/usage', 'shared/contracts/usage.js',
+  'server/composition/usage.js', 'server/composition/usageCli.js', 'server/composition/usageMaintenanceCli.js',
+  'server/composition/usageSyntheticCli.js']) {
+  await assert.rejects(fs.stat('/app/dist-server/' + retired), { code: 'ENOENT' });
+}
 const png = await sharp({ create: { width: 2, height: 2, channels: 3, background: 'blue' } }).png().toBuffer();
 assert.equal((await sharp(png).metadata()).format, 'png');
 await assert.rejects(fs.writeFile('/app/.ci-readonly-probe', 'probe', { flag: 'wx' }), { code: 'EROFS' });
@@ -118,5 +127,5 @@ for (const [file, hash] of Object.entries({
   'baraja.json': '3e31db300c706738e69d743703f2bd1d4d027b2b08743313fe54d15eb6943e44',
   'cartas.json': 'bce5740a4ba3daf8da60ffad88a2cbc07271e95baae44bee078d0984973fa7fa'
 })) assert.equal(createHash('sha256').update(await fs.readFile(`/app/barajas/sistema-solar/${file}`)).digest('hex'), hash);
-console.log(JSON.stringify({ node: process.version, uid: process.getuid(), icu: process.versions.icu, unicode: process.versions.unicode, sharp: sharp.versions,
+console.log(JSON.stringify({ node: process.version, sqlite: sqliteVersion, retiredModulesAbsent: true, uid: process.getuid(), icu: process.versions.icu, unicode: process.versions.unicode, sharp: sharp.versions,
   deckHashes: expected, creaturesHashes: creatures, catalog, readonly: true }));

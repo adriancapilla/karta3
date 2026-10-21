@@ -1,7 +1,19 @@
 # GitHub, comprobaciones y recuperación
 
-Actualizado: 19/10/2026. Repositorio existente: `E:\KARTA3\KARTA3_IA\APP\karta3`.
-Versión de paquete: 0.1.0. Remoto privado: `https://github.com/adriancapilla/karta3.git`.
+Actualizado: 21/10/2026. Repositorio existente: `E:\KARTA3\KARTA3_IA\APP\karta3`.
+Versión de paquete: 0.1.0. Remoto público: `https://github.com/adriancapilla/karta3.git`.
+
+## Publicación conjunta B20/B21 — 21/10/2026
+
+Entrega: limpieza documental B19, cuatro apariencias personales B20 y su adenda selector/Detalles, sustitución integral por AGG_DAILY_V1 y retirada exclusiva del botón de consulta manual B21. Las evidencias Windows614/58/103 y selecciones de navegador son históricas/locales; Linux, imagen y batería completa se registran por ejecución/SHA real en la PR. La disminución respecto al modelo anterior corresponde a su retirada y sustitución de cobertura, no a omitir pruebas vigentes.
+
+Referencia recibida por el autor y contrastada en lectura el 21/10/2026: B20, alineación general 20/10, Aplicación §§7.7–7.8/16.3/17.14 e Infraestructura §16.11; B21, ARQ-AGREGADOS-2026-10-20 / alternativa A-B21, Aplicación §§16.4/17.15 e Infraestructura §§12.3/14.2/15.3/16.12. No se editan las fuentes TFM.
+
+Primera puerta remota: diagnóstico B21/B20 con imagen, worker1/retries0, seguido de CI completa sin filtro sobre la fuente definitiva. Mantener presupuestos Chrome30/trabajo35 e imagen20/trabajo30 hasta evidencia contraria. El verificador registra modelo AGG_DAILY_V1/esquema1, versión SQLite real y ausencia de módulos retirados; elimina etiquetas de trazabilidad obsoletas esquema2/recibos B19 sin modificar producto o criterios.
+
+Repositorio público por decisión del autor; GHCR conserva su visibilidad. Este encargo no invoca el publicador, cuyo requisito de repositorio privado requiere adaptación posterior antes de otra publicación. Guardar candidato OCI de main (ejecución/artefacto/digest/caducidad) sin reconstruir. Activación, datos anteriores, nuevo volumen/configuración y VPS se resuelven por encargo posterior; no usar un ejecutable viejo contra AGG ni abrir legacy con el nuevo.
+
+El cierre remoto se completa en la PR: fuente, squash, puertas/intentos, CI main, clon y recuperación mediante etiqueta publicada de la fuente antes de retirar la única rama temporal. Los apartados siguientes conservan sus fechas como históricos.
 
 ## B19 — preparación focal, sin publicación final
 

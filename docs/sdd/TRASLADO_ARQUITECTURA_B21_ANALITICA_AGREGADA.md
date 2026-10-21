@@ -85,3 +85,9 @@ Conclusiones concretas para actualizar las fuentes responsables:
 5. **Verificación real:** check614/614/103 módulos y31 casos únicos de Chrome correctos, con reparación de una aserción B05 desactualizada. SQLite/HTTP/Socket.IO y dos reinicios propios reales; partida completa humano-bots y15s real desconectado diferenciados de reloj controlado.124 fuentes editoriales y presentación protegida intactas. No equivale a Linux/imagen/volumen, toda CI, aprobación humana o activación pública.
 
 **Pendientes delimitados:** el autor traslada este cierre y registra la referencia de alineación recibida; Linux/CI/imagen/volumen y preparación/operación pública se verifican en el encargo correspondiente. Las condiciones por familia están cerradas: no se encarga otra aprobación jurídica genérica. C09–C10 siguen parciales. No TFM editado, datos previos borrados, publicación, despliegue o recogida real activada desde B21.
+
+## 13. Recepción confirmada — 21/10/2026
+
+Referencia recibida por el autor y contrastada en lectura el 21/10/2026: B20, alineación general 20/10, Aplicación §§7.7–7.8/16.3/17.14 e Infraestructura §16.11; B21, ARQ-AGREGADOS-2026-10-20 / alternativa A-B21, Aplicación §§16.4/17.15 e Infraestructura §§12.3/14.2/15.3/16.12. No se editan las fuentes TFM.
+
+Aplicación §17.15 e Infraestructura §16.12 ya describen la implementación recibida y sus límites. Esta recepción cierra el traslado documental; no implica comprobación Linux, publicación, recepción humana de B21, operación ni borrado.

@@ -2,7 +2,7 @@
 
 KARTA3 es un proyecto de adaptación de un juego de cartas a una aplicación web multijugador, desarrollado como Trabajo Fin de Máster.
 
-## B21 — estadísticas agregadas (entrega local, sin activación pública)
+## B21 — estadísticas agregadas (sin activación pública por esta entrega)
 
 El único modelo estadístico nuevo es **AGG_DAILY_V1**, esquema propio 1, en un archivo separado. Se reduce en aplicación antes de la cola: contadores diarios, configuración marginal, balances, duración en segundos/intervalos y apariencia consentida. No se guardan eventos, visitas, referencias individuales, recibos o snapshots de partidas. El juego continúa exclusivamente en RAM y no espera estadísticas. Las nueve consultas/CSV son administrativas, privadas y por **días UTC cerrados**; no hay panel o API pública de informes.
 

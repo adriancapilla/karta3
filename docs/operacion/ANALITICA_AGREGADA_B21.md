@@ -80,3 +80,9 @@ Para restaurar: entorno/tráfico coincidentes, destino nuevo aislado, `KARTA3_ST
 5. Ejecutar únicamente inventario autorizado; excluir nueva base/clave, barajas, juego, Git/evidencias. Verificar tareas y registrar sin copiar contenido/secretos. La pérdida de histórico anterior es aceptada, no se ejecuta aquí.
 
 Publicación, imagen/CI, operación, revisión humana y recepción de Arquitectura se registran separadamente del ensayo técnico local. C09–C10 siguen parciales.
+
+## Recepción y publicación técnica — 21/10/2026
+
+Referencia recibida por el autor y contrastada en lectura el 21/10/2026: B20, alineación general 20/10, Aplicación §§7.7–7.8/16.3/17.14 e Infraestructura §16.11; B21, ARQ-AGREGADOS-2026-10-20 / alternativa A-B21, Aplicación §§16.4/17.15 e Infraestructura §§12.3/14.2/15.3/16.12. No se editan las fuentes TFM.
+
+La guía se publica junto con las apariencias B20/adendas y la retirada exclusiva del botón de consulta manual B21. Se mantienen las consultas internas y la coordinación de pestañas. La recepción de Arquitectura queda registrada; CI/Linux e imagen se acreditan por las ejecuciones de la PR, no por esta descripción. La puesta en servicio y el borrado requieren otro encargo; B19 sigue siendo la versión del VPS hasta entonces.
