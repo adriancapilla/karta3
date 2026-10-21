@@ -1,0 +1,2965 @@
+{
+  "date": "2026-10-21",
+  "base": "aa336d3add598e4c59789ff053292295410da8dc",
+  "b11Delivery": "../verificacion-b11-20261021/cierre-b11.md",
+  "runtime": {
+    "node": "v24.19.0",
+    "path": "C:\\Users\\Adrian\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+    "platform": "win32",
+    "arch": "x64",
+    "browser": "155.0.8059.85"
+  },
+  "source": [
+    {
+      "path": "src/style.css",
+      "sha256": "dcb9076c6cb225835c773440015b665f2557ebde5186c41d6ce2f3abf65d01e8",
+      "finalSha256": "ccf2ca241f83831c90e288077663f312b0244308b02928d1bd5898ae71647de9"
+    },
+    {
+      "path": "tests/browser/format2Presentation.spec.ts",
+      "sha256": "342012d8f9a5add05428d1ea129ff4710bef9cd2874c5f5a11c19ab6779066a3",
+      "finalSha256": "9abecd053c58bb238334e2e3ac0ba843b84ae612eb53097ef45ea0c5a0b75521"
+    },
+    {
+      "path": "tests/browser/tableLayout.spec.ts",
+      "sha256": "009d8486eaf905e2f69697f93ad7976259d18af9fdf5bad428f09c1f92e44501",
+      "finalSha256": "009d8486eaf905e2f69697f93ad7976259d18af9fdf5bad428f09c1f92e44501"
+    }
+  ],
+  "cases": [
+    {
+      "case": "boundary-false-1367",
+      "before": {
+        "viewport": {
+          "width": 1414,
+          "height": 844,
+          "dpr": 1,
+          "scale": 1
+        },
+        "useful": 1367,
+        "layout": "normal",
+        "composition": {
+          "x": 16,
+          "y": 135.109375,
+          "width": 1367,
+          "height": 912
+        },
+        "available": 1367,
+        "C": 230,
+        "cardHeight": 321,
+        "G": 12,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "documentWidth": 1399,
+        "indicator": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "panels": {
+          "people": {
+            "x": 16,
+            "y": 135.109375,
+            "width": 264,
+            "height": 164,
+            "padding": "12px",
+            "border": "1px",
+            "boxSizing": "border-box",
+            "client": 262,
+            "scroll": 262,
+            "maxWidth": "none"
+          },
+          "initial-state": {
+            "x": 1143,
+            "y": 560.109375,
+            "width": 240,
+            "height": 260,
+            "padding": "12px",
+            "border": "1px",
+            "boxSizing": "border-box",
+            "client": 238,
+            "scroll": 238,
+            "maxWidth": "none"
+          },
+          "plays": {
+            "x": 292,
+            "y": 135.109375,
+            "width": 1091,
+            "height": 413,
+            "padding": "12px",
+            "border": "1px",
+            "boxSizing": "border-box",
+            "client": 1089,
+            "scroll": 1089,
+            "maxWidth": "none"
+          },
+          "hand": {
+            "x": 292,
+            "y": 560.109375,
+            "width": 839,
+            "height": 487,
+            "padding": "12px",
+            "border": "1px",
+            "boxSizing": "border-box",
+            "client": 837,
+            "scroll": 837,
+            "maxWidth": "none"
+          }
+        }
+      },
+      "after": {
+        "viewport": {
+          "width": 1414,
+          "height": 844,
+          "dpr": 1,
+          "scale": 1
+        },
+        "useful": 1367,
+        "layout": "normal",
+        "composition": {
+          "x": 16,
+          "y": 135.109375,
+          "width": 1367,
+          "height": 912
+        },
+        "available": 1367,
+        "C": 230,
+        "cardHeight": 321,
+        "G": 12,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "documentWidth": 1399,
+        "indicator": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "panels": {
+          "people": {
+            "x": 16,
+            "y": 135.109375,
+            "width": 264,
+            "height": 164,
+            "padding": "12px",
+            "border": "1px",
+            "boxSizing": "border-box",
+            "client": 262,
+            "scroll": 262,
+            "maxWidth": "none"
+          },
+          "initial-state": {
+            "x": 1143,
+            "y": 560.109375,
+            "width": 240,
+            "height": 260,
+            "padding": "12px",
+            "border": "1px",
+            "boxSizing": "border-box",
+            "client": 238,
+            "scroll": 238,
+            "maxWidth": "none"
+          },
+          "plays": {
+            "x": 292,
+            "y": 135.109375,
+            "width": 1091,
+            "height": 413,
+            "padding": "12px",
+            "border": "1px",
+            "boxSizing": "border-box",
+            "client": 1089,
+            "scroll": 1089,
+            "maxWidth": "none"
+          },
+          "hand": {
+            "x": 292,
+            "y": 560.109375,
+            "width": 839,
+            "height": 487,
+            "padding": "12px",
+            "border": "1px",
+            "boxSizing": "border-box",
+            "client": 837,
+            "scroll": 837,
+            "maxWidth": "none"
+          }
+        }
+      },
+      "textPreserved": true,
+      "alignmentPreserved": true,
+      "compositionAndRailWidthsPreserved": true,
+      "normalPanelGeometryPreserved": true
+    },
+    {
+      "case": "boundary-false-1368",
+      "before": {
+        "viewport": {
+          "width": 1415,
+          "height": 844,
+          "dpr": 1,
+          "scale": 1
+        },
+        "useful": 1368,
+        "layout": "normal",
+        "composition": {
+          "x": 16,
+          "y": 135.109375,
+          "width": 1368,
+          "height": 879
+        },
+        "available": 1368,
+        "C": 230,
+        "cardHeight": 321,
+        "G": 46,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "documentWidth": 1400,
+        "indicator": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "panels": {
+          "people": {
+            "x": 16,
+            "y": 135.109375,
+            "width": 264,
+            "height": 164,
+            "padding": "12px",
+            "border": "1px",
+            "boxSizing": "border-box",
+            "client": 262,
+            "scroll": 262,
+            "maxWidth": "none"
+          },
+          "initial-state": {
+            "x": 1120,
+            "y": 560.109375,
+            "width": 264,
+            "height": 260,
+            "padding": "12px",
+            "border": "1px",
+            "boxSizing": "border-box",
+            "client": 262,
+            "scroll": 262,
+            "maxWidth": "none"
+          },
+          "plays": {
+            "x": 292,
+            "y": 135.109375,
+            "width": 1092,
+            "height": 413,
+            "padding": "12px",
+            "border": "1px",
+            "boxSizing": "border-box",
+            "client": 1090,
+            "scroll": 1090,
+            "maxWidth": "none"
+          },
+          "hand": {
+            "x": 292,
+            "y": 560.109375,
+            "width": 816,
+            "height": 454,
+            "padding": "12px",
+            "border": "1px",
+            "boxSizing": "border-box",
+            "client": 814,
+            "scroll": 814,
+            "maxWidth": "none"
+          }
+        }
+      },
+      "after": {
+        "viewport": {
+          "width": 1415,
+          "height": 844,
+          "dpr": 1,
+          "scale": 1
+        },
+        "useful": 1368,
+        "layout": "normal",
+        "composition": {
+          "x": 16,
+          "y": 135.109375,
+          "width": 1368,
+          "height": 879
+        },
+        "available": 1368,
+        "C": 230,
+        "cardHeight": 321,
+        "G": 46,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "documentWidth": 1400,
+        "indicator": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "panels": {
+          "people": {
+            "x": 16,
+            "y": 135.109375,
+            "width": 264,
+            "height": 164,
+            "padding": "12px",
+            "border": "1px",
+            "boxSizing": "border-box",
+            "client": 262,
+            "scroll": 262,
+            "maxWidth": "none"
+          },
+          "initial-state": {
+            "x": 1120,
+            "y": 560.109375,
+            "width": 264,
+            "height": 260,
+            "padding": "12px",
+            "border": "1px",
+            "boxSizing": "border-box",
+            "client": 262,
+            "scroll": 262,
+            "maxWidth": "none"
+          },
+          "plays": {
+            "x": 292,
+            "y": 135.109375,
+            "width": 1092,
+            "height": 413,
+            "padding": "12px",
+            "border": "1px",
+            "boxSizing": "border-box",
+            "client": 1090,
+            "scroll": 1090,
+            "maxWidth": "none"
+          },
+          "hand": {
+            "x": 292,
+            "y": 560.109375,
+            "width": 816,
+            "height": 454,
+            "padding": "12px",
+            "border": "1px",
+            "boxSizing": "border-box",
+            "client": 814,
+            "scroll": 814,
+            "maxWidth": "none"
+          }
+        }
+      },
+      "textPreserved": true,
+      "alignmentPreserved": true,
+      "compositionAndRailWidthsPreserved": true,
+      "normalPanelGeometryPreserved": true
+    },
+    {
+      "case": "boundary-true-1367",
+      "before": {
+        "viewport": {
+          "width": 1414,
+          "height": 844,
+          "dpr": 1,
+          "scale": 1
+        },
+        "useful": 1367,
+        "layout": "compact",
+        "composition": {
+          "x": 16,
+          "y": 158.109375,
+          "width": 1367,
+          "height": 567
+        },
+        "available": 1367,
+        "C": 220,
+        "cardHeight": 188,
+        "G": 10,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "documentWidth": 1399,
+        "indicator": {
+          "x": 25,
+          "y": 305.109375,
+          "width": 1174.515625,
+          "height": 44
+        },
+        "panels": {
+          "people": {
+            "x": 16,
+            "y": 158.109375,
+            "width": 1367,
+            "height": 62,
+            "padding": "8px",
+            "border": "1px",
+            "boxSizing": "border-box",
+            "client": 1365,
+            "scroll": 1365,
+            "maxWidth": "none"
+          },
+          "initial-state": {
+            "x": 16,
+            "y": 230.109375,
+            "width": 1367,
+            "height": 132,
+            "padding": "8px",
+            "border": "1px",
+            "boxSizing": "border-box",
+            "client": 1365,
+            "scroll": 1365,
+            "maxWidth": "none"
+          },
+          "plays": {
+            "x": 16,
+            "y": 372.109375,
+            "width": 1367,
+            "height": 67,
+            "padding": "0px",
+            "border": "0px",
+            "boxSizing": "border-box",
+            "client": 1367,
+            "scroll": 1367,
+            "maxWidth": "none"
+          },
+          "hand": {
+            "x": 16,
+            "y": 449.109375,
+            "width": 1367,
+            "height": 276,
+            "padding": "0px",
+            "border": "0px",
+            "boxSizing": "border-box",
+            "client": 1367,
+            "scroll": 1367,
+            "maxWidth": "none"
+          }
+        }
+      },
+      "after": {
+        "viewport": {
+          "width": 1414,
+          "height": 844,
+          "dpr": 1,
+          "scale": 1
+        },
+        "useful": 1367,
+        "layout": "compact",
+        "composition": {
+          "x": 16,
+          "y": 158.109375,
+          "width": 1367,
+          "height": 567
+        },
+        "available": 1367,
+        "C": 220,
+        "cardHeight": 188,
+        "G": 10,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "documentWidth": 1399,
+        "indicator": {
+          "x": 25,
+          "y": 305.109375,
+          "width": 257.515625,
+          "height": 44
+        },
+        "panels": {
+          "people": {
+            "x": 16,
+            "y": 158.109375,
+            "width": 450,
+            "height": 62,
+            "padding": "8px",
+            "border": "1px",
+            "boxSizing": "border-box",
+            "client": 448,
+            "scroll": 448,
+            "maxWidth": "450px"
+          },
+          "initial-state": {
+            "x": 16,
+            "y": 230.109375,
+            "width": 450,
+            "height": 132,
+            "padding": "8px",
+            "border": "1px",
+            "boxSizing": "border-box",
+            "client": 448,
+            "scroll": 448,
+            "maxWidth": "450px"
+          },
+          "plays": {
+            "x": 16,
+            "y": 372.109375,
+            "width": 1367,
+            "height": 67,
+            "padding": "0px",
+            "border": "0px",
+            "boxSizing": "border-box",
+            "client": 1367,
+            "scroll": 1367,
+            "maxWidth": "none"
+          },
+          "hand": {
+            "x": 16,
+            "y": 449.109375,
+            "width": 1367,
+            "height": 276,
+            "padding": "0px",
+            "border": "0px",
+            "boxSizing": "border-box",
+            "client": 1367,
+            "scroll": 1367,
+            "maxWidth": "none"
+          }
+        }
+      },
+      "textPreserved": true,
+      "alignmentPreserved": true,
+      "compositionAndRailWidthsPreserved": true,
+      "normalPanelGeometryPreserved": null
+    },
+    {
+      "case": "boundary-true-1368",
+      "before": {
+        "viewport": {
+          "width": 1415,
+          "height": 844,
+          "dpr": 1,
+          "scale": 1
+        },
+        "useful": 1368,
+        "layout": "normal",
+        "composition": {
+          "x": 16,
+          "y": 135.109375,
+          "width": 1368,
+          "height": 879
+        },
+        "available": 1368,
+        "C": 230,
+        "cardHeight": 321,
+        "G": 46,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "documentWidth": 1400,
+        "indicator": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "panels": {
+          "people": {
+            "x": 16,
+            "y": 135.109375,
+            "width": 264,
+            "height": 164,
+            "padding": "12px",
+            "border": "1px",
+            "boxSizing": "border-box",
+            "client": 262,
+            "scroll": 262,
+            "maxWidth": "none"
+          },
+          "initial-state": {
+            "x": 1120,
+            "y": 560.109375,
+            "width": 264,
+            "height": 260,
+            "padding": "12px",
+            "border": "1px",
+            "boxSizing": "border-box",
+            "client": 262,
+            "scroll": 262,
+            "maxWidth": "none"
+          },
+          "plays": {
+            "x": 292,
+            "y": 135.109375,
+            "width": 1092,
+            "height": 413,
+            "padding": "12px",
+            "border": "1px",
+            "boxSizing": "border-box",
+            "client": 1090,
+            "scroll": 1090,
+            "maxWidth": "none"
+          },
+          "hand": {
+            "x": 292,
+            "y": 560.109375,
+            "width": 816,
+            "height": 454,
+            "padding": "12px",
+            "border": "1px",
+            "boxSizing": "border-box",
+            "client": 814,
+            "scroll": 814,
+            "maxWidth": "none"
+          }
+        }
+      },
+      "after": {
+        "viewport": {
+          "width": 1415,
+          "height": 844,
+          "dpr": 1,
+          "scale": 1
+        },
+        "useful": 1368,
+        "layout": "normal",
+        "composition": {
+          "x": 16,
+          "y": 135.109375,
+          "width": 1368,
+          "height": 879
+        },
+        "available": 1368,
+        "C": 230,
+        "cardHeight": 321,
+        "G": 46,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "documentWidth": 1400,
+        "indicator": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "panels": {
+          "people": {
+            "x": 16,
+            "y": 135.109375,
+            "width": 264,
+            "height": 164,
+            "padding": "12px",
+            "border": "1px",
+            "boxSizing": "border-box",
+            "client": 262,
+            "scroll": 262,
+            "maxWidth": "none"
+          },
+          "initial-state": {
+            "x": 1120,
+            "y": 560.109375,
+            "width": 264,
+            "height": 260,
+            "padding": "12px",
+            "border": "1px",
+            "boxSizing": "border-box",
+            "client": 262,
+            "scroll": 262,
+            "maxWidth": "none"
+          },
+          "plays": {
+            "x": 292,
+            "y": 135.109375,
+            "width": 1092,
+            "height": 413,
+            "padding": "12px",
+            "border": "1px",
+            "boxSizing": "border-box",
+            "client": 1090,
+            "scroll": 1090,
+            "maxWidth": "none"
+          },
+          "hand": {
+            "x": 292,
+            "y": 560.109375,
+            "width": 816,
+            "height": 454,
+            "padding": "12px",
+            "border": "1px",
+            "boxSizing": "border-box",
+            "client": 814,
+            "scroll": 814,
+            "maxWidth": "none"
+          }
+        }
+      },
+      "textPreserved": true,
+      "alignmentPreserved": true,
+      "compositionAndRailWidthsPreserved": true,
+      "normalPanelGeometryPreserved": true
+    },
+    {
+      "case": "dark-review-1280-DISPLAY_VALUE",
+      "before": {
+        "viewport": {
+          "width": 1280,
+          "height": 844,
+          "dpr": 1,
+          "scale": 1
+        },
+        "useful": 1233,
+        "layout": "compact",
+        "composition": {
+          "x": 16,
+          "y": 219.109375,
+          "width": 1233,
+          "height": 1039.4375
+        },
+        "available": 1233,
+        "C": 220,
+        "cardHeight": 188,
+        "G": 10,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "documentWidth": 1265,
+        "indicator": {
+          "x": 25,
+          "y": 627.546875,
+          "width": 1040.515625,
+          "height": 44
+        },
+        "panels": {
+          "people": {
+            "x": 16,
+            "y": 219.109375,
+            "width": 1233,
+            "height": 62,
+            "padding": "8px",
+            "border": "1px",
+            "boxSizing": "border-box",
+            "client": 1231,
+            "scroll": 1231,
+            "maxWidth": "none"
+          },
+          "initial-state": {
+            "x": 16,
+            "y": 291.109375,
+            "width": 1233,
+            "height": 393.4375,
+            "padding": "8px",
+            "border": "1px",
+            "boxSizing": "border-box",
+            "client": 1231,
+            "scroll": 1231,
+            "maxWidth": "none"
+          },
+          "plays": {
+            "x": 16,
+            "y": 694.546875,
+            "width": 1233,
+            "height": 278,
+            "padding": "0px",
+            "border": "0px",
+            "boxSizing": "border-box",
+            "client": 1233,
+            "scroll": 1233,
+            "maxWidth": "none"
+          },
+          "hand": {
+            "x": 16,
+            "y": 982.546875,
+            "width": 1233,
+            "height": 276,
+            "padding": "0px",
+            "border": "0px",
+            "boxSizing": "border-box",
+            "client": 1233,
+            "scroll": 1233,
+            "maxWidth": "none"
+          }
+        }
+      },
+      "after": {
+        "viewport": {
+          "width": 1280,
+          "height": 844,
+          "dpr": 1,
+          "scale": 1
+        },
+        "useful": 1233,
+        "layout": "compact",
+        "composition": {
+          "x": 16,
+          "y": 219.109375,
+          "width": 1233,
+          "height": 1039.4375
+        },
+        "available": 1233,
+        "C": 220,
+        "cardHeight": 188,
+        "G": 10,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "documentWidth": 1265,
+        "indicator": {
+          "x": 25,
+          "y": 627.546875,
+          "width": 257.515625,
+          "height": 44
+        },
+        "panels": {
+          "people": {
+            "x": 16,
+            "y": 219.109375,
+            "width": 450,
+            "height": 62,
+            "padding": "8px",
+            "border": "1px",
+            "boxSizing": "border-box",
+            "client": 448,
+            "scroll": 448,
+            "maxWidth": "450px"
+          },
+          "initial-state": {
+            "x": 16,
+            "y": 291.109375,
+            "width": 450,
+            "height": 393.4375,
+            "padding": "8px",
+            "border": "1px",
+            "boxSizing": "border-box",
+            "client": 448,
+            "scroll": 448,
+            "maxWidth": "450px"
+          },
+          "plays": {
+            "x": 16,
+            "y": 694.546875,
+            "width": 1233,
+            "height": 278,
+            "padding": "0px",
+            "border": "0px",
+            "boxSizing": "border-box",
+            "client": 1233,
+            "scroll": 1233,
+            "maxWidth": "none"
+          },
+          "hand": {
+            "x": 16,
+            "y": 982.546875,
+            "width": 1233,
+            "height": 276,
+            "padding": "0px",
+            "border": "0px",
+            "boxSizing": "border-box",
+            "client": 1233,
+            "scroll": 1233,
+            "maxWidth": "none"
+          }
+        }
+      },
+      "textPreserved": true,
+      "alignmentPreserved": true,
+      "compositionAndRailWidthsPreserved": true,
+      "normalPanelGeometryPreserved": null
+    },
+    {
+      "case": "dark-review-1280-PLAY_VALUE",
+      "before": {
+        "viewport": {
+          "width": 1280,
+          "height": 844,
+          "dpr": 1,
+          "scale": 1
+        },
+        "useful": 1233,
+        "layout": "compact",
+        "composition": {
+          "x": 16,
+          "y": 219.109375,
+          "width": 1233,
+          "height": 1039.4375
+        },
+        "available": 1233,
+        "C": 220,
+        "cardHeight": 188,
+        "G": 10,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "documentWidth": 1265,
+        "indicator": {
+          "x": 25,
+          "y": 627.546875,
+          "width": 1040.515625,
+          "height": 44
+        },
+        "panels": {
+          "people": {
+            "x": 16,
+            "y": 219.109375,
+            "width": 1233,
+            "height": 62,
+            "padding": "8px",
+            "border": "1px",
+            "boxSizing": "border-box",
+            "client": 1231,
+            "scroll": 1231,
+            "maxWidth": "none"
+          },
+          "initial-state": {
+            "x": 16,
+            "y": 291.109375,
+            "width": 1233,
+            "height": 393.4375,
+            "padding": "8px",
+            "border": "1px",
+            "boxSizing": "border-box",
+            "client": 1231,
+            "scroll": 1231,
+            "maxWidth": "none"
+          },
+          "plays": {
+            "x": 16,
+            "y": 694.546875,
+            "width": 1233,
+            "height": 278,
+            "padding": "0px",
+            "border": "0px",
+            "boxSizing": "border-box",
+            "client": 1233,
+            "scroll": 1233,
+            "maxWidth": "none"
+          },
+          "hand": {
+            "x": 16,
+            "y": 982.546875,
+            "width": 1233,
+            "height": 276,
+            "padding": "0px",
+            "border": "0px",
+            "boxSizing": "border-box",
+            "client": 1233,
+            "scroll": 1233,
+            "maxWidth": "none"
+          }
+        }
+      },
+      "after": {
+        "viewport": {
+          "width": 1280,
+          "height": 844,
+          "dpr": 1,
+          "scale": 1
+        },
+        "useful": 1233,
+        "layout": "compact",
+        "composition": {
+          "x": 16,
+          "y": 219.109375,
+          "width": 1233,
+          "height": 1039.4375
+        },
+        "available": 1233,
+        "C": 220,
+        "cardHeight": 188,
+        "G": 10,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "documentWidth": 1265,
+        "indicator": {
+          "x": 25,
+          "y": 627.546875,
+          "width": 257.515625,
+          "height": 44
+        },
+        "panels": {
+          "people": {
+            "x": 16,
+            "y": 219.109375,
+            "width": 450,
+            "height": 62,
+            "padding": "8px",
+            "border": "1px",
+            "boxSizing": "border-box",
+            "client": 448,
+            "scroll": 448,
+            "maxWidth": "450px"
+          },
+          "initial-state": {
+            "x": 16,
+            "y": 291.109375,
+            "width": 450,
+            "height": 393.4375,
+            "padding": "8px",
+            "border": "1px",
+            "boxSizing": "border-box",
+            "client": 448,
+            "scroll": 448,
+            "maxWidth": "450px"
+          },
+          "plays": {
+            "x": 16,
+            "y": 694.546875,
+            "width": 1233,
+            "height": 278,
+            "padding": "0px",
+            "border": "0px",
+            "boxSizing": "border-box",
+            "client": 1233,
+            "scroll": 1233,
+            "maxWidth": "none"
+          },
+          "hand": {
+            "x": 16,
+            "y": 982.546875,
+            "width": 1233,
+            "height": 276,
+            "padding": "0px",
+            "border": "0px",
+            "boxSizing": "border-box",
+            "client": 1233,
+            "scroll": 1233,
+            "maxWidth": "none"
+          }
+        }
+      },
+      "textPreserved": true,
+      "alignmentPreserved": true,
+      "compositionAndRailWidthsPreserved": true,
+      "normalPanelGeometryPreserved": null
+    },
+    {
+      "case": "dark-review-390-DISPLAY_VALUE",
+      "before": {
+        "viewport": {
+          "width": 390,
+          "height": 844,
+          "dpr": 1,
+          "scale": 1
+        },
+        "useful": 358,
+        "layout": "compact",
+        "composition": {
+          "x": 16,
+          "y": 288.25,
+          "width": 358,
+          "height": 1185.4375
+        },
+        "available": 358,
+        "C": 220,
+        "cardHeight": 188,
+        "G": 10,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "documentWidth": 390,
+        "indicator": {
+          "x": 25,
+          "y": 801.6875,
+          "width": 165.515625,
+          "height": 54
+        },
+        "panels": {
+          "people": {
+            "x": 16,
+            "y": 288.25,
+            "width": 358,
+            "height": 62,
+            "padding": "8px",
+            "border": "1px",
+            "boxSizing": "border-box",
+            "client": 356,
+            "scroll": 356,
+            "maxWidth": "none"
+          },
+          "initial-state": {
+            "x": 16,
+            "y": 360.25,
+            "width": 358,
+            "height": 508.4375,
+            "padding": "8px",
+            "border": "1px",
+            "boxSizing": "border-box",
+            "client": 356,
+            "scroll": 356,
+            "maxWidth": "none"
+          },
+          "plays": {
+            "x": 16,
+            "y": 878.6875,
+            "width": 358,
+            "height": 278,
+            "padding": "0px",
+            "border": "0px",
+            "boxSizing": "border-box",
+            "client": 358,
+            "scroll": 358,
+            "maxWidth": "none"
+          },
+          "hand": {
+            "x": 16,
+            "y": 1166.6875,
+            "width": 358,
+            "height": 307,
+            "padding": "0px",
+            "border": "0px",
+            "boxSizing": "border-box",
+            "client": 358,
+            "scroll": 358,
+            "maxWidth": "none"
+          }
+        }
+      },
+      "after": {
+        "viewport": {
+          "width": 390,
+          "height": 844,
+          "dpr": 1,
+          "scale": 1
+        },
+        "useful": 358,
+        "layout": "compact",
+        "composition": {
+          "x": 16,
+          "y": 288.25,
+          "width": 358,
+          "height": 1185.4375
+        },
+        "available": 358,
+        "C": 220,
+        "cardHeight": 188,
+        "G": 10,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "documentWidth": 390,
+        "indicator": {
+          "x": 25,
+          "y": 801.6875,
+          "width": 165.515625,
+          "height": 54
+        },
+        "panels": {
+          "people": {
+            "x": 16,
+            "y": 288.25,
+            "width": 358,
+            "height": 62,
+            "padding": "8px",
+            "border": "1px",
+            "boxSizing": "border-box",
+            "client": 356,
+            "scroll": 356,
+            "maxWidth": "450px"
+          },
+          "initial-state": {
+            "x": 16,
+            "y": 360.25,
+            "width": 358,
+            "height": 508.4375,
+            "padding": "8px",
+            "border": "1px",
+            "boxSizing": "border-box",
+            "client": 356,
+            "scroll": 356,
+            "maxWidth": "450px"
+          },
+          "plays": {
+            "x": 16,
+            "y": 878.6875,
+            "width": 358,
+            "height": 278,
+            "padding": "0px",
+            "border": "0px",
+            "boxSizing": "border-box",
+            "client": 358,
+            "scroll": 358,
+            "maxWidth": "none"
+          },
+          "hand": {
+            "x": 16,
+            "y": 1166.6875,
+            "width": 358,
+            "height": 307,
+            "padding": "0px",
+            "border": "0px",
+            "boxSizing": "border-box",
+            "client": 358,
+            "scroll": 358,
+            "maxWidth": "none"
+          }
+        }
+      },
+      "textPreserved": true,
+      "alignmentPreserved": true,
+      "compositionAndRailWidthsPreserved": true,
+      "normalPanelGeometryPreserved": null
+    },
+    {
+      "case": "dark-review-390-PLAY_VALUE",
+      "before": {
+        "viewport": {
+          "width": 390,
+          "height": 844,
+          "dpr": 1,
+          "scale": 1
+        },
+        "useful": 358,
+        "layout": "compact",
+        "composition": {
+          "x": 16,
+          "y": 288.25,
+          "width": 358,
+          "height": 1080.4375
+        },
+        "available": 358,
+        "C": 220,
+        "cardHeight": 188,
+        "G": 10,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "documentWidth": 390,
+        "indicator": {
+          "x": 25,
+          "y": 696.6875,
+          "width": 165.515625,
+          "height": 54
+        },
+        "panels": {
+          "people": {
+            "x": 16,
+            "y": 288.25,
+            "width": 358,
+            "height": 62,
+            "padding": "8px",
+            "border": "1px",
+            "boxSizing": "border-box",
+            "client": 356,
+            "scroll": 356,
+            "maxWidth": "none"
+          },
+          "initial-state": {
+            "x": 16,
+            "y": 360.25,
+            "width": 358,
+            "height": 403.4375,
+            "padding": "8px",
+            "border": "1px",
+            "boxSizing": "border-box",
+            "client": 356,
+            "scroll": 356,
+            "maxWidth": "none"
+          },
+          "plays": {
+            "x": 16,
+            "y": 773.6875,
+            "width": 358,
+            "height": 278,
+            "padding": "0px",
+            "border": "0px",
+            "boxSizing": "border-box",
+            "client": 358,
+            "scroll": 358,
+            "maxWidth": "none"
+          },
+          "hand": {
+            "x": 16,
+            "y": 1061.6875,
+            "width": 358,
+            "height": 307,
+            "padding": "0px",
+            "border": "0px",
+            "boxSizing": "border-box",
+            "client": 358,
+            "scroll": 358,
+            "maxWidth": "none"
+          }
+        }
+      },
+      "after": {
+        "viewport": {
+          "width": 390,
+          "height": 844,
+          "dpr": 1,
+          "scale": 1
+        },
+        "useful": 358,
+        "layout": "compact",
+        "composition": {
+          "x": 16,
+          "y": 288.25,
+          "width": 358,
+          "height": 1080.4375
+        },
+        "available": 358,
+        "C": 220,
+        "cardHeight": 188,
+        "G": 10,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "documentWidth": 390,
+        "indicator": {
+          "x": 25,
+          "y": 696.6875,
+          "width": 165.515625,
+          "height": 54
+        },
+        "panels": {
+          "people": {
+            "x": 16,
+            "y": 288.25,
+            "width": 358,
+            "height": 62,
+            "padding": "8px",
+            "border": "1px",
+            "boxSizing": "border-box",
+            "client": 356,
+            "scroll": 356,
+            "maxWidth": "450px"
+          },
+          "initial-state": {
+            "x": 16,
+            "y": 360.25,
+            "width": 358,
+            "height": 403.4375,
+            "padding": "8px",
+            "border": "1px",
+            "boxSizing": "border-box",
+            "client": 356,
+            "scroll": 356,
+            "maxWidth": "450px"
+          },
+          "plays": {
+            "x": 16,
+            "y": 773.6875,
+            "width": 358,
+            "height": 278,
+            "padding": "0px",
+            "border": "0px",
+            "boxSizing": "border-box",
+            "client": 358,
+            "scroll": 358,
+            "maxWidth": "none"
+          },
+          "hand": {
+            "x": 16,
+            "y": 1061.6875,
+            "width": 358,
+            "height": 307,
+            "padding": "0px",
+            "border": "0px",
+            "boxSizing": "border-box",
+            "client": 358,
+            "scroll": 358,
+            "maxWidth": "none"
+          }
+        }
+      },
+      "textPreserved": true,
+      "alignmentPreserved": true,
+      "compositionAndRailWidthsPreserved": true,
+      "normalPanelGeometryPreserved": null
+    },
+    {
+      "case": "initial-1280-DISPLAY_VALUE",
+      "before": {
+        "viewport": {
+          "width": 1280,
+          "height": 844,
+          "dpr": 1,
+          "scale": 1
+        },
+        "useful": 1233,
+        "layout": "compact",
+        "composition": {
+          "x": 16,
+          "y": 95.109375,
+          "width": 1233,
+          "height": 692
+        },
+        "available": 1233,
+        "C": 220,
+        "cardHeight": 188,
+        "G": 10,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "documentWidth": 1265,
+        "indicator": {
+          "x": 25,
+          "y": 242.109375,
+          "width": 1040.515625,
+          "height": 44
+        },
+        "panels": {
+          "people": {
+            "x": 16,
+            "y": 95.109375,
+            "width": 1233,
+            "height": 62,
+            "padding": "8px",
+            "border": "1px",
+            "boxSizing": "border-box",
+            "client": 1231,
+            "scroll": 1231,
+            "maxWidth": "none"
+          },
+          "initial-state": {
+            "x": 16,
+            "y": 167.109375,
+            "width": 1233,
+            "height": 257,
+            "padding": "8px",
+            "border": "1px",
+            "boxSizing": "border-box",
+            "client": 1231,
+            "scroll": 1231,
+            "maxWidth": "none"
+          },
+          "plays": {
+            "x": 16,
+            "y": 434.109375,
+            "width": 1233,
+            "height": 67,
+            "padding": "0px",
+            "border": "0px",
+            "boxSizing": "border-box",
+            "client": 1233,
+            "scroll": 1233,
+            "maxWidth": "none"
+          },
+          "hand": {
+            "x": 16,
+            "y": 511.109375,
+            "width": 1233,
+            "height": 276,
+            "padding": "0px",
+            "border": "0px",
+            "boxSizing": "border-box",
+            "client": 1233,
+            "scroll": 1233,
+            "maxWidth": "none"
+          }
+        }
+      },
+      "after": {
+        "viewport": {
+          "width": 1280,
+          "height": 844,
+          "dpr": 1,
+          "scale": 1
+        },
+        "useful": 1233,
+        "layout": "compact",
+        "composition": {
+          "x": 16,
+          "y": 95.109375,
+          "width": 1233,
+          "height": 692
+        },
+        "available": 1233,
+        "C": 220,
+        "cardHeight": 188,
+        "G": 10,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "documentWidth": 1265,
+        "indicator": {
+          "x": 25,
+          "y": 242.109375,
+          "width": 257.515625,
+          "height": 44
+        },
+        "panels": {
+          "people": {
+            "x": 16,
+            "y": 95.109375,
+            "width": 450,
+            "height": 62,
+            "padding": "8px",
+            "border": "1px",
+            "boxSizing": "border-box",
+            "client": 448,
+            "scroll": 448,
+            "maxWidth": "450px"
+          },
+          "initial-state": {
+            "x": 16,
+            "y": 167.109375,
+            "width": 450,
+            "height": 257,
+            "padding": "8px",
+            "border": "1px",
+            "boxSizing": "border-box",
+            "client": 448,
+            "scroll": 448,
+            "maxWidth": "450px"
+          },
+          "plays": {
+            "x": 16,
+            "y": 434.109375,
+            "width": 1233,
+            "height": 67,
+            "padding": "0px",
+            "border": "0px",
+            "boxSizing": "border-box",
+            "client": 1233,
+            "scroll": 1233,
+            "maxWidth": "none"
+          },
+          "hand": {
+            "x": 16,
+            "y": 511.109375,
+            "width": 1233,
+            "height": 276,
+            "padding": "0px",
+            "border": "0px",
+            "boxSizing": "border-box",
+            "client": 1233,
+            "scroll": 1233,
+            "maxWidth": "none"
+          }
+        }
+      },
+      "textPreserved": true,
+      "alignmentPreserved": true,
+      "compositionAndRailWidthsPreserved": true,
+      "normalPanelGeometryPreserved": null
+    },
+    {
+      "case": "initial-1280-PLAY_VALUE",
+      "before": {
+        "viewport": {
+          "width": 1280,
+          "height": 844,
+          "dpr": 1,
+          "scale": 1
+        },
+        "useful": 1233,
+        "layout": "compact",
+        "composition": {
+          "x": 16,
+          "y": 95.109375,
+          "width": 1233,
+          "height": 692
+        },
+        "available": 1233,
+        "C": 220,
+        "cardHeight": 188,
+        "G": 10,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "documentWidth": 1265,
+        "indicator": {
+          "x": 25,
+          "y": 242.109375,
+          "width": 1040.515625,
+          "height": 44
+        },
+        "panels": {
+          "people": {
+            "x": 16,
+            "y": 95.109375,
+            "width": 1233,
+            "height": 62,
+            "padding": "8px",
+            "border": "1px",
+            "boxSizing": "border-box",
+            "client": 1231,
+            "scroll": 1231,
+            "maxWidth": "none"
+          },
+          "initial-state": {
+            "x": 16,
+            "y": 167.109375,
+            "width": 1233,
+            "height": 257,
+            "padding": "8px",
+            "border": "1px",
+            "boxSizing": "border-box",
+            "client": 1231,
+            "scroll": 1231,
+            "maxWidth": "none"
+          },
+          "plays": {
+            "x": 16,
+            "y": 434.109375,
+            "width": 1233,
+            "height": 67,
+            "padding": "0px",
+            "border": "0px",
+            "boxSizing": "border-box",
+            "client": 1233,
+            "scroll": 1233,
+            "maxWidth": "none"
+          },
+          "hand": {
+            "x": 16,
+            "y": 511.109375,
+            "width": 1233,
+            "height": 276,
+            "padding": "0px",
+            "border": "0px",
+            "boxSizing": "border-box",
+            "client": 1233,
+            "scroll": 1233,
+            "maxWidth": "none"
+          }
+        }
+      },
+      "after": {
+        "viewport": {
+          "width": 1280,
+          "height": 844,
+          "dpr": 1,
+          "scale": 1
+        },
+        "useful": 1233,
+        "layout": "compact",
+        "composition": {
+          "x": 16,
+          "y": 95.109375,
+          "width": 1233,
+          "height": 692
+        },
+        "available": 1233,
+        "C": 220,
+        "cardHeight": 188,
+        "G": 10,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "documentWidth": 1265,
+        "indicator": {
+          "x": 25,
+          "y": 242.109375,
+          "width": 257.515625,
+          "height": 44
+        },
+        "panels": {
+          "people": {
+            "x": 16,
+            "y": 95.109375,
+            "width": 450,
+            "height": 62,
+            "padding": "8px",
+            "border": "1px",
+            "boxSizing": "border-box",
+            "client": 448,
+            "scroll": 448,
+            "maxWidth": "450px"
+          },
+          "initial-state": {
+            "x": 16,
+            "y": 167.109375,
+            "width": 450,
+            "height": 257,
+            "padding": "8px",
+            "border": "1px",
+            "boxSizing": "border-box",
+            "client": 448,
+            "scroll": 448,
+            "maxWidth": "450px"
+          },
+          "plays": {
+            "x": 16,
+            "y": 434.109375,
+            "width": 1233,
+            "height": 67,
+            "padding": "0px",
+            "border": "0px",
+            "boxSizing": "border-box",
+            "client": 1233,
+            "scroll": 1233,
+            "maxWidth": "none"
+          },
+          "hand": {
+            "x": 16,
+            "y": 511.109375,
+            "width": 1233,
+            "height": 276,
+            "padding": "0px",
+            "border": "0px",
+            "boxSizing": "border-box",
+            "client": 1233,
+            "scroll": 1233,
+            "maxWidth": "none"
+          }
+        }
+      },
+      "textPreserved": true,
+      "alignmentPreserved": true,
+      "compositionAndRailWidthsPreserved": true,
+      "normalPanelGeometryPreserved": null
+    },
+    {
+      "case": "initial-390-DISPLAY_VALUE",
+      "before": {
+        "viewport": {
+          "width": 390,
+          "height": 844,
+          "dpr": 1,
+          "scale": 1
+        },
+        "useful": 358,
+        "layout": "compact",
+        "composition": {
+          "x": 16,
+          "y": 149.25,
+          "width": 358,
+          "height": 752
+        },
+        "available": 358,
+        "C": 220,
+        "cardHeight": 188,
+        "G": 10,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "documentWidth": 390,
+        "indicator": {
+          "x": 25,
+          "y": 315.25,
+          "width": 165.515625,
+          "height": 54
+        },
+        "panels": {
+          "people": {
+            "x": 16,
+            "y": 149.25,
+            "width": 358,
+            "height": 62,
+            "padding": "8px",
+            "border": "1px",
+            "boxSizing": "border-box",
+            "client": 356,
+            "scroll": 356,
+            "maxWidth": "none"
+          },
+          "initial-state": {
+            "x": 16,
+            "y": 221.25,
+            "width": 358,
+            "height": 286,
+            "padding": "8px",
+            "border": "1px",
+            "boxSizing": "border-box",
+            "client": 356,
+            "scroll": 356,
+            "maxWidth": "none"
+          },
+          "plays": {
+            "x": 16,
+            "y": 517.25,
+            "width": 358,
+            "height": 67,
+            "padding": "0px",
+            "border": "0px",
+            "boxSizing": "border-box",
+            "client": 358,
+            "scroll": 358,
+            "maxWidth": "none"
+          },
+          "hand": {
+            "x": 16,
+            "y": 594.25,
+            "width": 358,
+            "height": 307,
+            "padding": "0px",
+            "border": "0px",
+            "boxSizing": "border-box",
+            "client": 358,
+            "scroll": 358,
+            "maxWidth": "none"
+          }
+        }
+      },
+      "after": {
+        "viewport": {
+          "width": 390,
+          "height": 844,
+          "dpr": 1,
+          "scale": 1
+        },
+        "useful": 358,
+        "layout": "compact",
+        "composition": {
+          "x": 16,
+          "y": 149.25,
+          "width": 358,
+          "height": 752
+        },
+        "available": 358,
+        "C": 220,
+        "cardHeight": 188,
+        "G": 10,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "documentWidth": 390,
+        "indicator": {
+          "x": 25,
+          "y": 315.25,
+          "width": 165.515625,
+          "height": 54
+        },
+        "panels": {
+          "people": {
+            "x": 16,
+            "y": 149.25,
+            "width": 358,
+            "height": 62,
+            "padding": "8px",
+            "border": "1px",
+            "boxSizing": "border-box",
+            "client": 356,
+            "scroll": 356,
+            "maxWidth": "450px"
+          },
+          "initial-state": {
+            "x": 16,
+            "y": 221.25,
+            "width": 358,
+            "height": 286,
+            "padding": "8px",
+            "border": "1px",
+            "boxSizing": "border-box",
+            "client": 356,
+            "scroll": 356,
+            "maxWidth": "450px"
+          },
+          "plays": {
+            "x": 16,
+            "y": 517.25,
+            "width": 358,
+            "height": 67,
+            "padding": "0px",
+            "border": "0px",
+            "boxSizing": "border-box",
+            "client": 358,
+            "scroll": 358,
+            "maxWidth": "none"
+          },
+          "hand": {
+            "x": 16,
+            "y": 594.25,
+            "width": 358,
+            "height": 307,
+            "padding": "0px",
+            "border": "0px",
+            "boxSizing": "border-box",
+            "client": 358,
+            "scroll": 358,
+            "maxWidth": "none"
+          }
+        }
+      },
+      "textPreserved": true,
+      "alignmentPreserved": true,
+      "compositionAndRailWidthsPreserved": true,
+      "normalPanelGeometryPreserved": null
+    },
+    {
+      "case": "initial-390-PLAY_VALUE",
+      "before": {
+        "viewport": {
+          "width": 390,
+          "height": 844,
+          "dpr": 1,
+          "scale": 1
+        },
+        "useful": 358,
+        "layout": "compact",
+        "composition": {
+          "x": 16,
+          "y": 149.25,
+          "width": 358,
+          "height": 752
+        },
+        "available": 358,
+        "C": 220,
+        "cardHeight": 188,
+        "G": 10,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "documentWidth": 390,
+        "indicator": {
+          "x": 25,
+          "y": 315.25,
+          "width": 165.515625,
+          "height": 54
+        },
+        "panels": {
+          "people": {
+            "x": 16,
+            "y": 149.25,
+            "width": 358,
+            "height": 62,
+            "padding": "8px",
+            "border": "1px",
+            "boxSizing": "border-box",
+            "client": 356,
+            "scroll": 356,
+            "maxWidth": "none"
+          },
+          "initial-state": {
+            "x": 16,
+            "y": 221.25,
+            "width": 358,
+            "height": 286,
+            "padding": "8px",
+            "border": "1px",
+            "boxSizing": "border-box",
+            "client": 356,
+            "scroll": 356,
+            "maxWidth": "none"
+          },
+          "plays": {
+            "x": 16,
+            "y": 517.25,
+            "width": 358,
+            "height": 67,
+            "padding": "0px",
+            "border": "0px",
+            "boxSizing": "border-box",
+            "client": 358,
+            "scroll": 358,
+            "maxWidth": "none"
+          },
+          "hand": {
+            "x": 16,
+            "y": 594.25,
+            "width": 358,
+            "height": 307,
+            "padding": "0px",
+            "border": "0px",
+            "boxSizing": "border-box",
+            "client": 358,
+            "scroll": 358,
+            "maxWidth": "none"
+          }
+        }
+      },
+      "after": {
+        "viewport": {
+          "width": 390,
+          "height": 844,
+          "dpr": 1,
+          "scale": 1
+        },
+        "useful": 358,
+        "layout": "compact",
+        "composition": {
+          "x": 16,
+          "y": 149.25,
+          "width": 358,
+          "height": 752
+        },
+        "available": 358,
+        "C": 220,
+        "cardHeight": 188,
+        "G": 10,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "documentWidth": 390,
+        "indicator": {
+          "x": 25,
+          "y": 315.25,
+          "width": 165.515625,
+          "height": 54
+        },
+        "panels": {
+          "people": {
+            "x": 16,
+            "y": 149.25,
+            "width": 358,
+            "height": 62,
+            "padding": "8px",
+            "border": "1px",
+            "boxSizing": "border-box",
+            "client": 356,
+            "scroll": 356,
+            "maxWidth": "450px"
+          },
+          "initial-state": {
+            "x": 16,
+            "y": 221.25,
+            "width": 358,
+            "height": 286,
+            "padding": "8px",
+            "border": "1px",
+            "boxSizing": "border-box",
+            "client": 356,
+            "scroll": 356,
+            "maxWidth": "450px"
+          },
+          "plays": {
+            "x": 16,
+            "y": 517.25,
+            "width": 358,
+            "height": 67,
+            "padding": "0px",
+            "border": "0px",
+            "boxSizing": "border-box",
+            "client": 358,
+            "scroll": 358,
+            "maxWidth": "none"
+          },
+          "hand": {
+            "x": 16,
+            "y": 594.25,
+            "width": 358,
+            "height": 307,
+            "padding": "0px",
+            "border": "0px",
+            "boxSizing": "border-box",
+            "client": 358,
+            "scroll": 358,
+            "maxWidth": "none"
+          }
+        }
+      },
+      "textPreserved": true,
+      "alignmentPreserved": true,
+      "compositionAndRailWidthsPreserved": true,
+      "normalPanelGeometryPreserved": null
+    },
+    {
+      "case": "intermediate-false",
+      "before": {
+        "viewport": {
+          "width": 1280,
+          "height": 844,
+          "dpr": 1,
+          "scale": 1
+        },
+        "useful": 1233,
+        "layout": "normal",
+        "composition": {
+          "x": 16,
+          "y": 135.109375,
+          "width": 1233,
+          "height": 912
+        },
+        "available": 1233,
+        "C": 230,
+        "cardHeight": 321,
+        "G": 12,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "documentWidth": 1265,
+        "indicator": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "panels": {
+          "people": {
+            "x": 16,
+            "y": 135.109375,
+            "width": 264,
+            "height": 164,
+            "padding": "12px",
+            "border": "1px",
+            "boxSizing": "border-box",
+            "client": 262,
+            "scroll": 262,
+            "maxWidth": "none"
+          },
+          "initial-state": {
+            "x": 1009,
+            "y": 560.109375,
+            "width": 240,
+            "height": 260,
+            "padding": "12px",
+            "border": "1px",
+            "boxSizing": "border-box",
+            "client": 238,
+            "scroll": 238,
+            "maxWidth": "none"
+          },
+          "plays": {
+            "x": 292,
+            "y": 135.109375,
+            "width": 957,
+            "height": 413,
+            "padding": "12px",
+            "border": "1px",
+            "boxSizing": "border-box",
+            "client": 955,
+            "scroll": 955,
+            "maxWidth": "none"
+          },
+          "hand": {
+            "x": 292,
+            "y": 560.109375,
+            "width": 705,
+            "height": 487,
+            "padding": "12px",
+            "border": "1px",
+            "boxSizing": "border-box",
+            "client": 703,
+            "scroll": 703,
+            "maxWidth": "none"
+          }
+        }
+      },
+      "after": {
+        "viewport": {
+          "width": 1280,
+          "height": 844,
+          "dpr": 1,
+          "scale": 1
+        },
+        "useful": 1233,
+        "layout": "normal",
+        "composition": {
+          "x": 16,
+          "y": 135.109375,
+          "width": 1233,
+          "height": 912
+        },
+        "available": 1233,
+        "C": 230,
+        "cardHeight": 321,
+        "G": 12,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "documentWidth": 1265,
+        "indicator": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "panels": {
+          "people": {
+            "x": 16,
+            "y": 135.109375,
+            "width": 264,
+            "height": 164,
+            "padding": "12px",
+            "border": "1px",
+            "boxSizing": "border-box",
+            "client": 262,
+            "scroll": 262,
+            "maxWidth": "none"
+          },
+          "initial-state": {
+            "x": 1009,
+            "y": 560.109375,
+            "width": 240,
+            "height": 260,
+            "padding": "12px",
+            "border": "1px",
+            "boxSizing": "border-box",
+            "client": 238,
+            "scroll": 238,
+            "maxWidth": "none"
+          },
+          "plays": {
+            "x": 292,
+            "y": 135.109375,
+            "width": 957,
+            "height": 413,
+            "padding": "12px",
+            "border": "1px",
+            "boxSizing": "border-box",
+            "client": 955,
+            "scroll": 955,
+            "maxWidth": "none"
+          },
+          "hand": {
+            "x": 292,
+            "y": 560.109375,
+            "width": 705,
+            "height": 487,
+            "padding": "12px",
+            "border": "1px",
+            "boxSizing": "border-box",
+            "client": 703,
+            "scroll": 703,
+            "maxWidth": "none"
+          }
+        }
+      },
+      "textPreserved": true,
+      "alignmentPreserved": true,
+      "compositionAndRailWidthsPreserved": true,
+      "normalPanelGeometryPreserved": true
+    },
+    {
+      "case": "intermediate-true",
+      "before": {
+        "viewport": {
+          "width": 1280,
+          "height": 844,
+          "dpr": 1,
+          "scale": 1
+        },
+        "useful": 1233,
+        "layout": "compact",
+        "composition": {
+          "x": 16,
+          "y": 158.109375,
+          "width": 1233,
+          "height": 567
+        },
+        "available": 1233,
+        "C": 220,
+        "cardHeight": 188,
+        "G": 10,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "documentWidth": 1265,
+        "indicator": {
+          "x": 25,
+          "y": 305.109375,
+          "width": 1040.515625,
+          "height": 44
+        },
+        "panels": {
+          "people": {
+            "x": 16,
+            "y": 158.109375,
+            "width": 1233,
+            "height": 62,
+            "padding": "8px",
+            "border": "1px",
+            "boxSizing": "border-box",
+            "client": 1231,
+            "scroll": 1231,
+            "maxWidth": "none"
+          },
+          "initial-state": {
+            "x": 16,
+            "y": 230.109375,
+            "width": 1233,
+            "height": 132,
+            "padding": "8px",
+            "border": "1px",
+            "boxSizing": "border-box",
+            "client": 1231,
+            "scroll": 1231,
+            "maxWidth": "none"
+          },
+          "plays": {
+            "x": 16,
+            "y": 372.109375,
+            "width": 1233,
+            "height": 67,
+            "padding": "0px",
+            "border": "0px",
+            "boxSizing": "border-box",
+            "client": 1233,
+            "scroll": 1233,
+            "maxWidth": "none"
+          },
+          "hand": {
+            "x": 16,
+            "y": 449.109375,
+            "width": 1233,
+            "height": 276,
+            "padding": "0px",
+            "border": "0px",
+            "boxSizing": "border-box",
+            "client": 1233,
+            "scroll": 1233,
+            "maxWidth": "none"
+          }
+        }
+      },
+      "after": {
+        "viewport": {
+          "width": 1280,
+          "height": 844,
+          "dpr": 1,
+          "scale": 1
+        },
+        "useful": 1233,
+        "layout": "compact",
+        "composition": {
+          "x": 16,
+          "y": 158.109375,
+          "width": 1233,
+          "height": 567
+        },
+        "available": 1233,
+        "C": 220,
+        "cardHeight": 188,
+        "G": 10,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "documentWidth": 1265,
+        "indicator": {
+          "x": 25,
+          "y": 305.109375,
+          "width": 257.515625,
+          "height": 44
+        },
+        "panels": {
+          "people": {
+            "x": 16,
+            "y": 158.109375,
+            "width": 450,
+            "height": 62,
+            "padding": "8px",
+            "border": "1px",
+            "boxSizing": "border-box",
+            "client": 448,
+            "scroll": 448,
+            "maxWidth": "450px"
+          },
+          "initial-state": {
+            "x": 16,
+            "y": 230.109375,
+            "width": 450,
+            "height": 132,
+            "padding": "8px",
+            "border": "1px",
+            "boxSizing": "border-box",
+            "client": 448,
+            "scroll": 448,
+            "maxWidth": "450px"
+          },
+          "plays": {
+            "x": 16,
+            "y": 372.109375,
+            "width": 1233,
+            "height": 67,
+            "padding": "0px",
+            "border": "0px",
+            "boxSizing": "border-box",
+            "client": 1233,
+            "scroll": 1233,
+            "maxWidth": "none"
+          },
+          "hand": {
+            "x": 16,
+            "y": 449.109375,
+            "width": 1233,
+            "height": 276,
+            "padding": "0px",
+            "border": "0px",
+            "boxSizing": "border-box",
+            "client": 1233,
+            "scroll": 1233,
+            "maxWidth": "none"
+          }
+        }
+      },
+      "textPreserved": true,
+      "alignmentPreserved": true,
+      "compositionAndRailWidthsPreserved": true,
+      "normalPanelGeometryPreserved": null
+    },
+    {
+      "case": "review-1280-DISPLAY_VALUE",
+      "before": {
+        "viewport": {
+          "width": 1280,
+          "height": 844,
+          "dpr": 1,
+          "scale": 1
+        },
+        "useful": 1233,
+        "layout": "compact",
+        "composition": {
+          "x": 16,
+          "y": 219.109375,
+          "width": 1233,
+          "height": 1039.4375
+        },
+        "available": 1233,
+        "C": 220,
+        "cardHeight": 188,
+        "G": 10,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "documentWidth": 1265,
+        "indicator": {
+          "x": 25,
+          "y": 627.546875,
+          "width": 1040.515625,
+          "height": 44
+        },
+        "panels": {
+          "people": {
+            "x": 16,
+            "y": 219.109375,
+            "width": 1233,
+            "height": 62,
+            "padding": "8px",
+            "border": "1px",
+            "boxSizing": "border-box",
+            "client": 1231,
+            "scroll": 1231,
+            "maxWidth": "none"
+          },
+          "initial-state": {
+            "x": 16,
+            "y": 291.109375,
+            "width": 1233,
+            "height": 393.4375,
+            "padding": "8px",
+            "border": "1px",
+            "boxSizing": "border-box",
+            "client": 1231,
+            "scroll": 1231,
+            "maxWidth": "none"
+          },
+          "plays": {
+            "x": 16,
+            "y": 694.546875,
+            "width": 1233,
+            "height": 278,
+            "padding": "0px",
+            "border": "0px",
+            "boxSizing": "border-box",
+            "client": 1233,
+            "scroll": 1233,
+            "maxWidth": "none"
+          },
+          "hand": {
+            "x": 16,
+            "y": 982.546875,
+            "width": 1233,
+            "height": 276,
+            "padding": "0px",
+            "border": "0px",
+            "boxSizing": "border-box",
+            "client": 1233,
+            "scroll": 1233,
+            "maxWidth": "none"
+          }
+        }
+      },
+      "after": {
+        "viewport": {
+          "width": 1280,
+          "height": 844,
+          "dpr": 1,
+          "scale": 1
+        },
+        "useful": 1233,
+        "layout": "compact",
+        "composition": {
+          "x": 16,
+          "y": 219.109375,
+          "width": 1233,
+          "height": 1039.4375
+        },
+        "available": 1233,
+        "C": 220,
+        "cardHeight": 188,
+        "G": 10,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "documentWidth": 1265,
+        "indicator": {
+          "x": 25,
+          "y": 627.546875,
+          "width": 257.515625,
+          "height": 44
+        },
+        "panels": {
+          "people": {
+            "x": 16,
+            "y": 219.109375,
+            "width": 450,
+            "height": 62,
+            "padding": "8px",
+            "border": "1px",
+            "boxSizing": "border-box",
+            "client": 448,
+            "scroll": 448,
+            "maxWidth": "450px"
+          },
+          "initial-state": {
+            "x": 16,
+            "y": 291.109375,
+            "width": 450,
+            "height": 393.4375,
+            "padding": "8px",
+            "border": "1px",
+            "boxSizing": "border-box",
+            "client": 448,
+            "scroll": 448,
+            "maxWidth": "450px"
+          },
+          "plays": {
+            "x": 16,
+            "y": 694.546875,
+            "width": 1233,
+            "height": 278,
+            "padding": "0px",
+            "border": "0px",
+            "boxSizing": "border-box",
+            "client": 1233,
+            "scroll": 1233,
+            "maxWidth": "none"
+          },
+          "hand": {
+            "x": 16,
+            "y": 982.546875,
+            "width": 1233,
+            "height": 276,
+            "padding": "0px",
+            "border": "0px",
+            "boxSizing": "border-box",
+            "client": 1233,
+            "scroll": 1233,
+            "maxWidth": "none"
+          }
+        }
+      },
+      "textPreserved": true,
+      "alignmentPreserved": true,
+      "compositionAndRailWidthsPreserved": true,
+      "normalPanelGeometryPreserved": null
+    },
+    {
+      "case": "review-1280-PLAY_VALUE",
+      "before": {
+        "viewport": {
+          "width": 1280,
+          "height": 844,
+          "dpr": 1,
+          "scale": 1
+        },
+        "useful": 1233,
+        "layout": "compact",
+        "composition": {
+          "x": 16,
+          "y": 219.109375,
+          "width": 1233,
+          "height": 1039.4375
+        },
+        "available": 1233,
+        "C": 220,
+        "cardHeight": 188,
+        "G": 10,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "documentWidth": 1265,
+        "indicator": {
+          "x": 25,
+          "y": 627.546875,
+          "width": 1040.515625,
+          "height": 44
+        },
+        "panels": {
+          "people": {
+            "x": 16,
+            "y": 219.109375,
+            "width": 1233,
+            "height": 62,
+            "padding": "8px",
+            "border": "1px",
+            "boxSizing": "border-box",
+            "client": 1231,
+            "scroll": 1231,
+            "maxWidth": "none"
+          },
+          "initial-state": {
+            "x": 16,
+            "y": 291.109375,
+            "width": 1233,
+            "height": 393.4375,
+            "padding": "8px",
+            "border": "1px",
+            "boxSizing": "border-box",
+            "client": 1231,
+            "scroll": 1231,
+            "maxWidth": "none"
+          },
+          "plays": {
+            "x": 16,
+            "y": 694.546875,
+            "width": 1233,
+            "height": 278,
+            "padding": "0px",
+            "border": "0px",
+            "boxSizing": "border-box",
+            "client": 1233,
+            "scroll": 1233,
+            "maxWidth": "none"
+          },
+          "hand": {
+            "x": 16,
+            "y": 982.546875,
+            "width": 1233,
+            "height": 276,
+            "padding": "0px",
+            "border": "0px",
+            "boxSizing": "border-box",
+            "client": 1233,
+            "scroll": 1233,
+            "maxWidth": "none"
+          }
+        }
+      },
+      "after": {
+        "viewport": {
+          "width": 1280,
+          "height": 844,
+          "dpr": 1,
+          "scale": 1
+        },
+        "useful": 1233,
+        "layout": "compact",
+        "composition": {
+          "x": 16,
+          "y": 219.109375,
+          "width": 1233,
+          "height": 1039.4375
+        },
+        "available": 1233,
+        "C": 220,
+        "cardHeight": 188,
+        "G": 10,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "documentWidth": 1265,
+        "indicator": {
+          "x": 25,
+          "y": 627.546875,
+          "width": 257.515625,
+          "height": 44
+        },
+        "panels": {
+          "people": {
+            "x": 16,
+            "y": 219.109375,
+            "width": 450,
+            "height": 62,
+            "padding": "8px",
+            "border": "1px",
+            "boxSizing": "border-box",
+            "client": 448,
+            "scroll": 448,
+            "maxWidth": "450px"
+          },
+          "initial-state": {
+            "x": 16,
+            "y": 291.109375,
+            "width": 450,
+            "height": 393.4375,
+            "padding": "8px",
+            "border": "1px",
+            "boxSizing": "border-box",
+            "client": 448,
+            "scroll": 448,
+            "maxWidth": "450px"
+          },
+          "plays": {
+            "x": 16,
+            "y": 694.546875,
+            "width": 1233,
+            "height": 278,
+            "padding": "0px",
+            "border": "0px",
+            "boxSizing": "border-box",
+            "client": 1233,
+            "scroll": 1233,
+            "maxWidth": "none"
+          },
+          "hand": {
+            "x": 16,
+            "y": 982.546875,
+            "width": 1233,
+            "height": 276,
+            "padding": "0px",
+            "border": "0px",
+            "boxSizing": "border-box",
+            "client": 1233,
+            "scroll": 1233,
+            "maxWidth": "none"
+          }
+        }
+      },
+      "textPreserved": true,
+      "alignmentPreserved": true,
+      "compositionAndRailWidthsPreserved": true,
+      "normalPanelGeometryPreserved": null
+    },
+    {
+      "case": "review-390-DISPLAY_VALUE",
+      "before": {
+        "viewport": {
+          "width": 390,
+          "height": 844,
+          "dpr": 1,
+          "scale": 1
+        },
+        "useful": 358,
+        "layout": "compact",
+        "composition": {
+          "x": 16,
+          "y": 288.25,
+          "width": 358,
+          "height": 1185.4375
+        },
+        "available": 358,
+        "C": 220,
+        "cardHeight": 188,
+        "G": 10,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "documentWidth": 390,
+        "indicator": {
+          "x": 25,
+          "y": 801.6875,
+          "width": 165.515625,
+          "height": 54
+        },
+        "panels": {
+          "people": {
+            "x": 16,
+            "y": 288.25,
+            "width": 358,
+            "height": 62,
+            "padding": "8px",
+            "border": "1px",
+            "boxSizing": "border-box",
+            "client": 356,
+            "scroll": 356,
+            "maxWidth": "none"
+          },
+          "initial-state": {
+            "x": 16,
+            "y": 360.25,
+            "width": 358,
+            "height": 508.4375,
+            "padding": "8px",
+            "border": "1px",
+            "boxSizing": "border-box",
+            "client": 356,
+            "scroll": 356,
+            "maxWidth": "none"
+          },
+          "plays": {
+            "x": 16,
+            "y": 878.6875,
+            "width": 358,
+            "height": 278,
+            "padding": "0px",
+            "border": "0px",
+            "boxSizing": "border-box",
+            "client": 358,
+            "scroll": 358,
+            "maxWidth": "none"
+          },
+          "hand": {
+            "x": 16,
+            "y": 1166.6875,
+            "width": 358,
+            "height": 307,
+            "padding": "0px",
+            "border": "0px",
+            "boxSizing": "border-box",
+            "client": 358,
+            "scroll": 358,
+            "maxWidth": "none"
+          }
+        }
+      },
+      "after": {
+        "viewport": {
+          "width": 390,
+          "height": 844,
+          "dpr": 1,
+          "scale": 1
+        },
+        "useful": 358,
+        "layout": "compact",
+        "composition": {
+          "x": 16,
+          "y": 288.25,
+          "width": 358,
+          "height": 1185.4375
+        },
+        "available": 358,
+        "C": 220,
+        "cardHeight": 188,
+        "G": 10,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "documentWidth": 390,
+        "indicator": {
+          "x": 25,
+          "y": 801.6875,
+          "width": 165.515625,
+          "height": 54
+        },
+        "panels": {
+          "people": {
+            "x": 16,
+            "y": 288.25,
+            "width": 358,
+            "height": 62,
+            "padding": "8px",
+            "border": "1px",
+            "boxSizing": "border-box",
+            "client": 356,
+            "scroll": 356,
+            "maxWidth": "450px"
+          },
+          "initial-state": {
+            "x": 16,
+            "y": 360.25,
+            "width": 358,
+            "height": 508.4375,
+            "padding": "8px",
+            "border": "1px",
+            "boxSizing": "border-box",
+            "client": 356,
+            "scroll": 356,
+            "maxWidth": "450px"
+          },
+          "plays": {
+            "x": 16,
+            "y": 878.6875,
+            "width": 358,
+            "height": 278,
+            "padding": "0px",
+            "border": "0px",
+            "boxSizing": "border-box",
+            "client": 358,
+            "scroll": 358,
+            "maxWidth": "none"
+          },
+          "hand": {
+            "x": 16,
+            "y": 1166.6875,
+            "width": 358,
+            "height": 307,
+            "padding": "0px",
+            "border": "0px",
+            "boxSizing": "border-box",
+            "client": 358,
+            "scroll": 358,
+            "maxWidth": "none"
+          }
+        }
+      },
+      "textPreserved": true,
+      "alignmentPreserved": true,
+      "compositionAndRailWidthsPreserved": true,
+      "normalPanelGeometryPreserved": null
+    },
+    {
+      "case": "review-390-PLAY_VALUE",
+      "before": {
+        "viewport": {
+          "width": 390,
+          "height": 844,
+          "dpr": 1,
+          "scale": 1
+        },
+        "useful": 358,
+        "layout": "compact",
+        "composition": {
+          "x": 16,
+          "y": 288.25,
+          "width": 358,
+          "height": 1080.4375
+        },
+        "available": 358,
+        "C": 220,
+        "cardHeight": 188,
+        "G": 10,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "documentWidth": 390,
+        "indicator": {
+          "x": 25,
+          "y": 696.6875,
+          "width": 165.515625,
+          "height": 54
+        },
+        "panels": {
+          "people": {
+            "x": 16,
+            "y": 288.25,
+            "width": 358,
+            "height": 62,
+            "padding": "8px",
+            "border": "1px",
+            "boxSizing": "border-box",
+            "client": 356,
+            "scroll": 356,
+            "maxWidth": "none"
+          },
+          "initial-state": {
+            "x": 16,
+            "y": 360.25,
+            "width": 358,
+            "height": 403.4375,
+            "padding": "8px",
+            "border": "1px",
+            "boxSizing": "border-box",
+            "client": 356,
+            "scroll": 356,
+            "maxWidth": "none"
+          },
+          "plays": {
+            "x": 16,
+            "y": 773.6875,
+            "width": 358,
+            "height": 278,
+            "padding": "0px",
+            "border": "0px",
+            "boxSizing": "border-box",
+            "client": 358,
+            "scroll": 358,
+            "maxWidth": "none"
+          },
+          "hand": {
+            "x": 16,
+            "y": 1061.6875,
+            "width": 358,
+            "height": 307,
+            "padding": "0px",
+            "border": "0px",
+            "boxSizing": "border-box",
+            "client": 358,
+            "scroll": 358,
+            "maxWidth": "none"
+          }
+        }
+      },
+      "after": {
+        "viewport": {
+          "width": 390,
+          "height": 844,
+          "dpr": 1,
+          "scale": 1
+        },
+        "useful": 358,
+        "layout": "compact",
+        "composition": {
+          "x": 16,
+          "y": 288.25,
+          "width": 358,
+          "height": 1080.4375
+        },
+        "available": 358,
+        "C": 220,
+        "cardHeight": 188,
+        "G": 10,
+        "font": "Inter, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "documentWidth": 390,
+        "indicator": {
+          "x": 25,
+          "y": 696.6875,
+          "width": 165.515625,
+          "height": 54
+        },
+        "panels": {
+          "people": {
+            "x": 16,
+            "y": 288.25,
+            "width": 358,
+            "height": 62,
+            "padding": "8px",
+            "border": "1px",
+            "boxSizing": "border-box",
+            "client": 356,
+            "scroll": 356,
+            "maxWidth": "450px"
+          },
+          "initial-state": {
+            "x": 16,
+            "y": 360.25,
+            "width": 358,
+            "height": 403.4375,
+            "padding": "8px",
+            "border": "1px",
+            "boxSizing": "border-box",
+            "client": 356,
+            "scroll": 356,
+            "maxWidth": "450px"
+          },
+          "plays": {
+            "x": 16,
+            "y": 773.6875,
+            "width": 358,
+            "height": 278,
+            "padding": "0px",
+            "border": "0px",
+            "boxSizing": "border-box",
+            "client": 358,
+            "scroll": 358,
+            "maxWidth": "none"
+          },
+          "hand": {
+            "x": 16,
+            "y": 1061.6875,
+            "width": 358,
+            "height": 307,
+            "padding": "0px",
+            "border": "0px",
+            "boxSizing": "border-box",
+            "client": 358,
+            "scroll": 358,
+            "maxWidth": "none"
+          }
+        }
+      },
+      "textPreserved": true,
+      "alignmentPreserved": true,
+      "compositionAndRailWidthsPreserved": true,
+      "normalPanelGeometryPreserved": null
+    }
+  ]
+}

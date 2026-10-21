@@ -1,0 +1,138 @@
+
+Running 4 tests using 1 worker
+
+(node:32244) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  1 tests\browser\format2Presentation.spec.ts:62:3 › B15 adenda paneles compactos 390 PLAY_VALUE (10.8s)
+(node:15236) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  2 tests\browser\format2Presentation.spec.ts:62:3 › B15 adenda paneles compactos 390 DISPLAY_VALUE (11.7s)
+(node:19928) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  3 tests\browser\format2Presentation.spec.ts:62:3 › B15 adenda paneles compactos 1280 PLAY_VALUE (11.2s)
+(node:14244) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  4 tests\browser\format2Presentation.spec.ts:62:3 › B15 adenda paneles compactos 1280 DISPLAY_VALUE (11.1s)
+
+
+  1) tests\browser\format2Presentation.spec.ts:62:3 › B15 adenda paneles compactos 390 PLAY_VALUE ──
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: 98
+    Received: 0
+
+    Call Log:
+    - Timeout 5000ms exceeded while waiting on the predicate
+
+       99 |       const hand = p.host.locator('.hand-row'), mesa = p.host.locator('.played-row');
+      100 |       await hand.focus(); await hand.press('End');
+    > 101 |       await expect.poll(() => hand.evaluate(e => e.scrollLeft)).toBe(await hand.evaluate(e => e.scrollWidth - e.clientWidth));
+          |                                                                 ^
+      102 |       const handScroll = await hand.evaluate(e => e.scrollLeft);
+      103 |       await mesa.focus(); await mesa.press('End'); await expect.poll(() => mesa.evaluate(e => e.scrollLeft)).toBeGreaterThan(0);
+      104 |       expect(await hand.evaluate(e => e.scrollLeft)).toBe(handScroll);
+        at E:\KARTA3\KARTA3_IA\APP\karta3\tests\browser\format2Presentation.spec.ts:101:65
+
+    Error Context: playwright-report\b15-paneles-20261021\before-repair-traces\format2Presentation-B15-ad-49a4f-es-compactos-390-PLAY-VALUE\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    playwright-report\b15-paneles-20261021\before-repair-traces\format2Presentation-B15-ad-49a4f-es-compactos-390-PLAY-VALUE\trace.zip
+    Usage:
+
+        npx playwright show-trace playwright-report\b15-paneles-20261021\before-repair-traces\format2Presentation-B15-ad-49a4f-es-compactos-390-PLAY-VALUE\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) tests\browser\format2Presentation.spec.ts:62:3 › B15 adenda paneles compactos 390 DISPLAY_VALUE 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: 98
+    Received: 0
+
+    Call Log:
+    - Timeout 5000ms exceeded while waiting on the predicate
+
+       99 |       const hand = p.host.locator('.hand-row'), mesa = p.host.locator('.played-row');
+      100 |       await hand.focus(); await hand.press('End');
+    > 101 |       await expect.poll(() => hand.evaluate(e => e.scrollLeft)).toBe(await hand.evaluate(e => e.scrollWidth - e.clientWidth));
+          |                                                                 ^
+      102 |       const handScroll = await hand.evaluate(e => e.scrollLeft);
+      103 |       await mesa.focus(); await mesa.press('End'); await expect.poll(() => mesa.evaluate(e => e.scrollLeft)).toBeGreaterThan(0);
+      104 |       expect(await hand.evaluate(e => e.scrollLeft)).toBe(handScroll);
+        at E:\KARTA3\KARTA3_IA\APP\karta3\tests\browser\format2Presentation.spec.ts:101:65
+
+    Error Context: playwright-report\b15-paneles-20261021\before-repair-traces\format2Presentation-B15-ad-a451a-compactos-390-DISPLAY-VALUE\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    playwright-report\b15-paneles-20261021\before-repair-traces\format2Presentation-B15-ad-a451a-compactos-390-DISPLAY-VALUE\trace.zip
+    Usage:
+
+        npx playwright show-trace playwright-report\b15-paneles-20261021\before-repair-traces\format2Presentation-B15-ad-a451a-compactos-390-DISPLAY-VALUE\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) tests\browser\format2Presentation.spec.ts:62:3 › B15 adenda paneles compactos 1280 PLAY_VALUE ─
+
+    Error: expect(received).toBeGreaterThan(expected)
+
+    Expected: > 0
+    Received:   0
+
+    Call Log:
+    - Timeout 5000ms exceeded while waiting on the predicate
+
+      101 |       await expect.poll(() => hand.evaluate(e => e.scrollLeft)).toBe(await hand.evaluate(e => e.scrollWidth - e.clientWidth));
+      102 |       const handScroll = await hand.evaluate(e => e.scrollLeft);
+    > 103 |       await mesa.focus(); await mesa.press('End'); await expect.poll(() => mesa.evaluate(e => e.scrollLeft)).toBeGreaterThan(0);
+          |                                                                                                              ^
+      104 |       expect(await hand.evaluate(e => e.scrollLeft)).toBe(handScroll);
+      105 |       const fifth = mesa.locator('.card-details-button').last(); await fifth.focus(); await fifth.press('Enter');
+      106 |       await expect(p.host.getByRole('dialog').locator('tbody tr')).toHaveCount(3);
+        at E:\KARTA3\KARTA3_IA\APP\karta3\tests\browser\format2Presentation.spec.ts:103:110
+
+    Error Context: playwright-report\b15-paneles-20261021\before-repair-traces\format2Presentation-B15-ad-91afa-s-compactos-1280-PLAY-VALUE\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    playwright-report\b15-paneles-20261021\before-repair-traces\format2Presentation-B15-ad-91afa-s-compactos-1280-PLAY-VALUE\trace.zip
+    Usage:
+
+        npx playwright show-trace playwright-report\b15-paneles-20261021\before-repair-traces\format2Presentation-B15-ad-91afa-s-compactos-1280-PLAY-VALUE\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4) tests\browser\format2Presentation.spec.ts:62:3 › B15 adenda paneles compactos 1280 DISPLAY_VALUE 
+
+    Error: expect(received).toBeGreaterThan(expected)
+
+    Expected: > 0
+    Received:   0
+
+    Call Log:
+    - Timeout 5000ms exceeded while waiting on the predicate
+
+      101 |       await expect.poll(() => hand.evaluate(e => e.scrollLeft)).toBe(await hand.evaluate(e => e.scrollWidth - e.clientWidth));
+      102 |       const handScroll = await hand.evaluate(e => e.scrollLeft);
+    > 103 |       await mesa.focus(); await mesa.press('End'); await expect.poll(() => mesa.evaluate(e => e.scrollLeft)).toBeGreaterThan(0);
+          |                                                                                                              ^
+      104 |       expect(await hand.evaluate(e => e.scrollLeft)).toBe(handScroll);
+      105 |       const fifth = mesa.locator('.card-details-button').last(); await fifth.focus(); await fifth.press('Enter');
+      106 |       await expect(p.host.getByRole('dialog').locator('tbody tr')).toHaveCount(3);
+        at E:\KARTA3\KARTA3_IA\APP\karta3\tests\browser\format2Presentation.spec.ts:103:110
+
+    Error Context: playwright-report\b15-paneles-20261021\before-repair-traces\format2Presentation-B15-ad-892e6-ompactos-1280-DISPLAY-VALUE\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    playwright-report\b15-paneles-20261021\before-repair-traces\format2Presentation-B15-ad-892e6-ompactos-1280-DISPLAY-VALUE\trace.zip
+    Usage:
+
+        npx playwright show-trace playwright-report\b15-paneles-20261021\before-repair-traces\format2Presentation-B15-ad-892e6-ompactos-1280-DISPLAY-VALUE\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4 failed
+    tests\browser\format2Presentation.spec.ts:62:3 › B15 adenda paneles compactos 390 PLAY_VALUE ───
+    tests\browser\format2Presentation.spec.ts:62:3 › B15 adenda paneles compactos 390 DISPLAY_VALUE 
+    tests\browser\format2Presentation.spec.ts:62:3 › B15 adenda paneles compactos 1280 PLAY_VALUE ──
+    tests\browser\format2Presentation.spec.ts:62:3 › B15 adenda paneles compactos 1280 DISPLAY_VALUE 

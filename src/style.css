@@ -95,8 +95,10 @@ html:has(.game-shell){scrollbar-gutter:stable}
 .roster-identity:focus-visible{outline:3px solid #ed914f;outline-offset:2px}
 .identity-link{font:inherit;border:0;background:none;color:inherit;padding:0;text-align:left;text-decoration:underline;cursor:pointer}
 .identity-link:focus-visible{outline:3px solid #ed914f;outline-offset:2px}
+.game-compact{--compact-card-width:220px;--compact-card-gap:10px}
 .game-compact .game-layout{display:flex;flex-direction:column;gap:10px}
 .game-compact .game-panel{width:100%;padding:0;background:transparent;border:0;border-radius:0;min-height:0}
+.game-compact .game-people,.game-compact .game-initial-state{max-width:calc(var(--compact-card-width) + var(--compact-card-width) + var(--compact-card-gap))}
 .game-compact .game-people{order:0;padding:8px;background:white;border:1px solid #e2e6ef;border-radius:12px}
 .game-compact .game-people h2,.game-compact #game-state-title{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
 .game-compact .game-players{display:flex;gap:2px;flex-wrap:wrap;list-style:none;padding:0;margin:0}
@@ -130,9 +132,9 @@ html:has(.game-shell){scrollbar-gutter:stable}
 .game-compact .game-card-panel-heading{min-height:0;margin:0 0 6px}
 .game-compact .game-card-panel-heading h2{font-size:16px;text-align:left}
 .game-compact .swipe-hint{margin:4px 0}
-.game-compact .played-row,.game-compact .hand-row{gap:10px;min-height:0;padding:3px 3px 8px;scrollbar-gutter:auto}
-.game-compact .played-row>div,.game-compact .game-card-slot,.game-compact .hand-row .game-card-slot{width:220px;flex:0 0 220px}
-.game-compact .game-card-slot .game-card{width:220px;min-height:188px;padding:8px;position:relative}
+.game-compact .played-row,.game-compact .hand-row{gap:var(--compact-card-gap);min-height:0;padding:3px 3px 8px;scrollbar-gutter:auto}
+.game-compact .played-row>div,.game-compact .game-card-slot,.game-compact .hand-row .game-card-slot{width:var(--compact-card-width);flex:0 0 var(--compact-card-width)}
+.game-compact .game-card-slot .game-card{width:var(--compact-card-width);min-height:188px;padding:8px;position:relative}
 .game-compact .card-play-surface,.game-compact .game-card>div:first-child{display:grid;grid-template-columns:32px minmax(0,1fr);gap:4px;align-items:start}
 .game-compact .card-heading{grid-column:2;grid-row:1;margin:0;min-height:34px}
 .game-compact .card-heading h3{font-size:18px;line-height:1.22}

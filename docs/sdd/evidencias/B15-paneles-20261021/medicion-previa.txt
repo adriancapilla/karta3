@@ -1,0 +1,11 @@
+
+Running 4 tests using 1 worker
+
+(node:31968) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 tests\browser\format2Presentation.spec.ts:62:3 › B15 adenda paneles compactos 390 PLAY_VALUE (7.7s)
+  ok 2 tests\browser\format2Presentation.spec.ts:62:3 › B15 adenda paneles compactos 390 DISPLAY_VALUE (6.6s)
+  ok 3 tests\browser\format2Presentation.spec.ts:62:3 › B15 adenda paneles compactos 1280 PLAY_VALUE (6.5s)
+  ok 4 tests\browser\format2Presentation.spec.ts:62:3 › B15 adenda paneles compactos 1280 DISPLAY_VALUE (6.6s)
+
+  4 passed (30.3s)
