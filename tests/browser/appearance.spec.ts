@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test';
 import fs from 'node:fs/promises';
+import { createHash } from 'node:crypto';
 import { configurationBrowserServer } from '../support/configurationBrowserServer.js';
 import { manualTable, readGame } from '../support/manualBrowserCases.js';
 
@@ -90,6 +91,43 @@ for (const width of [1800, 390]) test(`B20 P1 paletas y geometría ${width}`, as
   try {
     const before = await readGame(table.host);
     const themes = process.env.KARTA3_B20_BASELINE ? ['BASE'] : ['LIGHT', 'DARK', 'CREAM', 'HIGH_CONTRAST'];
+    let nativeBase: unknown;
+    if (!process.env.KARTA3_B20_BASELINE) {
+      // Misma base aprobada pre-B20; las métricas de la fuente dependen del SO.
+      // Se conserva la comparación geométrica exacta, con referencia del mismo navegador.
+      const baseCss = (await fs.readFile('src/style.css', 'utf8')).replace(/\r\n/g, '\n');
+      expect(createHash('sha256').update(baseCss).digest('hex')).toBe('dcb9076c6cb225835c773440015b665f2557ebde5186c41d6ce2f3abf65d01e8');
+      nativeBase = await table.host.evaluate(async css => {
+        const sheets = [...document.querySelectorAll<HTMLLinkElement>('link[rel="stylesheet"]')].map(link => ({ link, disabled: link.disabled }));
+        const reference = document.createElement('style'); reference.textContent = css;
+        for (const { link } of sheets) link.disabled = true;
+        document.head.append(reference);
+        const settle = () => new Promise<void>(resolve => requestAnimationFrame(() => requestAnimationFrame(() => resolve())));
+        try {
+          await document.fonts.ready; await settle();
+          return { theme: 'BASE_NATIVE', width: innerWidth, platform: navigator.platform, dpr: devicePixelRatio,
+            elements: [...document.querySelectorAll('.game-hand .game-card,.game-hand .card-heading,.game-hand .game-card-image,.game-hand .card-values,.game-hand .card-play-button')].map(e => {
+              const b = e.getBoundingClientRect(); const s = getComputedStyle(e);
+              return { className: e.className, width: b.width, height: b.height, font: s.fontFamily, size: s.fontSize };
+            }) };
+        } finally {
+          reference.remove(); for (const { link, disabled } of sheets) link.disabled = disabled;
+          await document.fonts.ready; await settle();
+        }
+      }, baseCss);
+      await fs.writeFile(`${folder}/${width}-native-base.json`, JSON.stringify(nativeBase, null, 2));
+      const session = await table.host.context().newCDPSession(table.host);
+      try {
+        await session.send('DOM.enable'); await session.send('CSS.enable');
+        const { root } = await session.send('DOM.getDocument');
+        const fonts = [];
+        for (const selector of ['.game-hand .card-heading', '.game-hand .card-values']) {
+          const { nodeId } = await session.send('DOM.querySelector', { nodeId: root.nodeId, selector });
+          fonts.push({ selector, ...await session.send('CSS.getPlatformFontsForNode', { nodeId }) });
+        }
+        await fs.writeFile(`${folder}/${width}-platform-fonts.json`, JSON.stringify(fonts, null, 2));
+      } finally { await session.detach(); }
+    }
     const measures: unknown[] = [];
     const focusEvidence: unknown[] = [];
     for (const theme of themes) {
@@ -140,13 +178,13 @@ for (const width of [1800, 390]) test(`B20 P1 paletas y geometría ${width}`, as
         focusEvidence.push({ theme, dColor, play: real });
       }
     }
-    if (!process.env.KARTA3_B20_BASELINE) {
-      const base = JSON.parse(await fs.readFile(`docs/sdd/evidencias/B20/p1/${width}-base-measures.json`, 'utf8'));
-      const geometry = (v: unknown) => (v as { elements: { className: string; width: number; height: number; font: string; size: string }[] }).elements.map(({ className, width, height, font, size }) => ({ className, width, height, font, size }));
-      for (const measurement of measures) expect(geometry(measurement)).toEqual(geometry(base[0]));
-    }
+    // Conservar las medidas también cuando falle una comparación posterior.
     await fs.writeFile(`${folder}/${width}-measures.json`, JSON.stringify(measures, null, 2));
     await fs.writeFile(`${folder}/${width}-focus.json`, JSON.stringify(focusEvidence, null, 2));
+    if (!process.env.KARTA3_B20_BASELINE) {
+      const geometry = (v: unknown) => (v as { elements: { className: string; width: number; height: number; font: string; size: string }[] }).elements.map(({ className, width, height, font, size }) => ({ className, width, height, font, size }));
+      for (const measurement of measures) expect(geometry(measurement)).toEqual(geometry(nativeBase));
+    }
   } finally { await table.close(); await server.stop(); }
 });
 

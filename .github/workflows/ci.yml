@@ -101,6 +101,9 @@ jobs:
             playwright-report/b17-adenda/acceptance/
             playwright-report/b19/eleccion-*.png
             playwright-report/b19/aviso-final/
+            playwright-report/b20/p1/
+            playwright-report/b20-adenda/20261020-selector-detalles/
+            playwright-report/b21/product/
             playwright-report/b21/
           if-no-files-found: warn
           retention-days: 7

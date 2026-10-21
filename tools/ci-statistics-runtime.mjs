@@ -3,6 +3,7 @@ import { Buffer } from 'node:buffer';
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import path from 'node:path';
+import { pathToFileURL } from 'node:url';
 import { DatabaseSync } from 'node:sqlite';
 import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
@@ -44,8 +45,10 @@ if (stage === 'seed') {
   const before = snapshot().cells; await startGame(); await delay(300);
   assert.deepEqual(snapshot().cells, before); assert.equal((await globalThis.fetch(base + '/api/decks')).headers.get('x-karta3-statistics-collection'), 'off');
 } else if (stage === 'restore') {
-  const { restoreAggregates } = await import('/app/dist-server/server/infrastructure/statistics/backups.js');
-  const { privateDirectory } = await import('/app/dist-server/server/infrastructure/statistics/privateFiles.js');
+  // Entrada por stdin en el contenedor: resolver el artefacto compilado desde /app,
+  // sin tratar dist-server como otra raíz de código de producción del guard.
+  const { restoreAggregates } = await import(pathToFileURL(path.resolve('dist-server/server/infrastructure/statistics/backups.js')).href);
+  const { privateDirectory } = await import(pathToFileURL(path.resolve('dist-server/server/infrastructure/statistics/privateFiles.js')).href);
   privateDirectory(directory, true); const sources = (await fs.readdir('/source/test/synthetic/backups')).filter(n => n.endsWith('.enc')).sort();
   await restoreAggregates('/source/test/synthetic/backups/' + sources.at(-1), file, Buffer.from((await fs.readFile('/source/copy.key', 'utf8')).trim(), 'hex'), 'test', 'SYNTHETIC', Date.now());
   assert.equal(snapshot().metadata.restored, 'true'); assert.equal(total('active'), 0);
