@@ -65,3 +65,11 @@ Estado Git al entregar: HEAD anterior conservado, dos archivos propios de códig
 ## Consolidación de publicación — 21/10/2026
 
 El encargo posterior del autor incorpora el cambio local y este cierre a la publicación conjunta B20/B21. La fuente publicada incluirá únicamente la retirada de JSX/import y las aserciones nuevas descritas arriba; no se elimina refreshStatistics ni sus consumidores. Las comprobaciones Linux y completas se registran en la PR y no se atribuyen a la selección Windows histórica.
+
+## Continuación de verificación autorizada — 21/10/2026
+
+La reinclusión falló en la global39575499811; las focales posteriores correctas no acreditan una reparación. El ensayo esperaba texto de exclusión en otra pestaña y podía invertir la acción sin esperar a que la operación de origen completase HTTP200 y terminase su estado ocupado. Los controles, revisiones y admisión siguen siendo reales; no se cambia producto o contrato.
+
+La continuación espera confirmación200 y fin de `aria-busy` de cada acción antes de la siguiente dependiente. Para comprobar la insuficiencia del montaje anterior, retiene únicamente la entrega de la respuesta de exclusión (después de ejecutar la petición real): comprueba corte/texto remoto y pestaña de origen todavía ocupada; libera respuesta, confirma finalización y solo entonces reincluye expresamente desde la otra pestaña. Conserva exclusión/inclusión, permiso separado, Enter/Espacio, consultas automáticas, recarga, ausencia del botón, HOME mínimo, coordinación y ciclo cortado irrevocablemente. No reintento automático, respuesta simulada de éxito, aumento de admisión, plazos o esperas fijas. Un429/409 inesperado o una reinclusión incorrecta después de esas condiciones hace fallar la puerta y exige diagnóstico, no otra pulsación para ocultarlo.
+
+Se conservan registros HTTP saneados también cuando el caso termina correctamente, sin cookies/tokens/ids funcionales. La traza antigua no existe: esta comprobación contrasta una condición de sincronización insuficiente, sin inventar el motivo exacto de aquel intento. Teclado y nueva interpretación B10/B11 se describen en la [precisión de la adenda B20](ADENDA_B20_SELECTOR_Y_ACCIONES_DETALLES.md#precisión-de-publicación-b10b11-y-sincronización--21102026). La imagen de la global fallida sigue sin aprobación para despliegue.

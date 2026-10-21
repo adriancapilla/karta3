@@ -1,5 +1,15 @@
 # Adenda B20 — Ancho del selector y acciones de Detalles
 
+## Precisión de publicación B10/B11 y sincronización — 21/10/2026
+
+El autor confirma que «Analítica y privacidad», situado después de la mesa, puede requerir desplazamiento vertical. No se exige que todo el documento quepa en una pantalla. Esta precisión no autoriza cambiar producto, estilos, tamaños, ubicación o contenido para eliminar ese scroll.
+
+- B11 sustituye únicamente el límite de altura del documento completo por el del `main.game-shell` (≤1600 en la referencia1800×1600). Conserva límites de paneles, cartas, controles, leyenda, contenido, alineación y desbordamientos; registra la altura documental. Exige que el bloque estadístico esté después del juego, dentro del ancho disponible, y que su enlace pueda alcanzarse mediante scroll y foco. No se sube el límite1600 ni se oculta el bloque.
+- B10 conserva intactos fixture/CSS históricos y tipografías/composición/cartas. Compara el prefijo KARTA3/Partida sin confundirlo con la aparición autorizada del selector personal. La referencia nativa de cabecera incluye Cancelar B13 y el selector B20, con CSS de apariencia aprobado fijado por SHA256095db98b349c45ebb91da5dc821e644ad3ff287a01f02711dc52685ecd6814c0. Se mantienen igualdad de posiciones cabecera/resumen y las demás aserciones; se comprueba selector habilitado/cuatro opciones y Cancelar exclusivo.
+- Teclado: cerrar la consulta restaura foco en `onClose` antes del commit de desmontaje React. Antes de la siguiente apertura Enter/Espacio se exige ausencia del diálogo anterior, además del foco. Sin clic forzado, esperas fijas, tolerancias o ampliación de plazos. Se registran eventos genuinos, foco y presencia/open de diálogos, también en el recorrido correcto.
+
+La global39575499811 no tenía traza del fallo de Espacio. Sus resultados y los posteriores favorables permanecen históricos: no se afirma reconstruida su causa exacta. Las puertas nuevas deben acreditar el recorrido completo con esta condición de montaje explícita; un fallo de producto se comunica antes de modificarlo. Fuente/producto intactos por estas adaptaciones de ensayo.
+
 **20/10/2026. Estado vigente:** implementado y comprobado técnicamente en Windows; [registro nuevo §6](#6-implementación-y-comprobación--20102026). No abre otro bloque ni cierra los pendientes generales B20. La preparación original quedó registrada separadamente. El autor había probado el selector y solicitado únicamente estas dos correcciones; esa valoración no sustituye la revisión humana/física posterior de esta entrega.
 
 **Base observada:** carpeta única `E:\KARTA3\KARTA3_IA\APP\karta3`, rama `main`, HEAD `40f3f48553a3353433942124b625354c35ed2972`. Ya estaban modificados proceso, B19, `ANALITICA_USO.md` y `PREPARACION_ANALITICA_REAL_B19.md`; conservarlos. No crear ramas/checkouts, revertir o mezclar trabajo ajeno.
