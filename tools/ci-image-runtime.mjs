@@ -37,10 +37,12 @@ const catalog = await response.json();
 assert.deepEqual(catalog.decks.map(({ id, schemaVersion, contentVersion }) => ({ id, schemaVersion, contentVersion })), [
   { id: 'criaturas-magicas', schemaVersion: 2, contentVersion: 2 },
   { id: 'generica', schemaVersion: 2, contentVersion: 4 },
+  { id: 'modelos-ia-2026', schemaVersion: 2, contentVersion: 2 },
   { id: 'sistema-solar', schemaVersion: 2, contentVersion: 4 }
 ]);
 assert.equal(catalog.decks[0].imageUrl, '/media/decks/criaturas-magicas/v2/imagenes/portada.webp');
-assert.equal(catalog.decks[2].imageUrl, '/media/decks/sistema-solar/v4/imagenes/portada.webp');
+assert.equal(catalog.decks[2].imageUrl, '/media/decks/modelos-ia-2026/v2/imagenes/portada.webp');
+assert.equal(catalog.decks[3].imageUrl, '/media/decks/sistema-solar/v4/imagenes/portada.webp');
 for (const { id } of catalog.decks) for (const name of ['baraja.json', 'cartas.json']) {
   const response = await globalThis.fetch('http://127.0.0.1:3000/barajas/' + id + '/' + name);
   assert.equal(response.status, 404);
@@ -127,5 +129,22 @@ for (const [file, hash] of Object.entries({
   'baraja.json': '3e31db300c706738e69d743703f2bd1d4d027b2b08743313fe54d15eb6943e44',
   'cartas.json': 'bce5740a4ba3daf8da60ffad88a2cbc07271e95baae44bee078d0984973fa7fa'
 })) assert.equal(createHash('sha256').update(await fs.readFile(`/app/barajas/sistema-solar/${file}`)).digest('hex'), hash);
+// Referencia congelada aprovisionada por el runner, nunca tomada de APP/HTTP ni incluida en la imagen.
+const models = JSON.parse(process.env.KARTA3_CI_APPROVED_MODELS ?? '{}');
+assert.equal(models.manifestSha256, '928c2cc6765910c6712c9e15b9c4d860b0639ccca0cb2cf333eceffc5a7af39c');
+assert.equal(models.files.length, 61);
+assert.equal(new Set(models.files.map(file => file.path)).size, 61);
+assert.equal(models.files.filter(file => file.path.startsWith('imagenes/')).length, 59);
+for (const file of models.files) {
+  const bytes = await fs.readFile('/app/barajas/modelos-ia-2026/' + file.path);
+  assert.equal(bytes.length, file.bytes);
+  assert.equal(createHash('sha256').update(bytes).digest('hex'), file.sha256);
+  if (file.path.startsWith('imagenes/')) {
+    const resource = await globalThis.fetch('http://127.0.0.1:3000/media/decks/modelos-ia-2026/v2/' + file.path);
+    assert.equal(resource.status, 200);
+    assert(resource.headers.get('content-type').startsWith('image/webp'));
+    assert.equal(createHash('sha256').update(globalThis.Buffer.from(await resource.arrayBuffer())).digest('hex'), file.sha256);
+  }
+}
 console.log(JSON.stringify({ node: process.version, sqlite: sqliteVersion, retiredModulesAbsent: true, uid: process.getuid(), icu: process.versions.icu, unicode: process.versions.unicode, sharp: sharp.versions,
-  deckHashes: expected, creaturesHashes: creatures, catalog, readonly: true }));
+  deckHashes: expected, creaturesHashes: creatures, modelsReference: models, catalog, readonly: true }));

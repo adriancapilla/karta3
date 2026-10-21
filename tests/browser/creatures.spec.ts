@@ -59,7 +59,7 @@ async function record(page: Page, name: string) {
   return full;
 }
 
-test('B16 instalación normal: tres sin default, dos sesiones/pestañas, versión exacta, permisos, 59 recursos y seis JSON privados', async ({ browser, baseURL }) => {
+test('B16 instalación normal: cuatro sin default, dos sesiones/pestañas, versión exacta, permisos, 59 recursos y ocho JSON privados', async ({ browser, baseURL }) => {
   const contexts = await Promise.all([browser.newContext({ viewport: { width: 390, height: 844 } }), browser.newContext(), browser.newContext()]);
   const pages = await Promise.all(contexts.map(c => c.newPage())); const [host, guest, other] = pages;
   const clients: Awaited<ReturnType<typeof socket>>[] = [];
@@ -72,7 +72,7 @@ test('B16 instalación normal: tres sin default, dos sesiones/pestañas, versió
     await expect(guest.getByRole('heading', { name: 'Ya estás en la sala' })).toBeVisible(); await other.getByRole('button', { name: 'Crear sala', exact: true }).click();
     const tab = await contexts[0].newPage(); await tab.goto(baseURL!); await expect(tab.getByLabel('Baraja', { exact: true })).toHaveValue('');
     await host.getByLabel('Valor del Atributo').selectOption('DISPLAY_VALUE'); await tab.getByLabel('Optimizar para móvil').check();
-    for (const deck of [approvedCreatures, approvedInstalledDecks[1], approvedInstalledDecks[2], approvedCreatures]) {
+    for (const deck of [...approvedInstalledDecks, approvedCreatures]) {
       await host.getByLabel('Baraja', { exact: true }).selectOption(choose(deck.id, deck.contentVersion));
       for (const p of [host, guest, tab]) { await expect(p.locator('.deck-card h3')).toHaveText(`${deck.name} · v${deck.contentVersion}`); expect((await readRoom(p)).selectedDeck).toEqual(deck); }
     }

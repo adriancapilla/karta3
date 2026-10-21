@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test';
+import { approvedInstalledDecks } from '../support/approvedSolar.js';
 import { configurationBrowserServer } from '../support/configurationBrowserServer.js';
 import { manualTable, readGame, readRoom } from '../support/manualBrowserCases.js';
 import type { Page } from '@playwright/test';
@@ -103,7 +104,7 @@ test('B09 P2 normal compilado genérica 2: persona contra fácil/difícil, entro
   const p = await manualTable(browser, baseURL!, { count: 1, bots: ['HARD', 'EASY'], review: 0, turn: 60, width: 1280 });
   const tab = await p.contexts[0].newPage();
   try {
-    expect(await p.host.evaluate(async () => (await (await fetch('/api/decks')).json()).decks.map((deck: { id: string; contentVersion: number }) => [deck.id, deck.contentVersion]))).toEqual([['criaturas-magicas', 2], ['generica', 4], ['sistema-solar', 4]]);
+    expect(await p.host.evaluate(async () => (await (await fetch('/api/decks')).json()).decks.map((deck: { id: string; contentVersion: number }) => [deck.id, deck.contentVersion]))).toEqual(approvedInstalledDecks.map(deck => [deck.id, deck.contentVersion]));
     await tab.goto(baseURL!); let moves = 0; const final = new Set<number>();
     for (const page of [p.host, tab]) {
       await expect(page.getByRole('img', { name: 'Bot · Difícil', exact: true })).toHaveText('BD'); await expect(page.getByRole('img', { name: 'Bot · Fácil', exact: true })).toHaveText('BF');
