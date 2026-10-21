@@ -131,6 +131,15 @@ export async function configurationBrowserServer(single = false, initialGame = f
   await new Promise<void>((resolve) => server.listen(0, '127.0.0.1', resolve));
   const address = server.address(); if (!address || typeof address === 'string') throw new Error('Puerto ausente');
   return { base: `http://127.0.0.1:${address.port}`, time, repository, sessions, requests, loaded, starts, prepared, gameRequests, botRequests,
+    observeCurrentHttp: (observe: (event: { phase: 'request' | 'finish'; status?: number }) => void) => {
+      const listener: import('node:http').RequestListener = (request, response) => {
+        if (request.method !== 'GET' || request.url !== '/api/rooms/current') return;
+        observe({ phase: 'request' });
+        response.once('finish', () => observe({ phase: 'finish', status: response.statusCode }));
+      };
+      server.on('request', listener);
+      return () => { server.off('request', listener); };
+    },
     pollingOnly: () => { io.engine.opts.allowUpgrades = false; },
     interceptBot: (handler: typeof interceptBot) => { interceptBot = handler; },
     intercept: (handler: typeof intercept) => { intercept = handler; },

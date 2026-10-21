@@ -33,3 +33,11 @@ Activación, acceso administrativo y ensayo operativo corresponden al siguiente 
 ## Incidencia de check de la primera CI conjunta
 
 CI39690754879 sobre13bc564: check618/619 y Chrome no ejecutado, imagen correcta pero OCI no aprobado globalmente. Causa de arnés demostrada y reparación limitada en [evidencia B21](../sdd/evidencias/B21/IMPLEMENTACION.md#incidencia-de-sincronización-sqlite--22102026): flush concurrente no es barrera de SQLite. Se conservan aserciones, tiempo, cobertura y producto; se añade retención causal de append y se espera entries=0 antes de lecturas. Logs, selección focal nueva y CI final en PR17; no relanzamiento del mismo HEAD sin diagnóstico.
+
+## Batería completa39692302535 — 22/10/2026
+
+Fuente4e2ee5b: check620/59/104 e imagen correctos; Chrome219/222 en1544,317371s, worker1/retries0/omitidos0/flaky0, trabajo27m27s. Presupuesto suficiente; no ampliación. OCI de este intento no aprobado globalmente.
+
+Dos fallos B20 P1 (1800/390) ocurren antes de la comparación: la huella de src/style.css seguía congelada en main6359ceb (dcb9076c6cb225835c773440015b665f2557ebde5186c41d6ce2f3abf65d01e8). Se contrastó que su único delta son las ocho líneas de la cota compacta ya aprobada; referencia nueva ccf2ca241f83831c90e288077663f312b0244308b02928d1bd5898ae71647de9. Actualizar esa huella no elimina ni relaja igualdad geométrica exacta entre cuatro apariencias/base nativa, contrastes, fuentes, tamaños, foco o revisión/turno. Sin CSS adicional.
+
+Tercer fallo: B08 T2 1280 agota30s en readGame→page.evaluate(fetch) al iniciar humanPlay tras el primer vencimiento. No hay traza histórica: la CI global no la configuraba; error-context tampoco contiene instantánea DOM. No acredita causa de producto o arnés ni reparación por reensayo. Se añade observación de etapas, estado del fixture, HTTP real en servidor/navegador y errores/crash; sin alterar gestos, reloj, reglas, datos, aserciones o timeout. Trace retain-on-failure conserva evidencia de futuros fallos globales. Primero diagnóstico focal de esos casos; no se relanza global a ciegas.

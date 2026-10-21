@@ -93,10 +93,10 @@ for (const width of [1800, 390]) test(`B20 P1 paletas y geometría ${width}`, as
     const themes = process.env.KARTA3_B20_BASELINE ? ['BASE'] : ['LIGHT', 'DARK', 'CREAM', 'HIGH_CONTRAST'];
     let nativeBase: unknown;
     if (!process.env.KARTA3_B20_BASELINE) {
-      // Misma base aprobada pre-B20; las métricas de la fuente dependen del SO.
+      // Base aprobada, incluida la cota compacta B15 del 21/10; las métricas dependen del SO.
       // Se conserva la comparación geométrica exacta, con referencia del mismo navegador.
       const baseCss = (await fs.readFile('src/style.css', 'utf8')).replace(/\r\n/g, '\n');
-      expect(createHash('sha256').update(baseCss).digest('hex')).toBe('dcb9076c6cb225835c773440015b665f2557ebde5186c41d6ce2f3abf65d01e8');
+      expect(createHash('sha256').update(baseCss).digest('hex')).toBe('ccf2ca241f83831c90e288077663f312b0244308b02928d1bd5898ae71647de9');
       nativeBase = await table.host.evaluate(async css => {
         const sheets = [...document.querySelectorAll<HTMLLinkElement>('link[rel="stylesheet"]')].map(link => ({ link, disabled: link.disabled }));
         const reference = document.createElement('style'); reference.textContent = css;
