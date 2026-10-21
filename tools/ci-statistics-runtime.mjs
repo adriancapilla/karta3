@@ -5,6 +5,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { DatabaseSync } from 'node:sqlite';
+import { createHash } from 'node:crypto';
 import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
 import { setTimeout as delay } from 'node:timers/promises';
@@ -22,6 +23,12 @@ const snapshot = () => { const db = new DatabaseSync(file, { readOnly: true }); 
   return { metadata, cells: db.prepare('SELECT * FROM cells').all() };
 } finally { db.close(); } };
 const total = (category, family = 'GAME') => snapshot().cells.filter(c => c.family === family && c.dimension === 'balance' && c.category === category).reduce((n, c) => n + c.value, 0);
+// SQLite WAL puede necesitar auxiliares incluso al consultar en readOnly. En el
+// montaje RO adverso verificamos identidad binaria, sin abrir otra conexión WAL.
+const fileSnapshot = async () => Promise.all(['', '-wal', '-shm'].map(async suffix => {
+  const data = await fs.readFile(file + suffix).catch(error => { if (error.code === 'ENOENT') return null; throw error; });
+  return { suffix, bytes: data?.length ?? null, sha256: data && createHash('sha256').update(data).digest('hex') };
+}));
 async function until(predicate) { const limit = Date.now() + 5000; while (Date.now() < limit) { if (predicate()) return; await delay(25); } assert.fail('STATISTICS_PROBE_NOT_OBSERVED'); }
 async function startGame() {
   const current = await globalThis.fetch(base + '/api/rooms/current'); const cookie = current.headers.get('set-cookie').split(';')[0];
@@ -42,8 +49,9 @@ if (stage === 'seed') {
 } else if (stage === 'after-kill') {
   assert.equal(total('active'), 0); assert.ok(total('unknown') >= 1);
 } else if (stage === 'readonly-volume') {
-  const before = snapshot().cells; await startGame(); await delay(300);
-  assert.deepEqual(snapshot().cells, before); assert.equal((await globalThis.fetch(base + '/api/decks')).headers.get('x-karta3-statistics-collection'), 'off');
+  const before = await fileSnapshot(); assert.ok(before[0].bytes > 0);
+  await startGame(); await delay(300);
+  assert.deepEqual(await fileSnapshot(), before); assert.equal((await globalThis.fetch(base + '/api/decks')).headers.get('x-karta3-statistics-collection'), 'off');
 } else if (stage === 'restore') {
   // Entrada por stdin en el contenedor: resolver el artefacto compilado desde /app,
   // sin tratar dist-server como otra raíz de código de producción del guard.
@@ -56,7 +64,9 @@ if (stage === 'seed') {
 if (stage !== 'restore') for (const route of ['/statistics', '/statistics-data', '/backups', '/exports', '/agg-daily-v1.sqlite', '/agg-daily-v1.sqlite-wal', '/api/usage/events', '/api/statistics/report']) {
   const response = await globalThis.fetch(base + route); assert.equal(response.status, 404); assert.ok(!(await response.text()).includes('<!doctype html>'));
 }
-const state = snapshot(); const text = JSON.stringify(state);
+// En RO la igualdad de DB y auxiliares conserva también el estado inspeccionado
+// por las etapas previas; no se publica su contenido ni sus huellas privadas.
+const state = stage === 'readonly-volume' ? null : snapshot(); const text = JSON.stringify(state);
 for (const forbidden of ['eventId', 'visitId', 'participationId', 'roomId', 'gameId', 'proofRef', 'bootRef', 'requestId', 'cursor']) assert.ok(!text.includes(forbidden));
 if (game) { assert.ok(!text.includes(game.roomId)); assert.ok(!text.includes(game.cookie)); }
 for (const suffix of ['', '-wal', '-shm']) { const stat = await fs.stat(file + suffix).catch(() => null); if (stat) assert.equal(stat.mode & 0o777, 0o600); }
