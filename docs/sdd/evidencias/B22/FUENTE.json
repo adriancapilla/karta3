@@ -37,5 +37,11 @@
     "docs/sdd/PROMPT_IMPLEMENTACION_ADENDA_PANELES_COMPACTOS.md",
     "docs/sdd/BLOQUE_22_INCORPORACION_MODELOS_IA_2026.md",
     "docs/sdd/PROMPT_IMPLEMENTACION_BLOQUE_22.md"
-  ]
+  ],
+  "testedWorktree": {
+    "includesPreservedUncommittedB15Panels": true,
+    "cleanCheckoutOfB22HeadTested": false,
+    "needsJointSourceBeforePublication": true,
+    "reference": "INICIAL.json: prior hashes for src/style.css and tests/browser/format2Presentation.spec.ts"
+  }
 }

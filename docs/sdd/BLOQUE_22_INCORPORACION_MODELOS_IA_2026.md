@@ -79,6 +79,8 @@ No hay decisiones funcionales/editoriales abiertas. Esta preparación solo ha le
 
 Base efectiva `main/aa336d3add598e4c59789ff053292295410da8dc`, conservando B11/B20/B21 y el ajuste de paneles sin registrar. No cambio de rama/checkout. Copia/certificados en commit local `a4f6cd0b7f456720d9be328a8e2ce812251c90fe`; referencias/pruebas/README/verificador `abb861911edd47c317b93fe7bc74e6e02c1042ab`; selector de consulta del ensayo `fc99a2a267aa7a480e61891720c69561f83d1274`. El cierre documental se registra aparte. Los documentos y archivos previos de paneles/proceso permanecen sin mezclar en estos commits, contrastados por SHA-256.
 
+**Árbol realmente verificado:** esos commits B22 **más los cambios locales de paneles B15 conservados**, incluidos CSS y escenas pendientes. El build y las nuevas aserciones de cota usan ese árbol de trabajo; no se acredita un checkout limpio del HEAD aislado. La fuente conjunta posterior deberá registrar también esa entrega antes de ejecutar CI/publicación. No se incorporó a escondidas al commit B22 ni se autoriza publicar solo sus commits como si contuvieran todo el árbol probado.
+
 ### Incorporación y alcance real
 
 - Manifiesto final SHA-256 `928c2cc6765910c6712c9e15b9c4d860b0639ccca0cb2cf333eceffc5a7af39c`;61 rutas/tamaños/huellas coinciden **origen=APP=blobs Git**. Los124 anteriores permanecen **inicio=APP=Git**:185 archivos de paquetes, más catálogo generado/ignorado. [Inventario inicial](evidencias/B22/INICIAL.json), [copia y blobs](evidencias/B22/COPIA.json). Ambos JSON mantienen sus huellas de §2 y2/2/true; no ASSETS modificado, activación repetida o edición de datos/imágenes.

@@ -9,6 +9,8 @@
 - [Certificados originales](certificados/ENTREGA_IMPLEMENTACION.md), [manifiesto final](certificados/MANIFIESTO_SHA256.json), [aprobación/activación](certificados/APROBACION_FINAL_Y_ACTIVACION.md). Huellas y finales de línea originales protegidos por Git; no candidata1 o imágenes duplicadas en esta evidencia.
 - [Fuente/runtime/build](FUENTE.json): pruebas/referencias `abb8619`, ajuste exclusivo de selector `fc99a2a`; código de ejecución equivalente entre ambos. CSS y pruebas previas de paneles, B11/proceso/prompt permanecen sin mezclar en los commits B22.
 
+El árbol probado incluye el **ajuste local B15 de paneles pendiente de registrar**. Sus hashes se conservan en INICIAL/FUENTE y el CSS compilado; los resultados no son una prueba de checkout limpio del HEAD B22 aislado. Antes de CI/publicación, el autor debe reunir también esa entrega en la fuente conjunta. El estado Git no se declara limpio ni se mezcla el trabajo previo para aparentarlo.
+
 ## Puertas realmente ejecutadas
 
 | Evidencia | Resultado |
