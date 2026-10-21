@@ -17,6 +17,9 @@ const { privateDirectory } = await import(compiled('server/infrastructure/statis
 const { loadInstallationDecks } = await import(compiled('server/composition/decks.js'));
 const { STATISTICS_NOTICE_VERSION } = await import(compiled('shared/contracts/statistics.js'));
 assert.equal(process.platform, 'linux'); assert.equal(process.arch, 'x64'); assert.equal(process.version, 'v24.19.0'); assert.equal(process.getuid(), 1000);
+// Node24 detecta ESM en stdin. --input-type heredado impediría arrancar el worker
+// desde archivo (ERR_INPUT_TYPE_NOT_ALLOWED), a diferencia del proceso real.
+assert.ok(!process.execArgv.some(argument => argument.startsWith('--input-type')));
 await assert.rejects(fs.writeFile('/run/karta3-secrets/.write-probe', 'fabricated'), { code: 'EROFS' });
 Object.assign(process.env, { KARTA3_ENV: 'pruebas', KARTA3_STATISTICS_MODE: 'aggregate', KARTA3_STATISTICS_DIRECTORY: '/var/lib/karta3/statistics', KARTA3_STATISTICS_BACKUP_KEY_FILE: '/run/karta3-secrets/copy.key' });
 const location = statisticsLocation('pruebas', process.env.KARTA3_STATISTICS_DIRECTORY); privateDirectory(location.root, true);

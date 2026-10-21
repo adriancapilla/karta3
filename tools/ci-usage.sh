@@ -66,6 +66,6 @@ docker run --rm --read-only --network none --mount "source=$secret,target=/var/l
   node -e "require('node:fs').writeFileSync('/var/lib/karta3/statistics/copy.key',require('node:crypto').randomBytes(32).toString('hex'),{flag:'wx',mode:0o600})"
 docker run --rm -i --read-only --tmpfs /tmp --network none \
   --mount "source=$human,target=/var/lib/karta3/statistics" --mount "source=$secret,target=/run/karta3-secrets,readonly" \
-  karta3:ci node --input-type=module < tools/ci-statistics-human.mjs | tee "$proof/statistics-human-fabricated.json"
+  karta3:ci node < tools/ci-statistics-human.mjs | tee "$proof/statistics-human-fabricated.json"
 docker run --rm --user 1001:1001 --read-only --network none --mount "source=$human,target=/var/lib/karta3/statistics,readonly" \
   karta3:ci node -e "require('node:assert/strict').throws(()=>require('node:fs').readFileSync('/var/lib/karta3/statistics/pruebas/human/agg-daily-v1.sqlite'),{code:'EACCES'})"
