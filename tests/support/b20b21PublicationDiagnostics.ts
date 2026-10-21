@@ -31,8 +31,10 @@ export async function observeKeyboard(page: Page) {
       const element = event.target instanceof Element ? event.target : null;
       context.publicationKeys.push({ at: performance.now(), type, key: event instanceof KeyboardEvent ? event.key : undefined,
         trusted: event.isTrusted, tag: element?.tagName, className: element?.className,
-        text: element?.closest('button')?.textContent?.slice(0, 90), active: document.activeElement?.tagName,
-        consultations: [...document.querySelectorAll<HTMLDialogElement>('.consultation')].map(dialog => ({ open: dialog.open, connected: dialog.isConnected })) });
+        text: element?.closest('button')?.textContent?.slice(0, 90), label: element?.closest('button')?.getAttribute('aria-label'),
+        cardId: element?.closest<HTMLElement>('[data-card-id]')?.dataset.cardId, active: document.activeElement?.tagName,
+        consultations: [...document.querySelectorAll<HTMLDialogElement>('.consultation')].map(dialog => ({ open: dialog.open, connected: dialog.isConnected })),
+        dialogs: [...document.querySelectorAll<HTMLDialogElement>('dialog')].map(dialog => ({ title: dialog.querySelector('h2')?.textContent, open: dialog.open, connected: dialog.isConnected })) });
     }, true);
   });
 }
