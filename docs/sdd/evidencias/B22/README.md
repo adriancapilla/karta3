@@ -58,3 +58,7 @@ Las escenas dirigidas usan paquetes reales, HTTP/Socket.IO reales, reloj control
 Solo SYNTHETIC/test y almacenamiento fabricado, aislado/eliminado al terminar el ensayo propio. Paquete `modelos-ia-2026:2:2` observado por lector SQLite independiente una vez en la dimensión existente CONFIGURATION/package, terminalDECK_COMPLETED una vez. Sin nuevos eventos/campos/informes o permiso de fotos, recogida real o datos del autor. Las regresiones usan una instancia propia con estadísticas OFF. La existencia de esta evidencia no acredita operación pública.
 
 La revisión de capturas fue del agente en Chrome/Windows; no dispositivos físicos, aprobación humana, zoom físico, Linux/CI/imagen o exactitud científica. Retención/plazos de regresión controlados y los tiempos normales de la partida son categorías distintas. Manual humano preparado en README, pendiente hasta realizarlo. Logs/trazas originales de intentos separados en `playwright-report/b22/`; sin DB/secretos reales en Git. Publicación/despliegue y alineación descriptiva se trasladan al autor, sin mensajes a otros hilos o fuentes TFM editadas.
+
+## Recepción posterior del autor — 22/10/2026
+
+El autor comunica partidas satisfactorias con la nueva baraja; se conserva el alcance real de esa valoración, sin extenderla a dispositivos físicos, fuentes o tamaños no comprobados. Publicación conjunta y verificaciones nuevas en [registro operativo](../../../operacion/PUBLICACION_B22_Y_TRASLADO_B21.md); las evidencias Windows anteriores permanecen históricas.

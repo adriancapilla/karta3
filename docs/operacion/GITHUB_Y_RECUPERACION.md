@@ -1,7 +1,11 @@
 # GitHub, comprobaciones y recuperación
 
-Actualizado: 21/10/2026. Repositorio existente: `E:\KARTA3\KARTA3_IA\APP\karta3`.
+Actualizado: 22/10/2026. Repositorio existente: `E:\KARTA3\KARTA3_IA\APP\karta3`.
 Versión de paquete: 0.1.0. Remoto público: `https://github.com/adriancapilla/karta3.git`.
+
+## Continuación B11/paneles/B22/Vite — 22/10/2026
+
+[Fuente, puertas, publicación y traslado preparado](PUBLICACION_B22_Y_TRASLADO_B21.md). Rama temporal única `chore/publicacion-b22-vite` en la misma carpeta; fuente inicial99f9c3d y pendientes de paneles registrados por separado. Conserva recuperación B11, commits editoriales, históricos y reserva4516d23. Repo público/GHCR privado. Autorizada integración tras puertas y publicación del mismo OCI final aprobado; sin VPS, activación real o borrado. Cierre real en PR/evidencia externa. Los pendientes anteriores siguientes son evidencia fechada, no estado definitivo de esta continuación.
 
 ## Publicación conjunta B20/B21 — 21/10/2026
 

@@ -28,3 +28,7 @@ Originales/trace de cada intento en `playwright-report/b15-paneles-20261021/`, s
 ## Revisión manual del autor
 
 En una instancia propia de la compilación actual, dos sesiones, seleccionar explícitamente una baraja y activar Optimizar para móvil antes de iniciar. Revisar a1280 y390 en ambos modos: solo los dos paneles superiores se limitan; Mesa/mano ocupan su ancho y desplazan lateralmente por separado. Abrir indicadora/identidad con teclado, cerrar con Escape y comprobar foco; jugar hasta revisión y consultar la quinta. Oscuro conserva la misma geometría. Desde1368 útiles, normal activada/desactivada debe coincidir; el viewport no sustituye la medida útil `data-useful-width`. No se propone usar servidores del autor para estos ensayos ni publicar/activar nada.
+
+## Recepción posterior del autor — 22/10/2026
+
+El autor acepta el ajuste de los paneles y considera mejorable su presentación. No se encargan mejoras adicionales ni se extiende esta valoración a tamaños/dispositivos no comprobados. Publicación y nuevas puertas en el [registro operativo](../../../operacion/PUBLICACION_B22_Y_TRASLADO_B21.md).
