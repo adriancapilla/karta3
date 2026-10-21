@@ -52,12 +52,12 @@ export async function b11KeyboardObservation(page: Page) {
         play: [...document.querySelectorAll<HTMLButtonElement>('.game-hand .card-play-button')].map(button => ({ label: button.getAttribute('aria-label'), disabled: button.disabled, focused: button === document.activeElement })),
         dialogs: [...document.querySelectorAll<HTMLDialogElement>('dialog')].map(dialog => ({ open: dialog.open, connected: dialog.isConnected })) });
     }, label),
-    save: async (width: number, serverEvents: readonly { event: string }[], result: 'completed' | 'failed') => {
+    save: async (width: number, serverEvents: readonly { event: string }[], result: 'completed' | 'failed', scenario = '') => {
       await Promise.allSettled(pending);
       const dom = await page.evaluate(() => (window as unknown as { b11Observation: unknown[] }).b11Observation);
       const errors = await page.locator('.game-action-error,[role="alert"]').allTextContents();
       const folder = 'playwright-report/b21/publication'; await fs.mkdir(folder, { recursive: true });
-      await fs.writeFile(`${folder}/B11-access-${width}-${result}.json`, JSON.stringify({ width, result, dom, transport, serverEvents: serverEvents.map(({ event }) => ({ event })), errors }, null, 2) + '\n');
+      await fs.writeFile(`${folder}/B11-access-${width}${scenario ? `-${scenario}` : ''}-${result}.json`, JSON.stringify({ width, scenario, result, dom, transport, serverEvents: serverEvents.map(({ event }) => ({ event })), errors }, null, 2) + '\n');
       await cdp.detach();
     }
   };
