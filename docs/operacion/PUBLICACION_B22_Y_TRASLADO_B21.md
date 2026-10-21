@@ -29,3 +29,7 @@ El autor trasladará el cierre al hilo VPS. Usar exclusivamente digest privado f
 7. Reversión: detener nuevo ejecutable; volver a imagen/configuración/almacenamiento anteriores compatibles, o analítica OFF con configuración compatible. Nunca abrir AGG_DAILY_V1 nueva con el ejecutable antiguo. Conservar nuevo volumen aislado; sin mezcla/restauración destructiva.
 
 Activación, acceso administrativo y ensayo operativo corresponden al siguiente encargo VPS. No operación pública globalmente verificada, conformidad jurídica integral o C09–C10 completos.
+
+## Incidencia de check de la primera CI conjunta
+
+CI39690754879 sobre13bc564: check618/619 y Chrome no ejecutado, imagen correcta pero OCI no aprobado globalmente. Causa de arnés demostrada y reparación limitada en [evidencia B21](../sdd/evidencias/B21/IMPLEMENTACION.md#incidencia-de-sincronización-sqlite--22102026): flush concurrente no es barrera de SQLite. Se conservan aserciones, tiempo, cobertura y producto; se añade retención causal de append y se espera entries=0 antes de lecturas. Logs, selección focal nueva y CI final en PR17; no relanzamiento del mismo HEAD sin diagnóstico.

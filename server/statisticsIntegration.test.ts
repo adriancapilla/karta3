@@ -18,8 +18,41 @@ async function setup() {
     await new Promise<void>(resolve => socket.once('connect', resolve)); return { cookie, socket };
   };
   const send = (socket: Socket, event: string, data: object) => socket.emitWithAck(event, data) as Promise<SocketAck<RoomResponse>>;
-  return { ...s, http, player, send };
+  // flush despacha un lote, pero no es una barrera si otro ya está en vuelo.
+  // Observar el vaciado real antes de leer SQLite; mismos plazos del ensayo.
+  const flush = async () => {
+    await expect.poll(async () => { await s.writer.flush(); return s.writer.status().entries; }).toBe(0);
+  };
+  return { ...s, http, player, send, flush };
 }
+it('B21 barrera del ensayo: flush concurrente no acredita SQLite; esperar el lote real sin reenviarlo', async () => {
+  const s = await setup();
+  const worker = (s.writer as unknown as { worker: Worker }).worker;
+  const post = worker.postMessage.bind(worker);
+  let held: unknown;
+  worker.postMessage = (message: { type?: string }, transferList) => {
+    if (message.type === 'append' && held === undefined) held = message;
+    else post(message, transferList);
+  };
+  let inFlight: Promise<void> | undefined;
+  try {
+    expect(s.recorder.home()).toBe(true);
+    inFlight = s.writer.flush(); expect(held).toBeDefined();
+    // Reproduce determinísticamente el supuesto incorrecto del ensayo anterior.
+    await s.writer.flush();
+    expect(s.writer.status().entries).toBeGreaterThan(0);
+    expect(s.total('HOME', 'all', 'total')).toBe(0);
+    const drained = s.flush();
+    post(held); worker.postMessage = post; held = undefined;
+    await inFlight; await drained;
+    expect(s.total('HOME', 'all', 'total')).toBe(1);
+    expect(s.writer.status().entries).toBe(0);
+  } finally {
+    worker.postMessage = post;
+    if (held !== undefined) post(held);
+    await inFlight;
+  }
+});
 it('B21 A01/A05/A08: dos sesiones y pestañas; altas nuevas, JOIN original, inicio/automático/terminal únicos y privacidad', async () => {
   const s = await setup(); const host = await s.player(); const tab = await s.player(host.cookie); const guest = await s.player();
   const room = (await (await s.http('/api/rooms', host.cookie, {})).json() as RoomResponse).room;
@@ -30,11 +63,11 @@ it('B21 A01/A05/A08: dos sesiones y pestañas; altas nuevas, JOIN original, inic
     expect((await s.send(host.socket, 'room:configure', { requestId: field, roomId: room.id, change: { field, value } })).ok).toBe(true);
   const start = { roomId: room.id, requestId: 'start' };
   expect((await s.send(host.socket, 'room:start', start)).ok).toBe(true); expect((await s.send(tab.socket, 'room:start', { ...start, requestId: 'start-tab' })).ok).toBe(true);
-  s.time.advance(120_000); expect(s.repository.findById(room.id)?.status).toBe('RESULTS'); await s.writer.flush();
+  s.time.advance(120_000); expect(s.repository.findById(room.id)?.status).toBe('RESULTS'); await s.flush();
   expect(s.total('CREATION', 'all', 'total')).toBe(1); expect(s.total('JOIN', 'NEW_JOIN', 'outcome')).toBe(1);
   expect(s.total('GAME', 'started')).toBe(1); expect(s.total('GAME', 'NO_ACTIVE_HUMAN_PLAYERS')).toBe(1); expect(s.total('AUTOMATIC', 'became')).toBe(2);
   // Replay de JOIN posterior no sobrescribe su resolución original ni produce otra marginal.
-  await s.send(guest.socket, 'room:join', input); await s.writer.flush(); expect(s.total('JOIN', 'NEW_JOIN', 'outcome')).toBe(1);
+  await s.send(guest.socket, 'room:join', input); await s.flush(); expect(s.total('JOIN', 'NEW_JOIN', 'outcome')).toBe(1);
   const text = JSON.stringify(s.cells()); for (const excluded of [room.code, room.id, 'Señuelo privado', host.cookie, 'requestId', 'hand', 'gameId', 'eventId', 'visitId', 'proofRef']) expect(text).not.toContain(excluded);
   for (const path of ['/api/usage/choice', '/api/usage/events', '/agg-daily-v1.sqlite', '/statistics', '/statistics-data', '/backups']) expect((await s.http(path, host.cookie)).status).toBe(404);
 });
@@ -52,7 +85,7 @@ it('B21 A05/A07: observador excluido corta ciclo, apariencia declinada no corta 
   await s.send(host.socket, 'room:bot-add', { requestId: 'bot', roomId: room.id });
   const before = await get(); await s.http('/api/statistics/exclusion', host.cookie, { excluded: true, expectedRevision: before.revision, requestId: 'cut-observer' }, 'PUT');
   await s.send(host.socket, 'room:configure', { requestId: 'deck', roomId: room.id, change: { field: 'deck', value: { id: 'generica', contentVersion: 4 } } });
-  expect((await s.send(host.socket, 'room:start', { requestId: 'start', roomId: room.id })).ok).toBe(true); await s.writer.flush();
+  expect((await s.send(host.socket, 'room:start', { requestId: 'start', roomId: room.id })).ok).toBe(true); await s.flush();
   expect(s.total('WAITING', 'cut')).toBe(1); expect(s.total('GAME', 'started')).toBe(0);
 });
 it('B21 A07/A08: ventanas reales por conexión, sin permiso no hay metadata, primer par RAM y END antiguo no toca nueva sala', async () => {
@@ -79,7 +112,7 @@ it('B21 A07/A08: ventanas reales por conexión, sin permiso no hay metadata, pri
   const next = (await (await s.http('/api/rooms', host.cookie, {})).json() as RoomResponse).room;
   expect((await s.http('/api/statistics/appearance', host.cookie, photo(end, 'DARK'))).status).toBe(202);
   expect((await s.http('/api/rooms/' + next.id, host.cookie)).status).toBe(200);
-  await s.writer.flush(); expect(s.total('APPEARANCE', 'L0', 'start')).toBe(1); expect(s.total('APPEARANCE', 'D1', 'end')).toBe(1); expect(s.total('APPEARANCE', 'L0:D1', 'pair')).toBe(1);
+  await s.flush(); expect(s.total('APPEARANCE', 'L0', 'start')).toBe(1); expect(s.total('APPEARANCE', 'D1', 'end')).toBe(1); expect(s.total('APPEARANCE', 'L0:D1', 'pair')).toBe(1);
   expect(JSON.stringify(s.cells())).not.toContain(first.token); expect(JSON.stringify(s.cells())).not.toContain(start.room.game.id);
 });
 it('B21 A03/A10: muerte real del writer no reinicia turno, admite juegos y solo observa salas nuevas tras sanear', async () => {
@@ -89,17 +122,17 @@ it('B21 A03/A10: muerte real del writer no reinicia turno, admite juegos y solo 
   for (const [field, value] of Object.entries({ deck: { id: 'generica', contentVersion: 4 }, turnSeconds: 15, reviewSeconds: 0 }))
     await s.send(host.socket, 'room:configure', { requestId: field, roomId: room.id, change: { field, value } });
   const started = await s.send(host.socket, 'room:start', { requestId: 'start', roomId: room.id });
-  if (!started.ok || started.room.status !== 'IN_GAME') throw new Error('start'); await s.writer.flush();
+  if (!started.ok || started.room.status !== 'IN_GAME') throw new Error('start'); await s.flush();
   const before = started.room.game.interaction.turn!.timing!;
   expect(before).not.toBeNull(); expect(before.endsAt - before.startedAt).toBe(15000);
   const resources = s.writer as unknown as { worker: Worker };
   await resources.worker.terminate(); await expect.poll(() => s.writer.available()).toBe(true);
   const recovered = await (await s.http('/api/rooms/' + room.id, host.cookie)).json() as RoomResponse;
   expect(recovered.room.status).toBe('IN_GAME'); if (recovered.room.status === 'IN_GAME') expect(recovered.room.game.interaction.turn!.timing).toEqual(before);
-  s.time.advance(120_000); expect(s.repository.findById(room.id)?.status).toBe('RESULTS'); await s.writer.flush();
+  s.time.advance(120_000); expect(s.repository.findById(room.id)?.status).toBe('RESULTS'); await s.flush();
   expect(s.total('GAME', 'unknown')).toBe(1); expect(s.total('GAME', 'NO_ACTIVE_HUMAN_PLAYERS')).toBe(0);
   const a = s.repository.findById(room.id)!;
   await s.send(host.socket, 'results:return-home', { requestId: 'home', roomId: a.id, gameId: a.game!.id });
-  const next = await s.http('/api/rooms', host.cookie, {}); expect(next.status).toBe(201); await s.writer.flush();
+  const next = await s.http('/api/rooms', host.cookie, {}); expect(next.status).toBe(201); await s.flush();
   expect(s.total('CREATION', 'all', 'total')).toBe(2); expect(s.total('WAITING', 'pending')).toBe(1);
 });
