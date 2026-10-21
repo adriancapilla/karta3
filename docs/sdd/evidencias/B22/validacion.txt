@@ -1,0 +1,5 @@
+
+> karta3@0.1.0 decks:validate
+> tsx tools/decks.ts validate --package E:\KARTA3\KARTA3_IA\ASSETS\Entregas\2026-10-21-modelos-ia-2026-formato-2\paquetes\modelos-ia-2026
+
+E:\KARTA3\KARTA3_IA\ASSETS\Entregas\2026-10-21-modelos-ia-2026-formato-2\paquetes\modelos-ia-2026: válida; disponibilidad true

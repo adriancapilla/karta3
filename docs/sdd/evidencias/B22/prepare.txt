@@ -1,0 +1,9 @@
+
+> karta3@0.1.0 decks:prepare
+> tsx tools/decks.ts prepare
+
+criaturas-magicas: válida; disponibilidad true
+generica: válida; disponibilidad true
+modelos-ia-2026: válida; disponibilidad true
+sistema-solar: válida; disponibilidad true
+Catálogo preparado: 4 barajas disponibles.
