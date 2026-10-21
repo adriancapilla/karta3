@@ -40,12 +40,12 @@ for (const ready of [false, true]) test(`B11 Space causal polling: dirección co
     if (ready) { release(); await expect.poll(() => postFinished).toBe(true); }
     await actor.bringToFront(); await play.focus(); await expect(play).toBeFocused(); await expect(play).toBeEnabled();
     await observation.mark(ready ? 'write-finished-before-Space' : 'write-held-before-Space');
+    // La recuperación ocurre tras el timeout de confirmación propio del producto (5s).
+    // Esperar su respuesta real antes de examinar UI, sin cambiar ese timeout o el del test.
+    const recovered = ready ? undefined : actor.waitForResponse(response => new URL(response.url()).pathname === '/api/rooms/current' && response.status() === 200);
+    void recovered?.catch(() => {}); // Si falla otra aserción, el cierre no oculta su diagnóstico.
     await actor.keyboard.press('Space');
-    const input = await actor.evaluate(() => {
-      const events = (window as unknown as { b11Observation: { type?: string; key?: string; trusted?: boolean;
-        target?: { className?: string; disabled?: boolean; cardId?: string }; active?: { className?: string; cardId?: string } }[] }).b11Observation;
-      return events.filter(event => ['keydown', 'keyup', 'click'].includes(event.type ?? '') && event.target?.className?.includes('card-play-button'));
-    });
+    const input = await observation.spaceEvents();
     expect(input).toMatchObject([
       { type: 'keydown', key: ' ', trusted: true, target: { disabled: false, cardId: before.game.hand[0].id }, active: { cardId: before.game.hand[0].id } },
       { type: 'keyup', key: ' ', trusted: true, target: { disabled: false, cardId: before.game.hand[0].id }, active: { cardId: before.game.hand[0].id } },
@@ -53,6 +53,7 @@ for (const ready of [false, true]) test(`B11 Space causal polling: dirección co
     ]);
     if (!ready) {
       release(); await expect.poll(() => postFinished).toBe(true);
+      await (await recovered!).finished();
       await expect(actor.getByRole('alert')).toHaveText('No se pudo confirmar la acción. Recupera la mesa antes de reintentar.');
       expect(s.gameRequests.filter(event => event.event === 'game:play')).toHaveLength(0);
       expect((await readGame(p.host)).game.round.plays).toEqual([]);

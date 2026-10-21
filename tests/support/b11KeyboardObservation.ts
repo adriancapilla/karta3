@@ -5,11 +5,18 @@ import fs from 'node:fs/promises';
 export async function b11KeyboardObservation(page: Page) {
   const transport: unknown[] = [];
   const pending: Promise<void>[] = [];
+  let directionTransport: 'polling' | 'websocket' | undefined, directionWriteFinished = false;
   const decode = (text: string, direction: string, at: number) => {
     for (const part of text.split('\x1e')) {
       const event = part.match(/^42(\d*)\["([^"]+)"/);
       const ack = part.match(/^43(\d+)(.*)$/);
-      if (event) transport.push({ direction, at, kind: 'event', ack: event[1], event: event[2] });
+      if (event) {
+        transport.push({ direction, at, kind: 'event', ack: event[1], event: event[2] });
+        if (direction.startsWith('sent-') && event[2] === 'game:opening-direction') {
+          directionTransport = direction === 'sent-websocket' ? 'websocket' : 'polling';
+          directionWriteFinished = directionTransport === 'websocket';
+        }
+      }
       else if (ack) {
         try {
           const [result] = JSON.parse(ack[2]) as [{ ok?: boolean; error?: { code?: string }; room?: { revision?: number; game?: { round?: { direction?: string; plays?: unknown[] } } } }];
@@ -21,10 +28,16 @@ export async function b11KeyboardObservation(page: Page) {
   };
   const cdp = await page.context().newCDPSession(page);
   await cdp.send('Network.enable');
-  cdp.on('Network.webSocketFrameSent', event => decode(event.response.payloadData, 'sent-websocket', event.timestamp));
-  cdp.on('Network.webSocketFrameReceived', event => decode(event.response.payloadData, 'received-websocket', event.timestamp));
+  cdp.on('Network.webSocketFrameSent', event => decode(event.response.payloadData, 'sent-websocket', Date.now()));
+  cdp.on('Network.webSocketFrameReceived', event => decode(event.response.payloadData, 'received-websocket', Date.now()));
   page.on('request', request => {
     if (new URL(request.url()).pathname.startsWith('/socket.io/') && request.method() === 'POST') decode(request.postData() ?? '', 'sent-polling', Date.now());
+  });
+  page.on('requestfinished', request => {
+    if (new URL(request.url()).pathname.startsWith('/socket.io/') && request.method() === 'POST' && request.postData()?.includes('"game:opening-direction"')) {
+      directionWriteFinished = true;
+      transport.push({ direction: 'sent-polling', at: Date.now(), kind: 'write-finished', event: 'game:opening-direction' });
+    }
   });
   page.on('response', response => {
     if (new URL(response.url()).pathname.startsWith('/socket.io/') && response.request().method() === 'GET') {
@@ -46,6 +59,12 @@ export async function b11KeyboardObservation(page: Page) {
     }, true);
   });
   return {
+    directionWritten: () => directionTransport !== undefined && directionWriteFinished,
+    spaceEvents: () => page.evaluate(() => {
+      const events = (window as unknown as { b11Observation: { type?: string; key?: string; trusted?: boolean;
+        target?: { className?: string; disabled?: boolean; cardId?: string }; active?: { className?: string; cardId?: string } }[] }).b11Observation;
+      return events.filter(event => ['keydown', 'keyup', 'click'].includes(event.type ?? '') && event.target?.className?.includes('card-play-button'));
+    }),
     mark: async (label: string) => page.evaluate(label => {
       (window as unknown as { b11Observation: unknown[] }).b11Observation.push({ at: performance.now(), mark: label,
         documentFocused: document.hasFocus(), active: document.activeElement?.getAttribute('aria-label'),
@@ -57,7 +76,9 @@ export async function b11KeyboardObservation(page: Page) {
       const dom = await page.evaluate(() => (window as unknown as { b11Observation: unknown[] }).b11Observation);
       const errors = await page.locator('.game-action-error,[role="alert"]').allTextContents();
       const folder = 'playwright-report/b21/publication'; await fs.mkdir(folder, { recursive: true });
-      await fs.writeFile(`${folder}/B11-access-${width}${scenario ? `-${scenario}` : ''}-${result}.json`, JSON.stringify({ width, scenario, result, dom, transport, serverEvents: serverEvents.map(({ event }) => ({ event })), errors }, null, 2) + '\n');
+      await fs.writeFile(`${folder}/B11-access-${width}${scenario ? `-${scenario}` : ''}-${result}.json`, JSON.stringify({ width, scenario, result,
+        directionTransport, directionWriteFinished, domClock: 'performance.now milliseconds', transportClock: 'Date.now milliseconds',
+        dom, transport, serverEvents: serverEvents.map(({ event }) => ({ event })), errors }, null, 2) + '\n');
       await cdp.detach();
     }
   };

@@ -140,6 +140,7 @@ if (!before) {
     let completed = false;
     try {
       const actor = p.pages[1]; await actor.setViewportSize({ width, height: width === 390 ? 844 : 800 });
+      const beforeActivation = await readGame(actor);
       let confirmDirection: (() => void) | undefined;
       if (width === 1280) s.interceptGame((event, _payload, deliver, result) => {
         if (event === 'game:opening-direction') confirmDirection = () => deliver(result);
@@ -170,12 +171,26 @@ if (!before) {
       }
       await expect(actor.getByRole('button', { name: 'BAJO', exact: true })).toHaveAttribute('aria-pressed', 'true');
       await expect(playButton).toBeEnabled();
+      // El ack de aplicación puede preceder al fin del POST polling. Preparar el transporte
+      // de este recorrido de teclado; la retención adversa se comprueba por separado.
+      await expect.poll(() => observation.directionWritten()).toBe(true);
       await observation.mark('before-activation');
       if (width === 390) { await surface.scrollIntoViewIfNeeded(); const b = (await surface.boundingBox())!; await actor.touchscreen.tap(b.x + 20, b.y + 20); }
-      else await playButton.press('Space');
+      else {
+        await actor.bringToFront(); await playButton.focus(); await expect(playButton).toBeFocused(); await expect(playButton).toBeEnabled();
+        await actor.keyboard.press('Space');
+        expect(await observation.spaceEvents()).toMatchObject([
+          { type: 'keydown', key: ' ', trusted: true, target: { disabled: false, cardId: beforeActivation.game.hand[0].id }, active: { cardId: beforeActivation.game.hand[0].id } },
+          { type: 'keyup', key: ' ', trusted: true, target: { disabled: false, cardId: beforeActivation.game.hand[0].id }, active: { cardId: beforeActivation.game.hand[0].id } },
+          { type: 'click', trusted: true, target: { disabled: false, cardId: beforeActivation.game.hand[0].id } }
+        ]);
+      }
       await observation.mark('after-activation');
       await expect.poll(async () => (await readGame(p.host)).game.round.plays.length).toBe(1);
       expect(s.gameRequests.filter((r) => r.event === 'game:play')).toHaveLength(1);
+      const afterActivation = await readGame(p.host);
+      expect(afterActivation.game.round.plays[0].card.id).toBe(beforeActivation.game.hand[0].id);
+      expect(afterActivation.game.interaction.turn!.id).not.toBe(beforeActivation.game.interaction.turn!.id);
       expect(await actor.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
       await fs.mkdir(evidence, { recursive: true }); await actor.evaluate(() => scrollTo(0, 0));
       const sample = await measure(actor); await fs.writeFile(path.join(evidence, `${width}-access.json`), JSON.stringify(sample, null, 2));
