@@ -1,0 +1,1169 @@
+{
+  "algorithm": "SHA-256",
+  "checkedAtUtc": "2026-10-21T22:07:49.556843+00:00",
+  "scope": "Entrega completa después de aprobación y activación; excluye este propio manifiesto. El paquete para APP es exclusivamente paquetes/modelos-ia-2026.",
+  "id": "modelos-ia-2026",
+  "schemaVersion": 2,
+  "contentVersion": 2,
+  "available": true,
+  "package": "paquetes/modelos-ia-2026",
+  "packageManifest": "MANIFIESTO_SHA256.json",
+  "approval": "APROBACION_FINAL_Y_ACTIVACION.md",
+  "files": [
+    {
+      "path": "APROBACION_CONTENIDO.md",
+      "bytes": 3216,
+      "sha256": "1c1806c2a7200de0e61e72cf536d93ef30fb481414902bddc99c24c542d66505"
+    },
+    {
+      "path": "APROBACION_FINAL_Y_ACTIVACION.md",
+      "bytes": 3150,
+      "sha256": "cfbaba42ce9fccbbf2bd25588083b6a8f5c2b69d65b66e4bdc1de10358962a5a"
+    },
+    {
+      "path": "candidata-contenido-1/modelos-ia-2026/baraja.json",
+      "bytes": 45235,
+      "sha256": "c38b513cf7362b488cf9aea92cc1a06b0cb1714aaf78cba1d1401fe055fe053d"
+    },
+    {
+      "path": "candidata-contenido-1/modelos-ia-2026/cartas.json",
+      "bytes": 86271,
+      "sha256": "9201976fafd4a7062dd7669dec5c3a92ff3facaae01bfcfe0de380cf2ad8dff8"
+    },
+    {
+      "path": "candidata-contenido-1/modelos-ia-2026/imagenes/cartas/bloom-176b.webp",
+      "bytes": 53692,
+      "sha256": "44414153af0e01b0c7e21c70ccf5f7226cdfb7ed4736a7ba78b44ce05c3bf7ba"
+    },
+    {
+      "path": "candidata-contenido-1/modelos-ia-2026/imagenes/cartas/claude-21.webp",
+      "bytes": 38588,
+      "sha256": "ebf7917cd0105dd592729569690865443e509a34ce61bb6206603d7d286c2012"
+    },
+    {
+      "path": "candidata-contenido-1/modelos-ia-2026/imagenes/cartas/claude-3-haiku.webp",
+      "bytes": 38552,
+      "sha256": "356421d7cc92dc9ff631bb4c44049c5276c125f244226c7c853de3d9750327f9"
+    },
+    {
+      "path": "candidata-contenido-1/modelos-ia-2026/imagenes/cartas/claude-3-opus.webp",
+      "bytes": 21504,
+      "sha256": "63ca95e8c838b9c82283e407041c0fdbf0f1116c40b1f3bd3e4dab2a3592e19c"
+    },
+    {
+      "path": "candidata-contenido-1/modelos-ia-2026/imagenes/cartas/claude-35-sonnet.webp",
+      "bytes": 41032,
+      "sha256": "b4bb2e7e15afe3251f95c9472121ff3b57f7477f6dc94121e28f0a9e97ffe5c1"
+    },
+    {
+      "path": "candidata-contenido-1/modelos-ia-2026/imagenes/cartas/claude-37-sonnet.webp",
+      "bytes": 42230,
+      "sha256": "eeb117269198dca41f135cb681ec33086a1af5d021a8dec63496413c93ab4762"
+    },
+    {
+      "path": "candidata-contenido-1/modelos-ia-2026/imagenes/cartas/claude-haiku-55-max.webp",
+      "bytes": 21514,
+      "sha256": "e030f3973ffbe3db3e2caf394961a5dd2bcb8904bee650436d71e19fe07e2b34"
+    },
+    {
+      "path": "candidata-contenido-1/modelos-ia-2026/imagenes/cartas/claude-opus-4.webp",
+      "bytes": 41996,
+      "sha256": "939b4306f4b991c777c5df43c1816b1fcb6cc725a1e14d87a69ea902e71da3a8"
+    },
+    {
+      "path": "candidata-contenido-1/modelos-ia-2026/imagenes/cartas/claude-opus-55-max.webp",
+      "bytes": 41922,
+      "sha256": "010da1504970a23643ab2188c447bf5a1ce20d83e13412356fce5c7e88212b19"
+    },
+    {
+      "path": "candidata-contenido-1/modelos-ia-2026/imagenes/cartas/claude-sonnet-4.webp",
+      "bytes": 39686,
+      "sha256": "a2f76ecd57baf7dfea88b855658eaf89eeb9b50ad8215cb5e701d74a3d31a373"
+    },
+    {
+      "path": "candidata-contenido-1/modelos-ia-2026/imagenes/cartas/claude-sonnet-55-max.webp",
+      "bytes": 21496,
+      "sha256": "837e9ea0d15acf05733738e30320b32559636fb95686f9e572b55bf480edabee"
+    },
+    {
+      "path": "candidata-contenido-1/modelos-ia-2026/imagenes/cartas/command-r-plus.webp",
+      "bytes": 40406,
+      "sha256": "13e1c8ade3dda373ded24280011aa4f3088455faf234df793bfd5eaab84f6f7b"
+    },
+    {
+      "path": "candidata-contenido-1/modelos-ia-2026/imagenes/cartas/dbrx-instruct.webp",
+      "bytes": 58028,
+      "sha256": "0edcb3e803ee0df93e6ea6b66a717e3b6be41686bb7bd5ae429b1052855720eb"
+    },
+    {
+      "path": "candidata-contenido-1/modelos-ia-2026/imagenes/cartas/deepseek-r1.webp",
+      "bytes": 40056,
+      "sha256": "aced3206deb6694b1e81e0eff2fa808a2be9712409d05122da455dd051c6b7f7"
+    },
+    {
+      "path": "candidata-contenido-1/modelos-ia-2026/imagenes/cartas/deepseek-v2-chat.webp",
+      "bytes": 39740,
+      "sha256": "61f2a3504a35a0bb96920e2bc8d9d5ec3ecd9b0058db26e73bd8d240303d8c8f"
+    },
+    {
+      "path": "candidata-contenido-1/modelos-ia-2026/imagenes/cartas/deepseek-v3.webp",
+      "bytes": 51082,
+      "sha256": "7f5ea6ef3c492f55361155bc56a1eb3706195589e25b83980488a3099550a2d2"
+    },
+    {
+      "path": "candidata-contenido-1/modelos-ia-2026/imagenes/cartas/gemini-10-pro.webp",
+      "bytes": 39108,
+      "sha256": "1a9634bb84fa1d0722ee9ff421cdfcd7fb09ddb4a19bdb5306e38342e46783ef"
+    },
+    {
+      "path": "candidata-contenido-1/modelos-ia-2026/imagenes/cartas/gemini-15-pro.webp",
+      "bytes": 50640,
+      "sha256": "cdab2e8a1c5c40a57b175163716d5c5e5fa8279c730e03b6f790f095b5a6e373"
+    },
+    {
+      "path": "candidata-contenido-1/modelos-ia-2026/imagenes/cartas/gemini-20-flash.webp",
+      "bytes": 51326,
+      "sha256": "06c34e093835ebf0749bf3aa49396aab2791486917af3a8134099862fe7bb091"
+    },
+    {
+      "path": "candidata-contenido-1/modelos-ia-2026/imagenes/cartas/gemini-25-flash.webp",
+      "bytes": 29434,
+      "sha256": "76539d2b3fa8c4f59f9d6b27669db7d354b4273a86fc1944d7e60f99c0a1b709"
+    },
+    {
+      "path": "candidata-contenido-1/modelos-ia-2026/imagenes/cartas/gemini-25-pro.webp",
+      "bytes": 49192,
+      "sha256": "fca2433413dea705f05140cca76e06d1a8ac3eafcc01e6e09eaa6323e9293a59"
+    },
+    {
+      "path": "candidata-contenido-1/modelos-ia-2026/imagenes/cartas/gemini-31-pro.webp",
+      "bytes": 39288,
+      "sha256": "1f631cba7418a98aedc5e9da470ae16e1b26746c18c28ba2289aa9e2139a4d8d"
+    },
+    {
+      "path": "candidata-contenido-1/modelos-ia-2026/imagenes/cartas/gemma-2-27b.webp",
+      "bytes": 39254,
+      "sha256": "56419af46dc5cdb20633cf0a4271304e2804b5809eb2194f43c2775bf67f3cf7"
+    },
+    {
+      "path": "candidata-contenido-1/modelos-ia-2026/imagenes/cartas/gemma-7b.webp",
+      "bytes": 29024,
+      "sha256": "c13d308a271d67a244e09511eb4849b0f195ae70804ba874ab7622b04c400a04"
+    },
+    {
+      "path": "candidata-contenido-1/modelos-ia-2026/imagenes/cartas/gpt-2-15b.webp",
+      "bytes": 38448,
+      "sha256": "81da4152e9b79b0ca78339afcf91d46803f4d981f4b72f8f8405473c9b73e62c"
+    },
+    {
+      "path": "candidata-contenido-1/modelos-ia-2026/imagenes/cartas/gpt-3-175b.webp",
+      "bytes": 40380,
+      "sha256": "6eea7d30d68c248595fe67f3d13df4af8cb501ea0708b7da3a25200bbac8f058"
+    },
+    {
+      "path": "candidata-contenido-1/modelos-ia-2026/imagenes/cartas/gpt-4-turbo.webp",
+      "bytes": 48310,
+      "sha256": "7f820f4648387487859fba3e54db53d05ccd9fa75ce2acdd4fea15c01f07edb5"
+    },
+    {
+      "path": "candidata-contenido-1/modelos-ia-2026/imagenes/cartas/gpt-4.webp",
+      "bytes": 48472,
+      "sha256": "585ae80935de3a8b08571447c332c0730ab4e992a0d79ccb968476c35324dace"
+    },
+    {
+      "path": "candidata-contenido-1/modelos-ia-2026/imagenes/cartas/gpt-41.webp",
+      "bytes": 48752,
+      "sha256": "d91d8643406664103ad492a6bfe58ff560dc94b6f83a7252236fb3ba10eb6faa"
+    },
+    {
+      "path": "candidata-contenido-1/modelos-ia-2026/imagenes/cartas/gpt-4o.webp",
+      "bytes": 39558,
+      "sha256": "ada088a41d3ae547627eccd9bba8277445a653ef91aee9f7ecd4aebbf574cb55"
+    },
+    {
+      "path": "candidata-contenido-1/modelos-ia-2026/imagenes/cartas/gpt-5-high.webp",
+      "bytes": 49928,
+      "sha256": "90b8f4514b726bce64aa55fc84983f83e8b949884d242ac93eb92699df3ef8d5"
+    },
+    {
+      "path": "candidata-contenido-1/modelos-ia-2026/imagenes/cartas/gpt-6-astra-max.webp",
+      "bytes": 48432,
+      "sha256": "ea3e88341a4929fe9c0a5c4a7253533c8e3075f320ee8f9670fe984e878045c2"
+    },
+    {
+      "path": "candidata-contenido-1/modelos-ia-2026/imagenes/cartas/gpt-61-sol-max.webp",
+      "bytes": 37954,
+      "sha256": "6b008d9ce421233a1e27325b3b48abeabb23b96761b5dba2f5b9144cda8d5533"
+    },
+    {
+      "path": "candidata-contenido-1/modelos-ia-2026/imagenes/cartas/gpt-j-6b.webp",
+      "bytes": 29530,
+      "sha256": "6be5f7a1d5feecf0a68b7d1826354f38ee9420033ecdde6dc55df288221b7533"
+    },
+    {
+      "path": "candidata-contenido-1/modelos-ia-2026/imagenes/cartas/gpt-neo-27b.webp",
+      "bytes": 23010,
+      "sha256": "7801e31c9645acb8d8a13e2b32817acf0cc92cca5b23f9e20be65ee9dc212b1b"
+    },
+    {
+      "path": "candidata-contenido-1/modelos-ia-2026/imagenes/cartas/gpt-neox-20b.webp",
+      "bytes": 29446,
+      "sha256": "b6cd258f9fd0f3350b8017370bf20cdb41fd1a3a1207f201d422fe3e68c150ed"
+    },
+    {
+      "path": "candidata-contenido-1/modelos-ia-2026/imagenes/cartas/gpt-oss-120b-high.webp",
+      "bytes": 39404,
+      "sha256": "bc7bc20e6dd1924b75ac031dc368a077bbcad1be6a688d3db7a83b0119f661e8"
+    },
+    {
+      "path": "candidata-contenido-1/modelos-ia-2026/imagenes/cartas/grok-2.webp",
+      "bytes": 34704,
+      "sha256": "114b6ac675978f53928d33ba7ccc6a6381557652366992aca7bf9ce248b713d9"
+    },
+    {
+      "path": "candidata-contenido-1/modelos-ia-2026/imagenes/cartas/grok-3.webp",
+      "bytes": 37152,
+      "sha256": "f1dabe67cb282cdfdbda81cbf1b84216581092e60f2f7cc6b350511ee06cd23a"
+    },
+    {
+      "path": "candidata-contenido-1/modelos-ia-2026/imagenes/cartas/kimi-k2.webp",
+      "bytes": 45274,
+      "sha256": "fa70b3f7c60e6e9e0259977c24d189eb85b4d87403c5b97eccaa9d3188150ae7"
+    },
+    {
+      "path": "candidata-contenido-1/modelos-ia-2026/imagenes/cartas/llama-2-70b.webp",
+      "bytes": 58342,
+      "sha256": "ed7123fdf01d0d279ddd28ce2c1239e874784bdb15b12e7f30b8312e8892ce05"
+    },
+    {
+      "path": "candidata-contenido-1/modelos-ia-2026/imagenes/cartas/llama-3-70b.webp",
+      "bytes": 40482,
+      "sha256": "47d42e3ea497ceabd8481fdf17111240a856bc76985c72439149b6f0b651974e"
+    },
+    {
+      "path": "candidata-contenido-1/modelos-ia-2026/imagenes/cartas/llama-31-405b.webp",
+      "bytes": 45166,
+      "sha256": "d8489efeb955cef7bc5d158721e117e7d6c3e36cc7bf922fdf2410351c36474d"
+    },
+    {
+      "path": "candidata-contenido-1/modelos-ia-2026/imagenes/cartas/llama-33-70b.webp",
+      "bytes": 44758,
+      "sha256": "ebf1445e7a120aa22e07d361155085626aecf84195ff94aaa14340750ec58da1"
+    },
+    {
+      "path": "candidata-contenido-1/modelos-ia-2026/imagenes/cartas/llama-4-maverick.webp",
+      "bytes": 60262,
+      "sha256": "8ea3ac743c1fc7b05d06f2f1638cb0e44f7847fec5d9382c3eaf8ba29dd247a2"
+    },
+    {
+      "path": "candidata-contenido-1/modelos-ia-2026/imagenes/cartas/llama-4-scout.webp",
+      "bytes": 37888,
+      "sha256": "b42ce6a24e888ef3bcaa26a52251cdc05c778b4e14ab62b90b90182d3b414bec"
+    },
+    {
+      "path": "candidata-contenido-1/modelos-ia-2026/imagenes/cartas/llama-65b.webp",
+      "bytes": 58126,
+      "sha256": "e5cb8b2a2d2e48fe26c88162cc8bc452708a4ebb982f07d29aa6376ae80b27d0"
+    },
+    {
+      "path": "candidata-contenido-1/modelos-ia-2026/imagenes/cartas/mistral-7b-v01.webp",
+      "bytes": 22356,
+      "sha256": "ab906676ba28d195356b2d2436e7b2e75a1f5d67ec77ccca0c12573cd19c9a6c"
+    },
+    {
+      "path": "candidata-contenido-1/modelos-ia-2026/imagenes/cartas/mistral-large-2.webp",
+      "bytes": 18888,
+      "sha256": "8677c02a652f1773e4aa169211f9db6ebb04fcfb13d2cc01a1c439c28e250843"
+    },
+    {
+      "path": "candidata-contenido-1/modelos-ia-2026/imagenes/cartas/mixtral-8x7b.webp",
+      "bytes": 22436,
+      "sha256": "819a05f1cdd2172caab1270eb63121c33d61bf4d0db022d9506743bc4914c67f"
+    },
+    {
+      "path": "candidata-contenido-1/modelos-ia-2026/imagenes/cartas/mpt-7b.webp",
+      "bytes": 67502,
+      "sha256": "583d836975a6e6f3706a2d47b0815a43149ca3640394396e4c089403844b1227"
+    },
+    {
+      "path": "candidata-contenido-1/modelos-ia-2026/imagenes/cartas/o1-preview.webp",
+      "bytes": 36188,
+      "sha256": "249798ea746d8e47bbda334fde6736e6fc1bf6dbf2e722402d89827713dcdad7"
+    },
+    {
+      "path": "candidata-contenido-1/modelos-ia-2026/imagenes/cartas/o3-mini.webp",
+      "bytes": 48770,
+      "sha256": "59291c83d20d8e5c4108175d1d561c6c2dee03ccb0778d2f49093eee8b54b1cd"
+    },
+    {
+      "path": "candidata-contenido-1/modelos-ia-2026/imagenes/cartas/opt-175b.webp",
+      "bytes": 61248,
+      "sha256": "5ba46f7f728c0ffc708382d06f17c284756961c5d9bcbb1b0aa62c13e55a3c1e"
+    },
+    {
+      "path": "candidata-contenido-1/modelos-ia-2026/imagenes/cartas/phi-2.webp",
+      "bytes": 13438,
+      "sha256": "49076a545172fad79f4ea63786fec747fad0d5c794172df32feed709aa15d16b"
+    },
+    {
+      "path": "candidata-contenido-1/modelos-ia-2026/imagenes/cartas/phi-3-mini-128k.webp",
+      "bytes": 31920,
+      "sha256": "344dcb630d2efacbd2901bff3a7aee6dd32b92a8b76474cab7050adabdb9dafd"
+    },
+    {
+      "path": "candidata-contenido-1/modelos-ia-2026/imagenes/cartas/qwen-25-72b.webp",
+      "bytes": 28186,
+      "sha256": "323d2404ba168aad07c0258e27ec2ab59ed77e7a85184f3ae7cc81579c768633"
+    },
+    {
+      "path": "candidata-contenido-1/modelos-ia-2026/imagenes/cartas/qwen-3-32b.webp",
+      "bytes": 40330,
+      "sha256": "be28f9b0943defb5749a9094018bea9aa08b2e00e6b4e481d4c0df31411599ce"
+    },
+    {
+      "path": "candidata-contenido-1/modelos-ia-2026/imagenes/portada.webp",
+      "bytes": 329978,
+      "sha256": "84a6a9c3fc6da99bd15264e06db8654b248254c2f4071430ad734382d6f5be3c"
+    },
+    {
+      "path": "comprobaciones/activar.py",
+      "bytes": 4795,
+      "sha256": "2b96ad37c2ec933e2fdf3d5e3240a6065bb93b3972c95a5a4216880783b8dd84"
+    },
+    {
+      "path": "comprobaciones/auditoria.mjs",
+      "bytes": 3548,
+      "sha256": "5167f9c97b8f4a3971ad3ba23f7d9b797d92daf8f79fa23ceb418e0973ce79e6"
+    },
+    {
+      "path": "comprobaciones/AUDITORIA_CANDIDATA_1.json",
+      "bytes": 33446,
+      "sha256": "0976e689cdf9759421aad702f7947191b1c013b9f513a5b77eb27576541c2d5f"
+    },
+    {
+      "path": "comprobaciones/capturas/compacta-360-1-58.png",
+      "bytes": 35612,
+      "sha256": "0379f2b1178d8dfbde4c7fb395077c5ab60cbdbb19ef56ad2ab1f222c6c11407"
+    },
+    {
+      "path": "comprobaciones/capturas/compacta-360-dato.png",
+      "bytes": 36812,
+      "sha256": "d165b0d8132312d45682473a3746bca5e511e89485a2e11a5b1d31314cfe956a"
+    },
+    {
+      "path": "comprobaciones/capturas/compacta-390-1-58.png",
+      "bytes": 38689,
+      "sha256": "990ef74ebd2b70fd9f4c2e3f272eef163a3a2f59b335fe410227829592b49167"
+    },
+    {
+      "path": "comprobaciones/capturas/compacta-390-dato.png",
+      "bytes": 39892,
+      "sha256": "156487f1283008b5173664f1750393d0f06feb5c6a9c2907a337707f2ef20e9b"
+    },
+    {
+      "path": "comprobaciones/capturas/detalles-1440.png",
+      "bytes": 75996,
+      "sha256": "86e103cff19956c0729a0bacfaca6c549f78efbec9e1ec7966811226f4ed3b74"
+    },
+    {
+      "path": "comprobaciones/capturas/detalles-390.png",
+      "bytes": 39888,
+      "sha256": "776f19093b833f9b67be86036a5d4b9e4e60ce85355fa0c50d293cf615259f2f"
+    },
+    {
+      "path": "comprobaciones/capturas/informacion-1440.png",
+      "bytes": 60510,
+      "sha256": "ffe87e12767cb0e8275cbb92c719bc29d9c59f0caf45c1dc9d99b10c2f26d57f"
+    },
+    {
+      "path": "comprobaciones/capturas/informacion-390.png",
+      "bytes": 37109,
+      "sha256": "ebd95651609dd791d09a1e54b96f793296dd69a3c6fdcb4d8040ce820894092a"
+    },
+    {
+      "path": "comprobaciones/capturas/normal-1440-1-58.png",
+      "bytes": 218950,
+      "sha256": "3ff35136b0eff55b0784bf6220e708c56a391582755fd6e765e287ebf8660e7b"
+    },
+    {
+      "path": "comprobaciones/capturas/normal-1440-dato.png",
+      "bytes": 222095,
+      "sha256": "4da0b6e648c3340e592169ffe3a710bf52061aaa428cb81d200ac45b47c2778e"
+    },
+    {
+      "path": "comprobaciones/capturas/normal-adaptada-390-1-58.png",
+      "bytes": 53193,
+      "sha256": "40874813337a2509246d5377f7e34068587aea74655387686e3449905884e51b"
+    },
+    {
+      "path": "comprobaciones/capturas/normal-adaptada-390-dato.png",
+      "bytes": 53936,
+      "sha256": "f2aa5b714c3811c078838cc05702e4185d5864b20392764ee08aa2a03f4a38e7"
+    },
+    {
+      "path": "comprobaciones/capturas/titulo-compacta-360-1-58.png",
+      "bytes": 8910,
+      "sha256": "d42234e97d437d026d30c3a5410063b3f60c6f575649dc8034d469753f8a85c2"
+    },
+    {
+      "path": "comprobaciones/capturas/titulo-compacta-360-dato.png",
+      "bytes": 9701,
+      "sha256": "19a55777b411b37a2bd7d0964706e0b4a6d4371e4684bdf71999e1ef930ab6f3"
+    },
+    {
+      "path": "comprobaciones/capturas/titulo-compacta-390-1-58.png",
+      "bytes": 8910,
+      "sha256": "d42234e97d437d026d30c3a5410063b3f60c6f575649dc8034d469753f8a85c2"
+    },
+    {
+      "path": "comprobaciones/capturas/titulo-compacta-390-dato.png",
+      "bytes": 9701,
+      "sha256": "19a55777b411b37a2bd7d0964706e0b4a6d4371e4684bdf71999e1ef930ab6f3"
+    },
+    {
+      "path": "comprobaciones/capturas/titulo-normal-1440-1-58.png",
+      "bytes": 25197,
+      "sha256": "f603d4b9c0e701e16a95bee79b51d0781a3df8d0cca8063af2d3027900ce8a81"
+    },
+    {
+      "path": "comprobaciones/capturas/titulo-normal-1440-dato.png",
+      "bytes": 26028,
+      "sha256": "2fcee75c960c27bd48c3c20b052db1a4da656965f50fcea732f4afa43a28d1a1"
+    },
+    {
+      "path": "comprobaciones/capturas/titulo-normal-adaptada-390-1-58.png",
+      "bytes": 23918,
+      "sha256": "534401ab39f3c114e2354bff451c1e2129bf5bace2f9dfb11a18e993a1a595cb"
+    },
+    {
+      "path": "comprobaciones/capturas/titulo-normal-adaptada-390-dato.png",
+      "bytes": 24674,
+      "sha256": "dd97c711ce331fd0ce18456500baea9805b351492fc22cdbc3d4aa81d5d85e34"
+    },
+    {
+      "path": "comprobaciones/contacto-recursos.jpg",
+      "bytes": 296897,
+      "sha256": "0d874c06b55ec8a83c5c66225779cd4dc8c205d8b960eb8ef40b8d27c5cfba4a"
+    },
+    {
+      "path": "comprobaciones/INVENTARIO_VERSIONES.json",
+      "bytes": 391,
+      "sha256": "c43bd2fca6d42baa5555061ef316595abbdd1fa3981ee2ed9c6d9da8f025df53"
+    },
+    {
+      "path": "comprobaciones/preparar.py",
+      "bytes": 9095,
+      "sha256": "200d6cdb06f895ba6fef2931a40e2101741e50321dda0d6e9f172c41a1b356b9"
+    },
+    {
+      "path": "comprobaciones/RESUMEN_REVISION_VISUAL.json",
+      "bytes": 10764,
+      "sha256": "67ae9f1928642e5af76c90072b53adabf6bf29d1d9eb114630b15c3a5073f031"
+    },
+    {
+      "path": "comprobaciones/resumir-revision.mjs",
+      "bytes": 2739,
+      "sha256": "ab0baff699145ce141f407f1558759953a67e459ef564ed7bea3fe97e4778670"
+    },
+    {
+      "path": "comprobaciones/revision-visual.mjs",
+      "bytes": 10397,
+      "sha256": "1e596c99574da4aed94d81d17958eccc492593762cfd31b7f80f1a7d2760465f"
+    },
+    {
+      "path": "comprobaciones/revision.html",
+      "bytes": 875138,
+      "sha256": "dcc9818f56c9234385571fe9890bc00190bb8501b5da64c2b635e082d43eea23"
+    },
+    {
+      "path": "comprobaciones/REVISION_VISUAL_AUXILIAR.json",
+      "bytes": 11365370,
+      "sha256": "9be73772a7a17b3f34a115cbf25b0abf64a3a471bc70c84ac85c80f53bde5048"
+    },
+    {
+      "path": "comprobaciones/TRAZABILIDAD_ORIGEN.json",
+      "bytes": 39695,
+      "sha256": "7c76f4df714a9317a59dfd68ec8126d1d9f4605964188585943d2a6bb32b2ff0"
+    },
+    {
+      "path": "comprobaciones/VALIDADOR_V2_CANDIDATA_1.json",
+      "bytes": 589,
+      "sha256": "fe51de25a591127cd06df96bb86dbd507ce8e2d963cd9f68ee5322b577cf59b8"
+    },
+    {
+      "path": "comprobaciones/VALIDADOR_V2_FINAL_2.json",
+      "bytes": 578,
+      "sha256": "8a8ffbc4cd7dded4c0ba3811bfbd1955d6035b1a3379beca28dc9d90f8028ff6"
+    },
+    {
+      "path": "DELTA_ACTIVACION_1_A_2.json",
+      "bytes": 11331,
+      "sha256": "6b34a7478374f5db49c6069765a1a9732fdf97b0664bc5385beb052efff16cb2"
+    },
+    {
+      "path": "ENTREGA_IMPLEMENTACION.md",
+      "bytes": 3054,
+      "sha256": "3c71d0deafdc150ed916f57405aa09f07840446d4af70ff99d5c36e6cc14a5ce"
+    },
+    {
+      "path": "MANIFIESTO_CANDIDATA_1.json",
+      "bytes": 10521,
+      "sha256": "59ec8efc354d35b88e8c8bb4570f5fc10bb71ad11fac67db655feec1f8009364"
+    },
+    {
+      "path": "MANIFIESTO_EVIDENCIAS.json",
+      "bytes": 32654,
+      "sha256": "9e053d0fca0d659f5b6d42e005d26935cb1e6274502360cb5c0394c4711008dd"
+    },
+    {
+      "path": "MANIFIESTO_SHA256.json",
+      "bytes": 10720,
+      "sha256": "928c2cc6765910c6712c9e15b9c4d860b0639ccca0cb2cf333eceffc5a7af39c"
+    },
+    {
+      "path": "origen/evidencias-productor/cierre-editorial.json",
+      "bytes": 1624,
+      "sha256": "1231508b846591d827be2aa499425cbeee2f1ac3f594d2f84b220e45d1f257b5"
+    },
+    {
+      "path": "origen/evidencias-productor/informe-validacion.json",
+      "bytes": 13694,
+      "sha256": "22349b2a0b5dbefb9ddd7880739a46a6829a119f9ad0cd26599188bb633d6bb8"
+    },
+    {
+      "path": "origen/extraido/modelos-ia-2026/cartas.csv",
+      "bytes": 57490,
+      "sha256": "7e5c9984ad0005ccb67eb9987d5d1a8c96db900b2197fd074667d7ef4fe8e31e"
+    },
+    {
+      "path": "origen/extraido/modelos-ia-2026/ficha-baraja.md",
+      "bytes": 61616,
+      "sha256": "dae85517d37f0428eaa4093b7497c38cbc38d32af12ba5933abd3d4d1f498b50"
+    },
+    {
+      "path": "origen/extraido/modelos-ia-2026/imagenes/cartas/bloom-176b.webp",
+      "bytes": 53692,
+      "sha256": "44414153af0e01b0c7e21c70ccf5f7226cdfb7ed4736a7ba78b44ce05c3bf7ba"
+    },
+    {
+      "path": "origen/extraido/modelos-ia-2026/imagenes/cartas/claude-21.webp",
+      "bytes": 38588,
+      "sha256": "ebf7917cd0105dd592729569690865443e509a34ce61bb6206603d7d286c2012"
+    },
+    {
+      "path": "origen/extraido/modelos-ia-2026/imagenes/cartas/claude-3-haiku.webp",
+      "bytes": 38552,
+      "sha256": "356421d7cc92dc9ff631bb4c44049c5276c125f244226c7c853de3d9750327f9"
+    },
+    {
+      "path": "origen/extraido/modelos-ia-2026/imagenes/cartas/claude-3-opus.webp",
+      "bytes": 21504,
+      "sha256": "63ca95e8c838b9c82283e407041c0fdbf0f1116c40b1f3bd3e4dab2a3592e19c"
+    },
+    {
+      "path": "origen/extraido/modelos-ia-2026/imagenes/cartas/claude-35-sonnet.webp",
+      "bytes": 41032,
+      "sha256": "b4bb2e7e15afe3251f95c9472121ff3b57f7477f6dc94121e28f0a9e97ffe5c1"
+    },
+    {
+      "path": "origen/extraido/modelos-ia-2026/imagenes/cartas/claude-37-sonnet.webp",
+      "bytes": 42230,
+      "sha256": "eeb117269198dca41f135cb681ec33086a1af5d021a8dec63496413c93ab4762"
+    },
+    {
+      "path": "origen/extraido/modelos-ia-2026/imagenes/cartas/claude-haiku-55-max.webp",
+      "bytes": 21514,
+      "sha256": "e030f3973ffbe3db3e2caf394961a5dd2bcb8904bee650436d71e19fe07e2b34"
+    },
+    {
+      "path": "origen/extraido/modelos-ia-2026/imagenes/cartas/claude-opus-4.webp",
+      "bytes": 41996,
+      "sha256": "939b4306f4b991c777c5df43c1816b1fcb6cc725a1e14d87a69ea902e71da3a8"
+    },
+    {
+      "path": "origen/extraido/modelos-ia-2026/imagenes/cartas/claude-opus-55-max.webp",
+      "bytes": 41922,
+      "sha256": "010da1504970a23643ab2188c447bf5a1ce20d83e13412356fce5c7e88212b19"
+    },
+    {
+      "path": "origen/extraido/modelos-ia-2026/imagenes/cartas/claude-sonnet-4.webp",
+      "bytes": 39686,
+      "sha256": "a2f76ecd57baf7dfea88b855658eaf89eeb9b50ad8215cb5e701d74a3d31a373"
+    },
+    {
+      "path": "origen/extraido/modelos-ia-2026/imagenes/cartas/claude-sonnet-55-max.webp",
+      "bytes": 21496,
+      "sha256": "837e9ea0d15acf05733738e30320b32559636fb95686f9e572b55bf480edabee"
+    },
+    {
+      "path": "origen/extraido/modelos-ia-2026/imagenes/cartas/command-r-plus.webp",
+      "bytes": 40406,
+      "sha256": "13e1c8ade3dda373ded24280011aa4f3088455faf234df793bfd5eaab84f6f7b"
+    },
+    {
+      "path": "origen/extraido/modelos-ia-2026/imagenes/cartas/dbrx-instruct.webp",
+      "bytes": 58028,
+      "sha256": "0edcb3e803ee0df93e6ea6b66a717e3b6be41686bb7bd5ae429b1052855720eb"
+    },
+    {
+      "path": "origen/extraido/modelos-ia-2026/imagenes/cartas/deepseek-r1.webp",
+      "bytes": 40056,
+      "sha256": "aced3206deb6694b1e81e0eff2fa808a2be9712409d05122da455dd051c6b7f7"
+    },
+    {
+      "path": "origen/extraido/modelos-ia-2026/imagenes/cartas/deepseek-v2-chat.webp",
+      "bytes": 39740,
+      "sha256": "61f2a3504a35a0bb96920e2bc8d9d5ec3ecd9b0058db26e73bd8d240303d8c8f"
+    },
+    {
+      "path": "origen/extraido/modelos-ia-2026/imagenes/cartas/deepseek-v3.webp",
+      "bytes": 51082,
+      "sha256": "7f5ea6ef3c492f55361155bc56a1eb3706195589e25b83980488a3099550a2d2"
+    },
+    {
+      "path": "origen/extraido/modelos-ia-2026/imagenes/cartas/gemini-10-pro.webp",
+      "bytes": 39108,
+      "sha256": "1a9634bb84fa1d0722ee9ff421cdfcd7fb09ddb4a19bdb5306e38342e46783ef"
+    },
+    {
+      "path": "origen/extraido/modelos-ia-2026/imagenes/cartas/gemini-15-pro.webp",
+      "bytes": 50640,
+      "sha256": "cdab2e8a1c5c40a57b175163716d5c5e5fa8279c730e03b6f790f095b5a6e373"
+    },
+    {
+      "path": "origen/extraido/modelos-ia-2026/imagenes/cartas/gemini-20-flash.webp",
+      "bytes": 51326,
+      "sha256": "06c34e093835ebf0749bf3aa49396aab2791486917af3a8134099862fe7bb091"
+    },
+    {
+      "path": "origen/extraido/modelos-ia-2026/imagenes/cartas/gemini-25-flash.webp",
+      "bytes": 29434,
+      "sha256": "76539d2b3fa8c4f59f9d6b27669db7d354b4273a86fc1944d7e60f99c0a1b709"
+    },
+    {
+      "path": "origen/extraido/modelos-ia-2026/imagenes/cartas/gemini-25-pro.webp",
+      "bytes": 49192,
+      "sha256": "fca2433413dea705f05140cca76e06d1a8ac3eafcc01e6e09eaa6323e9293a59"
+    },
+    {
+      "path": "origen/extraido/modelos-ia-2026/imagenes/cartas/gemini-31-pro.webp",
+      "bytes": 39288,
+      "sha256": "1f631cba7418a98aedc5e9da470ae16e1b26746c18c28ba2289aa9e2139a4d8d"
+    },
+    {
+      "path": "origen/extraido/modelos-ia-2026/imagenes/cartas/gemma-2-27b.webp",
+      "bytes": 39254,
+      "sha256": "56419af46dc5cdb20633cf0a4271304e2804b5809eb2194f43c2775bf67f3cf7"
+    },
+    {
+      "path": "origen/extraido/modelos-ia-2026/imagenes/cartas/gemma-7b.webp",
+      "bytes": 29024,
+      "sha256": "c13d308a271d67a244e09511eb4849b0f195ae70804ba874ab7622b04c400a04"
+    },
+    {
+      "path": "origen/extraido/modelos-ia-2026/imagenes/cartas/gpt-2-15b.webp",
+      "bytes": 38448,
+      "sha256": "81da4152e9b79b0ca78339afcf91d46803f4d981f4b72f8f8405473c9b73e62c"
+    },
+    {
+      "path": "origen/extraido/modelos-ia-2026/imagenes/cartas/gpt-3-175b.webp",
+      "bytes": 40380,
+      "sha256": "6eea7d30d68c248595fe67f3d13df4af8cb501ea0708b7da3a25200bbac8f058"
+    },
+    {
+      "path": "origen/extraido/modelos-ia-2026/imagenes/cartas/gpt-4-turbo.webp",
+      "bytes": 48310,
+      "sha256": "7f820f4648387487859fba3e54db53d05ccd9fa75ce2acdd4fea15c01f07edb5"
+    },
+    {
+      "path": "origen/extraido/modelos-ia-2026/imagenes/cartas/gpt-4.webp",
+      "bytes": 48472,
+      "sha256": "585ae80935de3a8b08571447c332c0730ab4e992a0d79ccb968476c35324dace"
+    },
+    {
+      "path": "origen/extraido/modelos-ia-2026/imagenes/cartas/gpt-41.webp",
+      "bytes": 48752,
+      "sha256": "d91d8643406664103ad492a6bfe58ff560dc94b6f83a7252236fb3ba10eb6faa"
+    },
+    {
+      "path": "origen/extraido/modelos-ia-2026/imagenes/cartas/gpt-4o.webp",
+      "bytes": 39558,
+      "sha256": "ada088a41d3ae547627eccd9bba8277445a653ef91aee9f7ecd4aebbf574cb55"
+    },
+    {
+      "path": "origen/extraido/modelos-ia-2026/imagenes/cartas/gpt-5-high.webp",
+      "bytes": 49928,
+      "sha256": "90b8f4514b726bce64aa55fc84983f83e8b949884d242ac93eb92699df3ef8d5"
+    },
+    {
+      "path": "origen/extraido/modelos-ia-2026/imagenes/cartas/gpt-6-astra-max.webp",
+      "bytes": 48432,
+      "sha256": "ea3e88341a4929fe9c0a5c4a7253533c8e3075f320ee8f9670fe984e878045c2"
+    },
+    {
+      "path": "origen/extraido/modelos-ia-2026/imagenes/cartas/gpt-61-sol-max.webp",
+      "bytes": 37954,
+      "sha256": "6b008d9ce421233a1e27325b3b48abeabb23b96761b5dba2f5b9144cda8d5533"
+    },
+    {
+      "path": "origen/extraido/modelos-ia-2026/imagenes/cartas/gpt-j-6b.webp",
+      "bytes": 29530,
+      "sha256": "6be5f7a1d5feecf0a68b7d1826354f38ee9420033ecdde6dc55df288221b7533"
+    },
+    {
+      "path": "origen/extraido/modelos-ia-2026/imagenes/cartas/gpt-neo-27b.webp",
+      "bytes": 23010,
+      "sha256": "7801e31c9645acb8d8a13e2b32817acf0cc92cca5b23f9e20be65ee9dc212b1b"
+    },
+    {
+      "path": "origen/extraido/modelos-ia-2026/imagenes/cartas/gpt-neox-20b.webp",
+      "bytes": 29446,
+      "sha256": "b6cd258f9fd0f3350b8017370bf20cdb41fd1a3a1207f201d422fe3e68c150ed"
+    },
+    {
+      "path": "origen/extraido/modelos-ia-2026/imagenes/cartas/gpt-oss-120b-high.webp",
+      "bytes": 39404,
+      "sha256": "bc7bc20e6dd1924b75ac031dc368a077bbcad1be6a688d3db7a83b0119f661e8"
+    },
+    {
+      "path": "origen/extraido/modelos-ia-2026/imagenes/cartas/grok-2.webp",
+      "bytes": 34704,
+      "sha256": "114b6ac675978f53928d33ba7ccc6a6381557652366992aca7bf9ce248b713d9"
+    },
+    {
+      "path": "origen/extraido/modelos-ia-2026/imagenes/cartas/grok-3.webp",
+      "bytes": 37152,
+      "sha256": "f1dabe67cb282cdfdbda81cbf1b84216581092e60f2f7cc6b350511ee06cd23a"
+    },
+    {
+      "path": "origen/extraido/modelos-ia-2026/imagenes/cartas/kimi-k2.webp",
+      "bytes": 45274,
+      "sha256": "fa70b3f7c60e6e9e0259977c24d189eb85b4d87403c5b97eccaa9d3188150ae7"
+    },
+    {
+      "path": "origen/extraido/modelos-ia-2026/imagenes/cartas/llama-2-70b.webp",
+      "bytes": 58342,
+      "sha256": "ed7123fdf01d0d279ddd28ce2c1239e874784bdb15b12e7f30b8312e8892ce05"
+    },
+    {
+      "path": "origen/extraido/modelos-ia-2026/imagenes/cartas/llama-3-70b.webp",
+      "bytes": 40482,
+      "sha256": "47d42e3ea497ceabd8481fdf17111240a856bc76985c72439149b6f0b651974e"
+    },
+    {
+      "path": "origen/extraido/modelos-ia-2026/imagenes/cartas/llama-31-405b.webp",
+      "bytes": 45166,
+      "sha256": "d8489efeb955cef7bc5d158721e117e7d6c3e36cc7bf922fdf2410351c36474d"
+    },
+    {
+      "path": "origen/extraido/modelos-ia-2026/imagenes/cartas/llama-33-70b.webp",
+      "bytes": 44758,
+      "sha256": "ebf1445e7a120aa22e07d361155085626aecf84195ff94aaa14340750ec58da1"
+    },
+    {
+      "path": "origen/extraido/modelos-ia-2026/imagenes/cartas/llama-4-maverick.webp",
+      "bytes": 60262,
+      "sha256": "8ea3ac743c1fc7b05d06f2f1638cb0e44f7847fec5d9382c3eaf8ba29dd247a2"
+    },
+    {
+      "path": "origen/extraido/modelos-ia-2026/imagenes/cartas/llama-4-scout.webp",
+      "bytes": 37888,
+      "sha256": "b42ce6a24e888ef3bcaa26a52251cdc05c778b4e14ab62b90b90182d3b414bec"
+    },
+    {
+      "path": "origen/extraido/modelos-ia-2026/imagenes/cartas/llama-65b.webp",
+      "bytes": 58126,
+      "sha256": "e5cb8b2a2d2e48fe26c88162cc8bc452708a4ebb982f07d29aa6376ae80b27d0"
+    },
+    {
+      "path": "origen/extraido/modelos-ia-2026/imagenes/cartas/mistral-7b-v01.webp",
+      "bytes": 22356,
+      "sha256": "ab906676ba28d195356b2d2436e7b2e75a1f5d67ec77ccca0c12573cd19c9a6c"
+    },
+    {
+      "path": "origen/extraido/modelos-ia-2026/imagenes/cartas/mistral-large-2.webp",
+      "bytes": 18888,
+      "sha256": "8677c02a652f1773e4aa169211f9db6ebb04fcfb13d2cc01a1c439c28e250843"
+    },
+    {
+      "path": "origen/extraido/modelos-ia-2026/imagenes/cartas/mixtral-8x7b.webp",
+      "bytes": 22436,
+      "sha256": "819a05f1cdd2172caab1270eb63121c33d61bf4d0db022d9506743bc4914c67f"
+    },
+    {
+      "path": "origen/extraido/modelos-ia-2026/imagenes/cartas/mpt-7b.webp",
+      "bytes": 67502,
+      "sha256": "583d836975a6e6f3706a2d47b0815a43149ca3640394396e4c089403844b1227"
+    },
+    {
+      "path": "origen/extraido/modelos-ia-2026/imagenes/cartas/o1-preview.webp",
+      "bytes": 36188,
+      "sha256": "249798ea746d8e47bbda334fde6736e6fc1bf6dbf2e722402d89827713dcdad7"
+    },
+    {
+      "path": "origen/extraido/modelos-ia-2026/imagenes/cartas/o3-mini.webp",
+      "bytes": 48770,
+      "sha256": "59291c83d20d8e5c4108175d1d561c6c2dee03ccb0778d2f49093eee8b54b1cd"
+    },
+    {
+      "path": "origen/extraido/modelos-ia-2026/imagenes/cartas/opt-175b.webp",
+      "bytes": 61248,
+      "sha256": "5ba46f7f728c0ffc708382d06f17c284756961c5d9bcbb1b0aa62c13e55a3c1e"
+    },
+    {
+      "path": "origen/extraido/modelos-ia-2026/imagenes/cartas/phi-2.webp",
+      "bytes": 13438,
+      "sha256": "49076a545172fad79f4ea63786fec747fad0d5c794172df32feed709aa15d16b"
+    },
+    {
+      "path": "origen/extraido/modelos-ia-2026/imagenes/cartas/phi-3-mini-128k.webp",
+      "bytes": 31920,
+      "sha256": "344dcb630d2efacbd2901bff3a7aee6dd32b92a8b76474cab7050adabdb9dafd"
+    },
+    {
+      "path": "origen/extraido/modelos-ia-2026/imagenes/cartas/qwen-25-72b.webp",
+      "bytes": 28186,
+      "sha256": "323d2404ba168aad07c0258e27ec2ab59ed77e7a85184f3ae7cc81579c768633"
+    },
+    {
+      "path": "origen/extraido/modelos-ia-2026/imagenes/cartas/qwen-3-32b.webp",
+      "bytes": 40330,
+      "sha256": "be28f9b0943defb5749a9094018bea9aa08b2e00e6b4e481d4c0df31411599ce"
+    },
+    {
+      "path": "origen/extraido/modelos-ia-2026/imagenes/portada.webp",
+      "bytes": 329978,
+      "sha256": "84a6a9c3fc6da99bd15264e06db8654b248254c2f4071430ad734382d6f5be3c"
+    },
+    {
+      "path": "origen/modelos-ia-2026.zip",
+      "bytes": 2699758,
+      "sha256": "2da67923daa77617f15d89692f35293a5b18ac2abe7cd689f356c6a4a05fd7aa"
+    },
+    {
+      "path": "paquetes/modelos-ia-2026/baraja.json",
+      "bytes": 45234,
+      "sha256": "2b05800cd6df64080366212f7fd7475ce66ca336116758b3ae7d071cb41e1ee2"
+    },
+    {
+      "path": "paquetes/modelos-ia-2026/cartas.json",
+      "bytes": 86271,
+      "sha256": "95871a98aefce784eff5b66dd07f5f6c3a8e3109531eb6227c4ee68b52926c30"
+    },
+    {
+      "path": "paquetes/modelos-ia-2026/imagenes/cartas/bloom-176b.webp",
+      "bytes": 53692,
+      "sha256": "44414153af0e01b0c7e21c70ccf5f7226cdfb7ed4736a7ba78b44ce05c3bf7ba"
+    },
+    {
+      "path": "paquetes/modelos-ia-2026/imagenes/cartas/claude-21.webp",
+      "bytes": 38588,
+      "sha256": "ebf7917cd0105dd592729569690865443e509a34ce61bb6206603d7d286c2012"
+    },
+    {
+      "path": "paquetes/modelos-ia-2026/imagenes/cartas/claude-3-haiku.webp",
+      "bytes": 38552,
+      "sha256": "356421d7cc92dc9ff631bb4c44049c5276c125f244226c7c853de3d9750327f9"
+    },
+    {
+      "path": "paquetes/modelos-ia-2026/imagenes/cartas/claude-3-opus.webp",
+      "bytes": 21504,
+      "sha256": "63ca95e8c838b9c82283e407041c0fdbf0f1116c40b1f3bd3e4dab2a3592e19c"
+    },
+    {
+      "path": "paquetes/modelos-ia-2026/imagenes/cartas/claude-35-sonnet.webp",
+      "bytes": 41032,
+      "sha256": "b4bb2e7e15afe3251f95c9472121ff3b57f7477f6dc94121e28f0a9e97ffe5c1"
+    },
+    {
+      "path": "paquetes/modelos-ia-2026/imagenes/cartas/claude-37-sonnet.webp",
+      "bytes": 42230,
+      "sha256": "eeb117269198dca41f135cb681ec33086a1af5d021a8dec63496413c93ab4762"
+    },
+    {
+      "path": "paquetes/modelos-ia-2026/imagenes/cartas/claude-haiku-55-max.webp",
+      "bytes": 21514,
+      "sha256": "e030f3973ffbe3db3e2caf394961a5dd2bcb8904bee650436d71e19fe07e2b34"
+    },
+    {
+      "path": "paquetes/modelos-ia-2026/imagenes/cartas/claude-opus-4.webp",
+      "bytes": 41996,
+      "sha256": "939b4306f4b991c777c5df43c1816b1fcb6cc725a1e14d87a69ea902e71da3a8"
+    },
+    {
+      "path": "paquetes/modelos-ia-2026/imagenes/cartas/claude-opus-55-max.webp",
+      "bytes": 41922,
+      "sha256": "010da1504970a23643ab2188c447bf5a1ce20d83e13412356fce5c7e88212b19"
+    },
+    {
+      "path": "paquetes/modelos-ia-2026/imagenes/cartas/claude-sonnet-4.webp",
+      "bytes": 39686,
+      "sha256": "a2f76ecd57baf7dfea88b855658eaf89eeb9b50ad8215cb5e701d74a3d31a373"
+    },
+    {
+      "path": "paquetes/modelos-ia-2026/imagenes/cartas/claude-sonnet-55-max.webp",
+      "bytes": 21496,
+      "sha256": "837e9ea0d15acf05733738e30320b32559636fb95686f9e572b55bf480edabee"
+    },
+    {
+      "path": "paquetes/modelos-ia-2026/imagenes/cartas/command-r-plus.webp",
+      "bytes": 40406,
+      "sha256": "13e1c8ade3dda373ded24280011aa4f3088455faf234df793bfd5eaab84f6f7b"
+    },
+    {
+      "path": "paquetes/modelos-ia-2026/imagenes/cartas/dbrx-instruct.webp",
+      "bytes": 58028,
+      "sha256": "0edcb3e803ee0df93e6ea6b66a717e3b6be41686bb7bd5ae429b1052855720eb"
+    },
+    {
+      "path": "paquetes/modelos-ia-2026/imagenes/cartas/deepseek-r1.webp",
+      "bytes": 40056,
+      "sha256": "aced3206deb6694b1e81e0eff2fa808a2be9712409d05122da455dd051c6b7f7"
+    },
+    {
+      "path": "paquetes/modelos-ia-2026/imagenes/cartas/deepseek-v2-chat.webp",
+      "bytes": 39740,
+      "sha256": "61f2a3504a35a0bb96920e2bc8d9d5ec3ecd9b0058db26e73bd8d240303d8c8f"
+    },
+    {
+      "path": "paquetes/modelos-ia-2026/imagenes/cartas/deepseek-v3.webp",
+      "bytes": 51082,
+      "sha256": "7f5ea6ef3c492f55361155bc56a1eb3706195589e25b83980488a3099550a2d2"
+    },
+    {
+      "path": "paquetes/modelos-ia-2026/imagenes/cartas/gemini-10-pro.webp",
+      "bytes": 39108,
+      "sha256": "1a9634bb84fa1d0722ee9ff421cdfcd7fb09ddb4a19bdb5306e38342e46783ef"
+    },
+    {
+      "path": "paquetes/modelos-ia-2026/imagenes/cartas/gemini-15-pro.webp",
+      "bytes": 50640,
+      "sha256": "cdab2e8a1c5c40a57b175163716d5c5e5fa8279c730e03b6f790f095b5a6e373"
+    },
+    {
+      "path": "paquetes/modelos-ia-2026/imagenes/cartas/gemini-20-flash.webp",
+      "bytes": 51326,
+      "sha256": "06c34e093835ebf0749bf3aa49396aab2791486917af3a8134099862fe7bb091"
+    },
+    {
+      "path": "paquetes/modelos-ia-2026/imagenes/cartas/gemini-25-flash.webp",
+      "bytes": 29434,
+      "sha256": "76539d2b3fa8c4f59f9d6b27669db7d354b4273a86fc1944d7e60f99c0a1b709"
+    },
+    {
+      "path": "paquetes/modelos-ia-2026/imagenes/cartas/gemini-25-pro.webp",
+      "bytes": 49192,
+      "sha256": "fca2433413dea705f05140cca76e06d1a8ac3eafcc01e6e09eaa6323e9293a59"
+    },
+    {
+      "path": "paquetes/modelos-ia-2026/imagenes/cartas/gemini-31-pro.webp",
+      "bytes": 39288,
+      "sha256": "1f631cba7418a98aedc5e9da470ae16e1b26746c18c28ba2289aa9e2139a4d8d"
+    },
+    {
+      "path": "paquetes/modelos-ia-2026/imagenes/cartas/gemma-2-27b.webp",
+      "bytes": 39254,
+      "sha256": "56419af46dc5cdb20633cf0a4271304e2804b5809eb2194f43c2775bf67f3cf7"
+    },
+    {
+      "path": "paquetes/modelos-ia-2026/imagenes/cartas/gemma-7b.webp",
+      "bytes": 29024,
+      "sha256": "c13d308a271d67a244e09511eb4849b0f195ae70804ba874ab7622b04c400a04"
+    },
+    {
+      "path": "paquetes/modelos-ia-2026/imagenes/cartas/gpt-2-15b.webp",
+      "bytes": 38448,
+      "sha256": "81da4152e9b79b0ca78339afcf91d46803f4d981f4b72f8f8405473c9b73e62c"
+    },
+    {
+      "path": "paquetes/modelos-ia-2026/imagenes/cartas/gpt-3-175b.webp",
+      "bytes": 40380,
+      "sha256": "6eea7d30d68c248595fe67f3d13df4af8cb501ea0708b7da3a25200bbac8f058"
+    },
+    {
+      "path": "paquetes/modelos-ia-2026/imagenes/cartas/gpt-4-turbo.webp",
+      "bytes": 48310,
+      "sha256": "7f820f4648387487859fba3e54db53d05ccd9fa75ce2acdd4fea15c01f07edb5"
+    },
+    {
+      "path": "paquetes/modelos-ia-2026/imagenes/cartas/gpt-4.webp",
+      "bytes": 48472,
+      "sha256": "585ae80935de3a8b08571447c332c0730ab4e992a0d79ccb968476c35324dace"
+    },
+    {
+      "path": "paquetes/modelos-ia-2026/imagenes/cartas/gpt-41.webp",
+      "bytes": 48752,
+      "sha256": "d91d8643406664103ad492a6bfe58ff560dc94b6f83a7252236fb3ba10eb6faa"
+    },
+    {
+      "path": "paquetes/modelos-ia-2026/imagenes/cartas/gpt-4o.webp",
+      "bytes": 39558,
+      "sha256": "ada088a41d3ae547627eccd9bba8277445a653ef91aee9f7ecd4aebbf574cb55"
+    },
+    {
+      "path": "paquetes/modelos-ia-2026/imagenes/cartas/gpt-5-high.webp",
+      "bytes": 49928,
+      "sha256": "90b8f4514b726bce64aa55fc84983f83e8b949884d242ac93eb92699df3ef8d5"
+    },
+    {
+      "path": "paquetes/modelos-ia-2026/imagenes/cartas/gpt-6-astra-max.webp",
+      "bytes": 48432,
+      "sha256": "ea3e88341a4929fe9c0a5c4a7253533c8e3075f320ee8f9670fe984e878045c2"
+    },
+    {
+      "path": "paquetes/modelos-ia-2026/imagenes/cartas/gpt-61-sol-max.webp",
+      "bytes": 37954,
+      "sha256": "6b008d9ce421233a1e27325b3b48abeabb23b96761b5dba2f5b9144cda8d5533"
+    },
+    {
+      "path": "paquetes/modelos-ia-2026/imagenes/cartas/gpt-j-6b.webp",
+      "bytes": 29530,
+      "sha256": "6be5f7a1d5feecf0a68b7d1826354f38ee9420033ecdde6dc55df288221b7533"
+    },
+    {
+      "path": "paquetes/modelos-ia-2026/imagenes/cartas/gpt-neo-27b.webp",
+      "bytes": 23010,
+      "sha256": "7801e31c9645acb8d8a13e2b32817acf0cc92cca5b23f9e20be65ee9dc212b1b"
+    },
+    {
+      "path": "paquetes/modelos-ia-2026/imagenes/cartas/gpt-neox-20b.webp",
+      "bytes": 29446,
+      "sha256": "b6cd258f9fd0f3350b8017370bf20cdb41fd1a3a1207f201d422fe3e68c150ed"
+    },
+    {
+      "path": "paquetes/modelos-ia-2026/imagenes/cartas/gpt-oss-120b-high.webp",
+      "bytes": 39404,
+      "sha256": "bc7bc20e6dd1924b75ac031dc368a077bbcad1be6a688d3db7a83b0119f661e8"
+    },
+    {
+      "path": "paquetes/modelos-ia-2026/imagenes/cartas/grok-2.webp",
+      "bytes": 34704,
+      "sha256": "114b6ac675978f53928d33ba7ccc6a6381557652366992aca7bf9ce248b713d9"
+    },
+    {
+      "path": "paquetes/modelos-ia-2026/imagenes/cartas/grok-3.webp",
+      "bytes": 37152,
+      "sha256": "f1dabe67cb282cdfdbda81cbf1b84216581092e60f2f7cc6b350511ee06cd23a"
+    },
+    {
+      "path": "paquetes/modelos-ia-2026/imagenes/cartas/kimi-k2.webp",
+      "bytes": 45274,
+      "sha256": "fa70b3f7c60e6e9e0259977c24d189eb85b4d87403c5b97eccaa9d3188150ae7"
+    },
+    {
+      "path": "paquetes/modelos-ia-2026/imagenes/cartas/llama-2-70b.webp",
+      "bytes": 58342,
+      "sha256": "ed7123fdf01d0d279ddd28ce2c1239e874784bdb15b12e7f30b8312e8892ce05"
+    },
+    {
+      "path": "paquetes/modelos-ia-2026/imagenes/cartas/llama-3-70b.webp",
+      "bytes": 40482,
+      "sha256": "47d42e3ea497ceabd8481fdf17111240a856bc76985c72439149b6f0b651974e"
+    },
+    {
+      "path": "paquetes/modelos-ia-2026/imagenes/cartas/llama-31-405b.webp",
+      "bytes": 45166,
+      "sha256": "d8489efeb955cef7bc5d158721e117e7d6c3e36cc7bf922fdf2410351c36474d"
+    },
+    {
+      "path": "paquetes/modelos-ia-2026/imagenes/cartas/llama-33-70b.webp",
+      "bytes": 44758,
+      "sha256": "ebf1445e7a120aa22e07d361155085626aecf84195ff94aaa14340750ec58da1"
+    },
+    {
+      "path": "paquetes/modelos-ia-2026/imagenes/cartas/llama-4-maverick.webp",
+      "bytes": 60262,
+      "sha256": "8ea3ac743c1fc7b05d06f2f1638cb0e44f7847fec5d9382c3eaf8ba29dd247a2"
+    },
+    {
+      "path": "paquetes/modelos-ia-2026/imagenes/cartas/llama-4-scout.webp",
+      "bytes": 37888,
+      "sha256": "b42ce6a24e888ef3bcaa26a52251cdc05c778b4e14ab62b90b90182d3b414bec"
+    },
+    {
+      "path": "paquetes/modelos-ia-2026/imagenes/cartas/llama-65b.webp",
+      "bytes": 58126,
+      "sha256": "e5cb8b2a2d2e48fe26c88162cc8bc452708a4ebb982f07d29aa6376ae80b27d0"
+    },
+    {
+      "path": "paquetes/modelos-ia-2026/imagenes/cartas/mistral-7b-v01.webp",
+      "bytes": 22356,
+      "sha256": "ab906676ba28d195356b2d2436e7b2e75a1f5d67ec77ccca0c12573cd19c9a6c"
+    },
+    {
+      "path": "paquetes/modelos-ia-2026/imagenes/cartas/mistral-large-2.webp",
+      "bytes": 18888,
+      "sha256": "8677c02a652f1773e4aa169211f9db6ebb04fcfb13d2cc01a1c439c28e250843"
+    },
+    {
+      "path": "paquetes/modelos-ia-2026/imagenes/cartas/mixtral-8x7b.webp",
+      "bytes": 22436,
+      "sha256": "819a05f1cdd2172caab1270eb63121c33d61bf4d0db022d9506743bc4914c67f"
+    },
+    {
+      "path": "paquetes/modelos-ia-2026/imagenes/cartas/mpt-7b.webp",
+      "bytes": 67502,
+      "sha256": "583d836975a6e6f3706a2d47b0815a43149ca3640394396e4c089403844b1227"
+    },
+    {
+      "path": "paquetes/modelos-ia-2026/imagenes/cartas/o1-preview.webp",
+      "bytes": 36188,
+      "sha256": "249798ea746d8e47bbda334fde6736e6fc1bf6dbf2e722402d89827713dcdad7"
+    },
+    {
+      "path": "paquetes/modelos-ia-2026/imagenes/cartas/o3-mini.webp",
+      "bytes": 48770,
+      "sha256": "59291c83d20d8e5c4108175d1d561c6c2dee03ccb0778d2f49093eee8b54b1cd"
+    },
+    {
+      "path": "paquetes/modelos-ia-2026/imagenes/cartas/opt-175b.webp",
+      "bytes": 61248,
+      "sha256": "5ba46f7f728c0ffc708382d06f17c284756961c5d9bcbb1b0aa62c13e55a3c1e"
+    },
+    {
+      "path": "paquetes/modelos-ia-2026/imagenes/cartas/phi-2.webp",
+      "bytes": 13438,
+      "sha256": "49076a545172fad79f4ea63786fec747fad0d5c794172df32feed709aa15d16b"
+    },
+    {
+      "path": "paquetes/modelos-ia-2026/imagenes/cartas/phi-3-mini-128k.webp",
+      "bytes": 31920,
+      "sha256": "344dcb630d2efacbd2901bff3a7aee6dd32b92a8b76474cab7050adabdb9dafd"
+    },
+    {
+      "path": "paquetes/modelos-ia-2026/imagenes/cartas/qwen-25-72b.webp",
+      "bytes": 28186,
+      "sha256": "323d2404ba168aad07c0258e27ec2ab59ed77e7a85184f3ae7cc81579c768633"
+    },
+    {
+      "path": "paquetes/modelos-ia-2026/imagenes/cartas/qwen-3-32b.webp",
+      "bytes": 40330,
+      "sha256": "be28f9b0943defb5749a9094018bea9aa08b2e00e6b4e481d4c0df31411599ce"
+    },
+    {
+      "path": "paquetes/modelos-ia-2026/imagenes/portada.webp",
+      "bytes": 329978,
+      "sha256": "84a6a9c3fc6da99bd15264e06db8654b248254c2f4071430ad734382d6f5be3c"
+    },
+    {
+      "path": "REGISTRO_ACTIVACION_1_A_2.md",
+      "bytes": 3109,
+      "sha256": "e10fe242be8515a76553db0404947153e947ff47ad2d7afa4258c83670f99204"
+    },
+    {
+      "path": "REGISTRO_PREPARACION.md",
+      "bytes": 13269,
+      "sha256": "b9a13db22fb456bd1af88dfc35c5aa5ab053b43da9b2e93057d0e4eb823558d0"
+    },
+    {
+      "path": "SHA256SUMS.txt",
+      "bytes": 6028,
+      "sha256": "e487d5b8b1567201b234d32836529ee9b3d9bbbc18129b22d8648b5a828542e1"
+    },
+    {
+      "path": "SHA256SUMS_CANDIDATA_1.txt",
+      "bytes": 6028,
+      "sha256": "a4cb44d2da766d6b035871e32b8c29efddaf8d9a2ba019a95fe61dc70424536a"
+    }
+  ]
+}

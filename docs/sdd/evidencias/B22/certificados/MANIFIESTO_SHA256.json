@@ -1,0 +1,319 @@
+{
+  "algorithm": "SHA-256",
+  "id": "modelos-ia-2026",
+  "schemaVersion": 2,
+  "contentVersion": 2,
+  "available": true,
+  "package": "paquetes/modelos-ia-2026",
+  "sourceZipSha256": "2da67923daa77617f15d89692f35293a5b18ac2abe7cd689f356c6a4a05fd7aa",
+  "approvedCandidateManifestSha256": "59ec8efc354d35b88e8c8bb4570f5fc10bb71ad11fac67db655feec1f8009364",
+  "approvalRecord": "APROBACION_FINAL_Y_ACTIVACION.md",
+  "activationDelta": "DELTA_ACTIVACION_1_A_2.json",
+  "files": [
+    {
+      "path": "baraja.json",
+      "bytes": 45234,
+      "sha256": "2b05800cd6df64080366212f7fd7475ce66ca336116758b3ae7d071cb41e1ee2"
+    },
+    {
+      "path": "cartas.json",
+      "bytes": 86271,
+      "sha256": "95871a98aefce784eff5b66dd07f5f6c3a8e3109531eb6227c4ee68b52926c30"
+    },
+    {
+      "path": "imagenes/cartas/bloom-176b.webp",
+      "bytes": 53692,
+      "sha256": "44414153af0e01b0c7e21c70ccf5f7226cdfb7ed4736a7ba78b44ce05c3bf7ba"
+    },
+    {
+      "path": "imagenes/cartas/claude-21.webp",
+      "bytes": 38588,
+      "sha256": "ebf7917cd0105dd592729569690865443e509a34ce61bb6206603d7d286c2012"
+    },
+    {
+      "path": "imagenes/cartas/claude-3-haiku.webp",
+      "bytes": 38552,
+      "sha256": "356421d7cc92dc9ff631bb4c44049c5276c125f244226c7c853de3d9750327f9"
+    },
+    {
+      "path": "imagenes/cartas/claude-3-opus.webp",
+      "bytes": 21504,
+      "sha256": "63ca95e8c838b9c82283e407041c0fdbf0f1116c40b1f3bd3e4dab2a3592e19c"
+    },
+    {
+      "path": "imagenes/cartas/claude-35-sonnet.webp",
+      "bytes": 41032,
+      "sha256": "b4bb2e7e15afe3251f95c9472121ff3b57f7477f6dc94121e28f0a9e97ffe5c1"
+    },
+    {
+      "path": "imagenes/cartas/claude-37-sonnet.webp",
+      "bytes": 42230,
+      "sha256": "eeb117269198dca41f135cb681ec33086a1af5d021a8dec63496413c93ab4762"
+    },
+    {
+      "path": "imagenes/cartas/claude-haiku-55-max.webp",
+      "bytes": 21514,
+      "sha256": "e030f3973ffbe3db3e2caf394961a5dd2bcb8904bee650436d71e19fe07e2b34"
+    },
+    {
+      "path": "imagenes/cartas/claude-opus-4.webp",
+      "bytes": 41996,
+      "sha256": "939b4306f4b991c777c5df43c1816b1fcb6cc725a1e14d87a69ea902e71da3a8"
+    },
+    {
+      "path": "imagenes/cartas/claude-opus-55-max.webp",
+      "bytes": 41922,
+      "sha256": "010da1504970a23643ab2188c447bf5a1ce20d83e13412356fce5c7e88212b19"
+    },
+    {
+      "path": "imagenes/cartas/claude-sonnet-4.webp",
+      "bytes": 39686,
+      "sha256": "a2f76ecd57baf7dfea88b855658eaf89eeb9b50ad8215cb5e701d74a3d31a373"
+    },
+    {
+      "path": "imagenes/cartas/claude-sonnet-55-max.webp",
+      "bytes": 21496,
+      "sha256": "837e9ea0d15acf05733738e30320b32559636fb95686f9e572b55bf480edabee"
+    },
+    {
+      "path": "imagenes/cartas/command-r-plus.webp",
+      "bytes": 40406,
+      "sha256": "13e1c8ade3dda373ded24280011aa4f3088455faf234df793bfd5eaab84f6f7b"
+    },
+    {
+      "path": "imagenes/cartas/dbrx-instruct.webp",
+      "bytes": 58028,
+      "sha256": "0edcb3e803ee0df93e6ea6b66a717e3b6be41686bb7bd5ae429b1052855720eb"
+    },
+    {
+      "path": "imagenes/cartas/deepseek-r1.webp",
+      "bytes": 40056,
+      "sha256": "aced3206deb6694b1e81e0eff2fa808a2be9712409d05122da455dd051c6b7f7"
+    },
+    {
+      "path": "imagenes/cartas/deepseek-v2-chat.webp",
+      "bytes": 39740,
+      "sha256": "61f2a3504a35a0bb96920e2bc8d9d5ec3ecd9b0058db26e73bd8d240303d8c8f"
+    },
+    {
+      "path": "imagenes/cartas/deepseek-v3.webp",
+      "bytes": 51082,
+      "sha256": "7f5ea6ef3c492f55361155bc56a1eb3706195589e25b83980488a3099550a2d2"
+    },
+    {
+      "path": "imagenes/cartas/gemini-10-pro.webp",
+      "bytes": 39108,
+      "sha256": "1a9634bb84fa1d0722ee9ff421cdfcd7fb09ddb4a19bdb5306e38342e46783ef"
+    },
+    {
+      "path": "imagenes/cartas/gemini-15-pro.webp",
+      "bytes": 50640,
+      "sha256": "cdab2e8a1c5c40a57b175163716d5c5e5fa8279c730e03b6f790f095b5a6e373"
+    },
+    {
+      "path": "imagenes/cartas/gemini-20-flash.webp",
+      "bytes": 51326,
+      "sha256": "06c34e093835ebf0749bf3aa49396aab2791486917af3a8134099862fe7bb091"
+    },
+    {
+      "path": "imagenes/cartas/gemini-25-flash.webp",
+      "bytes": 29434,
+      "sha256": "76539d2b3fa8c4f59f9d6b27669db7d354b4273a86fc1944d7e60f99c0a1b709"
+    },
+    {
+      "path": "imagenes/cartas/gemini-25-pro.webp",
+      "bytes": 49192,
+      "sha256": "fca2433413dea705f05140cca76e06d1a8ac3eafcc01e6e09eaa6323e9293a59"
+    },
+    {
+      "path": "imagenes/cartas/gemini-31-pro.webp",
+      "bytes": 39288,
+      "sha256": "1f631cba7418a98aedc5e9da470ae16e1b26746c18c28ba2289aa9e2139a4d8d"
+    },
+    {
+      "path": "imagenes/cartas/gemma-2-27b.webp",
+      "bytes": 39254,
+      "sha256": "56419af46dc5cdb20633cf0a4271304e2804b5809eb2194f43c2775bf67f3cf7"
+    },
+    {
+      "path": "imagenes/cartas/gemma-7b.webp",
+      "bytes": 29024,
+      "sha256": "c13d308a271d67a244e09511eb4849b0f195ae70804ba874ab7622b04c400a04"
+    },
+    {
+      "path": "imagenes/cartas/gpt-2-15b.webp",
+      "bytes": 38448,
+      "sha256": "81da4152e9b79b0ca78339afcf91d46803f4d981f4b72f8f8405473c9b73e62c"
+    },
+    {
+      "path": "imagenes/cartas/gpt-3-175b.webp",
+      "bytes": 40380,
+      "sha256": "6eea7d30d68c248595fe67f3d13df4af8cb501ea0708b7da3a25200bbac8f058"
+    },
+    {
+      "path": "imagenes/cartas/gpt-4-turbo.webp",
+      "bytes": 48310,
+      "sha256": "7f820f4648387487859fba3e54db53d05ccd9fa75ce2acdd4fea15c01f07edb5"
+    },
+    {
+      "path": "imagenes/cartas/gpt-4.webp",
+      "bytes": 48472,
+      "sha256": "585ae80935de3a8b08571447c332c0730ab4e992a0d79ccb968476c35324dace"
+    },
+    {
+      "path": "imagenes/cartas/gpt-41.webp",
+      "bytes": 48752,
+      "sha256": "d91d8643406664103ad492a6bfe58ff560dc94b6f83a7252236fb3ba10eb6faa"
+    },
+    {
+      "path": "imagenes/cartas/gpt-4o.webp",
+      "bytes": 39558,
+      "sha256": "ada088a41d3ae547627eccd9bba8277445a653ef91aee9f7ecd4aebbf574cb55"
+    },
+    {
+      "path": "imagenes/cartas/gpt-5-high.webp",
+      "bytes": 49928,
+      "sha256": "90b8f4514b726bce64aa55fc84983f83e8b949884d242ac93eb92699df3ef8d5"
+    },
+    {
+      "path": "imagenes/cartas/gpt-6-astra-max.webp",
+      "bytes": 48432,
+      "sha256": "ea3e88341a4929fe9c0a5c4a7253533c8e3075f320ee8f9670fe984e878045c2"
+    },
+    {
+      "path": "imagenes/cartas/gpt-61-sol-max.webp",
+      "bytes": 37954,
+      "sha256": "6b008d9ce421233a1e27325b3b48abeabb23b96761b5dba2f5b9144cda8d5533"
+    },
+    {
+      "path": "imagenes/cartas/gpt-j-6b.webp",
+      "bytes": 29530,
+      "sha256": "6be5f7a1d5feecf0a68b7d1826354f38ee9420033ecdde6dc55df288221b7533"
+    },
+    {
+      "path": "imagenes/cartas/gpt-neo-27b.webp",
+      "bytes": 23010,
+      "sha256": "7801e31c9645acb8d8a13e2b32817acf0cc92cca5b23f9e20be65ee9dc212b1b"
+    },
+    {
+      "path": "imagenes/cartas/gpt-neox-20b.webp",
+      "bytes": 29446,
+      "sha256": "b6cd258f9fd0f3350b8017370bf20cdb41fd1a3a1207f201d422fe3e68c150ed"
+    },
+    {
+      "path": "imagenes/cartas/gpt-oss-120b-high.webp",
+      "bytes": 39404,
+      "sha256": "bc7bc20e6dd1924b75ac031dc368a077bbcad1be6a688d3db7a83b0119f661e8"
+    },
+    {
+      "path": "imagenes/cartas/grok-2.webp",
+      "bytes": 34704,
+      "sha256": "114b6ac675978f53928d33ba7ccc6a6381557652366992aca7bf9ce248b713d9"
+    },
+    {
+      "path": "imagenes/cartas/grok-3.webp",
+      "bytes": 37152,
+      "sha256": "f1dabe67cb282cdfdbda81cbf1b84216581092e60f2f7cc6b350511ee06cd23a"
+    },
+    {
+      "path": "imagenes/cartas/kimi-k2.webp",
+      "bytes": 45274,
+      "sha256": "fa70b3f7c60e6e9e0259977c24d189eb85b4d87403c5b97eccaa9d3188150ae7"
+    },
+    {
+      "path": "imagenes/cartas/llama-2-70b.webp",
+      "bytes": 58342,
+      "sha256": "ed7123fdf01d0d279ddd28ce2c1239e874784bdb15b12e7f30b8312e8892ce05"
+    },
+    {
+      "path": "imagenes/cartas/llama-3-70b.webp",
+      "bytes": 40482,
+      "sha256": "47d42e3ea497ceabd8481fdf17111240a856bc76985c72439149b6f0b651974e"
+    },
+    {
+      "path": "imagenes/cartas/llama-31-405b.webp",
+      "bytes": 45166,
+      "sha256": "d8489efeb955cef7bc5d158721e117e7d6c3e36cc7bf922fdf2410351c36474d"
+    },
+    {
+      "path": "imagenes/cartas/llama-33-70b.webp",
+      "bytes": 44758,
+      "sha256": "ebf1445e7a120aa22e07d361155085626aecf84195ff94aaa14340750ec58da1"
+    },
+    {
+      "path": "imagenes/cartas/llama-4-maverick.webp",
+      "bytes": 60262,
+      "sha256": "8ea3ac743c1fc7b05d06f2f1638cb0e44f7847fec5d9382c3eaf8ba29dd247a2"
+    },
+    {
+      "path": "imagenes/cartas/llama-4-scout.webp",
+      "bytes": 37888,
+      "sha256": "b42ce6a24e888ef3bcaa26a52251cdc05c778b4e14ab62b90b90182d3b414bec"
+    },
+    {
+      "path": "imagenes/cartas/llama-65b.webp",
+      "bytes": 58126,
+      "sha256": "e5cb8b2a2d2e48fe26c88162cc8bc452708a4ebb982f07d29aa6376ae80b27d0"
+    },
+    {
+      "path": "imagenes/cartas/mistral-7b-v01.webp",
+      "bytes": 22356,
+      "sha256": "ab906676ba28d195356b2d2436e7b2e75a1f5d67ec77ccca0c12573cd19c9a6c"
+    },
+    {
+      "path": "imagenes/cartas/mistral-large-2.webp",
+      "bytes": 18888,
+      "sha256": "8677c02a652f1773e4aa169211f9db6ebb04fcfb13d2cc01a1c439c28e250843"
+    },
+    {
+      "path": "imagenes/cartas/mixtral-8x7b.webp",
+      "bytes": 22436,
+      "sha256": "819a05f1cdd2172caab1270eb63121c33d61bf4d0db022d9506743bc4914c67f"
+    },
+    {
+      "path": "imagenes/cartas/mpt-7b.webp",
+      "bytes": 67502,
+      "sha256": "583d836975a6e6f3706a2d47b0815a43149ca3640394396e4c089403844b1227"
+    },
+    {
+      "path": "imagenes/cartas/o1-preview.webp",
+      "bytes": 36188,
+      "sha256": "249798ea746d8e47bbda334fde6736e6fc1bf6dbf2e722402d89827713dcdad7"
+    },
+    {
+      "path": "imagenes/cartas/o3-mini.webp",
+      "bytes": 48770,
+      "sha256": "59291c83d20d8e5c4108175d1d561c6c2dee03ccb0778d2f49093eee8b54b1cd"
+    },
+    {
+      "path": "imagenes/cartas/opt-175b.webp",
+      "bytes": 61248,
+      "sha256": "5ba46f7f728c0ffc708382d06f17c284756961c5d9bcbb1b0aa62c13e55a3c1e"
+    },
+    {
+      "path": "imagenes/cartas/phi-2.webp",
+      "bytes": 13438,
+      "sha256": "49076a545172fad79f4ea63786fec747fad0d5c794172df32feed709aa15d16b"
+    },
+    {
+      "path": "imagenes/cartas/phi-3-mini-128k.webp",
+      "bytes": 31920,
+      "sha256": "344dcb630d2efacbd2901bff3a7aee6dd32b92a8b76474cab7050adabdb9dafd"
+    },
+    {
+      "path": "imagenes/cartas/qwen-25-72b.webp",
+      "bytes": 28186,
+      "sha256": "323d2404ba168aad07c0258e27ec2ab59ed77e7a85184f3ae7cc81579c768633"
+    },
+    {
+      "path": "imagenes/cartas/qwen-3-32b.webp",
+      "bytes": 40330,
+      "sha256": "be28f9b0943defb5749a9094018bea9aa08b2e00e6b4e481d4c0df31411599ce"
+    },
+    {
+      "path": "imagenes/portada.webp",
+      "bytes": 329978,
+      "sha256": "84a6a9c3fc6da99bd15264e06db8654b248254c2f4071430ad734382d6f5be3c"
+    }
+  ]
+}

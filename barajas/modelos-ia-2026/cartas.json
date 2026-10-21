@@ -1,0 +1,1515 @@
+{
+  "schemaVersion": 2,
+  "deckId": "modelos-ia-2026",
+  "contentVersion": 2,
+  "cards": [
+    {
+      "id": "gpt-2-15b",
+      "name": "GPT-2 1,5B",
+      "characteristic": "OpenAI",
+      "imageRef": "imagenes/cartas/gpt-2-15b.webp",
+      "imageAlt": "Logotipo de OpenAI centrado sobre fondo marfil con circuitos en tono verde grisáceo, con marco marrón oscuro de doble línea, con el trazo exterior más grueso.",
+      "values": {
+        "atributo1": {
+          "playValue": 1,
+          "displayValue": "05/11/2019",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 7,
+          "displayValue": "7",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 1,
+          "displayValue": "1.024",
+          "unit": "tk"
+        }
+      },
+      "roundAttribute": "atributo3",
+      "note": "Variante: GPT-2 completo, 1,5B. Referencia de evaluación: 32,4 %, MMLU original (Hendrycks et al.) [MO]. Contexto documentado: 1.024 tokens. Fecha: 05/11/2019; desarrollador: OpenAI. El 32,4 de MMLU identifica GPT-2 sin tamaño; no acredita por sí solo la variante 1,5B. Fuentes de fecha, contexto y evaluación: https://openai.com/index/gpt-2-1-5b-release/ ; https://openaipublic.blob.core.windows.net/gpt-2/models/1558M/hparams.json ; https://github.com/hendrycks/test/blob/master/README.md. Revisión técnica: 21/10/2026. Inteligencia jugable 7/58: posición editorial aceptada por el autor para ilustrar la mecánica de KARTA3."
+    },
+    {
+      "id": "gpt-3-175b",
+      "name": "GPT-3 175B",
+      "characteristic": "OpenAI",
+      "imageRef": "imagenes/cartas/gpt-3-175b.webp",
+      "imageAlt": "Logotipo de OpenAI centrado sobre fondo marfil con malla en tono verde grisáceo, con marco marrón oscuro de doble línea, con el trazo exterior más grueso.",
+      "values": {
+        "atributo1": {
+          "playValue": 2,
+          "displayValue": "28/05/2020",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 8,
+          "displayValue": "8",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 2,
+          "displayValue": "2.048",
+          "unit": "tk"
+        }
+      },
+      "roundAttribute": "atributo1",
+      "note": "Variante: GPT-3 175B. Referencia de evaluación: 43,9 %, MMLU original (Hendrycks et al.) [MO]. Contexto documentado: 2.048 tokens. Fecha: 28/05/2020; desarrollador: OpenAI. Fecha de publicación del artículo; MMLU original few-shot, no fine-tuning. Fuentes de fecha, contexto y evaluación: https://arxiv.org/abs/2005.14165 ; https://arxiv.org/pdf/2005.14165 ; https://github.com/hendrycks/test/blob/master/README.md. Revisión técnica: 21/10/2026. Inteligencia jugable 8/58: posición editorial aceptada por el autor para ilustrar la mecánica de KARTA3."
+    },
+    {
+      "id": "gpt-neo-27b",
+      "name": "GPT-Neo 2.7B",
+      "characteristic": "EleutherAI",
+      "imageRef": "imagenes/cartas/gpt-neo-27b.webp",
+      "imageAlt": "Logotipo de EleutherAI centrado sobre fondo marfil con arcos en tono violeta grisáceo, con marco marrón oscuro de doble línea, con el trazo exterior más grueso.",
+      "values": {
+        "atributo1": {
+          "playValue": 3,
+          "displayValue": "21/03/2021",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 2,
+          "displayValue": "2",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 3,
+          "displayValue": "2.048",
+          "unit": "tk"
+        }
+      },
+      "roundAttribute": "atributo2",
+      "note": "Variante: EleutherAI/gpt-neo-2.7B, base. Referencia de evaluación: 26,45 %, MMLU 5-shot, Open LLM Leaderboard v1, registro archivado. Contexto documentado: 2.048 tokens. Fecha: 21/03/2021; desarrollador: EleutherAI. La ficha histórica fija el 21/03/2021. MMLU 5-shot del resultado archivado del leaderboard. Fuentes de fecha, contexto y evaluación: https://huggingface.co/EleutherAI/gpt-neo-2.7B/raw/5813d1e99a73b12e4881232da07590dfff2f0445/README.md ; https://huggingface.co/EleutherAI/gpt-neo-2.7B/raw/main/config.json ; https://huggingface.co/EleutherAI/gpt-neo-2.7B/raw/5e1629a69b40344d3ba97e10662ef6593c5829f7/README.md. Revisión técnica: 21/10/2026. Inteligencia jugable 2/58: posición editorial aceptada por el autor para ilustrar la mecánica de KARTA3."
+    },
+    {
+      "id": "gpt-j-6b",
+      "name": "GPT-J 6B",
+      "characteristic": "EleutherAI",
+      "imageRef": "imagenes/cartas/gpt-j-6b.webp",
+      "imageAlt": "Logotipo de EleutherAI centrado sobre fondo marfil con ondas en tono violeta grisáceo, con marco marrón oscuro de doble línea, con el trazo exterior más grueso.",
+      "values": {
+        "atributo1": {
+          "playValue": 4,
+          "displayValue": "06/2021",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 3,
+          "displayValue": "3",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 4,
+          "displayValue": "2.048",
+          "unit": "tk"
+        }
+      },
+      "roundAttribute": "atributo3",
+      "note": "Variante: EleutherAI/gpt-j-6b, base. Referencia de evaluación: 26,78 %, MMLU 5-shot, Open LLM Leaderboard v1, registro archivado. Contexto documentado: 2.048 tokens. Fecha: 06/2021; desarrollador: EleutherAI. Se conserva junio de 2021; no se eleva a día exacto sin prueba de primera liberación. Fuentes de fecha, contexto y evaluación: https://github.com/kingoflolz/mesh-transformer-jax ; https://huggingface.co/EleutherAI/gpt-j-6b/raw/main/config.json ; https://huggingface.co/EleutherAI/gpt-j-6b/raw/1f3f9fe81ea2022a61173edfa8ec8477dc591e0b/README.md. Revisión técnica: 21/10/2026. Inteligencia jugable 3/58: posición editorial aceptada por el autor para ilustrar la mecánica de KARTA3."
+    },
+    {
+      "id": "gpt-neox-20b",
+      "name": "GPT-NeoX 20B",
+      "characteristic": "EleutherAI",
+      "imageRef": "imagenes/cartas/gpt-neox-20b.webp",
+      "imageAlt": "Logotipo de EleutherAI centrado sobre fondo marfil con ondas en tono violeta grisáceo, con marco marrón oscuro de doble línea, con el trazo exterior más grueso.",
+      "values": {
+        "atributo1": {
+          "playValue": 5,
+          "displayValue": "09/02/2022",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 1,
+          "displayValue": "1",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 5,
+          "displayValue": "2.048",
+          "unit": "tk"
+        }
+      },
+      "roundAttribute": "atributo2",
+      "note": "Variante: EleutherAI/gpt-neox-20b, base. Referencia de evaluación: 25,0 %, MMLU 5-shot, Open LLM Leaderboard v1, registro archivado. Contexto documentado: 2.048 tokens. Fecha: 09/02/2022; desarrollador: EleutherAI. MMLU 5-shot de la ficha del leaderboard; se acepta editorialmente la fecha conservada; el anuncio histórico no se ha recuperado. Fuentes de fecha, contexto y evaluación: https://blog.eleuther.ai/announcing-20b/ ; https://huggingface.co/EleutherAI/gpt-neox-20b/raw/main/config.json ; https://huggingface.co/EleutherAI/gpt-neox-20b/raw/main/README.md. Revisión técnica: 21/10/2026. Inteligencia jugable 1/58: posición editorial aceptada por el autor para ilustrar la mecánica de KARTA3."
+    },
+    {
+      "id": "opt-175b",
+      "name": "OPT 175B",
+      "characteristic": "Meta",
+      "imageRef": "imagenes/cartas/opt-175b.webp",
+      "imageAlt": "Logotipo de Meta centrado sobre fondo marfil con diagonales en tono azul, con marco marrón oscuro de doble línea, con el trazo exterior más grueso.",
+      "values": {
+        "atributo1": {
+          "playValue": 6,
+          "displayValue": "03/05/2022",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 6,
+          "displayValue": "6",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 6,
+          "displayValue": "2.048",
+          "unit": "tk"
+        }
+      },
+      "roundAttribute": "atributo3",
+      "note": "Variante: OPT-175B, base. Referencia de evaluación: 31,8 %, MMLU, referencia histórica aceptada para esta demostración; ejecución primaria no acreditada. Contexto documentado: 2.048 tokens. Fecha: 03/05/2022; desarrollador: Meta. No se ha localizado la ejecución primaria que sustente 31,8; no debe atribuirse como resultado oficial de Meta. Fuentes de fecha, contexto y evaluación: https://ai.meta.com/blog/democratizing-access-to-large-scale-language-models-with-opt-175b/ ; https://arxiv.org/pdf/2205.01068 ; https://evals.report/benchmarks/mmlu-pro?tab=scores. Revisión técnica: 21/10/2026. Inteligencia jugable 6/58: posición editorial aceptada por el autor para ilustrar la mecánica de KARTA3."
+    },
+    {
+      "id": "bloom-176b",
+      "name": "BLOOM 176B",
+      "characteristic": "BigScience",
+      "imageRef": "imagenes/cartas/bloom-176b.webp",
+      "imageAlt": "Logotipo de BigScience centrado sobre fondo marfil con abanico en tono rosa, con marco marrón oscuro de doble línea, con el trazo exterior más grueso.",
+      "values": {
+        "atributo1": {
+          "playValue": 7,
+          "displayValue": "12/07/2022",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 5,
+          "displayValue": "5",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 7,
+          "displayValue": "2.048",
+          "unit": "tk"
+        }
+      },
+      "roundAttribute": "atributo1",
+      "note": "Variante: bigscience/bloom, base 176B. Referencia de evaluación: 30,85 %, MMLU 5-shot, Open LLM Leaderboard v1, registro archivado. Contexto documentado: 2.048 tokens. Fecha: 12/07/2022; desarrollador: BigScience. Fecha del anuncio público de HF/BigScience; MMLU 5-shot del registro archivado. Fuentes de fecha, contexto y evaluación: https://huggingface.co/blog/bloom ; https://huggingface.co/bigscience/bloom/raw/main/README.md ; https://huggingface.co/bigscience/bloom/raw/458b92ba90ca31262f32e0d265f1e7d8943cdd6d/README.md. Revisión técnica: 21/10/2026. Inteligencia jugable 5/58: posición editorial aceptada por el autor para ilustrar la mecánica de KARTA3."
+    },
+    {
+      "id": "llama-65b",
+      "name": "LLaMA 65B",
+      "characteristic": "Meta",
+      "imageRef": "imagenes/cartas/llama-65b.webp",
+      "imageAlt": "Logotipo de Meta centrado sobre fondo marfil con ondas en tono azul, con marco marrón oscuro de doble línea, con el trazo exterior más grueso.",
+      "values": {
+        "atributo1": {
+          "playValue": 8,
+          "displayValue": "24/02/2023",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 11,
+          "displayValue": "11",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 8,
+          "displayValue": "2.048",
+          "unit": "tk"
+        }
+      },
+      "roundAttribute": "atributo1",
+      "note": "Variante: huggyllama/llama-65b, conversión de LLaMA base. Referencia de evaluación: 63,93 %, MMLU 5-shot, Open LLM Leaderboard v1, registro archivado. Contexto documentado: 2.048 tokens. Fecha: 24/02/2023; desarrollador: Meta. El 63,93 corresponde a los pesos convertidos evaluados por HF; no al 63,4 del informe original de Meta. Fuentes de fecha, contexto y evaluación: https://ai.meta.com/blog/large-language-model-llama-meta-ai/ ; https://arxiv.org/pdf/2302.13971 ; https://huggingface.co/huggyllama/llama-65b/raw/a5756dbe016df4b076cbb2a9fa9e3b7746455601/README.md. Revisión técnica: 21/10/2026. Inteligencia jugable 11/58: posición editorial aceptada por el autor para ilustrar la mecánica de KARTA3."
+    },
+    {
+      "id": "gpt-4",
+      "name": "GPT-4",
+      "characteristic": "OpenAI",
+      "imageRef": "imagenes/cartas/gpt-4.webp",
+      "imageAlt": "Logotipo de OpenAI centrado sobre fondo marfil con ondas en tono verde grisáceo, con marco marrón oscuro de doble línea, con el trazo exterior más grueso.",
+      "values": {
+        "atributo1": {
+          "playValue": 9,
+          "displayValue": "14/03/2023",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 25,
+          "displayValue": "25",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 12,
+          "displayValue": "8.192",
+          "unit": "tk"
+        }
+      },
+      "roundAttribute": "atributo2",
+      "note": "Variante: openai/gpt-4-0613. Referencia de evaluación: 82,4 %, HELM MMLU v1.13.0. Contexto documentado: 8.192 tokens. Fecha: 14/03/2023; desarrollador: OpenAI. La fecha es la presentación de GPT-4; la evaluación corresponde a la revisión 0613. Fuentes de fecha, contexto y evaluación: https://openai.com/index/gpt-4-research/ ; https://developers.openai.com/api/docs/models/gpt-4.md ; https://storage.googleapis.com/crfm-helm-public/mmlu/benchmark_output/releases/v1.13.0/groups/mmlu.json. Revisión técnica: 21/10/2026. Inteligencia jugable 25/58: posición editorial aceptada por el autor para ilustrar la mecánica de KARTA3."
+    },
+    {
+      "id": "mpt-7b",
+      "name": "MPT 7B",
+      "characteristic": "MosaicML",
+      "imageRef": "imagenes/cartas/mpt-7b.webp",
+      "imageAlt": "Logotipo de MosaicML centrado sobre fondo marfil con diagonales en tono azul, con marco marrón oscuro de doble línea, con el trazo exterior más grueso.",
+      "values": {
+        "atributo1": {
+          "playValue": 10,
+          "displayValue": "05/05/2023",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 4,
+          "displayValue": "4",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 9,
+          "displayValue": "2.048",
+          "unit": "tk"
+        }
+      },
+      "roundAttribute": "atributo1",
+      "note": "Variante: mosaicml/mpt-7b, base. Referencia de evaluación: 30,8 %, MMLU 5-shot, tabla comparativa del informe Qwen (run original HF no recuperado). Contexto documentado: 2.048 tokens. Fecha: 05/05/2023; desarrollador: MosaicML. 30,8 aparece en la tabla 2 del informe técnico Qwen; corrobora la cifra, pero no recupera el run original de HF. Fuentes de fecha, contexto y evaluación: https://www.databricks.com/blog/mpt-7b ; https://raw.githubusercontent.com/mosaicml/llm-foundry/main/README.md ; https://arxiv.org/pdf/2309.16609. Revisión técnica: 21/10/2026. Inteligencia jugable 4/58: posición editorial aceptada por el autor para ilustrar la mecánica de KARTA3."
+    },
+    {
+      "id": "llama-2-70b",
+      "name": "Llama 2 70B",
+      "characteristic": "Meta",
+      "imageRef": "imagenes/cartas/llama-2-70b.webp",
+      "imageAlt": "Logotipo de Meta centrado sobre fondo marfil con ondas en tono azul, con marco marrón oscuro de doble línea, con el trazo exterior más grueso.",
+      "values": {
+        "atributo1": {
+          "playValue": 11,
+          "displayValue": "18/07/2023",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 14,
+          "displayValue": "14",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 11,
+          "displayValue": "4.096",
+          "unit": "tk"
+        }
+      },
+      "roundAttribute": "atributo2",
+      "note": "Variante: Llama 2 (70B), base. Referencia de evaluación: 69,5 %, HELM MMLU v1.13.0. Contexto documentado: 4.096 tokens. Fecha: 18/07/2023; desarrollador: Meta. HELM identifica el modelo base; no confundir con Llama 2 Chat. Fuentes de fecha, contexto y evaluación: https://github.com/meta-llama/llama-models/blob/main/models/llama2/MODEL_CARD.md ; https://github.com/meta-llama/llama-models/blob/main/models/llama2/MODEL_CARD.md ; https://storage.googleapis.com/crfm-helm-public/mmlu/benchmark_output/releases/v1.13.0/groups/mmlu.json. Revisión técnica: 21/10/2026. Inteligencia jugable 14/58: posición editorial aceptada por el autor para ilustrar la mecánica de KARTA3."
+    },
+    {
+      "id": "mistral-7b-v01",
+      "name": "Mistral 7B v0.1",
+      "characteristic": "Mistral AI",
+      "imageRef": "imagenes/cartas/mistral-7b-v01.webp",
+      "imageAlt": "Logotipo de Mistral AI centrado sobre fondo marfil con arcos en tono ámbar, con marco marrón oscuro de doble línea, con el trazo exterior más grueso.",
+      "values": {
+        "atributo1": {
+          "playValue": 12,
+          "displayValue": "27/09/2023",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 9,
+          "displayValue": "9",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 16,
+          "displayValue": "32.768",
+          "unit": "tk"
+        }
+      },
+      "roundAttribute": "atributo1",
+      "note": "Variante: Mistral-v0.1 (7B), base. Referencia de evaluación: 56,6 %, HELM MMLU v1.13.0. Contexto documentado: 32.768 tokens. Fecha: 27/09/2023; desarrollador: Mistral AI. La configuración de v0.1 permite 32.768 posiciones con atención deslizante de 4.096. Los 8.192 previos describían entrenamiento, no ese máximo configurado. Fuentes de fecha, contexto y evaluación: https://mistral.ai/news/announcing-mistral-7b/ ; https://huggingface.co/mistralai/Mistral-7B-v0.1/raw/main/config.json ; https://storage.googleapis.com/crfm-helm-public/mmlu/benchmark_output/releases/v1.13.0/groups/mmlu.json. Revisión técnica: 21/10/2026. Inteligencia jugable 9/58: posición editorial aceptada por el autor para ilustrar la mecánica de KARTA3."
+    },
+    {
+      "id": "gpt-4-turbo",
+      "name": "GPT-4 Turbo",
+      "characteristic": "OpenAI",
+      "imageRef": "imagenes/cartas/gpt-4-turbo.webp",
+      "imageAlt": "Logotipo de OpenAI centrado sobre fondo marfil con ondas en tono verde grisáceo, con marco marrón oscuro de doble línea, con el trazo exterior más grueso.",
+      "values": {
+        "atributo1": {
+          "playValue": 13,
+          "displayValue": "06/11/2023",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 24,
+          "displayValue": "24",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 21,
+          "displayValue": "128.000",
+          "unit": "tk"
+        }
+      },
+      "roundAttribute": "atributo1",
+      "note": "Variante: GPT-4 Turbo (1106 preview). Referencia de evaluación: 79,6 %, HELM MMLU v1.13.0. Contexto documentado: 128.000 tokens. Fecha: 06/11/2023; desarrollador: OpenAI. HELM v1.13.0 identifica explícitamente 1106 preview; no es la revisión estable 2024-04-09. Fuentes de fecha, contexto y evaluación: https://openai.com/index/new-models-and-developer-products-announced-at-devday/ ; https://developers.openai.com/api/docs/models/gpt-4-turbo.md ; https://storage.googleapis.com/crfm-helm-public/mmlu/benchmark_output/releases/v1.13.0/groups/mmlu.json. Revisión técnica: 21/10/2026. Inteligencia jugable 24/58: posición editorial aceptada por el autor para ilustrar la mecánica de KARTA3."
+    },
+    {
+      "id": "claude-21",
+      "name": "Claude 2.1",
+      "characteristic": "Anthropic",
+      "imageRef": "imagenes/cartas/claude-21.webp",
+      "imageAlt": "Logotipo de Anthropic centrado sobre fondo marfil con ondas en tono terracota, con marco marrón oscuro de doble línea, con el trazo exterior más grueso.",
+      "values": {
+        "atributo1": {
+          "playValue": 14,
+          "displayValue": "21/11/2023",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 17,
+          "displayValue": "17",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 36,
+          "displayValue": "200.000",
+          "unit": "tk"
+        }
+      },
+      "roundAttribute": "atributo2",
+      "note": "Variante: Claude 2.1. Referencia de evaluación: 73,5 %, HELM MMLU v1.13.0. Contexto documentado: 200.000 tokens. Fecha: 21/11/2023; desarrollador: Anthropic. Contexto de 200K del anuncio de Anthropic; HELM MMLU de Claude 2.1. Fuentes de fecha, contexto y evaluación: https://www.anthropic.com/news/claude-2-1 ; https://www.anthropic.com/news/claude-2-1 ; https://storage.googleapis.com/crfm-helm-public/mmlu/benchmark_output/releases/v1.13.0/groups/mmlu.json. Revisión técnica: 21/10/2026. Inteligencia jugable 17/58: posición editorial aceptada por el autor para ilustrar la mecánica de KARTA3."
+    },
+    {
+      "id": "gemini-10-pro",
+      "name": "Gemini 1.0 Pro",
+      "characteristic": "Google",
+      "imageRef": "imagenes/cartas/gemini-10-pro.webp",
+      "imageAlt": "Logotipo de Google centrado sobre fondo marfil con arcos en tono azul, con marco marrón oscuro de doble línea, con el trazo exterior más grueso.",
+      "values": {
+        "atributo1": {
+          "playValue": 15,
+          "displayValue": "06/12/2023",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 15,
+          "displayValue": "15",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 17,
+          "displayValue": "32.768",
+          "unit": "tk"
+        }
+      },
+      "roundAttribute": "atributo3",
+      "note": "Variante: Gemini 1.0 Pro (001). Referencia de evaluación: 70,0 %, HELM MMLU v1.13.0. Contexto documentado: 32.768 tokens. Fecha: 06/12/2023; desarrollador: Google. 32.768 es ventana de secuencia de la generación; los límites de entrada y salida de las API se publican por separado. Fuentes de fecha, contexto y evaluación: https://blog.google/technology/ai/google-gemini-ai/ ; https://arxiv.org/pdf/2312.11805 ; https://storage.googleapis.com/crfm-helm-public/mmlu/benchmark_output/releases/v1.13.0/groups/mmlu.json. Revisión técnica: 21/10/2026. Inteligencia jugable 15/58: posición editorial aceptada por el autor para ilustrar la mecánica de KARTA3."
+    },
+    {
+      "id": "mixtral-8x7b",
+      "name": "Mixtral 8×7B",
+      "characteristic": "Mistral AI",
+      "imageRef": "imagenes/cartas/mixtral-8x7b.webp",
+      "imageAlt": "Logotipo de Mistral AI centrado sobre fondo marfil con arcos en tono ámbar, con marco marrón oscuro de doble línea, con el trazo exterior más grueso.",
+      "values": {
+        "atributo1": {
+          "playValue": 16,
+          "displayValue": "11/12/2023",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 16,
+          "displayValue": "16",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 18,
+          "displayValue": "32.768",
+          "unit": "tk"
+        }
+      },
+      "roundAttribute": "atributo3",
+      "note": "Variante: Mixtral (8x7B, 32K seqlen), base. Referencia de evaluación: 71,7 %, HELM MMLU v1.13.0. Contexto documentado: 32.768 tokens. Fecha: 11/12/2023; desarrollador: Mistral AI. Fecha del anuncio técnico del 11/12; hubo difusión de pesos anterior. No se usa la variante Instruct para el resultado HELM. Fuentes de fecha, contexto y evaluación: https://mistral.ai/news/mixtral-of-experts/ ; https://huggingface.co/mistralai/Mixtral-8x7B-v0.1/raw/main/config.json ; https://storage.googleapis.com/crfm-helm-public/mmlu/benchmark_output/releases/v1.13.0/groups/mmlu.json. Revisión técnica: 21/10/2026. Inteligencia jugable 16/58: posición editorial aceptada por el autor para ilustrar la mecánica de KARTA3."
+    },
+    {
+      "id": "phi-2",
+      "name": "Phi-2",
+      "characteristic": "Microsoft",
+      "imageRef": "imagenes/cartas/phi-2.webp",
+      "imageAlt": "Logotipo de Microsoft centrado sobre fondo marfil con circuitos en tono turquesa, con marco marrón oscuro de doble línea, con el trazo exterior más grueso.",
+      "values": {
+        "atributo1": {
+          "playValue": 17,
+          "displayValue": "12/12/2023",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 10,
+          "displayValue": "10",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 10,
+          "displayValue": "2.048",
+          "unit": "tk"
+        }
+      },
+      "roundAttribute": "atributo2",
+      "note": "Variante: microsoft/phi-2. Referencia de evaluación: 58,4 %, HELM MMLU v1.13.0. Contexto documentado: 2.048 tokens. Fecha: 12/12/2023; desarrollador: Microsoft. HELM MMLU; contexto de configuración 2.048. Fuentes de fecha, contexto y evaluación: https://www.microsoft.com/en-us/research/blog/phi-2-the-surprising-power-of-small-language-models/ ; https://huggingface.co/microsoft/phi-2/raw/main/config.json ; https://storage.googleapis.com/crfm-helm-public/mmlu/benchmark_output/releases/v1.13.0/groups/mmlu.json. Revisión técnica: 21/10/2026. Inteligencia jugable 10/58: posición editorial aceptada por el autor para ilustrar la mecánica de KARTA3."
+    },
+    {
+      "id": "gemini-15-pro",
+      "name": "Gemini 1.5 Pro",
+      "characteristic": "Google",
+      "imageRef": "imagenes/cartas/gemini-15-pro.webp",
+      "imageAlt": "Logotipo de Google centrado sobre fondo marfil con diagonales en tono azul, con marco marrón oscuro de doble línea, con el trazo exterior más grueso.",
+      "values": {
+        "atributo1": {
+          "playValue": 18,
+          "displayValue": "15/02/2024",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 29,
+          "displayValue": "29",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 57,
+          "displayValue": "2,097M",
+          "unit": "tk"
+        }
+      },
+      "roundAttribute": "atributo2",
+      "note": "Variante: Gemini 1.5 Pro, evaluación original TIGER. Referencia de evaluación: 69,03 %, MMLU-Pro, tabla original TIGER-AI-Lab. Contexto de referencia: 2.097.152 tokens; la fuente declara 2M y esta edición acepta la cifra indicada como convención editorial para el juego. Fecha: 15/02/2024; desarrollador: Google. Los 2M se hicieron generales el 27/06/2024, después del anuncio de febrero. La conversión a 2.097.152 se acepta como referencia editorial; la URL de la ficha antigua ahora redirige. Fuentes de fecha, contexto y evaluación: https://blog.google/technology/ai/google-gemini-next-generation-model-february-2024/ ; https://ai.google.dev/gemini-api/docs/changelog ; https://github.com/TIGER-AI-Lab/MMLU-Pro/blob/main/README.md. Revisión técnica: 21/10/2026. Inteligencia jugable 29/58: posición editorial aceptada por el autor para ilustrar la mecánica de KARTA3."
+    },
+    {
+      "id": "gemma-7b",
+      "name": "Gemma 7B",
+      "characteristic": "Google",
+      "imageRef": "imagenes/cartas/gemma-7b.webp",
+      "imageAlt": "Logotipo de Google centrado sobre fondo marfil con escalones en tono azul, con marco marrón oscuro de doble línea, con el trazo exterior más grueso.",
+      "values": {
+        "atributo1": {
+          "playValue": 19,
+          "displayValue": "21/02/2024",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 12,
+          "displayValue": "12",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 13,
+          "displayValue": "8.192",
+          "unit": "tk"
+        }
+      },
+      "roundAttribute": "atributo3",
+      "note": "Variante: Gemma (7B), base. Referencia de evaluación: 66,1 %, HELM MMLU v1.13.0. Contexto documentado: 8.192 tokens. Fecha: 21/02/2024; desarrollador: Google. El resultado HELM es del modelo base. La configuración de Google declara una secuencia de 8.192. Fuentes de fecha, contexto y evaluación: https://blog.google/technology/developers/gemma-open-models/ ; https://raw.githubusercontent.com/google/gemma_pytorch/main/gemma/config.py ; https://storage.googleapis.com/crfm-helm-public/mmlu/benchmark_output/releases/v1.13.0/groups/mmlu.json. Revisión técnica: 21/10/2026. Inteligencia jugable 12/58: posición editorial aceptada por el autor para ilustrar la mecánica de KARTA3."
+    },
+    {
+      "id": "claude-3-opus",
+      "name": "Claude 3 Opus",
+      "characteristic": "Anthropic",
+      "imageRef": "imagenes/cartas/claude-3-opus.webp",
+      "imageAlt": "Logotipo de Anthropic centrado sobre fondo marfil con escalones en tono terracota, con marco marrón oscuro de doble línea, con el trazo exterior más grueso.",
+      "values": {
+        "atributo1": {
+          "playValue": 20,
+          "displayValue": "04/03/2024",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 28,
+          "displayValue": "28",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 37,
+          "displayValue": "200.000",
+          "unit": "tk"
+        }
+      },
+      "roundAttribute": "atributo1",
+      "note": "Variante: claude-3-opus-20240229. Referencia de evaluación: 68,45 %, MMLU-Pro, tabla original TIGER-AI-Lab. Contexto documentado: 200.000 tokens. Fecha: 04/03/2024; desarrollador: Anthropic. MMLU-Pro original del evaluador TIGER; fecha de lanzamiento público distinta de la fecha interna del snapshot. Fuentes de fecha, contexto y evaluación: https://www.anthropic.com/news/claude-3-family ; https://www.anthropic.com/news/claude-3-family ; https://github.com/TIGER-AI-Lab/MMLU-Pro/blob/main/README.md. Revisión técnica: 21/10/2026. Inteligencia jugable 28/58: posición editorial aceptada por el autor para ilustrar la mecánica de KARTA3."
+    },
+    {
+      "id": "claude-3-haiku",
+      "name": "Claude 3 Haiku",
+      "characteristic": "Anthropic",
+      "imageRef": "imagenes/cartas/claude-3-haiku.webp",
+      "imageAlt": "Logotipo de Anthropic centrado sobre fondo marfil con ondas en tono terracota, con marco marrón oscuro de doble línea, con el trazo exterior más grueso.",
+      "values": {
+        "atributo1": {
+          "playValue": 21,
+          "displayValue": "13/03/2024",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 19,
+          "displayValue": "19",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 38,
+          "displayValue": "200.000",
+          "unit": "tk"
+        }
+      },
+      "roundAttribute": "atributo2",
+      "note": "Variante: Claude 3 Haiku (20240307). Referencia de evaluación: 73,8 %, HELM MMLU v1.13.0. Contexto documentado: 200.000 tokens. Fecha: 13/03/2024; desarrollador: Anthropic. La disponibilidad pública es el 13/03; HELM identifica el snapshot 20240307. Fuentes de fecha, contexto y evaluación: https://www.anthropic.com/news/claude-3-haiku ; https://www.anthropic.com/news/claude-3-family ; https://storage.googleapis.com/crfm-helm-public/mmlu/benchmark_output/releases/v1.13.0/groups/mmlu.json. Revisión técnica: 21/10/2026. Inteligencia jugable 19/58: posición editorial aceptada por el autor para ilustrar la mecánica de KARTA3."
+    },
+    {
+      "id": "dbrx-instruct",
+      "name": "DBRX Instruct",
+      "characteristic": "Databricks",
+      "imageRef": "imagenes/cartas/dbrx-instruct.webp",
+      "imageAlt": "Logotipo de Databricks centrado sobre fondo marfil con malla en tono coral, con marco marrón oscuro de doble línea, con el trazo exterior más grueso.",
+      "values": {
+        "atributo1": {
+          "playValue": 22,
+          "displayValue": "27/03/2024",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 18,
+          "displayValue": "18",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 19,
+          "displayValue": "32.768",
+          "unit": "tk"
+        }
+      },
+      "roundAttribute": "atributo3",
+      "note": "Variante: DBRX Instruct. Referencia de evaluación: 73,7 %, MMLU comunicado por fabricante [OF]. Contexto documentado: 32.768 tokens. Fecha: 27/03/2024; desarrollador: Databricks. MMLU 5-shot 73,7 en el anuncio del fabricante; ventana anunciada de 32K. Fuentes de fecha, contexto y evaluación: https://www.databricks.com/blog/introducing-dbrx-new-state-art-open-llm ; https://www.databricks.com/blog/introducing-dbrx-new-state-art-open-llm ; https://www.databricks.com/blog/introducing-dbrx-new-state-art-open-llm. Revisión técnica: 21/10/2026. Inteligencia jugable 18/58: posición editorial aceptada por el autor para ilustrar la mecánica de KARTA3."
+    },
+    {
+      "id": "command-r-plus",
+      "name": "Command R+",
+      "characteristic": "Cohere",
+      "imageRef": "imagenes/cartas/command-r-plus.webp",
+      "imageAlt": "Logotipo de Cohere centrado sobre fondo marfil con abanico en tono verde, con marco marrón oscuro de doble línea, con el trazo exterior más grueso.",
+      "values": {
+        "atributo1": {
+          "playValue": 23,
+          "displayValue": "04/04/2024",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 21,
+          "displayValue": "21",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 22,
+          "displayValue": "128.000",
+          "unit": "tk"
+        }
+      },
+      "roundAttribute": "atributo1",
+      "note": "Variante: c4ai-command-r-plus, abril de 2024. Referencia de evaluación: 75,7 %, MMLU comunicado por fabricante [OF]. Contexto de referencia: 128.000 tokens; la fuente declara 128K y esta edición acepta la cifra indicada como convención editorial para el juego. Fecha: 04/04/2024; desarrollador: Cohere. MMLU 75,7 de su ficha; contexto anunciado 128K. Los 128.000 de API y la notación 128K de pesos no prueban identidad exacta entre despliegues. Fuentes de fecha, contexto y evaluación: https://cohere.com/blog/command-r-plus-microsoft-azure ; https://huggingface.co/CohereForAI/c4ai-command-r-plus ; https://huggingface.co/CohereForAI/c4ai-command-r-plus. Revisión técnica: 21/10/2026. Inteligencia jugable 21/58: posición editorial aceptada por el autor para ilustrar la mecánica de KARTA3."
+    },
+    {
+      "id": "llama-3-70b",
+      "name": "Llama 3 70B Instruct",
+      "characteristic": "Meta",
+      "imageRef": "imagenes/cartas/llama-3-70b.webp",
+      "imageAlt": "Logotipo de Meta centrado sobre fondo marfil con circuitos en tono azul, con marco marrón oscuro de doble línea, con el trazo exterior más grueso.",
+      "values": {
+        "atributo1": {
+          "playValue": 24,
+          "displayValue": "18/04/2024",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 23,
+          "displayValue": "23",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 14,
+          "displayValue": "8.192",
+          "unit": "tk"
+        }
+      },
+      "roundAttribute": "atributo1",
+      "note": "Variante: Llama-3-70B-Instruct. Referencia de evaluación: 56,2 %, MMLU-Pro, tabla original TIGER-AI-Lab. Contexto documentado: 8.192 tokens. Fecha: 18/04/2024; desarrollador: Meta. Se contrasta la variante Instruct; MMLU-Pro original TIGER, no modelo base. Fuentes de fecha, contexto y evaluación: https://github.com/meta-llama/llama-models/blob/main/models/llama3/MODEL_CARD.md ; https://github.com/meta-llama/llama-models/blob/main/models/llama3/MODEL_CARD.md ; https://github.com/TIGER-AI-Lab/MMLU-Pro/blob/main/README.md. Revisión técnica: 21/10/2026. Inteligencia jugable 23/58: posición editorial aceptada por el autor para ilustrar la mecánica de KARTA3."
+    },
+    {
+      "id": "phi-3-mini-128k",
+      "name": "Phi-3 Mini 128K",
+      "characteristic": "Microsoft",
+      "imageRef": "imagenes/cartas/phi-3-mini-128k.webp",
+      "imageAlt": "Logotipo de Microsoft centrado sobre fondo marfil con orbitas en tono turquesa, con marco marrón oscuro de doble línea, con el trazo exterior más grueso.",
+      "values": {
+        "atributo1": {
+          "playValue": 25,
+          "displayValue": "23/04/2024",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 13,
+          "displayValue": "13",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 25,
+          "displayValue": "131.072",
+          "unit": "tk"
+        }
+      },
+      "roundAttribute": "atributo3",
+      "note": "Variante: Phi-3-mini-128k-instruct, versión original. Referencia de evaluación: 68,1 %, MMLU comunicado por fabricante [OF]. Contexto documentado: 131.072 tokens. Fecha: 23/04/2024; desarrollador: Microsoft. 68,1 es la columna Original de la ficha; la actualización de junio publica 69,7. Fuentes de fecha, contexto y evaluación: https://news.microsoft.com/source/features/ai/the-phi-3-small-language-models-with-big-potential/ ; https://huggingface.co/microsoft/Phi-3-mini-128k-instruct/raw/main/config.json ; https://huggingface.co/microsoft/Phi-3-mini-128k-instruct/raw/main/README.md. Revisión técnica: 21/10/2026. Inteligencia jugable 13/58: posición editorial aceptada por el autor para ilustrar la mecánica de KARTA3."
+    },
+    {
+      "id": "deepseek-v2-chat",
+      "name": "DeepSeek V2 Chat",
+      "characteristic": "DeepSeek",
+      "imageRef": "imagenes/cartas/deepseek-v2-chat.webp",
+      "imageAlt": "Logotipo de DeepSeek centrado sobre fondo marfil con arcos en tono azul violeta, con marco marrón oscuro de doble línea, con el trazo exterior más grueso.",
+      "values": {
+        "atributo1": {
+          "playValue": 26,
+          "displayValue": "06/05/2024",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 22,
+          "displayValue": "22",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 26,
+          "displayValue": "131.072",
+          "unit": "tk"
+        }
+      },
+      "roundAttribute": "atributo2",
+      "note": "Variante: DeepSeek-V2-Chat (RL), mayo de 2024. Referencia de evaluación: 54,81 %, MMLU-Pro, tabla original TIGER-AI-Lab. Contexto de referencia: 131.072 tokens; la fuente declara 128K y esta edición acepta la cifra indicada como convención editorial para el juego. Fecha: 06/05/2024; desarrollador: DeepSeek. El README público ya estaba disponible el 06/05/2024. La ficha anuncia 128K, mientras config.json contiene 163.840 posiciones; no son límites intercambiables. Fuentes de fecha, contexto y evaluación: https://github.com/deepseek-ai/DeepSeek-V2/commit/e23eeb51a8eaef96601f4074a0008c20c926d762 ; https://huggingface.co/deepseek-ai/DeepSeek-V2-Chat/raw/main/README.md ; https://github.com/TIGER-AI-Lab/MMLU-Pro/blob/main/README.md. Revisión técnica: 21/10/2026. Inteligencia jugable 22/58: posición editorial aceptada por el autor para ilustrar la mecánica de KARTA3."
+    },
+    {
+      "id": "gpt-4o",
+      "name": "GPT-4o",
+      "characteristic": "OpenAI",
+      "imageRef": "imagenes/cartas/gpt-4o.webp",
+      "imageAlt": "Logotipo de OpenAI centrado sobre fondo marfil con malla en tono verde grisáceo, con marco marrón oscuro de doble línea, con el trazo exterior más grueso.",
+      "values": {
+        "atributo1": {
+          "playValue": 27,
+          "displayValue": "13/05/2024",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 31,
+          "displayValue": "31",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 23,
+          "displayValue": "128.000",
+          "unit": "tk"
+        }
+      },
+      "roundAttribute": "atributo3",
+      "note": "Variante: GPT-4o, evaluación original TIGER. Referencia de evaluación: 72,55 %, MMLU-Pro, tabla original TIGER-AI-Lab. Contexto documentado: 128.000 tokens. Fecha: 13/05/2024; desarrollador: OpenAI. La cifra pertenece a la primera evaluación del repositorio, no a las revisiones de agosto o noviembre. Fuentes de fecha, contexto y evaluación: https://openai.com/index/hello-gpt-4o/ ; https://developers.openai.com/api/docs/models/gpt-4o.md ; https://github.com/TIGER-AI-Lab/MMLU-Pro/blob/main/README.md. Revisión técnica: 21/10/2026. Inteligencia jugable 31/58: posición editorial aceptada por el autor para ilustrar la mecánica de KARTA3."
+    },
+    {
+      "id": "claude-35-sonnet",
+      "name": "Claude 3.5 Sonnet",
+      "characteristic": "Anthropic",
+      "imageRef": "imagenes/cartas/claude-35-sonnet.webp",
+      "imageAlt": "Logotipo de Anthropic centrado sobre fondo marfil con diagonales en tono terracota, con marco marrón oscuro de doble línea, con el trazo exterior más grueso.",
+      "values": {
+        "atributo1": {
+          "playValue": 28,
+          "displayValue": "20/06/2024",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 37,
+          "displayValue": "37",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 39,
+          "displayValue": "200.000",
+          "unit": "tk"
+        }
+      },
+      "roundAttribute": "atributo2",
+      "note": "Variante: Claude 3.5 Sonnet, junio de 2024. Referencia de evaluación: 76,12 %, MMLU-Pro, tabla original TIGER-AI-Lab. Contexto documentado: 200.000 tokens. Fecha: 20/06/2024; desarrollador: Anthropic. MMLU-Pro original TIGER; no sustituir por la revisión 20241022. Fuentes de fecha, contexto y evaluación: https://www.anthropic.com/news/claude-3-5-sonnet ; https://www.anthropic.com/news/claude-3-5-sonnet ; https://github.com/TIGER-AI-Lab/MMLU-Pro/blob/main/README.md. Revisión técnica: 21/10/2026. Inteligencia jugable 37/58: posición editorial aceptada por el autor para ilustrar la mecánica de KARTA3."
+    },
+    {
+      "id": "gemma-2-27b",
+      "name": "Gemma 2 27B",
+      "characteristic": "Google",
+      "imageRef": "imagenes/cartas/gemma-2-27b.webp",
+      "imageAlt": "Logotipo de Google centrado sobre fondo marfil con arcos en tono azul, con marco marrón oscuro de doble línea, con el trazo exterior más grueso.",
+      "values": {
+        "atributo1": {
+          "playValue": 29,
+          "displayValue": "27/06/2024",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 20,
+          "displayValue": "20",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 15,
+          "displayValue": "8.192",
+          "unit": "tk"
+        }
+      },
+      "roundAttribute": "atributo3",
+      "note": "Variante: Gemma 2 27B, preentrenado. Referencia de evaluación: 75,2 %, MMLU, tabla 12 del informe Gemma 2, modelo base. Contexto documentado: 8.192 tokens. Fecha: 27/06/2024; desarrollador: Google. 75,2 aparece en la tabla 12 del informe de Google, evaluación HF del modelo base; no variante IT. Fuentes de fecha, contexto y evaluación: https://blog.google/technology/developers/google-gemma-2/ ; https://storage.googleapis.com/deepmind-media/gemma/gemma-2-report.pdf ; https://storage.googleapis.com/deepmind-media/gemma/gemma-2-report.pdf. Revisión técnica: 21/10/2026. Inteligencia jugable 20/58: posición editorial aceptada por el autor para ilustrar la mecánica de KARTA3."
+    },
+    {
+      "id": "llama-31-405b",
+      "name": "Llama 3.1 405B Instruct",
+      "characteristic": "Meta",
+      "imageRef": "imagenes/cartas/llama-31-405b.webp",
+      "imageAlt": "Logotipo de Meta centrado sobre fondo marfil con malla en tono azul, con marco marrón oscuro de doble línea, con el trazo exterior más grueso.",
+      "values": {
+        "atributo1": {
+          "playValue": 30,
+          "displayValue": "23/07/2024",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 33,
+          "displayValue": "33",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 27,
+          "displayValue": "131.072",
+          "unit": "tk"
+        }
+      },
+      "roundAttribute": "atributo3",
+      "note": "Variante: Llama 3.1 405B Instruct. Referencia de evaluación: 73,3 %, MMLU-Pro CoT 5-shot, macro_avg/acc, Meta. Contexto de referencia: 131.072 tokens; la fuente declara 128K y esta edición acepta la cifra indicada como convención editorial para el juego. Fecha: 23/07/2024; desarrollador: Meta. MMLU-Pro CoT 5-shot, macro_avg/acc: 73,3. Contexto anunciado 128K. Fuentes de fecha, contexto y evaluación: https://github.com/meta-llama/llama-models/blob/main/models/llama3_1/MODEL_CARD.md ; https://github.com/meta-llama/llama-models/blob/main/models/llama3_1/MODEL_CARD.md ; https://github.com/meta-llama/llama-models/blob/main/models/llama3_1/MODEL_CARD.md. Revisión técnica: 21/10/2026. Inteligencia jugable 33/58: posición editorial aceptada por el autor para ilustrar la mecánica de KARTA3."
+    },
+    {
+      "id": "mistral-large-2",
+      "name": "Mistral Large 2",
+      "characteristic": "Mistral AI",
+      "imageRef": "imagenes/cartas/mistral-large-2.webp",
+      "imageAlt": "Logotipo de Mistral AI centrado sobre fondo marfil con malla en tono ámbar, con marco marrón oscuro de doble línea, con el trazo exterior más grueso.",
+      "values": {
+        "atributo1": {
+          "playValue": 31,
+          "displayValue": "24/07/2024",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 27,
+          "displayValue": "27",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 28,
+          "displayValue": "131.072",
+          "unit": "tk"
+        }
+      },
+      "roundAttribute": "atributo2",
+      "note": "Variante: Mistral Large 2, preentrenado. Referencia de evaluación: 84,0 %, MMLU comunicado por fabricante [OF]. Contexto de referencia: 131.072 tokens; la fuente declara 128K y esta edición acepta la cifra indicada como convención editorial para el juego. Fecha: 24/07/2024; desarrollador: Mistral AI. 84,0 es el modelo preentrenado en el anuncio de Mistral. Contexto anunciado 128K; no atribuir esa puntuación al Instruct 2407. Fuentes de fecha, contexto y evaluación: https://mistral.ai/news/mistral-large-2407/ ; https://mistral.ai/news/mistral-large-2407/ ; https://mistral.ai/news/mistral-large-2407/. Revisión técnica: 21/10/2026. Inteligencia jugable 27/58: posición editorial aceptada por el autor para ilustrar la mecánica de KARTA3."
+    },
+    {
+      "id": "grok-2",
+      "name": "Grok-2",
+      "characteristic": "xAI",
+      "imageRef": "imagenes/cartas/grok-2.webp",
+      "imageAlt": "Logotipo de xAI centrado sobre fondo marfil con ondas en tono gris azulado, con marco marrón oscuro de doble línea, con el trazo exterior más grueso.",
+      "values": {
+        "atributo1": {
+          "playValue": 32,
+          "displayValue": "13/08/2024",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 35,
+          "displayValue": "35",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 29,
+          "displayValue": "131.072",
+          "unit": "tk"
+        }
+      },
+      "roundAttribute": "atributo1",
+      "note": "Variante: Grok-2 Beta; contexto de grok-2-1212. Referencia de evaluación: 75,5 %, MMLU-Pro (TIGER-Lab o recopilación identificada) [MP]. Contexto documentado: 131.072 tokens. Fecha: 13/08/2024; desarrollador: xAI. MMLU-Pro 75,5 con 0-shot CoT. Contexto 131.072 de la revisión API de diciembre, no probado para la beta de agosto. Fuentes de fecha, contexto y evaluación: https://x.ai/news/grok-2 ; https://docs.x.ai/developers/rest-api-reference/management/auth ; https://x.ai/news/grok-2. Revisión técnica: 21/10/2026. Inteligencia jugable 35/58: posición editorial aceptada por el autor para ilustrar la mecánica de KARTA3."
+    },
+    {
+      "id": "o1-preview",
+      "name": "o1-preview",
+      "characteristic": "OpenAI",
+      "imageRef": "imagenes/cartas/o1-preview.webp",
+      "imageAlt": "Logotipo de OpenAI centrado sobre fondo marfil con escalones en tono verde grisáceo, con marco marrón oscuro de doble línea, con el trazo exterior más grueso.",
+      "values": {
+        "atributo1": {
+          "playValue": 33,
+          "displayValue": "12/09/2024",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 49,
+          "displayValue": "49",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 24,
+          "displayValue": "128.000",
+          "unit": "tk"
+        }
+      },
+      "roundAttribute": "atributo3",
+      "note": "Variante: o1-preview. Referencia de evaluación: 92,3 %, MMLU pass@1, OpenAI. Contexto documentado: 128.000 tokens. Fecha: 12/09/2024; desarrollador: OpenAI. MMLU pass@1 92,3 de OpenAI. No confundir con o1 final (90,8 en esa tabla). Fuentes de fecha, contexto y evaluación: https://openai.com/index/learning-to-reason-with-llms/ ; https://developers.openai.com/api/docs/models/o1-preview.md ; https://openai.com/index/learning-to-reason-with-llms/. Revisión técnica: 21/10/2026. Inteligencia jugable 49/58: posición editorial aceptada por el autor para ilustrar la mecánica de KARTA3."
+    },
+    {
+      "id": "qwen-25-72b",
+      "name": "Qwen2.5 72B Instruct",
+      "characteristic": "Alibaba Cloud",
+      "imageRef": "imagenes/cartas/qwen-25-72b.webp",
+      "imageAlt": "Logotipo de Alibaba Cloud centrado sobre fondo marfil con malla en tono naranja, con marco marrón oscuro de doble línea, con el trazo exterior más grueso.",
+      "values": {
+        "atributo1": {
+          "playValue": 34,
+          "displayValue": "19/09/2024",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 26,
+          "displayValue": "26",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 30,
+          "displayValue": "131.072",
+          "unit": "tk"
+        }
+      },
+      "roundAttribute": "atributo3",
+      "note": "Variante: Qwen2.5 Instruct Turbo (72B), servido en HELM. Referencia de evaluación: 83,4 %, HELM MMLU v1.13.0. Contexto documentado: 131.072 tokens. Fecha: 19/09/2024; desarrollador: Alibaba Cloud. El 83,4 corresponde al servicio Instruct Turbo. Contexto de los pesos: 32.768 nativo y hasta 131.072 con YaRN. Fuentes de fecha, contexto y evaluación: https://qwenlm.github.io/blog/qwen2.5/ ; https://huggingface.co/Qwen/Qwen2.5-72B-Instruct/raw/main/README.md ; https://storage.googleapis.com/crfm-helm-public/mmlu/benchmark_output/releases/v1.13.0/groups/mmlu.json. Revisión técnica: 21/10/2026. Inteligencia jugable 26/58: posición editorial aceptada por el autor para ilustrar la mecánica de KARTA3."
+    },
+    {
+      "id": "llama-33-70b",
+      "name": "Llama 3.3 70B Instruct",
+      "characteristic": "Meta",
+      "imageRef": "imagenes/cartas/llama-33-70b.webp",
+      "imageAlt": "Logotipo de Meta centrado sobre fondo marfil con malla en tono azul, con marco marrón oscuro de doble línea, con el trazo exterior más grueso.",
+      "values": {
+        "atributo1": {
+          "playValue": 35,
+          "displayValue": "06/12/2024",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 30,
+          "displayValue": "30",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 31,
+          "displayValue": "131.072",
+          "unit": "tk"
+        }
+      },
+      "roundAttribute": "atributo1",
+      "note": "Variante: Llama 3.3 70B Instruct. Referencia de evaluación: 86,0 %, MMLU CoT 0-shot, macro_avg/acc, Meta. Contexto de referencia: 131.072 tokens; la fuente declara 128K y esta edición acepta la cifra indicada como convención editorial para el juego. Fecha: 06/12/2024; desarrollador: Meta. La ficha oficial fija 06/12/2024. MMLU CoT 0-shot, macro_avg/acc: 86,0; no 5-shot clásico. Fuentes de fecha, contexto y evaluación: https://github.com/meta-llama/llama-models/blob/main/models/llama3_3/MODEL_CARD.md ; https://github.com/meta-llama/llama-models/blob/main/models/llama3_3/MODEL_CARD.md ; https://github.com/meta-llama/llama-models/blob/main/models/llama3_3/MODEL_CARD.md. Revisión técnica: 21/10/2026. Inteligencia jugable 30/58: posición editorial aceptada por el autor para ilustrar la mecánica de KARTA3."
+    },
+    {
+      "id": "deepseek-v3",
+      "name": "DeepSeek V3",
+      "characteristic": "DeepSeek",
+      "imageRef": "imagenes/cartas/deepseek-v3.webp",
+      "imageAlt": "Logotipo de DeepSeek centrado sobre fondo marfil con orbitas en tono azul violeta, con marco marrón oscuro de doble línea, con el trazo exterior más grueso.",
+      "values": {
+        "atributo1": {
+          "playValue": 36,
+          "displayValue": "26/12/2024",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 36,
+          "displayValue": "36",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 32,
+          "displayValue": "131.072",
+          "unit": "tk"
+        }
+      },
+      "roundAttribute": "atributo1",
+      "note": "Variante: DeepSeek-V3, chat diciembre de 2024. Referencia de evaluación: 75,9 %, MMLU-Pro EM, ficha del fabricante. Contexto de referencia: 131.072 tokens; la fuente declara 128K y esta edición acepta la cifra indicada como convención editorial para el juego. Fecha: 26/12/2024; desarrollador: DeepSeek. MMLU-Pro EM 75,9 en tabla Chat; el modelo base tiene otra puntuación. Contexto anunciado 128K, config 163.840 no equivale al límite validado. Fuentes de fecha, contexto y evaluación: https://www.deepseek.com/en/news/deepseek-v3/ ; https://huggingface.co/deepseek-ai/DeepSeek-V3/raw/main/README.md ; https://huggingface.co/deepseek-ai/DeepSeek-V3/raw/main/README.md. Revisión técnica: 21/10/2026. Inteligencia jugable 36/58: posición editorial aceptada por el autor para ilustrar la mecánica de KARTA3."
+    },
+    {
+      "id": "deepseek-r1",
+      "name": "DeepSeek R1",
+      "characteristic": "DeepSeek",
+      "imageRef": "imagenes/cartas/deepseek-r1.webp",
+      "imageAlt": "Logotipo de DeepSeek centrado sobre fondo marfil con arcos en tono azul violeta, con marco marrón oscuro de doble línea, con el trazo exterior más grueso.",
+      "values": {
+        "atributo1": {
+          "playValue": 37,
+          "displayValue": "20/01/2025",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 48,
+          "displayValue": "48",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 33,
+          "displayValue": "131.072",
+          "unit": "tk"
+        }
+      },
+      "roundAttribute": "atributo2",
+      "note": "Variante: DeepSeek-R1 original, enero de 2025. Referencia de evaluación: 84,0 %, MMLU-Pro EM, fabricante. Contexto de referencia: 131.072 tokens; la fuente declara 128K y esta edición acepta la cifra indicada como convención editorial para el juego. Fecha: 20/01/2025; desarrollador: DeepSeek. Se sustituye la referencia secundaria 84,9 por MMLU-Pro EM 84,0 del fabricante. No R1-0528. Fuentes de fecha, contexto y evaluación: https://deepseek.com/en/news/deepseek-r1/ ; https://huggingface.co/deepseek-ai/DeepSeek-R1/raw/main/README.md ; https://huggingface.co/deepseek-ai/DeepSeek-R1/raw/main/README.md. Revisión técnica: 21/10/2026. Inteligencia jugable 48/58: posición editorial aceptada por el autor para ilustrar la mecánica de KARTA3."
+    },
+    {
+      "id": "o3-mini",
+      "name": "o3-mini",
+      "characteristic": "OpenAI",
+      "imageRef": "imagenes/cartas/o3-mini.webp",
+      "imageAlt": "Logotipo de OpenAI centrado sobre fondo marfil con diagonales en tono verde grisáceo, con marco marrón oscuro de doble línea, con el trazo exterior más grueso.",
+      "values": {
+        "atributo1": {
+          "playValue": 38,
+          "displayValue": "31/01/2025",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 39,
+          "displayValue": "39",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 40,
+          "displayValue": "200.000",
+          "unit": "tk"
+        }
+      },
+      "roundAttribute": "atributo1",
+      "note": "Variante: o3-mini-2025-01-31, evaluación Vals. Referencia de evaluación: 78,69 %, MMLU-Pro 5-shot CoT, Vals; effort no publicado. Contexto documentado: 200.000 tokens. Fecha: 31/01/2025; desarrollador: OpenAI. 78,69 confirmado en Vals, MMLU-Pro 5-shot CoT; la página no identifica el effort usado. No asignar high por inferencia. Fuentes de fecha, contexto y evaluación: https://developers.openai.com/api/docs/changelog.md ; https://developers.openai.com/api/docs/models/o3-mini.md ; https://www.vals.ai/benchmarks/mmlu_pro. Revisión técnica: 21/10/2026. Inteligencia jugable 39/58: posición editorial aceptada por el autor para ilustrar la mecánica de KARTA3."
+    },
+    {
+      "id": "gemini-20-flash",
+      "name": "Gemini 2.0 Flash",
+      "characteristic": "Google",
+      "imageRef": "imagenes/cartas/gemini-20-flash.webp",
+      "imageAlt": "Logotipo de Google centrado sobre fondo marfil con diagonales en tono azul, con marco marrón oscuro de doble línea, con el trazo exterior más grueso.",
+      "values": {
+        "atributo1": {
+          "playValue": 39,
+          "displayValue": "05/02/2025",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 38,
+          "displayValue": "38",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 51,
+          "displayValue": "1,049M",
+          "unit": "tk"
+        }
+      },
+      "roundAttribute": "atributo2",
+      "note": "Variante: Gemini 2.0 Flash; variante del 77,9 no resuelta. Referencia de evaluación: 77,9 %, MMLU-Pro, referencia histórica aceptada para esta demostración; ejecución primaria no acreditada. Contexto documentado: 1.048.576 tokens. Fecha: 05/02/2025; desarrollador: Google. La fecha es GA de Flash-001. Vals registra 77,38 para 001; no confirma el 77,9 de la recopilación ni prueba que sea erróneo bajo otro protocolo. Fuentes de fecha, contexto y evaluación: https://ai.google.dev/gemini-api/docs/changelog ; https://ai.google.dev/gemini-api/docs/models/gemini-2.0-flash ; https://evals.report/benchmarks/mmlu-pro?tab=scores. Revisión técnica: 21/10/2026. Inteligencia jugable 38/58: posición editorial aceptada por el autor para ilustrar la mecánica de KARTA3."
+    },
+    {
+      "id": "grok-3",
+      "name": "Grok 3",
+      "characteristic": "xAI",
+      "imageRef": "imagenes/cartas/grok-3.webp",
+      "imageAlt": "Logotipo de xAI centrado sobre fondo marfil con abanico en tono gris azulado, con marco marrón oscuro de doble línea, con el trazo exterior más grueso.",
+      "values": {
+        "atributo1": {
+          "playValue": 40,
+          "displayValue": "17/02/2025",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 40,
+          "displayValue": "40",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 45,
+          "displayValue": "1M",
+          "unit": "tk"
+        }
+      },
+      "roundAttribute": "atributo3",
+      "note": "Variante: Grok 3 Beta sin razonamiento. Referencia de evaluación: 79,9 %, MMLU-Pro (TIGER-Lab o recopilación identificada) [MP]. Contexto documentado: 1.000.000 tokens. Fecha: 17/02/2025; desarrollador: xAI. 79,9 MMLU-Pro y 1M anunciado confirmados por xAI. La API documenta 131.072; no trasladar el millón anunciado a todas las API. El blog es del 19/02; el 17/02 se acepta como referencia editorial de la presentación, sin fuente primaria fechada recuperada. Fuentes de fecha, contexto y evaluación: https://x.ai/news/grok-3 ; https://x.ai/news/grok-3 ; https://x.ai/news/grok-3. Revisión técnica: 21/10/2026. Inteligencia jugable 40/58: posición editorial aceptada por el autor para ilustrar la mecánica de KARTA3."
+    },
+    {
+      "id": "claude-37-sonnet",
+      "name": "Claude 3.7 Sonnet",
+      "characteristic": "Anthropic",
+      "imageRef": "imagenes/cartas/claude-37-sonnet.webp",
+      "imageAlt": "Logotipo de Anthropic centrado sobre fondo marfil con abanico en tono terracota, con marco marrón oscuro de doble línea, con el trazo exterior más grueso.",
+      "values": {
+        "atributo1": {
+          "playValue": 41,
+          "displayValue": "24/02/2025",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 46,
+          "displayValue": "46",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 41,
+          "displayValue": "200.000",
+          "unit": "tk"
+        }
+      },
+      "roundAttribute": "atributo2",
+      "note": "Variante: Claude 3.7 Sonnet; esfuerzo del 83,7 no confirmado. Referencia de evaluación: 83,7 %, MMLU-Pro, referencia histórica aceptada para esta demostración; ejecución primaria no acreditada. Contexto documentado: 200.000 tokens. Fecha: 24/02/2025; desarrollador: Anthropic. Vals separa Thinking 82,73 y Nonthinking 80,66. Esos runs no certifican el 83,7 heredado; falta registro primario de esa configuración. Fuentes de fecha, contexto y evaluación: https://www.anthropic.com/news/claude-3-7-sonnet ; https://www.anthropic.com/news/claude-3-7-sonnet ; https://evals.report/benchmarks/mmlu-pro?tab=scores. Revisión técnica: 21/10/2026. Inteligencia jugable 46/58: posición editorial aceptada por el autor para ilustrar la mecánica de KARTA3."
+    },
+    {
+      "id": "gemini-25-pro",
+      "name": "Gemini 2.5 Pro",
+      "characteristic": "Google",
+      "imageRef": "imagenes/cartas/gemini-25-pro.webp",
+      "imageAlt": "Logotipo de Google centrado sobre fondo marfil con ondas en tono azul, con marco marrón oscuro de doble línea, con el trazo exterior más grueso.",
+      "values": {
+        "atributo1": {
+          "playValue": 42,
+          "displayValue": "25/03/2025",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 50,
+          "displayValue": "50",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 52,
+          "displayValue": "1,049M",
+          "unit": "tk"
+        }
+      },
+      "roundAttribute": "atributo3",
+      "note": "Variante: Gemini 2.5 Pro, familia con revisiones de marzo y junio. Referencia de evaluación: 86,2 %, MMLU-Pro, referencia histórica aceptada para esta demostración; ejecución primaria no acreditada. Contexto documentado: 1.048.576 tokens. Fecha: 25/03/2025; desarrollador: Google. La fecha corresponde a experimental 03-25. Vals publica 84,06 para Pro Exp; el 86,2 heredado no está acreditado para esa revisión. No mezclar automáticamente resultados de junio con marzo. Fuentes de fecha, contexto y evaluación: https://ai.google.dev/gemini-api/docs/changelog ; https://ai.google.dev/gemini-api/docs/models/gemini-2.5-pro ; https://evals.report/benchmarks/mmlu-pro?tab=scores. Revisión técnica: 21/10/2026. Inteligencia jugable 50/58: posición editorial aceptada por el autor para ilustrar la mecánica de KARTA3."
+    },
+    {
+      "id": "llama-4-scout",
+      "name": "Llama 4 Scout",
+      "characteristic": "Meta",
+      "imageRef": "imagenes/cartas/llama-4-scout.webp",
+      "imageAlt": "Logotipo de Meta centrado sobre fondo marfil con escalones en tono azul, con marco marrón oscuro de doble línea, con el trazo exterior más grueso.",
+      "values": {
+        "atributo1": {
+          "playValue": 44,
+          "displayValue": "05/04/2025",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 34,
+          "displayValue": "34",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 58,
+          "displayValue": "10M",
+          "unit": "tk"
+        }
+      },
+      "roundAttribute": "atributo3",
+      "note": "Variante: Llama 4 Scout Instruct. Referencia de evaluación: 74,3 %, MMLU Pro, 0-shot macro_avg/acc, Meta. Contexto documentado: 10.000.000 tokens. Fecha: 05/04/2025; desarrollador: Meta. La ficha de Meta registra 74,3 MMLU Pro, 0-shot macro_avg/acc, frente a 75,2 de la recopilación. Contexto anunciado 10M; no implica que cada servidor lo ofrezca. Fuentes de fecha, contexto y evaluación: https://github.com/meta-llama/llama-models/blob/main/models/llama4/MODEL_CARD.md ; https://github.com/meta-llama/llama-models/blob/main/models/llama4/MODEL_CARD.md ; https://github.com/meta-llama/llama-models/blob/main/models/llama4/MODEL_CARD.md. Revisión técnica: 21/10/2026. Inteligencia jugable 34/58: posición editorial aceptada por el autor para ilustrar la mecánica de KARTA3."
+    },
+    {
+      "id": "llama-4-maverick",
+      "name": "Llama 4 Maverick",
+      "characteristic": "Meta",
+      "imageRef": "imagenes/cartas/llama-4-maverick.webp",
+      "imageAlt": "Logotipo de Meta centrado sobre fondo marfil con orbitas en tono azul, con marco marrón oscuro de doble línea, con el trazo exterior más grueso.",
+      "values": {
+        "atributo1": {
+          "playValue": 43,
+          "displayValue": "05/04/2025",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 43,
+          "displayValue": "43",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 46,
+          "displayValue": "1M",
+          "unit": "tk"
+        }
+      },
+      "roundAttribute": "atributo2",
+      "note": "Variante: Llama 4 Maverick Instruct. Referencia de evaluación: 80,5 %, MMLU Pro, 0-shot macro_avg/acc, Meta. Contexto documentado: 1.000.000 tokens. Fecha: 05/04/2025; desarrollador: Meta. La ficha de Meta registra 80,5 MMLU Pro, 0-shot macro_avg/acc, frente a 80,9 de la recopilación. Contexto anunciado 1M. Fuentes de fecha, contexto y evaluación: https://github.com/meta-llama/llama-models/blob/main/models/llama4/MODEL_CARD.md ; https://github.com/meta-llama/llama-models/blob/main/models/llama4/MODEL_CARD.md ; https://github.com/meta-llama/llama-models/blob/main/models/llama4/MODEL_CARD.md. Revisión técnica: 21/10/2026. Inteligencia jugable 43/58: posición editorial aceptada por el autor para ilustrar la mecánica de KARTA3."
+    },
+    {
+      "id": "gpt-41",
+      "name": "GPT-4.1",
+      "characteristic": "OpenAI",
+      "imageRef": "imagenes/cartas/gpt-41.webp",
+      "imageAlt": "Logotipo de OpenAI centrado sobre fondo marfil con ondas en tono verde grisáceo, con marco marrón oscuro de doble línea, con el trazo exterior más grueso.",
+      "values": {
+        "atributo1": {
+          "playValue": 45,
+          "displayValue": "14/04/2025",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 41,
+          "displayValue": "41",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 50,
+          "displayValue": "1,048M",
+          "unit": "tk"
+        }
+      },
+      "roundAttribute": "atributo1",
+      "note": "Variante: GPT-4.1. Referencia de evaluación: 80,6 %, MMLU-Pro, referencia histórica aceptada para esta demostración; ejecución primaria no acreditada. Contexto documentado: 1.047.576 tokens. Fecha: 14/04/2025; desarrollador: OpenAI. Contexto oficial exacto 1.047.576, sin corregirlo por analogía con Gemini. Vals registra 80,50, distinto del 80,6 heredado; falta identificar el run de esta última cifra. Fuentes de fecha, contexto y evaluación: https://openai.com/index/gpt-4-1/ ; https://developers.openai.com/api/docs/models/gpt-4.1.md ; https://evals.report/benchmarks/mmlu-pro?tab=scores. Revisión técnica: 21/10/2026. Inteligencia jugable 41/58: posición editorial aceptada por el autor para ilustrar la mecánica de KARTA3."
+    },
+    {
+      "id": "qwen-3-32b",
+      "name": "Qwen3 32B",
+      "characteristic": "Alibaba Cloud",
+      "imageRef": "imagenes/cartas/qwen-3-32b.webp",
+      "imageAlt": "Logotipo de Alibaba Cloud centrado sobre fondo marfil con ondas en tono naranja, con marco marrón oscuro de doble línea, con el trazo exterior más grueso.",
+      "values": {
+        "atributo1": {
+          "playValue": 46,
+          "displayValue": "29/04/2025",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 32,
+          "displayValue": "32",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 20,
+          "displayValue": "32.768",
+          "unit": "tk"
+        }
+      },
+      "roundAttribute": "atributo1",
+      "note": "Variante: Qwen3 32B, Non-reasoning. Referencia de evaluación: 7 puntos, Artificial Analysis Intelligence Index v4.3.2, consulta 21/10/2026; estimado. Contexto documentado: 32.768 tokens. Fecha: 29/04/2025; desarrollador: Alibaba Cloud. Anuncio del equipo del 29/04/2025. AA v4.3.2: 7 puntos estimados. Contexto nativo 32.768; YaRN 131.072 es otra configuración, no la elegida para esta carta. Fuentes de fecha, contexto y evaluación: https://qwenlm.github.io/blog/qwen3/ ; https://huggingface.co/Qwen/Qwen3-32B/raw/main/README.md ; https://artificialanalysis.ai/models/qwen3-32b-instruct. Revisión técnica: 21/10/2026. Inteligencia jugable 32/58: posición editorial aceptada por el autor para ilustrar la mecánica de KARTA3."
+    },
+    {
+      "id": "claude-opus-4",
+      "name": "Claude Opus 4",
+      "characteristic": "Anthropic",
+      "imageRef": "imagenes/cartas/claude-opus-4.webp",
+      "imageAlt": "Logotipo de Anthropic centrado sobre fondo marfil con abanico en tono terracota, con marco marrón oscuro de doble línea, con el trazo exterior más grueso.",
+      "values": {
+        "atributo1": {
+          "playValue": 47,
+          "displayValue": "22/05/2025",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 52,
+          "displayValue": "52",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 42,
+          "displayValue": "200.000",
+          "unit": "tk"
+        }
+      },
+      "roundAttribute": "atributo1",
+      "note": "Variante: Claude Opus 4; probablemente Thinking, presupuesto no acreditado. Referencia de evaluación: 87,3 %, MMLU-Pro, referencia histórica aceptada para esta demostración; ejecución primaria no acreditada. Contexto documentado: 200.000 tokens. Fecha: 22/05/2025; desarrollador: Anthropic. 87,3 aparece en recopilaciones para Thinking 16K, pero no se ha recuperado el run primario. Vals publica 86,17 para Nonthinking; no son variantes equivalentes. Se conserva contexto estándar del modelo servido en Bedrock. Fuentes de fecha, contexto y evaluación: https://www.anthropic.com/news/claude-4 ; https://docs.aws.amazon.com/bedrock/latest/userguide/model-card-anthropic-claude-opus-4.html ; https://evals.report/benchmarks/mmlu-pro?tab=scores. Revisión técnica: 21/10/2026. Inteligencia jugable 52/58: posición editorial aceptada por el autor para ilustrar la mecánica de KARTA3."
+    },
+    {
+      "id": "claude-sonnet-4",
+      "name": "Claude Sonnet 4",
+      "characteristic": "Anthropic",
+      "imageRef": "imagenes/cartas/claude-sonnet-4.webp",
+      "imageAlt": "Logotipo de Anthropic centrado sobre fondo marfil con diagonales en tono terracota, con marco marrón oscuro de doble línea, con el trazo exterior más grueso.",
+      "values": {
+        "atributo1": {
+          "playValue": 48,
+          "displayValue": "22/05/2025",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 47,
+          "displayValue": "47",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 43,
+          "displayValue": "200.000",
+          "unit": "tk"
+        }
+      },
+      "roundAttribute": "atributo3",
+      "note": "Variante: Claude Sonnet 4; probablemente Thinking, presupuesto no acreditado. Referencia de evaluación: 84,2 %, MMLU-Pro, referencia histórica aceptada para esta demostración; ejecución primaria no acreditada. Contexto documentado: 200.000 tokens. Fecha: 22/05/2025; desarrollador: Anthropic. 84,2 aparece en recopilaciones para Thinking. Vals publica 83,86 Thinking y 79,43 Nonthinking; falta el run primario del 84,2. Se conserva contexto estándar de Bedrock; no la beta 1M de agosto de 2025, retirada en abril de 2026. Fuentes de fecha, contexto y evaluación: https://www.anthropic.com/news/claude-4 ; https://docs.aws.amazon.com/bedrock/latest/userguide/model-card-anthropic-claude-sonnet-4.html ; https://evals.report/benchmarks/mmlu-pro?tab=scores. Revisión técnica: 21/10/2026. Inteligencia jugable 47/58: posición editorial aceptada por el autor para ilustrar la mecánica de KARTA3."
+    },
+    {
+      "id": "gemini-25-flash",
+      "name": "Gemini 2.5 Flash",
+      "characteristic": "Google",
+      "imageRef": "imagenes/cartas/gemini-25-flash.webp",
+      "imageAlt": "Logotipo de Google centrado sobre fondo marfil con escalones en tono azul, con marco marrón oscuro de doble línea, con el trazo exterior más grueso.",
+      "values": {
+        "atributo1": {
+          "playValue": 49,
+          "displayValue": "17/06/2025",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 45,
+          "displayValue": "45",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 53,
+          "displayValue": "1,049M",
+          "unit": "tk"
+        }
+      },
+      "roundAttribute": "atributo1",
+      "note": "Variante: Gemini 2.5 Flash estable; variante del 83,2 no acreditada. Referencia de evaluación: 83,2 %, MMLU-Pro, referencia histórica aceptada para esta demostración; ejecución primaria no acreditada. Contexto documentado: 1.048.576 tokens. Fecha: 17/06/2025; desarrollador: Google. La fecha es GA del 17/06/2025. El 83,2 heredado aparece asociado a Thinking en recopilaciones, sin presupuesto ni revisión primaria acreditados. Fuentes de fecha, contexto y evaluación: https://ai.google.dev/gemini-api/docs/changelog ; https://ai.google.dev/gemini-api/docs/models/gemini-2.5-flash ; https://evals.report/benchmarks/mmlu-pro?tab=scores. Revisión técnica: 21/10/2026. Inteligencia jugable 45/58: posición editorial aceptada por el autor para ilustrar la mecánica de KARTA3."
+    },
+    {
+      "id": "kimi-k2",
+      "name": "Kimi K2",
+      "characteristic": "Moonshot AI",
+      "imageRef": "imagenes/cartas/kimi-k2.webp",
+      "imageAlt": "Logotipo de Moonshot AI centrado sobre fondo marfil con abanico en tono violeta, con marco marrón oscuro de doble línea, con el trazo exterior más grueso.",
+      "values": {
+        "atributo1": {
+          "playValue": 50,
+          "displayValue": "11/07/2025",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 44,
+          "displayValue": "44",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 34,
+          "displayValue": "131.072",
+          "unit": "tk"
+        }
+      },
+      "roundAttribute": "atributo2",
+      "note": "Variante: Kimi-K2-Instruct original, julio de 2025. Referencia de evaluación: 81,1 %, MMLU-Pro EM, ficha del fabricante. Contexto documentado: 131.072 tokens. Fecha: 11/07/2025; desarrollador: Moonshot AI. MMLU-Pro 81,1 del fabricante. El registro de HF fue creado el 11/07/2025; corrobora la fecha conservada. No Instruct-0905 ni Thinking. Fuentes de fecha, contexto y evaluación: https://huggingface.co/api/models/moonshotai/Kimi-K2-Instruct ; https://huggingface.co/moonshotai/Kimi-K2-Instruct/raw/main/config.json ; https://huggingface.co/moonshotai/Kimi-K2-Instruct/raw/main/README.md. Revisión técnica: 21/10/2026. Inteligencia jugable 44/58: posición editorial aceptada por el autor para ilustrar la mecánica de KARTA3."
+    },
+    {
+      "id": "gpt-oss-120b-high",
+      "name": "gpt-oss-120b (high)",
+      "characteristic": "OpenAI",
+      "imageRef": "imagenes/cartas/gpt-oss-120b-high.webp",
+      "imageAlt": "Logotipo de OpenAI centrado sobre fondo marfil con malla en tono verde grisáceo, con marco marrón oscuro de doble línea, con el trazo exterior más grueso.",
+      "values": {
+        "atributo1": {
+          "playValue": 51,
+          "displayValue": "05/08/2025",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 42,
+          "displayValue": "42",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 35,
+          "displayValue": "131.072",
+          "unit": "tk"
+        }
+      },
+      "roundAttribute": "atributo3",
+      "note": "Variante: gpt-oss-120b, effort high. Referencia de evaluación: 12 puntos, Artificial Analysis Intelligence Index v4.3.2, consulta 21/10/2026. Contexto documentado: 131.072 tokens. Fecha: 05/08/2025; desarrollador: OpenAI. AA v4.3.2, 12 puntos consultados el 21/10/2026; no puntuación histórica del día de lanzamiento. Fuentes de fecha, contexto y evaluación: https://developers.openai.com/api/docs/changelog.md ; https://developers.openai.com/api/docs/models/gpt-oss-120b.md ; https://artificialanalysis.ai/models/gpt-oss-120b. Revisión técnica: 21/10/2026. Inteligencia jugable 42/58: posición editorial aceptada por el autor para ilustrar la mecánica de KARTA3."
+    },
+    {
+      "id": "gpt-5-high",
+      "name": "GPT-5 (high)",
+      "characteristic": "OpenAI",
+      "imageRef": "imagenes/cartas/gpt-5-high.webp",
+      "imageAlt": "Logotipo de OpenAI centrado sobre fondo marfil con orbitas en tono verde grisáceo, con marco marrón oscuro de doble línea, con el trazo exterior más grueso.",
+      "values": {
+        "atributo1": {
+          "playValue": 52,
+          "displayValue": "07/08/2025",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 51,
+          "displayValue": "51",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 44,
+          "displayValue": "400.000",
+          "unit": "tk"
+        }
+      },
+      "roundAttribute": "atributo1",
+      "note": "Variante: GPT-5, effort high. Referencia de evaluación: 23 puntos, Artificial Analysis Intelligence Index v4.3.2, consulta 21/10/2026; estimado. Contexto documentado: 400.000 tokens. Fecha: 07/08/2025; desarrollador: OpenAI. AA v4.3.2, 23 puntos estimados en la consulta del 21/10/2026; no medida histórica de agosto de 2025. Fuentes de fecha, contexto y evaluación: https://developers.openai.com/api/docs/changelog.md ; https://developers.openai.com/api/docs/models/gpt-5.md ; https://artificialanalysis.ai/models/gpt-5. Revisión técnica: 21/10/2026. Inteligencia jugable 51/58: posición editorial aceptada por el autor para ilustrar la mecánica de KARTA3."
+    },
+    {
+      "id": "gemini-31-pro",
+      "name": "Gemini 3.1 Pro Preview",
+      "characteristic": "Google",
+      "imageRef": "imagenes/cartas/gemini-31-pro.webp",
+      "imageAlt": "Logotipo de Google centrado sobre fondo marfil con arcos en tono azul, con marco marrón oscuro de doble línea, con el trazo exterior más grueso.",
+      "values": {
+        "atributo1": {
+          "playValue": 53,
+          "displayValue": "19/02/2026",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 53,
+          "displayValue": "53",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 54,
+          "displayValue": "1,049M",
+          "unit": "tk"
+        }
+      },
+      "roundAttribute": "atributo3",
+      "note": "Variante: Gemini 3.1 Pro Preview. Referencia de evaluación: 30 puntos, Artificial Analysis Intelligence Index v4.3.2, consulta 21/10/2026. Contexto documentado: 1.048.576 tokens. Fecha: 19/02/2026; desarrollador: Google. AA v4.3.2, 30 puntos en la consulta del 21/10/2026; no confundir con el 90,99 porcentual de MMLU-Pro de Vals. Fuentes de fecha, contexto y evaluación: https://ai.google.dev/gemini-api/docs/changelog ; https://ai.google.dev/gemini-api/docs/models/gemini-3.1-pro-preview ; https://artificialanalysis.ai/models/gemini-3-1-pro-preview. Revisión técnica: 21/10/2026. Inteligencia jugable 53/58: posición editorial aceptada por el autor para ilustrar la mecánica de KARTA3."
+    },
+    {
+      "id": "gpt-6-astra-max",
+      "name": "GPT-6 Astra (max)",
+      "characteristic": "OpenAI",
+      "imageRef": "imagenes/cartas/gpt-6-astra-max.webp",
+      "imageAlt": "Logotipo de OpenAI centrado sobre fondo marfil con ondas en tono verde grisáceo, con marco marrón oscuro de doble línea, con el trazo exterior más grueso.",
+      "values": {
+        "atributo1": {
+          "playValue": 54,
+          "displayValue": "03/09/2026",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 56,
+          "displayValue": "56",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 55,
+          "displayValue": "1,05M",
+          "unit": "tk"
+        }
+      },
+      "roundAttribute": "atributo2",
+      "note": "Variante: GPT-6 Astra, effort max. Referencia de evaluación: 53 puntos, Artificial Analysis Intelligence Index v4.3.2, consulta 21/10/2026. Contexto documentado: 1.050.000 tokens. Fecha: 03/09/2026; desarrollador: OpenAI. Contexto oficial total 1.050.000; entrada máxima 922.000 y salida máxima 128.000. AA v4.3.2: 53 puntos en max. Fuentes de fecha, contexto y evaluación: https://developers.openai.com/api/docs/changelog.md ; https://developers.openai.com/api/docs/models/gpt-6-astra.md ; https://artificialanalysis.ai/models/gpt-6-astra. Revisión técnica: 21/10/2026. Inteligencia jugable 56/58: posición editorial aceptada por el autor para ilustrar la mecánica de KARTA3."
+    },
+    {
+      "id": "claude-opus-55-max",
+      "name": "Claude Opus 5.5 (max)",
+      "characteristic": "Anthropic",
+      "imageRef": "imagenes/cartas/claude-opus-55-max.webp",
+      "imageAlt": "Logotipo de Anthropic centrado sobre fondo marfil con abanico en tono terracota, con marco marrón oscuro de doble línea, con el trazo exterior más grueso.",
+      "values": {
+        "atributo1": {
+          "playValue": 55,
+          "displayValue": "22/09/2026",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 58,
+          "displayValue": "58",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 47,
+          "displayValue": "1M",
+          "unit": "tk"
+        }
+      },
+      "roundAttribute": "atributo2",
+      "note": "Variante: Claude Opus 5.5, Max, Default Fallback. Referencia de evaluación: 58 puntos, Artificial Analysis Intelligence Index v4.3.2, consulta 21/10/2026. Contexto documentado: 1.000.000 tokens. Fecha: 22/09/2026; desarrollador: Anthropic. AA v4.3.2: 58 puntos con Max y Default Fallback; se conserva ese rótulo de configuración, no una propiedad uniforme de todas las llamadas. Fuentes de fecha, contexto y evaluación: https://www.anthropic.com/claude-opus-5-5 ; https://platform.claude.com/docs/en/models/opus-5-5/overview ; https://artificialanalysis.ai/models/claude-opus-5-5. Revisión técnica: 21/10/2026. Inteligencia jugable 58/58: posición editorial aceptada por el autor para ilustrar la mecánica de KARTA3."
+    },
+    {
+      "id": "claude-sonnet-55-max",
+      "name": "Claude Sonnet 5.5 (max)",
+      "characteristic": "Anthropic",
+      "imageRef": "imagenes/cartas/claude-sonnet-55-max.webp",
+      "imageAlt": "Logotipo de Anthropic centrado sobre fondo marfil con escalones en tono terracota, con marco marrón oscuro de doble línea, con el trazo exterior más grueso.",
+      "values": {
+        "atributo1": {
+          "playValue": 56,
+          "displayValue": "28/09/2026",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 57,
+          "displayValue": "57",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 48,
+          "displayValue": "1M",
+          "unit": "tk"
+        }
+      },
+      "roundAttribute": "atributo2",
+      "note": "Variante: Claude Sonnet 5.5, Max, Default Fallback. Referencia de evaluación: 56 puntos, Artificial Analysis Intelligence Index v4.3.2, consulta 21/10/2026. Contexto documentado: 1.000.000 tokens. Fecha: 28/09/2026; desarrollador: Anthropic. AA v4.3.2: 56 puntos con Max y Default Fallback. Fuentes de fecha, contexto y evaluación: https://www.anthropic.com/claude-sonnet-5-5 ; https://platform.claude.com/docs/en/models/sonnet-5-5/overview ; https://artificialanalysis.ai/models/claude-sonnet-5-5. Revisión técnica: 21/10/2026. Inteligencia jugable 57/58: posición editorial aceptada por el autor para ilustrar la mecánica de KARTA3."
+    },
+    {
+      "id": "gpt-61-sol-max",
+      "name": "GPT-6.1 Sol (max)",
+      "characteristic": "OpenAI",
+      "imageRef": "imagenes/cartas/gpt-61-sol-max.webp",
+      "imageAlt": "Logotipo de OpenAI centrado sobre fondo marfil con circuitos en tono verde grisáceo, con marco marrón oscuro de doble línea, con el trazo exterior más grueso.",
+      "values": {
+        "atributo1": {
+          "playValue": 57,
+          "displayValue": "29/09/2026",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 55,
+          "displayValue": "55",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 56,
+          "displayValue": "1,05M",
+          "unit": "tk"
+        }
+      },
+      "roundAttribute": "atributo1",
+      "note": "Variante: GPT-6.1 Sol, effort max. Referencia de evaluación: 52 puntos, Artificial Analysis Intelligence Index v4.3.2, consulta 21/10/2026. Contexto documentado: 1.050.000 tokens. Fecha: 29/09/2026; desarrollador: OpenAI. Contexto oficial total 1.050.000; entrada máxima 922.000 y salida máxima 128.000. AA v4.3.2: 52 puntos en max. Fuentes de fecha, contexto y evaluación: https://developers.openai.com/api/docs/changelog.md ; https://developers.openai.com/api/docs/models/gpt-6.1-sol.md ; https://artificialanalysis.ai/models/gpt-6-1-sol. Revisión técnica: 21/10/2026. Inteligencia jugable 55/58: posición editorial aceptada por el autor para ilustrar la mecánica de KARTA3."
+    },
+    {
+      "id": "claude-haiku-55-max",
+      "name": "Claude Haiku 5.5 (max)",
+      "characteristic": "Anthropic",
+      "imageRef": "imagenes/cartas/claude-haiku-55-max.webp",
+      "imageAlt": "Logotipo de Anthropic centrado sobre fondo marfil con escalones en tono terracota, con marco marrón oscuro de doble línea, con el trazo exterior más grueso.",
+      "values": {
+        "atributo1": {
+          "playValue": 58,
+          "displayValue": "07/10/2026",
+          "unit": ""
+        },
+        "atributo2": {
+          "playValue": 54,
+          "displayValue": "54",
+          "unit": ""
+        },
+        "atributo3": {
+          "playValue": 49,
+          "displayValue": "1M",
+          "unit": "tk"
+        }
+      },
+      "roundAttribute": "atributo1",
+      "note": "Variante: Claude Haiku 5.5, Max. Referencia de evaluación: 43 puntos, Artificial Analysis Intelligence Index v4.3.2, consulta 21/10/2026. Contexto documentado: 1.000.000 tokens. Fecha: 07/10/2026; desarrollador: Anthropic. AA v4.3.2: 43 puntos en Max, consulta del 21/10/2026. Fuentes de fecha, contexto y evaluación: https://www.anthropic.com/claude-haiku-5-5 ; https://platform.claude.com/docs/en/models/haiku-5-5/overview ; https://artificialanalysis.ai/models/claude-haiku-5-5. Revisión técnica: 21/10/2026. Inteligencia jugable 54/58: posición editorial aceptada por el autor para ilustrar la mecánica de KARTA3."
+    }
+  ]
+}

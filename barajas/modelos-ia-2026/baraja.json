@@ -1,0 +1,553 @@
+{
+  "schemaVersion": 2,
+  "contentVersion": 2,
+  "id": "modelos-ia-2026",
+  "name": "Modelos de IA — Edición 2026",
+  "subtitle": "De GPT-2 a los modelos de frontera de 2026",
+  "description": "Baraja demostrativa de 58 modelos de IA, desde GPT-2 hasta octubre de 2026. Ilustra cómo KARTA3 permite adaptar cualquier temática a su mecánica mediante tres atributos: Lanzamiento, Inteligencia y Contexto. Los datos y la clasificación se han aceptado editorialmente para esta demostración. No tiene finalidad formativa ni constituye un ranking científico.",
+  "notes": "Contenido cerrado y aceptado por el autor el 21/10/2026 para demostrar la mecánica de KARTA3. Se conservan los datos y las posiciones jugables revisados, con los matices de fuentes, variantes y protocolos documentados. La aceptación editorial incluye las referencias sin ejecución primaria recuperada y las convenciones de contexto y fecha; no las convierte en mediciones científicas verificadas. Inteligencia es una clasificación editorial fija de 1 a 58. Los contextos de referencia iguales se desempatan por lanzamiento más antiguo primero y después por nombre. Las imágenes de las 58 cartas llevan el marco doble marrón aprobado; la portada holográfica se conserva sin marco.\n\nNo se atribuye a estas entidades la composición de las imágenes de KARTA3 ni patrocinio de la baraja. Los logotipos corresponden a las respectivas entidades. Las composiciones y la rasterización se han preparado en este hilo mediante herramientas gráficas locales; no se ha utilizado generación de imágenes para recrear las marcas. No hay una licencia documentada para el conjunto de las composiciones. La prueba conceptual generada inicialmente no forma parte de la entrega.",
+  "instructions": "Esta baraja de 58 modelos de IA demuestra cómo KARTA3 puede adaptar cualquier temática a su mecánica. No tiene funciones formativas. Se juega con tres atributos: Lanzamiento, Inteligencia y Contexto. Únicamente los valores jugables del 1 al 58 resuelven la comparación.\n\nLanzamiento ordena las fechas de la más antigua a la más reciente. Inteligencia muestra una clasificación editorial aceptada para esta demostración. Contexto muestra la capacidad de referencia adoptada para cada modelo: tk significa tokens y M, millones de tokens. Algunos datos se redondean para caber en la carta.\n\nCuando dos modelos comparten el mismo contexto de referencia, se desempata por fecha de lanzamiento: el más antiguo recibe el valor jugable menor. Si también coincide la fecha, se utiliza el nombre en orden alfabético. Por ello, dos cartas pueden mostrar el mismo contexto y tener valores jugables distintos. Las coincidencias de fecha en Lanzamiento también se resuelven por nombre.\n\nLas notas de cada carta conservan las fuentes y los matices de sus variantes, fechas y evaluaciones. Los datos son referencias aceptadas para ilustrar el juego; la clasificación no constituye un ranking científico universal.",
+  "attributes": [
+    {
+      "id": "atributo1",
+      "name": "Lanzamiento",
+      "unit": ""
+    },
+    {
+      "id": "atributo2",
+      "name": "Inteligencia",
+      "unit": ""
+    },
+    {
+      "id": "atributo3",
+      "name": "Contexto",
+      "unit": "tk"
+    }
+  ],
+  "imageRef": "imagenes/portada.webp",
+  "imageAlt": "Rostro virtual sin pelo y con ojos vacíos, formado por pequeños caracteres luminosos de color cian que se dispersan sobre un fondo azul muy oscuro.",
+  "publication": {
+    "available": true,
+    "order": 0
+  },
+  "credits": [
+    {
+      "name": "LobeHub",
+      "role": "colección vectorial Lobe Icons utilizada como procedencia de once logotipos de desarrolladores",
+      "license": "MIT para la colección; los derechos de marca no se transfieren por esta licencia",
+      "url": "https://github.com/lobehub/lobe-icons"
+    },
+    {
+      "name": "Simple Icons contributors",
+      "role": "recurso vectorial del logotipo de Databricks",
+      "license": "CC0-1.0 para la colección; los derechos de marca no se transfieren por esta licencia",
+      "url": "https://github.com/simple-icons/simple-icons"
+    },
+    {
+      "name": "VulcanSphere",
+      "role": "preparación del SVG de EleutherAI, según el comentario de autoría incluido en el archivo conservado en el sitio de EleutherAI",
+      "license": "",
+      "url": "https://github.com/EleutherAI/website/blob/main/assets/blog/mutransfer/EleutherAI_logo.svg"
+    },
+    {
+      "name": "EleutherAI",
+      "role": "procedencia de los recursos de EleutherAI y BigScience en su repositorio web",
+      "license": "",
+      "url": "https://github.com/EleutherAI/website"
+    },
+    {
+      "name": "MosaicML",
+      "role": "procedencia del recurso histórico de su logotipo en el repositorio Composer, anterior al cambio gráfico a Composer",
+      "license": "",
+      "url": "https://github.com/mosaicml/composer/blob/8f25ef3245dfc7fae568bc61866dacc29e40c8c6/docs/source/_static/logo-light-mode.png"
+    },
+    {
+      "name": "OpenAI",
+      "role": "herramienta integrada image_gen utilizada para generar la imagen de portada aprobada; no se atribuye esta función a las ilustraciones de logotipos",
+      "license": "",
+      "url": "https://openai.com/"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Measuring Massive Multitask Language Understanding (Hendrycks et al.) [MO]",
+      "url": "https://github.com/hendrycks/test",
+      "note": "Resultado por modelo y versión; pueden existir protocolos de evaluación distintos."
+    },
+    {
+      "title": "Hugging Face Open LLM Leaderboard v1 (archivo) [HF]",
+      "url": "https://huggingface.co/docs/leaderboards/open_llm_leaderboard/archive",
+      "note": "Resultado por modelo y versión; pueden existir protocolos de evaluación distintos."
+    },
+    {
+      "title": "Stanford CRFM HELM MMLU v1.13.0 [HE]",
+      "url": "https://crfm.stanford.edu/helm/mmlu/v1.13.0/",
+      "note": "Resultado por modelo y versión; pueden existir protocolos de evaluación distintos."
+    },
+    {
+      "title": "TIGER-Lab MMLU-Pro, tabla y protocolo original [MP]",
+      "url": "https://github.com/TIGER-AI-Lab/MMLU-Pro",
+      "note": "Resultado por modelo y versión; pueden existir protocolos de evaluación distintos."
+    },
+    {
+      "title": "Resultados publicados por fabricantes, ver enlaces por desarrollador [OF]",
+      "url": "",
+      "note": "Resultado por modelo y versión; pueden existir protocolos de evaluación distintos."
+    },
+    {
+      "title": "Artificial Analysis Intelligence Index [AA]",
+      "url": "https://artificialanalysis.ai/leaderboards/models",
+      "note": "Clasificación de referencia; acceso público no equivale a permiso de redistribución."
+    },
+    {
+      "title": "Recopilación de resultados MMLU-Pro (evals.report)",
+      "url": "https://evals.report/benchmarks/mmlu-pro?tab=scores",
+      "note": "Referencia secundaria conservada y aceptada por el autor para la demostración. Ocho ejecuciones primarias no se han recuperado; esta reserva documental se conserva sin bloquear el cierre editorial."
+    },
+    {
+      "title": "Documentación y anuncios de OpenAI",
+      "url": "https://openai.com/research/",
+      "note": "Consultar ficha de variante concreta para fecha y ventana de contexto; enlace general de procedencia."
+    },
+    {
+      "title": "Documentación y anuncios de EleutherAI",
+      "url": "https://www.eleuther.ai/",
+      "note": "Consultar ficha de variante concreta para fecha y ventana de contexto; enlace general de procedencia."
+    },
+    {
+      "title": "Documentación y anuncios de Meta",
+      "url": "https://ai.meta.com/llama/",
+      "note": "Consultar ficha de variante concreta para fecha y ventana de contexto; enlace general de procedencia."
+    },
+    {
+      "title": "Documentación y anuncios de BigScience",
+      "url": "https://bigscience.huggingface.co/",
+      "note": "Consultar ficha de variante concreta para fecha y ventana de contexto; enlace general de procedencia."
+    },
+    {
+      "title": "Documentación y anuncios de MosaicML",
+      "url": "https://www.databricks.com/blog",
+      "note": "Consultar ficha de variante concreta para fecha y ventana de contexto; enlace general de procedencia."
+    },
+    {
+      "title": "Documentación y anuncios de Mistral AI",
+      "url": "https://docs.mistral.ai/models/",
+      "note": "Consultar ficha de variante concreta para fecha y ventana de contexto; enlace general de procedencia."
+    },
+    {
+      "title": "Documentación y anuncios de Google",
+      "url": "https://ai.google.dev/gemini-api/docs/models",
+      "note": "Consultar ficha de variante concreta para fecha y ventana de contexto; enlace general de procedencia."
+    },
+    {
+      "title": "Documentación y anuncios de Anthropic",
+      "url": "https://docs.anthropic.com/en/docs/about-claude/models/overview",
+      "note": "Consultar ficha de variante concreta para fecha y ventana de contexto; enlace general de procedencia."
+    },
+    {
+      "title": "Documentación y anuncios de Databricks",
+      "url": "https://www.databricks.com/blog/",
+      "note": "Consultar ficha de variante concreta para fecha y ventana de contexto; enlace general de procedencia."
+    },
+    {
+      "title": "Documentación y anuncios de Cohere",
+      "url": "https://docs.cohere.com/docs/models",
+      "note": "Consultar ficha de variante concreta para fecha y ventana de contexto; enlace general de procedencia."
+    },
+    {
+      "title": "Documentación y anuncios de Microsoft",
+      "url": "https://huggingface.co/microsoft",
+      "note": "Consultar ficha de variante concreta para fecha y ventana de contexto; enlace general de procedencia."
+    },
+    {
+      "title": "Documentación y anuncios de DeepSeek",
+      "url": "https://huggingface.co/deepseek-ai",
+      "note": "Consultar ficha de variante concreta para fecha y ventana de contexto; enlace general de procedencia."
+    },
+    {
+      "title": "Documentación y anuncios de xAI",
+      "url": "https://x.ai/news",
+      "note": "Consultar ficha de variante concreta para fecha y ventana de contexto; enlace general de procedencia."
+    },
+    {
+      "title": "Documentación y anuncios de Alibaba Cloud",
+      "url": "https://huggingface.co/Qwen",
+      "note": "Consultar ficha de variante concreta para fecha y ventana de contexto; enlace general de procedencia."
+    },
+    {
+      "title": "Documentación y anuncios de Moonshot AI",
+      "url": "https://huggingface.co/moonshotai",
+      "note": "Consultar ficha de variante concreta para fecha y ventana de contexto; enlace general de procedencia."
+    },
+    {
+      "title": "Cotejo técnico — GPT-2 1,5B",
+      "url": "https://github.com/hendrycks/test/blob/master/README.md",
+      "note": "Fecha: https://openai.com/index/gpt-2-1-5b-release/ ; contexto: https://openaipublic.blob.core.windows.net/gpt-2/models/1558M/hparams.json. Estados: fecha confirmado, contexto confirmado, evaluación matizado. El 32,4 de MMLU identifica GPT-2 sin tamaño; no acredita por sí solo la variante 1,5B."
+    },
+    {
+      "title": "Cotejo técnico — GPT-3 175B",
+      "url": "https://github.com/hendrycks/test/blob/master/README.md",
+      "note": "Fecha: https://arxiv.org/abs/2005.14165 ; contexto: https://arxiv.org/pdf/2005.14165. Estados: fecha confirmado, contexto confirmado, evaluación confirmado. Fecha de publicación del artículo; MMLU original few-shot, no fine-tuning."
+    },
+    {
+      "title": "Cotejo técnico — GPT-Neo 2.7B",
+      "url": "https://huggingface.co/EleutherAI/gpt-neo-2.7B/raw/5e1629a69b40344d3ba97e10662ef6593c5829f7/README.md",
+      "note": "Fecha: https://huggingface.co/EleutherAI/gpt-neo-2.7B/raw/5813d1e99a73b12e4881232da07590dfff2f0445/README.md ; contexto: https://huggingface.co/EleutherAI/gpt-neo-2.7B/raw/main/config.json. Estados: fecha corregido, contexto confirmado, evaluación confirmado. La ficha histórica fija el 21/03/2021. MMLU 5-shot del resultado archivado del leaderboard."
+    },
+    {
+      "title": "Cotejo técnico — GPT-J 6B",
+      "url": "https://huggingface.co/EleutherAI/gpt-j-6b/raw/1f3f9fe81ea2022a61173edfa8ec8477dc591e0b/README.md",
+      "note": "Fecha: https://github.com/kingoflolz/mesh-transformer-jax ; contexto: https://huggingface.co/EleutherAI/gpt-j-6b/raw/main/config.json. Estados: fecha mes-sin-dia, contexto confirmado, evaluación confirmado. Se conserva junio de 2021; no se eleva a día exacto sin prueba de primera liberación."
+    },
+    {
+      "title": "Cotejo técnico — GPT-NeoX 20B",
+      "url": "https://huggingface.co/EleutherAI/gpt-neox-20b/raw/main/README.md",
+      "note": "Fecha: https://blog.eleuther.ai/announcing-20b/ ; contexto: https://huggingface.co/EleutherAI/gpt-neox-20b/raw/main/config.json. Estados documentales de auditoría: fecha no acreditada en fuente primaria, contexto confirmado, evaluación confirmado. MMLU 5-shot de la ficha del leaderboard; no se ha recuperado el anuncio histórico; se acepta la fecha de referencia."
+    },
+    {
+      "title": "Cotejo técnico — OPT 175B",
+      "url": "https://evals.report/benchmarks/mmlu-pro?tab=scores",
+      "note": "Fecha: https://ai.meta.com/blog/democratizing-access-to-large-scale-language-models-with-opt-175b/ ; contexto: https://arxiv.org/pdf/2205.01068. Estados: fecha confirmado, contexto confirmado, evaluación de referencia secundaria aceptada. No se ha localizado la ejecución primaria que sustente 31,8; no debe atribuirse como resultado oficial de Meta."
+    },
+    {
+      "title": "Cotejo técnico — BLOOM 176B",
+      "url": "https://huggingface.co/bigscience/bloom/raw/458b92ba90ca31262f32e0d265f1e7d8943cdd6d/README.md",
+      "note": "Fecha: https://huggingface.co/blog/bloom ; contexto: https://huggingface.co/bigscience/bloom/raw/main/README.md. Estados: fecha corregido, contexto confirmado, evaluación confirmado. Fecha del anuncio público de HF/BigScience; MMLU 5-shot del registro archivado."
+    },
+    {
+      "title": "Cotejo técnico — LLaMA 65B",
+      "url": "https://huggingface.co/huggyllama/llama-65b/raw/a5756dbe016df4b076cbb2a9fa9e3b7746455601/README.md",
+      "note": "Fecha: https://ai.meta.com/blog/large-language-model-llama-meta-ai/ ; contexto: https://arxiv.org/pdf/2302.13971. Estados: fecha confirmado, contexto confirmado, evaluación confirmado. El 63,93 corresponde a los pesos convertidos evaluados por HF; no al 63,4 del informe original de Meta."
+    },
+    {
+      "title": "Cotejo técnico — GPT-4",
+      "url": "https://storage.googleapis.com/crfm-helm-public/mmlu/benchmark_output/releases/v1.13.0/groups/mmlu.json",
+      "note": "Fecha: https://openai.com/index/gpt-4-research/ ; contexto: https://developers.openai.com/api/docs/models/gpt-4.md. Estados: fecha confirmado, contexto confirmado, evaluación confirmado. La fecha es la presentación de GPT-4; la evaluación corresponde a la revisión 0613."
+    },
+    {
+      "title": "Cotejo técnico — MPT 7B",
+      "url": "https://arxiv.org/pdf/2309.16609",
+      "note": "Fecha: https://www.databricks.com/blog/mpt-7b ; contexto: https://raw.githubusercontent.com/mosaicml/llm-foundry/main/README.md. Estados: fecha confirmado, contexto confirmado, evaluación matizado. 30,8 aparece en la tabla 2 del informe técnico Qwen; corrobora la cifra, pero no recupera el run original de HF."
+    },
+    {
+      "title": "Cotejo técnico — Llama 2 70B",
+      "url": "https://storage.googleapis.com/crfm-helm-public/mmlu/benchmark_output/releases/v1.13.0/groups/mmlu.json",
+      "note": "Fecha: https://github.com/meta-llama/llama-models/blob/main/models/llama2/MODEL_CARD.md ; contexto: https://github.com/meta-llama/llama-models/blob/main/models/llama2/MODEL_CARD.md. Estados: fecha confirmado, contexto confirmado, evaluación confirmado. HELM identifica el modelo base; no confundir con Llama 2 Chat."
+    },
+    {
+      "title": "Cotejo técnico — Mistral 7B v0.1",
+      "url": "https://storage.googleapis.com/crfm-helm-public/mmlu/benchmark_output/releases/v1.13.0/groups/mmlu.json",
+      "note": "Fecha: https://mistral.ai/news/announcing-mistral-7b/ ; contexto: https://huggingface.co/mistralai/Mistral-7B-v0.1/raw/main/config.json. Estados: fecha confirmado, contexto corregido, evaluación confirmado. La configuración de v0.1 permite 32.768 posiciones con atención deslizante de 4.096. Los 8.192 previos describían entrenamiento, no ese máximo configurado."
+    },
+    {
+      "title": "Cotejo técnico — GPT-4 Turbo",
+      "url": "https://storage.googleapis.com/crfm-helm-public/mmlu/benchmark_output/releases/v1.13.0/groups/mmlu.json",
+      "note": "Fecha: https://openai.com/index/new-models-and-developer-products-announced-at-devday/ ; contexto: https://developers.openai.com/api/docs/models/gpt-4-turbo.md. Estados: fecha confirmado, contexto confirmado, evaluación confirmado. HELM v1.13.0 identifica explícitamente 1106 preview; no es la revisión estable 2024-04-09."
+    },
+    {
+      "title": "Cotejo técnico — Claude 2.1",
+      "url": "https://storage.googleapis.com/crfm-helm-public/mmlu/benchmark_output/releases/v1.13.0/groups/mmlu.json",
+      "note": "Fecha: https://www.anthropic.com/news/claude-2-1 ; contexto: https://www.anthropic.com/news/claude-2-1. Estados: fecha confirmado, contexto confirmado, evaluación confirmado. Contexto de 200K del anuncio de Anthropic; HELM MMLU de Claude 2.1."
+    },
+    {
+      "title": "Cotejo técnico — Gemini 1.0 Pro",
+      "url": "https://storage.googleapis.com/crfm-helm-public/mmlu/benchmark_output/releases/v1.13.0/groups/mmlu.json",
+      "note": "Fecha: https://blog.google/technology/ai/google-gemini-ai/ ; contexto: https://arxiv.org/pdf/2312.11805. Estados: fecha confirmado, contexto matizado, evaluación confirmado. 32.768 es ventana de secuencia de la generación; los límites de entrada y salida de las API se publican por separado."
+    },
+    {
+      "title": "Cotejo técnico — Mixtral 8×7B",
+      "url": "https://storage.googleapis.com/crfm-helm-public/mmlu/benchmark_output/releases/v1.13.0/groups/mmlu.json",
+      "note": "Fecha: https://mistral.ai/news/mixtral-of-experts/ ; contexto: https://huggingface.co/mistralai/Mixtral-8x7B-v0.1/raw/main/config.json. Estados: fecha confirmado, contexto matizado, evaluación confirmado. Fecha del anuncio técnico del 11/12; hubo difusión de pesos anterior. No se usa la variante Instruct para el resultado HELM."
+    },
+    {
+      "title": "Cotejo técnico — Phi-2",
+      "url": "https://storage.googleapis.com/crfm-helm-public/mmlu/benchmark_output/releases/v1.13.0/groups/mmlu.json",
+      "note": "Fecha: https://www.microsoft.com/en-us/research/blog/phi-2-the-surprising-power-of-small-language-models/ ; contexto: https://huggingface.co/microsoft/phi-2/raw/main/config.json. Estados: fecha confirmado, contexto confirmado, evaluación confirmado. HELM MMLU; contexto de configuración 2.048."
+    },
+    {
+      "title": "Cotejo técnico — Gemini 1.5 Pro",
+      "url": "https://github.com/TIGER-AI-Lab/MMLU-Pro/blob/main/README.md",
+      "note": "Fecha: https://blog.google/technology/ai/google-gemini-next-generation-model-february-2024/ ; contexto: https://ai.google.dev/gemini-api/docs/changelog. Estados: fecha confirmado, contexto con precisión convencional aceptada, evaluación confirmado. Los 2M se hicieron generales el 27/06/2024, después del anuncio de febrero. La conversión a 2.097.152 queda aceptada como referencia editorial; la URL de la ficha antigua redirige."
+    },
+    {
+      "title": "Cotejo técnico — Gemma 7B",
+      "url": "https://storage.googleapis.com/crfm-helm-public/mmlu/benchmark_output/releases/v1.13.0/groups/mmlu.json",
+      "note": "Fecha: https://blog.google/technology/developers/gemma-open-models/ ; contexto: https://raw.githubusercontent.com/google/gemma_pytorch/main/gemma/config.py. Estados: fecha confirmado, contexto confirmado, evaluación confirmado. El resultado HELM es del modelo base. La configuración de Google declara una secuencia de 8.192."
+    },
+    {
+      "title": "Cotejo técnico — Claude 3 Opus",
+      "url": "https://github.com/TIGER-AI-Lab/MMLU-Pro/blob/main/README.md",
+      "note": "Fecha: https://www.anthropic.com/news/claude-3-family ; contexto: https://www.anthropic.com/news/claude-3-family. Estados: fecha confirmado, contexto confirmado, evaluación confirmado. MMLU-Pro original del evaluador TIGER; fecha de lanzamiento público distinta de la fecha interna del snapshot."
+    },
+    {
+      "title": "Cotejo técnico — Claude 3 Haiku",
+      "url": "https://storage.googleapis.com/crfm-helm-public/mmlu/benchmark_output/releases/v1.13.0/groups/mmlu.json",
+      "note": "Fecha: https://www.anthropic.com/news/claude-3-haiku ; contexto: https://www.anthropic.com/news/claude-3-family. Estados: fecha confirmado, contexto confirmado, evaluación confirmado. La disponibilidad pública es el 13/03; HELM identifica el snapshot 20240307."
+    },
+    {
+      "title": "Cotejo técnico — DBRX Instruct",
+      "url": "https://www.databricks.com/blog/introducing-dbrx-new-state-art-open-llm",
+      "note": "Fecha: https://www.databricks.com/blog/introducing-dbrx-new-state-art-open-llm ; contexto: https://www.databricks.com/blog/introducing-dbrx-new-state-art-open-llm. Estados: fecha confirmado, contexto matizado, evaluación confirmado. MMLU 5-shot 73,7 en el anuncio del fabricante; ventana anunciada de 32K."
+    },
+    {
+      "title": "Cotejo técnico — Command R+",
+      "url": "https://huggingface.co/CohereForAI/c4ai-command-r-plus",
+      "note": "Fecha: https://cohere.com/blog/command-r-plus-microsoft-azure ; contexto: https://huggingface.co/CohereForAI/c4ai-command-r-plus. Estados: fecha confirmado, contexto con precisión convencional aceptada, evaluación confirmado. MMLU 75,7 de su ficha; contexto anunciado 128K. Los 128.000 de API y la notación 128K de pesos no prueban identidad exacta entre despliegues."
+    },
+    {
+      "title": "Cotejo técnico — Llama 3 70B Instruct",
+      "url": "https://github.com/TIGER-AI-Lab/MMLU-Pro/blob/main/README.md",
+      "note": "Fecha: https://github.com/meta-llama/llama-models/blob/main/models/llama3/MODEL_CARD.md ; contexto: https://github.com/meta-llama/llama-models/blob/main/models/llama3/MODEL_CARD.md. Estados: fecha confirmado, contexto confirmado, evaluación confirmado. Se contrasta la variante Instruct; MMLU-Pro original TIGER, no modelo base."
+    },
+    {
+      "title": "Cotejo técnico — Phi-3 Mini 128K",
+      "url": "https://huggingface.co/microsoft/Phi-3-mini-128k-instruct/raw/main/README.md",
+      "note": "Fecha: https://news.microsoft.com/source/features/ai/the-phi-3-small-language-models-with-big-potential/ ; contexto: https://huggingface.co/microsoft/Phi-3-mini-128k-instruct/raw/main/config.json. Estados: fecha confirmado, contexto confirmado, evaluación confirmado. 68,1 es la columna Original de la ficha; la actualización de junio publica 69,7."
+    },
+    {
+      "title": "Cotejo técnico — DeepSeek V2 Chat",
+      "url": "https://github.com/TIGER-AI-Lab/MMLU-Pro/blob/main/README.md",
+      "note": "Fecha: https://github.com/deepseek-ai/DeepSeek-V2/commit/e23eeb51a8eaef96601f4074a0008c20c926d762 ; contexto: https://huggingface.co/deepseek-ai/DeepSeek-V2-Chat/raw/main/README.md. Estados: fecha corregido, contexto con precisión convencional aceptada, evaluación confirmado. El README público ya estaba disponible el 06/05/2024. La ficha anuncia 128K, mientras config.json contiene 163.840 posiciones; no son límites intercambiables."
+    },
+    {
+      "title": "Cotejo técnico — GPT-4o",
+      "url": "https://github.com/TIGER-AI-Lab/MMLU-Pro/blob/main/README.md",
+      "note": "Fecha: https://openai.com/index/hello-gpt-4o/ ; contexto: https://developers.openai.com/api/docs/models/gpt-4o.md. Estados: fecha confirmado, contexto confirmado, evaluación confirmado. La cifra pertenece a la primera evaluación del repositorio, no a las revisiones de agosto o noviembre."
+    },
+    {
+      "title": "Cotejo técnico — Claude 3.5 Sonnet",
+      "url": "https://github.com/TIGER-AI-Lab/MMLU-Pro/blob/main/README.md",
+      "note": "Fecha: https://www.anthropic.com/news/claude-3-5-sonnet ; contexto: https://www.anthropic.com/news/claude-3-5-sonnet. Estados: fecha confirmado, contexto confirmado, evaluación confirmado. MMLU-Pro original TIGER; no sustituir por la revisión 20241022."
+    },
+    {
+      "title": "Cotejo técnico — Gemma 2 27B",
+      "url": "https://storage.googleapis.com/deepmind-media/gemma/gemma-2-report.pdf",
+      "note": "Fecha: https://blog.google/technology/developers/google-gemma-2/ ; contexto: https://storage.googleapis.com/deepmind-media/gemma/gemma-2-report.pdf. Estados: fecha confirmado, contexto confirmado, evaluación confirmado. 75,2 aparece en la tabla 12 del informe de Google, evaluación HF del modelo base; no variante IT."
+    },
+    {
+      "title": "Cotejo técnico — Llama 3.1 405B Instruct",
+      "url": "https://github.com/meta-llama/llama-models/blob/main/models/llama3_1/MODEL_CARD.md",
+      "note": "Fecha: https://github.com/meta-llama/llama-models/blob/main/models/llama3_1/MODEL_CARD.md ; contexto: https://github.com/meta-llama/llama-models/blob/main/models/llama3_1/MODEL_CARD.md. Estados: fecha confirmado, contexto con precisión convencional aceptada, evaluación confirmado. MMLU-Pro CoT 5-shot, macro_avg/acc: 73,3. Contexto anunciado 128K."
+    },
+    {
+      "title": "Cotejo técnico — Mistral Large 2",
+      "url": "https://mistral.ai/news/mistral-large-2407/",
+      "note": "Fecha: https://mistral.ai/news/mistral-large-2407/ ; contexto: https://mistral.ai/news/mistral-large-2407/. Estados: fecha confirmado, contexto con precisión convencional aceptada, evaluación confirmado. 84,0 es el modelo preentrenado en el anuncio de Mistral. Contexto anunciado 128K; no atribuir esa puntuación al Instruct 2407."
+    },
+    {
+      "title": "Cotejo técnico — Grok-2",
+      "url": "https://x.ai/news/grok-2",
+      "note": "Fecha: https://x.ai/news/grok-2 ; contexto: https://docs.x.ai/developers/rest-api-reference/management/auth. Estados: fecha confirmado, contexto matizado, evaluación confirmado. MMLU-Pro 75,5 con 0-shot CoT. Contexto 131.072 de la revisión API de diciembre, no probado para la beta de agosto."
+    },
+    {
+      "title": "Cotejo técnico — o1-preview",
+      "url": "https://openai.com/index/learning-to-reason-with-llms/",
+      "note": "Fecha: https://openai.com/index/learning-to-reason-with-llms/ ; contexto: https://developers.openai.com/api/docs/models/o1-preview.md. Estados: fecha confirmado, contexto confirmado, evaluación confirmado. MMLU pass@1 92,3 de OpenAI. No confundir con o1 final (90,8 en esa tabla)."
+    },
+    {
+      "title": "Cotejo técnico — Qwen2.5 72B Instruct",
+      "url": "https://storage.googleapis.com/crfm-helm-public/mmlu/benchmark_output/releases/v1.13.0/groups/mmlu.json",
+      "note": "Fecha: https://qwenlm.github.io/blog/qwen2.5/ ; contexto: https://huggingface.co/Qwen/Qwen2.5-72B-Instruct/raw/main/README.md. Estados: fecha confirmado, contexto matizado, evaluación confirmado. El 83,4 corresponde al servicio Instruct Turbo. Contexto de los pesos: 32.768 nativo y hasta 131.072 con YaRN."
+    },
+    {
+      "title": "Cotejo técnico — Llama 3.3 70B Instruct",
+      "url": "https://github.com/meta-llama/llama-models/blob/main/models/llama3_3/MODEL_CARD.md",
+      "note": "Fecha: https://github.com/meta-llama/llama-models/blob/main/models/llama3_3/MODEL_CARD.md ; contexto: https://github.com/meta-llama/llama-models/blob/main/models/llama3_3/MODEL_CARD.md. Estados: fecha corregido, contexto con precisión convencional aceptada, evaluación confirmado. La ficha oficial fija 06/12/2024. MMLU CoT 0-shot, macro_avg/acc: 86,0; no 5-shot clásico."
+    },
+    {
+      "title": "Cotejo técnico — DeepSeek V3",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V3/raw/main/README.md",
+      "note": "Fecha: https://www.deepseek.com/en/news/deepseek-v3/ ; contexto: https://huggingface.co/deepseek-ai/DeepSeek-V3/raw/main/README.md. Estados: fecha confirmado, contexto con precisión convencional aceptada, evaluación confirmado. MMLU-Pro EM 75,9 en tabla Chat; el modelo base tiene otra puntuación. Contexto anunciado 128K, config 163.840 no equivale al límite validado."
+    },
+    {
+      "title": "Cotejo técnico — DeepSeek R1",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-R1/raw/main/README.md",
+      "note": "Fecha: https://deepseek.com/en/news/deepseek-r1/ ; contexto: https://huggingface.co/deepseek-ai/DeepSeek-R1/raw/main/README.md. Estados: fecha confirmado, contexto con precisión convencional aceptada, evaluación confirmado. Se sustituye la referencia secundaria 84,9 por MMLU-Pro EM 84,0 del fabricante. No R1-0528."
+    },
+    {
+      "title": "Cotejo técnico — o3-mini",
+      "url": "https://www.vals.ai/benchmarks/mmlu_pro",
+      "note": "Fecha: https://developers.openai.com/api/docs/changelog.md ; contexto: https://developers.openai.com/api/docs/models/o3-mini.md. Estados: fecha confirmado, contexto confirmado, evaluación matizado. 78,69 confirmado en Vals, MMLU-Pro 5-shot CoT; la página no identifica el effort usado. No asignar high por inferencia."
+    },
+    {
+      "title": "Cotejo técnico — Gemini 2.0 Flash",
+      "url": "https://evals.report/benchmarks/mmlu-pro?tab=scores",
+      "note": "Fecha: https://ai.google.dev/gemini-api/docs/changelog ; contexto: https://ai.google.dev/gemini-api/docs/models/gemini-2.0-flash. Estados: fecha confirmado, contexto confirmado, evaluación de referencia secundaria aceptada. La fecha es GA de Flash-001. Vals registra 77,38 para 001; no confirma el 77,9 de la recopilación ni prueba que sea erróneo bajo otro protocolo."
+    },
+    {
+      "title": "Cotejo técnico — Grok 3",
+      "url": "https://x.ai/news/grok-3",
+      "note": "Fecha: https://x.ai/news/grok-3 ; contexto: https://x.ai/news/grok-3. Estados documentales de auditoría: fecha no acreditada en fuente primaria, contexto matizado, evaluación confirmado. 79,9 MMLU-Pro y 1M anunciado confirmados por xAI. La API documenta 131.072; no trasladar el millón anunciado a todas las API. El blog es del 19/02; el 17/02 de la presentación queda aceptado como referencia editorial sin fuente primaria fechada recuperada."
+    },
+    {
+      "title": "Cotejo técnico — Claude 3.7 Sonnet",
+      "url": "https://evals.report/benchmarks/mmlu-pro?tab=scores",
+      "note": "Fecha: https://www.anthropic.com/news/claude-3-7-sonnet ; contexto: https://www.anthropic.com/news/claude-3-7-sonnet. Estados: fecha confirmado, contexto confirmado, evaluación de referencia secundaria aceptada. Vals separa Thinking 82,73 y Nonthinking 80,66. Esos runs no certifican el 83,7 heredado; falta registro primario de esa configuración."
+    },
+    {
+      "title": "Cotejo técnico — Gemini 2.5 Pro",
+      "url": "https://evals.report/benchmarks/mmlu-pro?tab=scores",
+      "note": "Fecha: https://ai.google.dev/gemini-api/docs/changelog ; contexto: https://ai.google.dev/gemini-api/docs/models/gemini-2.5-pro. Estados: fecha confirmado, contexto confirmado, evaluación de referencia secundaria aceptada. La fecha corresponde a experimental 03-25. Vals publica 84,06 para Pro Exp; el 86,2 heredado no está acreditado para esa revisión. No mezclar automáticamente resultados de junio con marzo."
+    },
+    {
+      "title": "Cotejo técnico — Llama 4 Scout",
+      "url": "https://github.com/meta-llama/llama-models/blob/main/models/llama4/MODEL_CARD.md",
+      "note": "Fecha: https://github.com/meta-llama/llama-models/blob/main/models/llama4/MODEL_CARD.md ; contexto: https://github.com/meta-llama/llama-models/blob/main/models/llama4/MODEL_CARD.md. Estados: fecha confirmado, contexto matizado, evaluación confirmado. La ficha de Meta registra 74,3 MMLU Pro, 0-shot macro_avg/acc, frente a 75,2 de la recopilación. Contexto anunciado 10M; no implica que cada servidor lo ofrezca."
+    },
+    {
+      "title": "Cotejo técnico — Llama 4 Maverick",
+      "url": "https://github.com/meta-llama/llama-models/blob/main/models/llama4/MODEL_CARD.md",
+      "note": "Fecha: https://github.com/meta-llama/llama-models/blob/main/models/llama4/MODEL_CARD.md ; contexto: https://github.com/meta-llama/llama-models/blob/main/models/llama4/MODEL_CARD.md. Estados: fecha confirmado, contexto matizado, evaluación confirmado. La ficha de Meta registra 80,5 MMLU Pro, 0-shot macro_avg/acc, frente a 80,9 de la recopilación. Contexto anunciado 1M."
+    },
+    {
+      "title": "Cotejo técnico — GPT-4.1",
+      "url": "https://evals.report/benchmarks/mmlu-pro?tab=scores",
+      "note": "Fecha: https://openai.com/index/gpt-4-1/ ; contexto: https://developers.openai.com/api/docs/models/gpt-4.1.md. Estados: fecha confirmado, contexto confirmado, evaluación de referencia secundaria aceptada. Contexto oficial exacto 1.047.576, sin corregirlo por analogía con Gemini. Vals registra 80,50, distinto del 80,6 heredado; falta identificar el run de esta última cifra."
+    },
+    {
+      "title": "Cotejo técnico — Qwen3 32B",
+      "url": "https://artificialanalysis.ai/models/qwen3-32b-instruct",
+      "note": "Fecha: https://qwenlm.github.io/blog/qwen3/ ; contexto: https://huggingface.co/Qwen/Qwen3-32B/raw/main/README.md. Estados: fecha corregido, contexto matizado, evaluación confirmado. Anuncio del equipo del 29/04/2025. AA v4.3.2: 7 puntos estimados. Contexto nativo 32.768; YaRN 131.072 es otra configuración, no la elegida para esta carta."
+    },
+    {
+      "title": "Cotejo técnico — Claude Opus 4",
+      "url": "https://evals.report/benchmarks/mmlu-pro?tab=scores",
+      "note": "Fecha: https://www.anthropic.com/news/claude-4 ; contexto: https://docs.aws.amazon.com/bedrock/latest/userguide/model-card-anthropic-claude-opus-4.html. Estados: fecha confirmado, contexto confirmado, evaluación de referencia secundaria aceptada. 87,3 aparece en recopilaciones para Thinking 16K, pero no se ha recuperado el run primario. Vals publica 86,17 para Nonthinking; no son variantes equivalentes. Se conserva contexto estándar del modelo servido en Bedrock."
+    },
+    {
+      "title": "Cotejo técnico — Claude Sonnet 4",
+      "url": "https://evals.report/benchmarks/mmlu-pro?tab=scores",
+      "note": "Fecha: https://www.anthropic.com/news/claude-4 ; contexto: https://docs.aws.amazon.com/bedrock/latest/userguide/model-card-anthropic-claude-sonnet-4.html. Estados: fecha confirmado, contexto confirmado, evaluación de referencia secundaria aceptada. 84,2 aparece en recopilaciones para Thinking. Vals publica 83,86 Thinking y 79,43 Nonthinking; falta el run primario del 84,2. Se conserva contexto estándar de Bedrock; no la beta 1M de agosto de 2025, retirada en abril de 2026."
+    },
+    {
+      "title": "Cotejo técnico — Gemini 2.5 Flash",
+      "url": "https://evals.report/benchmarks/mmlu-pro?tab=scores",
+      "note": "Fecha: https://ai.google.dev/gemini-api/docs/changelog ; contexto: https://ai.google.dev/gemini-api/docs/models/gemini-2.5-flash. Estados: fecha confirmado, contexto confirmado, evaluación de referencia secundaria aceptada. La fecha es GA del 17/06/2025. El 83,2 heredado aparece asociado a Thinking en recopilaciones, sin presupuesto ni revisión primaria acreditados."
+    },
+    {
+      "title": "Cotejo técnico — Kimi K2",
+      "url": "https://huggingface.co/moonshotai/Kimi-K2-Instruct/raw/main/README.md",
+      "note": "Fecha: https://huggingface.co/api/models/moonshotai/Kimi-K2-Instruct ; contexto: https://huggingface.co/moonshotai/Kimi-K2-Instruct/raw/main/config.json. Estados: fecha confirmado, contexto confirmado, evaluación confirmado. MMLU-Pro 81,1 del fabricante. El registro de HF fue creado el 11/07/2025; corrobora la fecha conservada. No Instruct-0905 ni Thinking."
+    },
+    {
+      "title": "Cotejo técnico — gpt-oss-120b (high)",
+      "url": "https://artificialanalysis.ai/models/gpt-oss-120b",
+      "note": "Fecha: https://developers.openai.com/api/docs/changelog.md ; contexto: https://developers.openai.com/api/docs/models/gpt-oss-120b.md. Estados: fecha confirmado, contexto confirmado, evaluación confirmado. AA v4.3.2, 12 puntos consultados el 21/10/2026; no puntuación histórica del día de lanzamiento."
+    },
+    {
+      "title": "Cotejo técnico — GPT-5 (high)",
+      "url": "https://artificialanalysis.ai/models/gpt-5",
+      "note": "Fecha: https://developers.openai.com/api/docs/changelog.md ; contexto: https://developers.openai.com/api/docs/models/gpt-5.md. Estados: fecha confirmado, contexto confirmado, evaluación confirmado. AA v4.3.2, 23 puntos estimados en la consulta del 21/10/2026; no medida histórica de agosto de 2025."
+    },
+    {
+      "title": "Cotejo técnico — Gemini 3.1 Pro Preview",
+      "url": "https://artificialanalysis.ai/models/gemini-3-1-pro-preview",
+      "note": "Fecha: https://ai.google.dev/gemini-api/docs/changelog ; contexto: https://ai.google.dev/gemini-api/docs/models/gemini-3.1-pro-preview. Estados: fecha confirmado, contexto confirmado, evaluación confirmado. AA v4.3.2, 30 puntos en la consulta del 21/10/2026; no confundir con el 90,99 porcentual de MMLU-Pro de Vals."
+    },
+    {
+      "title": "Cotejo técnico — GPT-6 Astra (max)",
+      "url": "https://artificialanalysis.ai/models/gpt-6-astra",
+      "note": "Fecha: https://developers.openai.com/api/docs/changelog.md ; contexto: https://developers.openai.com/api/docs/models/gpt-6-astra.md. Estados: fecha confirmado, contexto corregido, evaluación confirmado. Contexto oficial total 1.050.000; entrada máxima 922.000 y salida máxima 128.000. AA v4.3.2: 53 puntos en max."
+    },
+    {
+      "title": "Cotejo técnico — Claude Opus 5.5 (max)",
+      "url": "https://artificialanalysis.ai/models/claude-opus-5-5",
+      "note": "Fecha: https://www.anthropic.com/claude-opus-5-5 ; contexto: https://platform.claude.com/docs/en/models/opus-5-5/overview. Estados: fecha confirmado, contexto matizado, evaluación confirmado. AA v4.3.2: 58 puntos con Max y Default Fallback; se conserva ese rótulo de configuración, no una propiedad uniforme de todas las llamadas."
+    },
+    {
+      "title": "Cotejo técnico — Claude Sonnet 5.5 (max)",
+      "url": "https://artificialanalysis.ai/models/claude-sonnet-5-5",
+      "note": "Fecha: https://www.anthropic.com/claude-sonnet-5-5 ; contexto: https://platform.claude.com/docs/en/models/sonnet-5-5/overview. Estados: fecha confirmado, contexto matizado, evaluación confirmado. AA v4.3.2: 56 puntos con Max y Default Fallback."
+    },
+    {
+      "title": "Cotejo técnico — GPT-6.1 Sol (max)",
+      "url": "https://artificialanalysis.ai/models/gpt-6-1-sol",
+      "note": "Fecha: https://developers.openai.com/api/docs/changelog.md ; contexto: https://developers.openai.com/api/docs/models/gpt-6.1-sol.md. Estados: fecha confirmado, contexto corregido, evaluación confirmado. Contexto oficial total 1.050.000; entrada máxima 922.000 y salida máxima 128.000. AA v4.3.2: 52 puntos en max."
+    },
+    {
+      "title": "Cotejo técnico — Claude Haiku 5.5 (max)",
+      "url": "https://artificialanalysis.ai/models/claude-haiku-5-5",
+      "note": "Fecha: https://www.anthropic.com/claude-haiku-5-5 ; contexto: https://platform.claude.com/docs/en/models/haiku-5-5/overview. Estados: fecha confirmado, contexto matizado, evaluación confirmado. AA v4.3.2: 43 puntos en Max, consulta del 21/10/2026."
+    },
+    {
+      "title": "Logotipo de OpenAI — Lobe Icons",
+      "url": "https://github.com/lobehub/lobe-icons/blob/master/packages/static-svg/icons/openai.svg",
+      "note": "Archivo conservado en produccion/logotipos-originales/openai.svg. Blob de origen: 78caf4fa20ffb0ae8ebefd74408871c11c1c7fd2."
+    },
+    {
+      "title": "Logotipo de Anthropic — Lobe Icons",
+      "url": "https://github.com/lobehub/lobe-icons/blob/master/packages/static-svg/icons/anthropic.svg",
+      "note": "Archivo conservado en produccion/logotipos-originales/anthropic.svg. Blob de origen: 5b81844cbdc94d180845f87cc8da7697f1fadc21."
+    },
+    {
+      "title": "Logotipo de Alibaba Cloud — Lobe Icons",
+      "url": "https://github.com/lobehub/lobe-icons/blob/master/packages/static-svg/icons/alibabacloud-color.svg",
+      "note": "Archivo conservado en produccion/logotipos-originales/alibabacloud-color.svg. Blob de origen: 56c20781ec061b82d65f997e67c6dcd08dc4d56f."
+    },
+    {
+      "title": "Logotipo de Cohere — Lobe Icons",
+      "url": "https://github.com/lobehub/lobe-icons/blob/master/packages/static-svg/icons/cohere-color.svg",
+      "note": "Archivo conservado en produccion/logotipos-originales/cohere-color.svg. Blob de origen: 94bcb82cf9844e0c9b3aeffb543d23fe9bf93f04."
+    },
+    {
+      "title": "Logotipo de DeepSeek — Lobe Icons",
+      "url": "https://github.com/lobehub/lobe-icons/blob/master/packages/static-svg/icons/deepseek-color.svg",
+      "note": "Archivo conservado en produccion/logotipos-originales/deepseek-color.svg. Blob de origen: 3fc2302406e22f064f3efda71d8a7bcf0fc1dd41."
+    },
+    {
+      "title": "Logotipo de Google — Lobe Icons",
+      "url": "https://github.com/lobehub/lobe-icons/blob/master/packages/static-svg/icons/google-color.svg",
+      "note": "Archivo conservado en produccion/logotipos-originales/google-color.svg. Blob de origen: e8e0f867bdea446a77dce127bd44383a618fa0ec."
+    },
+    {
+      "title": "Logotipo de Meta — Lobe Icons",
+      "url": "https://github.com/lobehub/lobe-icons/blob/master/packages/static-svg/icons/meta-color.svg",
+      "note": "Archivo conservado en produccion/logotipos-originales/meta-color.svg. Blob de origen: a8a8d94850914671505bdedd0eb36e4deaf6ff73."
+    },
+    {
+      "title": "Logotipo de Microsoft — Lobe Icons",
+      "url": "https://github.com/lobehub/lobe-icons/blob/master/packages/static-svg/icons/microsoft-color.svg",
+      "note": "Archivo conservado en produccion/logotipos-originales/microsoft-color.svg. Blob de origen: 4d95a08eb0c9271b6a86b0927f51fee17a8acd40."
+    },
+    {
+      "title": "Logotipo de Mistral AI — Lobe Icons",
+      "url": "https://github.com/lobehub/lobe-icons/blob/master/packages/static-svg/icons/mistral-color.svg",
+      "note": "Archivo conservado en produccion/logotipos-originales/mistral-color.svg. Blob de origen: 8e03e244bf1035d2d4ea81e1c226a4c8c4ebd3c4."
+    },
+    {
+      "title": "Logotipo de Moonshot AI — Lobe Icons",
+      "url": "https://github.com/lobehub/lobe-icons/blob/master/packages/static-svg/icons/moonshot.svg",
+      "note": "Archivo conservado en produccion/logotipos-originales/moonshot.svg. Blob de origen: fb56ac106c470648e6669f9d12375dbeb5647991."
+    },
+    {
+      "title": "Logotipo de xAI — Lobe Icons",
+      "url": "https://github.com/lobehub/lobe-icons/blob/master/packages/static-svg/icons/xai.svg",
+      "note": "Archivo conservado en produccion/logotipos-originales/xai.svg. Blob de origen: 536e713902f68124e76a7f15e31455c5eb69247a."
+    },
+    {
+      "title": "Logotipo de Databricks — Simple Icons",
+      "url": "https://github.com/simple-icons/simple-icons/blob/develop/icons/databricks.svg",
+      "note": "Archivo conservado en produccion/logotipos-originales/databricks.svg. Blob de origen: bdb6e414cfcb336d653b56fa95cd5b739a6ca999."
+    },
+    {
+      "title": "Logotipo de EleutherAI — Sitio oficial EleutherAI",
+      "url": "https://github.com/EleutherAI/website/blob/main/assets/blog/mutransfer/EleutherAI_logo.svg",
+      "note": "Archivo conservado en produccion/logotipos-originales/eleutherai.svg. Blob de origen: 62684cb4d0624aaa3b0f94cb818d05fe8bf35d45."
+    },
+    {
+      "title": "Logotipo de BigScience — Recurso de comunidad conservado en el sitio oficial de EleutherAI",
+      "url": "https://github.com/EleutherAI/website/blob/main/static/images/community/bigscience-logo.png",
+      "note": "Archivo conservado en produccion/logotipos-originales/bigscience.png. Blob de origen: ea0cb1e7f854ebb810504c6063a5ca363065db0f."
+    },
+    {
+      "title": "Logotipo de MosaicML — Repositorio oficial MosaicML Composer, recurso histórico anterior al cambio a Composer de junio de 2022",
+      "url": "https://github.com/mosaicml/composer/blob/8f25ef3245dfc7fae568bc61866dacc29e40c8c6/docs/source/_static/logo-light-mode.png",
+      "note": "Archivo conservado en produccion/logotipos-originales/mosaicml.png. Blob de origen: f324ed8fcbf6474590ade84f63310dc7061d2c41. Se aísla el símbolo completo de la parte izquierda de la marca, sin modificar sus trazos, para mantener reconocimiento en miniatura."
+    },
+    {
+      "title": "Portada holográfica de caracteres — segunda propuesta aprobada",
+      "url": "",
+      "note": "Generada en este hilo con la herramienta integrada image_gen; original local en produccion/propuestas-portada/holografica-02/original-generado.png. Prompt y procedencia en produccion/propuestas-portada/holografica-02/propuesta.json. Original SHA-256: 8fa4e6cb8a8823d6a4a2c2dcb56f7f64f445ed11e6e7bbd2533dcc3d0ca10338. Aprobada por el autor el 21/10/2026 y entregada sin marco."
+    }
+  ]
+}
