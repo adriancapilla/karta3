@@ -6,6 +6,7 @@ import { configurationBrowserServer } from '../support/configurationBrowserServe
 import { humanPlay, manualTable, readGame } from '../support/manualBrowserCases.js';
 import { publicationDiagnostics } from '../support/publicationDiagnostics.js';
 import { assertFittedTitle } from '../support/cardTitleGeometry.js';
+import { publicationState } from '../support/b20b21PublicationDiagnostics.js';
 
 // Capture the compiled base before editing CSS; expected content/styles are never regenerated at verification.
 const captureBase = process.env.B10_CAPTURE_BASE === '1';
@@ -113,6 +114,7 @@ async function record(page: Page, name: string, width: number, height: number) {
       }
     } catch (error) { await publicationDiagnostics(page, `B10-${width}-${name}`); throw error; }
     if (width <= 760) {
+      await publicationState(page, `B10-${width}-${name}`);
       expect(sample.content['.game-shell header'].replace(/\s*Cancelar partida\s*$/, '')).toBe(base.content['.game-shell header']);
       const hostAction = sample.content['.game-shell header'].includes('Cancelar partida');
       await expect(page.locator('header').getByRole('button', { name: 'Cancelar partida', exact: true })).toHaveCount(hostAction ? 1 : 0);

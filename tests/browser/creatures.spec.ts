@@ -84,7 +84,9 @@ test('B16 instalación normal: tres sin default, dos sesiones/pestañas, versió
       const ack = await new Promise<SocketAck<{ room: RoomView }>>(resolve => client.emit('room:configure', { requestId: `b16-permission-${index}`, roomId: original.id, change: { field: 'deck', value: { id: 'criaturas-magicas', contentVersion: index === 0 ? 4 : 2 } } }, resolve));
       expect(ack.ok).toBe(false); if (!ack.ok) expect(ack.error.code).toBe(index === 0 ? 'DECK_VERSION_MISMATCH' : 'FORBIDDEN');
     }
-    expect((await readRoom(host)).selectedDeck).toEqual(approvedCreatures); await expect(guest.getByRole('combobox')).toHaveCount(0);
+    expect((await readRoom(host)).selectedDeck).toEqual(approvedCreatures);
+    await expect(guest.getByRole('combobox', { name: 'Apariencia', exact: true })).toBeEnabled();
+    await expect(guest.getByRole('combobox', { name: /^(?!Apariencia$)/ })).toHaveCount(0);
     const identities = await Promise.all([host, guest].map(readRoom)); await Promise.all([host.reload(), guest.reload()]);
     for (const [index, p] of [host, guest].entries()) { await expect(p.locator('.deck-card h3')).toHaveText('Criaturas Mágicas · v2'); const room = await readRoom(p); expect(room.participant.id).toBe(identities[index].participant.id); expect(room.settings).toMatchObject({ attributeValueMode: 'DISPLAY_VALUE', optimizeForMobile: true, deckContentVersion: 2 }); expect(JSON.stringify(room)).not.toMatch(/"cards"|"playValue"|"imageRef"|sessionId|drawPile|permutation/); }
     const manifest = JSON.parse(await fs.readFile('docs/sdd/evidencias/B16/incorporacion.json', 'utf8')) as { files: { file: string; sourceSHA256: string }[] };

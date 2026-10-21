@@ -4,6 +4,7 @@ import { configurationBrowserServer } from '../support/configurationBrowserServe
 import { manualTable, humanPlay, readGame } from '../support/manualBrowserCases.js';
 import { assertGamePrivacy } from '../support/gamePrivacy.js';
 import { assertFittedTitle } from '../support/cardTitleGeometry.js';
+import { observeKeyboard, publicationState } from '../support/b20b21PublicationDiagnostics.js';
 
 const literal = (value: { displayValue: string; unit: string }) => value.displayValue + (value.unit ? ` ${value.unit}` : '');
 const fullDetails = (page: Page) => page.locator('dialog.card-details-dialog:not(.consultation)');
@@ -128,6 +129,7 @@ for (const id of ['generica', 'sistema-solar', 'criaturas-magicas']) for (const 
 
 test('B17 D: clic/Enter/Space/arrastre no juegan; parcial/plazo, Información, resize y foco equivalentes', async ({ browser }) => {
   const s = await scene(); const p = await manualTable(browser, s.base, { deckId: 'criaturas-magicas', version: 2, optimize: true, width: 1920, turn: 60 });
+  await observeKeyboard(p.pages[1]);
   try {
     const opener = p.pages[1]; await opener.getByRole('button', { name: 'ALTO', exact: true }).click();
     await expect.poll(() => s.gameRequests.length).toBe(1); const before = await readGame(opener);
@@ -200,7 +202,8 @@ test('B17 D: clic/Enter/Space/arrastre no juegan; parcial/plazo, Información, r
     await surface.evaluate(e => { const hand = e.closest('.game-hand')!; e.addEventListener('click', event => hand.setAttribute('data-adenda-trusted', String(event.isTrusted)), { once: true }); });
     await surface.click(); await expect(opener.locator('.game-hand')).toHaveAttribute('data-adenda-trusted', 'true'); await expect.poll(() => s.gameRequests.filter(r => r.event === 'game:play').length).toBe(1);
     expect((await readGame(p.host)).game.round.plays.map(play => play.card.id)).toEqual([id]);
-  } finally { await p.close(); await s.stop(); }
+  } catch (error) { await publicationState(p.pages[1], 'B17-Info-keyboard'); throw error; }
+  finally { await p.close(); await s.stop(); }
 });
 
 test('B17 consulta abierta: timeout retira la carta, revisión avanza y foco vuelve a región, sin pausas', async ({ browser }) => {

@@ -2,6 +2,7 @@ import { test, expect } from '@playwright/test';
 import fs from 'node:fs/promises';
 import { statisticsBrowserServer } from '../support/statisticsBrowserServer.js';
 import { manualTable } from '../support/manualBrowserCases.js';
+import { publicationState, statisticsObservation } from '../support/b20b21PublicationDiagnostics.js';
 
 test('B21 apariencia consentida: dos sesiones/pestañas, congelado, F5, final, consulta tardía y otra sala', async ({ browser }) => {
   const s = await statisticsBrowserServer();
@@ -30,6 +31,7 @@ test('B21 apariencia consentida: dos sesiones/pestañas, congelado, F5, final, c
 
 test('B21 HOME mínimo sin identificadores, permiso separado, exclusión compartida y pestañas', async ({ browser }) => {
   const s = await statisticsBrowserServer(); const context = await browser.newContext({ viewport: { width: 1280, height: 900 } }); const page = await context.newPage();
+  const observations = new Map([[page, statisticsObservation(page)]]);
   const homeBodies: unknown[] = []; const photos: string[] = [];
   page.on('request', req => { if (req.url().endsWith('/api/statistics/home-view')) homeBodies.push(req.postDataJSON()); if (req.url().endsWith('/api/statistics/appearance')) photos.push(req.postData() ?? ''); });
   try {
@@ -47,7 +49,7 @@ test('B21 HOME mínimo sin identificadores, permiso separado, exclusión compart
     await page.getByRole('button', { name: 'Permitir', exact: true }).press('Enter');
     await expect(page.getByRole('button', { name: 'Retirar permiso', exact: true })).toBeVisible();
     await page.getByRole('button', { name: 'Crear sala', exact: true }).click(); await expect(page.locator('.code')).toBeVisible();
-    const tab = await context.newPage(); await tab.goto(page.url()); await expect(tab.locator('.code')).toBeVisible();
+    const tab = await context.newPage(); observations.set(tab, statisticsObservation(tab)); await tab.goto(page.url()); await expect(tab.locator('.code')).toBeVisible();
     await expect(tab.getByRole('button', { name: 'Retirar permiso', exact: true })).toBeVisible();
     await page.getByRole('button', { name: 'Retirar permiso', exact: true }).focus();
     await page.getByRole('button', { name: 'Retirar permiso', exact: true }).press('Space');
@@ -65,6 +67,9 @@ test('B21 HOME mínimo sin identificadores, permiso separado, exclusión compart
     await expect(tab.getByRole('button', { name: 'Excluir mi actividad de las estadísticas', exact: true })).toBeVisible();
     expect(s.total('WAITING', 'cut')).toBe(1);
     await fs.mkdir('playwright-report/b21/product', { recursive: true }); await page.screenshot({ path: 'playwright-report/b21/product/controls-1280.png', fullPage: true });
+  } catch (error) {
+    for (const [index, [observed, network]] of [...observations].entries()) await publicationState(observed, `B21-reinclude-tab-${index}`, await network());
+    throw error;
   } finally { await context.close(); await s.stop(); }
 });
 

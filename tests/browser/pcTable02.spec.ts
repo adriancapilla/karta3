@@ -4,6 +4,7 @@ import path from 'node:path';
 import { createHash } from 'node:crypto';
 import { configurationBrowserServer } from '../support/configurationBrowserServer.js';
 import { manualTable, humanPlay, readGame } from '../support/manualBrowserCases.js';
+import { publicationState } from '../support/b20b21PublicationDiagnostics.js';
 
 const before = process.env.B11_CAPTURE_BASE === '1';
 const evidence = before ? path.resolve('playwright-report/b11/before') : path.resolve('playwright-report/b12/b11-regression');
@@ -57,7 +58,10 @@ async function record(page: Page, name: string, review = false) {
   await page.screenshot({ path: path.join(evidence, `${name}-viewport.png`) });
   await page.screenshot({ path: path.join(evidence, `${name}-full.png`), fullPage: true });
   console.log(`B11_MEASURE ${name} ${JSON.stringify(sample)}`);
-  if (!before) reference(sample, review);
+  if (!before) {
+    try { reference(sample, review); }
+    catch (error) { await publicationState(page, `B11-${name}`); throw error; }
+  }
 }
 test.beforeAll(async () => {
   if (before) {
