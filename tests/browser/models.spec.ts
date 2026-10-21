@@ -137,8 +137,8 @@ for (const profile of [{ width: 1920, optimize: true }, { width: 1280, optimize:
           await page.getByRole('button', { name: 'Cerrar detalles', exact: true }).press('Escape'); await expect(page.locator('.card-details-dialog')).toHaveCount(0); await expect(element.locator('.card-details-button')).toBeFocused();
         }
       }
-      const initial = await readGame(p.pages[1]); const compact = profile.optimize && profile.width < 1400;
-      const indicator = compact ? p.pages[1].locator('.summary-indicator') : p.pages[1].locator('.indicator-full .card-details-button');
+      const initial = await readGame(p.pages[1]); const compact = await p.pages[1].locator('.game-composition').getAttribute('data-layout') === 'compact';
+      const indicator = p.pages[1].getByRole('button', { name: `${compact ? 'Carta indicadora:' : 'Detalles de'} ${initial.game.round.indicator.name}`, exact: true });
       await indicator.focus(); await indicator.press('Enter'); await expect(p.pages[1].getByRole('dialog')).toContainText(initial.game.round.indicator.name);
       await p.pages[1].getByRole('button', { name: compact ? 'Cerrar consulta' : 'Cerrar detalles', exact: true }).press('Escape');
       await expect(p.pages[1].locator('.consultation, .card-details-dialog')).toHaveCount(0); await expect(indicator).toBeFocused();
