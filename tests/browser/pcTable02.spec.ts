@@ -5,6 +5,7 @@ import { createHash } from 'node:crypto';
 import { configurationBrowserServer } from '../support/configurationBrowserServer.js';
 import { manualTable, humanPlay, readGame } from '../support/manualBrowserCases.js';
 import { publicationState } from '../support/b20b21PublicationDiagnostics.js';
+import { b11KeyboardObservation } from '../support/b11KeyboardObservation.js';
 
 const before = process.env.B11_CAPTURE_BASE === '1';
 const evidence = before ? path.resolve('playwright-report/b11/before') : path.resolve('playwright-report/b12/b11-regression');
@@ -135,6 +136,8 @@ if (!before) {
   for (const width of [390, 1280]) test(`B11 access ${width}: touch/keyboard, direction first, full data, scroll and focus`, async ({ browser }) => {
     const s = await configurationBrowserServer(true, true, undefined, { distinct: true });
     const p = await manualTable(browser, s.base, { width, deckId: 'portada', version: 7, turn: 60 });
+    const observation = await b11KeyboardObservation(p.pages[1]);
+    let completed = false;
     try {
       const actor = p.pages[1]; await actor.setViewportSize({ width, height: width === 390 ? 844 : 800 });
       let confirmDirection: (() => void) | undefined;
@@ -162,19 +165,23 @@ if (!before) {
         // Esperar el ack: un botón deshabilitado no puede recibir foco de teclado.
         await expect(playButton).toBeDisabled();
         expect(s.gameRequests.filter((r) => r.event === 'game:play')).toHaveLength(0);
-        await expect.poll(() => Boolean(confirmDirection)).toBe(true); confirmDirection!();
+        await expect.poll(() => Boolean(confirmDirection)).toBe(true);
+        await observation.mark('before-direction-ack'); confirmDirection!();
       }
       await expect(actor.getByRole('button', { name: 'BAJO', exact: true })).toHaveAttribute('aria-pressed', 'true');
       await expect(playButton).toBeEnabled();
+      await observation.mark('before-activation');
       if (width === 390) { await surface.scrollIntoViewIfNeeded(); const b = (await surface.boundingBox())!; await actor.touchscreen.tap(b.x + 20, b.y + 20); }
       else await playButton.press('Space');
+      await observation.mark('after-activation');
       await expect.poll(async () => (await readGame(p.host)).game.round.plays.length).toBe(1);
       expect(s.gameRequests.filter((r) => r.event === 'game:play')).toHaveLength(1);
       expect(await actor.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
       await fs.mkdir(evidence, { recursive: true }); await actor.evaluate(() => scrollTo(0, 0));
       const sample = await measure(actor); await fs.writeFile(path.join(evidence, `${width}-access.json`), JSON.stringify(sample, null, 2));
       await actor.screenshot({ path: path.join(evidence, `${width}-access-full.png`), fullPage: true });
-    } finally { await p.close(); await s.stop(); }
+      completed = true;
+    } finally { try { await observation.save(width, s.gameRequests, completed ? 'completed' : 'failed'); } finally { await p.close(); await s.stop(); } }
   });
   test('B11 observer and repeated long names: separate O, no hand, public cards, compact roster', async ({ browser }) => {
     const s = await configurationBrowserServer(true, true, undefined, { generic: true });
