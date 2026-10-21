@@ -159,7 +159,11 @@ test('B17 D: clic/Enter/Space/arrastre no juegan; parcial/plazo, Información, r
       await expect(close).toBeFocused(); await close.press('Shift+Tab'); await expect(info).toBeFocused();
       await info.press('Enter'); const query = opener.locator('.consultation');
       await expect(query).toBeVisible(); await query.getByRole('button', { name: 'Cerrar consulta', exact: true }).press('Escape'); await expect(info).toBeFocused();
+      // El foco se restaura en onClose antes del commit de desmontaje React.
+      // La siguiente apertura comprueba una consulta nueva, no la anterior cerrada.
+      await expect(query).toHaveCount(0);
       await info.press('Space'); await expect(query).toBeVisible(); await query.getByRole('button', { name: 'Cerrar consulta', exact: true }).click(); await expect(info).toBeFocused();
+      await expect(query).toHaveCount(0);
       await info.press('Tab'); await expect(close).toBeFocused();
       const sample = await details.evaluate(element => {
         const dialog = element as HTMLDialogElement; const s = getComputedStyle(dialog); const b = dialog.getBoundingClientRect();
@@ -202,6 +206,7 @@ test('B17 D: clic/Enter/Space/arrastre no juegan; parcial/plazo, Información, r
     await surface.evaluate(e => { const hand = e.closest('.game-hand')!; e.addEventListener('click', event => hand.setAttribute('data-adenda-trusted', String(event.isTrusted)), { once: true }); });
     await surface.click(); await expect(opener.locator('.game-hand')).toHaveAttribute('data-adenda-trusted', 'true'); await expect.poll(() => s.gameRequests.filter(r => r.event === 'game:play').length).toBe(1);
     expect((await readGame(p.host)).game.round.plays.map(play => play.card.id)).toEqual([id]);
+    await publicationState(opener, 'B17-Info-keyboard-completed');
   } catch (error) { await publicationState(p.pages[1], 'B17-Info-keyboard'); throw error; }
   finally { await p.close(); await s.stop(); }
 });
