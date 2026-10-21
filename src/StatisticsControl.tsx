@@ -1,7 +1,7 @@
 import { useEffect, useSyncExternalStore } from 'react';
 import { privacyNotice } from '../shared/contracts/privacyNotice';
 import { socket } from './socket';
-import { chooseAppearance, chooseExclusion, refreshStatistics, startStatistics, statisticsChanged, statisticsConnected, statisticsDisconnected, statisticsState, subscribeStatistics } from './statistics';
+import { chooseAppearance, chooseExclusion, startStatistics, statisticsChanged, statisticsConnected, statisticsDisconnected, statisticsState, subscribeStatistics } from './statistics';
 
 export function StatisticsControl() {
   const state = useSyncExternalStore(subscribeStatistics, statisticsState);
@@ -29,6 +29,5 @@ export function StatisticsControl() {
     </div>
     {!state.available && <p>La recogida no está disponible en este momento.</p>}
     {state.persistence && <p>{state.persistence}</p>}{state.error && <p aria-live="polite">{state.error}</p>}
-    <button className="text-button" disabled={state.busy} onClick={() => void refreshStatistics()}>Consultar preferencias estadísticas</button>
   </aside>;
 }

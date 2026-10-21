@@ -34,17 +34,35 @@ test('B21 HOME mínimo sin identificadores, permiso separado, exclusión compart
   page.on('request', req => { if (req.url().endsWith('/api/statistics/home-view')) homeBodies.push(req.postDataJSON()); if (req.url().endsWith('/api/statistics/appearance')) photos.push(req.postData() ?? ''); });
   try {
     await page.goto(s.base); await expect(page.getByRole('button', { name: 'Crear sala', exact: true })).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Consultar preferencias estadísticas', exact: true })).toHaveCount(0);
+    await expect(page.getByRole('link', { name: 'Analítica y privacidad', exact: true })).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Excluir mi actividad de las estadísticas', exact: true })).toBeEnabled();
     await expect.poll(() => s.total('HOME', 'all', 'total')).toBe(1);
     await page.getByRole('button', { name: 'No permitir', exact: true }).click(); await expect(page.getByRole('button', { name: 'Permitir', exact: true })).toBeVisible();
     await page.reload(); await expect(page.getByRole('button', { name: 'Crear sala', exact: true })).toBeVisible(); await expect.poll(() => s.total('HOME', 'all', 'total')).toBe(2);
+    await expect(page.getByRole('button', { name: 'Consultar preferencias estadísticas', exact: true })).toHaveCount(0);
+    await expect(page.getByText('Sin permiso de apariencia: no se consulta ni transmite el tema para estadísticas.', { exact: true })).toBeVisible();
     expect(homeBodies).toEqual([{ version: 1 }, { version: 1 }]); expect(photos).toEqual([]);
+    await page.getByRole('button', { name: 'Permitir', exact: true }).focus();
+    await page.getByRole('button', { name: 'Permitir', exact: true }).press('Enter');
+    await expect(page.getByRole('button', { name: 'Retirar permiso', exact: true })).toBeVisible();
     await page.getByRole('button', { name: 'Crear sala', exact: true }).click(); await expect(page.locator('.code')).toBeVisible();
     const tab = await context.newPage(); await tab.goto(page.url()); await expect(tab.locator('.code')).toBeVisible();
+    await expect(tab.getByRole('button', { name: 'Retirar permiso', exact: true })).toBeVisible();
+    await page.getByRole('button', { name: 'Retirar permiso', exact: true }).focus();
+    await page.getByRole('button', { name: 'Retirar permiso', exact: true }).press('Space');
+    for (const ownPage of [page, tab]) {
+      await expect(ownPage.getByRole('button', { name: 'Permitir', exact: true })).toBeEnabled();
+      await expect(ownPage.getByRole('button', { name: 'No permitir', exact: true })).toBeVisible();
+      await expect(ownPage.getByRole('button', { name: 'Retirar permiso', exact: true })).toHaveCount(0);
+      await expect(ownPage.getByRole('button', { name: 'Consultar preferencias estadísticas', exact: true })).toHaveCount(0);
+    }
     await tab.getByRole('button', { name: 'Excluir mi actividad de las estadísticas', exact: true }).click();
     await expect(page.getByText('Actividad excluida de las estadísticas. Puedes jugar igual.', { exact: true })).toBeVisible();
     await expect.poll(() => s.total('WAITING', 'cut')).toBe(1); expect(s.total('CREATION', 'all', 'total')).toBe(1);
     await page.getByRole('button', { name: 'Volver a incluir mi actividad', exact: true }).click();
     await expect(page.getByRole('button', { name: 'Excluir mi actividad de las estadísticas', exact: true })).toBeVisible();
+    await expect(tab.getByRole('button', { name: 'Excluir mi actividad de las estadísticas', exact: true })).toBeVisible();
     expect(s.total('WAITING', 'cut')).toBe(1);
     await fs.mkdir('playwright-report/b21/product', { recursive: true }); await page.screenshot({ path: 'playwright-report/b21/product/controls-1280.png', fullPage: true });
   } finally { await context.close(); await s.stop(); }
