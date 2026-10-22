@@ -114,6 +114,8 @@ Conserva `package-lock.json`; no utilices `audit fix --force` para resolver esto
 
 ## Comprobaciones
 
+La CI elige sus comprobaciones según el cambio completo. Solo README, la guía de entrega del MVP y el registro operativo de GitHub permiten la ruta documental ligera; los cambios mixtos y todos los demás archivos, incluidos los visuales, conservan la CI actual. [Lista exacta y controles](docs/operacion/GITHUB_Y_RECUPERACION.md#comprobaciones-según-el-impacto--22102026). Guardar documentación no requiere instalar o ejecutar el producto ni desplegarlo.
+
 El [flujo de GitHub y recuperación](docs/operacion/GITHUB_Y_RECUPERACION.md) describe la automatización, las ejecuciones verificadas y las copias pendientes fuera de Git.
 
 ```powershell
