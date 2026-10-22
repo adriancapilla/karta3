@@ -8,6 +8,10 @@ Cualquier otro archivo, cambio mixto, borrado, cambio de tipo, diferencia vacía
 
 El trabajo de imagen queda omitido en documentación: no hay candidato OCI ni se acredita CI de producto por ese resultado. El publicador conserva su exigencia de ambos trabajos de producto correctos, sin cambios. Main no tenía protecciones o checks obligatorios configurados al revisar este ajuste; se conserva el nombre del check principal y no se modifican protecciones. La entrega etiquetada tfm-mvp-2026-10-22 y su imagen permanecen intactas. Guardar documentación en GitHub no implica despliegue.
 
+La [PR20](https://github.com/adriancapilla/karta3/pull/20) integra el ajuste en445a967f32d27edc1bfc8ac5449b5734cc354902. Su [CI39774026578](https://github.com/adriancapilla/karta3/actions/runs/39774026578), fuente ca271af, revisó los cuatro archivos completos y eligió correctamente el recorrido actual:620 pruebas,104 módulos,222/222 Chrome e imagen/HTTPS correctos. Los15 casos focales del clasificador cubren documentación, producto/estilos, mezclas en ambos órdenes, rutas no listadas y cambios ambiguos; el fallback de historial no disponible mantiene la ruta actual. La CI normal de main se distingue de esta evidencia de fuente.
+
+La continuación informativa de README y este registro se publica en dos commits y una PR independiente para acreditar el cambio completo documental en PR y main. Sus identificadores, trabajos ejecutados/omitidos y resultados se registran en la PR al terminar, sin otro commit solo para anotar el SHA integrado. Esa ruta no acredita pruebas de producto o imagen nuevas.
+
 ## Cierre documental del MVP para el TFM — 22/10/2026
 
 La [guía de entrega](ENTREGA_MVP_TFM.md) es la entrada vigente: producto06e3f9493fd703ca022821046114e1c53a37beb2, CI final39703729802 y digest desplegado c79dffcb055c830b6c0a3dd230991fe3e277d94af5aa10fe6a4010d9ff2305d7. B22 está desplegado y B21 aggregate escribe agregados reales; recepción posterior al informe de publicación, según cierre VPS22/10 §§3.10–3.17. Arquitectura recibida: ARQ-PUBLICACION-B22-2026-10-22. Los estados de preparación inferiores son históricos y no sustituyen este cierre.
