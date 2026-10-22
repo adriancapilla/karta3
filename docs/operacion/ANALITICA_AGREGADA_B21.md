@@ -1,6 +1,6 @@
-# Operación preparada de AGG_DAILY_V1 — B21
+# Operación de AGG_DAILY_V1 — B21
 
-Guía de la versión local nueva. No autoriza activación, publicación, actualización del VPS o borrado. Las guías B18/B19/B20 son históricas; no ejecutar sus migraciones, lectores o configuraciones con este paquete.
+Estado recibido22/10/2026: B22 desplegado en Pruebas y B21 en modo **aggregate**, con escritura real, controles visibles y copia/restauración aislada comprobadas. La [guía del MVP](ENTREGA_MVP_TFM.md) separa esa recepción de las CI y ensayos pendientes. Los procedimientos siguientes no autorizan otra activación, publicación, actualización del VPS o borrado; los pasos preparados no se consideran ejecutados por aparecer aquí. Las guías B18/B19/B20 son históricas; no ejecutar sus migraciones, lectores o configuraciones con este paquete.
 
 ## Modelo y condiciones
 

@@ -1,5 +1,9 @@
 # Organización del código y dependencias de KARTA3
 
+## Recepción final del MVP — 22/10/2026
+
+Referencia recibida **ARQ-PUBLICACION-B22-2026-10-22** en las fuentes generales de Aplicación/Infraestructura. Producto06e3f94 y su imagen aprobada conservan esas fronteras; el [cierre de entrega](../operacion/ENTREGA_MVP_TFM.md) distingue publicación de código/paquete de la recepción posterior del despliegue22/10. B22 ya está desplegado en Pruebas y B21 aggregate tiene escritura real comprobada. Las menciones locales o de «sin activación» en los cierres inferiores son evidencia fechada. No se modifican las fuentes TFM ni se extiende la verificación a ensayos operativos pendientes.
+
 ## B21 — modelo estadístico vigente en la entrega local (20/10/2026)
 
 AGG_DAILY_V1 sustituye el subsistema B18–B20 sobre el producto actual; los apartados históricos inferiores conservan su evidencia. Sin lectores/migraciones/recibos/eventos o coexistencia en el ejecutable nuevo. No se han borrado datos, activado recogida, publicado o editado TFM. [Operación nueva](../operacion/ANALITICA_AGREGADA_B21.md), [evidencia B21](../sdd/evidencias/B21/IMPLEMENTACION.md). La recepción del traslado de Arquitectura y las puertas Linux se distinguen del cierre técnico Windows.
