@@ -152,13 +152,32 @@ test('B05-08/13 resultado sin confirmación y gesto offline no se reenvían; otr
 
 test('B05-09/10/13 observador con cinco invitados, reservas y retirada con tiempo controlado, autoridad y cierre por ausencia', async ({ browser }) => {
   const s = await configurationBrowserServer(); const p = await pair(browser, s.base, 390); const sockets: Socket[] = [];
+  const rejected: string[] = [];
+  s.intercept((payload, deliver, result) => {
+    if (payload.change.field === 'hostPlays' && payload.change.value === true && !result.ok) rejected.push(result.error.code);
+    deliver(result);
+  });
+  const rejectedAttempt = async () => {
+    const control = p.host.getByLabel('El anfitrión juega');
+    await expect(control).toBeEnabled(); await expect(control).not.toBeChecked();
+    const requests = s.requests.length, failures = rejected.length;
+    // check() exige estado final true y contradice el rechazo que se comprueba aquí.
+    await control.click();
+    await expect.poll(() => rejected.length).toBe(failures + 1);
+    expect(rejected.at(-1)).toBe('ROOM_FULL');
+    expect(s.requests).toHaveLength(requests + 1);
+    expect(s.requests.at(-1)!.change).toEqual({ field: 'hostPlays', value: true });
+    await expect(p.host.locator('#config-hostPlays-state')).toContainText('plaza libre');
+    await expect(control).not.toBeChecked();
+    expect((await current(p.host)).settings.hostPlays).toBe(false);
+  };
   try {
     await p.host.getByLabel('El anfitrión juega').uncheck(); await expect(p.host.getByText('Anfitrión · Observador', { exact: true })).toBeVisible();
     for (let n = 0; n < 4; n++) { const socket = await rawSession(s.base); sockets.push(socket); await emit(socket, 'room:join', { requestId: `guest-${n}`, code: '000042', name: `Persona ${n}` }); }
-    await expect(p.host.getByText('5 de 5 jugadores')).toBeVisible(); await p.host.getByLabel('El anfitrión juega').check();
+    await expect(p.host.getByText('5 de 5 jugadores')).toBeVisible(); await rejectedAttempt();
     await expect(p.host.locator('#config-hostPlays-state')).toContainText('plaza libre'); await expect(p.host.getByLabel('El anfitrión juega')).not.toBeChecked();
     sockets[0].disconnect(); await expect(p.host.locator('.participant-list')).toContainText('Reconectando');
-    await p.host.getByLabel('El anfitrión juega').check(); await expect(p.host.locator('#config-hostPlays-state')).toContainText('plaza libre');
+    await rejectedAttempt(); await expect(p.host.locator('#config-hostPlays-state')).toContainText('plaza libre');
     s.time.elapse(30_000); await p.host.getByLabel('El anfitrión juega').check();
     await expect(p.host.getByLabel('El anfitrión juega')).toBeChecked(); await expect(p.host.getByText('5 de 5 jugadores')).toBeVisible();
     await expect(p.host.locator('.participant-list li').last()).toContainText('Anfitrión');
