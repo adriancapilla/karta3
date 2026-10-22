@@ -2,15 +2,15 @@
 
 KARTA3 es un proyecto de adaptación de un juego de cartas a una aplicación web multijugador, desarrollado como Trabajo Fin de Máster.
 
-## B21 — estadísticas agregadas (sin activación pública por esta entrega)
+## MVP para el TFM — entrega del 22/10/2026
 
-El único modelo estadístico nuevo es **AGG_DAILY_V1**, esquema propio 1, en un archivo separado. Se reduce en aplicación antes de la cola: contadores diarios, configuración marginal, balances, duración en segundos/intervalos y apariencia consentida. No se guardan eventos, visitas, referencias individuales, recibos o snapshots de partidas. El juego continúa exclusivamente en RAM y no espera estadísticas. Las nueve consultas/CSV son administrativas, privadas y por **días UTC cerrados**; no hay panel o API pública de informes.
+**Probar: [pruebas.karta3.com](https://pruebas.karta3.com).** B22 está desplegado: cuatro barajas, juego humano y bots, turnos/automático, revisión, resultados y cancelación. Para iniciar hacen falta 2–5 jugadores y **al menos un humano jugador**: el anfitrión observador con solo bots no puede iniciar.
 
-Núcleo/HOME y permiso de apariencia son independientes. La exclusión general se recuerda mediante una cookie funcional durante doce meses desde la elección, sin renovación por consultas. Una sesión anterior sin nueva preferencia queda sin medición hasta elegir. START/END requieren permiso específico confirmado (máximo doce horas RAM); no se consulta el tema con finalidad estadística antes de él. Rechazar apariencia permite núcleo/HOME; excluir un humano, incluido observador, corta irrevocablemente el ciclo compartido. Volver a incluir no reconstruye el ciclo ni concede apariencia.
+La [guía de entrega y primera partida](docs/operacion/ENTREGA_MVP_TFM.md) explica instalación desde un clon con **Node 24.19.0**, presentación normal/compacta, modos 1–58/Dato y apariencia personal. Identifica la etiqueta recuperable **`tfm-mvp-2026-10-22`**, el producto `06e3f94` y su digest desplegado, sin congelar la URL ni futuros cambios de main.
 
-Aviso local **2026-10-20.2**, en /privacidad, sin montar el juego por su consulta. Predeterminado técnico aggregate solo en Pruebas preparada; fuera de ella OFF salvo ensayo synthetic/test explícito. Faltan archivo nuevo preparado, configuración o almacenamiento: estadísticas indisponibles, juego disponible. **No se ha activado ni actualizado ningún servidor público.** La autorización operativa es posterior.
+B21 funciona en Pruebas en modo **aggregate**, con escritura real comprobada. AGG_DAILY_V1 contiene agregados diarios separados del juego. La exclusión general y el permiso de apariencia son independientes; la apariencia personal funciona sin permiso estadístico. **La aceptación general B19 ya no es el modelo vigente.** [Modelo y controles actuales](docs/operacion/ANALITICA_AGREGADA_B21.md). No hay botón de consulta manual de preferencias ni informes públicos.
 
-[Guía vigente: ensayo aislado, informes, copia, actualización y reversión](docs/operacion/ANALITICA_AGREGADA_B21.md). [Evidencia nueva B21 y límites](docs/sdd/evidencias/B21/IMPLEMENTACION.md). Los datos anteriores no se migran, leen o borran por esta versión; no abrir el archivo nuevo con el paquete anterior. Linux/imagen, alineación recibida de Arquitectura y revisión humana se registran separadamente. C09–C10 continúan parciales.
+La guía distingue las CI del producto (**620 pruebas, 104 módulos y 222/222 recorridos**), clon/Linux/185 huellas, comprobaciones posteriores del VPS y valoración humana. Conserva C09–C10 parciales y los demás límites; no acredita reversión/OFF o restauración integral de Hostinger. Los apartados de evolución siguientes conservan el alcance y las cifras de cada entrega histórica.
 
 ## Apariencia personal B20 y correcciones conservadas
 
@@ -22,7 +22,7 @@ Cuando el selector está debajo de Cancelar, sus bordes se alinean sin ensanchar
 
 La aplicación se construye de forma incremental, con especificaciones, pruebas y documentación de cada entrega. Utiliza TypeScript, React y un servidor Node.js con Express y Socket.IO.
 
-## Estado actual
+## Evolución del MVP y evidencia por bloque
 
 [B22](docs/sdd/BLOQUE_22_INCORPORACION_MODELOS_IA_2026.md) incorpora manualmente **Modelos de IA — Edición 2026, formato2/contenido2**, ya aprobada/activada por el Gestor. Finalidad demostrativa de la mecánica, **sin finalidad formativa ni ranking científico**; instrucciones, fechas, separadores y notas se muestran literalmente. Catálogo vigente: `criaturas-magicas`2, `generica`4, `modelos-ia-2026`2 y `sistema-solar`4, todas formato2/disponibles, sin selección inicial. [Copia/certificados/evidencia B22](docs/sdd/evidencias/B22/README.md). Consumidor, reglas, bots, apariencia y paneles compactos existentes se reutilizan sin cambios.
 
@@ -87,7 +87,7 @@ La [verificación local T03 del 07/10/2026](docs/sdd/BLOQUE_T03_ENTORNO_Y_DEPEND
 
 T03 adopta un entorno operativo reproducible: el clon Windows falló nativamente en TypeScript con 24.13.0 y funcionó con 24.19.0; la CI Linux anterior sí pasó con 24.13.0. Esto no demuestra la causa original del fallo. No hace falta cambiar runtimes de otras herramientas. El [registro T03](docs/sdd/BLOQUE_T03_ENTORNO_Y_DEPENDENCIAS.md) distingue esa evidencia histórica de sus comprobaciones nuevas.
 
-Clona el repositorio con una cuenta autorizada mientras sea privado. En PowerShell:
+El repositorio es público. Para reproducir exactamente la entrega, sigue el clon y la etiqueta de la [guía del TFM](docs/operacion/ENTREGA_MVP_TFM.md#clon-y-arranque-local). Para trabajar con main, en PowerShell:
 
 ```powershell
 git clone https://github.com/adriancapilla/karta3.git
@@ -102,7 +102,7 @@ Antes de repetir `npm ci`, detén las instancias de este proyecto que estén uti
 
 ### Dependencias de desarrollo
 
-T03 alinea `@types/node` con la serie 24 (**24.19.1**). Vite conserva su versión y resuelve PostCSS **8.5.29**, que incorpora `source-map-js` **1.2.2**. `concurrently` **10.0.5** aún fija `shell-quote` 1.9.0: un override limitado a ese incorporador lo sustituye por **1.11.0**, corrección del [aviso oficial](https://github.com/advisories/GHSA-pqg4-j6r4-53mv). Revisarlo cuando el incorporador publique su actualización; no extenderlo a otros paquetes. Las demás versiones bloqueadas se conservan. Diagnóstico reproducible:
+T03 alinea `@types/node` con la serie 24 (**24.19.1**). Esta fue la alineación histórica T03; la entrega B22 fija **Vite 8.3.5** y PostCSS **8.5.31** en el lockfile, según la [publicación B22](docs/operacion/PUBLICACION_B22_Y_TRASLADO_B21.md). `concurrently` **10.0.5** aún fija `shell-quote` 1.9.0: un override limitado a ese incorporador lo sustituye por **1.11.0**, corrección del [aviso oficial](https://github.com/advisories/GHSA-pqg4-j6r4-53mv). Revisarlo cuando el incorporador publique su actualización; no extenderlo a otros paquetes. Las demás versiones bloqueadas se conservan. Diagnóstico reproducible:
 
 ```powershell
 npm audit
@@ -164,7 +164,7 @@ Este recorrido crea servidores de la compilación actual con paquetes sintético
 - `tests/browser/`: recorridos en Chrome a 360/390/1280 píxeles, con sesiones independientes y montajes compilados.
 - `docs/sdd/`: especificación y evidencia del bloque.
 
-La creación, lectura, edición del nombre y cierre conservan HTTP. La entrada, salida, configuración y sincronización usan Socket.IO con la misma sesión. La configuración usa un id nuevo por gesto; el transporte volátil no espera ni encola cambios para reconectar. El servidor deduplica repeticiones sin restaurar un resultado antiguo. El estado en memoria permite una sola instancia del servidor; no hay persistencia ni sincronización entre procesos. El código visible localiza una sala, pero nunca autoriza a modificarla.
+La creación, lectura, edición del nombre y cierre conservan HTTP. La entrada, salida, configuración y sincronización usan Socket.IO con la misma sesión. La configuración usa un id nuevo por gesto; el transporte volátil no espera ni encola cambios para reconectar. El servidor deduplica repeticiones sin restaurar un resultado antiguo. El estado jugable en memoria permite una sola instancia del servidor; no hay persistencia del juego ni sincronización entre procesos. SQLite B21 persiste únicamente agregados, sin recuperar salas, sesiones o partidas. El código visible localiza una sala, pero nunca autoriza a modificarla.
 
 ## Preparar y probar barajas
 

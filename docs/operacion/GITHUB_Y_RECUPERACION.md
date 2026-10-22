@@ -1,5 +1,11 @@
 # GitHub, comprobaciones y recuperación
 
+## Cierre documental del MVP para el TFM — 22/10/2026
+
+La [guía de entrega](ENTREGA_MVP_TFM.md) es la entrada vigente: producto06e3f9493fd703ca022821046114e1c53a37beb2, CI final39703729802 y digest desplegado c79dffcb055c830b6c0a3dd230991fe3e277d94af5aa10fe6a4010d9ff2305d7. B22 está desplegado y B21 aggregate escribe agregados reales; recepción posterior al informe de publicación, según cierre VPS22/10 §§3.10–3.17. Arquitectura recibida: ARQ-PUBLICACION-B22-2026-10-22. Los estados de preparación inferiores son históricos y no sustituyen este cierre.
+
+Esta continuación solo cambia documentación; no instala, arranca o repite pruebas locales. Respeta las CI normales de PR/main. Tras su publicación se fija la etiqueta anotada inmutable `tfm-mvp-2026-10-22` en el commit documental integrado; los SHA de entrega, CI documental e igualdad ejecutable se registran en la PR y anotación de la etiqueta, sin otro commit solo para anotar el SHA. Si ya existe, verificar y no moverla. Recuperar con `git switch --detach tfm-mvp-2026-10-22`; no aplicar la reserva4516d23 ni confundir la etiqueta con una congelación de la URL. No reconstruir/promover otra imagen por este cierre. Etiquetas de archivo y ramas históricas conservadas.
+
 Actualizado: 22/10/2026. Repositorio existente: `E:\KARTA3\KARTA3_IA\APP\karta3`.
 Versión de paquete: 0.1.0. Remoto público: `https://github.com/adriancapilla/karta3.git`.
 

@@ -1,5 +1,9 @@
 # Publicación conjunta B11/paneles/B22/Vite — 22/10/2026
 
+## Lectura vigente y alcance histórico
+
+Este documento conserva la preparación y los intentos de publicación en su fecha; «traslado no ejecutado» describe aquella fase. El cierre posterior del VPS22/10 confirma B22 desplegado y escritura B21 aggregate, controles, copia cifrada y restauración aislada. La [entrega del MVP](ENTREGA_MVP_TFM.md) recoge las identidades finales y límites, sin convertir los pasos preparados de reversión/OFF en operaciones ejecutadas. No ejecutar instrucciones de traslado por el mero hecho de consultar este registro.
+
 ## Fuente y evidencia
 
 Base publicada6359ceb/PR16: CI de fuente39591834330 correcta205/205; integrado39595228542 con204/205. Su OCI sigue no aprobado. Fuente local99f9c3da84356e11c7ef0ff93faf76dc0df0c3e7 más pendientes de paneles revisados y registrados por separado. Recuperación B11: fix/b11-espacio/aa336d3, código f3bf915. [Diagnóstico causal](../sdd/evidencias/B20/B11_ESPACIO_20261021.md): solo arnés, transporte preparado antes de Espacio genuino sobre control habilitado/enfocado, una solicitud/jugada y caso adverso retenido; el reensayo favorable histórico no se presenta como reparación.
