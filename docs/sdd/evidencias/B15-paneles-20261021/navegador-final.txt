@@ -1,0 +1,16 @@
+
+Running 9 tests using 1 worker
+
+(node:7636) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 tests\browser\format2Presentation.spec.ts:62:3 › B15 adenda paneles compactos 390 PLAY_VALUE (7.7s)
+  ok 2 tests\browser\format2Presentation.spec.ts:62:3 › B15 adenda paneles compactos 390 DISPLAY_VALUE (6.4s)
+  ok 3 tests\browser\format2Presentation.spec.ts:62:3 › B15 adenda paneles compactos 1280 PLAY_VALUE (6.5s)
+  ok 4 tests\browser\format2Presentation.spec.ts:62:3 › B15 adenda paneles compactos 1280 DISPLAY_VALUE (6.8s)
+  ok 5 tests\browser\format2Presentation.spec.ts:120:1 › B15 adenda paneles compactos: frontera útil y normal sin optimización (7.1s)
+  ok 6 tests\browser\format2Presentation.spec.ts:205:137 › B15 generica PLAY_VALUE 1920: producto, información, indicadora, Detalles y privacidad (4.1s)
+  ok 7 tests\browser\format2Presentation.spec.ts:205:137 › B15 sistema-solar DISPLAY_VALUE 1920: producto, información, indicadora, Detalles y privacidad (4.1s)
+  ok 8 tests\browser\format2Presentation.spec.ts:270:1 › B15 frontera medida 1367/1368, equivalencia normal on/off, foco, parciales, resize y quinta (13.4s)
+  ok 9 tests\browser\format2Presentation.spec.ts:297:92 › B15 observador, cinco jugadores e identidades estables 390 DISPLAY_VALUE (6.8s)
+
+  9 passed (1.1m)

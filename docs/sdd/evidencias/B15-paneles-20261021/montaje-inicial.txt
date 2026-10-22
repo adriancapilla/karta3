@@ -1,0 +1,178 @@
+
+Running 5 tests using 1 worker
+
+(node:9060) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  1 tests\browser\format2Presentation.spec.ts:62:3 › B15 adenda paneles compactos 390 PLAY_VALUE (10.0s)
+(node:31124) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  2 tests\browser\format2Presentation.spec.ts:62:3 › B15 adenda paneles compactos 390 DISPLAY_VALUE (9.3s)
+(node:17968) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  3 tests\browser\format2Presentation.spec.ts:62:3 › B15 adenda paneles compactos 1280 PLAY_VALUE (8.8s)
+(node:2700) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  4 tests\browser\format2Presentation.spec.ts:62:3 › B15 adenda paneles compactos 1280 DISPLAY_VALUE (8.9s)
+(node:1740) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 5 tests\browser\format2Presentation.spec.ts:117:1 › B15 adenda paneles compactos: frontera útil y normal sin optimización (8.2s)
+
+
+  1) tests\browser\format2Presentation.spec.ts:62:3 › B15 adenda paneles compactos 390 PLAY_VALUE ──
+
+    Error: expect(locator).toContainText(expected) failed
+
+    Locator: locator('.participant-list')
+    Expected substring: "Alejandra Fernanda"
+    Received string:    "Jugador 1TúAnfitrión"
+    Timeout: 5000ms
+
+    Call log:
+      - Expect "toContainText" locator('.participant-list') with timeout 5000ms
+      - waiting for locator('.participant-list')
+        14 × locator resolved to <ol class="participant-list">…</ol>
+           - unexpected value "Jugador 1TúAnfitrión"
+
+
+       at ..\support\manualBrowserCases.ts:13
+
+      11 |   await options.beforeCreate?.(pages);
+      12 |   const host = pages[0]; await host.getByRole('button', { name: 'Crear sala', exact: true }).click();
+    > 13 |   if (options.hostName) { await host.getByLabel('Editar mi nombre').fill(options.hostName); await host.getByRole('button', { name: 'Guardar', exact: true }).click(); await expect(host.locator('.participant-list')).toContainText(options.hostName); }
+         |                                                                                                                                                                                                                       ^
+      14 |   const code = (await host.locator('.code').textContent())!;
+      15 |   if (options.observer) await host.getByLabel('El anfitrión juega').uncheck();
+      16 |   for (const difficulty of options.bots ?? []) {
+        at manualTable (E:\KARTA3\KARTA3_IA\APP\karta3\tests\support\manualBrowserCases.ts:13:215)
+        at E:\KARTA3\KARTA3_IA\APP\karta3\tests\browser\format2Presentation.spec.ts:63:41
+
+    Error Context: playwright-report\b15-paneles-20261021\before-traces\format2Presentation-B15-ad-49a4f-es-compactos-390-PLAY-VALUE\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    playwright-report\b15-paneles-20261021\before-traces\format2Presentation-B15-ad-49a4f-es-compactos-390-PLAY-VALUE\trace.zip
+    Usage:
+
+        npx playwright show-trace playwright-report\b15-paneles-20261021\before-traces\format2Presentation-B15-ad-49a4f-es-compactos-390-PLAY-VALUE\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) tests\browser\format2Presentation.spec.ts:62:3 › B15 adenda paneles compactos 390 DISPLAY_VALUE 
+
+    Error: expect(locator).toContainText(expected) failed
+
+    Locator: locator('.participant-list')
+    Expected substring: "Alejandra Fernanda"
+    Received string:    "Jugador 1TúAnfitrión"
+    Timeout: 5000ms
+
+    Call log:
+      - Expect "toContainText" locator('.participant-list') with timeout 5000ms
+      - waiting for locator('.participant-list')
+        14 × locator resolved to <ol class="participant-list">…</ol>
+           - unexpected value "Jugador 1TúAnfitrión"
+
+
+       at ..\support\manualBrowserCases.ts:13
+
+      11 |   await options.beforeCreate?.(pages);
+      12 |   const host = pages[0]; await host.getByRole('button', { name: 'Crear sala', exact: true }).click();
+    > 13 |   if (options.hostName) { await host.getByLabel('Editar mi nombre').fill(options.hostName); await host.getByRole('button', { name: 'Guardar', exact: true }).click(); await expect(host.locator('.participant-list')).toContainText(options.hostName); }
+         |                                                                                                                                                                                                                       ^
+      14 |   const code = (await host.locator('.code').textContent())!;
+      15 |   if (options.observer) await host.getByLabel('El anfitrión juega').uncheck();
+      16 |   for (const difficulty of options.bots ?? []) {
+        at manualTable (E:\KARTA3\KARTA3_IA\APP\karta3\tests\support\manualBrowserCases.ts:13:215)
+        at E:\KARTA3\KARTA3_IA\APP\karta3\tests\browser\format2Presentation.spec.ts:63:41
+
+    Error Context: playwright-report\b15-paneles-20261021\before-traces\format2Presentation-B15-ad-a451a-compactos-390-DISPLAY-VALUE\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    playwright-report\b15-paneles-20261021\before-traces\format2Presentation-B15-ad-a451a-compactos-390-DISPLAY-VALUE\trace.zip
+    Usage:
+
+        npx playwright show-trace playwright-report\b15-paneles-20261021\before-traces\format2Presentation-B15-ad-a451a-compactos-390-DISPLAY-VALUE\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) tests\browser\format2Presentation.spec.ts:62:3 › B15 adenda paneles compactos 1280 PLAY_VALUE ─
+
+    Error: expect(locator).toContainText(expected) failed
+
+    Locator: locator('.participant-list')
+    Expected substring: "Alejandra Fernanda"
+    Received string:    "Jugador 1TúAnfitrión"
+    Timeout: 5000ms
+
+    Call log:
+      - Expect "toContainText" locator('.participant-list') with timeout 5000ms
+      - waiting for locator('.participant-list')
+        14 × locator resolved to <ol class="participant-list">…</ol>
+           - unexpected value "Jugador 1TúAnfitrión"
+
+
+       at ..\support\manualBrowserCases.ts:13
+
+      11 |   await options.beforeCreate?.(pages);
+      12 |   const host = pages[0]; await host.getByRole('button', { name: 'Crear sala', exact: true }).click();
+    > 13 |   if (options.hostName) { await host.getByLabel('Editar mi nombre').fill(options.hostName); await host.getByRole('button', { name: 'Guardar', exact: true }).click(); await expect(host.locator('.participant-list')).toContainText(options.hostName); }
+         |                                                                                                                                                                                                                       ^
+      14 |   const code = (await host.locator('.code').textContent())!;
+      15 |   if (options.observer) await host.getByLabel('El anfitrión juega').uncheck();
+      16 |   for (const difficulty of options.bots ?? []) {
+        at manualTable (E:\KARTA3\KARTA3_IA\APP\karta3\tests\support\manualBrowserCases.ts:13:215)
+        at E:\KARTA3\KARTA3_IA\APP\karta3\tests\browser\format2Presentation.spec.ts:63:41
+
+    Error Context: playwright-report\b15-paneles-20261021\before-traces\format2Presentation-B15-ad-91afa-s-compactos-1280-PLAY-VALUE\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    playwright-report\b15-paneles-20261021\before-traces\format2Presentation-B15-ad-91afa-s-compactos-1280-PLAY-VALUE\trace.zip
+    Usage:
+
+        npx playwright show-trace playwright-report\b15-paneles-20261021\before-traces\format2Presentation-B15-ad-91afa-s-compactos-1280-PLAY-VALUE\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4) tests\browser\format2Presentation.spec.ts:62:3 › B15 adenda paneles compactos 1280 DISPLAY_VALUE 
+
+    Error: expect(locator).toContainText(expected) failed
+
+    Locator: locator('.participant-list')
+    Expected substring: "Alejandra Fernanda"
+    Received string:    "Jugador 1TúAnfitrión"
+    Timeout: 5000ms
+
+    Call log:
+      - Expect "toContainText" locator('.participant-list') with timeout 5000ms
+      - waiting for locator('.participant-list')
+        14 × locator resolved to <ol class="participant-list">…</ol>
+           - unexpected value "Jugador 1TúAnfitrión"
+
+
+       at ..\support\manualBrowserCases.ts:13
+
+      11 |   await options.beforeCreate?.(pages);
+      12 |   const host = pages[0]; await host.getByRole('button', { name: 'Crear sala', exact: true }).click();
+    > 13 |   if (options.hostName) { await host.getByLabel('Editar mi nombre').fill(options.hostName); await host.getByRole('button', { name: 'Guardar', exact: true }).click(); await expect(host.locator('.participant-list')).toContainText(options.hostName); }
+         |                                                                                                                                                                                                                       ^
+      14 |   const code = (await host.locator('.code').textContent())!;
+      15 |   if (options.observer) await host.getByLabel('El anfitrión juega').uncheck();
+      16 |   for (const difficulty of options.bots ?? []) {
+        at manualTable (E:\KARTA3\KARTA3_IA\APP\karta3\tests\support\manualBrowserCases.ts:13:215)
+        at E:\KARTA3\KARTA3_IA\APP\karta3\tests\browser\format2Presentation.spec.ts:63:41
+
+    Error Context: playwright-report\b15-paneles-20261021\before-traces\format2Presentation-B15-ad-892e6-ompactos-1280-DISPLAY-VALUE\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    playwright-report\b15-paneles-20261021\before-traces\format2Presentation-B15-ad-892e6-ompactos-1280-DISPLAY-VALUE\trace.zip
+    Usage:
+
+        npx playwright show-trace playwright-report\b15-paneles-20261021\before-traces\format2Presentation-B15-ad-892e6-ompactos-1280-DISPLAY-VALUE\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4 failed
+    tests\browser\format2Presentation.spec.ts:62:3 › B15 adenda paneles compactos 390 PLAY_VALUE ───
+    tests\browser\format2Presentation.spec.ts:62:3 › B15 adenda paneles compactos 390 DISPLAY_VALUE 
+    tests\browser\format2Presentation.spec.ts:62:3 › B15 adenda paneles compactos 1280 PLAY_VALUE ──
+    tests\browser\format2Presentation.spec.ts:62:3 › B15 adenda paneles compactos 1280 DISPLAY_VALUE 
+  1 passed (52.3s)

@@ -47,7 +47,8 @@ jq -e '.[0] | .State.Health.Status == "healthy" and .HostConfig.ReadonlyRootfs
 network=$(jq -r '.[0].NetworkSettings.Networks | keys[0]' "$proof/container.json")
 docker network inspect "$network" | jq -e '.[0].Internal == true'
 docker inspect "$caddy" | jq -e '.[0] | .HostConfig.PortBindings | keys | sort == ["443/tcp", "80/tcp"]'
-docker exec -i "$app" node --input-type=module < tools/ci-image-runtime.mjs | tee "$proof/runtime.json"
+approved_models=$(cat tests/fixtures/approved-models-ia-2026.json)
+docker exec -e "KARTA3_CI_APPROVED_MODELS=$approved_models" -i "$app" node --input-type=module < tools/ci-image-runtime.mjs | tee "$proof/runtime.json"
 ca_ready=false
 for attempt in {1..60}; do
   if compose cp caddy:/data/caddy/pki/authorities/local/root.crt "$proof/local-ca.crt"; then ca_ready=true; break; fi
@@ -73,7 +74,7 @@ compose cp caddy:/data/caddy/pki/authorities/local/root.crt "$proof/local-ca-aft
 test "$ca_before" = "$(sha256sum "$proof/local-ca-after.crt" | cut -d ' ' -f1)"
 test "$app" = "$(compose ps -q app)"
 wait_tls
-docker exec -i "$app" node --input-type=module < tools/ci-image-runtime.mjs > "$proof/runtime-after.json"
+docker exec -e "KARTA3_CI_APPROVED_MODELS=$approved_models" -i "$app" node --input-type=module < tools/ci-image-runtime.mjs > "$proof/runtime-after.json"
 # B21: misma imagen OCI, volúmenes propios y HUMAN exclusivamente fabricado.
 bash tools/ci-usage.sh
 archive_sha=$(sha256sum "$proof/karta3.oci.tar" | cut -d ' ' -f1)

@@ -8,16 +8,9 @@ test "$GITHUB_REF" = refs/heads/main
 repo=$GITHUB_REPOSITORY
 association_verification=api
 verify_package() {
-  jq -e '.visibility == "private"' "$1"
-  if jq -e '.repository != null' "$1" >/dev/null; then
-    jq -e '.repository.full_name == "adriancapilla/karta3" and .repository.private == true' "$1"
-    association_verification=api
-  else
-    # GHCR puede mostrar el origen y acceso heredado en su UI sin informar repository en REST.
-    # El origen OCI y el repositorio privado se comprueban antes de llegar aquí.
-    test "${SOURCE_ASSOCIATION_REVIEWED:-false}" = true
-    association_verification=github-package-settings-manual-review
-  fi
+  # La visibilidad del código y la del paquete son controles independientes.
+  # Repository source nulo sigue exigiendo revisión manual, desactivada por defecto.
+  association_verification=$(node tools/publish-package-policy.mjs "$work/repository.json" "$1" "${SOURCE_ASSOCIATION_REVIEWED:-false}")
 }
 work="$RUNNER_TEMP/karta3-publication-work"
 proof="$RUNNER_TEMP/karta3-publication-proof"
@@ -29,7 +22,7 @@ container="karta3-pull-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT"
 cleanup() { docker rm -f "$container" >/dev/null 2>&1 || true; rm -f "$work/registry-auth.json" "$DOCKER_CONFIG/config.json"; }
 trap cleanup EXIT
 gh api "repos/$repo" > "$work/repository.json"
-jq -e '.private == true' "$work/repository.json"
+node tools/publish-package-policy.mjs "$work/repository.json"
 gh api "repos/$repo/actions/runs/$SOURCE_RUN" > "$proof/source-run.json"
 jq -e '.status == "completed" and .conclusion == "success" and .name == "CI" and .path == ".github/workflows/ci.yml"' "$proof/source-run.json"
 gh api "repos/$repo/actions/runs/$SOURCE_RUN/jobs?per_page=100" > "$proof/source-jobs.json"
@@ -84,7 +77,8 @@ for attempt in {1..60}; do
   sleep 1
 done
 test "$ready" = true
-docker exec -i "$container" node --input-type=module < tools/ci-image-runtime.mjs > "$proof/runtime-pulled.json"
+approved_models=$(cat tests/fixtures/approved-models-ia-2026.json)
+docker exec -e "KARTA3_CI_APPROVED_MODELS=$approved_models" -i "$container" node --input-type=module < tools/ci-image-runtime.mjs > "$proof/runtime-pulled.json"
 cp "$trace" "$proof/source-trace.json"
 jq -n --arg source "$source_sha" --arg integration "$INTEGRATION_SHA" --arg workflow "$GITHUB_SHA" \
   --arg run "$GITHUB_RUN_ID" --arg artifact "$ARTIFACT_ID" --arg reference "$reference" --arg tag "$tag" \

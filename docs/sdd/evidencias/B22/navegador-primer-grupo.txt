@@ -1,0 +1,102 @@
+
+Running 15 tests using 2 workers
+
+(node:22424) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2352) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  2 tests\browser\creatures.spec.ts:62:1 › B16 instalación normal: cuatro sin default, dos sesiones/pestañas, versión exacta, permisos, 59 recursos y ocho JSON privados (5.9s)
+  ok  3 tests\browser\decks.spec.ts:11:5 › B04 catálogo 390px › AGV2-02/03/08 ejecución normal genérica 2; GET no crea cookie y sala inicialmente sin selección (707ms)
+  ok  4 tests\browser\decks.spec.ts:11:5 › B04 catálogo 1280px › AGV2-02/03/08 ejecución normal genérica 2; GET no crea cookie y sala inicialmente sin selección (689ms)
+  ok  1 tests\browser\bots.spec.ts:102:1 › B09 P2 normal compilado genérica 2: persona contra fácil/difícil, entropía/plazos normales, resultado y otra sala (9.2s)
+  ok  6 tests\browser\solar.spec.ts:26:34 › B14 catálogo normal, cambio de baraja, portada y recuperación en dos sesiones a 1280px (2.1s)
+  ok  5 tests\browser\models.spec.ts:51:1 › B22 catálogo normal: dos sesiones/pestañas, selección exacta, portada/instrucciones, 59 medios y ocho JSON privados (8.6s)
+  ok  7 tests\browser\models.spec.ts:106:64 › B22 textos dirigidos 1920 optimizar=true PLAY_VALUE: mano/indicadora/Mesa/Detalles (5.8s)
+  ok  8 tests\browser\models.spec.ts:106:64 › B22 textos dirigidos 1920 optimizar=true DISPLAY_VALUE: mano/indicadora/Mesa/Detalles (4.8s)
+  ok  9 tests\browser\models.spec.ts:106:64 › B22 textos dirigidos 1280 optimizar=true PLAY_VALUE: mano/indicadora/Mesa/Detalles (4.5s)
+  ok 10 tests\browser\models.spec.ts:106:64 › B22 textos dirigidos 1280 optimizar=true DISPLAY_VALUE: mano/indicadora/Mesa/Detalles (4.6s)
+  ok 11 tests\browser\models.spec.ts:106:64 › B22 textos dirigidos 390 optimizar=true PLAY_VALUE: mano/indicadora/Mesa/Detalles (4.4s)
+  ok 12 tests\browser\models.spec.ts:106:64 › B22 textos dirigidos 390 optimizar=true DISPLAY_VALUE: mano/indicadora/Mesa/Detalles (4.4s)
+  x  13 tests\browser\models.spec.ts:106:64 › B22 textos dirigidos 390 optimizar=false PLAY_VALUE: mano/indicadora/Mesa/Detalles (8.6s)
+(node:2188) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  14 tests\browser\models.spec.ts:106:64 › B22 textos dirigidos 390 optimizar=false DISPLAY_VALUE: mano/indicadora/Mesa/Detalles (10.1s)
+(node:23580) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 15 tests\browser\models.spec.ts:158:1 › B22 partida completa normal y paquete estadístico SYNTHETIC: humano/EASY/HARD, F5, resultados y otra sala (11.6s)
+
+
+  1) tests\browser\models.spec.ts:106:64 › B22 textos dirigidos 390 optimizar=false PLAY_VALUE: mano/indicadora/Mesa/Detalles
+
+    Error: expect(locator).toContainText(expected) failed
+
+    Locator: getByRole('dialog')
+    Expected substring: "GPT-3 175B"
+    Received string:    "Detalles de Claude Sonnet 4AnthropicAtributoDato● LanzamientoActivo22/05/2025▲ Inteligencia47■ Contexto200.000 tkVariante: Claude Sonnet 4; probablemente Thinking, presupuesto no acreditado. Referencia de evaluación: 84,2 %, MMLU-Pro, referencia histórica aceptada para esta demostración; ejecución primaria no acreditada. Contexto documentado: 200.000 tokens. Fecha: 22/05/2025; desarrollador: Anthropic. 84,2 aparece en recopilaciones para Thinking. Vals publica 83,86 Thinking y 79,43 Nonthinking; falta el run primario del 84,2. Se conserva contexto estándar de Bedrock; no la beta 1M de agosto de 2025, retirada en abril de 2026. Fuentes de fecha, contexto y evaluación: https://www.anthropic.com/news/claude-4 ; https://docs.aws.amazon.com/bedrock/latest/userguide/model-card-anthropic-claude-sonnet-4.html ; https://evals.report/benchmarks/mmlu-pro?tab=scores. Revisión técnica: 21/10/2026. Inteligencia jugable 47/58: posición editorial aceptada por el autor para ilustrar la mecánica de KARTA3.Información de la barajaCerrar detalles"
+    Timeout: 5000ms
+
+    Call log:
+      - Expect "toContainText" getByRole('dialog') with timeout 5000ms
+      - waiting for getByRole('dialog')
+        14 × locator resolved to <dialog open="" class="card-details-dialog" aria-labelledby="card-details-title">…</dialog>
+           - unexpected value "Detalles de Claude Sonnet 4AnthropicAtributoDato● LanzamientoActivo22/05/2025▲ Inteligencia47■ Contexto200.000 tkVariante: Claude Sonnet 4; probablemente Thinking, presupuesto no acreditado. Referencia de evaluación: 84,2 %, MMLU-Pro, referencia histórica aceptada para esta demostración; ejecución primaria no acreditada. Contexto documentado: 200.000 tokens. Fecha: 22/05/2025; desarrollador: Anthropic. 84,2 aparece en recopilaciones para Thinking. Vals publica 83,86 Thinking y 79,43 Nonthinking; falta el run primario del 84,2. Se conserva contexto estándar de Bedrock; no la beta 1M de agosto de 2025, retirada en abril de 2026. Fuentes de fecha, contexto y evaluación: https://www.anthropic.com/news/claude-4 ; https://docs.aws.amazon.com/bedrock/latest/userguide/model-card-anthropic-claude-sonnet-4.html ; https://evals.report/benchmarks/mmlu-pro?tab=scores. Revisión técnica: 21/10/2026. Inteligencia jugable 47/58: posición editorial aceptada por el autor para ilustrar la mecánica de KARTA3.Información de la barajaCerrar detalles"
+
+
+      140 |       const initial = await readGame(p.pages[1]); const compact = profile.optimize && profile.width < 1400;
+      141 |       const indicator = compact ? p.pages[1].locator('.summary-indicator') : p.pages[1].locator('.indicator-full .card-details-button');
+    > 142 |       await indicator.focus(); await indicator.press('Enter'); await expect(p.pages[1].getByRole('dialog')).toContainText(initial.game.round.indicator.name);
+          |                                                                                                             ^
+      143 |       await p.pages[1].getByRole('button', { name: compact ? 'Cerrar consulta' : 'Cerrar detalles', exact: true }).press('Escape');
+      144 |       await expect(p.pages[1].locator('.consultation, .card-details-dialog')).toHaveCount(0); await expect(indicator).toBeFocused();
+      145 |       await record(p.host, `mano-${label}`); expect(server.gameRequests).toHaveLength(0); expect((await readGame(p.pages[1])).game.interaction.turn!.timing).toEqual(initial.game.interaction.turn!.timing);
+        at E:\KARTA3\KARTA3_IA\APP\karta3\tests\browser\models.spec.ts:142:109
+
+    Error Context: playwright-report\b22\final-traces\models-B22-textos-dirigido-aa5c4-no-indicadora-Mesa-Detalles\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    playwright-report\b22\final-traces\models-B22-textos-dirigido-aa5c4-no-indicadora-Mesa-Detalles\trace.zip
+    Usage:
+
+        npx playwright show-trace playwright-report\b22\final-traces\models-B22-textos-dirigido-aa5c4-no-indicadora-Mesa-Detalles\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) tests\browser\models.spec.ts:106:64 › B22 textos dirigidos 390 optimizar=false DISPLAY_VALUE: mano/indicadora/Mesa/Detalles
+
+    Error: expect(locator).toContainText(expected) failed
+
+    Locator: getByRole('dialog')
+    Expected substring: "GPT-3 175B"
+    Received string:    "Detalles de Claude Sonnet 4AnthropicAtributoDato● LanzamientoActivo22/05/2025▲ Inteligencia47■ Contexto200.000 tkVariante: Claude Sonnet 4; probablemente Thinking, presupuesto no acreditado. Referencia de evaluación: 84,2 %, MMLU-Pro, referencia histórica aceptada para esta demostración; ejecución primaria no acreditada. Contexto documentado: 200.000 tokens. Fecha: 22/05/2025; desarrollador: Anthropic. 84,2 aparece en recopilaciones para Thinking. Vals publica 83,86 Thinking y 79,43 Nonthinking; falta el run primario del 84,2. Se conserva contexto estándar de Bedrock; no la beta 1M de agosto de 2025, retirada en abril de 2026. Fuentes de fecha, contexto y evaluación: https://www.anthropic.com/news/claude-4 ; https://docs.aws.amazon.com/bedrock/latest/userguide/model-card-anthropic-claude-sonnet-4.html ; https://evals.report/benchmarks/mmlu-pro?tab=scores. Revisión técnica: 21/10/2026. Inteligencia jugable 47/58: posición editorial aceptada por el autor para ilustrar la mecánica de KARTA3.Información de la barajaCerrar detalles"
+    Timeout: 5000ms
+
+    Call log:
+      - Expect "toContainText" getByRole('dialog') with timeout 5000ms
+      - waiting for getByRole('dialog')
+        14 × locator resolved to <dialog open="" class="card-details-dialog" aria-labelledby="card-details-title">…</dialog>
+           - unexpected value "Detalles de Claude Sonnet 4AnthropicAtributoDato● LanzamientoActivo22/05/2025▲ Inteligencia47■ Contexto200.000 tkVariante: Claude Sonnet 4; probablemente Thinking, presupuesto no acreditado. Referencia de evaluación: 84,2 %, MMLU-Pro, referencia histórica aceptada para esta demostración; ejecución primaria no acreditada. Contexto documentado: 200.000 tokens. Fecha: 22/05/2025; desarrollador: Anthropic. 84,2 aparece en recopilaciones para Thinking. Vals publica 83,86 Thinking y 79,43 Nonthinking; falta el run primario del 84,2. Se conserva contexto estándar de Bedrock; no la beta 1M de agosto de 2025, retirada en abril de 2026. Fuentes de fecha, contexto y evaluación: https://www.anthropic.com/news/claude-4 ; https://docs.aws.amazon.com/bedrock/latest/userguide/model-card-anthropic-claude-sonnet-4.html ; https://evals.report/benchmarks/mmlu-pro?tab=scores. Revisión técnica: 21/10/2026. Inteligencia jugable 47/58: posición editorial aceptada por el autor para ilustrar la mecánica de KARTA3.Información de la barajaCerrar detalles"
+
+
+      140 |       const initial = await readGame(p.pages[1]); const compact = profile.optimize && profile.width < 1400;
+      141 |       const indicator = compact ? p.pages[1].locator('.summary-indicator') : p.pages[1].locator('.indicator-full .card-details-button');
+    > 142 |       await indicator.focus(); await indicator.press('Enter'); await expect(p.pages[1].getByRole('dialog')).toContainText(initial.game.round.indicator.name);
+          |                                                                                                             ^
+      143 |       await p.pages[1].getByRole('button', { name: compact ? 'Cerrar consulta' : 'Cerrar detalles', exact: true }).press('Escape');
+      144 |       await expect(p.pages[1].locator('.consultation, .card-details-dialog')).toHaveCount(0); await expect(indicator).toBeFocused();
+      145 |       await record(p.host, `mano-${label}`); expect(server.gameRequests).toHaveLength(0); expect((await readGame(p.pages[1])).game.interaction.turn!.timing).toEqual(initial.game.interaction.turn!.timing);
+        at E:\KARTA3\KARTA3_IA\APP\karta3\tests\browser\models.spec.ts:142:109
+
+    Error Context: playwright-report\b22\final-traces\models-B22-textos-dirigido-172b0-no-indicadora-Mesa-Detalles\error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    playwright-report\b22\final-traces\models-B22-textos-dirigido-172b0-no-indicadora-Mesa-Detalles\trace.zip
+    Usage:
+
+        npx playwright show-trace playwright-report\b22\final-traces\models-B22-textos-dirigido-172b0-no-indicadora-Mesa-Detalles\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    tests\browser\models.spec.ts:106:64 › B22 textos dirigidos 390 optimizar=false PLAY_VALUE: mano/indicadora/Mesa/Detalles
+    tests\browser\models.spec.ts:106:64 › B22 textos dirigidos 390 optimizar=false DISPLAY_VALUE: mano/indicadora/Mesa/Detalles
+  13 passed (1.4m)

@@ -1,0 +1,22 @@
+{
+  "clock": "SystemClock",
+  "scheduler": "TimerScheduler",
+  "entropy": "CryptoCardPermutation",
+  "traffic": "SYNTHETIC",
+  "deck": "modelos-ia-2026:2:2",
+  "moves": 15,
+  "finalRounds": [
+    13,
+    14,
+    15
+  ],
+  "endReason": "DECK_COMPLETED",
+  "completedNormally": true,
+  "points": 45,
+  "scores": [
+    21,
+    15,
+    9
+  ],
+  "packageCount": 1
+}

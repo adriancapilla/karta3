@@ -11,7 +11,7 @@ import { botTrace } from './botTrace.js';
 import type { TurnExpiredEvent } from '../../shared/contracts/game.js';
 
 /** Conexiones y paquetes reales, compilación actual; solamente el reloj es sustituido. */
-export async function configurationBrowserServer(single = false, initialGame = false, manual?: { count: number; winners?: readonly number[]; botSeed?: number }, presentation: { longText?: boolean; generic?: boolean; distinct?: boolean; solar?: boolean; creatures?: boolean; literal?: boolean; longTitle?: boolean } = {}) {
+export async function configurationBrowserServer(single = false, initialGame = false, manual?: { count: number; winners?: readonly number[]; botSeed?: number }, presentation: { longText?: boolean; generic?: boolean; distinct?: boolean; solar?: boolean; creatures?: boolean; models?: boolean; literal?: boolean; longTitle?: boolean } = {}) {
   const { createRuntime } = await import('../../dist-server/server/composition/createApp.js');
   const { prepareDecks, loadPreparedDecks } = await import('../../dist-server/server/infrastructure/decks/catalog.js');
   const { attachPublicFiles } = await import('../../dist-server/server/infrastructure/http/publicFiles.js');
@@ -60,6 +60,7 @@ export async function configurationBrowserServer(single = false, initialGame = f
   if (presentation.generic) await fs.cp(path.resolve('barajas/generica'), path.join(root, 'generica'), { recursive: true });
   if (presentation.solar) await fs.cp(path.resolve('barajas/sistema-solar'), path.join(root, 'sistema-solar'), { recursive: true });
   if (presentation.creatures) await fs.cp(path.resolve('barajas/criaturas-magicas'), path.join(root, 'criaturas-magicas'), { recursive: true });
+  if (presentation.models) await fs.cp(path.resolve('barajas/modelos-ia-2026'), path.join(root, 'modelos-ia-2026'), { recursive: true });
   const loaded = await prepareDecks(root).then(() => loadPreparedDecks(root)).catch(async (error: unknown) => { await removeTestInstallation(root); throw error; });
   const time = new ControlledTime(); const repository = new MemoryRoomRepository(); const sessions = new MemorySessions();
   let permute: (ids: readonly string[]) => readonly string[] = (ids) => mixed && ids.length === 58 ? mixed.permutation : [...ids];
@@ -130,6 +131,16 @@ export async function configurationBrowserServer(single = false, initialGame = f
   await new Promise<void>((resolve) => server.listen(0, '127.0.0.1', resolve));
   const address = server.address(); if (!address || typeof address === 'string') throw new Error('Puerto ausente');
   return { base: `http://127.0.0.1:${address.port}`, time, repository, sessions, requests, loaded, starts, prepared, gameRequests, botRequests,
+    observeCurrentHttp: (observe: (event: { phase: 'request' | 'finish'; status?: number }) => void) => {
+      const listener: import('node:http').RequestListener = (request, response) => {
+        if (request.method !== 'GET' || request.url !== '/api/rooms/current') return;
+        observe({ phase: 'request' });
+        response.once('finish', () => observe({ phase: 'finish', status: response.statusCode }));
+      };
+      server.on('request', listener);
+      return () => { server.off('request', listener); };
+    },
+    pollingOnly: () => { io.engine.opts.allowUpgrades = false; },
     interceptBot: (handler: typeof interceptBot) => { interceptBot = handler; },
     intercept: (handler: typeof intercept) => { intercept = handler; },
     interceptStart: (handler: typeof interceptStart) => { interceptStart = handler; },

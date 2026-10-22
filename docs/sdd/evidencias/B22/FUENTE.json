@@ -1,0 +1,47 @@
+{
+  "base": "aa336d3add598e4c59789ff053292295410da8dc",
+  "contentCommit": "a4f6cd0b7f456720d9be328a8e2ce812251c90fe",
+  "checkSource": "abb861911edd47c317b93fe7bc74e6e02c1042ab",
+  "finalReviewedSource": "fc99a2a267aa7a480e61891720c69561f83d1274",
+  "afterCheckChangedOnly": "tests/browser/models.spec.ts",
+  "runtime": {
+    "version": "v24.19.0",
+    "path": "C:\\Users\\Adrian\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+    "icu": "78.3",
+    "unicode": "17.0",
+    "sqlite": "3.53.3",
+    "platform": "win32",
+    "arch": "x64"
+  },
+  "artifacts": [
+    {
+      "path": "dist/assets/index-B0x6wFjK.css",
+      "sha256": "41bdcd81db599cc5ed8004f1a3e0d01127d8abf957ca2e3373f2e1fe7b68d856"
+    },
+    {
+      "path": "dist/assets/index-DrskPTZl.js",
+      "sha256": "348668f179ce68f6e87c34565d6cebaf8fe94e83e1c7f8a9e170ba69a57b1b24"
+    }
+  ],
+  "oldFilesPreserved": 124,
+  "newSourceAppGit": 61,
+  "behaviorFilesCommittedDiff": "",
+  "measurements": 16,
+  "linux": "Not executed; syntax of Node and Bash verifier checked only",
+  "priorFilesUnchangedBeforeOwnDocumentation": [
+    "src/style.css",
+    "tests/browser/format2Presentation.spec.ts",
+    "tests/browser/tableLayout.spec.ts",
+    "docs/sdd/PROCESO_SDD.md",
+    "docs/sdd/ADENDA_B15_ANCHO_PANELES_COMPACTOS.md",
+    "docs/sdd/PROMPT_IMPLEMENTACION_ADENDA_PANELES_COMPACTOS.md",
+    "docs/sdd/BLOQUE_22_INCORPORACION_MODELOS_IA_2026.md",
+    "docs/sdd/PROMPT_IMPLEMENTACION_BLOQUE_22.md"
+  ],
+  "testedWorktree": {
+    "includesPreservedUncommittedB15Panels": true,
+    "cleanCheckoutOfB22HeadTested": false,
+    "needsJointSourceBeforePublication": true,
+    "reference": "INICIAL.json: prior hashes for src/style.css and tests/browser/format2Presentation.spec.ts"
+  }
+}

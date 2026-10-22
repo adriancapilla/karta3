@@ -110,3 +110,11 @@ Revisión de responsabilidades: Game/domain sin modificaciones; puertos/fórmula
 La [guía vigente](../../../operacion/ANALITICA_AGREGADA_B21.md) contiene instrucciones manuales y el procedimiento posterior de actualización única, vuelta al paquete anterior con su archivo/OFF y borrado delimitado **no ejecutado**. Las guías anteriores quedan señaladas como históricas sin mezclar cambios previos del autor.
 
 Pendiente: referencia recibida de Arquitectura ([traslado](../../TRASLADO_ARQUITECTURA_B21_ANALITICA_AGREGADA.md)); Linux/imagen/Compose/volumen/copia de esa imagen y CI posterior; revisión humana/operación/activación o borrado solo por otro encargo. C09–C10 siguen parciales. No mensajes a otros hilos, push, PR, GHCR o VPS. Detenerse tras entregar el cierre técnico local.
+
+## Incidencia de sincronización SQLite — 22/10/2026
+
+CI39690754879, intento1/fuente13bc564: imagen correcta, check618/619; Chrome no ejecutado. Falla A07/A08 al leer START=0 tras await writer.flush(). El escritor retorna inmediatamente cuando ya hay pending/flight; esa llamada despacha, no garantiza durabilidad de toda la cola. La traza histórica no registra pending; no se afirma su instante exacto solo porque otra ejecución pase.
+
+Reparación exclusivamente de server/statisticsIntegration.test.ts: barrera de ensayo espera entries=0, despachando los siguientes lotes si procede, antes de las mismas aserciones SQLite. Sin cambiar escritor, contratos, conservación, permisos, reductor, plazos o reintentos. Caso causal nuevo retiene exactamente un mensaje append al worker real: la segunda flush termina con entries>0 y HOME=0; liberar una vez y esperar la barrera produce HOME=1/entries=0. Demuestra el supuesto incorrecto, no un reensayo favorable por sí solo. Se aplica la misma barrera a las lecturas de los cuatro casos del archivo para conservar sus garantías.
+
+Focal Windows propio y aislado: causal1/1 en2965ms; el caso de ventanas quedó bloqueado por EACCES de conexión loopback del sandbox. Se repitió únicamente ese caso fuera de la restricción,1/1 en3196ms. Sin instalar/compilar ni detener servidores del autor; usa compilación B21 existente, no acredita Vite8.3.5/Linux. Se conservan ambos logs e intento fallido. Las puertas Linux posteriores se registran en PR17/evidencia de publicación. El OCI de la ejecución global fallida no es candidato aprobado.

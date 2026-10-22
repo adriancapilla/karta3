@@ -7,22 +7,18 @@ on:
         description: Ejecución CI completa correcta que conserva el OCI
         required: true
         type: string
-        default: '37771631223'
       artifact_id:
         description: ID del artefacto OCI de esa ejecución
         required: true
         type: string
-        default: '11548556814'
       integration_sha:
         description: SHA completo de integración con el mismo árbol que el commit fuente
         required: true
         type: string
-        default: '207b0de3216f92a2b923293ca16fb47a8b5565c2'
       expected_digest:
         description: Digest del manifiesto OCI aprobado
         required: true
         type: string
-        default: 'sha256:33de30c84c8947286fa9b8dc4031e1c0449bb206b5c371dd13ff00239e05b57a'
       source_association_reviewed:
         description: Repository source comprobado en Package settings; solo necesario si la API devuelve repository nulo
         required: true
@@ -50,6 +46,9 @@ jobs:
         with:
           persist-credentials: false
           fetch-depth: 0
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7
+        with:
+          node-version-file: '.node-version'
       - name: Instalar transporte OCI
         run: |
           sudo apt-get update

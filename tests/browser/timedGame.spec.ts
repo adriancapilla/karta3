@@ -2,6 +2,7 @@ import { expect, test } from '@playwright/test';
 import { configurationBrowserServer } from '../support/configurationBrowserServer';
 import { humanPlay, manualTable, readGame, readRoom } from '../support/manualBrowserCases';
 import type { ResultsRoomView } from '../../shared/contracts/room.js';
+import fs from 'node:fs/promises';
 
 for (const width of [390, 1280]) test(`B08 T1 ${width}: deadline estable, carta local ignorada, aviso y recuperación`, async ({ browser }, testInfo) => {
   const f = await configurationBrowserServer(true, true, { count: 2 });
@@ -94,6 +95,19 @@ for (const width of [360, 390, 1280]) test(`B08 T2 ${width}: reset, dos fallos, 
   const p = await manualTable(browser, f.base, { width, deckId: 'portada', version: 7, turn: 15, review });
   const actor = p.pages[1]; const own = await readGame(actor); const tab = await p.contexts[1].newPage();
   const room = f.repository.findById(own.id)!;
+  const observation: unknown[] = [];
+  const mark = (label: string) => observation.push({ at: Date.now(), label, time: f.time.now().monotonic,
+    status: room.status, round: room.game!.round.number, plays: room.game!.round.plays.length,
+    ownTurn: room.game!.turn?.playerId === own.participant.id, gameRequests: f.gameRequests.map(({ event }) => event) });
+  const unobserve = f.observeCurrentHttp(event => observation.push({ at: Date.now(), layer: 'server-http', ...event }));
+  for (const [index, page] of [...p.pages, tab].entries()) {
+    for (const type of ['request', 'requestfinished', 'requestfailed'] as const) page.on(type, request => {
+      if (new URL(request.url()).pathname === '/api/rooms/current') observation.push({ at: Date.now(), layer: 'browser-http', index, type,
+        ...(type === 'requestfailed' ? { error: request.failure()?.errorText } : {}) });
+    });
+    page.on('pageerror', error => observation.push({ at: Date.now(), layer: 'page-error', index, message: error.message }));
+    page.on('crash', () => observation.push({ at: Date.now(), layer: 'page-crash', index }));
+  }
   const seek = async () => {
     while (room.game!.turn?.playerId !== own.participant.id) {
       if (room.gameReview) f.time.advance(review * 1000);
@@ -102,10 +116,14 @@ for (const width of [360, 390, 1280]) test(`B08 T2 ${width}: reset, dos fallos, 
     await expect.poll(async () => (await readGame(actor)).game.interaction.turn?.playerId).toBe(own.participant.id);
   };
   try {
+    mark('before-tab-goto');
     await tab.goto(f.base);
+    mark('before-first-timeout');
     f.time.advance(15000);
     await expect(actor.getByText('No completaste tu último turno a tiempo.', { exact: false })).toBeVisible();
+    mark('before-first-human-play');
     await humanPlay(p, false, 'LOW');
+    mark('after-first-human-play');
     await expect(p.host.locator('.activity')).toContainText('agotó el tiempo');
     await expect(p.host.locator('.activity')).toContainText('ganó'); // ganador y timeout no se borran entre sí
     if (width === 360) {
@@ -136,7 +154,11 @@ for (const width of [360, 390, 1280]) test(`B08 T2 ${width}: reset, dos fallos, 
     await expect(p.host.getByRole('heading', { level: 1 })).toHaveText('Partida terminada');
     await expect(p.host.getByText('La partida terminó porque todos los jugadores humanos pasaron a automático', { exact: true })).toBeVisible();
     expect((await readRoom(p.host)).status).toBe('RESULTS'); expect(f.time.pending).toBe(1);
-  } finally { await p.close(); await f.stop(); }
+  } finally {
+    mark('finally'); unobserve();
+    await fs.writeFile(testInfo.outputPath('B08-state-and-http.json'), JSON.stringify(observation, null, 2));
+    await p.close(); await f.stop();
+  }
 });
 
 for (const count of [2, 5]) test(`B08 navegador ${count} empatados legales: final, mano reducida y automático en desempate revisado`, async ({ browser }, testInfo) => {

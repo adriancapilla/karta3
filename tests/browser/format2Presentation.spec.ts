@@ -29,6 +29,118 @@ async function record(page:Page,name:string) {
   await page.screenshot({path:`${evidence}/${name}-full.png`,fullPage:true}); await page.screenshot({path:`${evidence}/${name}-viewport.png`}); return measurements;
 }
 const literal=(value:{displayValue:string;unit:string})=>value.displayValue+(value.unit===''?'':` ${value.unit}`);
+
+async function recordCompactPanels(page: Page, name: string) {
+  await page.evaluate(async () => { await document.fonts.ready; scrollTo(0, 0); });
+  const sample = await page.evaluate(() => {
+    const box = (e: Element) => { const b = e.getBoundingClientRect(); return { x: b.x, y: b.y + scrollY, width: b.width, height: b.height }; };
+    const composition = document.querySelector<HTMLElement>('.game-composition')!;
+    const layout = document.querySelector('.game-layout')!;
+    const panels = Object.fromEntries(['people', 'initial-state', 'plays', 'hand'].map(name => {
+      const e = document.querySelector<HTMLElement>(`.game-${name}`)!; const style = getComputedStyle(e);
+      return [name, { ...box(e), client: e.clientWidth, scroll: e.scrollWidth, boxSizing: style.boxSizing,
+        padding: style.padding, border: style.borderWidth, maxWidth: style.maxWidth, text: e.textContent,
+        controls: [...e.querySelectorAll('button')].filter(b => b.getBoundingClientRect().width > 0).map(b => ({ ...box(b), text: b.textContent, client: b.clientWidth, scroll: b.scrollWidth })) }];
+    }));
+    const rail = document.querySelector<HTMLElement>('.hand-row')!;
+    const card = rail.querySelector('.game-card')!;
+    const indicator = document.querySelector('.summary-indicator')!;
+    return { viewport: { width: innerWidth, height: innerHeight, dpr: devicePixelRatio, scale: visualViewport?.scale },
+      useful: Number(composition.dataset.usefulWidth), layout: composition.dataset.layout, composition: box(composition), available: box(layout).width,
+      documentWidth: document.documentElement.scrollWidth, font: getComputedStyle(card).fontFamily, card: box(card), gap: parseFloat(getComputedStyle(rail).columnGap),
+      rails: [rail, document.querySelector<HTMLElement>('.played-row')!].map(e => ({ ...box(e), client: e.clientWidth, scroll: e.scrollWidth, overflow: getComputedStyle(e).overflowX })),
+      panels, indicator: box(indicator), theme: document.documentElement.dataset.appearance };
+  });
+  const folder = process.env.KARTA3_PANEL_EVIDENCE ?? 'playwright-report/b15-paneles-20261021/after';
+  await fs.mkdir(folder, { recursive: true });
+  await fs.writeFile(`${folder}/${name}.json`, JSON.stringify({ ...sample, browser: page.context().browser()!.version() }, null, 2) + '\n');
+  await page.screenshot({ path: `${folder}/${name}.png`, fullPage: true });
+  return sample;
+}
+
+for (const width of [390, 1280]) for (const mode of ['PLAY_VALUE', 'DISPLAY_VALUE'] as const)
+  test(`B15 adenda paneles compactos ${width} ${mode}`, async ({ browser }) => {
+    const s = await server(); const p = await manualTable(browser, s.base, { count: 5, deckId: 'sistema-solar', version: 4,
+      hostName: 'Alejandra Pérez', names: ['Alejandra Pérez', 'Maximiliano Ruiz', 'Valentina Suárez', 'Alejandra Pérez'],
+      optimize: true, valueMode: mode, width, height: 844, turn: 60, review: 5 });
+    try {
+      const actor = p.pages[1]; const first = await readGame(actor); const timing = first.game.interaction.turn!.timing;
+      await cards(actor, mode);
+      const initial = await recordCompactPanels(actor, `initial-${width}-${mode}`);
+      expect(initial.layout).toBe('compact'); expect(initial.card.width).toBe(220); expect(initial.gap).toBe(10);
+      for (const name of ['people', 'initial-state']) {
+        const panel = initial.panels[name];
+        expect(panel.width).toBeCloseTo(Math.min(initial.available, 2 * initial.card.width + initial.gap), 0);
+        expect(panel.scroll).toBeLessThanOrEqual(panel.client + 1); expect(panel.boxSizing).toBe('border-box');
+        for (const control of panel.controls) {
+          expect(control.x).toBeGreaterThanOrEqual(panel.x); expect(control.x + control.width).toBeLessThanOrEqual(panel.x + panel.width + 1);
+          expect(control.y + control.height).toBeLessThanOrEqual(panel.y + panel.height + 1); expect(control.scroll).toBeLessThanOrEqual(control.client + 1);
+        }
+      }
+      expect(initial.documentWidth).toBeLessThanOrEqual(width);
+      const indicator = actor.getByRole('button', { name: `Carta indicadora: ${first.game.round.indicator.name}`, exact: true });
+      await indicator.focus(); await indicator.press('Enter');
+      await expect(actor.getByRole('dialog')).toContainText(first.game.round.indicator.name);
+      await expect(actor.getByRole('dialog').locator('tbody tr')).toHaveCount(3);
+      await actor.getByRole('button', { name: 'Cerrar consulta', exact: true }).press('Escape');
+      await expect(actor.locator('.consultation')).toHaveCount(0); await expect(indicator).toBeFocused();
+      const person = actor.locator('.roster-identity').first(); await person.focus(); await person.press('Enter');
+      await expect(actor.getByRole('dialog')).toContainText('Alejandra Pérez');
+      await actor.getByRole('button', { name: 'Cerrar consulta', exact: true }).press('Escape');
+      await expect(actor.locator('.consultation')).toHaveCount(0); await expect(person).toBeFocused();
+      expect(s.gameRequests).toHaveLength(0); expect((await readGame(actor)).game.interaction.turn!.timing).toEqual(timing);
+      for (let i = 0; i < 5; i++) await humanPlay(p, false, 'LOW');
+      const review = await readGame(p.host); expect(review.game.interaction.stage).toBe('ROUND_REVIEW');
+      await expect(p.host.locator('.played-row .game-card-slot')).toHaveCount(5);
+      const reviewed = await recordCompactPanels(p.host, `review-${width}-${mode}`);
+      const limit = Math.min(reviewed.available, 2 * reviewed.card.width + reviewed.gap);
+      expect(reviewed.panels.people.width).toBeCloseTo(limit, 0);
+      expect(reviewed.panels['initial-state'].width).toBeCloseTo(limit, 0);
+      expect(reviewed.panels['initial-state'].scroll).toBeLessThanOrEqual(reviewed.panels['initial-state'].client + 1);
+      const hand = p.host.locator('.hand-row'), mesa = p.host.locator('.played-row');
+      await hand.focus(); for (let i = 0; i < 16; i++) await hand.press('ArrowRight');
+      await expect.poll(() => hand.evaluate(e => e.scrollWidth - e.clientWidth - e.scrollLeft)).toBeLessThanOrEqual(1);
+      const handScroll = await hand.evaluate(e => e.scrollLeft);
+      await mesa.focus(); for (let i = 0; i < 16; i++) await mesa.press('ArrowRight');
+      if (await mesa.evaluate(e => e.scrollWidth > e.clientWidth + 1)) await expect.poll(() => mesa.evaluate(e => e.scrollLeft)).toBeGreaterThan(0);
+      else expect(await mesa.evaluate(e => e.scrollLeft)).toBe(0);
+      expect(await hand.evaluate(e => e.scrollLeft)).toBe(handScroll);
+      const fifth = mesa.locator('.card-details-button').last(); await fifth.focus(); await fifth.press('Enter');
+      await expect(p.host.getByRole('dialog').locator('tbody tr')).toHaveCount(3);
+      await p.host.getByRole('button', { name: 'Cerrar detalles', exact: true }).press('Escape');
+      await expect(p.host.locator('.card-details-dialog')).toHaveCount(0); await expect(fifth).toBeFocused();
+      await p.host.getByRole('combobox', { name: 'Apariencia', exact: true }).selectOption('DARK');
+      const dark = await recordCompactPanels(p.host, `dark-review-${width}-${mode}`);
+      expect(dark.theme).toBe('DARK'); expect(dark.panels.people.width).toBe(reviewed.panels.people.width);
+      expect(dark.panels['initial-state'].width).toBe(reviewed.panels['initial-state'].width);
+      expect((await readGame(p.host)).game.interaction.review).toEqual(review.game.interaction.review);
+    } finally { await p.close(); await s.stop(); }
+  });
+
+test('B15 adenda paneles compactos: frontera útil y normal sin optimización', async ({ browser }) => {
+  const normals = [];
+  for (const optimize of [false, true]) {
+    const s = await server(); const p = await manualTable(browser, s.base, { optimize, width: 1280, turn: 60 });
+    try {
+      const initial = await recordCompactPanels(p.host, `intermediate-${optimize}`);
+      expect(initial.layout).toBe(optimize ? 'compact' : 'normal');
+      for (const target of [1367, 1368]) {
+        const previous = await measure(p.host);
+        await p.host.setViewportSize({ width: target + 32 + previous.viewport.width - previous.bodyWidth, height: 844 });
+        await expect.poll(async () => (await measure(p.host)).contentWidth).toBe(target);
+        const sample = await recordCompactPanels(p.host, `boundary-${optimize}-${target}`);
+        expect(sample.layout).toBe(optimize && target < 1368 ? 'compact' : 'normal');
+        if (sample.layout === 'compact') {
+          expect(sample.panels.people.width).toBe(450); expect(sample.panels['initial-state'].width).toBe(450);
+        }
+        expect(sample.documentWidth).toBeLessThanOrEqual(sample.viewport.width);
+        if (target === 1368) normals.push(sample);
+      }
+      expect(s.gameRequests).toHaveLength(0);
+    } finally { await p.close(); await s.stop(); }
+  }
+  expect(normals[0].panels).toEqual(normals[1].panels); expect(normals[0].card.width).toBe(230); expect(normals[1].card.width).toBe(230);
+});
 test('B15 compacta: primer aviso propio, desconexión/recuperación y automático sin control',async({browser})=>{
   const s=await server();const p=await manualTable(browser,s.base,{deckId:'generica',version:4,valueMode:'DISPLAY_VALUE',optimize:true,width:390,turn:15,review:2});
   let sawFirst=false;
