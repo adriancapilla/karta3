@@ -2,6 +2,15 @@
 
 KARTA3 es un proyecto de adaptación de un juego de cartas a una aplicación web multijugador, desarrollado como Trabajo Fin de Máster.
 
+## Materiales para la evaluación del TFM
+
+- [Aplicación en funcionamiento](https://pruebas.karta3.com).
+- [Presentación del proyecto (PowerPoint en Google Drive)](https://docs.google.com/presentation/d/1mSL0D5BEIV14fzg2mUvrNW8MIqLSNncb/edit?usp=drivesdk&ouid=106761390952759032917&rtpof=true&sd=true).
+- [Vídeo de presentación y demostración](https://youtu.be/egP5JlNrv3c).
+- [Guía de instalación, primera partida y versión de referencia](docs/operacion/ENTREGA_MVP_TFM.md).
+
+La aplicación no requiere registro ni credenciales de prueba. Se puede probar con una persona y bots o con otros participantes desde navegadores o perfiles independientes.
+
 ## MVP para el TFM — entrega del 22/10/2026
 
 **Probar: [pruebas.karta3.com](https://pruebas.karta3.com).** B22 está desplegado: cuatro barajas, juego humano y bots, turnos/automático, revisión, resultados y cancelación. Para iniciar hacen falta 2–5 jugadores y **al menos un humano jugador**: el anfitrión observador con solo bots no puede iniciar.
